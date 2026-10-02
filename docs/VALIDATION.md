@@ -1,6 +1,6 @@
 # 按改动选择验证
 
-2026-09-28。这是运行入口，不是“本轮全部通过”报告。先读相应脚本，确认需要图形窗口/资源与输出副作用；不要为小改动无差别跑全套。
+2026-10-02。这是运行入口，不是“本轮全部通过”报告。先读相应脚本，确认需要图形窗口/资源与输出副作用；不要为小改动无差别跑全套。
 
 ## 命令
 
@@ -26,13 +26,16 @@
 | 基础战斗/连段/反馈 | `combat_rules.gd`；需要实机时 `combo_feel.gd`、`combat_feedback.gd`、`combat_training.gd` |
 | 镜头/刀光接口 | `hit_camera_shake.gd`、`golden_sword_trail.gd`、`sword_reach_alignment.gd`、`combat_effect_picker.gd`；火焰专项 `fire_slash_v002.gd` |
 | 敌人/预算/碰撞 | `enemy_roles.gd`、`charger_obstacles.gd`；完整流程 `enemy_training.gd` |
-| Build候选/运行 | `build_choices.gd`、`build_runtime.gd`、`projectile_capabilities.gd`；新入口 `projectile_slice_integration.gd`（支持headless/图形）；旧UI输入 `build_training.gd`本轮失败见KNOWN_ISSUES |
-| 爆炸/控制状态 | `impact_blast.gd`、`status_controls.gd`、`mechanism_order.gd`；`mechanism_slice_integration.gd`支持headless和图形；控制路径回归`combat_rules.gd`/`enemy_roles.gd` |
+| Build候选/运行 | `build_choices.gd`、`build_runtime.gd`、`projectile_capabilities.gd`、`mechanism_presets.gd`；新入口 `projectile_slice_integration.gd`（支持headless/图形）；旧UI输入 `build_training.gd`历史失败尚未修复，见KNOWN_ISSUES |
+| 爆炸/控制状态 | `impact_blast.gd`、`status_controls.gd`、`freeze_guard.gd`、`mechanism_order.gd`；`mechanism_slice_integration.gd`支持headless和图形；控制路径回归`combat_rules.gd`/`enemy_roles.gd` |
+| 穿透/寒霜/内容v4 | `mechanism_content.gd`、`pierce_runtime.gd`、`frost_blast.gd`、`mechanism_presets.gd`；`pierce_frost_integration.gd`支持headless与Forward+1280×800，含3预设/双语卡/普通选择/真实重试 |
 | 房间组合/物件/搜刮 | `room_prop_rules.gd`、`room_props_integration.gd`；美术截图 `room_presets_capture.gd` |
 | 房间模板/加载 | `forest_room.gd`、`scene_transition.gd`；渲染对照 `forest_foliage_preview.gd` |
 | 店铺/镜头/通路 | `shop_preview_controls.gd`、`shop_scene_integration.gd`、`shop_accessibility.gd`、`shop_camera.gd` |
 | 家具 | `decorating_rules.gd`、`shop_decorating.gd`、`decorating_ui.gd` |
 | UI/字体/设置 | 选择 `foliage_ui.gd`、`inventory_ui.gd`、`ui_typography.gd`、`settings_menu.gd`、`settings_integration.gd` |
+
+本轮实际通过与未验证范围统一见 [机制切片验证](COMBAT_MECHANISMS.md#6-本轮验证与边界)。图形集成通过Button/Menu信号与Viewport输入，不代表人工鼠标或主观手感验收。
 
 持久存档/经济尚无完整实现，不把训练提交失败测试当磁盘恢复验收。未来接入须补版本迁移、A/B文件、保存失败及奖励恢复路径。
 

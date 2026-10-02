@@ -1,5 +1,6 @@
 extends PanelContainer
 signal test_offer_requested
+signal test_preset_requested(id: String)
 
 const Style = preload("res://presentation/builds/build_ui_style.tres")
 var _catalog
@@ -8,10 +9,13 @@ var _title: Label
 var _summary: Label
 var _notice: Label
 var _notice_key := ""
+var _notice_params: Dictionary = {}
 var _test_button: Button
+var _preset_menu: MenuButton
+var _presets: Array = []
 
 
-func configure(catalog, shared_theme: Theme) -> void:
+func configure(catalog, shared_theme: Theme, enable_test_presets: bool = false) -> void:
 	assert(catalog != null and shared_theme != null)
 	_catalog = catalog
 	theme = shared_theme
@@ -54,6 +58,14 @@ func configure(catalog, shared_theme: Theme) -> void:
 	_test_button.mouse_filter = Control.MOUSE_FILTER_STOP
 	_test_button.pressed.connect(func(): test_offer_requested.emit())
 	stack.add_child(_test_button)
+	if enable_test_presets:
+		_presets = _catalog.test_presets()
+		_preset_menu = MenuButton.new()
+		_preset_menu.name = "BuildTestPresets"
+		_preset_menu.custom_minimum_size.y = Style.status_button_height
+		_preset_menu.get_popup().id_pressed.connect(func(index: int):
+			if index >= 0 and index < _presets.size(): test_preset_requested.emit(_presets[index].id))
+		stack.add_child(_preset_menu)
 	refresh_text()
 
 
@@ -62,8 +74,9 @@ func update_state(ranks: Dictionary) -> void:
 	refresh_text()
 
 
-func set_notice(key: String) -> void:
+func set_notice(key: String, params: Dictionary = {}) -> void:
 	_notice_key = key
+	_notice_params = params.duplicate(true)
 	refresh_text()
 
 
@@ -79,9 +92,19 @@ func refresh_text() -> void:
 		var rank_text := tr("build.rank").format({"rank": int(_ranks[id]), "max_rank": int(entry["max_rank"])})
 		lines.append(tr(entry["name_key"]) + "  " + rank_text)
 	_summary.text = tr("build.empty") if lines.is_empty() else "\n".join(lines)
-	_notice.text = tr(_notice_key) if not _notice_key.is_empty() else ""
+	var params := _notice_params.duplicate(true)
+	if params.has("name_key"):
+		params.name = tr(params.name_key)
+		params.erase("name_key")
+	_notice.text = tr(_notice_key).format(params) if not _notice_key.is_empty() else ""
 	_notice.visible = not _notice_key.is_empty()
 	_test_button.text = tr("build.test_offer")
+	if _preset_menu != null:
+		_preset_menu.text = tr("build.preset.title")
+		_preset_menu.tooltip_text = tr("build.preset.hint")
+		var popup := _preset_menu.get_popup()
+		popup.clear()
+		for index in _presets.size(): popup.add_item(tr(_presets[index].name_key), index)
 	reset_size()
 	_fit_after_layout.call_deferred()
 

@@ -3,14 +3,18 @@ extends RefCounted
 const Resolver = preload("res://combat/builds/build_resolver.gd")
 const Factory = preload("res://combat/builds/projectile_factory.gd")
 const Split = preload("res://combat/builds/projectile_split.gd")
+const Pierce = preload("res://combat/builds/projectile_pierce.gd")
+const Contacts = preload("res://combat/builds/projectile_contacts.gd")
+const Capabilities = preload("res://combat/builds/projectile_capabilities.gd")
 const Statuses = preload("res://combat/status/status_runtime.gd")
 var statuses := Statuses.new()
 const Impact = preload("res://combat/builds/impact_effects.gd")
-const Area = preload("res://combat/effects/area_damage.gd")
+const Area = preload("res://combat/effects/area_payloads.gd")
 const Damage = preload("res://combat/effects/damage_executor.gd")
 const Sweep = preload("res://combat/builds/build_sweep.gd")
 signal damage_applied(source, target, applied_damage: float, origin: String)
 signal area_emitted(center: Vector3, radius: float)
+signal area_payload_emitted(center: Vector3, radius: float, has_status: bool)
 signal chain_emitted(points: PackedVector3Array)
 
 var _catalog
@@ -45,10 +49,12 @@ func configure(catalog, player, targets: Callable, wall_query: Callable, attack_
 	resolver.configure(catalog)
 	_program = resolver.resolve({})
 
-func set_program(program: Dictionary) -> void:
+func set_program(program: Dictionary) -> bool:
+	if not Capabilities.valid_program(program, _catalog): return false
 	# Copy even a caller-owned program: subsequent caller mutation cannot alter a cast.
 	_program = program.duplicate(true)
 	Resolver.freeze(_program)
+	return true
 
 func on_committed(cast_id: int, ability_id: String) -> void:
 	if not _source_alive(): return
@@ -61,7 +67,7 @@ func on_committed(cast_id: int, ability_id: String) -> void:
 		"program": _program, "base_damage": _player.runner.ability.damage,
 		"damage": _player.runner.ability.damage * float(_program.damage_scale),
 		"budget": int(_limits.root_effect_budget), "spawned": 0, "cue_seen": false,
-		"impact_counts": {}, "chain_triggers": {},
+		"impact_counts": {}, "chain_triggers": {}, "control_attempts": {},
 	}
 	_cast_roots[cast_id] = _next_root
 	_reclaim_roots()
@@ -84,7 +90,7 @@ func fire_attack(attack_id: String, direction: Vector3) -> bool:
 	var context := {"id": _next_root, "cast_id": -_next_root, "ability_id": attack_id,
 		"room_generation": _room_generation, "source_handle": _player.handle, "team": _player.team,
 		"program": _program, "base_damage": attack.damage, "damage": float(attack.damage) * float(_program.damage_scale),
-		"budget": int(_limits.root_effect_budget), "spawned": 0, "cue_seen": true, "impact_counts": {}, "chain_triggers": {}}
+		"budget": int(_limits.root_effect_budget), "spawned": 0, "cue_seen": true, "impact_counts": {}, "chain_triggers": {}, "control_attempts": {}}
 	_roots[_next_root] = context
 	if not _enqueue(context, Factory.initial(_catalog.projectile(attack.projectile_id), _player.global_position, Sweep.planar_direction(direction), context.damage)):
 		_roots.erase(_next_root)
@@ -113,6 +119,9 @@ func tick(delta: float) -> void:
 		_cooldowns[id] -= delta
 		if _cooldowns[id] <= 0.0: _cooldowns.erase(id)
 	_advance_projectiles(delta)
+	if not _source_alive() and not bool(_limits.projectiles_survive_source_death):
+		clear_room()
+		return
 	var remaining := int(_limits.requests_per_step)
 	while remaining > 0 and not _queue.is_empty():
 		if not _source_alive() and not bool(_limits.projectiles_survive_source_death):
@@ -144,7 +153,7 @@ func projectiles() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	for id in _projectiles:
 		var projectile: Dictionary = _projectiles[id]
-		result.append({"id": id, "position": projectile.position, "direction": projectile.direction, "radius": projectile.radius, "definition_id": projectile.definition.id})
+		result.append({"id": id, "position": projectile.position, "direction": projectile.direction, "radius": projectile.radius, "definition_id": projectile.definition.id, "remaining_hits": projectile.remaining_hits})
 	Resolver.freeze(result)
 	return result
 
@@ -189,16 +198,20 @@ func _spawn(context: Dictionary, request: Dictionary) -> void:
 	_next_projectile += 1
 	var projectile := request.duplicate(true)
 	projectile.id = _next_projectile
+	projectile.remaining_hits = Pierce.max_hits(projectile.definition, context.program, _limits)
 	_projectiles[_next_projectile] = projectile
 
 func _advance_projectiles(delta: float) -> void:
 	# Fixed snapshot: child projectiles begin travelling on the following simulation step.
 	for id in _projectiles.keys():
+		if not _projectiles.has(id): continue
 		var projectile: Dictionary = _projectiles[id]
 		if float(projectile.lifetime) <= 0.0:
 			_projectiles.erase(id)
 			continue
 		var context: Dictionary = _roots[projectile.root_id]
+		if not _context_live(context): return
+		var lifetime_before := float(projectile.lifetime)
 		var step := minf(delta, float(projectile.lifetime))
 		var start: Vector3 = projectile.position
 		var direction: Vector3 = projectile.direction
@@ -209,38 +222,38 @@ func _advance_projectiles(delta: float) -> void:
 		if wall_blocked:
 			finish = wall
 			distance = start.distance_to(finish)
-		var contact := _first_contact(context, projectile, start, direction, distance, wall_blocked)
-		if not contact.is_empty():
+		var contacts := Contacts.collect(projectile, start, direction, distance, wall_blocked, _valid_targets(context))
+		for contact in contacts:
+			if not _context_live(context): return
 			var target = contact.target
+			# Earlier damage signals may kill/free a later candidate. Do not debit its hit.
+			if not is_instance_valid(target) or not target.health.alive() or target.team == context.team or target.handle != contact.handle: continue
 			projectile.position = start + direction * float(contact.distance)
-			projectile.lifetime -= float(contact.distance) / float(projectile.speed)
+			# Every contact distance is measured from this step's original start.
+			projectile.lifetime = lifetime_before - float(contact.distance) / float(projectile.speed)
 			var point: Vector3 = target.global_position
 			var victim: int = target.handle
+			projectile.excluded[victim] = true
+			projectile.remaining_hits -= 1
 			var applied: float = Damage.apply(target, float(projectile.damage), context.team)
+			if not _context_live(context): return
 			_contact(context, {"origin": "direct_projectile" if int(projectile.generation) == 0 else "split_projectile", "parent_id": "projectile:%s" % id, "target_handle": victim, "position": point, "damage": projectile.damage})
-			if context.room_generation != _room_generation: return
+			if not _context_live(context): return
 			if applied > 0.0:
 				damage_applied.emit(_player, target, applied, "secondary_projectile")
-				if context.room_generation != _room_generation: return
-				_schedule_chains(context, target, applied, "secondary_projectile")
-			_schedule_splits(context, projectile, target.handle)
-			_projectiles.erase(id)
-			continue
+				if not _context_live(context): return
+				if is_instance_valid(target): _schedule_chains(context, target, applied, "secondary_projectile")
+			_schedule_splits(context, projectile, victim)
+			if int(projectile.remaining_hits) <= 0:
+				_projectiles.erase(id)
+				break
+		if not _projectiles.has(id): continue
 		projectile.position = finish
-		projectile.lifetime -= step
+		projectile.lifetime = lifetime_before - step
 		if wall_blocked or float(projectile.lifetime) <= 0.0: _projectiles.erase(id)
 
-func _first_contact(context: Dictionary, projectile: Dictionary, start: Vector3, direction: Vector3, distance: float, wall_blocked: bool) -> Dictionary:
-	var best: Dictionary = {}
-	for target in _valid_targets(context):
-		if projectile.excluded.has(target.handle): continue
-		# A hurt point on the far side of a wall cannot be hit by the projectile's width.
-		if wall_blocked and direction.dot(target.global_position - start) >= distance: continue
-		var contact := Sweep.contact_distance(start, direction, distance, target.global_position, float(projectile.radius))
-		if contact < 0.0 or (wall_blocked and contact >= distance): continue
-		if best.is_empty() or contact < float(best.distance) or (contact == float(best.distance) and target.handle < best.target.handle):
-			best = {"target": target, "distance": contact}
-	return best
+func _context_live(context: Dictionary) -> bool:
+	return context.room_generation == _room_generation and _roots.has(context.id) and (_source_alive() or bool(_limits.projectiles_survive_source_death))
 
 func _valid_targets(context: Dictionary) -> Array:
 	var result: Array = []
@@ -312,24 +325,35 @@ func on_melee_contact(source, cast_id: int, ability_id: String, victim: int, poi
 	_contact(context, {"origin": "direct_melee", "parent_id": "melee:%s" % cast_id, "target_handle": victim, "position": point, "damage": damage})
 
 func _contact(context: Dictionary, fact: Dictionary) -> void:
-	if context.room_generation != _room_generation: return
+	if not _context_live(context): return
 	for request in Impact.requests(context, fact): _enqueue(context, request)
 
 func _area_step(context: Dictionary, request: Dictionary) -> void:
 	if request.params.occlusion == "world_ray" and not _wall_query.is_valid():
 		_rejected += 1
 		return
-	var plan := Area.plan(request.position, context.team, request.primary, request.damage, request.params, _targets.call(), _wall_query)
+	var plan := Area.plan(request, context.team, _targets.call(), _wall_query)
+	if not _context_live(context): return
 	area_emitted.emit(request.position, float(request.params.radius_m))
-	for hit in plan:
-		if context.room_generation != _room_generation: return
+	if not _context_live(context): return
+	area_payload_emitted.emit(request.position, float(request.params.radius_m), request.payloads.any(func(p): return p.type == "apply_status"))
+	for hit in plan.damage:
+		if not _context_live(context): return
 		var applied := Damage.apply(hit.target, hit.damage, context.team)
-		if context.room_generation != _room_generation: return
+		if not _context_live(context): return
 		if applied > 0.0: damage_applied.emit(_player, hit.target, applied, "explosion")
-	# Deliberately no contact/chain/status emission from area damage.
+	# One composite request costs one budget unit. Each finite payload has its own cap.
+	for hit in plan.statuses:
+		if not _context_live(context): return
+		_apply_status(context, hit.target, hit.status_id, hit.duration)
+	# No generic contact event: explicit payloads cannot trigger a new effect tree.
 
 func _status_step(context: Dictionary, request: Dictionary) -> void:
 	for target in _valid_targets(context):
 		if target.handle != request.target_handle: continue
-		statuses.apply(target, request.status_id, request.duration, {"source_handle": context.source_handle, "team": context.team, "root_id": context.id, "room_generation": context.room_generation, "ability_id": context.ability_id})
+		_apply_status(context, target, request.status_id, request.duration)
 		return
+
+func _apply_status(context: Dictionary, target, status_id: String, duration: float) -> void:
+	if not _context_live(context) or not is_instance_valid(target) or target.team == context.team: return
+	statuses.apply(target, status_id, duration, {"source_handle": context.source_handle, "team": context.team, "root_id": context.id, "room_generation": context.room_generation, "ability_id": context.ability_id}, context.control_attempts)

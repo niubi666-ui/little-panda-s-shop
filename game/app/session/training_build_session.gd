@@ -40,7 +40,11 @@ func capability_summary() -> Array:
 	return Capabilities.summarize(_catalog, _program, _attack_ids, _has_melee)
 
 func _compatible(entry: Dictionary, ranks: Dictionary) -> bool:
-	return Capabilities.eligible(entry, Capabilities.summarize(_catalog, _resolver.resolve(ranks), _attack_ids, _has_melee))
+	var current: Dictionary = _resolver.resolve(ranks)
+	if current.is_empty() or not Capabilities.eligible(entry, Capabilities.summarize(_catalog, current, _attack_ids, _has_melee)): return false
+	var next: Dictionary = ranks.duplicate(true)
+	next[entry.id] = int(next.get(entry.id, 0)) + 1
+	return not _resolver.resolve(next).is_empty()
 
 func open_offer() -> Dictionary:
 	if _committing:
@@ -83,8 +87,30 @@ func choose(offer_id: String, upgrade_id: String) -> Dictionary:
 		"offer_id": offer_id, "upgrade_id": upgrade_id, "rank": current_rank + 1,
 	})
 	var candidate_program: Dictionary = _resolver.resolve(candidate.ranks)
+	if candidate_program.is_empty(): return _result(false, "invalid_program")
 	if not _submit(candidate, candidate_program):
 		return _result(false, "commit_failed")
+	return _result(true, "")
+
+func apply_test_preset(id: String) -> Dictionary:
+	# Training convenience uses the exact same eligibility/compiler path. Only
+	# the fully validated detached candidate reaches the commit adapter once.
+	if _committing: return _result(false, "commit_in_progress")
+	var preset: Dictionary = _catalog.test_preset(id)
+	if preset.is_empty(): return _result(false, "unknown_preset")
+	var candidate: Dictionary = _state.duplicate(true)
+	candidate.ranks = {}
+	candidate.history = []
+	candidate.offer = {}
+	var candidate_program: Dictionary = _resolver.resolve(candidate.ranks)
+	for upgrade_id in preset.upgrade_ids:
+		if not _sampler.is_eligible(upgrade_id, candidate.ranks, candidate_program.tags): return _result(false, "ineligible_upgrade")
+		var rank := int(candidate.ranks.get(upgrade_id, 0)) + 1
+		candidate.ranks[upgrade_id] = rank
+		candidate_program = _resolver.resolve(candidate.ranks)
+		if candidate_program.is_empty(): return _result(false, "invalid_program")
+		candidate.history.append({"preset_id": id, "upgrade_id": upgrade_id, "rank": rank})
+	if not _submit(candidate, candidate_program): return _result(false, "commit_failed")
 	return _result(true, "")
 
 
@@ -97,6 +123,7 @@ func program() -> Dictionary:
 
 
 func _submit(candidate: Dictionary, candidate_program: Dictionary) -> bool:
+	if not Capabilities.valid_program(candidate_program, _catalog): return false
 	_committing = true
 	var result: Variant = _commit.call(candidate.duplicate(true))
 	_committing = false

@@ -10,11 +10,12 @@
     "projectiles",
     "test_attacks",
     "statuses",
-    "status_rules"
+    "status_rules",
+    "test_presets"
   ],
   "properties": {
     "schema_version": {
-      "const": 3
+      "const": 4
     },
     "offer": {
       "type": "object",
@@ -83,7 +84,8 @@
         "max_chain_jumps",
         "max_split_generation",
         "max_projectiles_per_root",
-        "projectiles_survive_source_death"
+        "projectiles_survive_source_death",
+        "max_projectile_hits"
       ],
       "properties": {
         "root_effect_budget": {
@@ -123,6 +125,11 @@
         },
         "projectiles_survive_source_death": {
           "type": "boolean"
+        },
+        "max_projectile_hits": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
         }
       }
     },
@@ -260,7 +267,9 @@
               "split",
               "explosion",
               "status",
-              "status_duration"
+              "status_duration",
+              "pierce",
+              "area_status"
             ]
           },
           "ranks": {
@@ -607,6 +616,92 @@
                 }
               }
             }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "pierce"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "trigger",
+                    "scope",
+                    "max_hits"
+                  ],
+                  "properties": {
+                    "trigger": {
+                      "const": "enemy_contact"
+                    },
+                    "scope": {
+                      "const": "linear_projectile"
+                    },
+                    "max_hits": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 32
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "area_status"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "source_effect_id",
+                    "status_id",
+                    "allowed_origins",
+                    "include_primary",
+                    "max_targets"
+                  ],
+                  "properties": {
+                    "source_effect_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128,
+                      "pattern": "^\\S(?:.*\\S)?$"
+                    },
+                    "status_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128,
+                      "pattern": "^\\S(?:.*\\S)?$"
+                    },
+                    "allowed_origins": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 3,
+                      "uniqueItems": true,
+                      "items": {
+                        "enum": [
+                          "direct_melee",
+                          "direct_projectile",
+                          "split_projectile"
+                        ]
+                      }
+                    },
+                    "include_primary": {
+                      "type": "boolean"
+                    },
+                    "max_targets": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 64
+                    }
+                  }
+                }
+              }
+            }
           }
         ]
       }
@@ -724,7 +819,8 @@
           "duration_sec",
           "max_duration_sec",
           "move_scale",
-          "refresh"
+          "refresh",
+          "control_group"
         ],
         "properties": {
           "id": {
@@ -755,9 +851,53 @@
             "maximum": 1
           },
           "refresh": {
-            "const": "longest"
+            "enum": [
+              "longest",
+              "reject_active"
+            ]
+          },
+          "control_group": {
+            "type": "string",
+            "maxLength": 128
           }
-        }
+        },
+        "oneOf": [
+          {
+            "properties": {
+              "kind": {
+                "const": "slow"
+              },
+              "refresh": {
+                "const": "longest"
+              },
+              "control_group": {
+                "const": ""
+              },
+              "move_scale": {
+                "exclusiveMinimum": 0
+              }
+            }
+          },
+          {
+            "properties": {
+              "kind": {
+                "const": "freeze"
+              },
+              "refresh": {
+                "const": "reject_active"
+              },
+              "control_group": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^\\S(?:.*\\S)?$"
+              },
+              "move_scale": {
+                "const": 0
+              }
+            }
+          }
+        ]
       }
     },
     "status_rules": {
@@ -766,7 +906,8 @@
       "required": [
         "default_response_id",
         "actor_responses",
-        "responses"
+        "responses",
+        "control_groups"
       ],
       "properties": {
         "default_response_id": {
@@ -832,6 +973,75 @@
                 "exclusiveMinimum": 0,
                 "maximum": 1
               }
+            }
+          }
+        },
+        "control_groups": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "kind",
+              "thaw_immunity_sec"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^\\S(?:.*\\S)?$"
+              },
+              "kind": {
+                "const": "freeze"
+              },
+              "thaw_immunity_sec": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 30
+              }
+            }
+          }
+        }
+      }
+    },
+    "test_presets": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name_key",
+          "upgrade_ids"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "name_key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "upgrade_ids": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 512,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^\\S(?:.*\\S)?$"
             }
           }
         }

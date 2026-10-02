@@ -1,88 +1,109 @@
-# 命中爆炸与控制状态 · 当前最小切片
+# 穿透、命中爆炸与控制状态 · 当前切片
 
-2026-10-01。已实现的机制样本，非正式元素/职业/平衡设计。Build schema v3；字段权威在 `game/data/builds/prototype.json`，公共入口见 [Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。
+2026-10-02。已实现的机制样本，非正式职业/平衡设计。Build schema v4，11项测试升级、3组预设；内容权威在 `game/data/builds/prototype.json`，公共入口见 [Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。
 
 ## 试玩
 
-关闭旧测试窗口后，双击项目根的 `启动机制测试.cmd`；它仅启动本地Godot场景，不编译或导出。引擎路径按本机安装目录填写；Godot内也可打开 `res://app/mechanism_slice.tscn` 按F6运行当前场景。
+双击项目根 `启动机制测试.cmd`，仅启动本地Godot，不导出。也可在Godot打开 `res://app/mechanism_slice.tscn` 按F6运行当前场景；游戏内店铺F6仍进入普通训练。
 
-- 左键仍为近战，T沿角色朝向发射测试箭；使用现有三选一/“再抽三选一”获得测试卡。
-- 先测“命中爆炸＋投射物分裂”；箭不需要剑气升级。命中后橙色圈表示实际爆炸半径。
-- 单独选择“接触减速”，观察紫色脚圈与移动速度；重新训练后选“接触冻结”，观察蓝色罩和动作停止。减速与冻结并存时优先显示冻结。
-- “冻结延长”只有在已有能附加冻结的攻击后进入候选池；无需场上已经冻住敌人。它作用于后续施放，已飞出的箭保留原时长。
-- L切换中英文；重试清空临时Build，保留该测试入口。数值改JSON后重启。当前Build摘要可滚动，避免测试卡增多把下方按钮挤出屏幕。
+1. 完成开场三选一，再从左侧机制预设菜单选择一组。
+2. **穿透冻结**：剑气/测试箭沿途直接命中的不同敌人分别尝试冻结。
+3. **穿透普通爆炸**：每弹首次合法接触爆炸一次，继续穿透只造成直接伤害，不附送冻结。
+4. **寒霜爆破**：首次接触的爆炸同时造成范围伤害和冻结，包括存活的中心目标；随后穿透不再爆炸，也不自动直接冻结。
+5. T沿角色朝向发箭，左键挥刀发剑气，L切中英文。预设替换本轮Build并清除旧投射物/状态、取消玩家动作，保留当前敌人；重新训练恢复战场并清空Build及抗冻记录。
 
-## 1. 文件与职责
+三组预设都授予剑气与穿透，便于对比。测试独立箭可通过普通三选一取得穿透/分裂，无需剑气卡。普通三选一、“再抽三选一”、减速与冻结延长仍可使用。冻结延长在存在真实直接或范围冻结携带者时才出现；它影响后续施放，不改已发射对象。
+
+## 文件与职责
 
 | 路径（game内） | 职责 |
 |---|---|
-| combat/builds/impact_effects.gd | 合法接触事实 → 来源/次数过滤 → 爆炸或状态请求 |
-| combat/effects/area_damage.gd | 同平面范围、距离衰减、去重、阵营、遮挡和稳定目标顺序 |
-| combat/effects/damage_executor.gd | 统一提交角色伤害；最终生命/无敌/死亡仍由Actor/Health处理 |
-| combat/status/status_runtime.gd | 状态实例、目标响应、刷新、移除、独立战斗时钟 |
-| combat/builds/build_runtime.gd | 原有根/队列/预算协调；调用独立处理器，不承载各机制算法 |
-| combat/builds/projectile_capabilities.gd | 候选与执行共用来源兼容性；按攻击保留状态授予关联 |
-| presentation/builds/mechanism_{view,style}.* | 橙圈/紫圈/蓝罩，占位Resource；不裁定伤害或状态 |
-| app/training_builds.gd、app/combat_training.gd | 接线、选择门控、状态时钟在AI前推进、爆炸后重算光环 |
+| combat/builds/projectile_contacts.gd、projectile_pierce.gd | 稳定多目标扫掠与有限接触额度 |
+| combat/builds/impact_effects.gd | 接触事实、来源/次数过滤、有限派生请求 |
+| combat/effects/area_targets.gd | 范围/阵营/句柄去重/遮挡/稳定排序与目标上限 |
+| combat/effects/area_damage.gd、area_payloads.gd | 共用目标筛选；普通伤害及有限复合范围执行计划 |
+| combat/effects/damage_executor.gd | 统一提交角色伤害，生命/无敌/死亡由Actor/Health处理 |
+| combat/status/status_runtime.gd | 状态、目标响应、控制组抗冻和战斗时钟 |
+| combat/builds/build_runtime.gd | 快照、根/队列/预算、处理器和房间代数协调 |
+| combat/builds/projectile_capabilities.gd | 同一攻击/来源的兼容性、能力摘要和执行计划检查 |
+| presentation/builds/mechanism_{view,style}.* | 爆炸圈、紫色减速圈、蓝色冻结罩，Resource占位表现 |
+| app/training_builds.gd、app/session/training_build_session.gd | 训练入口、预设与奖励的隔离提交 |
 
-## 2. 触发与来源
+## 1. 接触、穿透与来源
 
-新效果统一使用 `enemy_contact`：攻击形状/投射物与合法敌人接触并去重后，先保存目标句柄、接触前目标脚点位置、本次攻击伤害快照，再提交直接伤害并发布事实。无敌造成0实损和致死命中均保留接触事实；不是击杀事件，也不是有效伤害事件。状态只对仍活着且可接受该状态的目标生效。
+统一使用 `enemy_contact`：合法接触并去重后保存目标句柄、直接伤害前的脚点位置和伤害快照，再提交直接伤害。无敌造成0实损、致死接触都保留事实；状态只对仍存活且可受控目标生效。近战由 `melee_resolver.enemy_contact` 接入 `BuildRuntime.on_melee_contact`；原confirmed_hit仍只表示有效伤害。
 
-`melee_resolver.enemy_contact(source,cast_id,ability_id,target_handle,position,damage)` 接入 `BuildRuntime.on_melee_contact`；原confirmed_hit继续供连锁/反馈使用，不改变其有效伤害语义。剑气/测试箭/分裂子体通过同一个impact处理器。
+通用来源仅 `direct_melee`、`direct_projectile`、`split_projectile`，每种效果用 `allowed_origins` 选择；爆炸/连锁不是新接触来源。`max_per_parent`、`max_per_root` 按升级独立计数，近战一次施放/每颗投射物各为父对象。次数在生成请求时消耗，队列/预算拒绝也不返还。冻结的逐目标尝试不共用爆炸的首次接触计数。
 
-允许来源为 `direct_melee`、`direct_projectile`、`split_projectile`，由每级完整params的 `allowed_origins` 显式选择。爆炸、连锁不能写入来源白名单，加载时拒绝。`max_per_parent`、`max_per_root` 都必须配置，前者不能大于后者，后者不超过根请求预算；按升级独立计数。一次近战施放是一个父对象，每颗投射物是一个父对象。次数在请求生成时计入，即使预算随后拒绝也不返还次数。
+`pierce` rank为trigger=`enemy_contact`、scope=`linear_projectile`、max_hits；max_hits表示**总合法直接命中目标数**，不是额外次数。样本为4，上限由limits.max_projectile_hits配置；未选穿透的线性执行器只有一次接触。所有穿透/分裂升级在当前全局构筑中对称互斥，候选、提交复验和执行计划都拒绝并用；尚未实现按动作绑定。
 
-同一升级的status_id/allowed_origins在各等级保持一致并校验；候选因此不会用上一等级范围误判下一等级。无武器名字分支，不使用全局事件总线。
+- 本步距离先由剩余寿命和世界碰撞截断，再收集所有敌人扫掠接触；按距本步起点距离、稳定handle排序，同距墙优先，不能命中墙后目标。
+- 每弹持久visited和剩余额度；重叠敌人可依序命中，同一敌人跨帧不重打。合法0实损接触消耗次数，结算前已死亡/失效候选不消耗。
+- 每次接触的距离都相对同一步起点，不能重复扣累计飞行时间。本步新生成对象不补入旧候选；回调清房/换房后立刻终止旧根后续接触。
+- 同一弹沿途共享施放快照、来源和根预算，不重开施放、不重复增伤。次数耗尽、寿命到期或撞墙结束；死亡/取消遵守既有生命周期。
+- 当前先处理本步直接接触，再消费派生队列。大步/小步验证直接接触顺序，不承诺爆炸与其他派生效果的完整时间线跨delta等价。
 
-## 3. 爆炸配置与结算
+## 2. 爆炸与寒霜范围payload
 
-`effect_type=explosion` 的rank字段：trigger、allowed_origins、max_per_parent、max_per_root、damage_ratio、radius_m、edge_ratio、max_targets、include_primary、occlusion、sight_height_m，全部必填。
+`explosion` rank：trigger、allowed_origins、max_per_parent、max_per_root、damage_ratio、radius_m、edge_ratio、max_targets、include_primary、occlusion、sight_height_m，全部必填。样本每弹最多一次爆炸，分裂子体各有父计数；普通爆炸没有隐式状态继承。
 
-- 样本当前不包含直击目标（include_primary=false）；可显式启用，启用后存活直击目标会另吃一次范围伤害。死亡目标始终不重复结算。
-- 半径在XZ平面判定，使用角色中心受击点；当前范围只伤战斗角色，不自动破坏房间道具。中心伤害=该次攻击快照×damage_ratio，向边缘线性衰减至edge_ratio；不是按HP实损计算。子体先继承父伤害×分裂比例，再算爆炸比例，不重新应用全局增伤。
-- 单次爆炸按句柄去重，过滤己方/死亡/范围外对象；按距离再句柄排序，最多max_targets个。不同爆炸是独立命中实例，可能再次伤害同一敌人；不是全根只伤一次。
-- occlusion支持world_ray/none。world_ray从中心和目标脚点各加sight_height_m后查询世界遮挡，缺少查询适配器时拒绝请求，不默认穿墙。当前是点射线近似，不是体积可见性或导航可达性。
-- 默认允许分裂子体爆炸。所有请求仍借用原root、归属、program和共同预算。爆炸仅结算范围伤害并发area_emitted(center,radius)，**不再触发爆炸、连锁或状态**；预算之外还有明确的来源禁止规则。
-- 橙圈外径按半径字段缩放；视效时间/颜色来自Resource。圆圈不裁剪为遮挡形状；圈内被墙挡住者不受伤。
+`area_status` rank：source_effect_id、status_id、allowed_origins、include_primary、max_targets。source_effect_id必须指向并前置要求一个explosion升级，状态存在，来源与爆炸有交集；每个爆炸源最多一项area_status定义。source_effect_id/status_id/allowed_origins跨等级固定。内容与执行允许上述三类来源；**当前寒霜样本只许可近战和直接投射物，分裂子体仍是普通爆炸**。
 
-## 4. 状态定义、响应与实例
+Resolver将协同编译进指定 `explosion.params.payloads`：第一个damage，至多再一个apply_status。后者保存协同升级ID/等级、状态ID、编译时长、许可来源和独立主目标/数量策略。未选协同只有damage；不授予全局直接冻结，不开放任意效果图。
 
-顶层statuses每项：id、kind、duration_sec、max_duration_sec、move_scale、refresh。kind仅slow/freeze，refresh仅longest。slow的move_scale须>0且≤1，freeze须为0；持续时间为正且不超最大时长。
+- `area_targets`统一XZ范围、阵营、死亡、句柄去重、世界遮挡、按距离/handle稳定排序。伤害和状态各自筛选主目标与目标上限；不能用伤害分支排除主目标的结果代替状态列表。
+- 伤害=直接接触伤害快照×damage_ratio，再按距离线性衰减到edge_ratio。子体继承伤害系数一次；不根据目标HP实损缩放。不同爆炸可再伤同一敌人。
+- 样本伤害include_primary=false，寒霜状态include_primary=true；先完成范围伤害，再对仍存活目标施加状态。免疫冻结者仍可受伤，0实损者仍可受控，死亡者不复活。
+- world_ray从中心/目标脚点加sight_height_m查询；缺查询器拒绝请求。当前为点射线近似，范围只作用于战斗角色，不自动破坏房间道具。表现圆圈显示半径，不裁剪墙后部分。
+- 复合范围请求沿用原根、program与有界队列，**一条复合请求计一个根预算单位**；其中有目标上限的状态申请同步调用StatusRuntime，不再次排队/开根。直接状态请求仍每条计一个单位。样本根预算为32，普通合法组合留有余量；保护预算不代替来源/次数限制。
+- 范围结算仅发已提交伤害和表现事实，不广播通用enemy_contact，不能再触发爆炸、分裂或连锁。有限payload可供未来主动AOE复用，但本轮未实现主动AOE。
 
-`effect_type=status` rank：status_id、trigger、allowed_origins、max_per_parent、max_per_root。Resolver从状态定义编译duration_sec到施放快照；卡片展示相同定义/已选修正，不另设时长默认值。
+## 3. 状态定义与抗连续冻结
 
-`effect_type=status_duration` rank：status_id、bonus；只强化已授予且存在合法携带攻击的同一状态。倍率=1+同状态bonus之和，最终时长夹到状态定义上限。样本仅一张冻结延长卡。状态授予卡不要求预先拥有自身。
+顶层statuses：id、kind、duration_sec、max_duration_sec、move_scale、refresh、control_group。slow为refresh=`longest`、control_group为空、0<move_scale≤1；freeze为refresh=`reject_active`、move_scale=0，并引用同一有效冻结组。
 
-status_rules：default_response_id、actor_responses、responses。responses每项id、immune_kinds（slow/freeze）、slow_duration_scale、freeze_duration_scale。默认响应显式配置；actor_responses按角色稳定ID覆盖。默认所有当前角色使用normal；immune和resistant为可选测试响应，可例如将brute映射到immune。加载manifest/离线校验会核对覆盖角色ID；纯decode只检查Build内部引用。
+status_rules：default_response_id、actor_responses、responses、control_groups。responses保留immune_kinds、slow_duration_scale、freeze_duration_scale；控制组本切片恰好一项 `{id,kind:freeze,thaw_immunity_sec}`，所有冻结ID共享。样本解冻抗冻窗为0.9秒。角色响应覆盖的ID在manifest加载/离线校验时核对；纯decode只检查Build内部引用。
 
-- 目标响应与来源兼容性分开：能携带冻结的箭仍不能冻结免疫目标。持续时间先按定义上限截断，再乘目标对应duration_scale（0–1，不含0）；完全免疫使用immune_kinds。
-- stack_key固定为状态定义ID，每个目标/定义最多一份实例；重复施加取新旧剩余时长的最大值，不累计时长或层数。较长新实例更新来源，较短实例保留原来源。
-- 多个减速取最小move_scale，不连续相乘；移除后从剩余实例重算。冻结优先，解冻时仍可保留减速；不恢复一份陈旧的基础速度或光环倍率。
-- 实例保留只读定义、remaining及来源值（source_handle/team/root_id/room_generation/ability_id）。只使用弱目标引用；死亡立即清除/解绑，过期和换房清除。
-- 状态本身不产生周期/延迟伤害和新请求，所以实例只保留来源记录，原根在最后一个施放/投射物/队列引用结束后可回收。以后增加周期效果必须另行扩根生命周期，不能用过期来源ID领取新预算。
+`status` rank为status_id、trigger、allowed_origins、max_per_parent、max_per_root。`status_duration` rank为status_id、bonus；时长=定义时长×(1+同状态强化之和)，夹到定义上限，再乘目标响应系数。完全免疫由immune_kinds表达；伤害无敌不自动等于控制免疫。
 
-## 5. 控制接入和取消
+- 减速按状态ID保留最长截止时间，多个减速取最小move_scale，不累乘；移除重算剩余实例。
+- 冻结活跃期间拒绝续时，包括不同root、不同卡、不同status_id和直接/范围来源。自然到期后抗冻至原expires_at+窗口，不以处理到期的那一帧重新开始窗口。
+- 主动remove冻结使目标立即解冻，并从当前战斗时间起给予完整抗冻窗；clear/死亡/失效目标/换房彻底清理，不保留离房抗冻。
+- 根侧按目标handle＋control_group只允许一次申请；活着的目标即使免疫、已冻结或处于抗冻期也消耗本根这次机会。目标侧记录跨根抗冻，两者不以请求预算替代。减速不套冻结去重。
+- 状态使用统一推进的绝对战斗时钟，暂停不推进；大delta跨越冻结与抗冻两阶段仍按原截止时间判断。状态清空时，抗冻未结束的记录继续保留；窗口结束再解绑。
+- 实例保留定义、expires_at和只读来源值，snapshot派生remaining。目标是弱引用，来源只有source_handle/team/root_id/room_generation/ability_id；不强持失效root。当前状态没有DOT/延迟请求，原根可正常回收；未来周期效果须另订根生命周期。
 
-StatusRuntime.apply(target,id,duration,source)->bool、tick(delta)、remove(target,id)、clear()、snapshot(target)、visuals()。apply只响应存活和明确目标策略；伤害无敌不自动等价于控制免疫。
+## 4. 控制执行接口
 
-Actor.set_control向Motor和AbilityRunner下发许可。减速只影响自愿移动/冲锋速度，不改攻击前摇、攻速或击退。冻结清空移动/强制位移/击退，取消当前技能与闪避，禁止新技能；不禁用Node或全局物理，不使用Timer恢复。
+`StatusRuntime.apply(target,id,duration,source,root_attempts={}) -> bool`；BuildRuntime对同根传同一个可变尝试表。`tick(delta)`、`remove(target,id)`、`clear()`、`snapshot(target)`、`control_snapshot(target)`、`diagnostics()`、`visuals()`。仅活状态产生视觉，抗冻记录不会继续显示冰罩。
+
+Actor.set_control统一向Motor和AbilityRunner下发许可。减速影响自愿移动/冲锋速度，不改攻击前摇、攻速或击退。冻结清空移动/强制位移/击退，取消技能与闪避，禁止新技能；不禁用Node、不用Timer恢复。
 
 | 敌人路径 | 冻结规则 |
 |---|---|
-| 近战/重型 | 取消AbilityRunner，包括重型原本不可被普通受击打断的前摇；清空有效命中窗口 |
-| 弩手 | 专用状态机立即取消尚未发出的射击；已发射弩箭继续原轨迹/寿命 |
-| 矛兵 | 立即停止冲锋并禁止after_motion命中；解冻重新决策，不续冲 |
-| 旗手 | 停止移动并暂停光环；解冻后按范围重新计算。其他已开招者的攻速快照沿用旧规则 |
+| 近战/重型 | 取消Runner及有效命中窗口，包括重型前摇 |
+| 弩手 | 取消尚未发出的射击，已发射弩箭继续飞行 |
+| 矛兵 | 停冲锋、禁止after_motion命中，解冻重新决策 |
+| 旗手 | 暂停移动和光环，解冻后重新计算范围 |
 
-冻结期间不推进该敌人的决策/动作冷却；解冻后从idle重新决策，保留未消耗冷却。死亡高于控制；已死者不会被状态过期重新允许动作。玩家直接命中及本步有界派生队列在敌人命中窗口之前结算，冻结可取消同帧敌方待判定攻击；每步只推进一次派生队列，不重复发放每步预算。状态时钟在AI之前由app统一推进，三选一/设置暂停不推进状态或占位表现；切房、重试、训练结束清除状态。
+冻结期间不推进该敌人的决策/动作冷却；解冻从idle重新决策，保留未消耗冷却。死亡优先，不因解冻恢复死亡者动作。状态时钟在AI前推进；玩家本步直接命中及有界派生队列在敌人命中窗口前结算，冻结可取消同帧敌人待判定攻击，每步不重复发放预算。三选一/设置暂停同时门控规则和占位表现。
+
+## 5. 能力、候选与预设
+
+combat摘要按实际attack_id/origin保留直接status_ids及 `area_effects[{source_effect_id,status_ids}]`，不合并不同攻击标签伪造能力。寒霜卡必须找到同一实际攻击上的兼容爆炸源；冻结延长也识别该范围源确实携带的状态，无需再买直接冻结卡。目标是否免疫不改变长期候选资格。
+
+rogue通过注入查询抽候选；app/session提交时再次使用同一资格/编译规则。test_presets只存id/name_key/顺序upgrade_ids，加载验证引用、前置、互斥、标签和等级。`apply_test_preset`隔离清空候选ranks/history/offer，逐项合法选择并编译，最后一次提交；失败不改状态/program/RNG，成功保留RNG和offer_sequence防旧令牌复用。训练层仅在成功后清运行状态并更新表现，普通选卡仍走原奖励流程。
 
 ## 6. 本轮验证与边界
 
-- A：内容校验、impact_blast规则通过：三种来源、0实损/致死事实、范围去重/阵营/稳定顺序/遮挡、主目标配置、衰减/目标数、父/根次数、子体共享预算、禁止爆炸递归/连锁。
-- B：status_controls通过：重复刷新/移除、多个减速、免疫/抗性、冻结取消各兵种动作/光环、已发箭继续、暂停/死亡/清房、冻结强化资格、施放时长快照、非法内容。
-- 时序：mechanism_order通过真实app循环验证冻结取消同帧重型命中；无冻结对照确实受伤。
-- 回归：build_choices、build_runtime、projectile_capabilities、combat_rules、enemy_roles通过；最后一项覆盖360个遭遇计划及五类敌人。此前投射物切片已由用户手动验收，该历史验收不扩展为本轮新增机制验收。
-- 集成：mechanism_slice_integration在headless与Forward+实际庭院通过；Button信号选择、Viewport T输入、实际世界射线、状态/爆炸表现、选卡暂停及双语参数。图形截图位于builds/mechanism_slice.png及mechanism_cards_*.png。自动集成不等于用户主观手感验收。
-- 未完成：正式模型/特效/音效、平衡调参、完整Status/DOT、Boss控制系统、冻结碎裂、元素反应、完整职业/装备授予事务、永久经济和正式存档；没有生成Release。
-- 旧模拟键鼠脚本失败、既有7个Texture RID退出警告仍见KNOWN_ISSUES，未宣称解决。
+2026-10-02实际执行结果：
+
+- 内容：mechanism_content 32项通过；18组离线非法配置拒绝；内容/PO检查通过。
+- 规则：build_runtime、impact_blast、pierce_runtime、frost_blast、build_choices、projectile_capabilities、mechanism_presets、status_controls、freeze_guard、combat_rules、enemy_roles全部通过；敌人覆盖360个计划。包括多接触/同距墙/寿命/跨帧visited/0实损/致死/旧快照/回调清房、穿透分裂互斥、冻结组抗连控、独立主目标筛选和有限范围payload。
+- 时序：mechanism_order实际app循环通过，冻结能取消同帧重型待命中，无冻结对照确实受伤。
+- headless集成：mechanism_slice_integration、pierce_frost_integration通过，后者含实际Retry重新加载并清Build/抗冻、普通三选一按钮取得寒霜卡。
+- Forward+ 1280×800：pierce_frost_integration三预设、范围/冻结显示、实际Retry与普通三选一取得寒霜卡通过；新面板及寒霜卡中英文截图无裁切。使用Button/Menu信号和Viewport T输入，**不是人工鼠标试玩或主观手感验收**。
+- 旧build_training模拟键鼠脚本仍未修，既有7个Texture RID退出警告未解决，见 [当前问题](KNOWN_ISSUES.md)。此前v2用户手动通过不代表本轮新增机制手动验收。
+- 未完成：正式动作/模型/音效/特效、平衡、主动AOE、DOT/完整Status、Boss韧性、按动作绑定和正式武器槽、穿透与分裂并用、永久经济/正式存档。
+
+本轮没有生成Release，也没有提交Git；初始化后的提交仍需用户明确要求。

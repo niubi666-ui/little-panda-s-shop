@@ -16,6 +16,12 @@ msgstr "暂无升级"
 msgid "build.error"
 msgstr "选择未成功，当前构筑未改变，请重试。"
 
+msgid "build.frost_blast.description"
+msgstr "让兼容的命中爆炸冻结范围内最多 {max_targets} 个敌人 {duration_sec} 秒，包括存活的中心目标。冻结不可续时，解冻后短暂抗冻。"
+
+msgid "build.frost_blast.name"
+msgstr "寒霜爆破"
+
 msgid "build.next"
 msgstr "升级至 {rank} 级"
 
@@ -24,6 +30,33 @@ msgstr "当前训练升级已全部达到上限。"
 
 msgid "build.owned"
 msgstr "当前构筑"
+
+msgid "build.pierce.description"
+msgstr "线性投射物最多直接命中 {max_hits} 个不同敌人。若拥有命中爆炸，每弹仅首次接触触发；与分裂互斥。"
+
+msgid "build.pierce.name"
+msgstr "穿透"
+
+msgid "build.preset.applied"
+msgstr "已应用：{name}"
+
+msgid "build.preset.error"
+msgstr "预设暂不可用，请重新训练后再试。"
+
+msgid "build.preset.frost_blast"
+msgstr "寒霜爆破"
+
+msgid "build.preset.hint"
+msgstr "预设替换构筑并保留当前敌人；T 发箭，左键挥刀。重新训练恢复战场并清空构筑。"
+
+msgid "build.preset.pierce_blast"
+msgstr "穿透普通爆炸"
+
+msgid "build.preset.pierce_freeze"
+msgstr "穿透冻结"
+
+msgid "build.preset.title"
+msgstr "机制测试预设"
 
 msgid "build.rank"
 msgstr "等级 {rank} / {max_rank}"
@@ -53,7 +86,7 @@ msgid "build.test.chain.name"
 msgstr "试验 · 回响连锁"
 
 msgid "build.test.contact_freeze.description"
-msgstr "近战和投射物接敌后冻结 {duration_sec} 秒，取消前摇和冲锋，暂停旗手光环。已发射的弩箭继续飞行。"
+msgstr "直接命中冻结敌人 {duration_sec} 秒。冻结期间不能续时，解冻后短暂抗冻。"
 
 msgid "build.test.contact_freeze.name"
 msgstr "试验 · 接触冻结"
@@ -71,7 +104,7 @@ msgid "build.test.freeze_duration.name"
 msgstr "试验 · 冻结延长"
 
 msgid "build.test.mechanism_hint"
-msgstr "机制测试：T 发箭 · 橙圈=爆炸 · 紫圈=减速 · 蓝罩=冻结 · 重试可换一组测试卡"
+msgstr "左侧菜单切换预设 · T 发箭 · 橙圈=爆炸 · 青圈=寒霜 · 蓝罩=冻结"
 
 msgid "build.test.power.description"
 msgstr "本次施放的攻击伤害提高 {bonus_percent}%。剑气继承此加成，派生伤害不重复乘算。"

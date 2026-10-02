@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "offer": {
     "count": 3,
     "pool_ids": [
@@ -11,7 +11,9 @@
       "impact_blast",
       "contact_slow",
       "contact_freeze",
-      "freeze_duration"
+      "freeze_duration",
+      "pierce",
+      "frost_blast"
     ],
     "fallback_ids": [
       "power",
@@ -22,14 +24,15 @@
     "max_queued_offers": 4
   },
   "limits": {
-    "root_effect_budget": 24,
+    "root_effect_budget": 32,
     "requests_per_step": 32,
     "max_queue": 256,
     "max_projectiles": 64,
     "max_chain_jumps": 6,
     "max_split_generation": 2,
     "max_projectiles_per_root": 12,
-    "projectiles_survive_source_death": false
+    "projectiles_survive_source_death": false,
+    "max_projectile_hits": 8
   },
   "stats": {
     "damage_scale_min": 0.1,
@@ -151,7 +154,9 @@
       "weight": 1.0,
       "max_rank": 2,
       "requires": [],
-      "excludes": [],
+      "excludes": [
+        "pierce"
+      ],
       "required_tags": [],
       "granted_tags": [],
       "effect_type": "split",
@@ -272,6 +277,53 @@
           "bonus": 0.5
         }
       ]
+    },
+    {
+      "id": "pierce",
+      "name_key": "build.pierce.name",
+      "description_key": "build.pierce.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [
+        "split"
+      ],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "pierce",
+      "ranks": [
+        {
+          "trigger": "enemy_contact",
+          "scope": "linear_projectile",
+          "max_hits": 4
+        }
+      ]
+    },
+    {
+      "id": "frost_blast",
+      "name_key": "build.frost_blast.name",
+      "description_key": "build.frost_blast.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [
+        "impact_blast"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "area_status",
+      "ranks": [
+        {
+          "source_effect_id": "impact_blast",
+          "status_id": "test_freeze",
+          "allowed_origins": [
+            "direct_melee",
+            "direct_projectile"
+          ],
+          "include_primary": true,
+          "max_targets": 6
+        }
+      ]
     }
   ],
   "projectiles": [
@@ -309,7 +361,8 @@
       "duration_sec": 2.5,
       "max_duration_sec": 6.0,
       "move_scale": 0.55,
-      "refresh": "longest"
+      "refresh": "longest",
+      "control_group": ""
     },
     {
       "id": "test_freeze",
@@ -317,7 +370,8 @@
       "duration_sec": 1.2,
       "max_duration_sec": 3.0,
       "move_scale": 0.0,
-      "refresh": "longest"
+      "refresh": "reject_active",
+      "control_group": "freeze"
     }
   ],
   "status_rules": {
@@ -345,6 +399,43 @@
         "slow_duration_scale": 0.5,
         "freeze_duration_scale": 0.5
       }
+    ],
+    "control_groups": [
+      {
+        "id": "freeze",
+        "kind": "freeze",
+        "thaw_immunity_sec": 0.9
+      }
     ]
-  }
+  },
+  "test_presets": [
+    {
+      "id": "pierce_freeze",
+      "name_key": "build.preset.pierce_freeze",
+      "upgrade_ids": [
+        "wave",
+        "pierce",
+        "contact_freeze"
+      ]
+    },
+    {
+      "id": "pierce_blast",
+      "name_key": "build.preset.pierce_blast",
+      "upgrade_ids": [
+        "wave",
+        "pierce",
+        "impact_blast"
+      ]
+    },
+    {
+      "id": "frost_blast",
+      "name_key": "build.preset.frost_blast",
+      "upgrade_ids": [
+        "wave",
+        "pierce",
+        "impact_blast",
+        "frost_blast"
+      ]
+    }
+  ]
 }

@@ -34,7 +34,7 @@ func run() -> void:
 		await process_frame
 		var buttons: Dictionary = arena.builds.choice_panel.buttons
 		if buttons.is_empty(): break
-		if not arena.builds.session.snapshot().ranks.has("contact_freeze"):
+		if not arena.builds.session.snapshot().ranks.has("contact_freeze") and not arena.builds.session.snapshot().ranks.has("frost_blast"):
 			check(not buttons.has("freeze_duration"), "UI cannot offer useless freeze modifier")
 		for locale in ["en","zh_CN"]:
 			TranslationServer.set_locale(locale)
@@ -47,7 +47,10 @@ func run() -> void:
 				captured[locale] = true
 			for label in arena.builds.choice_panel.find_children("*","Label",true,false):
 				check(not label.text.begins_with("build.") and not label.text.contains("{"), "new bilingual cards resolve keys and parameters")
-		var selected: String = buttons.keys()[0]
+		# This remains the legacy split regression; pierce is a separate legal branch.
+		var selectable: Array = buttons.keys().filter(func(id):return id != "pierce")
+		if selectable.is_empty(): break
+		var selected: String = selectable[0]
 		for id in desired:
 			if buttons.has(id):
 				selected = id

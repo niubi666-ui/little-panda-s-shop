@@ -11,6 +11,9 @@ var _status_rules: Dictionary
 var _stats: Dictionary
 var _projectiles: Dictionary = {}
 var _test_attacks: Dictionary = {}
+var _control_groups: Dictionary = {}
+var _test_presets: Array[Dictionary] = []
+var _presets_by_id: Dictionary = {}
 
 
 func _init(data: Dictionary) -> void:
@@ -32,6 +35,14 @@ func _init(data: Dictionary) -> void:
 	for attack in data.test_attacks: _test_attacks[attack.id] = freeze_copy(attack)
 	_projectiles.make_read_only()
 	_test_attacks.make_read_only()
+	for group in data.status_rules.control_groups: _control_groups[group.id] = freeze_copy(group)
+	_control_groups.make_read_only()
+	for preset in data.test_presets:
+		var copy: Dictionary = freeze_copy(preset)
+		_test_presets.append(copy)
+		_presets_by_id[copy.id] = copy
+	_test_presets.make_read_only()
+	_presets_by_id.make_read_only()
 
 
 func entries() -> Array[Dictionary]:
@@ -81,6 +92,9 @@ func test_attack(id: String) -> Dictionary:
 	return _test_attacks[id]
 
 func status(id: String) -> Dictionary: return _statuses[id]
+func control_group(id: String) -> Dictionary: return _control_groups[id]
+func test_presets() -> Array[Dictionary]: return _test_presets
+func test_preset(id: String) -> Dictionary: return _presets_by_id[id] if _presets_by_id.has(id) else {}
 func status_response(actor_id: String) -> Dictionary:
 	var id: String = _status_rules.actor_responses[actor_id] if _status_rules.actor_responses.has(actor_id) else _status_rules.default_response_id
 	return _responses[id]

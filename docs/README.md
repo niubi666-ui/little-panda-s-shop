@@ -1,14 +1,14 @@
 # 文档索引与按需阅读
 
-2026-10-01。新任务默认只读根目录 AGENTS、精简 PROJECT_CONTRACT 和 [HANDOFF](HANDOFF.md)，然后选下表相关文档；不递归读取全部 Markdown。
+2026-10-02。新任务默认只读根目录 AGENTS、精简 PROJECT_CONTRACT 和 [HANDOFF](HANDOFF.md)，然后选下表相关文档；不递归读取全部 Markdown。
 
 | 本次任务 | 首选文档 | 必要时补读 |
 |---|---|---|
 | 战斗手感、命中、模型/刀光接口 | [COMBAT_PROTOTYPE](COMBAT_PROTOTYPE.md) | 改复杂规则再读 [战斗扩展](contracts/COMBAT_AND_BUILDS.md) |
 | 敌人、深度预算、遭遇、掉落钩子 | [ENEMY_ROLES_AND_ENCOUNTERS](ENEMY_ROLES_AND_ENCOUNTERS.md) | [当前问题](KNOWN_ISSUES.md) |
 | 三选一与Build | [BUILD_SYSTEM](BUILD_SYSTEM.md) | 改接口读 [BUILD_IMPLEMENTATION_CONTRACT](BUILD_IMPLEMENTATION_CONTRACT.md) |
-| 命中爆炸、减速/冻结和组合测试 | [命中机制 API](COMBAT_MECHANISMS.md) | schema v3、状态控制路径、启动与验证 |
-| 跨武器分裂、能力与候选兼容性 | [能力适配设计与落地边界](contracts/BUILD_CAPABILITIES.md) | 落地时核对当前Build API；不先制作完整武器职业 |
+| 穿透、寒霜爆破、减速/冻结抗连控 | [命中机制 API](COMBAT_MECHANISMS.md) | schema v4、3组预设、启动与实际验证 |
+| 跨武器分裂/穿透、范围能力与候选兼容性 | [能力适配设计与落地边界](contracts/BUILD_CAPABILITIES.md) | 落地时核对当前Build API；不先制作完整武器职业 |
 | 房间随机物件/搜刮/绕障 | [ROOM_PROPS_PROTOTYPE](ROOM_PROPS_PROTOTYPE.md) | 调组合美术读 [ROOM_PRESETS](ROOM_PRESETS.md) |
 | 房间美术接入、光照 | [FOREST_COURTYARD_INTEGRATION](FOREST_COURTYARD_INTEGRATION.md) | 仅相关任务读取其源资产说明 |
 | 性能、植被、加载 | [FOREST_FOLIAGE_OPTIMIZATION](FOREST_FOLIAGE_OPTIMIZATION.md) | [当前问题](KNOWN_ISSUES.md) |

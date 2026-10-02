@@ -16,6 +16,12 @@ msgstr "No upgrades yet"
 msgid "build.error"
 msgstr "Choice could not be saved. Your build is unchanged; try again."
 
+msgid "build.frost_blast.description"
+msgstr "Compatible impact blasts freeze up to {max_targets} enemies for {duration_sec}s, including a surviving primary target. Freeze cannot refresh; thaw grants brief immunity."
+
+msgid "build.frost_blast.name"
+msgstr "Frost Blast"
+
 msgid "build.next"
 msgstr "Upgrade to rank {rank}"
 
@@ -24,6 +30,33 @@ msgstr "All training upgrades are at their limits."
 
 msgid "build.owned"
 msgstr "Current build"
+
+msgid "build.pierce.description"
+msgstr "Linear projectiles hit up to {max_hits} distinct enemies. If equipped, Impact Blast triggers only on the first contact. Excludes Split."
+
+msgid "build.pierce.name"
+msgstr "Piercing"
+
+msgid "build.preset.applied"
+msgstr "Applied: {name}"
+
+msgid "build.preset.error"
+msgstr "Preset unavailable. Retry training and try again."
+
+msgid "build.preset.frost_blast"
+msgstr "Frost Blast"
+
+msgid "build.preset.hint"
+msgstr "Presets replace the build and keep current enemies. T fires an arrow; left click attacks. Retry restores the arena and clears the build."
+
+msgid "build.preset.pierce_blast"
+msgstr "Piercing Blast"
+
+msgid "build.preset.pierce_freeze"
+msgstr "Piercing Freeze"
+
+msgid "build.preset.title"
+msgstr "Mechanism presets"
 
 msgid "build.rank"
 msgstr "Rank {rank} / {max_rank}"
@@ -53,7 +86,7 @@ msgid "build.test.chain.name"
 msgstr "Test · Echo chain"
 
 msgid "build.test.contact_freeze.description"
-msgstr "Melee and projectile contacts freeze for {duration_sec} s, cancel attacks and charges, and suppress banner auras. Fired bolts continue."
+msgstr "Direct contact freezes enemies for {duration_sec}s. Freeze cannot refresh; thaw grants brief freeze immunity."
 
 msgid "build.test.contact_freeze.name"
 msgstr "Test · Contact freeze"
@@ -71,7 +104,7 @@ msgid "build.test.freeze_duration.name"
 msgstr "Test · Longer freeze"
 
 msgid "build.test.mechanism_hint"
-msgstr "T: arrow | Orange: blast | Purple: slow | Blue: freeze | Retry to test another build"
+msgstr "Left menu: presets | T: arrow | Orange: blast | Cyan: frost | Blue shell: frozen"
 
 msgid "build.test.power.description"
 msgstr "Attack damage increases by {bonus_percent}%. Sword waves inherit this bonus; derived damage does not multiply it again."

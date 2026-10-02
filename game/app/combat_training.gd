@@ -37,6 +37,7 @@ var _player_spawn: Vector3
 var _enemy_spawns: Array[Vector3] = []
 var _previous_taa := false
 @export var build_choices_enabled := true
+@export var enable_mechanism_presets := false
 @export var test_hint_key := "build.test.arrow_hint"
 @export var test_attack_ids: Array[String] = []
 var builds: TrainingBuilds
@@ -153,7 +154,7 @@ func _ready() -> void:
 	hud.resume_requested.connect(func(): paused = false)
 	builds = TrainingBuilds.new()
 	add_child(builds)
-	if not builds.configure(player, func(): return actors, _build_wall_hit, $UIRoot, shared_theme, self, build_choices_enabled, test_attack_ids):
+	if not builds.configure(player, func(): return actors, _build_wall_hit, $UIRoot, shared_theme, self, build_choices_enabled, test_attack_ids, enable_mechanism_presets):
 		get_tree().quit(1)
 		return
 	resolver.set_damage_modifier(builds.runtime.melee_damage)

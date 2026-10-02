@@ -7,7 +7,9 @@ func configure(style: Resource) -> void:
 	assert(style.area_lifetime > 0.0 and style.area_mesh != null and style.freeze_mesh != null and style.slow_mesh != null)
 	_style = style
 func show_area(center: Vector3, radius: float) -> void:
-	var node := _mesh(_style.area_mesh, _style.area_material)
+	show_payload_area(center, radius, false)
+func show_payload_area(center: Vector3, radius: float, has_status: bool) -> void:
+	var node := _mesh(_style.area_mesh, _style.frost_area_material if has_status else _style.area_material)
 	node.global_position = center + _style.area_offset
 	node.scale = Vector3(radius, 1.0, radius)
 	_areas.append({"node": node, "remaining": _style.area_lifetime})

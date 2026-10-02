@@ -14,6 +14,11 @@ class LimitedCatalog extends RefCounted:
 	func projectile(id: String) -> Dictionary: return base.projectile(id)
 	func test_attack(id: String) -> Dictionary: return base.test_attack(id)
 	func stat_limits() -> Dictionary: return base.stat_limits()
+	func has_upgrade(id: String) -> bool: return base.has_upgrade(id)
+	func upgrade(id: String) -> Dictionary: return base.upgrade(id)
+	func status(id: String) -> Dictionary: return base.status(id)
+	func status_response(id: String) -> Dictionary: return base.status_response(id)
+	func control_group(id: String) -> Dictionary: return base.control_group(id)
 
 var failures: Array[String] = []
 var _combat

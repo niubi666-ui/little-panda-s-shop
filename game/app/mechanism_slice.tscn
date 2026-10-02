@@ -2,3 +2,4 @@
 [ext_resource type="PackedScene" path="res://app/projectile_slice.tscn" id="base"]
 [node name="MechanismSlice" instance=ExtResource("base")]
 test_hint_key = "build.test.mechanism_hint"
+enable_mechanism_presets = true

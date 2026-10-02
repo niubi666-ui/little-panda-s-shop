@@ -13,6 +13,10 @@ UI_PARAMETERS = {
     "build.title": set(),
     "build.test.arrow_hint": set(),
     "build.test.mechanism_hint": set(),
+    "build.preset.title": set(),
+    "build.preset.hint": set(),
+    "build.preset.applied": {"name"},
+    "build.preset.error": set(),
     "build.subtitle": set(),
     "build.choose": set(),
     "build.rank": {"rank", "max_rank"},
@@ -80,11 +84,21 @@ def _validate_semantics(data: dict) -> None:
     for status in statuses.values():
         if status["duration_sec"] > status["max_duration_sec"] or (status["kind"] == "freeze" and status["move_scale"] != 0) or (status["kind"] == "slow" and status["move_scale"] <= 0):
             raise ValueError("invalid status duration/movement")
+    groups = data["status_rules"]["control_groups"]
+    if len(groups) != 1 or groups[0]["kind"] != "freeze":
+        raise ValueError("exactly one shared freeze control group required")
+    for status in statuses.values():
+        if status["kind"] == "freeze" and (
+            status["control_group"] != groups[0]["id"] or status["refresh"] != "reject_active"
+        ):
+            raise ValueError("all freeze statuses must reject refresh and share the validated group")
+        if status["kind"] == "slow" and (status["control_group"] or status["refresh"] != "longest"):
+            raise ValueError("slow requires longest refresh and no control group")
     for response in [data["status_rules"]["default_response_id"], *data["status_rules"]["actor_responses"].values()]:
         if response not in responses:
             raise ValueError("unknown status response")
     for entry in data["upgrades"]:
-        if entry["effect_type"] in ("status", "status_duration"):
+        if entry["effect_type"] in ("status", "status_duration", "area_status"):
             for rank in entry["ranks"]:
                 if rank["status_id"] not in statuses:
                     raise ValueError("unknown status reference")
@@ -113,10 +127,11 @@ def _validate_semantics(data: dict) -> None:
         if unknown:
             raise ValueError(f"build.offer.{field}: unknown IDs {sorted(unknown)}")
     available_tags = {tag for entry in upgrades for tag in entry["granted_tags"]}
+    area_status_sources = set()
     for entry in upgrades:
         location = f"build.upgrades.{entry['id']}"
         for rank in entry["ranks"]:
-            for selector in ("allowed_origins", "status_id"):
+            for selector in ("allowed_origins", "status_id", "source_effect_id"):
                 if selector in rank and rank[selector] != entry["ranks"][0][selector]:
                     raise ValueError("effect selectors must remain stable across ranks")
         if len(entry["ranks"]) != entry["max_rank"]:
@@ -147,6 +162,27 @@ def _validate_semantics(data: dict) -> None:
                     or rank["count"] > limits["max_projectiles"]
                 ):
                     raise ValueError(f"{location}: split exceeds limits")
+        if entry["effect_type"] == "pierce":
+            if any(rank["max_hits"] > limits["max_projectile_hits"] for rank in entry["ranks"]):
+                raise ValueError(f"{location}: max_hits exceeds projectile hit limit")
+            for other in upgrades:
+                if other["effect_type"] == "split" and (
+                    other["id"] not in entry["excludes"] or entry["id"] not in other["excludes"]
+                ):
+                    raise ValueError("all pierce/split definitions require symmetric exclusion")
+        if entry["effect_type"] == "area_status":
+            rank = entry["ranks"][0]
+            source_id = rank["source_effect_id"]
+            source = by_id.get(source_id)
+            if not source or source["effect_type"] != "explosion":
+                raise ValueError("area status requires an explosion source")
+            if source_id not in entry["requires"]:
+                raise ValueError("area status must require its explosion source")
+            if not set(rank["allowed_origins"]) & set(source["ranks"][0]["allowed_origins"]):
+                raise ValueError("area status has no compatible source origin")
+            if source_id in area_status_sources:
+                raise ValueError("only one area status definition is supported per explosion source")
+            area_status_sources.add(source_id)
     visiting, visited = set(), set()
 
     def visit(upgrade_id: str) -> None:
@@ -163,6 +199,30 @@ def _validate_semantics(data: dict) -> None:
     for upgrade_id in by_id:
         visit(upgrade_id)
     _validate_reachability(data, by_id)
+    _validate_presets(data, by_id)
+
+
+def _validate_presets(data: dict, by_id: dict) -> None:
+    ids = set()
+    for preset in data["test_presets"]:
+        if preset["id"] in ids:
+            raise ValueError("duplicate test preset id")
+        ids.add(preset["id"])
+        ranks, tags = {}, set()
+        for upgrade_id in preset["upgrade_ids"]:
+            if upgrade_id not in by_id:
+                raise ValueError("test_preset: unknown upgrade reference")
+            entry = by_id[upgrade_id]
+            if not set(entry["requires"]) <= ranks.keys():
+                raise ValueError("test_preset: prerequisite must appear before upgrade")
+            if set(entry["excludes"]) & ranks.keys():
+                raise ValueError("test_preset: mutually exclusive upgrades")
+            if not set(entry["required_tags"]) <= tags:
+                raise ValueError("test_preset: required tag missing before upgrade")
+            ranks[upgrade_id] = ranks.get(upgrade_id, 0) + 1
+            if ranks[upgrade_id] > entry["max_rank"]:
+                raise ValueError("test_preset: upgrade rank exceeds maximum")
+            tags.update(entry["granted_tags"])
 
 
 def _validate_reachability(data: dict, by_id: dict) -> None:
@@ -211,13 +271,16 @@ def _validate_messages(data: dict, locales: dict) -> None:
             raise ValueError(
                 f"build: {key} expects placeholders {sorted(expected)}, got {sorted(actual)}"
             )
+    for preset in data["test_presets"]:
+        if _translated_fields(locales, preset["name_key"]):
+            raise ValueError("test_preset.name_key must not contain placeholders")
     for entry in data["upgrades"]:
         if _translated_fields(locales, entry["name_key"]):
             raise ValueError(f"build: {entry['name_key']} must not contain placeholders")
         required = _translated_fields(locales, entry["description_key"])
         for rank_index, rank in enumerate(entry["ranks"], start=1):
             supplied = set(rank) | {"rank", "max_rank"}
-            if entry["effect_type"] == "status":
+            if entry["effect_type"] in ("status", "area_status"):
                 supplied |= {"duration_sec", "slow_percent"}
             # Keep in sync with BuildChoicePanel.refresh_text(); no defaults or
             # unrelated effect parameters are implicitly available to messages.

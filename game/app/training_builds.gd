@@ -24,8 +24,9 @@ var _pending := 0
 var _auto_rewards := true
 var _stopped := false
 var _committed_state: Dictionary = {}
+var _test_presets_enabled := false
 
-func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, shared_theme: Theme, world: Node, auto_rewards: bool, test_attack_ids: Array = []) -> bool:
+func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, shared_theme: Theme, world: Node, auto_rewards: bool, test_attack_ids: Array = [], enable_test_presets: bool = false) -> bool:
 	var loader := Loader.new()
 	catalog = loader.load_catalog()
 	if catalog == null:
@@ -34,6 +35,7 @@ func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, s
 	_test_attack_ids = test_attack_ids.duplicate()
 	_player = player
 	_auto_rewards = auto_rewards
+	_test_presets_enabled = enable_test_presets
 	_rules = catalog.offer_rules()
 	session.configure(catalog, Time.get_ticks_usec(), _commit_training, _test_attack_ids, not player.attacks.is_empty())
 	runtime.configure(catalog, player, targets, wall_query, _test_attack_ids)
@@ -47,11 +49,12 @@ func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, s
 	mechanisms = MechanismView.new()
 	world.add_child(mechanisms)
 	mechanisms.configure(MechanismStyle)
-	runtime.area_emitted.connect(mechanisms.show_area)
+	runtime.area_payload_emitted.connect(mechanisms.show_payload_area)
 	status_panel = StatusPanel.new()
 	ui_root.add_child(status_panel)
-	status_panel.configure(catalog, shared_theme)
+	status_panel.configure(catalog, shared_theme, enable_test_presets)
 	status_panel.test_offer_requested.connect(request_test_offer)
+	status_panel.test_preset_requested.connect(apply_test_preset)
 	choice_panel = ChoicePanel.new()
 	ui_root.add_child(choice_panel)
 	choice_panel.configure(catalog, shared_theme)
@@ -69,6 +72,22 @@ func _apply_program() -> void:
 	runtime.set_program(program)
 	_player.set_build_movement_multiplier(float(program["move_scale"]))
 	status_panel.update_state(session.snapshot()["ranks"])
+
+func apply_test_preset(id: String) -> Dictionary:
+	if not _test_presets_enabled or _stopped or is_choosing() or not _player.health.alive():
+		return {"ok": false, "error": "preset_unavailable"}
+	var result: Dictionary = session.apply_test_preset(id)
+	if not result.ok:
+		status_panel.set_notice("build.preset.error")
+		return result
+	_player.clear_intents()
+	_player.runner.cancel()
+	_pending = 0
+	choice_panel.dismiss()
+	clear_room()
+	_apply_program()
+	status_panel.set_notice("build.preset.applied", {"name_key": catalog.test_preset(id).name_key})
+	return result
 
 func is_choosing() -> bool:
 	return choice_panel != null and choice_panel.visible

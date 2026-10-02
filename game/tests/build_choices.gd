@@ -31,6 +31,9 @@ func run() -> void:
 		_finish()
 		return
 	_data = JSON.parse_string(FileAccess.get_file_as_string("res://data/builds/prototype.json"))
+	# Preset sequences have their own coverage. These fixtures intentionally
+	# change prerequisite graphs and offer pools independent of training presets.
+	_data.test_presets = []
 	_test_rejection()
 	_test_readonly()
 	_test_sampling()
@@ -287,22 +290,28 @@ func _test_exhaustion() -> void:
 	var total_ranks := 0
 	for entry in _catalog.entries():
 		total_ranks += int(entry.max_rank)
-	for pick in total_ranks:
+	var picks := 0
+	for pick in total_ranks + 1:
 		var result: Dictionary = session.open_offer()
-		if not result.ok or result.offer.candidates.is_empty():
-			check(false, "can progress until all ranks capped: pick %s" % pick)
+		if not result.ok:
+			check(false, "can progress until compatible branch is capped: pick %s" % pick)
 			return
+		if result.offer.candidates.is_empty(): break
 		var chosen: String = result.offer.candidates[0]
 		if result.offer.candidates.has("wave"):
 			chosen = "wave"
 		elif result.offer.candidates.has("split"):
 			chosen = "split"
 		check(session.choose(result.offer.id, chosen).ok, "progression commits legal upgrade")
+		picks += 1
 	var empty: Dictionary = session.open_offer()
 	check(empty.ok and empty.offer.candidates.is_empty() and empty.offer.resolved, "exhausted pool resolves without trapping player")
-	check(session.snapshot().history.size() == total_ranks, "history contains exactly one record per accepted selection")
+	check(session.snapshot().history.size() == picks, "history contains exactly one record per accepted selection")
 	for entry in _catalog.entries():
-		check(session.snapshot().ranks[entry.id] == int(entry.max_rank), "all ranks stop at authored caps")
+		var blocked := false
+		for excluded in entry.excludes:
+			if session.snapshot().ranks.has(excluded): blocked = true
+		check(blocked or session.snapshot().ranks.get(entry.id, 0) == int(entry.max_rank), "all compatible ranks stop at authored caps: " + str(entry.id))
 
 
 func _commit(candidate: Dictionary) -> Error:

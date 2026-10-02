@@ -2,13 +2,15 @@ extends RefCounted
 ## Independent content boundary; never imports combat or application modules.
 
 const Catalog = preload("res://content/builds/build_catalog.gd")
-const SCHEMA_VERSION := 3
+const SCHEMA_VERSION := 4
 const MAX_ENTRIES := 512
 const MAX_RANKS := 64
 const MAX_STRING_LENGTH := 128
 const MAX_TAGS := 64
 const MAX_SAFE_INTEGER := 9007199254740991
 const EFFECT_FIELDS := {
+	"pierce": ["trigger", "scope", "max_hits"],
+	"area_status": ["source_effect_id", "status_id", "allowed_origins", "include_primary", "max_targets"],
 	"status": ["status_id", "trigger", "allowed_origins", "max_per_parent", "max_per_root"],
 	"status_duration": ["status_id", "bonus"],
 	"explosion": ["trigger", "allowed_origins", "max_per_parent", "max_per_root", "damage_ratio", "radius_m", "edge_ratio", "max_targets", "include_primary", "occlusion", "sight_height_m"],
@@ -55,7 +57,7 @@ func load_catalog(manifest_path: String = "res://data/manifest.json") -> Catalog
 
 func decode(data: Variant) -> Catalog:
 	errors.clear()
-	if not _object(data, ["schema_version", "offer", "limits", "stats", "upgrades", "projectiles", "test_attacks", "statuses", "status_rules"], "build"):
+	if not _object(data, ["schema_version", "offer", "limits", "stats", "upgrades", "projectiles", "test_attacks", "statuses", "status_rules", "test_presets"], "build"):
 		return null
 	if not _integer(data.schema_version, 1, MAX_SAFE_INTEGER, "build.schema_version") or data.schema_version != SCHEMA_VERSION:
 		errors.append("build.schema_version: unsupported version")
@@ -74,6 +76,8 @@ func decode(data: Variant) -> Catalog:
 	_validate_statuses(data)
 	if not errors.is_empty(): return null
 	_validate_references(data)
+	if not errors.is_empty(): return null
+	_validate_presets(data)
 	if not errors.is_empty():
 		return null
 	return Catalog.new(data)
@@ -106,13 +110,13 @@ func _validate_offer(value: Variant) -> void:
 
 func _validate_limits(value: Variant) -> void:
 	var path := "build.limits"
-	var integers := ["root_effect_budget", "requests_per_step", "max_queue", "max_projectiles", "max_chain_jumps", "max_split_generation", "max_projectiles_per_root"]
+	var integers := ["root_effect_budget", "requests_per_step", "max_queue", "max_projectiles", "max_chain_jumps", "max_split_generation", "max_projectiles_per_root", "max_projectile_hits"]
 	var fields: Array = integers.duplicate()
 	fields.append("projectiles_survive_source_death")
 	if not _object(value, fields, path):
 		return
 	for key in integers:
-		var maximum := 32 if key in ["max_chain_jumps", "max_split_generation"] else 65536
+		var maximum := 32 if key in ["max_chain_jumps", "max_split_generation", "max_projectile_hits"] else 65536
 		_integer(value[key], 1, maximum, path + "." + key)
 	if not value.projectiles_survive_source_death is bool:
 		errors.append(path + ".projectiles_survive_source_death: expected boolean")
@@ -173,13 +177,13 @@ func _validate_upgrade(value: Variant, path: String) -> void:
 					if rank[key] not in ["world_ray", "none"]: errors.append(rank_path + ": unsupported occlusion")
 				"sight_height_m": _number(rank[key], 0, 10, rank_path + "." + key, true)
 
-				"projectile_id", "status_id": _string(rank[key], rank_path + "." + key)
+				"projectile_id", "status_id", "source_effect_id": _string(rank[key], rank_path + "." + key)
 				"trigger":
 					if rank[key] != "enemy_contact": errors.append(rank_path + ": unsupported trigger")
 				"scope":
 					if rank[key] != "linear_projectile": errors.append(rank_path + ": unsupported scope")
 				"bonus": _number(rank[key], 0, 3 if value.effect_type == "status_duration" else 10, rank_path + ".bonus")
-				"count", "jumps", "max_generation":
+				"count", "jumps", "max_generation", "max_hits":
 					_integer(rank[key], 1, 32, rank_path + "." + key)
 				"radius_m":
 					_number(rank[key], 0.0, 10.0, rank_path + "." + key, true)
@@ -194,6 +198,7 @@ func _validate_upgrade(value: Variant, path: String) -> void:
 func _validate_references(data: Dictionary) -> void:
 	var by_id: Dictionary = {}
 	var available_tags: Array = []
+	var area_status_sources: Dictionary = {}
 	for entry in data.upgrades:
 		if by_id.has(entry.id):
 			errors.append("build.upgrades: duplicate id " + entry.id)
@@ -219,7 +224,7 @@ func _validate_references(data: Dictionary) -> void:
 			if not available_tags.has(tag):
 				errors.append("build.upgrades." + entry.id + ": unknown required tag " + tag)
 		for rank in entry.ranks:
-			for selector in ["allowed_origins", "status_id"]:
+			for selector in ["allowed_origins", "status_id", "source_effect_id"]:
 				if rank.has(selector) and rank[selector] != entry.ranks[0][selector]: errors.append("effect selectors must remain stable across ranks")
 			if entry.effect_type in ["explosion", "status"] and (rank.max_per_parent > rank.max_per_root or rank.max_per_root > data.limits.root_effect_budget): errors.append("explosion trigger limits inconsistent")
 			if entry.effect_type == "chain" and rank.jumps > data.limits.max_chain_jumps:
@@ -227,6 +232,24 @@ func _validate_references(data: Dictionary) -> void:
 			if entry.effect_type == "split":
 				if rank.max_generation > data.limits.max_split_generation or rank.count > data.limits.max_projectiles_per_root or rank.count > data.limits.max_projectiles:
 					errors.append("build.upgrades." + entry.id + ": split exceeds limits")
+			if entry.effect_type == "pierce" and rank.max_hits > data.limits.max_projectile_hits:
+				errors.append("build.upgrades." + entry.id + ": max_hits exceeds projectile hit limit")
+		if entry.effect_type == "pierce":
+			for other in data.upgrades:
+				if other.effect_type == "split" and (not entry.excludes.has(other.id) or not other.excludes.has(entry.id)):
+					errors.append("build.upgrades." + entry.id + ": all pierce/split definitions require symmetric exclusion")
+		if entry.effect_type == "area_status":
+			var source_id: String = entry.ranks[0].source_effect_id
+			if not by_id.has(source_id) or by_id[source_id].effect_type != "explosion":
+				errors.append("build.upgrades." + entry.id + ": area status requires an explosion source")
+			else:
+				if not entry.requires.has(source_id): errors.append("area status must require its explosion source")
+				var shares_origin := false
+				for origin in entry.ranks[0].allowed_origins:
+					if by_id[source_id].ranks[0].allowed_origins.has(origin): shares_origin = true
+				if not shares_origin: errors.append("area status has no compatible source origin")
+			if area_status_sources.has(source_id): errors.append("only one area status definition is supported per explosion source")
+			area_status_sources[source_id] = true
 	var visiting: Dictionary = {}
 	var visited: Dictionary = {}
 	for id in by_id:
@@ -387,18 +410,35 @@ func _validate_statuses(data: Dictionary) -> void:
 		return
 	var definitions: Dictionary = {}
 	for status in data.statuses:
-		if not _object(status, ["id", "kind", "duration_sec", "max_duration_sec", "move_scale", "refresh"], "status"): continue
+		if not _object(status, ["id", "kind", "duration_sec", "max_duration_sec", "move_scale", "refresh", "control_group"], "status"): continue
 		if not _string(status.id, "status.id"): continue
 		if definitions.has(status.id): errors.append("duplicate status id")
 		definitions[status.id] = status
-		if status.kind not in ["slow", "freeze"] or status.refresh != "longest": errors.append("unsupported status kind/refresh")
+		if status.kind not in ["slow", "freeze"]: errors.append("unsupported status kind")
+		if status.kind == "slow" and (status.refresh != "longest" or status.control_group != ""):
+			errors.append("slow requires longest refresh and no control group")
+		if status.kind == "freeze":
+			if status.refresh != "reject_active": errors.append("freeze must reject active reapplication")
+			_string(status.control_group, "status.control_group")
 		var valid := _number(status.duration_sec, 0, 30, "status.duration_sec", true)
 		valid = _number(status.max_duration_sec, 0, 30, "status.max_duration_sec", true) and valid
 		if valid and status.duration_sec > status.max_duration_sec: errors.append("status duration exceeds cap")
 		if _number(status.move_scale, 0, 1, "status.move_scale"):
 			if (status.kind == "slow" and status.move_scale <= 0) or (status.kind == "freeze" and status.move_scale != 0): errors.append("invalid status movement scale")
-	if not _object(data.status_rules, ["default_response_id", "actor_responses", "responses"], "status_rules"): return
+	if not _object(data.status_rules, ["default_response_id", "actor_responses", "responses", "control_groups"], "status_rules"): return
 	var rules: Dictionary = data.status_rules
+	# This finite slice has one shared freeze group, independent of status/source ID.
+	if not rules.control_groups is Array or rules.control_groups.size() != 1:
+		errors.append("status_rules.control_groups: exactly one shared freeze group required")
+	else:
+		var group: Variant = rules.control_groups[0]
+		if _object(group, ["id", "kind", "thaw_immunity_sec"], "control_group"):
+			_string(group.id, "control_group.id")
+			if group.kind != "freeze": errors.append("unsupported control group kind")
+			_number(group.thaw_immunity_sec, 0, 30, "control_group.thaw_immunity_sec", true)
+			if errors.is_empty():
+				for status in definitions.values():
+					if status.kind == "freeze" and status.control_group != group.id: errors.append("all freeze statuses must share the validated freeze group")
 	if not rules.responses is Array or rules.responses.is_empty() or rules.responses.size() > 64:
 		errors.append("status responses: expected bounded array")
 		return
@@ -420,6 +460,40 @@ func _validate_statuses(data: Dictionary) -> void:
 			_string(actor_id, "actor response key")
 			if not _string(rules.actor_responses[actor_id], "actor response id") or not responses.has(rules.actor_responses[actor_id]): errors.append("unknown actor response")
 	for entry in data.upgrades:
-		if entry.effect_type not in ["status", "status_duration"]: continue
+		if entry.effect_type not in ["status", "status_duration", "area_status"]: continue
 		for rank in entry.ranks:
 			if not definitions.has(rank.status_id): errors.append("unknown status reference")
+
+
+func _validate_presets(data: Dictionary) -> void:
+	if not data.test_presets is Array or data.test_presets.size() > 64:
+		errors.append("test_presets: expected bounded array")
+		return
+	var entries: Dictionary = {}
+	for entry in data.upgrades: entries[entry.id] = entry
+	var ids: Dictionary = {}
+	for preset in data.test_presets:
+		if not _object(preset, ["id", "name_key", "upgrade_ids"], "test_preset"): continue
+		if not _string(preset.id, "test_preset.id"): continue
+		_string(preset.name_key, "test_preset.name_key")
+		if ids.has(preset.id): errors.append("duplicate test preset id")
+		ids[preset.id] = true
+		if not preset.upgrade_ids is Array or preset.upgrade_ids.is_empty() or preset.upgrade_ids.size() > MAX_ENTRIES:
+			errors.append("test_preset.upgrade_ids: expected bounded nonempty sequence")
+			continue
+		var ranks: Dictionary = {}
+		var tags: Dictionary = {}
+		for id in preset.upgrade_ids:
+			if not _string(id, "test_preset.upgrade_ids") or not entries.has(id):
+				errors.append("test_preset: unknown upgrade reference")
+				continue
+			var entry: Dictionary = entries[id]
+			for required in entry.requires:
+				if not ranks.has(required): errors.append("test_preset: prerequisite must appear before upgrade " + id)
+			for excluded in entry.excludes:
+				if ranks.has(excluded): errors.append("test_preset: mutually exclusive upgrades")
+			for tag in entry.required_tags:
+				if not tags.has(tag): errors.append("test_preset: required tag missing before upgrade " + id)
+			ranks[id] = int(ranks.get(id, 0)) + 1
+			if ranks[id] > entry.max_rank: errors.append("test_preset: upgrade rank exceeds maximum")
+			for tag in entry.granted_tags: tags[tag] = true

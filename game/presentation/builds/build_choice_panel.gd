@@ -93,7 +93,7 @@ func refresh_text() -> void:
 		var next_rank: int = int(_ranks[id]) + 1 if _ranks.has(id) else 1
 		assert(next_rank <= int(entry["max_rank"]))
 		var params: Dictionary = entry["ranks"][next_rank - 1].duplicate(true)
-		if entry.effect_type == "status":
+		if entry.effect_type in ["status", "area_status"]:
 			var definition: Dictionary = _catalog.status(params.status_id)
 			var bonus := 0.0
 			for owned_id in _ranks:
@@ -105,7 +105,7 @@ func refresh_text() -> void:
 			params.slow_percent = _display_decimal((1.0 - float(definition.move_scale)) * 100.0)
 		params["rank"] = next_rank
 		params["max_rank"] = int(entry["max_rank"])
-		for key in ["jumps", "count", "max_generation"]:
+		for key in ["jumps", "count", "max_generation", "max_hits", "max_targets"]:
 			if params.has(key):
 				params[key] = int(params[key])
 		if params.has("bonus"):

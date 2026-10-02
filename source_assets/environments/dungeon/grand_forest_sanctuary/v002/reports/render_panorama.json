@@ -1,0 +1,11 @@
+{
+  "mode": "panorama",
+  "camera": "Camera_Panorama",
+  "resolution": [
+    2560,
+    1600
+  ],
+  "samples": 144,
+  "seconds": 196.4548897743225,
+  "device": "GPU"
+}

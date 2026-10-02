@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shop preview manifest, deliberately limited to implemented content",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "content_schema_version",
+    "content_version",
+    "shop_preview_file",
+    "foliage_preview_file",
+    "combat_prototype_file",
+    "build_prototype_file",
+    "room_props_file",
+    "enemy_roles_file",
+    "encounters_file",
+    "enemy_loot_file"
+  ],
+  "properties": {
+    "foliage_preview_file": {
+      "type": "string",
+      "pattern": "^res://data/shop/[a-z0-9_]+\\.json$"
+    },
+    "content_schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "content_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shop_preview_file": {
+      "type": "string",
+      "pattern": "^res://data/shop/[a-z0-9_]+\\.json$"
+    },
+    "combat_prototype_file": {
+      "type": "string",
+      "pattern": "^res://data/combat/[a-z0-9_]+\\.json$"
+    },
+    "build_prototype_file": {
+      "type": "string",
+      "pattern": "^res://data/builds/[a-z0-9_]+\\.json$"
+    },
+    "room_props_file": {
+      "type": "string",
+      "pattern": "^res://data/rooms/[a-z0-9_]+\\.json$"
+    },
+    "enemy_roles_file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "encounters_file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "enemy_loot_file": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

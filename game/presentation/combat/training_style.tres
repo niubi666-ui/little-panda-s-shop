@@ -1,0 +1,58 @@
+[gd_resource type="Resource" format=3 uid="uid://coc5tu0tcgm2e"]
+
+[ext_resource type="Script" uid="uid://buv7p17b4mthq" path="res://presentation/combat/training_style.gd" id="1"]
+[ext_resource type="Resource" path="res://presentation/combat/brute_presentation.tres" id="brute"]
+[ext_resource type="Resource" path="res://presentation/combat/hit_feedback.tres" id="feedback"]
+[ext_resource type="Resource" path="res://presentation/combat/player_presentation.tres" id="player"]
+[ext_resource type="Resource" path="res://presentation/combat/scout_presentation.tres" id="scout"]
+[ext_resource type="Resource" path="res://presentation/combat/crossbow_presentation.tres" id="crossbow"]
+[ext_resource type="Resource" path="res://presentation/combat/charger_presentation.tres" id="charger"]
+[ext_resource type="Resource" path="res://presentation/combat/banner_presentation.tres" id="banner"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/slash_default.tscn" id="slash_fx"]
+[ext_resource type="PackedScene" path="res://assets/weapons/longsword_v001/longsword.glb" id="sword"]
+[ext_resource type="Resource" path="res://presentation/combat/attack_motions/slash_1.tres" id="motion_1"]
+[ext_resource type="Resource" path="res://presentation/combat/attack_motions/slash_2.tres" id="motion_2"]
+[ext_resource type="Resource" path="res://presentation/combat/attack_motions/thrust_3.tres" id="motion_3"]
+[ext_resource type="Resource" path="res://presentation/combat/hit_camera_shake_style.tres" id="camera_hit"]
+
+[resource]
+script = ExtResource("1")
+actor_presentations = {
+"crossbow": ExtResource("crossbow"),
+"charger": ExtResource("charger"),
+"banner": ExtResource("banner"),
+"brute": ExtResource("brute"),
+"player": ExtResource("player"),
+"scout": ExtResource("scout")
+}
+animation_blend_sec = 0.12
+attack_motions = Dictionary[String, Resource]({
+"slash.1": ExtResource("motion_1"),
+"slash.2": ExtResource("motion_2"),
+"slash.3": ExtResource("motion_3")
+})
+hit_camera_shake = ExtResource("camera_hit")
+warning_color = Color(1, 0.47, 0.1, 0.4)
+strike_color = Color(1, 0.16, 0.05, 0.8)
+sector_height = 0.035
+blade_size = Vector3(0.09, 0.12, 1.1)
+blade_offset = Vector3(0.4, 0.8, -0.65)
+weapon_tip_radius_by_ability = {
+"slash.1": 1.9,
+"slash.2": 1.9,
+"slash.3": 2.2
+}
+camera_offset = Vector3(11, 17, 13)
+camera_size = 17.5
+camera_min_size = 12.0
+camera_max_size = 24.0
+camera_zoom_step = 1.0
+health_label_height = 2.0
+health_font_size = 36
+hud_margin = 24
+training_entry_position = Vector2(24, 110)
+hit_feedback = ExtResource("feedback")
+weapon_effect_scene = ExtResource("slash_fx")
+weapon_visual_scene = ExtResource("sword")
+health_label_pixel_size = 0.009
+encounter_panel_position = Vector2(24, 340)

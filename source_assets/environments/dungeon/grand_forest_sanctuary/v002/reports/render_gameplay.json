@@ -1,0 +1,11 @@
+{
+  "mode": "gameplay",
+  "camera": "Camera_Gameplay",
+  "resolution": [
+    2560,
+    1600
+  ],
+  "samples": 144,
+  "seconds": 182.40839099884033,
+  "device": "GPU"
+}

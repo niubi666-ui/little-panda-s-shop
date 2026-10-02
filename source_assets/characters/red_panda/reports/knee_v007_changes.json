@@ -1,0 +1,26 @@
+[
+  {
+    "scene": "KneePose_01_Contact",
+    "pants_vertices": 1409,
+    "split_edges": 25,
+    "vertices": 6361
+  },
+  {
+    "scene": "KneePose_02_Down",
+    "pants_vertices": 1409,
+    "split_edges": 25,
+    "vertices": 6361
+  },
+  {
+    "scene": "KneePose_03_Passing",
+    "pants_vertices": 1409,
+    "split_edges": 25,
+    "vertices": 6361
+  },
+  {
+    "scene": "KneePose_04_Flight",
+    "pants_vertices": 1409,
+    "split_edges": 25,
+    "vertices": 6361
+  }
+]

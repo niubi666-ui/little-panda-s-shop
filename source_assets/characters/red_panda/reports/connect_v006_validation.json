@@ -1,0 +1,30 @@
+{
+  "ConnectedPose_01_Contact": {
+    "weight_min": 0.9999998865405928,
+    "weight_max": 1.000000037252903,
+    "finite": true,
+    "animation": false,
+    "mesh_objects": 1
+  },
+  "ConnectedPose_02_Down": {
+    "weight_min": 0.9999998865405928,
+    "weight_max": 1.000000037252903,
+    "finite": true,
+    "animation": false,
+    "mesh_objects": 1
+  },
+  "ConnectedPose_03_Passing": {
+    "weight_min": 0.9999998865405928,
+    "weight_max": 1.000000037252903,
+    "finite": true,
+    "animation": false,
+    "mesh_objects": 1
+  },
+  "ConnectedPose_04_Flight": {
+    "weight_min": 0.9999998865405928,
+    "weight_max": 1.000000037252903,
+    "finite": true,
+    "animation": false,
+    "mesh_objects": 1
+  }
+}

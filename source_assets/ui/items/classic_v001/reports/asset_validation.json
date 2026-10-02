@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-01",
+  "sheet_count": 4,
+  "item_count": 36,
+  "unique_art_ids": true,
+  "pixel_operations": "none",
+  "files": [
+    {
+      "path": "botanicals_food/01_botanicals_food_labeled.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "png_readable": true,
+      "copy_matches_original": true,
+      "row_column_index_valid": true,
+      "sha256": "75516b893660b211496f4b7df7856f353573abf2faf60ab94993cded15f4bd7a"
+    },
+    {
+      "path": "ores_metals/02_ores_metals_labeled.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "png_readable": true,
+      "copy_matches_original": true,
+      "row_column_index_valid": true,
+      "sha256": "f70b1539618d1703c547ad06375dca431886777e0491636322af7e0f9820b639"
+    },
+    {
+      "path": "potions/03_potions_labeled.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "png_readable": true,
+      "copy_matches_original": true,
+      "row_column_index_valid": true,
+      "sha256": "f2ad5d01dab6161f61140285c9aab8866ba03dcf20e92953cd53ea67822850b8"
+    },
+    {
+      "path": "crafting_loot/04_crafting_loot_labeled.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "png_readable": true,
+      "copy_matches_original": true,
+      "row_column_index_valid": true,
+      "sha256": "f98c9689fb672560d6bf62b38fb8ba8df66f2b6bd90705485fe3c7831e92babd"
+    }
+  ]
+}

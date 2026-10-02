@@ -1,0 +1,31 @@
+{
+  "atlas": "flame_atlas.png",
+  "layout": [
+    4,
+    4
+  ],
+  "cell": [
+    256,
+    256
+  ],
+  "frame_order": "row-major top-left first",
+  "color": "sRGB RGBA, straight alpha",
+  "frames": [
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_00.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_01.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_02.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_03.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_04.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_05.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_06.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_07.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_08.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_09.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_10.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_11.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_12.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_13.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_14.png",
+    "E:\\ShopGame\\source_assets\\vfx\\fire_slash_v002\\bakes\\flame_frames\\flame_15.png"
+  ]
+}

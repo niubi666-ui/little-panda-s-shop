@@ -1,0 +1,717 @@
+# GENERATED from game/data/locales; edit JSON and rerun the build tool.
+msgid ""
+msgstr ""
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "build.choose"
+msgstr "选择此升级"
+
+msgid "build.empty"
+msgstr "暂无升级"
+
+msgid "build.error"
+msgstr "选择未成功，当前构筑未改变，请重试。"
+
+msgid "build.next"
+msgstr "升级至 {rank} 级"
+
+msgid "build.no_candidates"
+msgstr "当前训练升级已全部达到上限。"
+
+msgid "build.owned"
+msgstr "当前构筑"
+
+msgid "build.rank"
+msgstr "等级 {rank} / {max_rank}"
+
+msgid "build.subtitle"
+msgstr "本次选择会持续到本轮训练结束"
+
+msgid "build.test.agility.description"
+msgstr "普通移动速度提高 {bonus_percent}%。闪避速度保持原值。"
+
+msgid "build.test.agility.name"
+msgstr "试验 · 轻盈步伐"
+
+msgid "build.test.arrow_hint"
+msgstr "投射物测试：T 发射测试箭；无需剑气，选择分裂后对敌人测试。"
+
+msgid "build.test.blast.description"
+msgstr "近战和投射物接敌后爆炸，半径 {radius_m} 米，基于本次攻击的 {damage_percent}% 伤害向边缘衰减。墙后目标和直击目标不受此次爆炸伤害。"
+
+msgid "build.test.blast.name"
+msgstr "试验 · 命中爆炸"
+
+msgid "build.test.chain.description"
+msgstr "近战或剑气实际命中后，向 {radius_m} 米内最多 {jumps} 个其他敌人连锁。起始伤害为该次实际伤害的 {damage_percent}%，每跳保留 {falloff_percent}%。每次施放触发一次。"
+
+msgid "build.test.chain.name"
+msgstr "试验 · 回响连锁"
+
+msgid "build.test.contact_freeze.description"
+msgstr "近战和投射物接敌后冻结 {duration_sec} 秒，取消前摇和冲锋，暂停旗手光环。已发射的弩箭继续飞行。"
+
+msgid "build.test.contact_freeze.name"
+msgstr "试验 · 接触冻结"
+
+msgid "build.test.contact_slow.description"
+msgstr "近战和投射物接敌后减速 {slow_percent}%，持续 {duration_sec} 秒；重复施加保留较长剩余时间。"
+
+msgid "build.test.contact_slow.name"
+msgstr "试验 · 接触减速"
+
+msgid "build.test.freeze_duration.description"
+msgstr "已有冻结来源的后续攻击：冻结时长提高 {bonus_percent}%，仍受状态时长上限限制。"
+
+msgid "build.test.freeze_duration.name"
+msgstr "试验 · 冻结延长"
+
+msgid "build.test.mechanism_hint"
+msgstr "机制测试：T 发箭 · 橙圈=爆炸 · 紫圈=减速 · 蓝罩=冻结 · 重试可换一组测试卡"
+
+msgid "build.test.power.description"
+msgstr "本次施放的攻击伤害提高 {bonus_percent}%。剑气继承此加成，派生伤害不重复乘算。"
+
+msgid "build.test.power.name"
+msgstr "试验 · 锋刃强化"
+
+msgid "build.test.split.description"
+msgstr "适用于可分裂的投射物。接触敌人后分成 {count} 个子体，继承原投射物 {damage_percent}% 伤害；最多 {max_generation} 代，不重复命中祖先目标。"
+
+msgid "build.test.split.name"
+msgstr "试验 · 投射物分裂"
+
+msgid "build.test.wave.description"
+msgstr "每次普攻生效时发射剑气，挥空也触发；伤害为本次攻击的 {damage_percent}%，撞墙或命中后结束。"
+
+msgid "build.test.wave.name"
+msgstr "试验 · 挥刀剑气"
+
+msgid "build.test_offer"
+msgstr "测试：再抽三选一"
+
+msgid "build.title"
+msgstr "选择一个构筑升级"
+
+msgid "combat.banner"
+msgstr "督军旗手"
+
+msgid "combat.brute"
+msgstr "重卫 · 占位"
+
+msgid "combat.charger"
+msgstr "冲锋矛兵"
+
+msgid "combat.choosing"
+msgstr "选择构筑升级后继续战斗"
+
+msgid "combat.controls"
+msgstr "WASD 移动 · 鼠标瞄准 · 左键连击 · Shift 闪避 · Esc 暂停 · L 中/英"
+
+msgid "combat.crossbow"
+msgstr "游击弩手"
+
+msgid "combat.defeat"
+msgstr "训练失败。重试不会损失店铺物品。"
+
+msgid "combat.enter"
+msgstr "F6 战斗训练"
+
+msgid "combat.fighting"
+msgstr "侧移躲开红线，趁矛兵硬直反击；击杀旗手解除光环。"
+
+msgid "combat.fx.clean"
+msgstr "清亮弧光"
+
+msgid "combat.fx.element_fire"
+msgstr "烈焰 · 翻卷焰刃"
+
+msgid "combat.fx.element_frost"
+msgstr "冰霜 · 碎晶寒锋"
+
+msgid "combat.fx.element_lightning"
+msgstr "闪电 · 苍蓝电弧"
+
+msgid "combat.fx.element_thunder"
+msgstr "雷霆 · 紫金雷裂"
+
+msgid "combat.fx.fire"
+msgstr "原版火焰"
+
+msgid "combat.fx.golden"
+msgstr "金色破碎流光"
+
+msgid "combat.fx.heavy"
+msgstr "厚重刀光"
+
+msgid "combat.fx.hint"
+msgstr "仅切换刀光外观，战斗数值不变。"
+
+msgid "combat.fx.inferno"
+msgstr "焰浪 · 火焰重斩"
+
+msgid "combat.fx.preset01"
+msgstr "预设 01 · 焰刃"
+
+msgid "combat.fx.preset06"
+msgstr "预设 06 · 碎光"
+
+msgid "combat.fx.streak"
+msgstr "飞散流光"
+
+msgid "combat.fx.title"
+msgstr "刀光测试"
+
+msgid "combat.paused"
+msgstr "已暂停"
+
+msgid "combat.player"
+msgstr "小熊猫"
+
+msgid "combat.prototype"
+msgstr "临时模型与动作 · 无掉落、经济或存档结算"
+
+msgid "combat.resume"
+msgstr "继续训练"
+
+msgid "combat.retry"
+msgstr "重新训练"
+
+msgid "combat.return"
+msgstr "返回店铺"
+
+msgid "combat.scout"
+msgstr "斥候 · 占位"
+
+msgid "combat.status"
+msgstr "生命 {hp}/{max_hp}  ·  闪避 {charges}/{max_charges}  ·  波次 {wave}/{total}  ·  敌人 {enemies}"
+
+msgid "combat.title"
+msgstr "战斗训练 · 初版"
+
+msgid "combat.victory"
+msgstr "训练完成！可重试或返回店铺。"
+
+msgid "combat.waiting"
+msgstr "本波已清除，下一波即将出现…"
+
+msgid "encounter.banner_brute"
+msgstr "旗手重装队"
+
+msgid "encounter.banner_charge"
+msgstr "旗手突击队"
+
+msgid "encounter.banner_crossbow"
+msgstr "旗手弩手队"
+
+msgid "encounter.brute_charge"
+msgstr "重装突击队"
+
+msgid "encounter.brute_crossbow"
+msgstr "重装弩手队"
+
+msgid "encounter.brute_guard"
+msgstr "重装护旗队"
+
+msgid "encounter.crossfire_charge"
+msgstr "交叉火力与冲锋"
+
+msgid "encounter.depth"
+msgstr "训练深度"
+
+msgid "encounter.escort_crossbow"
+msgstr "弩手护卫队"
+
+msgid "encounter.heavy_breakthrough"
+msgstr "重装破阵队"
+
+msgid "encounter.reroll"
+msgstr "应用深度 / 新遭遇"
+
+msgid "encounter.scout_brute"
+msgstr "重装前锋"
+
+msgid "encounter.scout_charge"
+msgstr "斥候与矛兵"
+
+msgid "encounter.scout_crossbow"
+msgstr "斥候与弩手"
+
+msgid "encounter.status"
+msgstr "深度 {depth} · 预算 {budget} · {name}"
+
+msgid "loading.failed"
+msgstr "暂时无法进入，请返回后重试。"
+
+msgid "loading.preparing"
+msgstr "资源已就绪，正在准备场景…"
+
+msgid "loading.progress"
+msgstr "加载资源 · {percent}%"
+
+msgid "loading.return"
+msgstr "返回"
+
+msgid "loading.title"
+msgstr "旅途将启"
+
+msgid "room.empty"
+msgstr "暂无战利品"
+
+msgid "room.failed"
+msgstr "搜刮未提交，请重试"
+
+msgid "room.hint"
+msgstr "靠近宝箱或背包，按 F 搜刮"
+
+msgid "room.loot.herb"
+msgstr "测试草药"
+
+msgid "room.loot.ore"
+msgstr "测试矿石"
+
+msgid "room.loot_title"
+msgstr "本次训练战利品（不入存档）"
+
+msgid "room.new_layout"
+msgstr "新随机布局"
+
+msgid "room.prop.barrel"
+msgstr "木桶"
+
+msgid "room.prop.broken_column"
+msgstr "断裂石柱"
+
+msgid "room.prop.chest1"
+msgstr "遗迹宝箱"
+
+msgid "room.prop.chest2"
+msgstr "旅行箱"
+
+msgid "room.prop.crate"
+msgstr "板条箱"
+
+msgid "room.prop.crate_long"
+msgstr "长板条箱"
+
+msgid "room.prop.crate_stack"
+msgstr "板条箱堆"
+
+msgid "room.prop.end_pillar"
+msgstr "石制端柱"
+
+msgid "room.prop.forest_bag"
+msgstr "冒险者背包"
+
+msgid "room.prop.low_wall"
+msgstr "低矮残墙"
+
+msgid "room.prop.moss_rock"
+msgstr "苔藓岩石"
+
+msgid "room.prop.stone_wall"
+msgstr "石质残墙"
+
+msgid "room.search"
+msgstr "F 搜刮 · {name}"
+
+msgid "room.searched"
+msgstr "已搜刮 · {name}"
+
+msgid "room.seed"
+msgstr "房间种子：{seed}"
+
+msgid "settings.attack"
+msgstr "普通攻击"
+
+msgid "settings.audio_pending"
+msgstr "待接入音频分组"
+
+msgid "settings.cancel"
+msgstr "取消"
+
+msgid "settings.chinese"
+msgstr "简体中文"
+
+msgid "settings.controls"
+msgstr "操作与按键"
+
+msgid "settings.display_pending"
+msgstr "待接入安全确认"
+
+msgid "settings.dodge"
+msgstr "闪避"
+
+msgid "settings.english"
+msgstr "English"
+
+msgid "settings.exit_warning"
+msgstr "退出将丢失当前未保存的训练或预览状态。游戏存读档尚未接入，是否仍然退出？"
+
+msgid "settings.fps"
+msgstr "帧率上限"
+
+msgid "settings.general"
+msgstr "综合设置"
+
+msgid "settings.graphics"
+msgstr "画面设置"
+
+msgid "settings.interact"
+msgstr "交互"
+
+msgid "settings.language"
+msgstr "界面语言"
+
+msgid "settings.load"
+msgstr "读取存档"
+
+msgid "settings.load_pending"
+msgstr "读取 · 待实现"
+
+msgid "settings.master"
+msgstr "主音量"
+
+msgid "settings.mouse_button"
+msgstr "鼠标按键 {button}"
+
+msgid "settings.move"
+msgstr "移动"
+
+msgid "settings.music"
+msgstr "音乐音量"
+
+msgid "settings.off"
+msgstr "关闭"
+
+msgid "settings.on"
+msgstr "开启"
+
+msgid "settings.pending"
+msgstr "待实现"
+
+msgid "settings.percent"
+msgstr "{value}%"
+
+msgid "settings.quality"
+msgstr "画质预设"
+
+msgid "settings.quit"
+msgstr "退出游戏"
+
+msgid "settings.quit_confirm"
+msgstr "不保存并退出"
+
+msgid "settings.rebind_pending"
+msgstr "按键重绑定 / 灵敏度 · 待实现"
+
+msgid "settings.resolution"
+msgstr "分辨率"
+
+msgid "settings.resume"
+msgstr "返回游戏"
+
+msgid "settings.save"
+msgstr "保存游戏"
+
+msgid "settings.save_note"
+msgstr "游戏存读档尚未接入。这里预留存档槽位、进度及保存／读取入口；当前没有可读取的游戏存档。"
+
+msgid "settings.save_pending"
+msgstr "保存 · 待实现"
+
+msgid "settings.saves"
+msgstr "存档管理"
+
+msgid "settings.session_note"
+msgstr "设置即时生效 · 本轮暂不保存设置"
+
+msgid "settings.sfx"
+msgstr "音效音量"
+
+msgid "settings.title"
+msgstr "设置"
+
+msgid "settings.unbound"
+msgstr "未绑定"
+
+msgid "settings.unlimited"
+msgstr "不限制"
+
+msgid "settings.vsync"
+msgstr "垂直同步"
+
+msgid "settings.window"
+msgstr "窗口模式"
+
+msgid "shop.preview.close"
+msgstr "关闭"
+
+msgid "shop.preview.close_hint"
+msgstr "{key} 关闭"
+
+msgid "shop.preview.controls"
+msgstr "{move_keys} 移动   ·   {interact_key} 互动   ·   滚轮 缩放"
+
+msgid "shop.preview.language"
+msgstr "{key}  EN"
+
+msgid "shop.preview.pending"
+msgstr "功能待设计"
+
+msgid "shop.preview.prompt"
+msgstr "{key}  ·  {action} · {target}"
+
+msgid "shop.preview.title"
+msgstr "小熊猫的小店"
+
+msgid "shop.station.chest.action"
+msgstr "查看宝箱"
+
+msgid "shop.station.chest.name"
+msgstr "宝箱"
+
+msgid "shop.station.counter.action"
+msgstr "查看上架与陈列"
+
+msgid "shop.station.counter.name"
+msgstr "售货柜台"
+
+msgid "shop.station.potions.action"
+msgstr "查看魔药陈列"
+
+msgid "shop.station.potions.name"
+msgstr "魔药台"
+
+msgid "shop.station.shelf.action"
+msgstr "查看陈列"
+
+msgid "shop.station.shelf.name"
+msgstr "陈列架"
+
+msgid "shop.station.storage.action"
+msgstr "查看储物柜"
+
+msgid "shop.station.storage.name"
+msgstr "储物柜"
+
+msgid "shop.station.workbench.action"
+msgstr "查看工作台"
+
+msgid "shop.station.workbench.name"
+msgstr "工作台"
+
+msgid "ui.accept"
+msgstr "接取选中订单"
+
+msgid "ui.all"
+msgstr "全部"
+
+msgid "ui.catalog"
+msgstr "家具目录"
+
+msgid "ui.choose_order"
+msgstr "选择这份委托"
+
+msgid "ui.commission.accept_pending"
+msgstr "已选中此委托，接取功能尚未开放。"
+
+msgid "ui.commission.depart_pending"
+msgstr "可以不接订单出发；地牢入口尚未开放。"
+
+msgid "ui.commission.description"
+msgstr "委托内容将在订单系统开放后发布。"
+
+msgid "ui.commission.preview"
+msgstr "界面预览 · 委托与出发功能尚未开放"
+
+msgid "ui.commission.requirements"
+msgstr "需求 · 待发布"
+
+msgid "ui.commission.reward"
+msgstr "报酬 · 待发布"
+
+msgid "ui.controls"
+msgstr "操作"
+
+msgid "ui.decoration"
+msgstr "店铺装修"
+
+msgid "ui.depart"
+msgstr "不接订单，直接出发"
+
+msgid "ui.done"
+msgstr "返回店铺"
+
+msgid "ui.empty"
+msgstr "空物品格"
+
+msgid "ui.equipment"
+msgstr "装备"
+
+msgid "ui.furniture"
+msgstr "家具"
+
+msgid "ui.inventory"
+msgstr "背包"
+
+msgid "ui.item.bag"
+msgstr "旅行布袋"
+
+msgid "ui.item.bag_desc"
+msgstr "结实的布袋，可以伴随漫长的旅途。"
+
+msgid "ui.item.cabinet"
+msgstr "药材陈列柜"
+
+msgid "ui.item.cabinet_desc"
+msgstr "整齐的隔层适合陈列瓶罐与店内好物。"
+
+msgid "ui.item.chest"
+msgstr "木制宝箱"
+
+msgid "ui.item.chest_desc"
+msgstr "铜箍与深色木板组成的小型收纳箱。"
+
+msgid "ui.item.crystal"
+msgstr "蓝色晶簇"
+
+msgid "ui.item.crystal_desc"
+msgstr "不规则的晶体表面折射出柔和蓝光。"
+
+msgid "ui.item.herb"
+msgstr "芳香草叶"
+
+msgid "ui.item.herb_desc"
+msgstr "新采下的枝叶，带着林间清新的气息。"
+
+msgid "ui.item.lamp"
+msgstr "暖光灯笼"
+
+msgid "ui.item.lamp_desc"
+msgstr "古铜框架包裹暖光，为角落增添温度。"
+
+msgid "ui.item.potion"
+msgstr "红色药剂"
+
+msgid "ui.item.potion_desc"
+msgstr "透亮的红色药液，盛在软木塞封口的玻璃瓶中。"
+
+msgid "ui.item.rug"
+msgstr "织纹地毯"
+
+msgid "ui.item.rug_desc"
+msgstr "温暖的红色织物与细致的金色纹样。"
+
+msgid "ui.item.scroll"
+msgstr "旧卷轴"
+
+msgid "ui.item.scroll_desc"
+msgstr "扎好的羊皮纸卷，纸边已微微泛黄。"
+
+msgid "ui.item.sword"
+msgstr "旅行短剑"
+
+msgid "ui.item.sword_desc"
+msgstr "轻巧的短剑，剑柄带有古铜色装饰。"
+
+msgid "ui.key_decoration"
+msgstr "装修  {key}"
+
+msgid "ui.key_inventory"
+msgstr "背包  {key}"
+
+msgid "ui.key_orders"
+msgstr "订单  {key}"
+
+msgid "ui.key_settings"
+msgstr "设置  {key}"
+
+msgid "ui.language"
+msgstr "界面语言"
+
+msgid "ui.language_toggle"
+msgstr "中文 / EN"
+
+msgid "ui.lights"
+msgstr "灯具"
+
+msgid "ui.location"
+msgstr "店内 · 日常经营"
+
+msgid "ui.materials"
+msgstr "材料"
+
+msgid "ui.no_balance"
+msgstr "金币  —"
+
+msgid "ui.order.guard"
+msgstr "巡卫的装备"
+
+msgid "ui.order.herbal"
+msgstr "药师的补给"
+
+msgid "ui.order.traveler"
+msgstr "旅人的行囊"
+
+msgid "ui.order_hint"
+msgstr "选择一份委托，也可以自由出发"
+
+msgid "ui.order_limit"
+msgstr "最多接取 1 份订单"
+
+msgid "ui.order_note"
+msgstr "顾客、需求与报酬将在订单系统接入后显示。"
+
+msgid "ui.orders"
+msgstr "今日委托"
+
+msgid "ui.ornaments"
+msgstr "装饰"
+
+msgid "ui.place"
+msgstr "开始摆放"
+
+msgid "ui.place_note"
+msgstr "选择家具查看外观；摆放功能尚未开放。"
+
+msgid "ui.potions"
+msgstr "药剂"
+
+msgid "ui.preview"
+msgstr "界面预览 · 示例目录"
+
+msgid "ui.sample_note"
+msgstr "这里展示界面样式，不代表已拥有这些物品。"
+
+msgid "ui.select_item"
+msgstr "选择一件物品"
+
+msgid "ui.selected"
+msgstr "已选中"
+
+msgid "ui.settings"
+msgstr "设置"
+
+msgid "ui.settings_note"
+msgstr "语言切换立即生效，本次运行结束后不保存。"
+
+msgid "ui.sort"
+msgstr "整理"
+
+msgid "ui.status"
+msgstr "小小的好物，也能点亮旅途"
+
+msgid "ui.store"
+msgstr "移入仓库"
+
+msgid "ui.unavailable"
+msgstr "功能尚未开放"
+
+msgid "ui.use"
+msgstr "使用"
+

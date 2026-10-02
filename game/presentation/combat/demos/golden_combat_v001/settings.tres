@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://presentation/combat/demos/golden_combat_v001/settings.gd" id="script"]
+[resource]
+script = ExtResource("script")
+player_start = Vector3(0, 0, 0)
+enemy_offsets = PackedVector3Array(0.2, 0, 1.55, 1.45, 0, 0.45, 1.7, 0, 1.75)
+start_delay_sec = 0.35
+opening_duration_sec = 3.0
+opening_slow_start_sec = 1.25
+opening_facing = Vector3(0.65, 0, 0.76)
+opening_enemy_distance_scale = 4.0
+approach_range_ratio = 0.8
+attack_range_ratio = 0.96
+normal_camera_size = 12.0
+close_camera_size = 6.5
+slow_start_sec = 9.0
+slow_scale = 0.4
+duration_sec = 16.0
+screenshot_active_progress = 0.7
+expected_arc_deg = 160.0
+arc_tolerance_deg = 0.01
+previews_path = "res://../source_assets/vfx/trail_fxs_v2/godot_sword_v001/previews"
+report_path = "res://../source_assets/vfx/trail_fxs_v2/godot_sword_v001/reports/capture_result.json"

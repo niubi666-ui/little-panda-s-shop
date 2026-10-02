@@ -1,0 +1,559 @@
+{
+  "schema_version": 1,
+  "pack_version": "inventory_v001",
+  "purpose": "Art metadata only, not gameplay content/InventoryDef/schema",
+  "integration_status": "not_integrated_user_requested_art_only",
+  "notify_code_thread": false,
+  "reference": "reference/inventory_reference.png",
+  "assets": [
+    {
+      "id": "inventory.chrome.button_primary",
+      "label_zh_for_art_browser_only": "主要操作按钮",
+      "source_path": "source_assets/ui/inventory/v001/exports/chrome/button_primary.png",
+      "runtime_path": "res://assets/ui/inventory/v001/chrome/button_primary.png",
+      "size_px": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        43,
+        191,
+        2086,
+        331
+      ],
+      "atlas_region_xywh": [
+        35,
+        183,
+        2102,
+        347
+      ],
+      "center_alpha": 254,
+      "transparent_pixel_fraction": 0.564022,
+      "sha256": "9e5058ddcfab3747d4fd4d5dd5ded54795a3e2d5747637555c4ebf32feada33e",
+      "sample_entry_id": null,
+      "status": "ui_art_candidate"
+    },
+    {
+      "id": "inventory.chrome.button_secondary",
+      "label_zh_for_art_browser_only": "仓库操作按钮",
+      "source_path": "source_assets/ui/inventory/v001/exports/chrome/button_secondary.png",
+      "runtime_path": "res://assets/ui/inventory/v001/chrome/button_secondary.png",
+      "size_px": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        63,
+        211,
+        2047,
+        301
+      ],
+      "atlas_region_xywh": [
+        55,
+        203,
+        2063,
+        317
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.604256,
+      "sha256": "e824738a0411ad569e10324cb71bc061e6152c0b220fecb8ba07548e0c1d9337",
+      "sample_entry_id": null,
+      "status": "ui_art_candidate"
+    },
+    {
+      "id": "inventory.chrome.close_socket",
+      "label_zh_for_art_browser_only": "关闭按钮底板",
+      "source_path": "source_assets/ui/inventory/v001/exports/chrome/close_socket.png",
+      "runtime_path": "res://assets/ui/inventory/v001/chrome/close_socket.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        223,
+        239,
+        810,
+        773
+      ],
+      "atlas_region_xywh": [
+        215,
+        231,
+        826,
+        789
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.605983,
+      "sha256": "65314a0fa94df59a1386125c9aaa9ff531b2969e525ab48fbdaa162b1b76ae7c",
+      "sample_entry_id": null,
+      "status": "ui_art_candidate"
+    },
+    {
+      "id": "inventory.chrome.details_parchment",
+      "label_zh_for_art_browser_only": "羊皮纸详情区",
+      "source_path": "source_assets/ui/inventory/v001/exports/chrome/details_parchment.png",
+      "runtime_path": "res://assets/ui/inventory/v001/chrome/details_parchment.png",
+      "size_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        78,
+        81,
+        869,
+        1374
+      ],
+      "atlas_region_xywh": [
+        70,
+        73,
+        885,
+        1390
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.239013,
+      "sha256": "6a5140acc634ae6f5cf5cc3d687bff463230041b9499e0ebcbde418214ad293f",
+      "sample_entry_id": null,
+      "status": "ui_art_candidate"
+    },
+    {
+      "id": "inventory.chrome.header_leaf_sprig",
+      "label_zh_for_art_browser_only": "独立标题叶饰",
+      "source_path": "source_assets/ui/inventory/v001/exports/chrome/header_leaf_sprig.png",
+      "runtime_path": "res://assets/ui/inventory/v001/chrome/header_leaf_sprig.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        176,
+        115,
+        991,
+        1034
+      ],
+      "atlas_region_xywh": [
+        168,
+        107,
+        1007,
+        1050
+      ],
+      "center_alpha": 0,
+      "transparent_pixel_fraction": 0.875702,
+      "sha256": "f4bba1bfe12255f2c378cfa642003e4b6750b52e99b05c9d38628525c3d539fd",
+      "sample_entry_id": null,
+      "status": "ui_art_candidate"
+    },
+    {
+      "id": "inventory.chrome.slot_regular",
+      "label_zh_for_art_browser_only": "物品格常态",
+      "source_path": "source_assets/ui/inventory/v001/exports/chrome/slot_regular.png",
+      "runtime_path": "res://assets/ui/inventory/v001/chrome/slot_regular.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        128,
+        131,
+        998,
+        992
+      ],
+      "atlas_region_xywh": [
+        120,
+        123,
+        1014,
+        1008
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.372679,
+      "sha256": "0effc0f3df04e236daeb17052fe8efc762fa3bf7662ad2ae5ce8eb0e795e52d1",
+      "sample_entry_id": null,
+      "status": "ui_art_candidate"
+    },
+    {
+      "id": "inventory.chrome.slot_selected",
+      "label_zh_for_art_browser_only": "金色选中框",
+      "source_path": "source_assets/ui/inventory/v001/exports/chrome/slot_selected.png",
+      "runtime_path": "res://assets/ui/inventory/v001/chrome/slot_selected.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        91,
+        99,
+        1072,
+        1054
+      ],
+      "atlas_region_xywh": [
+        83,
+        91,
+        1088,
+        1070
+      ],
+      "center_alpha": 0,
+      "transparent_pixel_fraction": 0.746591,
+      "sha256": "a76cbcc2fb1ff294bff25728d979937dc21c9ff642a8eab7a1455b0f1c3de759",
+      "sample_entry_id": null,
+      "status": "ui_art_candidate"
+    },
+    {
+      "id": "inventory.chrome.tab_regular",
+      "label_zh_for_art_browser_only": "分类页签常态",
+      "source_path": "source_assets/ui/inventory/v001/exports/chrome/tab_regular.png",
+      "runtime_path": "res://assets/ui/inventory/v001/chrome/tab_regular.png",
+      "size_px": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        149,
+        341,
+        1477,
+        220
+      ],
+      "atlas_region_xywh": [
+        141,
+        333,
+        1493,
+        236
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.793343,
+      "sha256": "a6480121da37234a1db0ce0605483bda9a5cd717e0cf3389bc759462322544c1",
+      "sample_entry_id": null,
+      "status": "ui_art_candidate"
+    },
+    {
+      "id": "inventory.chrome.tab_selected",
+      "label_zh_for_art_browser_only": "分类页签选中态",
+      "source_path": "source_assets/ui/inventory/v001/exports/chrome/tab_selected.png",
+      "runtime_path": "res://assets/ui/inventory/v001/chrome/tab_selected.png",
+      "size_px": [
+        2048,
+        768
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        115,
+        189,
+        1817,
+        390
+      ],
+      "atlas_region_xywh": [
+        107,
+        181,
+        1833,
+        406
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.547716,
+      "sha256": "9402b1f2103efe62bad43a1f34dc78dd9b2116cb0fb3bca4f49e49b673871204",
+      "sample_entry_id": null,
+      "status": "ui_art_candidate"
+    },
+    {
+      "id": "inventory.chrome.window_panel",
+      "label_zh_for_art_browser_only": "背包主面板",
+      "source_path": "source_assets/ui/inventory/v001/exports/chrome/window_panel.png",
+      "runtime_path": "res://assets/ui/inventory/v001/chrome/window_panel.png",
+      "size_px": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        60,
+        95,
+        1417,
+        830
+      ],
+      "atlas_region_xywh": [
+        52,
+        87,
+        1433,
+        846
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.242173,
+      "sha256": "7139400a833d9d0d321bce81df28b884d67722c3609953a7d43039c727256fe6",
+      "sample_entry_id": null,
+      "status": "ui_art_candidate"
+    },
+    {
+      "id": "inventory.items.crystal_blue",
+      "label_zh_for_art_browser_only": "蓝色晶簇",
+      "source_path": "source_assets/ui/inventory/v001/exports/items/crystal_blue.png",
+      "runtime_path": "res://assets/ui/inventory/v001/items/crystal_blue.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        252,
+        225,
+        764,
+        851
+      ],
+      "atlas_region_xywh": [
+        244,
+        217,
+        780,
+        867
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.768489,
+      "sha256": "98fe3193e809baa3524e10abc328351a15def93b0bee15262f9fcd15d6de67b2",
+      "sample_entry_id": "crystal",
+      "status": "sample_catalog_concept_icon"
+    },
+    {
+      "id": "inventory.items.herb_sprig",
+      "label_zh_for_art_browser_only": "芳香草叶",
+      "source_path": "source_assets/ui/inventory/v001/exports/items/herb_sprig.png",
+      "runtime_path": "res://assets/ui/inventory/v001/items/herb_sprig.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        263,
+        197,
+        825,
+        879
+      ],
+      "atlas_region_xywh": [
+        255,
+        189,
+        841,
+        895
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.825277,
+      "sha256": "196070371510801c46b77596e4d94f85ae79d323da6594dfae29648a89a3cc92",
+      "sample_entry_id": "herb",
+      "status": "sample_catalog_concept_icon"
+    },
+    {
+      "id": "inventory.items.potion_red",
+      "label_zh_for_art_browser_only": "红色药剂",
+      "source_path": "source_assets/ui/inventory/v001/exports/items/potion_red.png",
+      "runtime_path": "res://assets/ui/inventory/v001/items/potion_red.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        328,
+        215,
+        601,
+        858
+      ],
+      "atlas_region_xywh": [
+        320,
+        207,
+        617,
+        874
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.782911,
+      "sha256": "4a62e38e7686c63e394dea7cac05911257974cda65edc212cef6747ed64cacff",
+      "sample_entry_id": "potion",
+      "status": "sample_catalog_concept_icon"
+    },
+    {
+      "id": "inventory.items.scroll_parchment",
+      "label_zh_for_art_browser_only": "旧卷轴",
+      "source_path": "source_assets/ui/inventory/v001/exports/items/scroll_parchment.png",
+      "runtime_path": "res://assets/ui/inventory/v001/items/scroll_parchment.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        228,
+        305,
+        808,
+        690
+      ],
+      "atlas_region_xywh": [
+        220,
+        297,
+        824,
+        706
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.858572,
+      "sha256": "e541e226b367c9551a6b4323bdff2302d9713c301b18ec4c6bf4ed0bc308404c",
+      "sample_entry_id": "scroll",
+      "status": "sample_catalog_concept_icon"
+    },
+    {
+      "id": "inventory.items.sword_iron",
+      "label_zh_for_art_browser_only": "旅行短剑",
+      "source_path": "source_assets/ui/inventory/v001/exports/items/sword_iron.png",
+      "runtime_path": "res://assets/ui/inventory/v001/items/sword_iron.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        256,
+        249,
+        778,
+        807
+      ],
+      "atlas_region_xywh": [
+        248,
+        241,
+        794,
+        823
+      ],
+      "center_alpha": 1,
+      "transparent_pixel_fraction": 0.955455,
+      "sha256": "34ae4eb718737a9ce17e571a0fcdca43fb262b99e9ec2e53d5d50271cc6bcae3",
+      "sample_entry_id": "sword",
+      "status": "sample_catalog_concept_icon"
+    },
+    {
+      "id": "inventory.items.travel_pouch",
+      "label_zh_for_art_browser_only": "旅行布袋",
+      "source_path": "source_assets/ui/inventory/v001/exports/items/travel_pouch.png",
+      "runtime_path": "res://assets/ui/inventory/v001/items/travel_pouch.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        308,
+        244,
+        651,
+        817
+      ],
+      "atlas_region_xywh": [
+        300,
+        236,
+        667,
+        833
+      ],
+      "center_alpha": 253,
+      "transparent_pixel_fraction": 0.764456,
+      "sha256": "59820b9ae998e05d80b4acaccc62f977c1bf0f40f713c5624e3e7181e10d2f1f",
+      "sample_entry_id": "bag",
+      "status": "sample_catalog_concept_icon"
+    }
+  ],
+  "svg_assets": [
+    {
+      "file": "action_use.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "08e092175690f8a2a4289ada2d1eb1b4a95d086e70a1fb581b2b0fa2c1d7c1c0",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/action_use.svg"
+    },
+    {
+      "file": "action_store.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "9089e6fbe795e7b9e6bb8cc2f0c8f3f76c7430aa75d21392e9448b5e71dccf8c",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/action_store.svg"
+    },
+    {
+      "file": "action_sort.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "8b140db32a31510f09bdc68ccc2627126488af553e166044b533fec8a15ca797",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/action_sort.svg"
+    },
+    {
+      "file": "close.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "1f9f5b51266a54dd7411c03b0c1c820965379a5acf6e1757bcc0cce041777efd",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/close.svg"
+    },
+    {
+      "file": "quantity_badge.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "13a965fb7637004bd519e8d9c0cd5047322cfb7742b849c0e8509cf4b439d267",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/quantity_badge.svg"
+    },
+    {
+      "file": "empty_slot_mark.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "6dcc435dbec44fc154d4382aa60a04fb4468459e59ef71cc3355b4d26ac122b2",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/empty_slot_mark.svg"
+    },
+    {
+      "file": "divider_gold.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "950705250b6b56fa25c8180eda1ff0375daa8eb7340fdd602fbef44d5d551050",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/divider_gold.svg"
+    },
+    {
+      "file": "divider_ink.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "80a6f781b19e8ca3bc01fc5c21862bd7afbe2fed41ac9bed55f015ba5c6c8821",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/divider_ink.svg"
+    },
+    {
+      "file": "marker_blue.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "e689bdc8b354b0722b7b595205cd25f016629a3ae874128a86d87d7f3998ad6a",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/marker_blue.svg"
+    },
+    {
+      "file": "marker_green.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "b69ce39f2afbd4dc0fdaac1651f1488624f7e6bd6262023d4b46fd89d503756e",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/marker_green.svg"
+    },
+    {
+      "file": "marker_olive.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "bffb63fd9c8d1fa46660c4f26d0199da57b881afb5523f669cc64855696ac3e0",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/marker_olive.svg"
+    },
+    {
+      "file": "marker_amber.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "84a13dd4cc9b3b7b1c827a8cd01aa5380f5c719aebc307feee9ec989300238a5",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/marker_amber.svg"
+    },
+    {
+      "file": "marker_violet.svg",
+      "provenance": "authored_simple_vector",
+      "sha256": "ac82e6786cc70f15520ec3660ffe81eef870027a0b3d98bf954501036701137b",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/marker_violet.svg"
+    },
+    {
+      "file": "title_bag.svg",
+      "provenance": "game/assets/ui/foliage/bag.svg",
+      "sha256": "963839c59455f747c214b7e650b91731af363de9aa754f70e90fad42072ceab3",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/title_bag.svg"
+    },
+    {
+      "file": "title_coin.svg",
+      "provenance": "game/assets/ui/foliage/coin.svg",
+      "sha256": "5bdf44ea0b97554246fccf58f706c91e6bf4eff8c8344e37de0285e584c4abe8",
+      "runtime_path": "res://assets/ui/inventory/v001/icons/title_coin.svg"
+    }
+  ],
+  "sample_mapping": {
+    "potion": "res://assets/ui/inventory/v001/items/potion_red.png",
+    "sword": "res://assets/ui/inventory/v001/items/sword_iron.png",
+    "bag": "res://assets/ui/inventory/v001/items/travel_pouch.png",
+    "herb": "res://assets/ui/inventory/v001/items/herb_sprig.png",
+    "crystal": "res://assets/ui/inventory/v001/items/crystal_blue.png",
+    "scroll": "res://assets/ui/inventory/v001/items/scroll_parchment.png"
+  },
+  "marker_semantics": "Color variants are optional art only. No rarity names, ranks or assignment are defined."
+}

@@ -1,0 +1,81 @@
+{
+  "method": "Read-only Pillow inspection and SHA-256; no pixel editing. Built-in imagegen source preserved byte-for-byte.",
+  "status": "pass_with_noted_generation_variations",
+  "requested_dimensions": [
+    1024,
+    1024
+  ],
+  "notes": [
+    "Built-in imagegen returned 1254x1254 RGBA. Original resolution preserved; consumers should use aspect-preserving scaling.",
+    "All three include genuine alpha with more than half the pixels fully transparent. A few source edge pixels have alpha=1/255; these almost invisible generator remnants were not retouched.",
+    "Scroll bin and supply crate have smaller than requested 10% margins; visible furniture is complete and does not touch the canvas edges."
+  ],
+  "assets": [
+    {
+      "id": "barrel",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_min_max": [
+        0,
+        255
+      ],
+      "fully_transparent_ratio": 0.5807870953300316,
+      "partially_transparent_pixels": 658485,
+      "content_bbox_alpha_ge_10": [
+        237,
+        127,
+        1019,
+        1131
+      ],
+      "edge_alpha_max": 1,
+      "copied_byte_identically": true,
+      "sha256": "6c79a342acca19cdcb6476693c591ebc30a2f3019e5d64a46572ad6b1161dcb1",
+      "visual_review": "Complete single furniture group, warm upper-left lighting, no text or UI frame, matches reference thumbnail material style. Concept thumbnail, not an exact render of the existing game model."
+    },
+    {
+      "id": "scroll_bin",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_min_max": [
+        0,
+        255
+      ],
+      "fully_transparent_ratio": 0.572283525255069,
+      "partially_transparent_pixels": 671687,
+      "content_bbox_alpha_ge_10": [
+        266,
+        42,
+        1010,
+        1205
+      ],
+      "edge_alpha_max": 1,
+      "copied_byte_identically": true,
+      "sha256": "732eb09d6874cfb9e650dd12312d47913ffbaa265f4cf4a3884a458a1cdb82e7",
+      "visual_review": "Complete single furniture group, warm upper-left lighting, no text or UI frame, matches reference thumbnail material style. Concept thumbnail, not an exact render of the existing game model."
+    },
+    {
+      "id": "supply_crate",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_min_max": [
+        0,
+        255
+      ],
+      "fully_transparent_ratio": 0.5336111047518753,
+      "partially_transparent_pixels": 732818,
+      "content_bbox_alpha_ge_10": [
+        155,
+        77,
+        1134,
+        1205
+      ],
+      "edge_alpha_max": 1,
+      "copied_byte_identically": true,
+      "sha256": "42b916093cff4e0cd2bf7acb410159523ce35faf547a9b3920991df46ae37124",
+      "visual_review": "Complete single furniture group, warm upper-left lighting, no text or UI frame, matches reference thumbnail material style. Concept thumbnail, not an exact render of the existing game model."
+    }
+  ]
+}

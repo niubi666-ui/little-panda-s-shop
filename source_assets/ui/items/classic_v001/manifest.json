@@ -1,0 +1,349 @@
+{
+  "version": "classic_v001",
+  "date": "2026-10-01",
+  "asset_type": "annotated_reference_sheets",
+  "runtime_ready": false,
+  "provenance": "generation/prompts_and_sources.json",
+  "categories": [
+    {
+      "category": "botanicals_food",
+      "title": "植物与食材",
+      "image_path": "botanicals_food/01_botanicals_food_labeled.png",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "image_mode": "RGB",
+      "sha256": "75516b893660b211496f4b7df7856f353573abf2faf60ab94993cded15f4bd7a",
+      "items": [
+        {
+          "art_id": "wild_berries",
+          "name_zh": "野莓果",
+          "visual_description_zh": "鲜红果实，带少量绿叶",
+          "name_en_candidate": "Wild Berries",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "art_id": "healing_herb",
+          "name_zh": "药草",
+          "visual_description_zh": "新鲜叶束，以麻绳扎起",
+          "name_en_candidate": "Medicinal Herb",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "art_id": "lavender",
+          "name_zh": "薰衣草",
+          "visual_description_zh": "紫色花穗，香气植物",
+          "name_en_candidate": "Lavender",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "art_id": "white_mushrooms",
+          "name_zh": "白蘑菇",
+          "visual_description_zh": "圆润菌盖，成簇生长",
+          "name_en_candidate": "White Mushrooms",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "art_id": "honeycomb",
+          "name_zh": "蜂蜜",
+          "visual_description_zh": "金色蜂巢，滴落少量蜂蜜",
+          "name_en_candidate": "Honeycomb",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "art_id": "wheat_bundle",
+          "name_zh": "麦穗",
+          "visual_description_zh": "成熟麦束，以细绳绑扎",
+          "name_en_candidate": "Wheat Bundle",
+          "row": 2,
+          "column": 3
+        },
+        {
+          "art_id": "wild_apple",
+          "name_zh": "野苹果",
+          "visual_description_zh": "小巧红苹果，保留枝叶",
+          "name_en_candidate": "Wild Apple",
+          "row": 3,
+          "column": 1
+        },
+        {
+          "art_id": "dried_meat",
+          "name_zh": "风干肉",
+          "visual_description_zh": "深红肉条，纹理清晰",
+          "name_en_candidate": "Dried Meat",
+          "row": 3,
+          "column": 2
+        },
+        {
+          "art_id": "lily",
+          "name_zh": "铃兰",
+          "visual_description_zh": "细长绿叶，白色下垂小花",
+          "name_en_candidate": "Lily of the Valley",
+          "row": 3,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "category": "ores_metals",
+      "title": "矿石与金属",
+      "image_path": "ores_metals/02_ores_metals_labeled.png",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "image_mode": "RGB",
+      "sha256": "f70b1539618d1703c547ad06375dca431886777e0491636322af7e0f9820b639",
+      "items": [
+        {
+          "art_id": "iron_ore",
+          "name_zh": "铁矿石",
+          "visual_description_zh": "暗灰岩块，带铁色矿脉",
+          "name_en_candidate": "Iron Ore",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "art_id": "copper_ore",
+          "name_zh": "铜矿石",
+          "visual_description_zh": "铜色矿脉，带少量青绿锈色",
+          "name_en_candidate": "Copper Ore",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "art_id": "gold_ore",
+          "name_zh": "金矿石",
+          "visual_description_zh": "灰褐岩块，带金色矿脉",
+          "name_en_candidate": "Gold Ore",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "art_id": "iron_ingot",
+          "name_zh": "铁锭",
+          "visual_description_zh": "冷灰金属锭，表面有锤痕",
+          "name_en_candidate": "Iron Ingot",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "art_id": "copper_ingot",
+          "name_zh": "铜锭",
+          "visual_description_zh": "暖铜金属锭，边缘略有氧化",
+          "name_en_candidate": "Copper Ingot",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "art_id": "gold_ingot",
+          "name_zh": "金锭",
+          "visual_description_zh": "暖黄金属锭，反光柔和",
+          "name_en_candidate": "Gold Ingot",
+          "row": 2,
+          "column": 3
+        },
+        {
+          "art_id": "silver_ingot",
+          "name_zh": "银锭",
+          "visual_description_zh": "银白金属锭，区别于暗色铁锭",
+          "name_en_candidate": "Silver Ingot",
+          "row": 3,
+          "column": 1
+        },
+        {
+          "art_id": "coal",
+          "name_zh": "煤块",
+          "visual_description_zh": "黑色碎块，棱角清晰",
+          "name_en_candidate": "Coal",
+          "row": 3,
+          "column": 2
+        },
+        {
+          "art_id": "quartz_cluster",
+          "name_zh": "水晶簇",
+          "visual_description_zh": "半透明浅蓝晶体，附少量母岩",
+          "name_en_candidate": "Quartz Cluster",
+          "row": 3,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "category": "potions",
+      "title": "药水与炼金",
+      "image_path": "potions/03_potions_labeled.png",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "image_mode": "RGB",
+      "sha256": "f2ad5d01dab6161f61140285c9aab8866ba03dcf20e92953cd53ea67822850b8",
+      "items": [
+        {
+          "art_id": "healing_potion",
+          "name_zh": "恢复药水",
+          "visual_description_zh": "圆腹瓶，红色液体，皮绳瓶颈",
+          "name_en_candidate": "Healing Potion",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "art_id": "mana_potion",
+          "name_zh": "法力药水",
+          "visual_description_zh": "长颈瓶，蓝色液体，铜环瓶口",
+          "name_en_candidate": "Mana Potion",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "art_id": "stamina_potion",
+          "name_zh": "体力药水",
+          "visual_description_zh": "扁圆瓶，琥珀液体，麻绳提环",
+          "name_en_candidate": "Stamina Potion",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "art_id": "antidote_potion",
+          "name_zh": "解毒药水",
+          "visual_description_zh": "细腰瓶，绿色液体，叶形吊牌",
+          "name_en_candidate": "Antidote",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "art_id": "ward_potion",
+          "name_zh": "守护药水",
+          "visual_description_zh": "方肩瓶，乳白液体，铜质护箍",
+          "name_en_candidate": "Ward Potion",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "art_id": "haste_potion",
+          "name_zh": "轻盈药水",
+          "visual_description_zh": "细长瓶，青色液体，羽形吊牌",
+          "name_en_candidate": "Haste Potion",
+          "row": 2,
+          "column": 3
+        },
+        {
+          "art_id": "night_vision_potion",
+          "name_zh": "夜视药水",
+          "visual_description_zh": "小圆瓶，紫色液体，月牙挂饰",
+          "name_en_candidate": "Night Vision Potion",
+          "row": 3,
+          "column": 1
+        },
+        {
+          "art_id": "alchemy_oil",
+          "name_zh": "炼金油",
+          "visual_description_zh": "棕玻璃瓶，金黄油液，木塞",
+          "name_en_candidate": "Alchemical Oil",
+          "row": 3,
+          "column": 2
+        },
+        {
+          "art_id": "empty_potion_bottle",
+          "name_zh": "空药瓶",
+          "visual_description_zh": "透明玻璃瓶，软木塞，无液体",
+          "name_en_candidate": "Empty Potion Bottle",
+          "row": 3,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "category": "crafting_loot",
+      "title": "制作与战利品",
+      "image_path": "crafting_loot/04_crafting_loot_labeled.png",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "image_mode": "RGB",
+      "sha256": "f98c9689fb672560d6bf62b38fb8ba8df66f2b6bd90705485fe3c7831e92babd",
+      "items": [
+        {
+          "art_id": "wood_bundle",
+          "name_zh": "木材",
+          "visual_description_zh": "三根短木，麻绳绑束",
+          "name_en_candidate": "Wood Bundle",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "art_id": "leather_roll",
+          "name_zh": "皮革",
+          "visual_description_zh": "柔软棕皮，卷起一端",
+          "name_en_candidate": "Leather Roll",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "art_id": "linen_roll",
+          "name_zh": "亚麻布",
+          "visual_description_zh": "浅米布卷，可见织物纹理",
+          "name_en_candidate": "Linen Roll",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "art_id": "rope_coil",
+          "name_zh": "麻绳",
+          "visual_description_zh": "盘绕绳圈，纤维纹理清楚",
+          "name_en_candidate": "Rope Coil",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "art_id": "beast_fang",
+          "name_zh": "兽牙",
+          "visual_description_zh": "弯曲象牙色牙，根部较粗",
+          "name_en_candidate": "Beast Fang",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "art_id": "beast_horn",
+          "name_zh": "兽角",
+          "visual_description_zh": "棕黑弯角，表面有生长纹",
+          "name_en_candidate": "Beast Horn",
+          "row": 2,
+          "column": 3
+        },
+        {
+          "art_id": "feather_bundle",
+          "name_zh": "羽毛",
+          "visual_description_zh": "三根暖白羽毛，形态完整",
+          "name_en_candidate": "Feather Bundle",
+          "row": 3,
+          "column": 1
+        },
+        {
+          "art_id": "slime_essence",
+          "name_zh": "黏液精华",
+          "visual_description_zh": "透明小瓶，内装翠绿凝胶",
+          "name_en_candidate": "Slime Essence",
+          "row": 3,
+          "column": 2
+        },
+        {
+          "art_id": "ancient_fragment",
+          "name_zh": "古代碎片",
+          "visual_description_zh": "石质浮雕碎片，带叶纹与苔痕",
+          "name_en_candidate": "Ancient Fragment",
+          "row": 3,
+          "column": 3
+        }
+      ]
+    }
+  ]
+}

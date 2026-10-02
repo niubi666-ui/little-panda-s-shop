@@ -1,0 +1,13 @@
+正在解除绑定...
+未绑定.
+绑定...
+绑定准备...
+未找到眼球对象，跳过眼球蒙皮
+拆分...
+  Skinning object part: 1/25                                           Skinning object part: 2/25                                           Skinning object part: 3/25                                           Skinning object part: 4/25                                           Skinning object part: 5/25                                           Skinning object part: 6/25                                           Skinning object part: 7/25                                           Skinning object part: 8/25                                           Skinning object part: 9/25                                           Skinning object part: 10/25                                           Skinning object part: 11/25                                           Skinning object part: 12/25                                           Skinning object part: 13/25                                           Skinning object part: 14/25                                           Skinning object part: 15/25                                           Skinning object part: 16/25                                           Skinning object part: 17/25                                           Skinning object part: 18/25                                           Skinning object part: 19/25                                           Skinning object part: 20/25                                           Skinning object part: 21/25                                           Skinning object part: 22/25                                           Skinning object part: 23/25                                           Skinning object part: 24/25                                           Skinning object part: 25/25                                         
+
+  不选择...
+定稿...
+在中绑定0.17 秒.
+恢复绑定数据...
+信息: 绑定于 0.2 秒

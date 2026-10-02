@@ -1,0 +1,95 @@
+{
+  "animations": {
+    "idle": {
+      "length": 1.0,
+      "loop_mode": 0,
+      "root_pose_samples": [
+        [
+          0.14629054069519,
+          0.0000000894069671630859,
+          -0.0117780165746808
+        ],
+        [
+          0.14629054069519,
+          0.0000000894069671630859,
+          -0.0117780165746808
+        ],
+        [
+          0.14629054069519,
+          0.0000000894069671630859,
+          -0.0117780165746808
+        ],
+        [
+          0.14629054069519,
+          0.0000000894069671630859,
+          -0.0117780165746808
+        ]
+      ],
+      "tracks": 15
+    },
+    "run": {
+      "length": 0.800000011920929,
+      "loop_mode": 0,
+      "root_pose_samples": [
+        [
+          0.14629054069519,
+          -0.0176780819892883,
+          -0.0117780165746808
+        ],
+        [
+          0.14629054069519,
+          -0.0300932805985212,
+          -0.0117780165746808
+        ],
+        [
+          0.14629054069519,
+          -0.0115886721760035,
+          -0.0117780165746808
+        ],
+        [
+          0.14629054069519,
+          -0.0176780819892883,
+          -0.0117780165746808
+        ]
+      ],
+      "tracks": 23
+    }
+  },
+  "engine": "4.7.2-stable (official)",
+  "meshes": [
+    {
+      "path": "/root/RedPanda_Runtime_v008/RedPandaRig/Skeleton3D/RedPandaMesh",
+      "skeleton": "..",
+      "skin": true,
+      "surfaces": 2
+    }
+  ],
+  "nodes": [
+    {
+      "path": "/root/RedPanda_Runtime_v008",
+      "type": "Node3D"
+    },
+    {
+      "path": "/root/RedPanda_Runtime_v008/RedPandaRig",
+      "type": "Node3D"
+    },
+    {
+      "path": "/root/RedPanda_Runtime_v008/RedPandaRig/Skeleton3D",
+      "type": "Skeleton3D"
+    },
+    {
+      "path": "/root/RedPanda_Runtime_v008/RedPandaRig/Skeleton3D/RedPandaMesh",
+      "type": "MeshInstance3D"
+    },
+    {
+      "path": "/root/RedPanda_Runtime_v008/AnimationPlayer",
+      "type": "AnimationPlayer"
+    }
+  ],
+  "skeletons": [
+    {
+      "bones": 46,
+      "path": "/root/RedPanda_Runtime_v008/RedPandaRig/Skeleton3D"
+    }
+  ]
+}

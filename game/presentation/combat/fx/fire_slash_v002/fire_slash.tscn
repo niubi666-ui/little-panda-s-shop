@@ -1,0 +1,192 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/fx/fire_slash_v002/fire_effect.gd" id="script"]
+[ext_resource type="Material" path="res://presentation/combat/fx/fire_slash_v002/body.tres" id="body"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/fire_slash_v002/hot_edge.tres" id="core"]
+[ext_resource type="Texture2D" path="res://assets/vfx/fire_slash_v002/flame_atlas.png" id="flame"]
+[ext_resource type="Shader" path="res://presentation/combat/fx/fire_slash_v002/smoke.gdshader" id="smoke_shader"]
+
+[sub_resource type="StandardMaterial3D" id="ember_mat"]
+shading_mode = 0
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.7, 0.2, 1)
+emission_enabled = true
+emission = Color(1, 0.19, 0.009, 1)
+emission_energy_multiplier = 2.8
+
+[sub_resource type="SphereMesh" id="ember_mesh"]
+material = SubResource("ember_mat")
+radius = 0.015
+height = 0.041
+radial_segments = 6
+rings = 3
+
+[sub_resource type="Gradient" id="ember_gradient"]
+offsets = PackedFloat32Array(0, 0.22, 0.7, 1)
+colors = PackedColorArray(1, 0.94, 0.54, 1, 1, 0.46, 0.018, 1, 0.8, 0.08, 0.003, 0.6, 0.28, 0.01, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="flame_mat"]
+shading_mode = 0
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("flame")
+billboard_mode = 3
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_texture = ExtResource("flame")
+emission_energy_multiplier = 0.75
+
+[sub_resource type="QuadMesh" id="flame_mesh"]
+material = SubResource("flame_mat")
+size = Vector2(0.36, 0.8)
+
+[sub_resource type="Gradient" id="flame_gradient"]
+offsets = PackedFloat32Array(0, 0.12, 0.54, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.6, 1, 0.62, 0.4, 0.5, 0.6, 0.18, 0.07, 0)
+
+[sub_resource type="PrismMesh" id="streak_mesh"]
+material = SubResource("ember_mat")
+size = Vector3(0.011, 0.16, 0.009)
+
+[sub_resource type="ShaderMaterial" id="smoke_mat"]
+shader = ExtResource("smoke_shader")
+shader_parameter/smoke_tint = Color(0.11, 0.066, 0.038, 1)
+shader_parameter/opacity = 0.24
+
+[sub_resource type="QuadMesh" id="smoke_mesh"]
+material = SubResource("smoke_mat")
+size = Vector2(0.6, 0.72)
+
+[sub_resource type="Curve" id="smoke_scale"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="InfernoCrescent" type="Node3D"]
+script = ExtResource("script")
+ribbon_material = ExtResource("body")
+root_inset_ratio = 0.02
+tip_extension_ratio = 0.28
+tail_lifetime_sec = 0.26
+sample_distance = 0.01
+max_segment_angle_deg = 2.0
+fade_power = 0.6
+radial_subdivisions = 12
+noise_frame_rate = 9.0
+spark_blade_coverage = 1.0
+spark_emitter_thickness = 0.055
+core_material = ExtResource("core")
+extra_emitter_paths = Array[NodePath]([NodePath("FlamePlumes"), NodePath("LongSparks"), NodePath("SmokeWisps")])
+flame_span_ratio = 1.08
+flame_center_ratio = 0.12
+flame_emitter_thickness = 0.06
+flash_duration_sec = 0.16
+flash_peak_energy = 1.6
+flash_height = 0.35
+
+[node name="Particles" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 138
+lifetime = 0.42
+randomness = 0.65
+local_coords = false
+emission_shape = 3
+emission_box_extents = Vector3(0.055, 0.055, 0.55)
+direction = Vector3(0, 1, 0)
+spread = 120.0
+initial_velocity_min = 0.4
+initial_velocity_max = 2.6
+gravity = Vector3(0, -1.5, 0)
+damping_min = 0.3
+damping_max = 0.9
+scale_amount_min = 0.4
+scale_amount_max = 1.45
+color_ramp = SubResource("ember_gradient")
+mesh = SubResource("ember_mesh")
+cast_shadow = 0
+
+[node name="FlamePlumes" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 28
+lifetime = 0.24
+lifetime_randomness = 0.15
+randomness = 0.35
+local_coords = false
+draw_order = 2
+emission_shape = 3
+emission_box_extents = Vector3(0.06, 0.06, 0.594)
+direction = Vector3(0, 1, 0)
+spread = 22.0
+initial_velocity_min = 0.35
+initial_velocity_max = 0.95
+gravity = Vector3(0, 0.4, 0)
+angle_min = -110.0
+angle_max = 110.0
+angular_velocity_min = -160.0
+angular_velocity_max = 160.0
+anim_speed_min = 0.9
+anim_speed_max = 1.15
+anim_offset_min = 0.0
+anim_offset_max = 0.08
+scale_amount_min = 0.55
+scale_amount_max = 1.0
+color_ramp = SubResource("flame_gradient")
+mesh = SubResource("flame_mesh")
+cast_shadow = 0
+
+[node name="LongSparks" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 42
+lifetime = 0.23
+randomness = 0.55
+local_coords = false
+emission_shape = 3
+emission_box_extents = Vector3(0.06, 0.06, 0.594)
+direction = Vector3(0, 1, 0)
+spread = 145.0
+initial_velocity_min = 0.7
+initial_velocity_max = 2.8
+gravity = Vector3(0, -1.0, 0)
+particle_flag_align_y = true
+scale_amount_min = 0.6
+scale_amount_max = 1.25
+color_ramp = SubResource("ember_gradient")
+mesh = SubResource("streak_mesh")
+cast_shadow = 0
+
+[node name="SmokeWisps" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 22
+lifetime = 0.42
+randomness = 0.6
+local_coords = false
+draw_order = 2
+emission_shape = 3
+emission_box_extents = Vector3(0.06, 0.06, 0.594)
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 0.45
+initial_velocity_max = 0.8
+gravity = Vector3(0, 0.2, 0)
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+scale_amount_min = 0.6
+scale_amount_max = 1.1
+scale_amount_curve = SubResource("smoke_scale")
+mesh = SubResource("smoke_mesh")
+cast_shadow = 0
+
+[node name="FireLight" type="OmniLight3D" parent="."]
+visible = false
+light_color = Color(1, 0.32, 0.045, 1)
+light_energy = 0.0
+omni_range = 3.8
+omni_attenuation = 1.5
+shadow_enabled = false

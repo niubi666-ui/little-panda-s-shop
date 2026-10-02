@@ -1,0 +1,171 @@
+{
+  "schema_version": 3,
+  "generation_version": 3,
+  "content_version": "room-presets.4",
+  "cell_size_m": 0.5,
+  "actor_clearance_m": 0.55,
+  "spawn_clearance_m": 1.35,
+  "placement_gap_m": 0.2,
+  "placement_attempts": 100,
+  "interaction_range_m": 2.2,
+  "navigation_arrival_m": 0.18,
+  "groups": [
+    {
+      "choices": [
+        "treasure_wall"
+      ],
+      "count_min": 1,
+      "count_max": 1
+    },
+    {
+      "choices": [
+        "long_wall",
+        "column_crates",
+        "rock_corner"
+      ],
+      "count_min": 2,
+      "count_max": 2
+    }
+  ],
+  "props": [
+    {
+      "id": "long_wall_low_ruin_dressed_ruin_0",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    },
+    {
+      "id": "long_wall_low_ruin_dressed_ruin_1",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    },
+    {
+      "id": "long_wall_west_end_weathered_endpost",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    },
+    {
+      "id": "long_wall_east_end_weathered_endpost",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    },
+    {
+      "id": "long_wall_barrel_foreground",
+      "kind": "destructible",
+      "health": 1,
+      "name_key": "room.prop.barrel",
+      "loot": []
+    },
+    {
+      "id": "long_wall_barrel_behind",
+      "kind": "destructible",
+      "health": 1,
+      "name_key": "room.prop.barrel",
+      "loot": []
+    },
+    {
+      "id": "treasure_wall_broken_back_dressed_ruin_0",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    },
+    {
+      "id": "chest1",
+      "kind": "searchable",
+      "health": 0,
+      "name_key": "room.prop.chest1",
+      "loot": [
+        {
+          "item_id": "test_herb",
+          "count_min": 1,
+          "count_max": 3
+        },
+        {
+          "item_id": "test_ore",
+          "count_min": 1,
+          "count_max": 2
+        }
+      ]
+    },
+    {
+      "id": "column_crates_column_plinth_lower",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    },
+    {
+      "id": "column_crates_fluted_broken_column",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    },
+    {
+      "id": "column_crates_crate_front",
+      "kind": "destructible",
+      "health": 1,
+      "name_key": "room.prop.crate",
+      "loot": []
+    },
+    {
+      "id": "column_crates_crate_back",
+      "kind": "destructible",
+      "health": 1,
+      "name_key": "room.prop.crate",
+      "loot": []
+    },
+    {
+      "id": "column_crates_ancient_garden_urn",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    },
+    {
+      "id": "rock_corner_corner_back_dressed_ruin_0",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    },
+    {
+      "id": "rock_corner_corner_return_dressed_ruin_0",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    },
+    {
+      "id": "rock_corner_mossy_boulder",
+      "kind": "obstacle",
+      "health": 0,
+      "name_key": "room.prop.stone_wall",
+      "loot": []
+    }
+  ],
+  "loot_items": [
+    {
+      "id": "test_herb",
+      "name_key": "room.loot.herb"
+    },
+    {
+      "id": "test_ore",
+      "name_key": "room.loot.ore"
+    }
+  ],
+  "composition_ids": [
+    "long_wall",
+    "treasure_wall",
+    "column_crates",
+    "rock_corner"
+  ]
+}

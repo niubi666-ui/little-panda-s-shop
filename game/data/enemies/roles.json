@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "content_version": "enemy-roles.1",
+  "profiles": [
+    {
+      "actor_id": "scout",
+      "role": "melee",
+      "budget_cost": 1,
+      "loot_table_id": "enemy.test",
+      "config": {}
+    },
+    {
+      "actor_id": "brute",
+      "role": "melee",
+      "budget_cost": 3,
+      "loot_table_id": "enemy.test",
+      "config": {}
+    },
+    {
+      "actor_id": "crossbow",
+      "role": "ranged",
+      "budget_cost": 2,
+      "loot_table_id": "enemy.test",
+      "config": {
+        "safe_min_m": 4.0,
+        "safe_max_m": 7.0,
+        "fire_range_m": 10.0,
+        "shot_interval_sec": 1.5,
+        "windup_sec": 0.45,
+        "recovery_sec": 0.15,
+        "damage": 10,
+        "projectile_speed_mps": 9,
+        "projectile_radius_m": 0.16,
+        "projectile_lifetime_sec": 2,
+        "retreat_speed_multiplier": 1.3,
+        "minimum_windup_sec": 0.35
+      }
+    },
+    {
+      "actor_id": "charger",
+      "role": "charger",
+      "budget_cost": 2,
+      "loot_table_id": "enemy.test",
+      "config": {
+        "trigger_range_m": 12,
+        "minimum_range_m": 2.5,
+        "windup_sec": 0.8,
+        "charge_speed_mps": 15,
+        "charge_distance_m": 10,
+        "hit_radius_m": 0.55,
+        "damage": 18,
+        "knockback_speed_mps": 8,
+        "knockback_duration_sec": 0.25,
+        "recovery_sec": 1,
+        "cooldown_sec": 3.6,
+        "minimum_windup_sec": 0.6
+      }
+    },
+    {
+      "actor_id": "banner",
+      "role": "support",
+      "budget_cost": 2,
+      "loot_table_id": "enemy.test",
+      "config": {
+        "aura_radius_m": 8,
+        "attack_speed_bonus": 0.3,
+        "move_speed_bonus": 0.3,
+        "retreat_range_m": 4,
+        "safe_max_m": 7,
+        "retreat_speed_multiplier": 0.7
+      }
+    }
+  ]
+}

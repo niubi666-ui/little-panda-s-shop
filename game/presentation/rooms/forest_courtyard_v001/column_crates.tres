@@ -1,0 +1,27 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://rogue/rooms/composition.gd" id="preset"]
+[ext_resource type="Script" path="res://rogue/rooms/composition_member.gd" id="member"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/compositions/column_crates_flora.tscn" id="flora"]
+[sub_resource type="Resource" id="m0"]
+script = ExtResource("member")
+id = "broken_column_0"
+prop_id = "broken_column"
+position = Vector3(-0.35, 0, -0.25)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m1"]
+script = ExtResource("member")
+id = "crate_1"
+prop_id = "crate"
+position = Vector3(0.5, 0, 0.38)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m2"]
+script = ExtResource("member")
+id = "crate_long_2"
+prop_id = "crate_long"
+position = Vector3(0.85, 0, -0.67)
+yaw_radians = 0.0
+[resource]
+script = ExtResource("preset")
+id = "column_crates"
+members = Array[Resource]([SubResource("m0"), SubResource("m1"), SubResource("m2")])
+decoration = ExtResource("flora")

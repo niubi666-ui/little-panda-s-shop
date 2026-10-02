@@ -1,0 +1,62 @@
+[
+  {
+    "preset": "01",
+    "phase": 0.0,
+    "kind": "emission",
+    "path": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\selected_01_06_v001\\textures\\blade_01_0_emission.exr"
+  },
+  {
+    "preset": "01",
+    "phase": 0.0,
+    "kind": "mask",
+    "path": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\selected_01_06_v001\\textures\\blade_01_0_mask.png"
+  },
+  {
+    "preset": "06",
+    "phase": 0.0,
+    "kind": "emission",
+    "path": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\selected_01_06_v001\\textures\\blade_06_0_emission.exr"
+  },
+  {
+    "preset": "06",
+    "phase": 0.0,
+    "kind": "mask",
+    "path": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\selected_01_06_v001\\textures\\blade_06_0_mask.png"
+  },
+  {
+    "preset": "06",
+    "phase": 0.15,
+    "kind": "emission",
+    "path": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\selected_01_06_v001\\textures\\blade_06_1_emission.exr"
+  },
+  {
+    "preset": "06",
+    "phase": 0.15,
+    "kind": "mask",
+    "path": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\selected_01_06_v001\\textures\\blade_06_1_mask.png"
+  },
+  {
+    "preset": "06",
+    "phase": 0.3,
+    "kind": "emission",
+    "path": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\selected_01_06_v001\\textures\\blade_06_2_emission.exr"
+  },
+  {
+    "preset": "06",
+    "phase": 0.3,
+    "kind": "mask",
+    "path": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\selected_01_06_v001\\textures\\blade_06_2_mask.png"
+  },
+  {
+    "preset": "06",
+    "phase": 0.44999999999999996,
+    "kind": "emission",
+    "path": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\selected_01_06_v001\\textures\\blade_06_3_emission.exr"
+  },
+  {
+    "preset": "06",
+    "phase": 0.44999999999999996,
+    "kind": "mask",
+    "path": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\selected_01_06_v001\\textures\\blade_06_3_mask.png"
+  }
+]

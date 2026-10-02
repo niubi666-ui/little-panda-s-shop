@@ -1,0 +1,70 @@
+{
+  "scene": "sunlit_forest_court_art_v001",
+  "room_id": "sunlit_forest_court",
+  "blender_version": "5.2.1 LTS",
+  "objects": 2437,
+  "mesh_objects": 1970,
+  "base_triangles": 1468932,
+  "materials": 35,
+  "lights": 12,
+  "collections": [
+    "Collection",
+    "Architecture",
+    "Floor",
+    "Decor",
+    "Flora",
+    "Lighting",
+    "Cameras",
+    "Atmosphere",
+    "Replacement_Props",
+    "Authoring_Guides",
+    "Forest_Exterior",
+    "Ground_Detail",
+    "Art_Layout_Markers_NONEXPORT"
+  ],
+  "camera": [
+    15,
+    -33,
+    30
+  ],
+  "target": [
+    0,
+    3.0,
+    1.15
+  ],
+  "ortho_scale": 29.4,
+  "render_size": [
+    1920,
+    1080
+  ],
+  "godot_validated": false,
+  "source_images": [],
+  "replaceable_objects": [
+    "Keeper_Robed_Body_REPLACEABLE",
+    "Keeper_Hood_REPLACEABLE",
+    "Keeper_Quiet_Face_REPLACEABLE",
+    "Keeper_Cloaked_Arm_REPLACEABLE",
+    "Keeper_Robe_Fold_REPLACEABLE",
+    "Keeper_Robe_Fold_REPLACEABLE.001",
+    "Keeper_Robe_Fold_REPLACEABLE.002",
+    "Keeper_Cloaked_Arm_REPLACEABLE.001",
+    "Keeper_Robe_Fold_REPLACEABLE.003",
+    "Keeper_Robe_Fold_REPLACEABLE.004",
+    "Keeper_Robe_Fold_REPLACEABLE.005",
+    "Keeper_Held_Seed_REPLACEABLE"
+  ],
+  "all_generated_geometry": true,
+  "packed_texture_images": [
+    "leafy_grass_diff_2k.jpg",
+    "leafy_grass_nor_gl_2k.jpg",
+    "leafy_grass_rough_2k.jpg",
+    "worn_rock_natural_01_diff_2k.jpg",
+    "worn_rock_natural_01_nor_gl_2k.jpg",
+    "worn_rock_natural_01_rough_2k.jpg"
+  ],
+  "pbr_sources": [
+    "Poly Haven worn_rock_natural_01",
+    "Poly Haven leafy_grass"
+  ],
+  "unpacked_texture_images": []
+}

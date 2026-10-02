@@ -1,0 +1,96 @@
+[gd_scene format=3]
+[ext_resource type="ArrayMesh" path="res://presentation/rooms/compositions/assets/flowers.res" id="flowers"]
+[ext_resource type="ArrayMesh" path="res://presentation/rooms/compositions/assets/fern.res" id="fern"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v003/moss_patch.glb" id="moss_patch"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v003/moss_clumps.glb" id="moss_clumps"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v003/moss_seam.glb" id="moss_seam"]
+[node name="long_wall_flora" type="Node3D"]
+[node name="Flowers0" type="MeshInstance3D" parent="."]
+mesh = ExtResource("flowers")
+position = Vector3(-2.02, 0.01, 0.35)
+scale = Vector3(0.78, 0.78, 0.78)
+rotation = Vector3(0, 0.0, 0)
+[node name="Moss0" parent="." instance=ExtResource("moss_clumps")]
+position = Vector3(-1.9392, 0.008, 0.32899999999999996)
+scale = Vector3(0.78, 0.78, 0.78)
+rotation = Vector3(0, 0.0, 0)
+[node name="Fern0" type="MeshInstance3D" parent="."]
+mesh = ExtResource("fern")
+position = Vector3(-1.91, 0.015, 0.21999999999999997)
+scale = Vector3(0.6240000000000001, 0.6240000000000001, 0.6240000000000001)
+rotation = Vector3(0, 0.0, 0)
+[node name="Flowers1" type="MeshInstance3D" parent="."]
+mesh = ExtResource("flowers")
+position = Vector3(-0.72, 0.01, 0.45)
+scale = Vector3(0.68, 0.68, 0.68)
+rotation = Vector3(0, 0.83, 0)
+[node name="Moss1" parent="." instance=ExtResource("moss_clumps")]
+position = Vector3(-0.6911999999999999, 0.008, 0.423)
+scale = Vector3(0.68, 0.68, 0.68)
+rotation = Vector3(0, 0.83, 0)
+[node name="Flowers2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("flowers")
+position = Vector3(0.46, 0.01, 0.43)
+scale = Vector3(0.78, 0.78, 0.78)
+rotation = Vector3(0, 1.66, 0)
+[node name="Moss2" parent="." instance=ExtResource("moss_clumps")]
+position = Vector3(0.4416, 0.008, 0.40419999999999995)
+scale = Vector3(0.78, 0.78, 0.78)
+rotation = Vector3(0, 1.66, 0)
+[node name="Fern2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("fern")
+position = Vector3(0.5700000000000001, 0.015, 0.3)
+scale = Vector3(0.6240000000000001, 0.6240000000000001, 0.6240000000000001)
+rotation = Vector3(0, 1.0, 0)
+[node name="Flowers3" type="MeshInstance3D" parent="."]
+mesh = ExtResource("flowers")
+position = Vector3(1.84, 0.01, 0.5)
+scale = Vector3(0.8, 0.8, 0.8)
+rotation = Vector3(0, 2.4899999999999998, 0)
+[node name="Moss3" parent="." instance=ExtResource("moss_clumps")]
+position = Vector3(1.7664, 0.008, 0.47)
+scale = Vector3(0.8, 0.8, 0.8)
+rotation = Vector3(0, 2.4899999999999998, 0)
+[node name="Flowers4" type="MeshInstance3D" parent="."]
+mesh = ExtResource("flowers")
+position = Vector3(-1.05, 0.01, -0.47)
+scale = Vector3(0.7, 0.7, 0.7)
+rotation = Vector3(0, 3.32, 0)
+[node name="Moss4" parent="." instance=ExtResource("moss_clumps")]
+position = Vector3(-1.008, 0.008, -0.44179999999999997)
+scale = Vector3(0.7, 0.7, 0.7)
+rotation = Vector3(0, 3.32, 0)
+[node name="Fern4" type="MeshInstance3D" parent="."]
+mesh = ExtResource("fern")
+position = Vector3(-0.9400000000000001, 0.015, -0.6)
+scale = Vector3(0.5599999999999999, 0.5599999999999999, 0.5599999999999999)
+rotation = Vector3(0, 2.0, 0)
+[node name="Flowers5" type="MeshInstance3D" parent="."]
+mesh = ExtResource("flowers")
+position = Vector3(0.12, 0.01, -0.43)
+scale = Vector3(0.6, 0.6, 0.6)
+rotation = Vector3(0, 4.1499999999999995, 0)
+[node name="Moss5" parent="." instance=ExtResource("moss_clumps")]
+position = Vector3(0.1152, 0.008, -0.40419999999999995)
+scale = Vector3(0.6, 0.6, 0.6)
+rotation = Vector3(0, 4.1499999999999995, 0)
+[node name="Flowers6" type="MeshInstance3D" parent="."]
+mesh = ExtResource("flowers")
+position = Vector3(1.92, 0.01, -0.36)
+scale = Vector3(0.7, 0.7, 0.7)
+rotation = Vector3(0, 4.9799999999999995, 0)
+[node name="Moss6" parent="." instance=ExtResource("moss_clumps")]
+position = Vector3(1.8432, 0.008, -0.3384)
+scale = Vector3(0.7, 0.7, 0.7)
+rotation = Vector3(0, 4.9799999999999995, 0)
+[node name="Fern6" type="MeshInstance3D" parent="."]
+mesh = ExtResource("fern")
+position = Vector3(2.03, 0.015, -0.49)
+scale = Vector3(0.5599999999999999, 0.5599999999999999, 0.5599999999999999)
+rotation = Vector3(0, 3.0, 0)
+[node name="CrownMoss0" parent="." instance=ExtResource("moss_patch")]
+position = Vector3(-0.68, 0.79, 0)
+scale = Vector3(0.64, 0.7, 0.45)
+[node name="CrownMoss1" parent="." instance=ExtResource("moss_patch")]
+position = Vector3(1.0, 0.79, 0)
+scale = Vector3(0.64, 0.7, 0.45)

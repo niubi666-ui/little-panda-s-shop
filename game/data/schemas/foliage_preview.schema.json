@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+	"schema_version",
+	"inventory",
+	"decoration",
+    "orders"
+  ],
+  "properties": {
+	"schema_version": {
+	  "const": 1
+	},
+	"inventory": {
+	  "type": "array",
+	  "minItems": 1,
+	  "items": {
+		"type": "object",
+		"additionalProperties": false,
+		"required": [
+		  "id",
+		  "category",
+		  "name_key",
+		  "description_key",
+          "icon"
+		],
+		"properties": {
+		  "id": {
+			"type": "string",
+			"pattern": "^[a-z_]+$"
+		  },
+		  "category": {
+			"enum": [
+			  "potions",
+			  "equipment",
+			  "materials",
+			  "furniture",
+			  "ornaments",
+			  "lights",
+              "orders"
+			]
+		  },
+		  "name_key": {
+			"type": "string",
+			"pattern": "^ui\\."
+		  },
+		  "description_key": {
+			"type": "string",
+			"pattern": "^ui\\."
+		  },
+		  "icon": {
+			"type": "string",
+			"pattern": "^res://assets/ui/foliage/[a-z_]+\\.svg$"
+		  }
+		}
+	  }
+	},
+	"decoration": {
+	  "type": "array",
+	  "minItems": 1,
+	  "items": {
+		"type": "object",
+		"additionalProperties": false,
+		"required": [
+		  "id",
+		  "category",
+		  "name_key",
+		  "description_key",
+          "icon"
+		],
+		"properties": {
+		  "id": {
+			"type": "string",
+			"pattern": "^[a-z_]+$"
+		  },
+		  "category": {
+			"enum": [
+			  "potions",
+			  "equipment",
+			  "materials",
+			  "furniture",
+			  "ornaments",
+			  "lights",
+              "orders"
+			]
+		  },
+		  "name_key": {
+			"type": "string",
+			"pattern": "^ui\\."
+		  },
+		  "description_key": {
+			"type": "string",
+			"pattern": "^ui\\."
+		  },
+		  "icon": {
+			"type": "string",
+			"pattern": "^res://assets/ui/foliage/[a-z_]+\\.svg$"
+		  }
+		}
+	  }
+	},
+	"orders": {
+	  "type": "array",
+	  "minItems": 1,
+	  "items": {
+		"type": "object",
+		"additionalProperties": false,
+		"required": [
+		  "id",
+		  "category",
+		  "name_key",
+		  "description_key",
+          "icon"
+		],
+		"properties": {
+		  "id": {
+			"type": "string",
+			"pattern": "^[a-z_]+$"
+		  },
+		  "category": {
+			"enum": [
+			  "potions",
+			  "equipment",
+			  "materials",
+			  "furniture",
+			  "ornaments",
+			  "lights",
+              "orders"
+			]
+		  },
+		  "name_key": {
+			"type": "string",
+			"pattern": "^ui\\."
+		  },
+		  "description_key": {
+			"type": "string",
+			"pattern": "^ui\\."
+		  },
+		  "icon": {
+			"type": "string",
+			"pattern": "^res://assets/ui/foliage/[a-z_]+\\.svg$"
+		  }
+		}
+	  }
+	}
+  }
+}

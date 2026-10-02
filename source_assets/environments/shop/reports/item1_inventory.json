@@ -1,0 +1,110 @@
+[
+  {
+    "index": 0,
+    "name": "7886db3b-2374-46b0-8af0-c77eef33b7ca.001",
+    "verts": 1443,
+    "triangles": 3309
+  },
+  {
+    "index": 1,
+    "name": "978a9733-c384-4de3-923c-53a3306d923b",
+    "verts": 3437,
+    "triangles": 7059
+  },
+  {
+    "index": 2,
+    "name": "1a9b1a13-95be-4766-8e45-e86c42d76d8c",
+    "verts": 1322,
+    "triangles": 2852
+  },
+  {
+    "index": 3,
+    "name": "4c4496e7-1576-4f1b-adc6-474eeab5de25",
+    "verts": 487852,
+    "triangles": 975964
+  },
+  {
+    "index": 4,
+    "name": "1f48ad85-aad4-458a-ac68-17e59c2b2b98",
+    "verts": 5064,
+    "triangles": 9783
+  },
+  {
+    "index": 5,
+    "name": "50460d35-3728-4693-a0b4-2159c17e9a29",
+    "verts": 5406,
+    "triangles": 10085
+  },
+  {
+    "index": 6,
+    "name": "3c7ca34b-f776-446d-9ca3-0adce1df9909",
+    "verts": 5504,
+    "triangles": 7931
+  },
+  {
+    "index": 7,
+    "name": "1f236c82-bba7-44f9-889e-947622ac1e24",
+    "verts": 1901,
+    "triangles": 3790
+  },
+  {
+    "index": 8,
+    "name": "3c47e0c2-ed93-4a68-bdd4-fd3bd187bd9e",
+    "verts": 1604,
+    "triangles": 3214
+  },
+  {
+    "index": 9,
+    "name": "df96a013-3495-45de-8d0b-7b97faba1037",
+    "verts": 1532,
+    "triangles": 3113
+  },
+  {
+    "index": 10,
+    "name": "095b3fa6-26fd-46aa-9aa1-f14fa2d15988",
+    "verts": 1878,
+    "triangles": 3764
+  },
+  {
+    "index": 11,
+    "name": "404fbd0c-d69a-4303-a16f-b7a70f7bab11",
+    "verts": 1760,
+    "triangles": 3516
+  },
+  {
+    "index": 12,
+    "name": "08f4276e-6e26-4b23-ba86-3af7e5b37fd2",
+    "verts": 1569,
+    "triangles": 2761
+  },
+  {
+    "index": 13,
+    "name": "0a45271f-5fc1-4d9a-903e-ea9a59eb681d",
+    "verts": 1553,
+    "triangles": 2465
+  },
+  {
+    "index": 14,
+    "name": "12fc4e33-af7b-4372-b8a0-55b82828e33b",
+    "verts": 1599,
+    "triangles": 2885
+  },
+  {
+    "index": 15,
+    "name": "8f16e67f-cf85-446c-8df1-f26e3b042db5",
+    "verts": 3042,
+    "triangles": 6100
+  },
+  {
+    "index": 16,
+    "name": "9d933f5f-e1fe-4b7e-ab7c-c7bf7811be9d",
+    "verts": 3042,
+    "triangles": 6158
+  },
+  {
+    "index": 17,
+    "name": "e4baed82-3f61-4a1d-bae6-873da8deafaf",
+    "verts": 3155,
+    "triangles": 6434
+  }
+]

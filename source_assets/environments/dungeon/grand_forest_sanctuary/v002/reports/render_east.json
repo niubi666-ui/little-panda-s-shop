@@ -1,0 +1,11 @@
+{
+  "mode": "east",
+  "camera": "Camera_East_Gateway",
+  "resolution": [
+    2560,
+    1600
+  ],
+  "samples": 144,
+  "seconds": 179.23917365074158,
+  "device": "GPU"
+}

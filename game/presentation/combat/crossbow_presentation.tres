@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/combat/actor_presentation.gd" id="script"]
+[ext_resource type="PackedScene" path="res://presentation/combat/crossbow_visual.tscn" id="visual"]
+[sub_resource type="CapsuleShape3D" id="body"]
+radius = 0.4
+height = 1.5
+[resource]
+script = ExtResource("script")
+visual_scene = ExtResource("visual")
+body_shape = SubResource("body")
+body_height = 0.75

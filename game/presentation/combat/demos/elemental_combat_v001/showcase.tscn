@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://presentation/combat/demos/elemental_combat_v001/showcase.gd" id="script"]
+[node name="ElementalCombatCapture" type="Node"]
+script = ExtResource("script")

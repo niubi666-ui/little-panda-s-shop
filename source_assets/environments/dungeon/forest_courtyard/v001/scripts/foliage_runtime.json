@@ -1,0 +1,13 @@
+{
+  "leaf_card_resolution": 256,
+  "leaf_reference_width": 0.55,
+  "leaf_t_bounds": [-0.02, 1.02],
+  "leaf_w_bounds": [-0.52, 0.52],
+  "leaf_plane_height": 0.015,
+  "leaf_mesh_names": ["Oak_supplementary_individual_leaves", "Low_forest_shrub_shared"],
+  "leaf_object_names": ["Airy_overhanging_oak_leaf_sprays"],
+  "background_tree_prefixes": ["Valley_Oak_", "Side_forest_", "Rear_Oak", "Right_Forest_Frame"],
+  "background_tree_ratio": 0.25,
+  "foreground_tree_names": ["Hero_Left_Ancient_Oak", "Overhanging_Sun_Filter_Oak"],
+  "foreground_tree_ratio": 0.5
+}

@@ -1,0 +1,103 @@
+[gd_resource type="Resource" format=3 uid="uid://dagtt126k7h5o"]
+
+[ext_resource type="Texture2D" uid="uid://nl6talkkd0up" path="res://assets/ui/foliage/commission/board.png" id="board"]
+[ext_resource type="Texture2D" uid="uid://fdm64wr1fe1k" path="res://assets/ui/foliage/commission/card.png" id="card"]
+[ext_resource type="Texture2D" uid="uid://cyajcoiu62ru8" path="res://assets/ui/foliage/commission/guard.png" id="guard"]
+[ext_resource type="Texture2D" uid="uid://b0dg4xw504t8x" path="res://assets/ui/foliage/commission/herbalist.png" id="herbalist"]
+[ext_resource type="Texture2D" uid="uid://6g2ggrhl5gus" path="res://assets/ui/foliage/commission/primary_button.png" id="primary_button"]
+[ext_resource type="Script" uid="uid://d21hq1xgs73m5" path="res://presentation/foliage/commission_board_style.gd" id="script"]
+[ext_resource type="Texture2D" uid="uid://5vyiryufat5n" path="res://assets/ui/foliage/commission/secondary_button.png" id="secondary_button"]
+[ext_resource type="Texture2D" uid="uid://c6hvywty07xs6" path="res://assets/ui/foliage/commission/selected.png" id="selected"]
+[ext_resource type="Texture2D" uid="uid://di02fwfefpjpw" path="res://assets/ui/foliage/commission/traveler.png" id="traveler"]
+
+[sub_resource type="AtlasTexture" id="board"]
+atlas = ExtResource("board")
+region = Rect2(0, 1, 1536, 983)
+
+[sub_resource type="AtlasTexture" id="card"]
+atlas = ExtResource("card")
+region = Rect2(105, 49, 913, 1287)
+
+[sub_resource type="StyleBoxFlat" id="disabled"]
+bg_color = Color(0.11, 0.12, 0.09, 0.5)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="hover"]
+bg_color = Color(1, 0.87, 0.46, 0.1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="AtlasTexture" id="herbalist"]
+atlas = ExtResource("herbalist")
+region = Rect2(12, 20, 1203, 1258)
+
+[sub_resource type="AtlasTexture" id="guard"]
+atlas = ExtResource("guard")
+region = Rect2(22, 49, 1130, 1277)
+
+[sub_resource type="AtlasTexture" id="traveler"]
+atlas = ExtResource("traveler")
+region = Rect2(29, 39, 1155, 1258)
+
+[sub_resource type="StyleBoxFlat" id="pressed"]
+bg_color = Color(0.2, 0.14, 0.06, 0.12)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="AtlasTexture" id="primary_button"]
+atlas = ExtResource("primary_button")
+region = Rect2(52, 246, 1777, 341)
+
+[sub_resource type="AtlasTexture" id="secondary_button"]
+atlas = ExtResource("secondary_button")
+region = Rect2(53, 241, 1765, 351)
+
+[sub_resource type="AtlasTexture" id="selected"]
+atlas = ExtResource("selected")
+region = Rect2(49, 35, 1028, 1342)
+
+[resource]
+script = ExtResource("script")
+design_size = Vector2(1120, 717)
+screen_margin = Vector2(24, 24)
+board = SubResource("board")
+card = SubResource("card")
+selected = SubResource("selected")
+primary_button = SubResource("primary_button")
+secondary_button = SubResource("secondary_button")
+portraits = {
+"guard": SubResource("guard"),
+"herbal": SubResource("herbalist"),
+"traveler": SubResource("traveler")
+}
+regions = {
+"accept": Rect2(193, 609, 350, 67),
+"card_title": Rect2(24, 15, 240, 44),
+"cards": Rect2(106, 161, 908, 417),
+"close": Rect2(940, 86, 125, 40),
+"depart": Rect2(577, 609, 350, 67),
+"description": Rect2(25, 219, 238, 89),
+"limit": Rect2(180, 576, 760, 26),
+"notice": Rect2(140, 680, 840, 28),
+"paper": Rect2(6, 6, 276, 390),
+"portrait": Rect2(74, 60, 140, 148),
+"requirements": Rect2(25, 319, 238, 30),
+"reward": Rect2(25, 352, 238, 30),
+"selection": Rect2(0, 0, 288, 414),
+"subtitle": Rect2(165, 116, 790, 37),
+"title": Rect2(250, 66, 620, 48)
+}
+card_size = Vector2(288, 414)
+card_gap = 22
+selection_margins = Vector4(95, 95, 95, 240)
+heading_gap = 4.0
+hover_style = SubResource("hover")
+pressed_style = SubResource("pressed")
+disabled_style = SubResource("disabled")

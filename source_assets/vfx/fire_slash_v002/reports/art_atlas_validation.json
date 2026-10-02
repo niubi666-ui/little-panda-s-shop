@@ -1,0 +1,156 @@
+{
+  "layout": [
+    4,
+    4
+  ],
+  "cell_px": 256,
+  "first_frame": "top left",
+  "frames": [
+    {
+      "frame": 0,
+      "alpha_bbox": [
+        84,
+        179,
+        170,
+        213
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 1,
+      "alpha_bbox": [
+        73,
+        133,
+        184,
+        212
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 2,
+      "alpha_bbox": [
+        58,
+        86,
+        198,
+        211
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 3,
+      "alpha_bbox": [
+        49,
+        66,
+        205,
+        211
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 4,
+      "alpha_bbox": [
+        49,
+        65,
+        204,
+        210
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 5,
+      "alpha_bbox": [
+        51,
+        64,
+        204,
+        209
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 6,
+      "alpha_bbox": [
+        52,
+        64,
+        203,
+        208
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 7,
+      "alpha_bbox": [
+        54,
+        62,
+        202,
+        207
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 8,
+      "alpha_bbox": [
+        55,
+        62,
+        200,
+        206
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 9,
+      "alpha_bbox": [
+        56,
+        63,
+        199,
+        205
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 10,
+      "alpha_bbox": [
+        53,
+        66,
+        198,
+        204
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 11,
+      "alpha_bbox": [
+        53,
+        72,
+        195,
+        200
+      ],
+      "alpha_max": 255
+    },
+    {
+      "frame": 12,
+      "alpha_bbox": [
+        72,
+        82,
+        188,
+        190
+      ],
+      "alpha_max": 92
+    },
+    {
+      "frame": 13,
+      "alpha_bbox": null,
+      "alpha_max": 0
+    },
+    {
+      "frame": 14,
+      "alpha_bbox": null,
+      "alpha_max": 0
+    },
+    {
+      "frame": 15,
+      "alpha_bbox": null,
+      "alpha_max": 0
+    }
+  ],
+  "sha256": "96cf02f0d25f9d99a0e454d0663defe705bc8bc48b2496bdf62a903466b2f23c"
+}

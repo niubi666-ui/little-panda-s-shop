@@ -1,0 +1,12 @@
+{
+  "content_schema_version": 1,
+  "content_version": "prototype.7-enemy-roles",
+  "foliage_preview_file": "res://data/shop/foliage_preview.json",
+  "shop_preview_file": "res://data/shop/shop_preview.json",
+  "combat_prototype_file": "res://data/combat/prototype.json",
+  "build_prototype_file": "res://data/builds/prototype.json",
+  "room_props_file": "res://data/rooms/props_prototype.json",
+  "enemy_roles_file": "res://data/enemies/roles.json",
+  "encounters_file": "res://data/rooms/encounters.json",
+  "enemy_loot_file": "res://data/loot/enemies.json"
+}

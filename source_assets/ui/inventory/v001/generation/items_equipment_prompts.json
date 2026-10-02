@@ -1,0 +1,48 @@
+{
+  "version": "v001",
+  "date": "2026-09-26",
+  "records": [
+    {
+      "file_name": "potion_red.png",
+      "sample_id": "potion",
+      "method": "built-in image_gen",
+      "reference_style": "E:/ShopGame/source_assets/ui/reference/foliage_v001/02_inventory.png",
+      "initial_prompt": "Use case: stylized-concept. Asset type: isolated fantasy inventory object icon for a forest-green and antique-brass game inventory. Create one complete red health potion bottle: slightly asymmetrical clear thick glass rounded flask, bright deep ruby red liquid, small natural cork stopper, dark brown leather cord wrapped around the narrow neck. Hand-painted high-quality stylized 3D game art, believable glass and leather, softly weathered fantasy apothecary object, realistic depth rather than flat cartoon. Warm soft key light from upper left, subdued cooler fill, clear readable silhouette and highlights at small size. Subject centered upright, slight three-quarter angle, on a 1024 by 1024 square canvas, occupying 70-75 percent of image height, entire object inside a minimum 12 percent fully transparent margin on every side. The output MUST be a genuine RGBA PNG with transparent alpha background. No fake checkerboard, no backdrop color, no floor, no contact or cast shadow, no halo. Only the single bottle, no other objects. No words, letters, numbers, text labels, frame, card, badge, rarity gem, watermark or logos. Detailed but uncluttered. Keep all cork, bottle and cords fully visible.",
+      "initial_generated_path": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5c-fd92-70a1-b2f4-f886b7782c5d/exec-d480ca66-3c8a-4992-a10e-aad5111be187.png",
+      "final_prompt": "Use case: precise-object-edit. This is an existing finished fantasy inventory icon. Keep the exact red potion bottle object, same rounded shape, materials, cork, leather neck cords, warm upper-left lighting, and painterly 3D visual quality. Change only its canvas occupancy: make the object smaller within the square canvas so there is a generous clean FULLY TRANSPARENT border, at least 15 percent margin at the top and bottom and each side; object occupies at most 70 percent of canvas height. Entire object remains centered and complete. The image must have genuine RGBA transparency, no background, no checkerboard, no floor or cast shadow. No text or extra object. Output square PNG.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dc5c-fd92-70a1-b2f4-f886b7782c5d\\exec-25c56293-a04c-4689-8af8-45f4796b5c73.png",
+      "source_export": "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/potion_red.png",
+      "runtime_copy": "E:/ShopGame/game/assets/ui/inventory/v001/items/potion_red.png",
+      "pixel_processing": "None; original PNG copied byte-for-byte.",
+      "status": "Concept inventory object icon, no gameplay definition implied."
+    },
+    {
+      "file_name": "sword_iron.png",
+      "sample_id": "sword",
+      "method": "built-in image_gen",
+      "reference_style": "E:/ShopGame/source_assets/ui/reference/foliage_v001/02_inventory.png",
+      "initial_prompt": "Use case: stylized-concept. Asset type: isolated fantasy inventory object icon for a forest-green and antique-brass game inventory. Create one complete elegant practical medieval one-handed iron longsword with a silver steel double-edged tapered blade and sharp point, a restrained bronze straight crossguard, dark brown leather wrapped grip, and small bronze pommel. No engraving, no magical effects. Hand-painted high-quality stylized 3D game art, believable steel edge highlights and rich worn leather, realistic depth rather than flat cartoon. Warm soft key light from upper left and restrained cool reflections. Entire sword diagonal lower left blade tip to upper right pommel, centered with a clear recognizable silhouette. A 1024 by 1024 square canvas, the full object occupies approximately 70-75 percent of canvas in both axes, minimum 12 percent empty transparent border on all sides. All blade tip, both ends of crossguard and pommel fully visible, no crop. The output MUST be genuine RGBA PNG with transparent alpha background. No fake checkerboard, no backdrop color, no floor, no contact or cast shadow, no halo. Only the one sword. No words, letters, numbers, text labels, frame, card, badge, rarity gem, watermark or logos. Sharp readable at small inventory thumbnail size.",
+      "initial_generated_path": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5c-fd92-70a1-b2f4-f886b7782c5d/exec-45f34906-9444-42b0-924e-d5949bad075b.png",
+      "final_prompt": "Use case: precise-object-edit. This is an existing finished fantasy inventory icon. Keep the exact entire sword model, same diagonal lower-left tip to upper-right pommel, silver blade, bronze crossguard, brown leather handle, same warm upper-left lighting and painterly 3D visual quality. Change only the sword size relative to canvas: shrink the complete centered object to occupy at most 70 percent of square canvas width and height, leaving at least 15 percent FULLY TRANSPARENT border on every side. Entire sword tip and pommel visible. The image must have genuine RGBA transparency, no background, no checkerboard, no floor or cast shadow, no halo. No text or extra object. Output square PNG.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dc5c-fd92-70a1-b2f4-f886b7782c5d\\exec-35ff327c-2138-4412-b0cd-75741fd8a605.png",
+      "source_export": "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/sword_iron.png",
+      "runtime_copy": "E:/ShopGame/game/assets/ui/inventory/v001/items/sword_iron.png",
+      "pixel_processing": "None; original PNG copied byte-for-byte.",
+      "status": "Concept inventory object icon, no gameplay definition implied."
+    },
+    {
+      "file_name": "travel_pouch.png",
+      "sample_id": "bag",
+      "method": "built-in image_gen",
+      "reference_style": "E:/ShopGame/source_assets/ui/reference/foliage_v001/02_inventory.png",
+      "initial_prompt": "Use case: stylized-concept. Asset type: isolated fantasy inventory object icon for a forest-green and antique-brass game inventory. Create one complete small rounded brown leather drawstring pouch, gathered folded mouth tied closed with a thin darker leather cord, naturally plump bag with soft irregular folds and subtle stitched seam. The simple tie hangs short at front, no coins spilling out and no emblems. Hand-painted high-quality stylized 3D game art, believable aged warm chestnut leather and careful shading, realistic depth rather than flat cartoon. Warm soft key light upper left, subdued cooler fill, easy recognizable silhouette at small sizes. Slightly elevated three-quarter view, centered upright, 1024 by 1024 square canvas. Entire pouch and all strings fully inside frame, occupying 70-75 percent image height, minimum 12 percent fully transparent margin on every side. The output MUST be genuine RGBA PNG with transparent alpha background. No fake checkerboard, no colored backdrop, no ground plane, no contact or cast shadow, no halo. Only the single pouch. No words, letters, numbers, text labels, frame, card, badge, rarity gem, watermark or logos.",
+      "initial_generated_path": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5c-fd92-70a1-b2f4-f886b7782c5d/exec-292c0e8f-2650-477f-9c5b-0cc34647f5cc.png",
+      "final_prompt": "Use case: precise-object-edit. Edit this fantasy inventory pouch icon. Preserve its complete rounded plump drawstring pouch silhouette, gathered mouth, short drawstrings, warm upper-left illumination, three-quarter camera and high-quality slightly stylized painterly 3D rendering. Change the body material to brown thick woven canvas or coarse travel cloth, clearly show subtle woven fibers and soft textile folds; keep only the mouth reinforcing rim and drawstring ties dark brown leather. It must read as a travel CLOTH bag, not an all-leather pouch. Also make the pouch smaller within the square canvas: maximum 70 percent canvas height, minimum 15 percent FULLY TRANSPARENT empty border on all sides. Entire bag and cords visible. Genuine RGBA transparent background, no colored backdrop, no fake checkerboard, no ground, no cast shadow, no halo. No text, numbers, badges, frames, coins, patterns or extra objects. Output square PNG.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dc5c-fd92-70a1-b2f4-f886b7782c5d\\exec-107d4c5b-08cc-4d33-b0e9-76eea0a5a667.png",
+      "source_export": "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/travel_pouch.png",
+      "runtime_copy": "E:/ShopGame/game/assets/ui/inventory/v001/items/travel_pouch.png",
+      "pixel_processing": "None; original PNG copied byte-for-byte.",
+      "status": "Concept inventory object icon, no gameplay definition implied."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://rogue/rooms/placement_surface.gd" id="script"]
+[ext_resource type="Script" path="res://rogue/rooms/composition_anchor.gd" id="anchor"]
+[sub_resource type="Resource" id="west"]
+script = ExtResource("anchor")
+id = "west"
+position = Vector3(-4.4, 0, 0.2)
+yaw_options = PackedFloat32Array(1.5707963267948966, 4.71238898038469)
+[sub_resource type="Resource" id="east"]
+script = ExtResource("anchor")
+id = "east"
+position = Vector3(4.4, 0, 0.4)
+yaw_options = PackedFloat32Array(1.5707963267948966, 4.71238898038469)
+[sub_resource type="Resource" id="southwest"]
+script = ExtResource("anchor")
+id = "southwest"
+position = Vector3(-3.9, 0, 4.0)
+yaw_options = PackedFloat32Array(0.0, 3.141592653589793)
+[sub_resource type="Resource" id="southeast"]
+script = ExtResource("anchor")
+id = "southeast"
+position = Vector3(3.9, 0, 4.0)
+yaw_options = PackedFloat32Array(0.0, 3.141592653589793)
+[sub_resource type="Resource" id="interior"]
+script = ExtResource("anchor")
+id = "interior"
+position = Vector3(0.15, 0, -0.65)
+yaw_options = PackedFloat32Array(0.0, 3.141592653589793)
+[resource]
+script = ExtResource("script")
+template_id = "forest_courtyard.v001"
+bounds = Rect2(-7, -5.5, 14, 12)
+composition_anchors = Array[Resource]([SubResource("west"), SubResource("east"), SubResource("southwest"), SubResource("southeast"), SubResource("interior")])

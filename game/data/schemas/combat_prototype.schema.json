@@ -1,0 +1,247 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "abilities",
+    "actors",
+    "player_id",
+    "dodge",
+    "waves",
+    "wave_delay_sec"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "abilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "windup_sec",
+          "active_sec",
+          "recovery_sec",
+          "cooldown_sec",
+          "radius_m",
+          "angle_deg",
+          "damage",
+          "interruptible",
+          "commit_policy",
+          "aim_policy",
+          "movement_speed_multiplier",
+          "knockback_speed_mps",
+          "knockback_duration_sec",
+          "hit_shape",
+          "thrust_width_m"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "windup_sec": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 10000
+          },
+          "active_sec": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 10000
+          },
+          "recovery_sec": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 10000
+          },
+          "cooldown_sec": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 10000
+          },
+          "radius_m": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 10
+          },
+          "angle_deg": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 360
+          },
+          "damage": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 10000
+          },
+          "interruptible": {
+            "type": "boolean"
+          },
+          "commit_policy": {
+            "const": "start"
+          },
+          "aim_policy": {
+            "const": "lock_at_start"
+          },
+          "movement_speed_multiplier": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "knockback_speed_mps": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 40
+          },
+          "knockback_duration_sec": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "hit_shape": {
+            "type": "string",
+            "enum": [
+              "sector",
+              "thrust"
+            ]
+          },
+          "thrust_width_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          }
+        }
+      }
+    },
+    "actors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name_key",
+          "health",
+          "move_speed_mps",
+          "stagger_sec",
+          "attack_ids",
+          "decision_interval_sec",
+          "aggro_range_m",
+          "combo_reset_sec"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "health": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 10000
+          },
+          "move_speed_mps": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 20
+          },
+          "stagger_sec": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "attack_ids": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "decision_interval_sec": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 2
+          },
+          "aggro_range_m": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 100
+          },
+          "combo_reset_sec": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 5
+          }
+        }
+      }
+    },
+    "player_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dodge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "charges",
+        "duration_sec",
+        "invulnerable_sec",
+        "recharge_sec",
+        "speed_mps"
+      ],
+      "properties": {
+        "charges": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "duration_sec": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 3
+        },
+        "invulnerable_sec": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 3
+        },
+        "recharge_sec": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 30
+        },
+        "speed_mps": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 40
+        }
+      }
+    },
+    "waves": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "wave_delay_sec": {
+      "type": "number",
+      "minimum": 0.01,
+      "maximum": 30
+    }
+  }
+}

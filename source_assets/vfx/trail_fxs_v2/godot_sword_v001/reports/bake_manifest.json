@@ -1,0 +1,178 @@
+{
+  "source": "source_assets\\vfx\\trail_fxs_v2\\blender\\sword_trail_study.blend",
+  "material": "01_Golden_Filaments",
+  "blender": "5.2.1 LTS",
+  "resolution": [
+    1024,
+    256
+  ],
+  "source_attributes_at_frame_99": {
+    "Speed": 4.125,
+    "Hue": 0.5,
+    "UseGlowColors": true,
+    "Glow": [
+      1.0,
+      0.47999998927116394,
+      0.054999999701976776,
+      8.0
+    ],
+    "Glow2": [
+      1.0,
+      0.054999999701976776,
+      0.006000000052154064,
+      1.0
+    ]
+  },
+  "uv": {
+    "u": "chronological trail coordinate: oldest=0, current sword=1",
+    "v": "0=sword tip / outer edge, 1=sword base / inner edge"
+  },
+  "baked_taper": true,
+  "color_encoding": "emission EXR is scene-linear HDR; mask PNG is linear data",
+  "files": [
+    {
+      "frame": 0,
+      "phase": 4.125,
+      "kind": "emission",
+      "path": "source_assets\\vfx\\trail_fxs_v2\\godot_sword_v001\\textures\\golden_filaments_0_emission.exr",
+      "game_path": "game\\assets\\vfx\\golden_trail_v001\\golden_filaments_0_emission.exr",
+      "channel_min": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_max": [
+        7.5224432945251465,
+        5.713623046875,
+        0.7025012969970703
+      ],
+      "sha256": "44fa6a62a49809d2bec5694a31ab1c3ffea45aed30c35511cf1c9eae3a3f4d9e"
+    },
+    {
+      "frame": 0,
+      "phase": 4.125,
+      "kind": "mask",
+      "path": "source_assets\\vfx\\trail_fxs_v2\\godot_sword_v001\\textures\\golden_filaments_0_mask.png",
+      "game_path": "game\\assets\\vfx\\golden_trail_v001\\golden_filaments_0_mask.png",
+      "channel_min": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_max": [
+        0.6612669825553894,
+        0.6612669825553894,
+        0.6612669825553894
+      ],
+      "sha256": "56d041c30c8b238906a92f0946f934df17d481c92fe7ab4114a113e7c2708471"
+    },
+    {
+      "frame": 1,
+      "phase": 4.275,
+      "kind": "emission",
+      "path": "source_assets\\vfx\\trail_fxs_v2\\godot_sword_v001\\textures\\golden_filaments_1_emission.exr",
+      "game_path": "game\\assets\\vfx\\golden_trail_v001\\golden_filaments_1_emission.exr",
+      "channel_min": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_max": [
+        7.575521469116211,
+        5.726414680480957,
+        0.7021908164024353
+      ],
+      "sha256": "89c0570613279a286e9d534951eadb826d4ab6021e60f5c639c1d04730d45b65"
+    },
+    {
+      "frame": 1,
+      "phase": 4.275,
+      "kind": "mask",
+      "path": "source_assets\\vfx\\trail_fxs_v2\\godot_sword_v001\\textures\\golden_filaments_1_mask.png",
+      "game_path": "game\\assets\\vfx\\golden_trail_v001\\golden_filaments_1_mask.png",
+      "channel_min": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_max": [
+        0.6915624141693115,
+        0.6915624141693115,
+        0.6915624141693115
+      ],
+      "sha256": "2e9f784be2e7099d9df51930ddfdd8132174bd7ed2a240d66853e18ea941bfb7"
+    },
+    {
+      "frame": 2,
+      "phase": 4.425,
+      "kind": "emission",
+      "path": "source_assets\\vfx\\trail_fxs_v2\\godot_sword_v001\\textures\\golden_filaments_2_emission.exr",
+      "game_path": "game\\assets\\vfx\\golden_trail_v001\\golden_filaments_2_emission.exr",
+      "channel_min": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_max": [
+        7.368753433227539,
+        5.732172966003418,
+        0.7027042508125305
+      ],
+      "sha256": "360d29153a108eaae33af5796b6e1799bc27e648f17114c23bf0a9a11e4a4227"
+    },
+    {
+      "frame": 2,
+      "phase": 4.425,
+      "kind": "mask",
+      "path": "source_assets\\vfx\\trail_fxs_v2\\godot_sword_v001\\textures\\golden_filaments_2_mask.png",
+      "game_path": "game\\assets\\vfx\\golden_trail_v001\\golden_filaments_2_mask.png",
+      "channel_min": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_max": [
+        0.699344277381897,
+        0.699344277381897,
+        0.699344277381897
+      ],
+      "sha256": "fb771580ab01f87c26da4151fc0ba2de1e78913deea7dad902140fe04b71041e"
+    },
+    {
+      "frame": 3,
+      "phase": 4.575,
+      "kind": "emission",
+      "path": "source_assets\\vfx\\trail_fxs_v2\\godot_sword_v001\\textures\\golden_filaments_3_emission.exr",
+      "game_path": "game\\assets\\vfx\\golden_trail_v001\\golden_filaments_3_emission.exr",
+      "channel_min": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_max": [
+        7.643037796020508,
+        5.725576400756836,
+        0.7028236389160156
+      ],
+      "sha256": "17956d5930e044635fcd9f2f536d60da3c9db0798834adc7e04a4d94957478c0"
+    },
+    {
+      "frame": 3,
+      "phase": 4.575,
+      "kind": "mask",
+      "path": "source_assets\\vfx\\trail_fxs_v2\\godot_sword_v001\\textures\\golden_filaments_3_mask.png",
+      "game_path": "game\\assets\\vfx\\golden_trail_v001\\golden_filaments_3_mask.png",
+      "channel_min": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "channel_max": [
+        0.6913719773292542,
+        0.6913719773292542,
+        0.6913719773292542
+      ],
+      "sha256": "ac7a48eb0009c572ad15a6dd689153dced831ea897cded17cf3a17a895d5742e"
+    }
+  ]
+}

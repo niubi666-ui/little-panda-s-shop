@@ -1,0 +1,12 @@
+{
+  "mode": "topdown",
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\previews\\forest_courtyard_topdown.png",
+  "resolution": [
+    1600,
+    1600
+  ],
+  "samples": 64,
+  "seconds": 32.867899894714355,
+  "engine": "CYCLES",
+  "device": "GPU"
+}

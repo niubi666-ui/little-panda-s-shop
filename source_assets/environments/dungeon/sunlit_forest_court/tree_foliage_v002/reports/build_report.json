@@ -1,0 +1,18 @@
+{
+  "trunk_triangles": 19032,
+  "foliage_triangles": 14640,
+  "module_count": 6,
+  "cluster_instances": 61,
+  "triangles_per_module": 240,
+  "alpha_image_size": [
+    1254,
+    1254
+  ],
+  "leaf_spray_size_m": [
+    0.42,
+    0.7
+  ],
+  "tree_trunk_height_m": 10,
+  "source": "../tree_foliage_v001/original/tree_import_snapshot.blend",
+  "status": "Blender review only; no Godot writes, no LOD/wind/runtime profiling"
+}

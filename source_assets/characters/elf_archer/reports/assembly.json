@@ -1,0 +1,22 @@
+{
+  "source": "E:\\ShopGame\\source_assets\\characters\\red_panda\\blender\\jingling.blend",
+  "backup": "E:\\ShopGame\\source_assets\\characters\\elf_archer\\original\\jingling_source.blend",
+  "head_scale_relative_to_body": 0.278,
+  "whole_scale_to_meters": 1.6719009713072948,
+  "head_offset_before_unit_scale": [
+    0.006000000052154064,
+    -0.34893447160720825,
+    0.7450000047683716
+  ],
+  "source_sha256": "4a594338afd107656510cfe069a075504e677fc8bac19b0ed6645b2992b5aa73",
+  "objects": {
+    "ElfArcher_Body": {
+      "vertices": 31459,
+      "faces": 31436
+    },
+    "ElfArcher_HeadHair": {
+      "vertices": 29208,
+      "faces": 28830
+    }
+  }
+}

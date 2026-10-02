@@ -1,0 +1,361 @@
+{
+  "version": "classic_v001",
+  "date": "2026-10-01",
+  "generator": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "scope": "Annotated item artwork sheets; visual candidate names and resource IDs only, no authoritative gameplay definitions or implemented effects.",
+  "pixel_editing": "none; generated originals copied byte-for-byte",
+  "references": [
+    "E:/ShopGame/source_assets/ui/reference/foliage_v001/02_inventory.png",
+    "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/potion_red.png"
+  ],
+  "categories": [
+    {
+      "category": "botanicals_food",
+      "title": "植物与食材",
+      "items": [
+        {
+          "art_id": "wild_berries",
+          "name_zh": "野莓果",
+          "visual_description_zh": "鲜红果实，带少量绿叶",
+          "name_en_candidate": "Wild Berries",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "art_id": "healing_herb",
+          "name_zh": "药草",
+          "visual_description_zh": "新鲜叶束，以麻绳扎起",
+          "name_en_candidate": "Medicinal Herb",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "art_id": "lavender",
+          "name_zh": "薰衣草",
+          "visual_description_zh": "紫色花穗，香气植物",
+          "name_en_candidate": "Lavender",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "art_id": "white_mushrooms",
+          "name_zh": "白蘑菇",
+          "visual_description_zh": "圆润菌盖，成簇生长",
+          "name_en_candidate": "White Mushrooms",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "art_id": "honeycomb",
+          "name_zh": "蜂蜜",
+          "visual_description_zh": "金色蜂巢，滴落少量蜂蜜",
+          "name_en_candidate": "Honeycomb",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "art_id": "wheat_bundle",
+          "name_zh": "麦穗",
+          "visual_description_zh": "成熟麦束，以细绳绑扎",
+          "name_en_candidate": "Wheat Bundle",
+          "row": 2,
+          "column": 3
+        },
+        {
+          "art_id": "wild_apple",
+          "name_zh": "野苹果",
+          "visual_description_zh": "小巧红苹果，保留枝叶",
+          "name_en_candidate": "Wild Apple",
+          "row": 3,
+          "column": 1
+        },
+        {
+          "art_id": "dried_meat",
+          "name_zh": "风干肉",
+          "visual_description_zh": "深红肉条，纹理清晰",
+          "name_en_candidate": "Dried Meat",
+          "row": 3,
+          "column": 2
+        },
+        {
+          "art_id": "lily",
+          "name_zh": "铃兰",
+          "visual_description_zh": "细长绿叶，白色下垂小花",
+          "name_en_candidate": "Lily of the Valley",
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "filename": "01_botanicals_food_labeled.png",
+      "image_path": "botanicals_food/01_botanicals_food_labeled.png",
+      "original_path": "C:/Users/陈旭辉/.codex/generated_images/01a0dbbb-e5a8-7b32-a068-ebcadcf5d960/exec-f95d7456-a311-4ff8-9bfd-7de4ef1f3978.png",
+      "prompt": "Use case: stylized-concept. Create a finished annotated inventory-item contact sheet for our cozy red-panda medieval fantasy shop/dungeon game. References are STYLE GUIDES ONLY: match their rich hand-painted 3D-like semi-realistic item art, tactile materials, natural proportions, warm upper-left light, crisp silhouette and restrained highlights. Do not copy the UI screenshot layout. Make one square high-resolution image, exactly THREE columns by THREE rows of large, evenly spaced isolated item illustrations, row-major ordering. Subtle pale warm parchment background; minimal fine antique-gold foliage ornament only in the narrow header. No boxed cards, no grid lines, no scene, no people, no watermark, no rarity symbols, no counts/prices. Items fill most of their own cell, retain comfortable blank margins, never overlap captions or adjacent items. Each item has two legible centered text lines below: bold Chinese NAME, then smaller Chinese visual description. Exact text supplied; no English in the image. Colorful realistic-painterly objects, softly shaded, like premium fantasy inventory icons; avoid cartoon outlines, oversimplification, toy plastic. The mineral sheets must use accurate distinctly identifiable ores vs refined ingots; potion variants must differ in bottle silhouette and fittings as well as color. Keep a consistent set-wide presentation.\nHeader text: 植物与食材. Nine cells in row-major order:\n1. 野莓果 — 鲜红果实，带少量绿叶\n2. 药草 — 新鲜叶束，以麻绳扎起\n3. 薰衣草 — 紫色花穗，香气植物\n4. 白蘑菇 — 圆润菌盖，成簇生长\n5. 蜂蜜 — 金色蜂巢，滴落少量蜂蜜\n6. 麦穗 — 成熟麦束，以细绳绑扎\n7. 野苹果 — 小巧红苹果，保留枝叶\n8. 风干肉 — 深红肉条，纹理清晰\n9. 铃兰 — 细长绿叶，白色下垂小花",
+      "references": [
+        "E:/ShopGame/source_assets/ui/reference/foliage_v001/02_inventory.png",
+        "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/potion_red.png"
+      ]
+    },
+    {
+      "category": "ores_metals",
+      "title": "矿石与金属",
+      "items": [
+        {
+          "art_id": "iron_ore",
+          "name_zh": "铁矿石",
+          "visual_description_zh": "暗灰岩块，带铁色矿脉",
+          "name_en_candidate": "Iron Ore",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "art_id": "copper_ore",
+          "name_zh": "铜矿石",
+          "visual_description_zh": "铜色矿脉，带少量青绿锈色",
+          "name_en_candidate": "Copper Ore",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "art_id": "gold_ore",
+          "name_zh": "金矿石",
+          "visual_description_zh": "灰褐岩块，带金色矿脉",
+          "name_en_candidate": "Gold Ore",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "art_id": "iron_ingot",
+          "name_zh": "铁锭",
+          "visual_description_zh": "冷灰金属锭，表面有锤痕",
+          "name_en_candidate": "Iron Ingot",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "art_id": "copper_ingot",
+          "name_zh": "铜锭",
+          "visual_description_zh": "暖铜金属锭，边缘略有氧化",
+          "name_en_candidate": "Copper Ingot",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "art_id": "gold_ingot",
+          "name_zh": "金锭",
+          "visual_description_zh": "暖黄金属锭，反光柔和",
+          "name_en_candidate": "Gold Ingot",
+          "row": 2,
+          "column": 3
+        },
+        {
+          "art_id": "silver_ingot",
+          "name_zh": "银锭",
+          "visual_description_zh": "银白金属锭，区别于暗色铁锭",
+          "name_en_candidate": "Silver Ingot",
+          "row": 3,
+          "column": 1
+        },
+        {
+          "art_id": "coal",
+          "name_zh": "煤块",
+          "visual_description_zh": "黑色碎块，棱角清晰",
+          "name_en_candidate": "Coal",
+          "row": 3,
+          "column": 2
+        },
+        {
+          "art_id": "quartz_cluster",
+          "name_zh": "水晶簇",
+          "visual_description_zh": "半透明浅蓝晶体，附少量母岩",
+          "name_en_candidate": "Quartz Cluster",
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "filename": "02_ores_metals_labeled.png",
+      "image_path": "ores_metals/02_ores_metals_labeled.png",
+      "original_path": "C:/Users/陈旭辉/.codex/generated_images/01a0dbbb-e5a8-7b32-a068-ebcadcf5d960/exec-6525f6ab-e646-480d-92c1-89f316a99115.png",
+      "prompt": "Use case: stylized-concept. Create a finished annotated inventory-item contact sheet for our cozy red-panda medieval fantasy shop/dungeon game. References are STYLE GUIDES ONLY: match their rich hand-painted 3D-like semi-realistic item art, tactile materials, natural proportions, warm upper-left light, crisp silhouette and restrained highlights. Do not copy the UI screenshot layout. Make one square high-resolution image, exactly THREE columns by THREE rows of large, evenly spaced isolated item illustrations, row-major ordering. Subtle pale warm parchment background; minimal fine antique-gold foliage ornament only in the narrow header. No boxed cards, no grid lines, no scene, no people, no watermark, no rarity symbols, no counts/prices. Items fill most of their own cell, retain comfortable blank margins, never overlap captions or adjacent items. Each item has two legible centered text lines below: bold Chinese NAME, then smaller Chinese visual description. Exact text supplied; no English in the image. Colorful realistic-painterly objects, softly shaded, like premium fantasy inventory icons; avoid cartoon outlines, oversimplification, toy plastic. The mineral sheets must use accurate distinctly identifiable ores vs refined ingots; potion variants must differ in bottle silhouette and fittings as well as color. Keep a consistent set-wide presentation.\nHeader text: 矿石与金属. Nine cells in row-major order:\n1. 铁矿石 — 暗灰岩块，带铁色矿脉\n2. 铜矿石 — 铜色矿脉，带少量青绿锈色\n3. 金矿石 — 灰褐岩块，带金色矿脉\n4. 铁锭 — 冷灰金属锭，表面有锤痕\n5. 铜锭 — 暖铜金属锭，边缘略有氧化\n6. 金锭 — 暖黄金属锭，反光柔和\n7. 银锭 — 银白金属锭，区别于暗色铁锭\n8. 煤块 — 黑色碎块，棱角清晰\n9. 水晶簇 — 半透明浅蓝晶体，附少量母岩 Match the parchment, Chinese caption size and grid of reference image 3; it is a presentation style guide, replace all subjects with the nine requested mineral and metal subjects.",
+      "references": [
+        "E:/ShopGame/source_assets/ui/reference/foliage_v001/02_inventory.png",
+        "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/potion_red.png",
+        "E:/ShopGame/source_assets/ui/items/classic_v001/botanicals_food/01_botanicals_food_labeled.png"
+      ]
+    },
+    {
+      "category": "potions",
+      "title": "药水与炼金",
+      "items": [
+        {
+          "art_id": "healing_potion",
+          "name_zh": "恢复药水",
+          "visual_description_zh": "圆腹瓶，红色液体，皮绳瓶颈",
+          "name_en_candidate": "Healing Potion",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "art_id": "mana_potion",
+          "name_zh": "法力药水",
+          "visual_description_zh": "长颈瓶，蓝色液体，铜环瓶口",
+          "name_en_candidate": "Mana Potion",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "art_id": "stamina_potion",
+          "name_zh": "体力药水",
+          "visual_description_zh": "扁圆瓶，琥珀液体，麻绳提环",
+          "name_en_candidate": "Stamina Potion",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "art_id": "antidote_potion",
+          "name_zh": "解毒药水",
+          "visual_description_zh": "细腰瓶，绿色液体，叶形吊牌",
+          "name_en_candidate": "Antidote",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "art_id": "ward_potion",
+          "name_zh": "守护药水",
+          "visual_description_zh": "方肩瓶，乳白液体，铜质护箍",
+          "name_en_candidate": "Ward Potion",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "art_id": "haste_potion",
+          "name_zh": "轻盈药水",
+          "visual_description_zh": "细长瓶，青色液体，羽形吊牌",
+          "name_en_candidate": "Haste Potion",
+          "row": 2,
+          "column": 3
+        },
+        {
+          "art_id": "night_vision_potion",
+          "name_zh": "夜视药水",
+          "visual_description_zh": "小圆瓶，紫色液体，月牙挂饰",
+          "name_en_candidate": "Night Vision Potion",
+          "row": 3,
+          "column": 1
+        },
+        {
+          "art_id": "alchemy_oil",
+          "name_zh": "炼金油",
+          "visual_description_zh": "棕玻璃瓶，金黄油液，木塞",
+          "name_en_candidate": "Alchemical Oil",
+          "row": 3,
+          "column": 2
+        },
+        {
+          "art_id": "empty_potion_bottle",
+          "name_zh": "空药瓶",
+          "visual_description_zh": "透明玻璃瓶，软木塞，无液体",
+          "name_en_candidate": "Empty Potion Bottle",
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "filename": "03_potions_labeled.png",
+      "image_path": "potions/03_potions_labeled.png",
+      "original_path": "C:/Users/陈旭辉/.codex/generated_images/01a0dbbb-e5a8-7b32-a068-ebcadcf5d960/exec-422c8ff8-acd8-4440-81e8-dcaebea6db50.png",
+      "prompt": "Use case: stylized-concept. Create a finished annotated inventory-item contact sheet for our cozy red-panda medieval fantasy shop/dungeon game. References are STYLE GUIDES ONLY: match their rich hand-painted 3D-like semi-realistic item art, tactile materials, natural proportions, warm upper-left light, crisp silhouette and restrained highlights. Do not copy the UI screenshot layout. Make one square high-resolution image, exactly THREE columns by THREE rows of large, evenly spaced isolated item illustrations, row-major ordering. Subtle pale warm parchment background; minimal fine antique-gold foliage ornament only in the narrow header. No boxed cards, no grid lines, no scene, no people, no watermark, no rarity symbols, no counts/prices. Items fill most of their own cell, retain comfortable blank margins, never overlap captions or adjacent items. Each item has two legible centered text lines below: bold Chinese NAME, then smaller Chinese visual description. Exact text supplied; no English in the image. Colorful realistic-painterly objects, softly shaded, like premium fantasy inventory icons; avoid cartoon outlines, oversimplification, toy plastic. The mineral sheets must use accurate distinctly identifiable ores vs refined ingots; potion variants must differ in bottle silhouette and fittings as well as color. Keep a consistent set-wide presentation.\nHeader text: 药水与炼金. Nine cells in row-major order:\n1. 恢复药水 — 圆腹瓶，红色液体，皮绳瓶颈\n2. 法力药水 — 长颈瓶，蓝色液体，铜环瓶口\n3. 体力药水 — 扁圆瓶，琥珀液体，麻绳提环\n4. 解毒药水 — 细腰瓶，绿色液体，叶形吊牌\n5. 守护药水 — 方肩瓶，乳白液体，铜质护箍\n6. 轻盈药水 — 细长瓶，青色液体，羽形吊牌\n7. 夜视药水 — 小圆瓶，紫色液体，月牙挂饰\n8. 炼金油 — 棕玻璃瓶，金黄油液，木塞\n9. 空药瓶 — 透明玻璃瓶，软木塞，无液体 Match the parchment, Chinese caption size and grid of reference image 3. Reference image 2 is the desired potion glass/leather/material craftsmanship. Nine clearly different bottle designs, intact corks and fittings, liquid menisci visible; no oversized glow or effects. All nine subjects fully within their cells.",
+      "references": [
+        "E:/ShopGame/source_assets/ui/reference/foliage_v001/02_inventory.png",
+        "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/potion_red.png",
+        "E:/ShopGame/source_assets/ui/items/classic_v001/botanicals_food/01_botanicals_food_labeled.png"
+      ]
+    },
+    {
+      "category": "crafting_loot",
+      "title": "制作与战利品",
+      "items": [
+        {
+          "art_id": "wood_bundle",
+          "name_zh": "木材",
+          "visual_description_zh": "三根短木，麻绳绑束",
+          "name_en_candidate": "Wood Bundle",
+          "row": 1,
+          "column": 1
+        },
+        {
+          "art_id": "leather_roll",
+          "name_zh": "皮革",
+          "visual_description_zh": "柔软棕皮，卷起一端",
+          "name_en_candidate": "Leather Roll",
+          "row": 1,
+          "column": 2
+        },
+        {
+          "art_id": "linen_roll",
+          "name_zh": "亚麻布",
+          "visual_description_zh": "浅米布卷，可见织物纹理",
+          "name_en_candidate": "Linen Roll",
+          "row": 1,
+          "column": 3
+        },
+        {
+          "art_id": "rope_coil",
+          "name_zh": "麻绳",
+          "visual_description_zh": "盘绕绳圈，纤维纹理清楚",
+          "name_en_candidate": "Rope Coil",
+          "row": 2,
+          "column": 1
+        },
+        {
+          "art_id": "beast_fang",
+          "name_zh": "兽牙",
+          "visual_description_zh": "弯曲象牙色牙，根部较粗",
+          "name_en_candidate": "Beast Fang",
+          "row": 2,
+          "column": 2
+        },
+        {
+          "art_id": "beast_horn",
+          "name_zh": "兽角",
+          "visual_description_zh": "棕黑弯角，表面有生长纹",
+          "name_en_candidate": "Beast Horn",
+          "row": 2,
+          "column": 3
+        },
+        {
+          "art_id": "feather_bundle",
+          "name_zh": "羽毛",
+          "visual_description_zh": "三根暖白羽毛，形态完整",
+          "name_en_candidate": "Feather Bundle",
+          "row": 3,
+          "column": 1
+        },
+        {
+          "art_id": "slime_essence",
+          "name_zh": "黏液精华",
+          "visual_description_zh": "透明小瓶，内装翠绿凝胶",
+          "name_en_candidate": "Slime Essence",
+          "row": 3,
+          "column": 2
+        },
+        {
+          "art_id": "ancient_fragment",
+          "name_zh": "古代碎片",
+          "visual_description_zh": "石质浮雕碎片，带叶纹与苔痕",
+          "name_en_candidate": "Ancient Fragment",
+          "row": 3,
+          "column": 3
+        }
+      ],
+      "filename": "04_crafting_loot_labeled.png",
+      "image_path": "crafting_loot/04_crafting_loot_labeled.png",
+      "original_path": "C:/Users/陈旭辉/.codex/generated_images/01a0dbbb-e5a8-7b32-a068-ebcadcf5d960/exec-87c00463-985f-4370-a2ad-59ef78b757e6.png",
+      "prompt": "Use case: stylized-concept. Create a finished annotated inventory-item contact sheet for our cozy red-panda medieval fantasy shop/dungeon game. References are STYLE GUIDES ONLY: match their rich hand-painted 3D-like semi-realistic item art, tactile materials, natural proportions, warm upper-left light, crisp silhouette and restrained highlights. Do not copy the UI screenshot layout. Make one square high-resolution image, exactly THREE columns by THREE rows of large, evenly spaced isolated item illustrations, row-major ordering. Subtle pale warm parchment background; minimal fine antique-gold foliage ornament only in the narrow header. No boxed cards, no grid lines, no scene, no people, no watermark, no rarity symbols, no counts/prices. Items fill most of their own cell, retain comfortable blank margins, never overlap captions or adjacent items. Each item has two legible centered text lines below: bold Chinese NAME, then smaller Chinese visual description. Exact text supplied; no English in the image. Colorful realistic-painterly objects, softly shaded, like premium fantasy inventory icons; avoid cartoon outlines, oversimplification, toy plastic. The mineral sheets must use accurate distinctly identifiable ores vs refined ingots; potion variants must differ in bottle silhouette and fittings as well as color. Keep a consistent set-wide presentation.\nHeader text: 制作与战利品. Nine cells in row-major order:\n1. 木材 — 三根短木，麻绳绑束\n2. 皮革 — 柔软棕皮，卷起一端\n3. 亚麻布 — 浅米布卷，可见织物纹理\n4. 麻绳 — 盘绕绳圈，纤维纹理清楚\n5. 兽牙 — 弯曲象牙色牙，根部较粗\n6. 兽角 — 棕黑弯角，表面有生长纹\n7. 羽毛 — 三根暖白羽毛，形态完整\n8. 黏液精华 — 透明小瓶，内装翠绿凝胶\n9. 古代碎片 — 石质浮雕碎片，带叶纹与苔痕 Match the parchment, caption typography and 3x3 grid of reference image 3. These are humble tactile gathering and crafting items, not equipment. Slime essence is a very small simple corked reagent vial with thick green gel, distinct from elaborate potion flasks. Ancient fragment is a modest chipped limestone relief fragment with a botanical leaf carving, no floating magic glow.",
+      "references": [
+        "E:/ShopGame/source_assets/ui/reference/foliage_v001/02_inventory.png",
+        "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/potion_red.png",
+        "E:/ShopGame/source_assets/ui/items/classic_v001/botanicals_food/01_botanicals_food_labeled.png"
+      ]
+    }
+  ]
+}

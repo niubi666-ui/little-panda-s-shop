@@ -1,0 +1,109 @@
+{
+  "status": "passed",
+  "date": "2026-09-26",
+  "generated_with": "built-in image_gen",
+  "pixel_postprocessing": "none; byte-for-byte PNG copies",
+  "known_limitations": [
+    "Concept thumbnails, not renders of the current in-game furniture models.",
+    "Built-in output dimensions are retained; no pixel resampling or alpha editing was done.",
+    "Source does contain tiny semi-transparent anti-aliased edge pixels; complete object bounds use alpha >= 128 for measurable safe padding."
+  ],
+  "assets": [
+    {
+      "name": "chair_oak",
+      "source_export": "E:\\ShopGame\\source_assets\\ui\\decoration\\v001\\exports\\thumbnails\\chair_oak.png",
+      "runtime_export": "E:\\ShopGame\\game\\assets\\ui\\decoration\\v001\\thumbnails\\chair_oak.png",
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "fully_transparent_fraction": 0.7798375342444847,
+      "visible_bbox_alpha_ge_128": [
+        301,
+        201,
+        939,
+        1076
+      ],
+      "visible_margins_fraction_ltrb": [
+        0.24003189792663476,
+        0.16028708133971292,
+        0.2511961722488038,
+        0.1419457735247209
+      ],
+      "min_visible_margin_ge_10_percent": true,
+      "corners_transparent": true,
+      "source_runtime_byte_identical": true,
+      "sha256": "ed668cf515dc55765f74c5e4ed2b6fead8d6c50a8a8c868716079da1734cb161",
+      "visual_review": "Complete isolated object; warm wood/brass; consistent high three-quarter camera; no text/card/floor/ground shadow; framing reviewed visually."
+    },
+    {
+      "name": "storage_chest",
+      "source_export": "E:\\ShopGame\\source_assets\\ui\\decoration\\v001\\exports\\thumbnails\\storage_chest.png",
+      "runtime_export": "E:\\ShopGame\\game\\assets\\ui\\decoration\\v001\\thumbnails\\storage_chest.png",
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "fully_transparent_fraction": 0.7258266370580649,
+      "visible_bbox_alpha_ge_128": [
+        224,
+        297,
+        1050,
+        1012
+      ],
+      "visible_margins_fraction_ltrb": [
+        0.17862838915470494,
+        0.23684210526315788,
+        0.16267942583732056,
+        0.19298245614035087
+      ],
+      "min_visible_margin_ge_10_percent": true,
+      "corners_transparent": true,
+      "source_runtime_byte_identical": true,
+      "sha256": "52554690b528e83cbe7d69b91bdb9526644dc1e03af2634c964065ded3d01229",
+      "visual_review": "Complete isolated object; warm wood/brass; consistent high three-quarter camera; no text/card/floor/ground shadow; framing reviewed visually."
+    },
+    {
+      "name": "bookshelf_potions",
+      "source_export": "E:\\ShopGame\\source_assets\\ui\\decoration\\v001\\exports\\thumbnails\\bookshelf_potions.png",
+      "runtime_export": "E:\\ShopGame\\game\\assets\\ui\\decoration\\v001\\thumbnails\\bookshelf_potions.png",
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "fully_transparent_fraction": 0.6898161926492322,
+      "visible_bbox_alpha_ge_128": [
+        299,
+        224,
+        992,
+        1065
+      ],
+      "visible_margins_fraction_ltrb": [
+        0.23843700159489634,
+        0.17862838915470494,
+        0.20893141945773525,
+        0.1507177033492823
+      ],
+      "min_visible_margin_ge_10_percent": true,
+      "corners_transparent": true,
+      "source_runtime_byte_identical": true,
+      "sha256": "cda1f79aeaf447405797d16b2932b31b63dab25edd46d470723103ee6aab4bc2",
+      "visual_review": "Complete isolated object; warm wood/brass; consistent high three-quarter camera; no text/card/floor/ground shadow; framing reviewed visually."
+    }
+  ]
+}

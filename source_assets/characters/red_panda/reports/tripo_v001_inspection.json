@@ -1,0 +1,89 @@
+{
+  "source": "little_pandas/tripo_convert_89e57958-757b-4111-92d3-404790669cb8.fbx",
+  "blender_version": "5.2.1 LTS",
+  "bones": 41,
+  "bone_names": [
+    "Root",
+    "Hip",
+    "Pelvis",
+    "L_Thigh",
+    "L_Calf",
+    "L_Foot",
+    "L_ToeBase",
+    "L_CalfTwist01",
+    "L_CalfTwist02",
+    "L_ThighTwist01",
+    "L_ThighTwist02",
+    "R_Thigh",
+    "R_ThighTwist01",
+    "R_ThighTwist02",
+    "R_Calf",
+    "R_Foot",
+    "R_ToeBase",
+    "R_CalfTwist01",
+    "R_CalfTwist02",
+    "Waist",
+    "Spine01",
+    "Spine02",
+    "NeckTwist01",
+    "NeckTwist02",
+    "Head",
+    "L_Clavicle",
+    "L_Upperarm",
+    "L_Forearm",
+    "L_ForearmTwist01",
+    "L_ForearmTwist02",
+    "L_Hand",
+    "L_UpperarmTwist01",
+    "L_UpperarmTwist02",
+    "R_Clavicle",
+    "R_Upperarm",
+    "R_UpperarmTwist01",
+    "R_UpperarmTwist02",
+    "R_Forearm",
+    "R_ForearmTwist01",
+    "R_ForearmTwist02",
+    "R_Hand"
+  ],
+  "vertices": 5074,
+  "triangles": 9564,
+  "vertex_groups": 30,
+  "unweighted_vertices": 0,
+  "weight_sum_min": 0.9999999552965164,
+  "weight_sum_max": 1.0000000447034836,
+  "action": "Armature|afraid.001",
+  "frames": [
+    1.0,
+    63.0
+  ],
+  "fps": 24,
+  "fps_base": 1.0,
+  "sampled_deformation": {
+    "1": {
+      "max_vertex_displacement": 0.0,
+      "moved_vertices": 0
+    },
+    "16": {
+      "max_vertex_displacement": 0.8075921228894519,
+      "moved_vertices": 5074
+    },
+    "32": {
+      "max_vertex_displacement": 0.8517010405474597,
+      "moved_vertices": 5074
+    },
+    "48": {
+      "max_vertex_displacement": 0.268276766107488,
+      "moved_vertices": 5074
+    },
+    "63": {
+      "max_vertex_displacement": 0.008213008136603493,
+      "moved_vertices": 5074
+    }
+  },
+  "object_dimensions": [
+    0.76791912317276,
+    0.6859012842178345,
+    1.0124272108078003
+  ],
+  "tail_named_bones": []
+}

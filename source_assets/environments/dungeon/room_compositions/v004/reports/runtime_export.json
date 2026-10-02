@@ -1,0 +1,286 @@
+{
+  "source": "E:\\ShopGame\\source_assets\\environments\\dungeon\\room_compositions\\v004\\blender\\forest_compositions_review_v004.blend",
+  "source_sha256": "e4df8697f3072db2fc0fc56748ea9347d7cc919d0525532b90f3d6b26fd4aff6",
+  "compositions": [
+    {
+      "id": "long_wall",
+      "members": [
+        {
+          "id": "low_ruin_dressed_ruin_0",
+          "prop_id": "long_wall_low_ruin_dressed_ruin_0",
+          "position": [
+            -0.8400000333786011,
+            0.0,
+            -0.0
+          ],
+          "bounds": [
+            1.6949999332427979,
+            0.7987921237945557,
+            0.46000000834465027
+          ],
+          "interactive": false,
+          "source": "71d0d5a4-fa8e-4375-bb31-dc33549b281e"
+        },
+        {
+          "id": "low_ruin_dressed_ruin_1",
+          "prop_id": "long_wall_low_ruin_dressed_ruin_1",
+          "position": [
+            0.839999794960022,
+            0.0,
+            -0.0
+          ],
+          "bounds": [
+            1.6949999332427979,
+            0.8133938908576965,
+            0.46000000834465027
+          ],
+          "interactive": false,
+          "source": "71d0d5a4-fa8e-4375-bb31-dc33549b281e"
+        },
+        {
+          "id": "west_end_weathered_endpost",
+          "prop_id": "long_wall_west_end_weathered_endpost",
+          "position": [
+            -1.909999966621399,
+            0.0,
+            -0.0
+          ],
+          "bounds": [
+            0.5104000568389893,
+            1.100000023841858,
+            0.5103999972343445
+          ],
+          "interactive": false,
+          "source": "6d00c541-9c1e-42f5-bdd1-3475b0d613d0"
+        },
+        {
+          "id": "east_end_weathered_endpost",
+          "prop_id": "long_wall_east_end_weathered_endpost",
+          "position": [
+            1.909999966621399,
+            0.0,
+            -0.0
+          ],
+          "bounds": [
+            0.5336000919342041,
+            1.1399999856948853,
+            0.5335999727249146
+          ],
+          "interactive": false,
+          "source": "6d00c541-9c1e-42f5-bdd1-3475b0d613d0"
+        },
+        {
+          "id": "barrel_foreground",
+          "prop_id": "long_wall_barrel_foreground",
+          "position": [
+            -1.6699999570846558,
+            0.012000000104308128,
+            0.5899999737739563
+          ],
+          "bounds": [
+            0.5060567855834961,
+            0.6300000790506601,
+            0.5060567557811737
+          ],
+          "interactive": true,
+          "source": "木桶3d模型"
+        },
+        {
+          "id": "barrel_behind",
+          "prop_id": "long_wall_barrel_behind",
+          "position": [
+            1.4299999475479126,
+            0.012000000104308128,
+            -0.49000000953674316
+          ],
+          "bounds": [
+            0.5775806903839111,
+            0.8200000170618296,
+            0.577580600976944
+          ],
+          "interactive": true,
+          "source": "木桶3d模型"
+        }
+      ],
+      "static_triangles": 465506
+    },
+    {
+      "id": "treasure_wall",
+      "members": [
+        {
+          "id": "broken_back_dressed_ruin_0",
+          "prop_id": "treasure_wall_broken_back_dressed_ruin_0",
+          "position": [
+            -0.17000004649162292,
+            0.0,
+            -0.2799999713897705
+          ],
+          "bounds": [
+            1.8150001168251038,
+            0.9550809860229492,
+            0.42000018805265427
+          ],
+          "interactive": false,
+          "source": "ba956f36-4051-4087-a2ba-15b622e9bb75"
+        },
+        {
+          "id": "treasure_chest",
+          "prop_id": "chest1",
+          "position": [
+            0.2800000011920929,
+            0.012000000104308128,
+            0.36000001430511475
+          ],
+          "bounds": [
+            0.9178922772407532,
+            0.6300000194460154,
+            0.6367215178906918
+          ],
+          "interactive": true,
+          "source": "chest1"
+        }
+      ],
+      "static_triangles": 272372
+    },
+    {
+      "id": "column_crates",
+      "members": [
+        {
+          "id": "column_plinth_lower",
+          "prop_id": "column_crates_column_plinth_lower",
+          "position": [
+            -0.2379884123802185,
+            -0.017293937504291534,
+            -0.21497850120067596
+          ],
+          "bounds": [
+            0.8352823108434677,
+            0.2720038667321205,
+            0.7871767580509186
+          ],
+          "interactive": false,
+          "source": ""
+        },
+        {
+          "id": "fluted_broken_column",
+          "prop_id": "column_crates_fluted_broken_column",
+          "position": [
+            -0.23999999463558197,
+            0.5899999737739563,
+            -0.2199999988079071
+          ],
+          "bounds": [
+            0.5972759984433651,
+            1.3099998831748962,
+            0.5877882987260818
+          ],
+          "interactive": false,
+          "source": "65fbc458-0833-44c7-b125-2885ac8efc5e"
+        },
+        {
+          "id": "crate_front",
+          "prop_id": "column_crates_crate_front",
+          "position": [
+            0.5600000023841858,
+            0.012000000104308128,
+            0.1599999964237213
+          ],
+          "bounds": [
+            0.6286299973726273,
+            0.6600000504404306,
+            0.5892343670129776
+          ],
+          "interactive": true,
+          "source": "板条箱"
+        },
+        {
+          "id": "crate_back",
+          "prop_id": "column_crates_crate_back",
+          "position": [
+            0.7100000381469727,
+            0.012000000104308128,
+            -0.5699999928474426
+          ],
+          "bounds": [
+            0.8339922428131104,
+            0.6200000289827585,
+            0.5903197526931763
+          ],
+          "interactive": true,
+          "source": "板条箱"
+        },
+        {
+          "id": "ancient_garden_urn",
+          "prop_id": "column_crates_ancient_garden_urn",
+          "position": [
+            -0.8700000047683716,
+            0.012000000104308128,
+            0.3199999928474426
+          ],
+          "bounds": [
+            0.49000000953674316,
+            0.4900000337511301,
+            0.49000000953674316
+          ],
+          "interactive": false,
+          "source": ""
+        }
+      ],
+      "static_triangles": 276944
+    },
+    {
+      "id": "rock_corner",
+      "members": [
+        {
+          "id": "corner_back_dressed_ruin_0",
+          "prop_id": "rock_corner_corner_back_dressed_ruin_0",
+          "position": [
+            -0.05000007152557373,
+            0.0,
+            -0.5799999833106995
+          ],
+          "bounds": [
+            2.114999771118164,
+            0.9445052742958069,
+            0.3999999761581421
+          ],
+          "interactive": false,
+          "source": "71d0d5a4-fa8e-4375-bb31-dc33549b281e"
+        },
+        {
+          "id": "corner_return_dressed_ruin_0",
+          "prop_id": "rock_corner_corner_return_dressed_ruin_0",
+          "position": [
+            1.0,
+            0.0,
+            0.21000002324581146
+          ],
+          "bounds": [
+            0.4200000762939453,
+            0.7443936467170715,
+            1.2750000059604645
+          ],
+          "interactive": false,
+          "source": "71d0d5a4-fa8e-4375-bb31-dc33549b281e"
+        },
+        {
+          "id": "mossy_boulder",
+          "prop_id": "rock_corner_mossy_boulder",
+          "position": [
+            -0.0898732990026474,
+            -0.019999995827674866,
+            0.08536431193351746
+          ],
+          "bounds": [
+            1.001234084367752,
+            0.7290378957986832,
+            0.7802689671516418
+          ],
+          "interactive": false,
+          "source": ""
+        }
+      ],
+      "static_triangles": 254526
+    }
+  ]
+}

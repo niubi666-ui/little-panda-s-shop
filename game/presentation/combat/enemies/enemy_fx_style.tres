@@ -1,0 +1,15 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/combat/enemies/enemy_fx_style.gd" id="script"]
+[resource]
+script = ExtResource("script")
+line_color = Color(1, 0.12, 0.1, 0.42)
+charge_color = Color(1, 0.12, 0.05, 0.35)
+aura_color = Color(1, 0.08, 0.06, 0.5)
+projectile_color = Color(1, 0.035, 0.02, 1)
+line_width = 0.075
+ground_height = 0.075
+aura_width = 0.06
+recipient_radius_scale = 1.4
+white_emission = 2.0
+projectile_emission = 2.5
+spear_pullback_m = 0.45

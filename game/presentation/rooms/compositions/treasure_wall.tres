@@ -1,0 +1,21 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://rogue/rooms/composition.gd" id="preset"]
+[ext_resource type="Script" path="res://rogue/rooms/composition_member.gd" id="member"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v004/treasure_wall.glb" id="art"]
+[sub_resource type="Resource" id="m0"]
+script = ExtResource("member")
+id = "broken_back_dressed_ruin_0"
+prop_id = "treasure_wall_broken_back_dressed_ruin_0"
+position = Vector3(-0.17000005, 0.00000000, -0.27999997)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m1"]
+script = ExtResource("member")
+id = "treasure_chest"
+prop_id = "chest1"
+position = Vector3(0.28000000, 0.01200000, 0.36000001)
+yaw_radians = 0.0
+[resource]
+script = ExtResource("preset")
+id = "treasure_wall"
+members = Array[Resource]([SubResource("m0"), SubResource("m1")])
+decoration = ExtResource("art")

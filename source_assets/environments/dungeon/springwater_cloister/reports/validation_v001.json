@@ -1,0 +1,27 @@
+{
+  "scene": "springwater_cloister_art_v001",
+  "file": "E:\\ShopGame\\source_assets\\environments\\dungeon\\springwater_cloister\\blender\\springwater_cloister_art_v001.blend",
+  "file_reopened_successfully": true,
+  "failures": [],
+  "invalid_geometry": [],
+  "missing_images": [],
+  "packed_images": [
+    "leafy_grass_diff_2k.jpg",
+    "leafy_grass_nor_gl_2k.jpg",
+    "leafy_grass_rough_2k.jpg",
+    "worn_rock_natural_01_diff_2k.jpg",
+    "worn_rock_natural_01_nor_gl_2k.jpg",
+    "worn_rock_natural_01_rough_2k.jpg"
+  ],
+  "linked_libraries": [],
+  "object_count": 3381,
+  "evaluated_triangles": 1780760,
+  "replacement_anchors": [
+    "REPLACE_ANCHOR_lion_head_fountain"
+  ],
+  "runtime_godot_validated": false,
+  "blender_version": "5.2.1 LTS",
+  "color_transform": "AgX",
+  "color_look": "AgX - Medium High Contrast",
+  "exposure": 0.44999998807907104
+}

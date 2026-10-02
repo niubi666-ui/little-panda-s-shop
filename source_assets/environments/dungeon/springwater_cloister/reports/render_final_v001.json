@@ -1,0 +1,15 @@
+{
+  "room_id": "springwater_cloister",
+  "mode": "final",
+  "engine": "CYCLES",
+  "device": "GPU",
+  "samples": 112,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "seconds": 61.16,
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\springwater_cloister\\previews\\springwater_cloister_v001.png",
+  "output_exists": true,
+  "godot_runtime": false
+}

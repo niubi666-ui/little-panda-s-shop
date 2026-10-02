@@ -1,0 +1,29 @@
+{
+  "blend": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\blender\\trail_study_amber_v001.blend",
+  "blender": "5.2.1 LTS",
+  "frames": 150,
+  "fps": 30,
+  "asset_material": "Study_Amber_Flow__Trail_Blade_14",
+  "objects": 23,
+  "bake_result": [
+    "FINISHED"
+  ],
+  "evaluated": {
+    "FX_01_Flowing_Blade": {
+      "vertices": 4797,
+      "bounds": [
+        4.223031997680664,
+        4.676416397094727,
+        3.4787933826446533
+      ]
+    },
+    "FX_02_Scattered_Sparks": {
+      "vertices": 0,
+      "bounds": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  }
+}

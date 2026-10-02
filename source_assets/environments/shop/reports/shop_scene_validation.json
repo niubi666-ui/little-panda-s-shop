@@ -1,0 +1,162 @@
+{
+  "scene": "Shop_Interior_Art_v004",
+  "objects": 774,
+  "evaluated_triangles_including_presentation_helpers": 243646,
+  "armatures": 0,
+  "source_prop_instances": 35,
+  "source_types_used": 16,
+  "texture_images": [
+    {
+      "name": "08f4276e-6e26-4b23-ba86-3af7e5b37fd2_basecolor.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "095b3fa6-26fd-46aa-9aa1-f14fa2d15988_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "0a45271f-5fc1-4d9a-903e-ea9a59eb681d_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "12fc4e33-af7b-4372-b8a0-55b82828e33b_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "1a9b1a13-95be-4766-8e45-e86c42d76d8c_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "1f236c82-bba7-44f9-889e-947622ac1e24_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "3c47e0c2-ed93-4a68-bdd4-fd3bd187bd9e_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "404fbd0c-d69a-4303-a16f-b7a70f7bab11_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "4c4496e7-1576-4f1b-adc6-474eeab5de25_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "7886db3b-2374-46b0-8af0-c77eef33b7ca_basecolor.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "8f16e67f-cf85-446c-8df1-f26e3b042db5_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "978a9733-c384-4de3-923c-53a3306d923b_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "9d933f5f-e1fe-4b7e-ab7c-c7bf7811be9d_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "df96a013-3495-45de-8d0b-7b97faba1037_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "e4baed82-3f61-4a1d-bae6-873da8deafaf_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "tripo_image_9316d4ae_0",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "tripo_image_9e2b081a_0",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "tripo_image_a9f7629d_0",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    }
+  ],
+  "missing_unpacked_images": [],
+  "renderer": "Cycles / OptiX",
+  "resolution": [
+    1920,
+    1200
+  ],
+  "samples": 128,
+  "godot_validated": false
+}

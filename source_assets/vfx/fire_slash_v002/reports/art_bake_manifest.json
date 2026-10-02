@@ -1,0 +1,82 @@
+{
+  "resolution": [
+    2048,
+    512
+  ],
+  "uv": "U0=old tail U1=current sword; V0=outer sword tip V1=root",
+  "encoding": "Scene linear HDR EXR, linear data mask PNG",
+  "frames": [
+    {
+      "file": "ribbon_body_0_emission.exr",
+      "sha256": "d81cda363a65efe607f165c9c93e8f68e70fdd83f392f5151a4203e39cb59f2a",
+      "rgb_max": [
+        6.399943828582764,
+        5.9519476890563965,
+        3.0719730854034424
+      ]
+    },
+    {
+      "file": "ribbon_body_0_mask.png",
+      "sha256": "27865c4fc8d645dbb13178a21b2f6fa5d6bdf413308e2857b7568e0148d69f13",
+      "rgb_max": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "file": "ribbon_body_1_emission.exr",
+      "sha256": "6cc78557d4d2fd4480750b9bfe7b18c3b3dcb26ad94f7ec8db9bc4dc30b20ef6",
+      "rgb_max": [
+        6.399981498718262,
+        5.9519829750061035,
+        3.071990966796875
+      ]
+    },
+    {
+      "file": "ribbon_body_1_mask.png",
+      "sha256": "abac28a0cabcb5bd7ff0babfb08f90d641336ed009fdc8a1fabfa727cfc75e26",
+      "rgb_max": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "file": "ribbon_body_2_emission.exr",
+      "sha256": "6b047e7c82df874bed87ffe1023d44a819ebc2408d4f042263e860cd9f7c5e2c",
+      "rgb_max": [
+        6.399586200714111,
+        5.951615333557129,
+        3.0718014240264893
+      ]
+    },
+    {
+      "file": "ribbon_body_2_mask.png",
+      "sha256": "c7e89b93f4380125a70912c61a527390076f2f4870f5030cd04d3c573df3fe67",
+      "rgb_max": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "file": "ribbon_body_3_emission.exr",
+      "sha256": "92b3f449e8ff2de6ff885fbc77cd06e3ed9db8c85261a9d8d2cc5ec09e234676",
+      "rgb_max": [
+        6.399918079376221,
+        5.951923847198486,
+        3.071960687637329
+      ]
+    },
+    {
+      "file": "ribbon_body_3_mask.png",
+      "sha256": "7227abc36ef8c1aaedea7ec1f382fae1a7d8aa8cb682bb91a4cd3c3106423030",
+      "rgb_max": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ]
+}

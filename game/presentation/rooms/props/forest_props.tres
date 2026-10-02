@@ -1,0 +1,97 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/rooms/props/prop_set.gd" id="set"]
+[ext_resource type="Script" path="res://presentation/rooms/props/prop_visual.gd" id="visual"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/compositions/physics_only.tscn" id="physics"]
+[ext_resource type="Resource" path="res://presentation/rooms/compositions/long_wall.tres" id="long_wall"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v004/long_wall_barrel_foreground.glb" id="long_wall_barrel_foreground"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v004/long_wall_barrel_behind.glb" id="long_wall_barrel_behind"]
+[ext_resource type="Resource" path="res://presentation/rooms/compositions/treasure_wall.tres" id="treasure_wall"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v004/chest1.glb" id="chest1"]
+[ext_resource type="Resource" path="res://presentation/rooms/compositions/column_crates.tres" id="column_crates"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v004/column_crates_crate_front.glb" id="column_crates_crate_front"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v004/column_crates_crate_back.glb" id="column_crates_crate_back"]
+[ext_resource type="Resource" path="res://presentation/rooms/compositions/rock_corner.tres" id="rock_corner"]
+[sub_resource type="Resource" id="long_wall_low_ruin_dressed_ruin_0"]
+script = ExtResource("visual")
+id = "long_wall_low_ruin_dressed_ruin_0"
+scene = ExtResource("physics")
+bounds = Vector3(1.69499993, 0.79879212, 0.46000001)
+[sub_resource type="Resource" id="long_wall_low_ruin_dressed_ruin_1"]
+script = ExtResource("visual")
+id = "long_wall_low_ruin_dressed_ruin_1"
+scene = ExtResource("physics")
+bounds = Vector3(1.69499993, 0.81339389, 0.46000001)
+[sub_resource type="Resource" id="long_wall_west_end_weathered_endpost"]
+script = ExtResource("visual")
+id = "long_wall_west_end_weathered_endpost"
+scene = ExtResource("physics")
+bounds = Vector3(0.51040006, 1.10000002, 0.51040000)
+[sub_resource type="Resource" id="long_wall_east_end_weathered_endpost"]
+script = ExtResource("visual")
+id = "long_wall_east_end_weathered_endpost"
+scene = ExtResource("physics")
+bounds = Vector3(0.53360009, 1.13999999, 0.53359997)
+[sub_resource type="Resource" id="long_wall_barrel_foreground"]
+script = ExtResource("visual")
+id = "long_wall_barrel_foreground"
+scene = ExtResource("long_wall_barrel_foreground")
+bounds = Vector3(0.50605679, 0.63000008, 0.50605676)
+[sub_resource type="Resource" id="long_wall_barrel_behind"]
+script = ExtResource("visual")
+id = "long_wall_barrel_behind"
+scene = ExtResource("long_wall_barrel_behind")
+bounds = Vector3(0.57758069, 0.82000002, 0.57758060)
+[sub_resource type="Resource" id="treasure_wall_broken_back_dressed_ruin_0"]
+script = ExtResource("visual")
+id = "treasure_wall_broken_back_dressed_ruin_0"
+scene = ExtResource("physics")
+bounds = Vector3(1.81500012, 0.95508099, 0.42000019)
+[sub_resource type="Resource" id="chest1"]
+script = ExtResource("visual")
+id = "chest1"
+scene = ExtResource("chest1")
+bounds = Vector3(0.91789228, 0.63000002, 0.63672152)
+[sub_resource type="Resource" id="column_crates_column_plinth_lower"]
+script = ExtResource("visual")
+id = "column_crates_column_plinth_lower"
+scene = ExtResource("physics")
+bounds = Vector3(0.83528231, 0.27200387, 0.78717676)
+[sub_resource type="Resource" id="column_crates_fluted_broken_column"]
+script = ExtResource("visual")
+id = "column_crates_fluted_broken_column"
+scene = ExtResource("physics")
+bounds = Vector3(0.59727600, 1.30999988, 0.58778830)
+[sub_resource type="Resource" id="column_crates_crate_front"]
+script = ExtResource("visual")
+id = "column_crates_crate_front"
+scene = ExtResource("column_crates_crate_front")
+bounds = Vector3(0.62863000, 0.66000005, 0.58923437)
+[sub_resource type="Resource" id="column_crates_crate_back"]
+script = ExtResource("visual")
+id = "column_crates_crate_back"
+scene = ExtResource("column_crates_crate_back")
+bounds = Vector3(0.83399224, 0.62000003, 0.59031975)
+[sub_resource type="Resource" id="column_crates_ancient_garden_urn"]
+script = ExtResource("visual")
+id = "column_crates_ancient_garden_urn"
+scene = ExtResource("physics")
+bounds = Vector3(0.49000001, 0.49000003, 0.49000001)
+[sub_resource type="Resource" id="rock_corner_corner_back_dressed_ruin_0"]
+script = ExtResource("visual")
+id = "rock_corner_corner_back_dressed_ruin_0"
+scene = ExtResource("physics")
+bounds = Vector3(2.11499977, 0.94450527, 0.39999998)
+[sub_resource type="Resource" id="rock_corner_corner_return_dressed_ruin_0"]
+script = ExtResource("visual")
+id = "rock_corner_corner_return_dressed_ruin_0"
+scene = ExtResource("physics")
+bounds = Vector3(0.42000008, 0.74439365, 1.27500001)
+[sub_resource type="Resource" id="rock_corner_mossy_boulder"]
+script = ExtResource("visual")
+id = "rock_corner_mossy_boulder"
+scene = ExtResource("physics")
+bounds = Vector3(1.00123408, 0.72903790, 0.78026897)
+[resource]
+script = ExtResource("set")
+entries = Array[Resource]([SubResource("long_wall_low_ruin_dressed_ruin_0"), SubResource("long_wall_low_ruin_dressed_ruin_1"), SubResource("long_wall_west_end_weathered_endpost"), SubResource("long_wall_east_end_weathered_endpost"), SubResource("long_wall_barrel_foreground"), SubResource("long_wall_barrel_behind"), SubResource("treasure_wall_broken_back_dressed_ruin_0"), SubResource("chest1"), SubResource("column_crates_column_plinth_lower"), SubResource("column_crates_fluted_broken_column"), SubResource("column_crates_crate_front"), SubResource("column_crates_crate_back"), SubResource("column_crates_ancient_garden_urn"), SubResource("rock_corner_corner_back_dressed_ruin_0"), SubResource("rock_corner_corner_return_dressed_ruin_0"), SubResource("rock_corner_mossy_boulder")])
+compositions = Array[Resource]([ExtResource("long_wall"), ExtResource("treasure_wall"), ExtResource("column_crates"), ExtResource("rock_corner")])

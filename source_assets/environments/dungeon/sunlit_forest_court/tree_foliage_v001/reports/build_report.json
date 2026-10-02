@@ -1,0 +1,11 @@
+{
+  "source_sha256": "acd58fda48d91deab79c26526fc13b336a73e67d2bf66d16a14d88e3e7bb0584",
+  "trunk_triangles": 19032,
+  "trunk_height_m": 10.0,
+  "leaf_modules_unique": 4,
+  "leaf_module_instances": 204,
+  "triangles_per_module": 60,
+  "foliage_triangles": 12240,
+  "texture_size": 2048,
+  "note": "Blender prototype. No Godot import or runtime performance validation. No high-to-low trunk bake performed."
+}

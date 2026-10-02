@@ -1,0 +1,12 @@
+{
+  "mode": "hero",
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\previews\\sanctuary_hero.png",
+  "resolution": [
+    2560,
+    1440
+  ],
+  "samples": 160,
+  "seconds": 247.41313076019287,
+  "engine": "CYCLES",
+  "device": "GPU"
+}

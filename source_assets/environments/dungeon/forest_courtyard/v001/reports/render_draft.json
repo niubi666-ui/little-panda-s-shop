@@ -1,0 +1,12 @@
+{
+  "mode": "draft",
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\previews\\forest_courtyard_draft.png",
+  "resolution": [
+    1280,
+    720
+  ],
+  "samples": 40,
+  "seconds": 28.572577953338623,
+  "engine": "CYCLES",
+  "device": "GPU"
+}

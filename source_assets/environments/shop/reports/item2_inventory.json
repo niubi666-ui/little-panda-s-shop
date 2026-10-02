@@ -1,0 +1,74 @@
+[
+  {
+    "index": 0,
+    "name": "ab3fc008-5db2-47ea-ac80-156062d75d5e",
+    "verts": 9486,
+    "triangles": 19132
+  },
+  {
+    "index": 1,
+    "name": "11314429-bcda-4529-8722-c2fb817445f6",
+    "verts": 2454,
+    "triangles": 4222
+  },
+  {
+    "index": 2,
+    "name": "3249f317-fa36-45c4-b7dc-de8678ddf12a",
+    "verts": 2583,
+    "triangles": 4637
+  },
+  {
+    "index": 3,
+    "name": "ee374f2e-d3dd-4709-9f93-e443b1a4ec30",
+    "verts": 2556,
+    "triangles": 4860
+  },
+  {
+    "index": 4,
+    "name": "7b0b1420-d4b1-4da3-8c7b-ad4084b6ee0d",
+    "verts": 2537,
+    "triangles": 4517
+  },
+  {
+    "index": 5,
+    "name": "11c98630-fd44-4ae2-a2c5-e10ebf374f14",
+    "verts": 2527,
+    "triangles": 5027
+  },
+  {
+    "index": 6,
+    "name": "86149529-7d4c-4b2c-93be-7df83e23d35d",
+    "verts": 2502,
+    "triangles": 4424
+  },
+  {
+    "index": 7,
+    "name": "5baf7703-761b-4afe-9246-00aa271d8d9c",
+    "verts": 2518,
+    "triangles": 4938
+  },
+  {
+    "index": 8,
+    "name": "c06bb2b5-7acc-4da0-9fe0-b3637cf563c2",
+    "verts": 2509,
+    "triangles": 4746
+  },
+  {
+    "index": 9,
+    "name": "47d8e2a6-0605-4c6a-826e-c5b698a0c122",
+    "verts": 2467,
+    "triangles": 4528
+  },
+  {
+    "index": 10,
+    "name": "47d8e2a6-0605-4c6a-826e-c5b698a0c122.001",
+    "verts": 2467,
+    "triangles": 4528
+  },
+  {
+    "index": 11,
+    "name": "0edfae4f-3edb-47e7-8bd5-056d22a5e3a9",
+    "verts": 2486,
+    "triangles": 5198
+  }
+]

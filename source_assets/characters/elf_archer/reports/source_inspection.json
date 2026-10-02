@@ -1,0 +1,185 @@
+{
+  "version": "5.2.1 LTS",
+  "objects": [
+    {
+      "name": "25a7ba75-4c59-4c2e-a7d3-b97c522f7ce6",
+      "type": "MESH",
+      "location": [
+        -0.00011274963617324829,
+        0.0003836527466773987,
+        0.0
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.2842351794242859,
+        0.49413949251174927,
+        0.9775997400283813
+      ],
+      "parent": null,
+      "hidden": false,
+      "vertices": 31459,
+      "polygons": 31436,
+      "bounds": [
+        [
+          -0.1422303318977356,
+          -0.24668610095977783,
+          -1.0799761973601107e-08
+        ],
+        [
+          0.1420048475265503,
+          0.24745343625545502,
+          0.9775997400283813
+        ]
+      ],
+      "materials": [
+        "tripo_mat_49b04559"
+      ],
+      "groups": [],
+      "modifiers": []
+    },
+    {
+      "name": "Camera",
+      "type": "CAMERA",
+      "location": [
+        7.358891487121582,
+        -6.925790786743164,
+        4.958309173583984
+      ],
+      "rotation": [
+        1.1093189716339111,
+        0.0,
+        0.8149281740188599
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "parent": null,
+      "hidden": false
+    },
+    {
+      "name": "elf character 3d model_Clone1",
+      "type": "MESH",
+      "location": [
+        0.003794044256210327,
+        1.2551617622375488,
+        0.0
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.6236959099769592,
+        0.8829374313354492,
+        0.9777216911315918
+      ],
+      "parent": null,
+      "hidden": false,
+      "vertices": 53656,
+      "polygons": 51894,
+      "bounds": [
+        [
+          -0.3080539107322693,
+          0.8136930465698242,
+          -1.9297210940294462e-08
+        ],
+        [
+          0.31564199924468994,
+          1.6966304779052734,
+          0.9777216911315918
+        ]
+      ],
+      "materials": [
+        "tripo_mat_68391bc6"
+      ],
+      "groups": [],
+      "modifiers": []
+    },
+    {
+      "name": "Light",
+      "type": "LIGHT",
+      "location": [
+        4.076245307922363,
+        1.0054539442062378,
+        5.903861999511719
+      ],
+      "rotation": [
+        0.6503279805183411,
+        0.055217113345861435,
+        1.8663908243179321
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "parent": null,
+      "hidden": false
+    }
+  ],
+  "images": [
+    {
+      "name": "Render Result",
+      "path": "",
+      "packed": false,
+      "size": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "tripo_image_49b04559_0",
+      "path": "D:\\Temp\\blender_a06376\\tripo_convert_49b04559-2a86-4c54-833f-e7b42c536125.fbm\\tripo_node_85c8e273-4795-406a-83f8-f8b8f4ea9871_BaseColor.jpg",
+      "packed": true,
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "tripo_image_68391bc6_0",
+      "path": "D:\\Temp\\blender_a06376\\tripo_convert_68391bc6-e7cf-4930-8d7f-c5919124ca2e.fbm\\tripo_node_d4922824-c9af-4069-90a7-857d3669a993_BaseColor.jpg",
+      "packed": true,
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "Viewer Node",
+      "path": "",
+      "packed": false,
+      "size": [
+        256,
+        256
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "crown_triangles": 2928,
+  "wind_attributes_present": true,
+  "all_material_images_packed": true,
+  "visible_high_poly_crown_instances": 0,
+  "images": [
+    [
+      "fe92c97c-bf7b-4e28-bf4f-11c46e6a9862_basecolor.004",
+      [
+        4096,
+        4096
+      ]
+    ],
+    [
+      "cluster_albedo.png",
+      [
+        3072,
+        2048
+      ]
+    ],
+    [
+      "cluster_normal.png",
+      [
+        3072,
+        2048
+      ]
+    ],
+    [
+      "oak_single_leaves_rgba.png.001",
+      [
+        1254,
+        1254
+      ]
+    ]
+  ]
+}

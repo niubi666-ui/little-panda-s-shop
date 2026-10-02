@@ -1,0 +1,49 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://presentation/rooms/props/barrel.tscn" id="barrel"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/props/crate.tscn" id="crate"]
+[ext_resource type="ArrayMesh" path="res://presentation/rooms/composition_review/assets/fern.res" id="fern"]
+[ext_resource type="ArrayMesh" path="res://presentation/rooms/composition_review/assets/flowers.res" id="flowers"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/props/forest_bag.tscn" id="forest_bag"]
+[ext_resource type="ArrayMesh" path="res://presentation/rooms/composition_review/assets/pillar.res" id="pillar"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/props/stone_wall.tscn" id="stone_wall"]
+[node name="broken_wall_island" type="Node3D"]
+[node name="stone_wall_0" parent="." instance=ExtResource("stone_wall")]
+position = Vector3(-0.85, 0.0, 0.0)
+rotation = Vector3(0.0, 0.0, 0.0)
+scale = Vector3(1.0, 1.0, 1.0)
+[node name="stone_wall_1" parent="." instance=ExtResource("stone_wall")]
+position = Vector3(0.9, 0.0, 0.0)
+rotation = Vector3(0.0, 0.0, 0.0)
+scale = Vector3(1.0, 1.0, 1.0)
+[node name="pillar_2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("pillar")
+position = Vector3(-1.92, 0.0, 0.0)
+rotation = Vector3(0.0, 0.0, 0.0)
+scale = Vector3(1.04, 1.34, 1.04)
+[node name="barrel_3" parent="." instance=ExtResource("barrel")]
+position = Vector3(1.44, 0.0, 0.83)
+rotation = Vector3(0.0, 0.10471975511965978, 0.0)
+scale = Vector3(0.81, 0.81, 0.81)
+[node name="crate_4" parent="." instance=ExtResource("crate")]
+position = Vector3(-1.05, 0.0, 0.83)
+rotation = Vector3(0.0, -0.05235987755982989, 0.0)
+scale = Vector3(0.78, 0.78, 0.78)
+[node name="flowers_5" type="MeshInstance3D" parent="."]
+mesh = ExtResource("flowers")
+position = Vector3(-0.1, 0.0, 0.39)
+rotation = Vector3(0.0, 0.0, 0.0)
+scale = Vector3(1.1, 1.1, 1.1)
+[node name="flowers_6" type="MeshInstance3D" parent="."]
+mesh = ExtResource("flowers")
+position = Vector3(-1.91, 0.0, 0.43)
+rotation = Vector3(0.0, 0.6283185307179586, 0.0)
+scale = Vector3(0.85, 0.85, 0.85)
+[node name="fern_7" type="MeshInstance3D" parent="."]
+mesh = ExtResource("fern")
+position = Vector3(0.8, 0.0, -0.45)
+rotation = Vector3(0.0, 0.3490658503988659, 0.0)
+scale = Vector3(0.9, 0.9, 0.9)
+[node name="forest_bag_8" parent="." instance=ExtResource("forest_bag")]
+position = Vector3(-2.03, 0.0, -0.67)
+rotation = Vector3(0.0, -0.15707963267948966, 0.0)
+scale = Vector3(0.66, 0.66, 0.66)

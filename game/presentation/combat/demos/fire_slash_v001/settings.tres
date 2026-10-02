@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+[ext_resource type="Script" path="res://presentation/combat/demos/slash_showcase_v001/settings.gd" id="1"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/fire_slash_v001/fire_slash.tscn" id="2"]
+[resource]
+script = ExtResource("1")
+effects = Array[PackedScene]([ExtResource("2")])
+camera_size = 12.0
+close_camera_size = 5.0
+repeat_interval_sec = 1.1
+variant_duration_sec = 8.5
+slow_scale = 0.35
+slow_start_sec = 3.5
+capture_length_sec = 8.0
+capture_progress = 0.95
+overlay_margin = 24.0
+overlay_font_size = 36

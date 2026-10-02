@@ -1,0 +1,28 @@
+{
+  "crown_source_triangles": 240584,
+  "crown_low_triangles": 10736,
+  "reduction_percent": 95.53752535496957,
+  "trunk_triangles": 19032,
+  "clusters": 61,
+  "unique_modules": 6,
+  "triangles_per_module": 176,
+  "whole_tree_triangles": 29768,
+  "budget_scope": "whole tree <= 30000 triangles",
+  "leaf_color_adjustment": {
+    "gamma": 0.9,
+    "value": 1.16,
+    "saturation": 1.08,
+    "rgb_multiplier": [
+      0.98,
+      1.13,
+      1.05
+    ]
+  },
+  "views_per_module": 4,
+  "atlas_resolution": [
+    3072,
+    2048
+  ],
+  "wind_attribute": "wind_rgba: R=local bend weight,G=variant phase,B=leaf variation,A=1",
+  "note": "Blender candidate only. No wind shader, LOD switching or Godot performance test."
+}

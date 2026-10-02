@@ -1,0 +1,529 @@
+{
+  "png_count": 17,
+  "svg_count": 8,
+  "all_rgba": true,
+  "all_runtime_copies_sha256_match": true,
+  "svg_xml_valid": true,
+  "html_browser_validation": "not_run_local_URL_security_block",
+  "godot_integration_validation": "pending_code_task",
+  "assets": [
+    {
+      "id": "decoration.chrome.button_primary",
+      "label_zh_for_handoff_only": "主要动作按钮",
+      "source_path": "source_assets/ui/decoration/v001/exports/chrome/button_primary.png",
+      "runtime_path": "res://assets/ui/decoration/v001/chrome/button_primary.png",
+      "size_px": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        41,
+        137,
+        2117,
+        427
+      ],
+      "atlas_region_xywh": [
+        33,
+        129,
+        2133,
+        443
+      ],
+      "transparent_pixel_fraction": 0.519535,
+      "center_alpha": 254,
+      "sha256": "933bed19634e7b44732a1b5d30150e38b1a8814ba8fee8dd8f84dcff684e9e3b",
+      "furniture_definition_id": null,
+      "status": "ui_art_ready_for_integration"
+    },
+    {
+      "id": "decoration.chrome.button_secondary",
+      "label_zh_for_handoff_only": "次要动作按钮",
+      "source_path": "source_assets/ui/decoration/v001/exports/chrome/button_secondary.png",
+      "runtime_path": "res://assets/ui/decoration/v001/chrome/button_secondary.png",
+      "size_px": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        51,
+        175,
+        2071,
+        366
+      ],
+      "atlas_region_xywh": [
+        43,
+        167,
+        2087,
+        382
+      ],
+      "transparent_pixel_fraction": 0.520677,
+      "center_alpha": 254,
+      "sha256": "2bad4cc5462b14cb22c08323639c51310650f65e8e2aaefe82d18df9ca8a75c0",
+      "furniture_definition_id": null,
+      "status": "ui_art_ready_for_integration"
+    },
+    {
+      "id": "decoration.chrome.catalog_panel",
+      "label_zh_for_handoff_only": "目录 / 详情面板底图",
+      "source_path": "source_assets/ui/decoration/v001/exports/chrome/catalog_panel.png",
+      "runtime_path": "res://assets/ui/decoration/v001/chrome/catalog_panel.png",
+      "size_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        35,
+        36,
+        954,
+        1449
+      ],
+      "atlas_region_xywh": [
+        27,
+        28,
+        970,
+        1465
+      ],
+      "transparent_pixel_fraction": 0.114251,
+      "center_alpha": 253,
+      "sha256": "9c231ffcda54aec8ba1abdc67cd0841b1e893875009e7444cab79166e5b3f7fa",
+      "furniture_definition_id": null,
+      "status": "ui_art_ready_for_integration"
+    },
+    {
+      "id": "decoration.chrome.item_selected",
+      "label_zh_for_handoff_only": "选中描边 · 中心透明",
+      "source_path": "source_assets/ui/decoration/v001/exports/chrome/item_selected.png",
+      "runtime_path": "res://assets/ui/decoration/v001/chrome/item_selected.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        39,
+        44,
+        1176,
+        1161
+      ],
+      "atlas_region_xywh": [
+        31,
+        36,
+        1192,
+        1177
+      ],
+      "transparent_pixel_fraction": 0.821229,
+      "center_alpha": 0,
+      "sha256": "bb028fcb29dea74883b3517dfc9080da9dcae1f87e5c83c731ec693aeb85734f",
+      "furniture_definition_id": null,
+      "status": "ui_art_ready_for_integration"
+    },
+    {
+      "id": "decoration.chrome.item_slot",
+      "label_zh_for_handoff_only": "家具格 · 常态",
+      "source_path": "source_assets/ui/decoration/v001/exports/chrome/item_slot.png",
+      "runtime_path": "res://assets/ui/decoration/v001/chrome/item_slot.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        67,
+        69,
+        1120,
+        1118
+      ],
+      "atlas_region_xywh": [
+        59,
+        61,
+        1136,
+        1134
+      ],
+      "transparent_pixel_fraction": 0.198034,
+      "center_alpha": 253,
+      "sha256": "306b9ff40c8197364837df677ad9146c449088076e2e10c7ee7289da84585f55",
+      "furniture_definition_id": null,
+      "status": "ui_art_ready_for_integration"
+    },
+    {
+      "id": "decoration.chrome.leaf_corner",
+      "label_zh_for_handoff_only": "独立角落叶饰",
+      "source_path": "source_assets/ui/decoration/v001/exports/chrome/leaf_corner.png",
+      "runtime_path": "res://assets/ui/decoration/v001/chrome/leaf_corner.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        38,
+        28,
+        877,
+        1069
+      ],
+      "atlas_region_xywh": [
+        30,
+        20,
+        893,
+        1085
+      ],
+      "transparent_pixel_fraction": 0.817969,
+      "center_alpha": 0,
+      "sha256": "515f291af6a9d5fd488c1a003ad70654051e3e2f0c853b9d08d13f6770db627c",
+      "furniture_definition_id": null,
+      "status": "ui_art_ready_for_integration"
+    },
+    {
+      "id": "decoration.chrome.mode_banner",
+      "label_zh_for_handoff_only": "装修模式标题牌",
+      "source_path": "source_assets/ui/decoration/v001/exports/chrome/mode_banner.png",
+      "runtime_path": "res://assets/ui/decoration/v001/chrome/mode_banner.png",
+      "size_px": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        19,
+        199,
+        2135,
+        310
+      ],
+      "atlas_region_xywh": [
+        11,
+        191,
+        2151,
+        326
+      ],
+      "transparent_pixel_fraction": 0.591689,
+      "center_alpha": 254,
+      "sha256": "60f044e27eda183b0948bd1d54c12d0a734b5e8897212ad82d2fc6531942241a",
+      "furniture_definition_id": null,
+      "status": "ui_art_ready_for_integration"
+    },
+    {
+      "id": "decoration.chrome.tab_button",
+      "label_zh_for_handoff_only": "分类标签底图",
+      "source_path": "source_assets/ui/decoration/v001/exports/chrome/tab_button.png",
+      "runtime_path": "res://assets/ui/decoration/v001/chrome/tab_button.png",
+      "size_px": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        76,
+        249,
+        1620,
+        396
+      ],
+      "atlas_region_xywh": [
+        68,
+        241,
+        1636,
+        412
+      ],
+      "transparent_pixel_fraction": 0.588663,
+      "center_alpha": 254,
+      "sha256": "ca54aa33d37ff15424e170aa36fd975f9045b28f6e5b9c47102f628c66f85b3b",
+      "furniture_definition_id": null,
+      "status": "ui_art_ready_for_integration"
+    },
+    {
+      "id": "decoration.thumbnails.barrel",
+      "label_zh_for_handoff_only": "小木桶",
+      "source_path": "source_assets/ui/decoration/v001/exports/thumbnails/barrel.png",
+      "runtime_path": "res://assets/ui/decoration/v001/thumbnails/barrel.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        235,
+        127,
+        786,
+        1006
+      ],
+      "atlas_region_xywh": [
+        227,
+        119,
+        802,
+        1022
+      ],
+      "transparent_pixel_fraction": 0.580787,
+      "center_alpha": 253,
+      "sha256": "6c79a342acca19cdcb6476693c591ebc30a2f3019e5d64a46572ad6b1161dcb1",
+      "furniture_definition_id": "barrel",
+      "status": "current_catalog_thumbnail_candidate"
+    },
+    {
+      "id": "decoration.thumbnails.bookshelf_potions",
+      "label_zh_for_handoff_only": "魔药书架",
+      "source_path": "source_assets/ui/decoration/v001/exports/thumbnails/bookshelf_potions.png",
+      "runtime_path": "res://assets/ui/decoration/v001/thumbnails/bookshelf_potions.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        296,
+        223,
+        699,
+        843
+      ],
+      "atlas_region_xywh": [
+        288,
+        215,
+        715,
+        859
+      ],
+      "transparent_pixel_fraction": 0.689816,
+      "center_alpha": 254,
+      "sha256": "cda1f79aeaf447405797d16b2932b31b63dab25edd46d470723103ee6aab4bc2",
+      "furniture_definition_id": null,
+      "status": "future_visual_only"
+    },
+    {
+      "id": "decoration.thumbnails.chair_oak",
+      "label_zh_for_handoff_only": "木质椅子",
+      "source_path": "source_assets/ui/decoration/v001/exports/thumbnails/chair_oak.png",
+      "runtime_path": "res://assets/ui/decoration/v001/thumbnails/chair_oak.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        298,
+        200,
+        644,
+        877
+      ],
+      "atlas_region_xywh": [
+        290,
+        192,
+        660,
+        893
+      ],
+      "transparent_pixel_fraction": 0.779838,
+      "center_alpha": 254,
+      "sha256": "ed668cf515dc55765f74c5e4ed2b6fead8d6c50a8a8c868716079da1734cb161",
+      "furniture_definition_id": null,
+      "status": "future_visual_only"
+    },
+    {
+      "id": "decoration.thumbnails.potted_fern",
+      "label_zh_for_handoff_only": "盆栽蕨叶",
+      "source_path": "source_assets/ui/decoration/v001/exports/thumbnails/potted_fern.png",
+      "runtime_path": "res://assets/ui/decoration/v001/thumbnails/potted_fern.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        48,
+        77,
+        1160,
+        1099
+      ],
+      "atlas_region_xywh": [
+        40,
+        69,
+        1176,
+        1115
+      ],
+      "transparent_pixel_fraction": 0.504452,
+      "center_alpha": 252,
+      "sha256": "7748198659e0df2088f717d28233c8b60d1cc75d6540d0672948a67f74957f3b",
+      "furniture_definition_id": null,
+      "status": "future_visual_only"
+    },
+    {
+      "id": "decoration.thumbnails.rug_crimson",
+      "label_zh_for_handoff_only": "酒红地毯",
+      "source_path": "source_assets/ui/decoration/v001/exports/thumbnails/rug_crimson.png",
+      "runtime_path": "res://assets/ui/decoration/v001/thumbnails/rug_crimson.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        142,
+        239,
+        987,
+        806
+      ],
+      "atlas_region_xywh": [
+        134,
+        231,
+        1003,
+        822
+      ],
+      "transparent_pixel_fraction": 0.749954,
+      "center_alpha": 253,
+      "sha256": "d4ecdd4854d592fee04815e1b9b71b06948835af13aee79b99214c4dbbfc4d91",
+      "furniture_definition_id": null,
+      "status": "future_visual_only"
+    },
+    {
+      "id": "decoration.thumbnails.scroll_bin",
+      "label_zh_for_handoff_only": "卷轴桶",
+      "source_path": "source_assets/ui/decoration/v001/exports/thumbnails/scroll_bin.png",
+      "runtime_path": "res://assets/ui/decoration/v001/thumbnails/scroll_bin.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        264,
+        41,
+        748,
+        1166
+      ],
+      "atlas_region_xywh": [
+        256,
+        33,
+        764,
+        1182
+      ],
+      "transparent_pixel_fraction": 0.572284,
+      "center_alpha": 253,
+      "sha256": "732eb09d6874cfb9e650dd12312d47913ffbaa265f4cf4a3884a458a1cdb82e7",
+      "furniture_definition_id": "scroll_bin",
+      "status": "current_catalog_thumbnail_candidate"
+    },
+    {
+      "id": "decoration.thumbnails.storage_chest",
+      "label_zh_for_handoff_only": "宝箱",
+      "source_path": "source_assets/ui/decoration/v001/exports/thumbnails/storage_chest.png",
+      "runtime_path": "res://assets/ui/decoration/v001/thumbnails/storage_chest.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        222,
+        294,
+        829,
+        719
+      ],
+      "atlas_region_xywh": [
+        214,
+        286,
+        845,
+        735
+      ],
+      "transparent_pixel_fraction": 0.725827,
+      "center_alpha": 254,
+      "sha256": "52554690b528e83cbe7d69b91bdb9526644dc1e03af2634c964065ded3d01229",
+      "furniture_definition_id": "chest",
+      "status": "current_catalog_thumbnail_candidate"
+    },
+    {
+      "id": "decoration.thumbnails.supply_crate",
+      "label_zh_for_handoff_only": "药罐货箱",
+      "source_path": "source_assets/ui/decoration/v001/exports/thumbnails/supply_crate.png",
+      "runtime_path": "res://assets/ui/decoration/v001/thumbnails/supply_crate.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        155,
+        75,
+        981,
+        1132
+      ],
+      "atlas_region_xywh": [
+        147,
+        67,
+        997,
+        1148
+      ],
+      "transparent_pixel_fraction": 0.533611,
+      "center_alpha": 253,
+      "sha256": "42b916093cff4e0cd2bf7acb410159523ce35faf547a9b3920991df46ae37124",
+      "furniture_definition_id": "supply_crate",
+      "status": "current_catalog_thumbnail_candidate"
+    },
+    {
+      "id": "decoration.thumbnails.wall_lantern",
+      "label_zh_for_handoff_only": "壁挂灯笼",
+      "source_path": "source_assets/ui/decoration/v001/exports/thumbnails/wall_lantern.png",
+      "runtime_path": "res://assets/ui/decoration/v001/thumbnails/wall_lantern.png",
+      "size_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_gt_4_bbox_xywh": [
+        253,
+        62,
+        729,
+        1130
+      ],
+      "atlas_region_xywh": [
+        245,
+        54,
+        745,
+        1146
+      ],
+      "transparent_pixel_fraction": 0.744689,
+      "center_alpha": 253,
+      "sha256": "75a8206871b5a56c961e00296b85af4725b4f15eac49b8e3e7dd739976971f0a",
+      "furniture_definition_id": null,
+      "status": "future_visual_only"
+    }
+  ],
+  "svg_assets": [
+    {
+      "name": "confirm",
+      "sha256": "5de01fdb9dc8cb7441e6a1635fb94158e5c58818dd166cb80be4418c9e347d9c",
+      "runtime_path": "res://assets/ui/decoration/v001/icons/confirm.svg"
+    },
+    {
+      "name": "close",
+      "sha256": "a7686e9f8be4858561fd74d60d3f5d8612d832dbc78f804f61d339630f771bfb",
+      "runtime_path": "res://assets/ui/decoration/v001/icons/close.svg"
+    },
+    {
+      "name": "rotate",
+      "sha256": "9d43c17cdfd19cc8316edf38577472c204e35074a8cc05b2a4074f52c12ddbbc",
+      "runtime_path": "res://assets/ui/decoration/v001/icons/rotate.svg"
+    },
+    {
+      "name": "undo",
+      "sha256": "6e5b9e595d772090539f30c9b67ebd3e12b529e8e990a01e44e871aad4ec2348",
+      "runtime_path": "res://assets/ui/decoration/v001/icons/undo.svg"
+    },
+    {
+      "name": "remove",
+      "sha256": "8ede2bee087b39284c15164936f85c6679c7889d7cc3d8e1c4e28b44820ffea7",
+      "runtime_path": "res://assets/ui/decoration/v001/icons/remove.svg"
+    },
+    {
+      "name": "mouse_left",
+      "sha256": "6b2daab8ecba124da73eb6c34759d6b8cc8aa424d261f457701e4817237d7075",
+      "runtime_path": "res://assets/ui/decoration/v001/icons/mouse_left.svg"
+    },
+    {
+      "name": "mouse_right",
+      "sha256": "26749121eb1f9776ac13ee17c7aa9ffd999b1c89f94eec6352032ac4a62f7f4f",
+      "runtime_path": "res://assets/ui/decoration/v001/icons/mouse_right.svg"
+    },
+    {
+      "name": "chair",
+      "sha256": "aa4a4d5c1d7ab1256b87e44937545f039d6f7ecd332de2996bba95a8ff784e2a",
+      "runtime_path": "res://assets/ui/decoration/v001/icons/chair.svg"
+    }
+  ]
+}

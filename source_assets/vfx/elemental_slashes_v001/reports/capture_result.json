@@ -1,0 +1,303 @@
+{
+	"arena": "res://rogue/scenes/training_arena.tscn",
+	"casts": [
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 1,
+			"damage_applied": 0.0,
+			"effect_id": "element_fire",
+			"hit_count": 0,
+			"phase": "normal_review",
+			"radius_m": 2.5,
+			"review_sec": 0.416666666666667,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 19,
+			"arc_deg": 160.0,
+			"cast_id": 2,
+			"damage_applied": 0.0,
+			"effect_id": "element_fire",
+			"hit_count": 0,
+			"phase": "slow_review",
+			"radius_m": 2.5,
+			"review_sec": 1.61666666666667,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 0.4
+		},
+		{
+			"ability_id": "slash.3",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 3,
+			"damage_applied": 27.0,
+			"effect_id": "element_fire",
+			"hit_count": 1,
+			"phase": "range_hit",
+			"radius_m": 2.8,
+			"review_sec": 4.06666666666666,
+			"target_distance_m": 2.34999990463257,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 1,
+			"damage_applied": 0.0,
+			"effect_id": "element_lightning",
+			"hit_count": 0,
+			"phase": "normal_review",
+			"radius_m": 2.5,
+			"review_sec": 6.43333333333332,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 19,
+			"arc_deg": 160.0,
+			"cast_id": 2,
+			"damage_applied": 0.0,
+			"effect_id": "element_lightning",
+			"hit_count": 0,
+			"phase": "slow_review",
+			"radius_m": 2.5,
+			"review_sec": 7.63333333333331,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 0.4
+		},
+		{
+			"ability_id": "slash.3",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 3,
+			"damage_applied": 27.0,
+			"effect_id": "element_lightning",
+			"hit_count": 1,
+			"phase": "range_hit",
+			"radius_m": 2.8,
+			"review_sec": 10.0833333333334,
+			"target_distance_m": 2.34999990463257,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 1,
+			"damage_applied": 0.0,
+			"effect_id": "element_thunder",
+			"hit_count": 0,
+			"phase": "normal_review",
+			"radius_m": 2.5,
+			"review_sec": 12.4500000000002,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 19,
+			"arc_deg": 160.0,
+			"cast_id": 2,
+			"damage_applied": 0.0,
+			"effect_id": "element_thunder",
+			"hit_count": 0,
+			"phase": "slow_review",
+			"radius_m": 2.5,
+			"review_sec": 13.6500000000003,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 0.4
+		},
+		{
+			"ability_id": "slash.3",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 3,
+			"damage_applied": 27.0,
+			"effect_id": "element_thunder",
+			"hit_count": 1,
+			"phase": "range_hit",
+			"radius_m": 2.8,
+			"review_sec": 16.1000000000004,
+			"target_distance_m": 2.34999990463257,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 1,
+			"damage_applied": 0.0,
+			"effect_id": "element_frost",
+			"hit_count": 0,
+			"phase": "normal_review",
+			"radius_m": 2.5,
+			"review_sec": 18.4666666666669,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 19,
+			"arc_deg": 160.0,
+			"cast_id": 2,
+			"damage_applied": 0.0,
+			"effect_id": "element_frost",
+			"hit_count": 0,
+			"phase": "slow_review",
+			"radius_m": 2.5,
+			"review_sec": 19.6666666666668,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 0.4
+		},
+		{
+			"ability_id": "slash.3",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 3,
+			"damage_applied": 27.0,
+			"effect_id": "element_frost",
+			"hit_count": 1,
+			"phase": "range_hit",
+			"radius_m": 2.8,
+			"review_sec": 22.1166666666667,
+			"target_distance_m": 2.34999990463257,
+			"time_scale": 1.0
+		}
+	],
+	"close_camera_size": 6.5,
+	"enemy_ai_enabled": false,
+	"failures": [],
+	"hits": [
+		{
+			"ability_id": "slash.3",
+			"amount": 27.0,
+			"cast_id": 3,
+			"distance_m": 2.34999990463257,
+			"effect_id": "element_fire",
+			"remaining_hp": 19.0,
+			"review_sec": 4.28333333333332,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.3",
+			"amount": 27.0,
+			"cast_id": 3,
+			"distance_m": 2.34999990463257,
+			"effect_id": "element_lightning",
+			"remaining_hp": 19.0,
+			"review_sec": 10.3000000000001,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.3",
+			"amount": 27.0,
+			"cast_id": 3,
+			"distance_m": 2.34999990463257,
+			"effect_id": "element_thunder",
+			"remaining_hp": 19.0,
+			"review_sec": 16.316666666667,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.3",
+			"amount": 27.0,
+			"cast_id": 3,
+			"distance_m": 2.34999990463257,
+			"effect_id": "element_frost",
+			"remaining_hp": 19.0,
+			"review_sec": 22.3333333333333,
+			"target_id": "scout"
+		}
+	],
+	"normal_camera_size": 8.0,
+	"review_duration_sec": 24.0666666666666,
+	"screenshots": {
+		"element_fire": {
+			"active_progress": 1.0,
+			"cast_id": 2,
+			"phase": "first_recovery",
+			"review_sec": 2.21666666666666
+		},
+		"element_frost": {
+			"active_progress": 1.0,
+			"cast_id": 2,
+			"phase": "first_recovery",
+			"review_sec": 20.2666666666668
+		},
+		"element_lightning": {
+			"active_progress": 1.0,
+			"cast_id": 2,
+			"phase": "first_recovery",
+			"review_sec": 8.23333333333332
+		},
+		"element_thunder": {
+			"active_progress": 1.0,
+			"cast_id": 2,
+			"phase": "first_recovery",
+			"review_sec": 14.2500000000003
+		}
+	},
+	"segments": [
+		{
+			"arena_recreated": true,
+			"effect_id": "element_fire",
+			"effect_scene": "res://presentation/combat/fx/elemental_slashes_v001/fire/slash.tscn",
+			"ended_review_sec": 6.01666666666665,
+			"enemy_ai_enabled": false,
+			"player_visual": "res://presentation/combat/player_visual.tscn",
+			"staged_target_distance_m": 2.34999990463257,
+			"started_review_sec": 0.0,
+			"target_end_hp": 19.0,
+			"target_id": "scout",
+			"target_start_hp": 46.0
+		},
+		{
+			"arena_recreated": true,
+			"effect_id": "element_lightning",
+			"effect_scene": "res://presentation/combat/fx/elemental_slashes_v001/lightning/slash.tscn",
+			"ended_review_sec": 12.0333333333335,
+			"enemy_ai_enabled": false,
+			"player_visual": "res://presentation/combat/player_visual.tscn",
+			"staged_target_distance_m": 2.34999990463257,
+			"started_review_sec": 6.01666666666665,
+			"target_end_hp": 19.0,
+			"target_id": "scout",
+			"target_start_hp": 46.0
+		},
+		{
+			"arena_recreated": true,
+			"effect_id": "element_thunder",
+			"effect_scene": "res://presentation/combat/fx/elemental_slashes_v001/thunder/slash.tscn",
+			"ended_review_sec": 18.0500000000003,
+			"enemy_ai_enabled": false,
+			"player_visual": "res://presentation/combat/player_visual.tscn",
+			"staged_target_distance_m": 2.34999990463257,
+			"started_review_sec": 12.0333333333335,
+			"target_end_hp": 19.0,
+			"target_id": "scout",
+			"target_start_hp": 46.0
+		},
+		{
+			"arena_recreated": true,
+			"effect_id": "element_frost",
+			"effect_scene": "res://presentation/combat/fx/elemental_slashes_v001/frost/slash.tscn",
+			"ended_review_sec": 24.0666666666666,
+			"enemy_ai_enabled": false,
+			"player_visual": "res://presentation/combat/player_visual.tscn",
+			"staged_target_distance_m": 2.34999990463257,
+			"started_review_sec": 18.0500000000003,
+			"target_end_hp": 19.0,
+			"target_id": "scout",
+			"target_start_hp": 46.0
+		}
+	],
+	"slow_scale": 0.4,
+	"staging_note": "Enemy decisions paused for comparison; health and combat values come from a fresh real arena per effect. Actor steps, ability timeline, melee resolver, hit response and knockback remain active.",
+	"target_distance_m": 2.35
+}

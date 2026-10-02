@@ -1,0 +1,85 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://presentation/loading/loading_screen.gd" id="script"]
+[sub_resource type="StyleBoxFlat" id="panel"]
+bg_color = Color(0.06, 0.12, 0.10, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.58, 0.48, 0.29, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+[sub_resource type="StyleBoxFlat" id="track"]
+bg_color = Color(0.025, 0.055, 0.045, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+[sub_resource type="StyleBoxFlat" id="fill"]
+bg_color = Color(0.69, 0.60, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+[node name="LoadingScreen" type="CanvasLayer"]
+layer = 100
+script = ExtResource("script")
+[node name="Screen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+[node name="Background" type="ColorRect" parent="Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.025, 0.05, 0.045, 1)
+[node name="Center" type="CenterContainer" parent="Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+[node name="Panel" type="PanelContainer" parent="Screen/Center"]
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("panel")
+[node name="Margin" type="MarginContainer" parent="Screen/Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 36
+[node name="Content" type="VBoxContainer" parent="Screen/Center/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 24
+[node name="Title" type="Label" parent="Screen/Center/Panel/Margin/Content"]
+layout_mode = 2
+theme_type_variation = &"Title"
+text = "loading.title"
+horizontal_alignment = 1
+[node name="Status" type="Label" parent="Screen/Center/Panel/Margin/Content"]
+layout_mode = 2
+text = "loading.preparing"
+horizontal_alignment = 1
+[node name="Progress" type="ProgressBar" parent="Screen/Center/Panel/Margin/Content"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("track")
+theme_override_styles/fill = SubResource("fill")
+show_percentage = false
+[node name="Close" type="Button" parent="Screen/Center/Panel/Margin/Content"]
+visible = false
+layout_mode = 2
+text = "loading.return"

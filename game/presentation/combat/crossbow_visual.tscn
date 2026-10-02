@@ -1,0 +1,28 @@
+[gd_scene format=3]
+[sub_resource type="StandardMaterial3D" id="body_mat"]
+albedo_color = Color(0.15, 0.42, 0.65, 1)
+roughness = 0.7
+[sub_resource type="StandardMaterial3D" id="weapon_mat"]
+albedo_color = Color(0.3, 0.2, 0.1, 1)
+[sub_resource type="CapsuleMesh" id="body"]
+material = SubResource("body_mat")
+radius = 0.4
+height = 1.5
+[sub_resource type="BoxMesh" id="weapon"]
+material = SubResource("weapon_mat")
+size = Vector3(1.0, 0.12, 0.3)
+[sub_resource type="BoxMesh" id="visor"]
+size = Vector3(0.55, 0.12, 0.12)
+[sub_resource type="BoxMesh" id="flag"]
+material = SubResource("body_mat")
+size = Vector3(0.8, 0.6, 0.05)
+[node name="CrossbowPlaceholder" type="Node3D"]
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.75, 0)
+mesh = SubResource("body")
+[node name="Visor" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.2, -0.4)
+mesh = SubResource("visor")
+[node name="Weapon" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.9, -0.4)
+mesh = SubResource("weapon")

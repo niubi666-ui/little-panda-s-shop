@@ -1,0 +1,15 @@
+{
+  "room_id": "sunlit_forest_court",
+  "mode": "detail",
+  "engine": "CYCLES",
+  "device": "GPU",
+  "samples": 96,
+  "resolution": [
+    1600,
+    1000
+  ],
+  "seconds": 46.19,
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\sunlit_forest_court\\previews\\sunlit_forest_court_v001_detail.png",
+  "output_exists": true,
+  "godot_runtime": false
+}

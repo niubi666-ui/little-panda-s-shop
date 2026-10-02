@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3]
+[sub_resource type="StandardMaterial3D" id="material"]
+albedo_color = Color(0.55, 0.27, 0.16, 1)
+roughness = 0.7
+[sub_resource type="CapsuleMesh" id="body"]
+material = SubResource("material")
+radius = 0.4
+height = 1.5
+[sub_resource type="BoxMesh" id="visor"]
+size = Vector3(0.5599999999999999, 0.12, 0.12)
+[node name="Placeholder" type="Node3D"]
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.75, 0)
+mesh = SubResource("body")
+[node name="Visor" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.2000000000000002, -0.4)
+mesh = SubResource("visor")

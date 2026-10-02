@@ -1,0 +1,296 @@
+{
+  "material": "01_Golden_Filaments",
+  "attributes": {
+    "BladeUVs": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Speed": 4.125,
+    "Hue": 0.5,
+    "UseGlowColors": true,
+    "Glow": [
+      1.0,
+      0.47999998927116394,
+      0.054999999701976776,
+      8.0
+    ],
+    "Glow2": [
+      1.0,
+      0.054999999701976776,
+      0.006000000052154064,
+      1.0
+    ]
+  },
+  "nodes": [
+    {
+      "name": "Material Output",
+      "type": "OUTPUT_MATERIAL",
+      "attribute": null,
+      "links": [
+        [
+          "Mix Shader",
+          "Shader",
+          "Material Output",
+          "Surface"
+        ]
+      ]
+    },
+    {
+      "name": "Mix Shader",
+      "type": "MIX_SHADER",
+      "attribute": null,
+      "links": [
+        [
+          "Transparent BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Emission",
+          "Emission",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Mix Shader",
+          "Shader",
+          "Material Output",
+          "Surface"
+        ],
+        [
+          "Math.010",
+          "Value",
+          "Mix Shader",
+          "Factor"
+        ]
+      ]
+    },
+    {
+      "name": "Attribute.005",
+      "type": "ATTRIBUTE",
+      "attribute": "BladeUVs",
+      "links": [
+        [
+          "Attribute.005",
+          "Vector",
+          "Separate XYZ",
+          "Vector"
+        ]
+      ]
+    },
+    {
+      "name": "Attribute.003",
+      "type": "ATTRIBUTE",
+      "attribute": "Glow",
+      "links": [
+        [
+          "Attribute.003",
+          "Alpha",
+          "Math.002",
+          "Value"
+        ]
+      ]
+    },
+    {
+      "name": "Attribute.002",
+      "type": "ATTRIBUTE",
+      "attribute": "Glow2",
+      "links": [
+        [
+          "Attribute.002",
+          "Color",
+          "Mix",
+          "B"
+        ]
+      ]
+    },
+    {
+      "name": "Attribute.001",
+      "type": "ATTRIBUTE",
+      "attribute": "Glow",
+      "links": [
+        [
+          "Attribute.001",
+          "Color",
+          "Mix",
+          "A"
+        ]
+      ]
+    },
+    {
+      "name": "Attribute.007",
+      "type": "ATTRIBUTE",
+      "attribute": "Speed",
+      "links": [
+        [
+          "Attribute.007",
+          "Factor",
+          "Noise Texture.002",
+          "W"
+        ]
+      ]
+    },
+    {
+      "name": "Attribute.006",
+      "type": "ATTRIBUTE",
+      "attribute": "BladeUVs",
+      "links": [
+        [
+          "Attribute.006",
+          "Vector",
+          "Vector Math",
+          "Vector"
+        ]
+      ]
+    },
+    {
+      "name": "Emission",
+      "type": "EMISSION",
+      "attribute": null,
+      "links": [
+        [
+          "Emission",
+          "Emission",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Mix.003",
+          "Result",
+          "Emission",
+          "Color"
+        ],
+        [
+          "Reroute.001",
+          "Output",
+          "Emission",
+          "Strength"
+        ]
+      ]
+    },
+    {
+      "name": "Attribute.008",
+      "type": "ATTRIBUTE",
+      "attribute": "Hue",
+      "links": [
+        [
+          "Attribute.008",
+          "Factor",
+          "Hue/Saturation/Value",
+          "Hue"
+        ]
+      ]
+    },
+    {
+      "name": "Attribute.009",
+      "type": "ATTRIBUTE",
+      "attribute": "UseGlowColors",
+      "links": [
+        [
+          "Attribute.009",
+          "Factor",
+          "Mix.002",
+          "Factor"
+        ]
+      ]
+    },
+    {
+      "name": "Attribute",
+      "type": "ATTRIBUTE",
+      "attribute": "BladeUVs",
+      "links": [
+        [
+          "Attribute",
+          "Vector",
+          "Separate XYZ.001",
+          "Vector"
+        ]
+      ]
+    }
+  ],
+  "uv_tip_check": [
+    {
+      "uv": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "world": [
+        1.4643728733062744,
+        -1.2609646320343018,
+        1.4653446674346924
+      ]
+    },
+    {
+      "uv": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "world": [
+        0.13645370304584503,
+        -0.20960113406181335,
+        1.0196257829666138
+      ]
+    }
+  ],
+  "reference_vertices": [
+    [
+      1.337827205657959,
+      -1.24409818649292,
+      1.4424152374267578
+    ],
+    [
+      1.4643728733062744,
+      -1.2609646320343018,
+      1.4653446674346924
+    ],
+    [
+      0.13645370304584503,
+      -0.20960113406181335,
+      1.0196257829666138
+    ],
+    [
+      0.26993972063064575,
+      -0.324545294046402,
+      1.066602349281311
+    ],
+    [
+      0.4034256339073181,
+      -0.4394894242286682,
+      1.1135790348052979
+    ],
+    [
+      0.5369115471839905,
+      -0.5544335246086121,
+      1.1605556011199951
+    ],
+    [
+      0.6703975200653076,
+      -0.6693776845932007,
+      1.2075321674346924
+    ],
+    [
+      0.80388343334198,
+      -0.7843217253684998,
+      1.2545087337493896
+    ],
+    [
+      0.9373694658279419,
+      -0.8992659449577332,
+      1.3014854192733765
+    ],
+    [
+      1.0708552598953247,
+      -1.0142099857330322,
+      1.3484619855880737
+    ],
+    [
+      1.204341173171997,
+      -1.1291542053222656,
+      1.3954386711120605
+    ]
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "sampled_poses": 97,
+  "minimum_floor_clearance": 0.0006865910836495459,
+  "seam_max_vertex_error": 0.0,
+  "right_hand_relative_to_shoulder_x_range": [
+    -0.043603599071502686,
+    0.13265922665596008
+  ],
+  "cycle_seconds": 0.8,
+  "fps": 30,
+  "preview_frames": [
+    1,
+    72
+  ],
+  "loop_frames": [
+    1,
+    24
+  ],
+  "closure_key": 25,
+  "right_arm_rest_changed": true
+}

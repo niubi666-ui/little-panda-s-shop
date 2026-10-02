@@ -1,0 +1,17 @@
+{
+  "desktop_reopen": true,
+  "original_objects_unchanged": [
+    "烘焙包络_隐藏",
+    "elf character 3d model_Clone1",
+    "elf character 3d model",
+    "01_烘焙前高模",
+    "02_烘焙前低模_原始",
+    "03_烘焙后低模_腰侧已修复"
+  ],
+  "triangles": 26208,
+  "normal_packed": true,
+  "basecolor_packed": true,
+  "bake_uv": "Head_BakeUV",
+  "godot_tested": false,
+  "rig_tested": false
+}

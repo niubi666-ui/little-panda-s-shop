@@ -1,0 +1,682 @@
+{
+  "source": "E:\\ShopGame\\source_assets\\characters\\red_panda\\blender\\item2.blend",
+  "objects": [
+    {
+      "index": 0,
+      "name": "e1d52510-bdaf-4998-a4ff-2e5695223a85",
+      "dimensions": [
+        0.269317626953125,
+        1.0,
+        0.47235107421875
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4784,
+      "triangles": 9807,
+      "materials": [
+        "tripo_mat_e381b292"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 1,
+      "name": "738cffd6-948f-4d6f-87e3-1c13fa4187bc",
+      "dimensions": [
+        0.258819580078125,
+        0.681640625,
+        1.0
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4546,
+      "triangles": 9350,
+      "materials": [
+        "tripo_mat_92b114d4"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 2,
+      "name": "115c48f7-0bd2-42f7-891a-cd0c6f8bac05",
+      "dimensions": [
+        0.91436767578125,
+        1.0,
+        0.44329833984375
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4391,
+      "triangles": 9232,
+      "materials": [
+        "tripo_mat_b3748daa"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 3,
+      "name": "616287b3-b6ea-477c-98bd-52087b9d563c",
+      "dimensions": [
+        0.7252197265625,
+        1.0,
+        0.9521484375
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 3878,
+      "triangles": 9165,
+      "materials": [
+        "tripo_mat_6cac59ad"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 4,
+      "name": "fc0c452e-9249-4128-a768-9aa9497ee7d0",
+      "dimensions": [
+        0.39471435546875,
+        0.392852783203125,
+        1.0
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4475,
+      "triangles": 9465,
+      "materials": [
+        "tripo_mat_231e5d71"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 5,
+      "name": "cf33c108-6e2a-4dc3-852f-70f26a56023a",
+      "dimensions": [
+        0.5589599609375,
+        0.6116943359375,
+        1.0
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4860,
+      "triangles": 9800,
+      "materials": [
+        "tripo_mat_bd3f7367"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 6,
+      "name": "8699bc23-8e8d-4983-a663-33ff118c3da3",
+      "dimensions": [
+        0.0940093994140625,
+        0.65234375,
+        1.0
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4569,
+      "triangles": 9142,
+      "materials": [
+        "tripo_mat_d3fceeff"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 7,
+      "name": "ba956f36-4051-4087-a2ba-15b622e9bb75",
+      "dimensions": [
+        0.242279052734375,
+        1.0,
+        0.470184326171875
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4791,
+      "triangles": 9578,
+      "materials": [
+        "tripo_mat_e9f0d10d"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 8,
+      "name": "86cfab13-f1e3-42c3-9c47-d59979d63457",
+      "dimensions": [
+        0.68585205078125,
+        1.0,
+        0.471099853515625
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4385,
+      "triangles": 9275,
+      "materials": [
+        "tripo_mat_93c37182"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 9,
+      "name": "37f091a1-93ce-490e-ab23-2dd5cc2d41e4",
+      "dimensions": [
+        0.9075927734375,
+        1.0,
+        0.569580078125
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4713,
+      "triangles": 9458,
+      "materials": [
+        "tripo_mat_c4f70c95"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 10,
+      "name": "2759e1c7-e152-4b7b-8389-bf8bfc3e4cc2",
+      "dimensions": [
+        0.40899658203125,
+        0.9666748046875,
+        1.0
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 3926,
+      "triangles": 8686,
+      "materials": [
+        "tripo_mat_614b7e79"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 11,
+      "name": "6d00c541-9c1e-42f5-bdd1-3475b0d613d0",
+      "dimensions": [
+        0.488311767578125,
+        0.487579345703125,
+        1.0
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4951,
+      "triangles": 9885,
+      "materials": [
+        "tripo_mat_d111e4e7"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 12,
+      "name": "5f2e94b5-7733-4499-9e3e-d6fbc5dcda57",
+      "dimensions": [
+        0.27789306640625,
+        1.0,
+        0.78582763671875
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4454,
+      "triangles": 9572,
+      "materials": [
+        "tripo_mat_09debe2a"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 13,
+      "name": "ef6632ad-5997-4333-a080-b492a7b4b3fb",
+      "dimensions": [
+        1.0,
+        0.50726318359375,
+        0.298004150390625
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4609,
+      "triangles": 9226,
+      "materials": [
+        "tripo_mat_2629e79e"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    },
+    {
+      "index": 14,
+      "name": "oak tree 3d model",
+      "dimensions": [
+        0.8512611389160156,
+        0.9687278270721436,
+        0.8052072525024414
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 15594,
+      "triangles": 31004,
+      "materials": [
+        "tripo_mat_37d4c14f"
+      ],
+      "uv_layers": [
+        "Retopo_Untitled_NewUVMap"
+      ]
+    }
+  ],
+  "images": [
+    {
+      "name": "0a2c0c55-fa58-4822-8ad0-ce92ea86c54c_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_3010d453-8a7c-4965-97d0-42f3a8d133cc.fbm\\0a2c0c55-fa58-4822-8ad0-ce92ea86c54c_basecolor.JPEG"
+    },
+    {
+      "name": "0edfae4f-3edb-47e7-8bd5-056d22a5e3a9_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_30ebf4a2-ec18-468b-89bf-dc31fc51d185.fbm\\0edfae4f-3edb-47e7-8bd5-056d22a5e3a9_basecolor.JPEG"
+    },
+    {
+      "name": "11314429-bcda-4529-8722-c2fb817445f6_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_20492b49-f9c1-4f70-9d33-688afd5d6c01.fbm\\11314429-bcda-4529-8722-c2fb817445f6_basecolor.JPEG"
+    },
+    {
+      "name": "115c48f7-0bd2-42f7-891a-cd0c6f8bac05_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_b3748daa-281a-4948-a9f8-ee7ea597116f.fbm\\115c48f7-0bd2-42f7-891a-cd0c6f8bac05_basecolor.JPEG"
+    },
+    {
+      "name": "11c98630-fd44-4ae2-a2c5-e10ebf374f14_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_fa09790a-d88b-426d-8ece-93b26da42f0a.fbm\\11c98630-fd44-4ae2-a2c5-e10ebf374f14_basecolor.JPEG"
+    },
+    {
+      "name": "2759e1c7-e152-4b7b-8389-bf8bfc3e4cc2_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_614b7e79-6560-4b0b-879a-c487083a3799.fbm\\2759e1c7-e152-4b7b-8389-bf8bfc3e4cc2_basecolor.JPEG"
+    },
+    {
+      "name": "3249f317-fa36-45c4-b7dc-de8678ddf12a_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_a7a81c78-eef9-480a-8602-bc76ad8d8941.fbm\\3249f317-fa36-45c4-b7dc-de8678ddf12a_basecolor.JPEG"
+    },
+    {
+      "name": "37f091a1-93ce-490e-ab23-2dd5cc2d41e4_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_c4f70c95-f249-4f31-a391-a6add5a91584.fbm\\37f091a1-93ce-490e-ab23-2dd5cc2d41e4_basecolor.JPEG"
+    },
+    {
+      "name": "47d8e2a6-0605-4c6a-826e-c5b698a0c122_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_66dbf3be-e3fe-4b6c-8f26-401bf861dadd.fbm\\47d8e2a6-0605-4c6a-826e-c5b698a0c122_basecolor.JPEG"
+    },
+    {
+      "name": "47d8e2a6-0605-4c6a-826e-c5b698a0c122_basecolor.001",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_66dbf3be-e3fe-4b6c-8f26-401bf861dadd.fbm\\47d8e2a6-0605-4c6a-826e-c5b698a0c122_basecolor.JPEG"
+    },
+    {
+      "name": "5baf7703-761b-4afe-9246-00aa271d8d9c_basecolor",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_ec823a88-653b-47c8-b483-618e7850610e.fbm\\5baf7703-761b-4afe-9246-00aa271d8d9c_basecolor.JPEG"
+    },
+    {
+      "name": "5f2e94b5-7733-4499-9e3e-d6fbc5dcda57_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_09debe2a-07c7-4ce3-a93f-e9846688265a.fbm\\5f2e94b5-7733-4499-9e3e-d6fbc5dcda57_basecolor.JPEG"
+    },
+    {
+      "name": "616287b3-b6ea-477c-98bd-52087b9d563c_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_6cac59ad-0804-45ca-b5f2-4ba0508b7905.fbm\\616287b3-b6ea-477c-98bd-52087b9d563c_basecolor.JPEG"
+    },
+    {
+      "name": "6d00c541-9c1e-42f5-bdd1-3475b0d613d0_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_d111e4e7-cd64-4d89-8bf1-de147e050388.fbm\\6d00c541-9c1e-42f5-bdd1-3475b0d613d0_basecolor.JPEG"
+    },
+    {
+      "name": "738cffd6-948f-4d6f-87e3-1c13fa4187bc_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_92b114d4-d0b5-4671-ae7b-7ddb5ce0c8e3.fbm\\738cffd6-948f-4d6f-87e3-1c13fa4187bc_basecolor.JPEG"
+    },
+    {
+      "name": "7b0b1420-d4b1-4da3-8c7b-ad4084b6ee0d_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_5f3f2c14-6dcb-4afc-8a56-6f8a0fb93ebc.fbm\\7b0b1420-d4b1-4da3-8c7b-ad4084b6ee0d_basecolor.JPEG"
+    },
+    {
+      "name": "86149529-7d4c-4b2c-93be-7df83e23d35d_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_1146fdc1-33da-411d-ad93-3b4c9aeefe4e.fbm\\86149529-7d4c-4b2c-93be-7df83e23d35d_basecolor.JPEG"
+    },
+    {
+      "name": "8699bc23-8e8d-4983-a663-33ff118c3da3_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_d3fceeff-4ab8-488f-a8ec-77451a169a2f.fbm\\8699bc23-8e8d-4983-a663-33ff118c3da3_basecolor.JPEG"
+    },
+    {
+      "name": "86cfab13-f1e3-42c3-9c47-d59979d63457_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_93c37182-adb8-4d57-bb0b-cd1075e78cb2.fbm\\86cfab13-f1e3-42c3-9c47-d59979d63457_basecolor.JPEG"
+    },
+    {
+      "name": "ab3fc008-5db2-47ea-ac80-156062d75d5e_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_d3612ee6-4353-4d66-ae15-01cccd7f9c23.fbm\\ab3fc008-5db2-47ea-ac80-156062d75d5e_basecolor.JPEG"
+    },
+    {
+      "name": "ba956f36-4051-4087-a2ba-15b622e9bb75_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_e9f0d10d-847e-4a51-abc4-c40008ae2cbb.fbm\\ba956f36-4051-4087-a2ba-15b622e9bb75_basecolor.JPEG"
+    },
+    {
+      "name": "c06bb2b5-7acc-4da0-9fe0-b3637cf563c2_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_2c4d3439-08cd-4f67-abd1-7d0b0242a66d.fbm\\c06bb2b5-7acc-4da0-9fe0-b3637cf563c2_basecolor.JPEG"
+    },
+    {
+      "name": "cf33c108-6e2a-4dc3-852f-70f26a56023a_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_bd3f7367-4ad6-4fe2-b57f-bf4543b20d78.fbm\\cf33c108-6e2a-4dc3-852f-70f26a56023a_basecolor.JPEG"
+    },
+    {
+      "name": "e1d52510-bdaf-4998-a4ff-2e5695223a85_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_e381b292-52ca-4506-ae4b-edd2623e9553.fbm\\e1d52510-bdaf-4998-a4ff-2e5695223a85_basecolor.JPEG"
+    },
+    {
+      "name": "ee374f2e-d3dd-4709-9f93-e443b1a4ec30_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a31284\\tripo_convert_1ea970e6-050c-4ae6-b3ad-3fa760926c1a.fbm\\ee374f2e-d3dd-4709-9f93-e443b1a4ec30_basecolor.JPEG"
+    },
+    {
+      "name": "ef6632ad-5997-4333-a080-b492a7b4b3fb_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_2629e79e-2c8c-4b82-a92f-962c21e8b6e7.fbm\\ef6632ad-5997-4333-a080-b492a7b4b3fb_basecolor.JPEG"
+    },
+    {
+      "name": "fc0c452e-9249-4128-a768-9aa9497ee7d0_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_231e5d71-17b9-480d-ba97-5982fcbc5fa3.fbm\\fc0c452e-9249-4128-a768-9aa9497ee7d0_basecolor.JPEG"
+    },
+    {
+      "name": "Render Result",
+      "size": [
+        0,
+        0
+      ],
+      "packed": false,
+      "path": ""
+    },
+    {
+      "name": "tripo_image_37d4c14f_0",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true,
+      "path": "D:\\Temp\\blender_a40352\\tripo_convert_37d4c14f-19b2-46c4-97c2-3214eb2494a0.fbm\\tripo_node_ce419ddb-8907-49fe-a246-007fff37d9db_BaseColor.jpg"
+    },
+    {
+      "name": "Viewer Node",
+      "size": [
+        256,
+        256
+      ],
+      "packed": false,
+      "path": ""
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "blender": "5.2.1 LTS",
+  "resolution": [
+    1024,
+    256
+  ],
+  "color_encoding": "scene-linear HDR EXR + linear mask PNG",
+  "uv": "U0=old tail U1=sword; V0=tip V1=root",
+  "fire_source": "New native shader graph: flowing tongues, turbulent edges, molten heat colour",
+  "frost_source": "New native shader graph: triangular shards and Voronoi facets",
+  "effects": {
+    "fire": [
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\fire_0_emission.exr",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\fire\\fire_0_emission.exr",
+        "max_rgb": [
+          3.4000000953674316,
+          2.377243757247925,
+          0.497469425201416
+        ],
+        "sha256": "7b8b427740c53fa0cd71817b74e04283e71c1ce6906a8b19bd94121b32898f6e"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\fire_0_mask.png",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\fire\\fire_0_mask.png",
+        "max_rgb": [
+          0.9999980330467224,
+          0.9999980330467224,
+          0.9999980330467224
+        ],
+        "sha256": "7ee1a3608d2e0720a64e23793ed4b0eb3db6f0f9c86b637475e59a2d011d04e0"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\fire_1_emission.exr",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\fire\\fire_1_emission.exr",
+        "max_rgb": [
+          3.4000000953674316,
+          2.411931037902832,
+          0.5190176367759705
+        ],
+        "sha256": "9a0478bcf9af65805688452476ba6594f29d843bfb356819ea246c4f21207fda"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\fire_1_mask.png",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\fire\\fire_1_mask.png",
+        "max_rgb": [
+          0.9999830722808838,
+          0.9999830722808838,
+          0.9999830722808838
+        ],
+        "sha256": "92870e65f177fe6540bb6da2258ef1fb4593b4ee1183f1c41111a364722bb781"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\fire_2_emission.exr",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\fire\\fire_2_emission.exr",
+        "max_rgb": [
+          3.4000000953674316,
+          2.3541982173919678,
+          0.4831535220146179
+        ],
+        "sha256": "a43c711b08a33d6198e097911d3b8d56d2638cfc2bf262e6c047f95c661c7d9c"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\fire_2_mask.png",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\fire\\fire_2_mask.png",
+        "max_rgb": [
+          0.9999692440032959,
+          0.9999692440032959,
+          0.9999692440032959
+        ],
+        "sha256": "a92ddc55ea1d4f138fbe6e7aeaf1a575804139baa6e3a4f881262590c071f356"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\fire_3_emission.exr",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\fire\\fire_3_emission.exr",
+        "max_rgb": [
+          3.4000000953674316,
+          2.3464081287384033,
+          0.47831419110298157
+        ],
+        "sha256": "33f289d094219294e642f5c768bed87ff42cdb1885166d562b6947861dbeab7b"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\fire_3_mask.png",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\fire\\fire_3_mask.png",
+        "max_rgb": [
+          0.9999579191207886,
+          0.9999579191207886,
+          0.9999579191207886
+        ],
+        "sha256": "8884b2d21bd64fb8ad74871d9f053584039575fa0da747cf8d3012b80e3fba76"
+      }
+    ],
+    "frost": [
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\frost_0_emission.exr",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\frost\\frost_0_emission.exr",
+        "max_rgb": [
+          3.4533889293670654,
+          5.291482448577881,
+          5.569982051849365
+        ],
+        "sha256": "d533e83b5e2f26b788b4cfcbe55a04f3bae1f30129df17c56acae84bb1fed4bb"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\frost_0_mask.png",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\frost\\frost_0_mask.png",
+        "max_rgb": [
+          0.9999314546585083,
+          0.9999314546585083,
+          0.9999314546585083
+        ],
+        "sha256": "a542035b3026e844aa3b04a70b558ac32a38ae8d6eba9fbe74723ade39001a5a"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\frost_1_emission.exr",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\frost\\frost_1_emission.exr",
+        "max_rgb": [
+          3.5552709102630615,
+          5.447592258453369,
+          5.734307765960693
+        ],
+        "sha256": "04bcb365799447947e86612e030a9d004b82d4d222c6ad8007901ce2167f1ce3"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\frost_1_mask.png",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\frost\\frost_1_mask.png",
+        "max_rgb": [
+          0.9996564388275146,
+          0.9996564388275146,
+          0.9996564388275146
+        ],
+        "sha256": "6771ddf17296482390934eed89685dae94b706e7ca6ac1b5186b9fd18ac1c96e"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\frost_2_emission.exr",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\frost\\frost_2_emission.exr",
+        "max_rgb": [
+          3.5475997924804688,
+          5.435838222503662,
+          5.721935272216797
+        ],
+        "sha256": "5659d122fcafd29a7bae97a437458af62aedcd47fcb29578170a599a54aad7c3"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\frost_2_mask.png",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\frost\\frost_2_mask.png",
+        "max_rgb": [
+          0.9997738003730774,
+          0.9997738003730774,
+          0.9997738003730774
+        ],
+        "sha256": "9b18802144ee216ca7f62fccad96c6502ff7013442bc5bb928c3e517c69a51f9"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\frost_3_emission.exr",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\frost\\frost_3_emission.exr",
+        "max_rgb": [
+          3.5746781826019287,
+          5.477329254150391,
+          5.7656097412109375
+        ],
+        "sha256": "af171a946ecd0851d75e44599ed3c431f12697bb271cb493286cdb5977051cab"
+      },
+      {
+        "path": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\textures\\frost_3_mask.png",
+        "runtime": "game\\assets\\vfx\\elemental_slashes_v001\\frost\\frost_3_mask.png",
+        "max_rgb": [
+          0.9994803667068481,
+          0.9994803667068481,
+          0.9994803667068481
+        ],
+        "sha256": "448bc9e1bd08c2d99d8f04810949a4c9635eaa0a0c561c9c53a824ae3f3c8dbe"
+      }
+    ]
+  }
+}

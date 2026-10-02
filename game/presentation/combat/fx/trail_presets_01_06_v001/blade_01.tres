@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=10 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/trail_presets_01_06_v001/baked_trail.gdshader" id="shader"]
+[ext_resource type="Texture2D" path="res://assets/vfx/trail_presets_01_06_v001/blade_01_0_emission.exr" id="emission_0"]
+[ext_resource type="Texture2D" path="res://assets/vfx/trail_presets_01_06_v001/blade_01_0_mask.png" id="mask_0"]
+[ext_resource type="Texture2D" path="res://assets/vfx/trail_presets_01_06_v001/blade_01_0_emission.exr" id="emission_1"]
+[ext_resource type="Texture2D" path="res://assets/vfx/trail_presets_01_06_v001/blade_01_0_mask.png" id="mask_1"]
+[ext_resource type="Texture2D" path="res://assets/vfx/trail_presets_01_06_v001/blade_01_0_emission.exr" id="emission_2"]
+[ext_resource type="Texture2D" path="res://assets/vfx/trail_presets_01_06_v001/blade_01_0_mask.png" id="mask_2"]
+[ext_resource type="Texture2D" path="res://assets/vfx/trail_presets_01_06_v001/blade_01_0_emission.exr" id="emission_3"]
+[ext_resource type="Texture2D" path="res://assets/vfx/trail_presets_01_06_v001/blade_01_0_mask.png" id="mask_3"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/emission_0 = ExtResource("emission_0")
+shader_parameter/mask_0 = ExtResource("mask_0")
+shader_parameter/emission_1 = ExtResource("emission_1")
+shader_parameter/mask_1 = ExtResource("mask_1")
+shader_parameter/emission_2 = ExtResource("emission_2")
+shader_parameter/mask_2 = ExtResource("mask_2")
+shader_parameter/emission_3 = ExtResource("emission_3")
+shader_parameter/mask_3 = ExtResource("mask_3")
+shader_parameter/frame_phase = 0.0
+shader_parameter/energy_scale = 0.65
+shader_parameter/opacity = 1.0

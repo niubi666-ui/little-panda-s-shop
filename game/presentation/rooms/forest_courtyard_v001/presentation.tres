@@ -1,0 +1,19 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/rooms/room_presentation.gd" id="1"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/forest_courtyard_v001/room.tscn" id="2"]
+[ext_resource type="Resource" path="res://presentation/rooms/forest_courtyard_v001/placement_surface.tres" id="surface"]
+[ext_resource type="Resource" path="res://presentation/rooms/props/forest_props.tres" id="props"]
+[resource]
+script = ExtResource("1")
+placement_surface = ExtResource("surface")
+prop_visuals = ExtResource("props")
+template_id = &"forest_courtyard.v001"
+scene = ExtResource("2")
+camera_offset = Vector3(12, 18.3, 27.4)
+camera_target_offset = Vector3(0, 0.7, -2.4)
+camera_size = 17.0
+camera_min_size = 12.0
+camera_max_size = 24.0
+camera_zoom_step = 1.0
+camera_follow_bounds = Rect2(-1.6, -1.2, 3.2, 2.4)
+temporal_antialiasing = true

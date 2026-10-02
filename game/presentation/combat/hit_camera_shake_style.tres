@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/hit_camera_shake_style.gd" id="style"]
+
+[resource]
+script = ExtResource("style")
+amplitude_meters = Vector2(0.045, 0.026)
+frequencies_hz = Vector2(18, 25)
+phase_radians = Vector2(0, 0)
+duration_seconds = 0.12
+envelope_power = 1.6
+maximum_offset_meters = 0.065

@@ -1,0 +1,9 @@
+{
+  "png_count": 12,
+  "svg_count": 17,
+  "all_png_rgba_transparent": true,
+  "all_svg_valid_xml": true,
+  "runtime_copies_match": true,
+  "pixel_edits": false,
+  "godot_integration_tested": false
+}

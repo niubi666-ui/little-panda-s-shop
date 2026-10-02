@@ -1,0 +1,56 @@
+# Godot caches and local export credentials. Keep source .import and .uid files.
+/game/.godot/
+/game/.import/
+/game/.mono/
+/game/export_credentials.cfg
+
+# Builds, test captures, downloaded engine templates and local Python environments.
+/builds/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editor, OS and temporary files.
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+*~
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Blender automatic/manual backups; keep authored .blend files and bake inputs.
+*.blend[0-9]*
+/source_assets/**/backup/
+/source_assets/**/backups/
+/source_assets/characters/elf_archer/blender/jingling_assembled_v001_before_bowstring.blend
+/source_assets/vfx/trail_fxs_v2/reports/live_before_study.blend
+
+# Reproducible preview movies/frames; keep curated stills, concepts and reports.
+/source_assets/**/*.avi
+/source_assets/**/*.mp4
+/source_assets/**/*.mov
+/source_assets/**/*.webm
+/source_assets/**/blender_previews/movie_frames/
+
+# Redundant delivery/export copies; authoritative originals/runtime models are kept.
+/little_pandas/
+/source_assets/characters/red_panda/exports/*.glb
+/source_assets/**/*.import
+
+# Local Blender tool distribution and bundled tutorials, not game source.
+/source_assets/Auto-Rig Pro v3.75.14/
+/source_assets/**/赠送教程/

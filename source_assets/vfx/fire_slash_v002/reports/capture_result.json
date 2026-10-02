@@ -1,0 +1,139 @@
+{
+	"arena": "res://rogue/scenes/training_arena.tscn",
+	"casts": [
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 1,
+			"damage_applied": 0.0,
+			"hit_count": 0,
+			"phase": "normal",
+			"radius_m": 2.5,
+			"review_sec": 0.416666666666667,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 19,
+			"arc_deg": 160.0,
+			"cast_id": 2,
+			"damage_applied": 0.0,
+			"hit_count": 0,
+			"phase": "slow",
+			"radius_m": 2.5,
+			"review_sec": 1.61666666666667,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 0.4
+		},
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 3,
+			"damage_applied": 0.0,
+			"hit_count": 0,
+			"phase": "combo",
+			"radius_m": 2.5,
+			"review_sec": 4.61666666666666,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 7,
+			"arc_deg": 160.0,
+			"cast_id": 4,
+			"damage_applied": 0.0,
+			"hit_count": 0,
+			"phase": "combo",
+			"radius_m": 2.5,
+			"review_sec": 5.04999999999999,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.3",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 5,
+			"damage_applied": 0.0,
+			"hit_count": 0,
+			"phase": "combo",
+			"radius_m": 2.8,
+			"review_sec": 5.48333333333332,
+			"target_distance_m": 12.0415945053101,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 18,
+			"arc_deg": 160.0,
+			"cast_id": 6,
+			"damage_applied": 16.0,
+			"hit_count": 1,
+			"phase": "range",
+			"radius_m": 2.5,
+			"review_sec": 8.75000000000001,
+			"target_distance_m": 2.34999990463257,
+			"time_scale": 0.4
+		}
+	],
+	"close_camera_size": 6.5,
+	"effect_id": "fire_slash_v002",
+	"effect_scene": "res://presentation/combat/fx/fire_slash_v002/fire_slash.tscn",
+	"enemy_ai_enabled": false,
+	"failures": [],
+	"hits": [
+		{
+			"ability_id": "slash.1",
+			"amount": 16.0,
+			"cast_id": 6,
+			"distance_m": 2.34999990463257,
+			"remaining_hp": 30.0,
+			"review_sec": 9.0666666666667,
+			"target_id": "scout"
+		}
+	],
+	"normal_camera_size": 8.0,
+	"review_duration_sec": 12.0000000000002,
+	"screenshots": {
+		"combo_endpoint": {
+			"active_progress": 1.0,
+			"cast_id": 5,
+			"phase": "first_recovery",
+			"review_sec": 5.83333333333332
+		},
+		"normal_endpoint": {
+			"active_progress": 1.0,
+			"cast_id": 1,
+			"phase": "first_recovery",
+			"review_sec": 0.666666666666667
+		},
+		"range_endpoint": {
+			"active_progress": 1.0,
+			"cast_id": 6,
+			"phase": "first_recovery",
+			"review_sec": 9.36666666666671
+		},
+		"range_hit": {
+			"phase": "actual_damage",
+			"review_sec": 9.0666666666667
+		},
+		"slow_endpoint": {
+			"active_progress": 1.0,
+			"cast_id": 2,
+			"phase": "first_recovery",
+			"review_sec": 2.21666666666666
+		},
+		"tail_cleared": {
+			"phase": "idle",
+			"review_sec": 11.9000000000002
+		}
+	},
+	"slow_scale": 0.4,
+	"staging_note": "Enemy decisions paused. Actual Actor/AbilityRunner/Resolver/View and catalog health remain active. Body action is the existing placeholder, not a new skeletal attack.",
+	"target_end_hp": 30.0,
+	"target_start_hp": 46.0
+}

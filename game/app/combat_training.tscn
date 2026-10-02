@@ -1,0 +1,13 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://app/combat_training.gd" id="1"]
+[ext_resource type="Resource" path="res://presentation/rooms/forest_courtyard_v001/presentation.tres" id="room"]
+[node name="CombatTraining" type="Node3D"]
+script = ExtResource("1")
+room_presentation = ExtResource("room")
+[node name="RunActors" type="Node3D" parent="."]
+[node name="RoomActors" type="Node3D" parent="."]
+[node name="Camera" type="Camera3D" parent="."]
+projection = 1
+current = true
+far = 180.0
+[node name="UIRoot" type="CanvasLayer" parent="."]

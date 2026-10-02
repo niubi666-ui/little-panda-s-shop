@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+[ext_resource type="Script" path="res://presentation/decorating/decorating_style.gd" id="1"]
+[ext_resource type="Resource" path="res://presentation/decorating/decorating_ui_skin.tres" id="2"]
+[sub_resource type="StandardMaterial3D" id="valid"]
+shading_mode = 0
+transparency = 1
+albedo_color = Color(0.2, 0.85, 0.55, 0.48)
+cull_mode = 2
+[sub_resource type="StandardMaterial3D" id="invalid"]
+shading_mode = 0
+transparency = 1
+albedo_color = Color(0.95, 0.22, 0.13, 0.55)
+cull_mode = 2
+[resource]
+script = ExtResource("1")
+source_nodes = {"barrel": NodePath("Furnishings/rear_small_barrel"), "scroll_bin": NodePath("Furnishings/rear_scroll_bin"), "supply_crate": NodePath("Furnishings/rear_supply_crate"), "chest": NodePath("Furnishings/right_treasure_chest")}
+floor_bounds = Rect2(-4.75, -5.5, 9.5, 9.75)
+floor_height = 0.05
+floor_epsilon = 0.02
+camera_focus = Vector3(-0.9, 0.6, -0.5)
+camera_size = 12.8
+grid_height = 0.07
+footprint_height = 0.085
+grid_color = Color(0.8, 0.93, 0.77, 0.28)
+valid_material = SubResource("valid")
+invalid_material = SubResource("invalid")
+ui_skin = ExtResource("2")

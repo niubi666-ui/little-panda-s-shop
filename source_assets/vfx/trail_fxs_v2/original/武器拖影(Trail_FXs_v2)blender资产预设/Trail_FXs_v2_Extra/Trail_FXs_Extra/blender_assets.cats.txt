@@ -1,0 +1,24 @@
+# This is an Asset Catalog Definition file for Blender.
+#
+# Empty lines and lines starting with `#` will be ignored.
+# The first non-ignored line should be the version indicator.
+# Other lines are of the format "UUID:catalog/path/for/assets:simple catalog name"
+
+VERSION 1
+
+fe96eb75-8f69-4a69-beb2-115f44ef47e8:Trail FXs v2:Trail FXs v2
+2dd44850-2cb0-4dff-bed6-ebbee6c8d0f1:Trail FXs v2/Basic Trails:Trail FXs v2-Basic Trails
+7cca86e8-f00a-42e6-8cd6-4f46efffebf3:Trail FXs v2/Basic Trails/Basic Trail Types:Trail FXs v2-Basic Trails-Basic Trail Types
+288234a7-f034-4fb9-af3a-13f353667186:Trail FXs v2/Basic Trails/Materials:Trail FXs v2-Basic Trails-Materials
+dae9c149-a00b-4b80-a921-24356293fd48:Trail FXs v2/Basic Trails/Materials/Trail Lines:Trail FXs v2-Basic Trails-Materials-Trail Lines
+87fa890b-66ff-4baa-8078-69ddbc078c48:Trail FXs v2/Basic Trails/Materials/Trail Particles:Trail FXs v2-Basic Trails-Materials-Trail Particles
+d0461529-7642-4222-af36-62ea3edd5881:Trail FXs v2/Basic Trails/Materials/Trail Tubes:Trail FXs v2-Basic Trails-Materials-Trail Tubes
+e10179a3-b199-40d0-80c8-73922e244ddf:Trail FXs v2/Blade FXs:Trail FXs v2-Blade FXs
+e6a80cba-eb17-4c21-bbb7-70d5ea639200:Trail FXs v2/Blade FXs/FXs Types:Trail FXs v2-Blade FXs-FXs Types
+a502e13a-ab16-4544-be1b-e65fa8844d8a:Trail FXs v2/Blade FXs/Materials:Trail FXs v2-Blade FXs-Materials
+8ed33d4f-1570-41e5-b1b2-4069485d18e7:Trail FXs v2/Blade FXs/Materials/Blade:Trail FXs v2-Blade FXs-Materials-Blade
+c7dacbca-3d7b-4cfc-99a7-b4d46ae8bbce:Trail FXs v2/Blade FXs/Materials/Blade Lines:Trail FXs v2-Blade FXs-Materials-Blade Lines
+c090893a-9b97-4147-a523-9bb244b7f731:Trail FXs v2/Blade FXs/Materials/Liquid:Trail FXs v2-Blade FXs-Materials-Liquid
+f8f13ffb-dd69-4c87-8c7e-aef336cf11aa:Trail FXs v2/Blade FXs/Materials/Particles:Trail FXs v2-Blade FXs-Materials-Particles
+65832a5d-e73f-40a1-9626-5f1f2c984266:Trail FXs v2/Blade FXs/Materials/Smoke:Trail FXs v2-Blade FXs-Materials-Smoke
+87200c67-c5a9-4ef4-ba1b-28fe04d6381b:Trail FXs v2/Custom Particle Collections:Trail FXs v2-Custom Particle Collections

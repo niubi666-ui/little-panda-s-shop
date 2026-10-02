@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://presentation/foliage/ui_typography.gd" id="1"]
+[ext_resource type="FontFile" path="res://assets/fonts/NotoSerifSC-VF.ttf" id="2"]
+
+[resource]
+script = ExtResource("1")
+font_file = ExtResource("2")
+body_weight = 500.0
+button_weight = 650.0
+heading_weight = 750.0
+body_size = 19
+button_size = 19
+title_size = 29
+detail_title_size = 22
+muted_size = 16
+catalog_size = 16

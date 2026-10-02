@@ -1,0 +1,100 @@
+[gd_resource type="Resource" load_steps=27 format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/effect_picker/effect_palette.gd" id="palette"]
+[ext_resource type="Script" path="res://presentation/combat/effect_picker/effect_option.gd" id="option"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/slash_default.tscn" id="golden"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/slash_candidates_v002/a_clean.tscn" id="clean"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/slash_candidates_v002/b_weight.tscn" id="heavy"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/slash_candidates_v002/c_streak.tscn" id="streak"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/trail_presets_01_06_v001/blade_01.tscn" id="preset01"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/trail_presets_01_06_v001/blade_06.tscn" id="preset06"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/fire_slash_v001/fire_slash.tscn" id="fire"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/elemental_slashes_v001/fire/slash.tscn" id="element_fire"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/elemental_slashes_v001/lightning/slash.tscn" id="element_lightning"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/elemental_slashes_v001/thunder/slash.tscn" id="element_thunder"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/elemental_slashes_v001/frost/slash.tscn" id="element_frost"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/fire_slash_v002/fire_slash.tscn" id="inferno"]
+
+[sub_resource type="Resource" id="golden"]
+script = ExtResource("option")
+id = &"golden"
+name_key = "combat.fx.golden"
+scene = ExtResource("golden")
+
+[sub_resource type="Resource" id="clean"]
+script = ExtResource("option")
+id = &"clean"
+name_key = "combat.fx.clean"
+scene = ExtResource("clean")
+
+[sub_resource type="Resource" id="heavy"]
+script = ExtResource("option")
+id = &"heavy"
+name_key = "combat.fx.heavy"
+scene = ExtResource("heavy")
+
+[sub_resource type="Resource" id="streak"]
+script = ExtResource("option")
+id = &"streak"
+name_key = "combat.fx.streak"
+scene = ExtResource("streak")
+
+[sub_resource type="Resource" id="preset01"]
+script = ExtResource("option")
+id = &"preset01"
+name_key = "combat.fx.preset01"
+scene = ExtResource("preset01")
+
+[sub_resource type="Resource" id="preset06"]
+script = ExtResource("option")
+id = &"preset06"
+name_key = "combat.fx.preset06"
+scene = ExtResource("preset06")
+
+[sub_resource type="Resource" id="fire"]
+script = ExtResource("option")
+id = &"fire_slash_v001"
+name_key = "combat.fx.fire"
+scene = ExtResource("fire")
+
+[sub_resource type="Resource" id="element_fire"]
+script = ExtResource("option")
+id = &"element_fire"
+name_key = "combat.fx.element_fire"
+scene = ExtResource("element_fire")
+
+[sub_resource type="Resource" id="element_lightning"]
+script = ExtResource("option")
+id = &"element_lightning"
+name_key = "combat.fx.element_lightning"
+scene = ExtResource("element_lightning")
+
+[sub_resource type="Resource" id="element_thunder"]
+script = ExtResource("option")
+id = &"element_thunder"
+name_key = "combat.fx.element_thunder"
+scene = ExtResource("element_thunder")
+
+[sub_resource type="Resource" id="element_frost"]
+script = ExtResource("option")
+id = &"element_frost"
+name_key = "combat.fx.element_frost"
+scene = ExtResource("element_frost")
+
+[sub_resource type="Resource" id="inferno"]
+script = ExtResource("option")
+id = &"fire_slash_v002"
+name_key = "combat.fx.inferno"
+scene = ExtResource("inferno")
+
+[resource]
+script = ExtResource("palette")
+options = Array[Resource]([SubResource("golden"), SubResource("inferno"), SubResource("element_fire"), SubResource("element_lightning"), SubResource("element_thunder"), SubResource("element_frost"), SubResource("clean"), SubResource("heavy"), SubResource("streak"), SubResource("preset01"), SubResource("preset06"), SubResource("fire")])
+panel_width = 330.0
+margin = 8.0
+column_gap = 8
+row_gap = 8
+title_font_size = 20
+hint_font_size = 14
+button_font_size = 14
+button_height = 38.0

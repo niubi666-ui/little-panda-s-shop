@@ -1,0 +1,34 @@
+{
+  "KneePose_01_Contact": {
+    "pants_waist_weight_vertices": 0,
+    "open_upper_pants_edges": 0,
+    "weight_min": 0.9999998865405928,
+    "weight_max": 1.000000037252903,
+    "finite": true,
+    "vertices": 6552
+  },
+  "KneePose_02_Down": {
+    "pants_waist_weight_vertices": 0,
+    "open_upper_pants_edges": 0,
+    "weight_min": 0.9999998865405928,
+    "weight_max": 1.000000037252903,
+    "finite": true,
+    "vertices": 6552
+  },
+  "KneePose_03_Passing": {
+    "pants_waist_weight_vertices": 0,
+    "open_upper_pants_edges": 0,
+    "weight_min": 0.9999998865405928,
+    "weight_max": 1.000000037252903,
+    "finite": true,
+    "vertices": 6552
+  },
+  "KneePose_04_Flight": {
+    "pants_waist_weight_vertices": 0,
+    "open_upper_pants_edges": 0,
+    "weight_min": 0.9999998865405928,
+    "weight_max": 1.000000037252903,
+    "finite": true,
+    "vertices": 6552
+  }
+}

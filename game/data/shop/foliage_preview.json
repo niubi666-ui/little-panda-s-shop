@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "inventory": [
+    {
+      "id": "potion",
+      "category": "potions",
+      "name_key": "ui.item.potion",
+      "description_key": "ui.item.potion_desc",
+      "icon": "res://assets/ui/foliage/potion.svg"
+    },
+    {
+      "id": "sword",
+      "category": "equipment",
+      "name_key": "ui.item.sword",
+      "description_key": "ui.item.sword_desc",
+      "icon": "res://assets/ui/foliage/sword.svg"
+    },
+    {
+      "id": "herb",
+      "category": "materials",
+      "name_key": "ui.item.herb",
+      "description_key": "ui.item.herb_desc",
+      "icon": "res://assets/ui/foliage/leaf.svg"
+    },
+    {
+      "id": "crystal",
+      "category": "materials",
+      "name_key": "ui.item.crystal",
+      "description_key": "ui.item.crystal_desc",
+      "icon": "res://assets/ui/foliage/crystal.svg"
+    },
+    {
+      "id": "scroll",
+      "category": "materials",
+      "name_key": "ui.item.scroll",
+      "description_key": "ui.item.scroll_desc",
+      "icon": "res://assets/ui/foliage/scroll.svg"
+    },
+    {
+      "id": "bag",
+      "category": "equipment",
+      "name_key": "ui.item.bag",
+      "description_key": "ui.item.bag_desc",
+      "icon": "res://assets/ui/foliage/bag.svg"
+    }
+  ],
+  "decoration": [
+    {
+      "id": "cabinet",
+      "category": "furniture",
+      "name_key": "ui.item.cabinet",
+      "description_key": "ui.item.cabinet_desc",
+      "icon": "res://assets/ui/foliage/cabinet.svg"
+    },
+    {
+      "id": "chest",
+      "category": "furniture",
+      "name_key": "ui.item.chest",
+      "description_key": "ui.item.chest_desc",
+      "icon": "res://assets/ui/foliage/chest.svg"
+    },
+    {
+      "id": "herb",
+      "category": "ornaments",
+      "name_key": "ui.item.herb",
+      "description_key": "ui.item.herb_desc",
+      "icon": "res://assets/ui/foliage/leaf.svg"
+    },
+    {
+      "id": "rug",
+      "category": "ornaments",
+      "name_key": "ui.item.rug",
+      "description_key": "ui.item.rug_desc",
+      "icon": "res://assets/ui/foliage/rug.svg"
+    },
+    {
+      "id": "lamp",
+      "category": "lights",
+      "name_key": "ui.item.lamp",
+      "description_key": "ui.item.lamp_desc",
+      "icon": "res://assets/ui/foliage/lamp.svg"
+    }
+  ],
+  "orders": [
+    {
+      "id": "herbal",
+      "category": "orders",
+      "name_key": "ui.order.herbal",
+      "description_key": "ui.commission.description",
+      "icon": "res://assets/ui/foliage/leaf.svg"
+    },
+    {
+      "id": "guard",
+      "category": "orders",
+      "name_key": "ui.order.guard",
+      "description_key": "ui.commission.description",
+      "icon": "res://assets/ui/foliage/sword.svg"
+    },
+    {
+      "id": "traveler",
+      "category": "orders",
+      "name_key": "ui.order.traveler",
+      "description_key": "ui.commission.description",
+      "icon": "res://assets/ui/foliage/bag.svg"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="PackedScene" path="res://app/projectile_slice.tscn" id="base"]
+[node name="MechanismSlice" instance=ExtResource("base")]
+test_hint_key = "build.test.mechanism_hint"

@@ -1,0 +1,11 @@
+{
+  "mode": "detail",
+  "camera": "Camera_Shrine_Detail",
+  "resolution": [
+    2560,
+    1600
+  ],
+  "samples": 144,
+  "seconds": 150.46860122680664,
+  "device": "GPU"
+}

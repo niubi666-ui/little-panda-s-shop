@@ -1,0 +1,717 @@
+# GENERATED from game/data/locales; edit JSON and rerun the build tool.
+msgid ""
+msgstr ""
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "build.choose"
+msgstr "Choose upgrade"
+
+msgid "build.empty"
+msgstr "No upgrades yet"
+
+msgid "build.error"
+msgstr "Choice could not be saved. Your build is unchanged; try again."
+
+msgid "build.next"
+msgstr "Upgrade to rank {rank}"
+
+msgid "build.no_candidates"
+msgstr "All training upgrades are at their limits."
+
+msgid "build.owned"
+msgstr "Current build"
+
+msgid "build.rank"
+msgstr "Rank {rank} / {max_rank}"
+
+msgid "build.subtitle"
+msgstr "Your choice lasts until this training run ends"
+
+msgid "build.test.agility.description"
+msgstr "Normal movement speed increases by {bonus_percent}%. Dodge speed stays unchanged."
+
+msgid "build.test.agility.name"
+msgstr "Test · Fleet foot"
+
+msgid "build.test.arrow_hint"
+msgstr "Projectile test: T fires an arrow. Choose Split and hit an enemy; Sword wave is not required."
+
+msgid "build.test.blast.description"
+msgstr "Melee and projectiles explode on enemy contact: {radius_m} m radius, {damage_percent}% attack damage with radial falloff. Excludes the direct target and targets behind walls."
+
+msgid "build.test.blast.name"
+msgstr "Test · Impact blast"
+
+msgid "build.test.chain.description"
+msgstr "A melee or wave hit chains to up to {jumps} other enemies within {radius_m} m. It starts at {damage_percent}% of damage dealt, retaining {falloff_percent}% each hop. Once per cast."
+
+msgid "build.test.chain.name"
+msgstr "Test · Echo chain"
+
+msgid "build.test.contact_freeze.description"
+msgstr "Melee and projectile contacts freeze for {duration_sec} s, cancel attacks and charges, and suppress banner auras. Fired bolts continue."
+
+msgid "build.test.contact_freeze.name"
+msgstr "Test · Contact freeze"
+
+msgid "build.test.contact_slow.description"
+msgstr "Melee and projectile contacts slow movement by {slow_percent}% for {duration_sec} s; reapply keeps the longer remaining duration."
+
+msgid "build.test.contact_slow.name"
+msgstr "Test · Contact slow"
+
+msgid "build.test.freeze_duration.description"
+msgstr "Future attacks carrying freeze gain {bonus_percent}% duration, bounded by the status duration cap."
+
+msgid "build.test.freeze_duration.name"
+msgstr "Test · Longer freeze"
+
+msgid "build.test.mechanism_hint"
+msgstr "T: arrow | Orange: blast | Purple: slow | Blue: freeze | Retry to test another build"
+
+msgid "build.test.power.description"
+msgstr "Attack damage increases by {bonus_percent}%. Sword waves inherit this bonus; derived damage does not multiply it again."
+
+msgid "build.test.power.name"
+msgstr "Test · Sharpened blade"
+
+msgid "build.test.split.description"
+msgstr "Compatible projectiles split on enemy contact into {count} children, dealing {damage_percent}% of parent damage. Up to {max_generation} generation; excludes ancestor targets."
+
+msgid "build.test.split.name"
+msgstr "Test · Projectile split"
+
+msgid "build.test.wave.description"
+msgstr "Each attack releases a wave, even on a miss. It deals {damage_percent}% of that attack's damage and stops on a wall or enemy."
+
+msgid "build.test.wave.name"
+msgstr "Test · Sword wave"
+
+msgid "build.test_offer"
+msgstr "Test: offer upgrades"
+
+msgid "build.title"
+msgstr "Choose a build upgrade"
+
+msgid "combat.banner"
+msgstr "Warlord Banner"
+
+msgid "combat.brute"
+msgstr "Brute · Placeholder"
+
+msgid "combat.charger"
+msgstr "Charging Spearman"
+
+msgid "combat.choosing"
+msgstr "Choose a build upgrade to resume combat"
+
+msgid "combat.controls"
+msgstr "WASD Move · Mouse Aim · LMB Combo · Shift Dodge · Esc Pause · L Language"
+
+msgid "combat.crossbow"
+msgstr "Skirmish Crossbow"
+
+msgid "combat.defeat"
+msgstr "Training failed. Retrying costs no shop items."
+
+msgid "combat.enter"
+msgstr "F6 Combat training"
+
+msgid "combat.fighting"
+msgstr "Sidestep red lines. Punish charge recovery. Kill the banner to remove its aura."
+
+msgid "combat.fx.clean"
+msgstr "Clean arc"
+
+msgid "combat.fx.element_fire"
+msgstr "Fire · Ember blade"
+
+msgid "combat.fx.element_frost"
+msgstr "Frost · Shards"
+
+msgid "combat.fx.element_lightning"
+msgstr "Lightning · Arc"
+
+msgid "combat.fx.element_thunder"
+msgstr "Thunder · Rift"
+
+msgid "combat.fx.fire"
+msgstr "Original flame"
+
+msgid "combat.fx.golden"
+msgstr "Golden shards"
+
+msgid "combat.fx.heavy"
+msgstr "Heavy slash"
+
+msgid "combat.fx.hint"
+msgstr "Changes visuals only. Combat stats stay the same."
+
+msgid "combat.fx.inferno"
+msgstr "Inferno · Cleave"
+
+msgid "combat.fx.preset01"
+msgstr "01 · Ember arc"
+
+msgid "combat.fx.preset06"
+msgstr "06 · Shards"
+
+msgid "combat.fx.streak"
+msgstr "Flying streaks"
+
+msgid "combat.fx.title"
+msgstr "Sword trail test"
+
+msgid "combat.paused"
+msgstr "Paused"
+
+msgid "combat.player"
+msgstr "Red panda"
+
+msgid "combat.prototype"
+msgstr "Placeholder models and actions · No loot, economy or save settlement"
+
+msgid "combat.resume"
+msgstr "Resume"
+
+msgid "combat.retry"
+msgstr "Retry training"
+
+msgid "combat.return"
+msgstr "Return to shop"
+
+msgid "combat.scout"
+msgstr "Scout · Placeholder"
+
+msgid "combat.status"
+msgstr "HP {hp}/{max_hp}  ·  Dodge {charges}/{max_charges}  ·  Wave {wave}/{total}  ·  Enemies {enemies}"
+
+msgid "combat.title"
+msgstr "Combat training · Prototype"
+
+msgid "combat.victory"
+msgstr "Training complete! Retry or return to the shop."
+
+msgid "combat.waiting"
+msgstr "Wave cleared. Reinforcements approaching…"
+
+msgid "encounter.banner_brute"
+msgstr "Banner Brute"
+
+msgid "encounter.banner_charge"
+msgstr "Banner Charge"
+
+msgid "encounter.banner_crossbow"
+msgstr "Banner Crossbow"
+
+msgid "encounter.brute_charge"
+msgstr "Brute Charge"
+
+msgid "encounter.brute_crossbow"
+msgstr "Brute Crossbow"
+
+msgid "encounter.brute_guard"
+msgstr "Brute Guard"
+
+msgid "encounter.crossfire_charge"
+msgstr "Crossfire Charge"
+
+msgid "encounter.depth"
+msgstr "Training depth"
+
+msgid "encounter.escort_crossbow"
+msgstr "Escort Crossbow"
+
+msgid "encounter.heavy_breakthrough"
+msgstr "Heavy Breakthrough"
+
+msgid "encounter.reroll"
+msgstr "Apply depth / New encounter"
+
+msgid "encounter.scout_brute"
+msgstr "Scout Brute"
+
+msgid "encounter.scout_charge"
+msgstr "Scout Charge"
+
+msgid "encounter.scout_crossbow"
+msgstr "Scout Crossbow"
+
+msgid "encounter.status"
+msgstr "Depth {depth} · Budget {budget} · {name}"
+
+msgid "loading.failed"
+msgstr "Unable to enter. Please go back and try again."
+
+msgid "loading.preparing"
+msgstr "Resources ready. Preparing the scene…"
+
+msgid "loading.progress"
+msgstr "Loading resources · {percent}%"
+
+msgid "loading.return"
+msgstr "Go back"
+
+msgid "loading.title"
+msgstr "A Journey Awaits"
+
+msgid "room.empty"
+msgstr "No loot yet"
+
+msgid "room.failed"
+msgstr "Loot was not committed. Try again."
+
+msgid "room.hint"
+msgstr "Approach a chest or bag and press F to search"
+
+msgid "room.loot.herb"
+msgstr "Test herbs"
+
+msgid "room.loot.ore"
+msgstr "Test ore"
+
+msgid "room.loot_title"
+msgstr "Training loot (not saved)"
+
+msgid "room.new_layout"
+msgstr "New random layout"
+
+msgid "room.prop.barrel"
+msgstr "Barrel"
+
+msgid "room.prop.broken_column"
+msgstr "Broken column"
+
+msgid "room.prop.chest1"
+msgstr "Ruins chest"
+
+msgid "room.prop.chest2"
+msgstr "Travel chest"
+
+msgid "room.prop.crate"
+msgstr "Crate"
+
+msgid "room.prop.crate_long"
+msgstr "Long crate"
+
+msgid "room.prop.crate_stack"
+msgstr "Crate stack"
+
+msgid "room.prop.end_pillar"
+msgstr "Stone end pillar"
+
+msgid "room.prop.forest_bag"
+msgstr "Adventurer bag"
+
+msgid "room.prop.low_wall"
+msgstr "Low ruined wall"
+
+msgid "room.prop.moss_rock"
+msgstr "Mossy rock"
+
+msgid "room.prop.stone_wall"
+msgstr "Stone wall"
+
+msgid "room.search"
+msgstr "F Search · {name}"
+
+msgid "room.searched"
+msgstr "Searched · {name}"
+
+msgid "room.seed"
+msgstr "Room seed: {seed}"
+
+msgid "settings.attack"
+msgstr "Attack"
+
+msgid "settings.audio_pending"
+msgstr "Audio bus pending"
+
+msgid "settings.cancel"
+msgstr "Cancel"
+
+msgid "settings.chinese"
+msgstr "简体中文"
+
+msgid "settings.controls"
+msgstr "Controls"
+
+msgid "settings.display_pending"
+msgstr "Display setup pending"
+
+msgid "settings.dodge"
+msgstr "Dodge"
+
+msgid "settings.english"
+msgstr "English"
+
+msgid "settings.exit_warning"
+msgstr "Quitting discards unsaved training or preview progress. Game saving is not available yet. Quit anyway?"
+
+msgid "settings.fps"
+msgstr "Frame Rate Limit"
+
+msgid "settings.general"
+msgstr "General"
+
+msgid "settings.graphics"
+msgstr "Graphics"
+
+msgid "settings.interact"
+msgstr "Interact"
+
+msgid "settings.language"
+msgstr "Language"
+
+msgid "settings.load"
+msgstr "Load Game"
+
+msgid "settings.load_pending"
+msgstr "Load · Coming soon"
+
+msgid "settings.master"
+msgstr "Master Volume"
+
+msgid "settings.mouse_button"
+msgstr "Mouse Button {button}"
+
+msgid "settings.move"
+msgstr "Move"
+
+msgid "settings.music"
+msgstr "Music Volume"
+
+msgid "settings.off"
+msgstr "Off"
+
+msgid "settings.on"
+msgstr "On"
+
+msgid "settings.pending"
+msgstr "Coming soon"
+
+msgid "settings.percent"
+msgstr "{value}%"
+
+msgid "settings.quality"
+msgstr "Quality Preset"
+
+msgid "settings.quit"
+msgstr "Quit Game"
+
+msgid "settings.quit_confirm"
+msgstr "Quit Without Saving"
+
+msgid "settings.rebind_pending"
+msgstr "Rebinding / Sensitivity · Coming soon"
+
+msgid "settings.resolution"
+msgstr "Resolution"
+
+msgid "settings.resume"
+msgstr "Resume"
+
+msgid "settings.save"
+msgstr "Save Game"
+
+msgid "settings.save_note"
+msgstr "Game saving and loading are not connected yet. This page reserves space for slots and progress. No game saves are available."
+
+msgid "settings.save_pending"
+msgstr "Save · Coming soon"
+
+msgid "settings.saves"
+msgstr "Saved Games"
+
+msgid "settings.session_note"
+msgstr "Changes apply now · Settings are not saved yet"
+
+msgid "settings.sfx"
+msgstr "Effects Volume"
+
+msgid "settings.title"
+msgstr "Settings"
+
+msgid "settings.unbound"
+msgstr "Unbound"
+
+msgid "settings.unlimited"
+msgstr "Unlimited"
+
+msgid "settings.vsync"
+msgstr "Vertical Sync"
+
+msgid "settings.window"
+msgstr "Window Mode"
+
+msgid "shop.preview.close"
+msgstr "Close"
+
+msgid "shop.preview.close_hint"
+msgstr "{key} Close"
+
+msgid "shop.preview.controls"
+msgstr "{move_keys} Move   ·   {interact_key} Interact   ·   Wheel Zoom"
+
+msgid "shop.preview.language"
+msgstr "{key}  中文"
+
+msgid "shop.preview.pending"
+msgstr "Feature awaiting design"
+
+msgid "shop.preview.prompt"
+msgstr "{key}  ·  {action} · {target}"
+
+msgid "shop.preview.title"
+msgstr "Little Panda's Shop"
+
+msgid "shop.station.chest.action"
+msgstr "Inspect chest"
+
+msgid "shop.station.chest.name"
+msgstr "Treasure chest"
+
+msgid "shop.station.counter.action"
+msgstr "View stock and display"
+
+msgid "shop.station.counter.name"
+msgstr "Sales counter"
+
+msgid "shop.station.potions.action"
+msgstr "View potion display"
+
+msgid "shop.station.potions.name"
+msgstr "Potion stand"
+
+msgid "shop.station.shelf.action"
+msgstr "View display"
+
+msgid "shop.station.shelf.name"
+msgstr "Display shelf"
+
+msgid "shop.station.storage.action"
+msgstr "View storage"
+
+msgid "shop.station.storage.name"
+msgstr "Storage cabinet"
+
+msgid "shop.station.workbench.action"
+msgstr "View workbench"
+
+msgid "shop.station.workbench.name"
+msgstr "Workbench"
+
+msgid "ui.accept"
+msgstr "Accept selected order"
+
+msgid "ui.all"
+msgstr "All"
+
+msgid "ui.catalog"
+msgstr "Furniture catalog"
+
+msgid "ui.choose_order"
+msgstr "Choose this order"
+
+msgid "ui.commission.accept_pending"
+msgstr "Order selected. Accepting commissions is not available yet."
+
+msgid "ui.commission.depart_pending"
+msgstr "No order is required. Dungeon departure is not available yet."
+
+msgid "ui.commission.description"
+msgstr "Details will appear when commissions are available."
+
+msgid "ui.commission.preview"
+msgstr "UI preview · Commissions and departures are not available yet"
+
+msgid "ui.commission.requirements"
+msgstr "Requirements · Pending"
+
+msgid "ui.commission.reward"
+msgstr "Reward · Pending"
+
+msgid "ui.controls"
+msgstr "Controls"
+
+msgid "ui.decoration"
+msgstr "Decorate"
+
+msgid "ui.depart"
+msgstr "Set out without an order"
+
+msgid "ui.done"
+msgstr "Back to shop"
+
+msgid "ui.empty"
+msgstr "Empty slot"
+
+msgid "ui.equipment"
+msgstr "Gear"
+
+msgid "ui.furniture"
+msgstr "Furniture"
+
+msgid "ui.inventory"
+msgstr "Inventory"
+
+msgid "ui.item.bag"
+msgstr "Travel pouch"
+
+msgid "ui.item.bag_desc"
+msgstr "A sturdy pouch made for long journeys."
+
+msgid "ui.item.cabinet"
+msgstr "Apothecary shelf"
+
+msgid "ui.item.cabinet_desc"
+msgstr "Neat shelves for bottles, jars and little treasures."
+
+msgid "ui.item.chest"
+msgstr "Wooden chest"
+
+msgid "ui.item.chest_desc"
+msgstr "A small dark-wood chest reinforced with brass."
+
+msgid "ui.item.crystal"
+msgstr "Azure crystal"
+
+msgid "ui.item.crystal_desc"
+msgstr "Soft blue light catches the facets of this crystal."
+
+msgid "ui.item.herb"
+msgstr "Fragrant herbs"
+
+msgid "ui.item.herb_desc"
+msgstr "Freshly gathered leaves with the scent of the forest."
+
+msgid "ui.item.lamp"
+msgstr "Warm lantern"
+
+msgid "ui.item.lamp_desc"
+msgstr "A bronze frame holds a warm glow for quiet corners."
+
+msgid "ui.item.potion"
+msgstr "Crimson potion"
+
+msgid "ui.item.potion_desc"
+msgstr "A clear crimson liquid in a cork-sealed glass bottle."
+
+msgid "ui.item.rug"
+msgstr "Woven rug"
+
+msgid "ui.item.rug_desc"
+msgstr "Warm crimson fabric with delicate golden patterns."
+
+msgid "ui.item.scroll"
+msgstr "Old scroll"
+
+msgid "ui.item.scroll_desc"
+msgstr "A rolled parchment, gently yellowed at the edges."
+
+msgid "ui.item.sword"
+msgstr "Traveler’s sword"
+
+msgid "ui.item.sword_desc"
+msgstr "A light blade with an antique brass hilt."
+
+msgid "ui.key_decoration"
+msgstr "Decorate  {key}"
+
+msgid "ui.key_inventory"
+msgstr "Inventory  {key}"
+
+msgid "ui.key_orders"
+msgstr "Orders  {key}"
+
+msgid "ui.key_settings"
+msgstr "Settings  {key}"
+
+msgid "ui.language"
+msgstr "Language"
+
+msgid "ui.language_toggle"
+msgstr "中文 / EN"
+
+msgid "ui.lights"
+msgstr "Lights"
+
+msgid "ui.location"
+msgstr "SHOP · A QUIET DAY"
+
+msgid "ui.materials"
+msgstr "Materials"
+
+msgid "ui.no_balance"
+msgstr "Gold  —"
+
+msgid "ui.order.guard"
+msgstr "Guard’s equipment"
+
+msgid "ui.order.herbal"
+msgstr "Herbalist’s supplies"
+
+msgid "ui.order.traveler"
+msgstr "Traveler’s provisions"
+
+msgid "ui.order_hint"
+msgstr "Choose one order, or set out freely"
+
+msgid "ui.order_limit"
+msgstr "At most one active order"
+
+msgid "ui.order_note"
+msgstr "Customers, requirements and rewards will appear when orders are available."
+
+msgid "ui.orders"
+msgstr "Orders"
+
+msgid "ui.ornaments"
+msgstr "Decor"
+
+msgid "ui.place"
+msgstr "Place furniture"
+
+msgid "ui.place_note"
+msgstr "Select furniture to inspect its design. Placement is not available yet."
+
+msgid "ui.potions"
+msgstr "Potions"
+
+msgid "ui.preview"
+msgstr "UI PREVIEW · SAMPLE CATALOG"
+
+msgid "ui.sample_note"
+msgstr "These samples demonstrate the interface; they are not owned items."
+
+msgid "ui.select_item"
+msgstr "Select an item"
+
+msgid "ui.selected"
+msgstr "Selected"
+
+msgid "ui.settings"
+msgstr "Settings"
+
+msgid "ui.settings_note"
+msgstr "Language changes apply now and are not saved between sessions."
+
+msgid "ui.sort"
+msgstr "Sort"
+
+msgid "ui.status"
+msgstr "Little treasures, brighter journeys"
+
+msgid "ui.store"
+msgstr "Store"
+
+msgid "ui.unavailable"
+msgstr "Not available yet"
+
+msgid "ui.use"
+msgstr "Use"
+

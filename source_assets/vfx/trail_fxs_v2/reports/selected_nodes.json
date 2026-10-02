@@ -1,0 +1,7400 @@
+{
+  "Trail_Blade_01": {
+    "name": "Shader Nodetree",
+    "nodes": [
+      {
+        "name": "Attribute.002",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "Glow2"
+        }
+      },
+      {
+        "name": "Attribute.001",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "Glow"
+        }
+      },
+      {
+        "name": "Transparent BSDF",
+        "type": "ShaderNodeBsdfTransparent",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Weight",
+            "value": 0.0
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Attribute.003",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "Glow"
+        }
+      },
+      {
+        "name": "Material Output",
+        "type": "ShaderNodeOutputMaterial",
+        "inputs": [
+          {
+            "index": 2,
+            "name": "Displacement",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Thickness",
+            "value": 0.0
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Attribute",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "BladeUVs"
+        }
+      },
+      {
+        "name": "Color Ramp",
+        "type": "ShaderNodeValToRGB",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {},
+        "ramp": {
+          "interpolation": "EASE",
+          "elements": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.18636362254619598,
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            [
+              0.7499998211860657,
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            [
+              1.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "name": "Math",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "MULTIPLY"
+        }
+      },
+      {
+        "name": "Mix",
+        "type": "ShaderNodeMix",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Factor",
+            "value": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          {
+            "index": 2,
+            "name": "A",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "B",
+            "value": 0.0
+          },
+          {
+            "index": 4,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 5,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 6,
+            "name": "A",
+            "value": [
+              1.0,
+              0.02005165070295334,
+              0.013883190229535103,
+              1.0
+            ]
+          },
+          {
+            "index": 7,
+            "name": "B",
+            "value": [
+              1.0,
+              0.7138493061065674,
+              0.2036333829164505,
+              1.0
+            ]
+          },
+          {
+            "index": 8,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 9,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Result",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {
+          "blend_type": "MIX",
+          "data_type": "RGBA"
+        }
+      },
+      {
+        "name": "Emission",
+        "type": "ShaderNodeEmission",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              1.0,
+              0.3013085424900055,
+              0.016801349818706512,
+              1.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Strength",
+            "value": 7.699999809265137
+          },
+          {
+            "index": 2,
+            "name": "Weight",
+            "value": 0.0
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Separate XYZ",
+        "type": "ShaderNodeSeparateXYZ",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "X",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Y",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Z",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Map Range",
+        "type": "ShaderNodeMapRange",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 1.0
+          },
+          {
+            "index": 1,
+            "name": "From Min",
+            "value": 0.010909005999565125
+          },
+          {
+            "index": 2,
+            "name": "From Max",
+            "value": 0.550000011920929
+          },
+          {
+            "index": 3,
+            "name": "To Min",
+            "value": 0.0
+          },
+          {
+            "index": 4,
+            "name": "To Max",
+            "value": 1.0
+          },
+          {
+            "index": 5,
+            "name": "Steps",
+            "value": 4.0
+          },
+          {
+            "index": 6,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 7,
+            "name": "From Min",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 8,
+            "name": "From Max",
+            "value": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "index": 9,
+            "name": "To Min",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 10,
+            "name": "To Max",
+            "value": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "index": 11,
+            "name": "Steps",
+            "value": [
+              4.0,
+              4.0,
+              4.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Result",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {
+          "data_type": "FLOAT",
+          "interpolation_type": "SMOOTHERSTEP",
+          "clamp": true
+        }
+      },
+      {
+        "name": "Map Range.001",
+        "type": "ShaderNodeMapRange",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 1.0
+          },
+          {
+            "index": 1,
+            "name": "From Min",
+            "value": 1.0
+          },
+          {
+            "index": 2,
+            "name": "From Max",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "To Min",
+            "value": 0.011500000022351742
+          },
+          {
+            "index": 4,
+            "name": "To Max",
+            "value": 1.0
+          },
+          {
+            "index": 5,
+            "name": "Steps",
+            "value": 4.0
+          },
+          {
+            "index": 6,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 7,
+            "name": "From Min",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 8,
+            "name": "From Max",
+            "value": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "index": 9,
+            "name": "To Min",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 10,
+            "name": "To Max",
+            "value": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "index": 11,
+            "name": "Steps",
+            "value": [
+              4.0,
+              4.0,
+              4.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Result",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {
+          "data_type": "FLOAT",
+          "interpolation_type": "LINEAR",
+          "clamp": true
+        }
+      },
+      {
+        "name": "Value",
+        "type": "ShaderNodeValue",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.20000000298023224
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Mix Shader",
+        "type": "ShaderNodeMixShader",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Attribute.004",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "Speed"
+        }
+      },
+      {
+        "name": "Color Ramp.001",
+        "type": "ShaderNodeValToRGB",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {},
+        "ramp": {
+          "interpolation": "EASE",
+          "elements": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.3136363923549652,
+              [
+                0.26355937123298645,
+                0.006985395681113005,
+                0.009023897349834442,
+                1.0
+              ]
+            ],
+            [
+              0.5500000715255737,
+              [
+                1.0,
+                0.08334702253341675,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.7477273344993591,
+              [
+                1.0,
+                0.42001408338546753,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.9263635873794556,
+              [
+                1.0,
+                0.7564263343811035,
+                0.15770284831523895,
+                1.0
+              ]
+            ],
+            [
+              1.0,
+              [
+                1.0,
+                0.880922794342041,
+                0.3629685640335083,
+                1.0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "name": "Mix.001",
+        "type": "ShaderNodeMix",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Factor",
+            "value": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          {
+            "index": 2,
+            "name": "A",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "B",
+            "value": 0.0
+          },
+          {
+            "index": 4,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 5,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 6,
+            "name": "A",
+            "value": [
+              1.0,
+              0.02005165070295334,
+              0.013883190229535103,
+              1.0
+            ]
+          },
+          {
+            "index": 7,
+            "name": "B",
+            "value": [
+              1.0,
+              0.7138493061065674,
+              0.2036333829164505,
+              1.0
+            ]
+          },
+          {
+            "index": 8,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 9,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Result",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {
+          "blend_type": "MIX",
+          "data_type": "RGBA"
+        }
+      },
+      {
+        "name": "Hue/Saturation/Value",
+        "type": "ShaderNodeHueSaturation",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Hue",
+            "value": 0.30000001192092896
+          },
+          {
+            "index": 1,
+            "name": "Saturation",
+            "value": 1.0
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 1.0
+          },
+          {
+            "index": 3,
+            "name": "Factor",
+            "value": 1.0
+          },
+          {
+            "index": 4,
+            "name": "Color",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Math.001",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "MULTIPLY"
+        }
+      },
+      {
+        "name": "Attribute.005",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "Hue"
+        }
+      },
+      {
+        "name": "Attribute.006",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "UseGlowColors"
+        }
+      }
+    ],
+    "links": [
+      [
+        "Attribute",
+        "Vector",
+        "Separate XYZ",
+        "Vector"
+      ],
+      [
+        "Transparent BSDF",
+        "BSDF",
+        "Mix Shader",
+        "Shader"
+      ],
+      [
+        "Emission",
+        "Emission",
+        "Mix Shader",
+        "Shader"
+      ],
+      [
+        "Math",
+        "Value",
+        "Mix Shader",
+        "Factor"
+      ],
+      [
+        "Mix.001",
+        "Result",
+        "Emission",
+        "Color"
+      ],
+      [
+        "Math",
+        "Value",
+        "Mix",
+        "Factor"
+      ],
+      [
+        "Attribute.001",
+        "Color",
+        "Mix",
+        "A"
+      ],
+      [
+        "Attribute.002",
+        "Color",
+        "Mix",
+        "B"
+      ],
+      [
+        "Separate XYZ",
+        "Y",
+        "Color Ramp",
+        "Factor"
+      ],
+      [
+        "Color Ramp",
+        "Color",
+        "Math",
+        "Value"
+      ],
+      [
+        "Separate XYZ",
+        "X",
+        "Map Range",
+        "Value"
+      ],
+      [
+        "Map Range",
+        "Result",
+        "Math",
+        "Value"
+      ],
+      [
+        "Value",
+        "Value",
+        "Map Range.001",
+        "Value"
+      ],
+      [
+        "Map Range.001",
+        "Result",
+        "Map Range",
+        "From Max"
+      ],
+      [
+        "Math",
+        "Value",
+        "Color Ramp.001",
+        "Factor"
+      ],
+      [
+        "Mix",
+        "Result",
+        "Mix.001",
+        "B"
+      ],
+      [
+        "Hue/Saturation/Value",
+        "Color",
+        "Mix.001",
+        "A"
+      ],
+      [
+        "Color Ramp.001",
+        "Color",
+        "Hue/Saturation/Value",
+        "Color"
+      ],
+      [
+        "Attribute.003",
+        "Alpha",
+        "Math.001",
+        "Value"
+      ],
+      [
+        "Math",
+        "Value",
+        "Math.001",
+        "Value"
+      ],
+      [
+        "Math.001",
+        "Value",
+        "Emission",
+        "Strength"
+      ],
+      [
+        "Attribute.005",
+        "Factor",
+        "Hue/Saturation/Value",
+        "Hue"
+      ],
+      [
+        "Attribute.006",
+        "Factor",
+        "Mix.001",
+        "Factor"
+      ],
+      [
+        "Mix Shader",
+        "Shader",
+        "Material Output",
+        "Surface"
+      ]
+    ]
+  },
+  "Trail_Blade_06": {
+    "name": "Shader Nodetree",
+    "nodes": [
+      {
+        "name": "Material Output",
+        "type": "ShaderNodeOutputMaterial",
+        "inputs": [
+          {
+            "index": 2,
+            "name": "Displacement",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Thickness",
+            "value": 0.0
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Mix Shader",
+        "type": "ShaderNodeMixShader",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Transparent BSDF",
+        "type": "ShaderNodeBsdfTransparent",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Weight",
+            "value": 0.0
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Color Ramp.004",
+        "type": "ShaderNodeValToRGB",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {},
+        "ramp": {
+          "interpolation": "B_SPLINE",
+          "elements": [
+            [
+              0.018181804567575455,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.25454583764076233,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.5045461058616638,
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "name": "Color Ramp.001",
+        "type": "ShaderNodeValToRGB",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {},
+        "ramp": {
+          "interpolation": "B_SPLINE",
+          "elements": [
+            [
+              0.02727283537387848,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.11818182468414307,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.22272738814353943,
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            [
+              0.7863633632659912,
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            [
+              0.8909091949462891,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.9704543352127075,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "name": "Separate XYZ",
+        "type": "ShaderNodeSeparateXYZ",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "X",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Y",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Z",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Attribute.005",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "BladeUVs"
+        }
+      },
+      {
+        "name": "Math",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "MULTIPLY"
+        }
+      },
+      {
+        "name": "Math.001",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "MULTIPLY"
+        }
+      },
+      {
+        "name": "Mix.003",
+        "type": "ShaderNodeMix",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.9583333134651184
+          },
+          {
+            "index": 1,
+            "name": "Factor",
+            "value": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          {
+            "index": 2,
+            "name": "A",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "B",
+            "value": 0.0
+          },
+          {
+            "index": 4,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 5,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 6,
+            "name": "A",
+            "value": [
+              1.0,
+              0.02005165070295334,
+              0.013883190229535103,
+              1.0
+            ]
+          },
+          {
+            "index": 7,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "index": 8,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 9,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Result",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {
+          "blend_type": "MIX",
+          "data_type": "RGBA"
+        }
+      },
+      {
+        "name": "Mix.001",
+        "type": "ShaderNodeMix",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.824999988079071
+          },
+          {
+            "index": 1,
+            "name": "Factor",
+            "value": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          {
+            "index": 2,
+            "name": "A",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "B",
+            "value": 0.0
+          },
+          {
+            "index": 4,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 5,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 6,
+            "name": "A",
+            "value": [
+              1.0,
+              0.02005165070295334,
+              0.013883190229535103,
+              1.0
+            ]
+          },
+          {
+            "index": 7,
+            "name": "B",
+            "value": [
+              1.0,
+              0.7138493061065674,
+              0.2036333829164505,
+              1.0
+            ]
+          },
+          {
+            "index": 8,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 9,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Result",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {
+          "blend_type": "DODGE",
+          "data_type": "RGBA"
+        }
+      },
+      {
+        "name": "Color Ramp.003",
+        "type": "ShaderNodeValToRGB",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {},
+        "ramp": {
+          "interpolation": "LINEAR",
+          "elements": [
+            [
+              0.4909088611602783,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.590909481048584,
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "name": "Reroute",
+        "type": "NodeReroute",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Input",
+            "value": 0.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Output",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Attribute.003",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "Glow"
+        }
+      },
+      {
+        "name": "Reroute.001",
+        "type": "NodeReroute",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Input",
+            "value": 0.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Output",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Math.002",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "MULTIPLY"
+        }
+      },
+      {
+        "name": "Attribute.002",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "Glow2"
+        }
+      },
+      {
+        "name": "Attribute.001",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "Glow"
+        }
+      },
+      {
+        "name": "Mix",
+        "type": "ShaderNodeMix",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Factor",
+            "value": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          {
+            "index": 2,
+            "name": "A",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "B",
+            "value": 0.0
+          },
+          {
+            "index": 4,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 5,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 6,
+            "name": "A",
+            "value": [
+              1.0,
+              0.02005165070295334,
+              0.013883190229535103,
+              1.0
+            ]
+          },
+          {
+            "index": 7,
+            "name": "B",
+            "value": [
+              1.0,
+              0.7138493061065674,
+              0.2036333829164505,
+              1.0
+            ]
+          },
+          {
+            "index": 8,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 9,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Result",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {
+          "blend_type": "MIX",
+          "data_type": "RGBA"
+        }
+      },
+      {
+        "name": "Color Ramp.002",
+        "type": "ShaderNodeValToRGB",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {},
+        "ramp": {
+          "interpolation": "LINEAR",
+          "elements": [
+            [
+              0.4045453369617462,
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            [
+              0.5272732377052307,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "name": "Color Ramp",
+        "type": "ShaderNodeValToRGB",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {},
+        "ramp": {
+          "interpolation": "LINEAR",
+          "elements": [
+            [
+              0.4090907573699951,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.6818183660507202,
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "name": "Noise Texture.002",
+        "type": "ShaderNodeTexNoise",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "W",
+            "value": 0.05999999865889549
+          },
+          {
+            "index": 2,
+            "name": "Scale",
+            "value": 3.859999895095825
+          },
+          {
+            "index": 3,
+            "name": "Detail",
+            "value": 4.0
+          },
+          {
+            "index": 4,
+            "name": "Roughness",
+            "value": 0.6000000834465027
+          },
+          {
+            "index": 5,
+            "name": "Lacunarity",
+            "value": 2.8299999237060547
+          },
+          {
+            "index": 6,
+            "name": "Offset",
+            "value": 0.0
+          },
+          {
+            "index": 7,
+            "name": "Gain",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Distortion",
+            "value": 2.8299999237060547
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {
+          "noise_dimensions": "4D",
+          "normalize": true
+        }
+      },
+      {
+        "name": "Vector Math",
+        "type": "ShaderNodeVectorMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.4699999988079071,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Scale",
+            "value": 1.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "MULTIPLY"
+        }
+      },
+      {
+        "name": "Attribute.007",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "Speed"
+        }
+      },
+      {
+        "name": "Attribute.006",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "BladeUVs"
+        }
+      },
+      {
+        "name": "Emission",
+        "type": "ShaderNodeEmission",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Strength",
+            "value": 1.0
+          },
+          {
+            "index": 2,
+            "name": "Weight",
+            "value": 0.0
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Color Ramp.005",
+        "type": "ShaderNodeValToRGB",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {},
+        "ramp": {
+          "interpolation": "EASE",
+          "elements": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.3136363923549652,
+              [
+                0.26355937123298645,
+                0.006985395681113005,
+                0.009023897349834442,
+                1.0
+              ]
+            ],
+            [
+              0.5500000715255737,
+              [
+                1.0,
+                0.08334702253341675,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.7477273344993591,
+              [
+                1.0,
+                0.42001408338546753,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              0.9263635873794556,
+              [
+                1.0,
+                0.7564263343811035,
+                0.15770284831523895,
+                1.0
+              ]
+            ],
+            [
+              1.0,
+              [
+                1.0,
+                0.880922794342041,
+                0.3629685640335083,
+                1.0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "name": "Mix.002",
+        "type": "ShaderNodeMix",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Factor",
+            "value": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          {
+            "index": 2,
+            "name": "A",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "B",
+            "value": 0.0
+          },
+          {
+            "index": 4,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 5,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 6,
+            "name": "A",
+            "value": [
+              1.0,
+              0.02005165070295334,
+              0.013883190229535103,
+              1.0
+            ]
+          },
+          {
+            "index": 7,
+            "name": "B",
+            "value": [
+              1.0,
+              0.7138493061065674,
+              0.2036333829164505,
+              1.0
+            ]
+          },
+          {
+            "index": 8,
+            "name": "A",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 9,
+            "name": "B",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Result",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Result",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {
+          "blend_type": "MIX",
+          "data_type": "RGBA"
+        }
+      },
+      {
+        "name": "Hue/Saturation/Value",
+        "type": "ShaderNodeHueSaturation",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Hue",
+            "value": 0.30000001192092896
+          },
+          {
+            "index": 1,
+            "name": "Saturation",
+            "value": 1.0
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 1.0
+          },
+          {
+            "index": 3,
+            "name": "Factor",
+            "value": 1.0
+          },
+          {
+            "index": 4,
+            "name": "Color",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Attribute.008",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "Hue"
+        }
+      },
+      {
+        "name": "Attribute.009",
+        "type": "ShaderNodeAttribute",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "attribute_name": "UseGlowColors"
+        }
+      }
+    ],
+    "links": [
+      [
+        "Attribute.001",
+        "Color",
+        "Mix",
+        "A"
+      ],
+      [
+        "Attribute.002",
+        "Color",
+        "Mix",
+        "B"
+      ],
+      [
+        "Attribute.007",
+        "Factor",
+        "Noise Texture.002",
+        "W"
+      ],
+      [
+        "Noise Texture.002",
+        "Factor",
+        "Color Ramp",
+        "Factor"
+      ],
+      [
+        "Attribute.005",
+        "Vector",
+        "Separate XYZ",
+        "Vector"
+      ],
+      [
+        "Separate XYZ",
+        "Y",
+        "Color Ramp.001",
+        "Factor"
+      ],
+      [
+        "Color Ramp.001",
+        "Color",
+        "Math",
+        "Value"
+      ],
+      [
+        "Color Ramp.004",
+        "Color",
+        "Math",
+        "Value"
+      ],
+      [
+        "Math",
+        "Value",
+        "Math.001",
+        "Value"
+      ],
+      [
+        "Color Ramp",
+        "Color",
+        "Math.001",
+        "Value"
+      ],
+      [
+        "Math.001",
+        "Value",
+        "Mix",
+        "Factor"
+      ],
+      [
+        "Transparent BSDF",
+        "BSDF",
+        "Mix Shader",
+        "Shader"
+      ],
+      [
+        "Separate XYZ",
+        "X",
+        "Color Ramp.004",
+        "Factor"
+      ],
+      [
+        "Math.001",
+        "Value",
+        "Mix Shader",
+        "Factor"
+      ],
+      [
+        "Emission",
+        "Emission",
+        "Mix Shader",
+        "Shader"
+      ],
+      [
+        "Mix.003",
+        "Result",
+        "Emission",
+        "Color"
+      ],
+      [
+        "Math.001",
+        "Value",
+        "Color Ramp.002",
+        "Factor"
+      ],
+      [
+        "Color Ramp.002",
+        "Color",
+        "Mix.003",
+        "Factor"
+      ],
+      [
+        "Attribute.006",
+        "Vector",
+        "Vector Math",
+        "Vector"
+      ],
+      [
+        "Vector Math",
+        "Vector",
+        "Noise Texture.002",
+        "Vector"
+      ],
+      [
+        "Reroute",
+        "Output",
+        "Math.002",
+        "Value"
+      ],
+      [
+        "Attribute.003",
+        "Alpha",
+        "Math.002",
+        "Value"
+      ],
+      [
+        "Reroute.001",
+        "Output",
+        "Emission",
+        "Strength"
+      ],
+      [
+        "Mix",
+        "Result",
+        "Mix.001",
+        "A"
+      ],
+      [
+        "Color Ramp.003",
+        "Color",
+        "Mix.001",
+        "B"
+      ],
+      [
+        "Reroute",
+        "Output",
+        "Color Ramp.003",
+        "Factor"
+      ],
+      [
+        "Math.001",
+        "Value",
+        "Reroute",
+        "Input"
+      ],
+      [
+        "Math.002",
+        "Value",
+        "Reroute.001",
+        "Input"
+      ],
+      [
+        "Hue/Saturation/Value",
+        "Color",
+        "Mix.002",
+        "A"
+      ],
+      [
+        "Color Ramp.005",
+        "Color",
+        "Hue/Saturation/Value",
+        "Color"
+      ],
+      [
+        "Attribute.008",
+        "Factor",
+        "Hue/Saturation/Value",
+        "Hue"
+      ],
+      [
+        "Attribute.009",
+        "Factor",
+        "Mix.002",
+        "Factor"
+      ],
+      [
+        "Mix.001",
+        "Result",
+        "Mix.002",
+        "B"
+      ],
+      [
+        "Mix.002",
+        "Result",
+        "Mix.003",
+        "A"
+      ],
+      [
+        "Math.001",
+        "Value",
+        "Color Ramp.005",
+        "Factor"
+      ],
+      [
+        "Mix Shader",
+        "Shader",
+        "Material Output",
+        "Surface"
+      ]
+    ]
+  },
+  "objects": [
+    {
+      "name": "Blade",
+      "type": "MESH",
+      "modifiers": []
+    },
+    {
+      "name": "Blade_Reference",
+      "type": "MESH",
+      "modifiers": []
+    },
+    {
+      "name": "MaterialContainer",
+      "type": "MESH",
+      "modifiers": []
+    },
+    {
+      "name": "Trail_Blade",
+      "type": "MESH",
+      "modifiers": [
+        {
+          "name": "GeometryNodes",
+          "type": "NODES",
+          "group": "Trail_Blade"
+        }
+      ]
+    }
+  ],
+  "modifier": "Legacy IDProperties unavailable in Blender 5.2; interface defaults inspected.",
+  "interface": [
+    {
+      "name": "Geometry",
+      "id": "Output_1",
+      "default": "None"
+    },
+    {
+      "name": "Run Simulation",
+      "id": "Input_2",
+      "default": true
+    },
+    {
+      "name": "Trail Reference",
+      "id": "Input_3",
+      "default": "None"
+    },
+    {
+      "name": "Max Age",
+      "id": "Input_4",
+      "default": 10
+    },
+    {
+      "name": "",
+      "id": "Input_13",
+      "default": "- - - - - Make Sure to Bake the Simulation - - - - - "
+    },
+    {
+      "name": "Subdivisions",
+      "id": "Socket_0",
+      "default": 2
+    },
+    {
+      "name": "Flip Faces",
+      "id": "Input_10",
+      "default": false
+    },
+    {
+      "name": "Flip UVs (Y)",
+      "id": "Input_12",
+      "default": false
+    },
+    {
+      "name": "Speed",
+      "id": "Input_11",
+      "default": 1.0
+    },
+    {
+      "name": "Displacement",
+      "id": "Socket_6",
+      "default": false
+    },
+    {
+      "name": "Scale",
+      "id": "Socket_1",
+      "default": 3.799999713897705
+    },
+    {
+      "name": "Strength",
+      "id": "Socket_4",
+      "default": 0.28999999165534973
+    },
+    {
+      "name": "Roughness",
+      "id": "Socket_2",
+      "default": 0.4166666865348816
+    },
+    {
+      "name": "Distortion",
+      "id": "Socket_3",
+      "default": 0.08000001311302185
+    },
+    {
+      "name": "Material",
+      "id": "Input_9",
+      "default": "None"
+    },
+    {
+      "name": "Hue",
+      "id": "Socket_9",
+      "default": 0.5
+    },
+    {
+      "name": "Use Glow Colors",
+      "id": "Socket_10",
+      "default": false
+    },
+    {
+      "name": "Glow Color 1",
+      "id": "Input_6",
+      "default": [
+        1.0,
+        0.06845299899578094,
+        0.00964799989014864,
+        1.0
+      ]
+    },
+    {
+      "name": "Glow Color 2",
+      "id": "Input_7",
+      "default": [
+        1.0,
+        0.3727889955043793,
+        0.021185999736189842,
+        1.0
+      ]
+    },
+    {
+      "name": "Glow Strength",
+      "id": "Input_8",
+      "default": 20.0
+    }
+  ],
+  "geometry": {
+    "name": "Trail_Blade",
+    "nodes": [
+      {
+        "name": "Frame.003",
+        "type": "NodeFrame",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Frame.004",
+        "type": "NodeFrame",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Frame.006",
+        "type": "NodeFrame",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Frame.005",
+        "type": "NodeFrame",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Frame.007",
+        "type": "NodeFrame",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Frame.008",
+        "type": "NodeFrame",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Frame",
+        "type": "NodeFrame",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Frame.002",
+        "type": "NodeFrame",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Frame.001",
+        "type": "NodeFrame",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Simulation Input",
+        "type": "GeometryNodeSimulationInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Delta Time",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Join Geometry",
+        "type": "GeometryNodeJoinGeometry",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Math.002",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 1.0
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "ADD"
+        }
+      },
+      {
+        "name": "Attribute Statistic.001",
+        "type": "GeometryNodeAttributeStatistic",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Attribute",
+            "value": 0.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Mean",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Median",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Sum",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Min",
+            "value": 0.0
+          },
+          {
+            "index": 4,
+            "name": "Max",
+            "value": 0.0
+          },
+          {
+            "index": 5,
+            "name": "Range",
+            "value": 0.0
+          },
+          {
+            "index": 6,
+            "name": "Standard Deviation",
+            "value": 0.0
+          },
+          {
+            "index": 7,
+            "name": "Variance",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "data_type": "FLOAT"
+        }
+      },
+      {
+        "name": "Index.001",
+        "type": "GeometryNodeInputIndex",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Index",
+            "value": 0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Reroute.001",
+        "type": "NodeReroute",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Math.001",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 1.0
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "ADD"
+        }
+      },
+      {
+        "name": "Attribute Statistic",
+        "type": "GeometryNodeAttributeStatistic",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Attribute",
+            "value": 0.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Mean",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Median",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Sum",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Min",
+            "value": 0.0
+          },
+          {
+            "index": 4,
+            "name": "Max",
+            "value": 0.0
+          },
+          {
+            "index": 5,
+            "name": "Range",
+            "value": 0.0
+          },
+          {
+            "index": 6,
+            "name": "Standard Deviation",
+            "value": 0.0
+          },
+          {
+            "index": 7,
+            "name": "Variance",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "data_type": "FLOAT"
+        }
+      },
+      {
+        "name": "Index",
+        "type": "GeometryNodeInputIndex",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Index",
+            "value": 0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Math.003",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "DIVIDE"
+        }
+      },
+      {
+        "name": "Set Shade Smooth",
+        "type": "GeometryNodeSetShadeSmooth",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Shade Smooth",
+            "value": true
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Position",
+        "type": "GeometryNodeInputPosition",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Position",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Index.002",
+        "type": "GeometryNodeInputIndex",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Index",
+            "value": 0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Sample Index",
+        "type": "GeometryNodeSampleIndex",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Value",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Index",
+            "value": 0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {
+          "data_type": "FLOAT_VECTOR",
+          "clamp": false
+        }
+      },
+      {
+        "name": "Set Position",
+        "type": "GeometryNodeSetPosition",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Position",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Offset",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Reroute",
+        "type": "NodeReroute",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Input",
+            "value": 0.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Output",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Group Output",
+        "type": "NodeGroupOutput",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Store Named Attribute.003",
+        "type": "GeometryNodeStoreNamedAttribute",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Name",
+            "value": "Glow2"
+          },
+          {
+            "index": 3,
+            "name": "Value",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [],
+        "attrs": {
+          "data_type": "FLOAT_COLOR"
+        }
+      },
+      {
+        "name": "Separate Color",
+        "type": "FunctionNodeSeparateColor",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Red",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Green",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Blue",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Combine Color",
+        "type": "FunctionNodeCombineColor",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Red",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Green",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Blue",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Alpha",
+            "value": 1.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Store Named Attribute.001",
+        "type": "GeometryNodeStoreNamedAttribute",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Name",
+            "value": "Glow"
+          },
+          {
+            "index": 3,
+            "name": "Value",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [],
+        "attrs": {
+          "data_type": "FLOAT_COLOR"
+        }
+      },
+      {
+        "name": "Store Named Attribute.004",
+        "type": "GeometryNodeStoreNamedAttribute",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Name",
+            "value": "Speed"
+          },
+          {
+            "index": 3,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "outputs": [],
+        "attrs": {
+          "data_type": "FLOAT"
+        }
+      },
+      {
+        "name": "Math.004",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 1.0
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "MULTIPLY"
+        }
+      },
+      {
+        "name": "Scene Time",
+        "type": "GeometryNodeInputSceneTime",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Seconds",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Frame",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Store Named Attribute.002",
+        "type": "GeometryNodeStoreNamedAttribute",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Name",
+            "value": "BladeUVs"
+          },
+          {
+            "index": 3,
+            "name": "Value",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [],
+        "attrs": {
+          "data_type": "FLOAT_VECTOR"
+        }
+      },
+      {
+        "name": "Combine XYZ",
+        "type": "ShaderNodeCombineXYZ",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "X",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Y",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Z",
+            "value": 0.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Reroute.002",
+        "type": "NodeReroute",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Grid",
+        "type": "GeometryNodeMeshGrid",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Size X",
+            "value": 1.0
+          },
+          {
+            "index": 1,
+            "name": "Size Y",
+            "value": 1.0
+          },
+          {
+            "index": 2,
+            "name": "Vertices X",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "Vertices Y",
+            "value": 3
+          }
+        ],
+        "outputs": [
+          {
+            "index": 1,
+            "name": "UV Map",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Separate XYZ",
+        "type": "ShaderNodeSeparateXYZ",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "X",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Y",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Z",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Math.005",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 1.0
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "SUBTRACT"
+        }
+      },
+      {
+        "name": "Switch.002",
+        "type": "GeometryNodeSwitch",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Switch",
+            "value": false
+          },
+          {
+            "index": 1,
+            "name": "False",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "True",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Output",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Reroute.003",
+        "type": "NodeReroute",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Input",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Output",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.009",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 20.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Switch.001",
+        "type": "GeometryNodeSwitch",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Switch",
+            "value": false
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Flip Faces",
+        "type": "GeometryNodeFlipFaces",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.008",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 20.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.004",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.005",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Set Material",
+        "type": "GeometryNodeSetMaterial",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Material",
+            "value": "None"
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.006",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.007",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 20.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Curve to Points",
+        "type": "GeometryNodeCurveToPoints",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Count",
+            "value": 9
+          },
+          {
+            "index": 2,
+            "name": "Length",
+            "value": 0.5099999904632568
+          }
+        ],
+        "outputs": [
+          {
+            "index": 1,
+            "name": "Tangent",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Normal",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Rotation",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Mesh to Curve",
+        "type": "GeometryNodeMeshToCurve",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Object Info",
+        "type": "GeometryNodeObjectInfo",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Object",
+            "value": "None"
+          },
+          {
+            "index": 1,
+            "name": "As Instance",
+            "value": false
+          }
+        ],
+        "outputs": [
+          {
+            "index": 1,
+            "name": "Location",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Rotation",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Scale",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.001",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Reroute.004",
+        "type": "NodeReroute",
+        "inputs": [],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Simulation Output",
+        "type": "GeometryNodeSimulationOutput",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Skip",
+            "value": false
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Compare",
+        "type": "FunctionNodeCompare",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "A",
+            "value": 0
+          },
+          {
+            "index": 1,
+            "name": "B",
+            "value": 10
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Result",
+            "value": false
+          }
+        ],
+        "attrs": {
+          "operation": "GREATER_THAN",
+          "data_type": "INT"
+        }
+      },
+      {
+        "name": "Named Attribute.001",
+        "type": "GeometryNodeInputNamedAttribute",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Name",
+            "value": "Age"
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Attribute",
+            "value": 0
+          },
+          {
+            "index": 1,
+            "name": "Exists",
+            "value": false
+          }
+        ],
+        "attrs": {
+          "data_type": "INT"
+        }
+      },
+      {
+        "name": "Group Input.002",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Delete Geometry",
+        "type": "GeometryNodeDeleteGeometry",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Store Named Attribute",
+        "type": "GeometryNodeStoreNamedAttribute",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Name",
+            "value": "Age"
+          },
+          {
+            "index": 3,
+            "name": "Value",
+            "value": 0
+          }
+        ],
+        "outputs": [],
+        "attrs": {
+          "data_type": "INT"
+        }
+      },
+      {
+        "name": "Named Attribute",
+        "type": "GeometryNodeInputNamedAttribute",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Name",
+            "value": "Age"
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Attribute",
+            "value": 0
+          },
+          {
+            "index": 1,
+            "name": "Exists",
+            "value": false
+          }
+        ],
+        "attrs": {
+          "data_type": "INT"
+        }
+      },
+      {
+        "name": "Math",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 1.0
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "ADD"
+        }
+      },
+      {
+        "name": "Subdivision Surface",
+        "type": "GeometryNodeSubdivisionSurface",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Level",
+            "value": 2
+          },
+          {
+            "index": 2,
+            "name": "Edge Crease",
+            "value": 0.0
+          },
+          {
+            "index": 3,
+            "name": "Vertex Crease",
+            "value": 0.0
+          },
+          {
+            "index": 4,
+            "name": "Limit Surface",
+            "value": false
+          },
+          {
+            "index": 5,
+            "name": "Quality",
+            "value": 3
+          },
+          {
+            "index": 6,
+            "name": "UV Smooth",
+            "value": "Keep Boundaries"
+          },
+          {
+            "index": 7,
+            "name": "Boundary Smooth",
+            "value": "Keep Corners"
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.003",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              1.0,
+              0.06845299899578094,
+              0.00964799989014864,
+              1.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              1.0,
+              0.3727889955043793,
+              0.021185999736189842,
+              1.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 20.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Set Position.001",
+        "type": "GeometryNodeSetPosition",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Position",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Offset",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Named Attribute.002",
+        "type": "GeometryNodeInputNamedAttribute",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Name",
+            "value": "BladeUVs"
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Attribute",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Exists",
+            "value": false
+          }
+        ],
+        "attrs": {
+          "data_type": "FLOAT_VECTOR"
+        }
+      },
+      {
+        "name": "Separate XYZ.001",
+        "type": "ShaderNodeSeparateXYZ",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "X",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Y",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Z",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Noise Texture",
+        "type": "ShaderNodeTexNoise",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "W",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 3,
+            "name": "Detail",
+            "value": 2.0
+          },
+          {
+            "index": 4,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 5,
+            "name": "Lacunarity",
+            "value": 2.0
+          },
+          {
+            "index": 6,
+            "name": "Offset",
+            "value": 0.0
+          },
+          {
+            "index": 7,
+            "name": "Gain",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Color",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          }
+        ],
+        "attrs": {
+          "noise_dimensions": "3D",
+          "normalize": false
+        }
+      },
+      {
+        "name": "Vector Math",
+        "type": "ShaderNodeVectorMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Scale",
+            "value": 1.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "SCALE"
+        }
+      },
+      {
+        "name": "Color Ramp",
+        "type": "ShaderNodeValToRGB",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {},
+        "ramp": {
+          "interpolation": "LINEAR",
+          "elements": [
+            [
+              0.0,
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            [
+              1.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "name": "Vector Math.001",
+        "type": "ShaderNodeVectorMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Scale",
+            "value": 0.28999999165534973
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "SCALE"
+        }
+      },
+      {
+        "name": "Math.006",
+        "type": "ShaderNodeMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.5
+          },
+          {
+            "index": 2,
+            "name": "Value",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "MULTIPLY"
+        }
+      },
+      {
+        "name": "Color Ramp.001",
+        "type": "ShaderNodeValToRGB",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Factor",
+            "value": 0.5
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Color",
+            "value": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Alpha",
+            "value": 0.0
+          }
+        ],
+        "attrs": {},
+        "ramp": {
+          "interpolation": "LINEAR",
+          "elements": [
+            [
+              0.0,
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            [
+              1.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "name": "Vector Math.002",
+        "type": "ShaderNodeVectorMath",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Vector",
+            "value": [
+              0.6699999570846558,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 2,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 3,
+            "name": "Scale",
+            "value": 1.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "index": 1,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "attrs": {
+          "operation": "ADD"
+        }
+      },
+      {
+        "name": "Named Attribute.003",
+        "type": "GeometryNodeInputNamedAttribute",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Name",
+            "value": "Speed"
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Attribute",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Exists",
+            "value": false
+          }
+        ],
+        "attrs": {
+          "data_type": "FLOAT"
+        }
+      },
+      {
+        "name": "Combine XYZ.001",
+        "type": "ShaderNodeCombineXYZ",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "X",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Y",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Z",
+            "value": 0.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.010",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              1.0,
+              0.06845299899578094,
+              0.00964799989014864,
+              1.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              1.0,
+              0.3727889955043793,
+              0.021185999736189842,
+              1.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 20.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.011",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              1.0,
+              0.06845299899578094,
+              0.00964799989014864,
+              1.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              1.0,
+              0.3727889955043793,
+              0.021185999736189842,
+              1.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 20.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Switch",
+        "type": "GeometryNodeSwitch",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Switch",
+            "value": false
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "Group Input.012",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              1.0,
+              0.06845299899578094,
+              0.00964799989014864,
+              1.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              1.0,
+              0.3727889955043793,
+              0.021185999736189842,
+              1.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 20.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Store Named Attribute.005",
+        "type": "GeometryNodeStoreNamedAttribute",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Name",
+            "value": "Hue"
+          },
+          {
+            "index": 3,
+            "name": "Value",
+            "value": 0.0
+          }
+        ],
+        "outputs": [],
+        "attrs": {
+          "data_type": "FLOAT"
+        }
+      },
+      {
+        "name": "Store Named Attribute.006",
+        "type": "GeometryNodeStoreNamedAttribute",
+        "inputs": [
+          {
+            "index": 1,
+            "name": "Selection",
+            "value": true
+          },
+          {
+            "index": 2,
+            "name": "Name",
+            "value": "UseGlowColors"
+          },
+          {
+            "index": 3,
+            "name": "Value",
+            "value": false
+          }
+        ],
+        "outputs": [],
+        "attrs": {
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "name": "Group Input.013",
+        "type": "NodeGroupInput",
+        "inputs": [],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Run Simulation",
+            "value": true
+          },
+          {
+            "index": 1,
+            "name": "Trail Reference",
+            "value": "None"
+          },
+          {
+            "index": 2,
+            "name": "Max Age",
+            "value": 10
+          },
+          {
+            "index": 3,
+            "name": "",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "index": 4,
+            "name": "Subdivisions",
+            "value": 2
+          },
+          {
+            "index": 5,
+            "name": "Flip Faces",
+            "value": false
+          },
+          {
+            "index": 6,
+            "name": "Flip UVs (Y)",
+            "value": false
+          },
+          {
+            "index": 7,
+            "name": "Speed",
+            "value": 1.0
+          },
+          {
+            "index": 8,
+            "name": "Displacement",
+            "value": false
+          },
+          {
+            "index": 9,
+            "name": "Scale",
+            "value": 3.799999713897705
+          },
+          {
+            "index": 10,
+            "name": "Strength",
+            "value": 0.28999999165534973
+          },
+          {
+            "index": 11,
+            "name": "Roughness",
+            "value": 0.4166666865348816
+          },
+          {
+            "index": 12,
+            "name": "Distortion",
+            "value": 0.08000001311302185
+          },
+          {
+            "index": 13,
+            "name": "Material",
+            "value": "None"
+          },
+          {
+            "index": 14,
+            "name": "Hue",
+            "value": 0.0
+          },
+          {
+            "index": 15,
+            "name": "Use Glow Colors",
+            "value": false
+          },
+          {
+            "index": 16,
+            "name": "Glow Color 1",
+            "value": [
+              1.0,
+              0.06845299899578094,
+              0.00964799989014864,
+              1.0
+            ]
+          },
+          {
+            "index": 17,
+            "name": "Glow Color 2",
+            "value": [
+              1.0,
+              0.3727889955043793,
+              0.021185999736189842,
+              1.0
+            ]
+          },
+          {
+            "index": 18,
+            "name": "Glow Strength",
+            "value": 20.0
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Reroute.005",
+        "type": "NodeReroute",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Input",
+            "value": false
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Output",
+            "value": false
+          }
+        ],
+        "attrs": {}
+      },
+      {
+        "name": "Switch.003",
+        "type": "GeometryNodeSwitch",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Switch",
+            "value": false
+          }
+        ],
+        "outputs": [],
+        "attrs": {}
+      },
+      {
+        "name": "\u94b3\u5236",
+        "type": "ShaderNodeClamp",
+        "inputs": [
+          {
+            "index": 0,
+            "name": "Value",
+            "value": 0.0
+          },
+          {
+            "index": 1,
+            "name": "Min",
+            "value": 0.0
+          },
+          {
+            "index": 2,
+            "name": "Max",
+            "value": 11.0
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "name": "Result",
+            "value": 0.0
+          }
+        ],
+        "attrs": {}
+      }
+    ],
+    "links": [
+      [
+        "Simulation Input",
+        "Geometry",
+        "Join Geometry",
+        "Geometry"
+      ],
+      [
+        "Join Geometry",
+        "Geometry",
+        "Store Named Attribute",
+        "Geometry"
+      ],
+      [
+        "Compare",
+        "Result",
+        "Delete Geometry",
+        "Selection"
+      ],
+      [
+        "Reroute.004",
+        "Output",
+        "Attribute Statistic",
+        "Geometry"
+      ],
+      [
+        "Index",
+        "Index",
+        "Attribute Statistic",
+        "Attribute"
+      ],
+      [
+        "Attribute Statistic",
+        "Max",
+        "Math.001",
+        "Value"
+      ],
+      [
+        "Index.001",
+        "Index",
+        "Attribute Statistic.001",
+        "Attribute"
+      ],
+      [
+        "Attribute Statistic.001",
+        "Max",
+        "Math.002",
+        "Value"
+      ],
+      [
+        "Reroute.002",
+        "Output",
+        "Set Position",
+        "Geometry"
+      ],
+      [
+        "Reroute.001",
+        "Output",
+        "Sample Index",
+        "Geometry"
+      ],
+      [
+        "Index.002",
+        "Index",
+        "Sample Index",
+        "Index"
+      ],
+      [
+        "Curve to Points",
+        "Points",
+        "Attribute Statistic.001",
+        "Geometry"
+      ],
+      [
+        "Math.001",
+        "Value",
+        "Math.003",
+        "Value"
+      ],
+      [
+        "Math.002",
+        "Value",
+        "Math.003",
+        "Value"
+      ],
+      [
+        "Reroute",
+        "Output",
+        "Grid",
+        "Vertices X"
+      ],
+      [
+        "Math.002",
+        "Value",
+        "Grid",
+        "Vertices Y"
+      ],
+      [
+        "Subdivision Surface",
+        "Mesh",
+        "Set Shade Smooth",
+        "Mesh"
+      ],
+      [
+        "Store Named Attribute.003",
+        "Geometry",
+        "Set Material",
+        "Geometry"
+      ],
+      [
+        "Set Position",
+        "Geometry",
+        "Store Named Attribute.002",
+        "Geometry"
+      ],
+      [
+        "Group Input.002",
+        "Max Age",
+        "Compare",
+        "B"
+      ],
+      [
+        "Math.003",
+        "Value",
+        "Reroute",
+        "Input"
+      ],
+      [
+        "Reroute.004",
+        "Output",
+        "Reroute.001",
+        "Input"
+      ],
+      [
+        "Store Named Attribute.001",
+        "Geometry",
+        "Store Named Attribute.003",
+        "Geometry"
+      ],
+      [
+        "Group Input.004",
+        "Glow Color 1",
+        "Separate Color",
+        "Color"
+      ],
+      [
+        "Separate Color",
+        "Red",
+        "Combine Color",
+        "Red"
+      ],
+      [
+        "Separate Color",
+        "Green",
+        "Combine Color",
+        "Green"
+      ],
+      [
+        "Separate Color",
+        "Blue",
+        "Combine Color",
+        "Blue"
+      ],
+      [
+        "Group Input.004",
+        "Glow Strength",
+        "Combine Color",
+        "Alpha"
+      ],
+      [
+        "Store Named Attribute.002",
+        "Geometry",
+        "Flip Faces",
+        "Mesh"
+      ],
+      [
+        "Scene Time",
+        "Seconds",
+        "Math.004",
+        "Value"
+      ],
+      [
+        "Group Input.008",
+        "Speed",
+        "Math.004",
+        "Value"
+      ],
+      [
+        "Grid",
+        "UV Map",
+        "Separate XYZ",
+        "Vector"
+      ],
+      [
+        "Separate XYZ",
+        "Z",
+        "Combine XYZ",
+        "Z"
+      ],
+      [
+        "Grid",
+        "Mesh",
+        "Reroute.002",
+        "Input"
+      ],
+      [
+        "Separate XYZ",
+        "X",
+        "Combine XYZ",
+        "X"
+      ],
+      [
+        "Separate XYZ",
+        "Y",
+        "Math.005",
+        "Value"
+      ],
+      [
+        "Math.005",
+        "Value",
+        "Combine XYZ",
+        "Y"
+      ],
+      [
+        "Group Input.009",
+        "Flip UVs (Y)",
+        "Switch.002",
+        "Switch"
+      ],
+      [
+        "Grid",
+        "UV Map",
+        "Reroute.003",
+        "Input"
+      ],
+      [
+        "Group Input.001",
+        "Trail Reference",
+        "Object Info",
+        "Object"
+      ],
+      [
+        "Group Input.006",
+        "Material",
+        "Set Material",
+        "Material"
+      ],
+      [
+        "Store Named Attribute",
+        "Geometry",
+        "Delete Geometry",
+        "Geometry"
+      ],
+      [
+        "Delete Geometry",
+        "Geometry",
+        "Simulation Output",
+        "Geometry"
+      ],
+      [
+        "Simulation Output",
+        "Geometry",
+        "Reroute.004",
+        "Input"
+      ],
+      [
+        "Object Info",
+        "Geometry",
+        "Mesh to Curve",
+        "Mesh"
+      ],
+      [
+        "Switch.002",
+        "Output",
+        "Store Named Attribute.002",
+        "Value"
+      ],
+      [
+        "Reroute.003",
+        "Output",
+        "Switch.002",
+        "False"
+      ],
+      [
+        "Combine XYZ",
+        "Vector",
+        "Switch.002",
+        "True"
+      ],
+      [
+        "Sample Index",
+        "Value",
+        "Set Position",
+        "Position"
+      ],
+      [
+        "Group Input.007",
+        "Flip Faces",
+        "Switch.001",
+        "Switch"
+      ],
+      [
+        "Store Named Attribute.002",
+        "Geometry",
+        "Switch.001",
+        "False"
+      ],
+      [
+        "Flip Faces",
+        "Mesh",
+        "Switch.001",
+        "True"
+      ],
+      [
+        "Math.004",
+        "Value",
+        "Store Named Attribute.004",
+        "Value"
+      ],
+      [
+        "Combine Color",
+        "Color",
+        "Store Named Attribute.001",
+        "Value"
+      ],
+      [
+        "Group Input.005",
+        "Glow Color 2",
+        "Store Named Attribute.003",
+        "Value"
+      ],
+      [
+        "Named Attribute",
+        "Attribute",
+        "Math",
+        "Value"
+      ],
+      [
+        "Math",
+        "Value",
+        "Store Named Attribute",
+        "Value"
+      ],
+      [
+        "Named Attribute.001",
+        "Attribute",
+        "Compare",
+        "A"
+      ],
+      [
+        "Position",
+        "Position",
+        "Sample Index",
+        "Value"
+      ],
+      [
+        "Switch.003",
+        "Output",
+        "Join Geometry",
+        "Geometry"
+      ],
+      [
+        "Switch.001",
+        "Output",
+        "Subdivision Surface",
+        "Mesh"
+      ],
+      [
+        "Group Input.003",
+        "Subdivisions",
+        "\u94b3\u5236",
+        "Value"
+      ],
+      [
+        "Named Attribute.002",
+        "Attribute",
+        "Separate XYZ.001",
+        "Vector"
+      ],
+      [
+        "Noise Texture",
+        "Color",
+        "Vector Math",
+        "Vector"
+      ],
+      [
+        "Math.006",
+        "Value",
+        "Vector Math",
+        "Scale"
+      ],
+      [
+        "Vector Math.001",
+        "Vector",
+        "Set Position.001",
+        "Offset"
+      ],
+      [
+        "Vector Math",
+        "Vector",
+        "Vector Math.001",
+        "Vector"
+      ],
+      [
+        "Set Shade Smooth",
+        "Mesh",
+        "Store Named Attribute.004",
+        "Geometry"
+      ],
+      [
+        "Store Named Attribute.004",
+        "Geometry",
+        "Set Position.001",
+        "Geometry"
+      ],
+      [
+        "Color Ramp.001",
+        "Color",
+        "Math.006",
+        "Value"
+      ],
+      [
+        "Separate XYZ.001",
+        "X",
+        "Color Ramp",
+        "Factor"
+      ],
+      [
+        "Separate XYZ.001",
+        "Y",
+        "Color Ramp.001",
+        "Factor"
+      ],
+      [
+        "Color Ramp",
+        "Color",
+        "Math.006",
+        "Value"
+      ],
+      [
+        "Named Attribute.002",
+        "Attribute",
+        "Vector Math.002",
+        "Vector"
+      ],
+      [
+        "Vector Math.002",
+        "Vector",
+        "Noise Texture",
+        "Vector"
+      ],
+      [
+        "Combine XYZ.001",
+        "Vector",
+        "Vector Math.002",
+        "Vector"
+      ],
+      [
+        "Named Attribute.003",
+        "Attribute",
+        "Combine XYZ.001",
+        "X"
+      ],
+      [
+        "Group Input.010",
+        "Scale",
+        "Noise Texture",
+        "Scale"
+      ],
+      [
+        "Group Input.010",
+        "Roughness",
+        "Noise Texture",
+        "Roughness"
+      ],
+      [
+        "Group Input.010",
+        "Distortion",
+        "Noise Texture",
+        "Distortion"
+      ],
+      [
+        "Group Input.011",
+        "Strength",
+        "Vector Math.001",
+        "Scale"
+      ],
+      [
+        "Set Position.001",
+        "Geometry",
+        "Switch",
+        "True"
+      ],
+      [
+        "Store Named Attribute.004",
+        "Geometry",
+        "Switch",
+        "False"
+      ],
+      [
+        "Group Input.012",
+        "Displacement",
+        "Switch",
+        "Switch"
+      ],
+      [
+        "Mesh to Curve",
+        "Curve",
+        "Curve to Points",
+        "Curve"
+      ],
+      [
+        "Set Material",
+        "Geometry",
+        "Group Output",
+        "Geometry"
+      ],
+      [
+        "Store Named Attribute.006",
+        "Geometry",
+        "Store Named Attribute.001",
+        "Geometry"
+      ],
+      [
+        "Switch",
+        "Output",
+        "Store Named Attribute.005",
+        "Geometry"
+      ],
+      [
+        "Store Named Attribute.005",
+        "Geometry",
+        "Store Named Attribute.006",
+        "Geometry"
+      ],
+      [
+        "Group Input.013",
+        "Hue",
+        "Store Named Attribute.005",
+        "Value"
+      ],
+      [
+        "Reroute.005",
+        "Output",
+        "Store Named Attribute.006",
+        "Value"
+      ],
+      [
+        "Group Input.013",
+        "Use Glow Colors",
+        "Reroute.005",
+        "Input"
+      ],
+      [
+        "Curve to Points",
+        "Points",
+        "Switch.003",
+        "True"
+      ],
+      [
+        "Group Input",
+        "Run Simulation",
+        "Switch.003",
+        "Switch"
+      ],
+      [
+        "\u94b3\u5236",
+        "Result",
+        "Subdivision Surface",
+        "Level"
+      ]
+    ]
+  }
+}

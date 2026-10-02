@@ -1,0 +1,34 @@
+{
+  "scenes": [
+    {
+      "scene": "01 Long wall - barrels and wildflowers",
+      "collection": "01_long_wall__complete_prefab",
+      "objects": 92,
+      "base_triangles": 469988,
+      "root": "01_long_wall"
+    },
+    {
+      "scene": "02 Broken wall - treasure alcove",
+      "collection": "02_treasure_wall__complete_prefab",
+      "objects": 64,
+      "base_triangles": 277315,
+      "root": "02_treasure_wall"
+    },
+    {
+      "scene": "03 Broken column - supply cache",
+      "collection": "03_column_crates__complete_prefab",
+      "objects": 68,
+      "base_triangles": 287992,
+      "root": "03_column_crates"
+    },
+    {
+      "scene": "04 L wall - mossy boulder",
+      "collection": "04_rock_corner__complete_prefab",
+      "objects": 71,
+      "base_triangles": 254046,
+      "root": "04_rock_corner"
+    }
+  ],
+  "unpacked_images": [],
+  "source_unchanged": true
+}

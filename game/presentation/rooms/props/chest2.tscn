@@ -1,0 +1,4 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://assets/environments/room_props_v001/chest2.glb" id="art"]
+[node name="Visual" type="Node3D"]
+[node name="Model" parent="." instance=ExtResource("art")]

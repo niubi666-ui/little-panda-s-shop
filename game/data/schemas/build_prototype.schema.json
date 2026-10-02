@@ -1,0 +1,842 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "offer",
+    "limits",
+    "stats",
+    "upgrades",
+    "projectiles",
+    "test_attacks",
+    "statuses",
+    "status_rules"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 3
+    },
+    "offer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "pool_ids",
+        "fallback_ids",
+        "initial_offers",
+        "rewards_per_wave",
+        "max_queued_offers"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "pool_ids": {
+          "type": "array",
+          "maxItems": 512,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          }
+        },
+        "fallback_ids": {
+          "type": "array",
+          "maxItems": 512,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          }
+        },
+        "initial_offers": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 512
+        },
+        "rewards_per_wave": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 512
+        },
+        "max_queued_offers": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 512
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "root_effect_budget",
+        "requests_per_step",
+        "max_queue",
+        "max_projectiles",
+        "max_chain_jumps",
+        "max_split_generation",
+        "max_projectiles_per_root",
+        "projectiles_survive_source_death"
+      ],
+      "properties": {
+        "root_effect_budget": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "requests_per_step": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "max_queue": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "max_projectiles": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "max_chain_jumps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "max_split_generation": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "max_projectiles_per_root": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "projectiles_survive_source_death": {
+          "type": "boolean"
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "damage_scale_min",
+        "damage_scale_max",
+        "move_scale_min",
+        "move_scale_max"
+      ],
+      "properties": {
+        "damage_scale_min": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 10
+        },
+        "damage_scale_max": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 10
+        },
+        "move_scale_min": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 10
+        },
+        "move_scale_max": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 10
+        }
+      }
+    },
+    "upgrades": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 512,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name_key",
+          "description_key",
+          "weight",
+          "max_rank",
+          "requires",
+          "excludes",
+          "required_tags",
+          "granted_tags",
+          "effect_type",
+          "ranks"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "name_key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "description_key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000000.0
+          },
+          "max_rank": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 64
+          },
+          "requires": {
+            "type": "array",
+            "maxItems": 512,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^\\S(?:.*\\S)?$"
+            }
+          },
+          "excludes": {
+            "type": "array",
+            "maxItems": 512,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^\\S(?:.*\\S)?$"
+            }
+          },
+          "required_tags": {
+            "type": "array",
+            "maxItems": 64,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^\\S(?:.*\\S)?$"
+            }
+          },
+          "granted_tags": {
+            "type": "array",
+            "maxItems": 64,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^\\S(?:.*\\S)?$"
+            }
+          },
+          "effect_type": {
+            "enum": [
+              "damage_scale",
+              "move_scale",
+              "projectile",
+              "chain",
+              "split",
+              "explosion",
+              "status",
+              "status_duration"
+            ]
+          },
+          "ranks": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 64
+          }
+        },
+        "oneOf": [
+          {
+            "properties": {
+              "effect_type": {
+                "const": "damage_scale"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "bonus"
+                  ],
+                  "properties": {
+                    "bonus": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "move_scale"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "bonus"
+                  ],
+                  "properties": {
+                    "bonus": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "projectile"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "damage_ratio",
+                    "projectile_id"
+                  ],
+                  "properties": {
+                    "damage_ratio": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 10
+                    },
+                    "projectile_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128,
+                      "pattern": "^\\S(?:.*\\S)?$"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "chain"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "damage_ratio",
+                    "radius_m",
+                    "jumps",
+                    "falloff"
+                  ],
+                  "properties": {
+                    "damage_ratio": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 10
+                    },
+                    "radius_m": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 10
+                    },
+                    "jumps": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 32
+                    },
+                    "falloff": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "split"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "count",
+                    "spread_deg",
+                    "damage_ratio",
+                    "max_generation",
+                    "trigger",
+                    "scope"
+                  ],
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 32
+                    },
+                    "spread_deg": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 360
+                    },
+                    "damage_ratio": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 10
+                    },
+                    "max_generation": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 32
+                    },
+                    "trigger": {
+                      "const": "enemy_contact"
+                    },
+                    "scope": {
+                      "const": "linear_projectile"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "explosion"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "trigger",
+                    "allowed_origins",
+                    "max_per_parent",
+                    "max_per_root",
+                    "damage_ratio",
+                    "radius_m",
+                    "edge_ratio",
+                    "max_targets",
+                    "include_primary",
+                    "occlusion",
+                    "sight_height_m"
+                  ],
+                  "properties": {
+                    "trigger": {
+                      "const": "enemy_contact"
+                    },
+                    "allowed_origins": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 3,
+                      "uniqueItems": true,
+                      "items": {
+                        "enum": [
+                          "direct_melee",
+                          "direct_projectile",
+                          "split_projectile"
+                        ]
+                      }
+                    },
+                    "max_per_parent": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 32
+                    },
+                    "max_per_root": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 32
+                    },
+                    "damage_ratio": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 10
+                    },
+                    "radius_m": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 10
+                    },
+                    "edge_ratio": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "max_targets": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 64
+                    },
+                    "include_primary": {
+                      "type": "boolean"
+                    },
+                    "occlusion": {
+                      "enum": [
+                        "world_ray",
+                        "none"
+                      ]
+                    },
+                    "sight_height_m": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "status"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "trigger",
+                    "allowed_origins",
+                    "max_per_parent",
+                    "max_per_root",
+                    "status_id"
+                  ],
+                  "properties": {
+                    "trigger": {
+                      "const": "enemy_contact"
+                    },
+                    "allowed_origins": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 3,
+                      "uniqueItems": true,
+                      "items": {
+                        "enum": [
+                          "direct_melee",
+                          "direct_projectile",
+                          "split_projectile"
+                        ]
+                      }
+                    },
+                    "max_per_parent": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 32
+                    },
+                    "max_per_root": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 32
+                    },
+                    "status_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128,
+                      "pattern": "^\\S(?:.*\\S)?$"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "status_duration"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "status_id",
+                    "bonus"
+                  ],
+                  "properties": {
+                    "status_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128,
+                      "pattern": "^\\S(?:.*\\S)?$"
+                    },
+                    "bonus": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 3
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "projectiles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 512,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "executor",
+          "child_id",
+          "speed_mps",
+          "radius_m",
+          "height_m",
+          "lifetime_sec"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "executor": {
+            "const": "linear_contact"
+          },
+          "child_id": {
+            "oneOf": [
+              {
+                "const": ""
+              },
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^\\S(?:.*\\S)?$"
+              }
+            ]
+          },
+          "speed_mps": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 100
+          },
+          "radius_m": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 10
+          },
+          "height_m": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 10
+          },
+          "lifetime_sec": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 30
+          }
+        }
+      }
+    },
+    "test_attacks": {
+      "type": "array",
+      "maxItems": 512,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "projectile_id",
+          "damage",
+          "cooldown_sec"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "projectile_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "damage": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 10000
+          },
+          "cooldown_sec": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 30
+          }
+        }
+      }
+    },
+    "statuses": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "duration_sec",
+          "max_duration_sec",
+          "move_scale",
+          "refresh"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "kind": {
+            "enum": [
+              "slow",
+              "freeze"
+            ]
+          },
+          "duration_sec": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 30
+          },
+          "max_duration_sec": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 30
+          },
+          "move_scale": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "refresh": {
+            "const": "longest"
+          }
+        }
+      }
+    },
+    "status_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "default_response_id",
+        "actor_responses",
+        "responses"
+      ],
+      "properties": {
+        "default_response_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^\\S(?:.*\\S)?$"
+        },
+        "actor_responses": {
+          "type": "object",
+          "maxProperties": 512,
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          }
+        },
+        "responses": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "immune_kinds",
+              "slow_duration_scale",
+              "freeze_duration_scale"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^\\S(?:.*\\S)?$"
+              },
+              "immune_kinds": {
+                "type": "array",
+                "uniqueItems": true,
+                "maxItems": 2,
+                "items": {
+                  "enum": [
+                    "slow",
+                    "freeze"
+                  ]
+                }
+              },
+              "slow_duration_scale": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              },
+              "freeze_duration_scale": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

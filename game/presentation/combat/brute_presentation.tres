@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://5ydgoblwil1t"]
+
+[ext_resource type="Script" uid="uid://b5ee2a0jq5se6" path="res://presentation/combat/actor_presentation.gd" id="1"]
+[ext_resource type="PackedScene" path="res://presentation/combat/brute_visual.tscn" id="2"]
+
+[sub_resource type="CapsuleShape3D" id="body"]
+height = 1.8
+
+[resource]
+script = ExtResource("1")
+visual_scene = ExtResource("2")
+body_shape = SubResource("body")
+body_height = 0.9

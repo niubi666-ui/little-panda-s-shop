@@ -1,0 +1,62 @@
+{
+  "method": "built-in image_gen",
+  "reference": "../reference/decoration_reference.png",
+  "assets": [
+    {
+      "id": "button_primary",
+      "prompt": "Use case: ui-mockup. Production game UI raster asset, referencing supplied image only for art direction. Warm medieval fantasy shop decorating UI: very dark forest-green painted leather, fine restrained aged brass double borders, subtle hand-painted material grain, tasteful stylized PBR richness, small botanical filigree, warm ivory highlights. Orthographic straight-on flat UI artwork, no perspective. Actual transparent alpha background outside the shape; no checkerboard, no white backdrop. No words, letters, digits, logos, watermarks, icons, furniture, scene, people, or diagrams. Keep the central space empty and dark for dynamic Godot UI text and images. Crisp readable edges when reduced. One isolated asset only. Wide horizontal empty confirm-action button, canvas1536x512. Asset occupies x=48..1488 y=100..412, elegant clipped octagonal corners and slim double gold bevel. Forest green leather with restrained olive highlight top edge. A small tasteful overlapping natural leaf spray at far right only, well clear of central 70% text area. Luminous warm brass rim subtly bright for main action. No check mark or text. Whole shape, no cropping.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-a81601ff-3797-4278-a10a-8e03f2731c7e.png",
+      "method": "built-in image_gen",
+      "pixel_editing": "none"
+    },
+    {
+      "id": "button_secondary",
+      "prompt": "Use case: ui-mockup. Production game UI raster asset, referencing supplied image only for art direction. Warm medieval fantasy shop decorating UI: very dark forest-green painted leather, fine restrained aged brass double borders, subtle hand-painted material grain, tasteful stylized PBR richness, small botanical filigree, warm ivory highlights. Orthographic straight-on flat UI artwork, no perspective. Actual transparent alpha background outside the shape; no checkerboard, no white backdrop. No words, letters, digits, logos, watermarks, icons, furniture, scene, people, or diagrams. Keep the central space empty and dark for dynamic Godot UI text and images. Crisp readable edges when reduced. One isolated asset only. Wide horizontal empty secondary-action button, canvas1536x512. Asset occupies x=48..1488 y=100..412, elegant clipped octagonal corners and slim double aged-brass bevel. Almost-black forest green leather, restrained small etched leaf flourishes at both end caps. Center 75% completely empty for live label. Muted brass rim, no luminous glow, no icons or arrows.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-85f38f0f-aa00-4fd0-bc48-079eebd7fd1c.png",
+      "method": "built-in image_gen",
+      "pixel_editing": "none"
+    },
+    {
+      "id": "mode_banner",
+      "prompt": "Use case: ui-mockup. Production game UI raster asset, referencing supplied image only for art direction. Warm medieval fantasy shop decorating UI: very dark forest-green painted leather, fine restrained aged brass double borders, subtle hand-painted material grain, tasteful stylized PBR richness, small botanical filigree, warm ivory highlights. Orthographic straight-on flat UI artwork, no perspective. Actual transparent alpha background outside the shape; no checkerboard, no white backdrop. No words, letters, digits, logos, watermarks, icons, furniture, scene, people, or diagrams. Keep the central space empty and dark for dynamic Godot UI text and images. Crisp readable edges when reduced. One isolated asset only. Wide horizontal empty mode-title plaque, canvas1536x512. Asset occupies x=48..1488 y=110..402, similar to the reference top-center decoration-mode plaque: subtly tapered angled endcaps, forest green leather body, delicate double gold rim, two small inward-facing olive leaf sprigs within left and right endcaps. Center70% empty for text. Front orthographic flat, not a hanging sign, no cords or chains.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-74204c1b-ed93-45d5-8b17-f8637c2f1d22.png",
+      "method": "built-in image_gen",
+      "pixel_editing": "none"
+    },
+    {
+      "id": "tab_button",
+      "prompt": "Use case: ui-mockup. Production game UI raster asset, referencing supplied image only for art direction. Warm medieval fantasy shop decorating UI: very dark forest-green painted leather, fine restrained aged brass double borders, subtle hand-painted material grain, tasteful stylized PBR richness, small botanical filigree, warm ivory highlights. Orthographic straight-on flat UI artwork, no perspective. Actual transparent alpha background outside the shape; no checkerboard, no white backdrop. No words, letters, digits, logos, watermarks, icons, furniture, scene, people, or diagrams. Keep the central space empty and dark for dynamic Godot UI text and images. Crisp readable edges when reduced. One isolated asset only. Wide horizontal category-tab background, canvas1536x768. One forest-green flat tab occupies x=64..1472 y=135..633, a low elegant rectangular shape with small clipped upper corners and thin muted olive-brass line. Slight recessed leather panel, gentle inner bevel. Empty. Simple clean border with NO filigree and NO leaf sprigs. This is an unselected reusable tab for furniture/decor/lighting.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-e0d194aa-3f89-467f-a7f3-73c395fab033.png",
+      "method": "built-in image_gen",
+      "pixel_editing": "none"
+    },
+    {
+      "id": "leaf_corner",
+      "prompt": "Use case: ui-mockup. Production game UI raster asset, referencing supplied image only for art direction. Warm medieval fantasy shop decorating UI: very dark forest-green painted leather, fine restrained aged brass double borders, subtle hand-painted material grain, tasteful stylized PBR richness, small botanical filigree, warm ivory highlights. Orthographic straight-on flat UI artwork, no perspective. Actual transparent alpha background outside the shape; no checkerboard, no white backdrop. No words, letters, digits, logos, watermarks, icons, furniture, scene, people, or diagrams. Keep the central space empty and dark for dynamic Godot UI text and images. Crisp readable edges when reduced. One isolated asset only. One botanical corner embellishment only on canvas1024x1024, NO panel or UI frame. A delicate L-shaped branch of realistic hand-painted olive and moss-green leaves with a few warm golden tips, oriented along the upper-left corner: branches run from top-left down the left and across the top. Broad empty transparent bottom-right. About14 varied pointed oval leaves, thin graceful woody stem. Warm side light, fine venation, natural elegant restrained fantasy shop foliage, entire branch visible with30pixel transparent margin.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-1dc559cb-de3a-4cdf-8105-d86ddd380757.png",
+      "method": "built-in image_gen",
+      "pixel_editing": "none"
+    },
+    {
+      "id": "catalog_panel",
+      "prompt": "Use case: ui-mockup. Production game UI raster asset, referencing supplied image only for art direction. Warm medieval fantasy shop decorating UI: very dark forest-green painted leather, fine restrained aged brass double borders, subtle hand-painted material grain, tasteful stylized PBR richness, small botanical filigree, warm ivory highlights. Orthographic straight-on flat UI artwork, no perspective. Actual transparent alpha background outside the shape; no checkerboard, no white backdrop. No words, letters, digits, logos, watermarks, icons, furniture, scene, people, or diagrams. Keep the central space empty and dark for dynamic Godot UI text and images. Crisp readable edges when reduced. One isolated asset only. Tall portrait empty catalog panel, canvas 1024x1536. One simple rounded rectangle panel occupies x=50..974 y=45..1491, thin antique gold double outer rim, only delicate etched botanical flourishes INSIDE the four corners. Uniform almost-black forest green (#0a211b) softly textured center, no dividers, no slots, no leaves spilling beyond edge. This must be a quiet nine-slice capable backing under a dynamic furniture grid.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-ff7d5c3a-a500-44c0-bae8-3eb3811c0228.png",
+      "method": "built-in image_gen",
+      "pixel_editing": "none"
+    },
+    {
+      "id": "item_slot",
+      "prompt": "Use case: ui-mockup. Production game UI raster asset, referencing supplied image only for art direction. Warm medieval fantasy shop decorating UI: very dark forest-green painted leather, fine restrained aged brass double borders, subtle hand-painted material grain, tasteful stylized PBR richness, small botanical filigree, warm ivory highlights. Orthographic straight-on flat UI artwork, no perspective. Actual transparent alpha background outside the shape; no checkerboard, no white backdrop. No words, letters, digits, logos, watermarks, icons, furniture, scene, people, or diagrams. Keep the central space empty and dark for dynamic Godot UI text and images. Crisp readable edges when reduced. One isolated asset only. Square inventory furniture tile background, canvas 1024x1024. A single dark forest green rounded square occupies x=48..976 y=48..976, radius 32, very thin muted olive brass outline, recessed subtle vignette and fine leather grain. Quiet understated REGULAR state. No corner ornaments, no items, no highlight glow. Entire interior empty.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-303e619f-2b1b-407c-a790-c77799ed17a0.png",
+      "method": "built-in image_gen",
+      "pixel_editing": "none"
+    },
+    {
+      "id": "item_selected",
+      "prompt": "Use case: ui-mockup. Production game UI raster asset, referencing supplied image only for art direction. Warm medieval fantasy shop decorating UI: very dark forest-green painted leather, fine restrained aged brass double borders, subtle hand-painted material grain, tasteful stylized PBR richness, small botanical filigree, warm ivory highlights. Orthographic straight-on flat UI artwork, no perspective. Actual transparent alpha background outside the shape; no checkerboard, no white backdrop. No words, letters, digits, logos, watermarks, icons, furniture, scene, people, or diagrams. Keep the central space empty and dark for dynamic Godot UI text and images. Crisp readable edges when reduced. One isolated asset only. Square inventory selection FRAME OVERLAY only, canvas1024x1024. Outside AND complete central interior truly alpha transparent. Outer boundary occupies x=48..976 y=48..976, rounded square radius32. Only a slim luminous pale chartreuse and warm ivory double rim with tight 12pixel soft pale-green halo, discrete tiny corner leaf etchings. NO fill, NO green interior, NO symbols or check mark. This layers over an existing dark furniture tile.",
+      "generated_path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-53aa4ad1-0939-424c-804f-6ac9835e823a.png",
+      "method": "built-in image_gen",
+      "pixel_editing": "none"
+    }
+  ]
+}

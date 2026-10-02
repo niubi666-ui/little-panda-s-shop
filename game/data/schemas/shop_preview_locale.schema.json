@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shop preview plain-message translation source",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["locale", "messages"],
+  "properties": {
+    "locale": {"type": "string", "enum": ["zh_CN", "en"]},
+    "messages": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "minLength": 1}
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "content_version": "enemy-loot.1",
+  "tables": [
+    {
+      "id": "enemy.test",
+      "entries": [
+        {
+          "item_id": "test_herb",
+          "chance": 0.35,
+          "count_min": 1,
+          "count_max": 2
+        },
+        {
+          "item_id": "test_ore",
+          "chance": 0.2,
+          "count_min": 1,
+          "count_max": 1
+        }
+      ]
+    }
+  ]
+}

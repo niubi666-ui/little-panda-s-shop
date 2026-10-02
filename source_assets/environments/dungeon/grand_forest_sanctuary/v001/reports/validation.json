@@ -1,0 +1,493 @@
+{
+  "passed": true,
+  "errors": [],
+  "source_hashes": {
+    "E:\\ShopGame\\source_assets\\characters\\red_panda\\blender\\forest_yard_item.blend": "2c0062d24bfb6e832cd4642e4ee560ceb2500fd288b5acdce7fdd4e58183d2a4",
+    "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\original\\forest_yard_item.blend": "2c0062d24bfb6e832cd4642e4ee560ceb2500fd288b5acdce7fdd4e58183d2a4"
+  },
+  "checks": {
+    "original_archive_sha256_match": true,
+    "main_court_dimensions_m": [
+      36.0,
+      32.0,
+      0.23999999463558197
+    ],
+    "area_m2": 1152.0,
+    "area_ratio_to_18x16": 4.0,
+    "player_height_m": 1.2000004909932613,
+    "player_screen_height_fraction": 0.08333346247673035,
+    "player_screen_bounds": [
+      0.45530059933662415,
+      0.28752216696739197,
+      0.4987085461616516,
+      0.3708556294441223
+    ],
+    "main_court_projected_corners": [
+      [
+        -0.41096577048301697,
+        0.09346465021371841,
+        28.245439529418945
+      ],
+      [
+        0.8622295260429382,
+        -0.6177098751068115,
+        17.735504150390625
+      ],
+      [
+        1.3697315454483032,
+        0.7919957637786865,
+        38.56852722167969
+      ],
+      [
+        0.09653624147176743,
+        1.5031702518463135,
+        49.078460693359375
+      ]
+    ],
+    "full_room_does_not_fit_hero_camera": true,
+    "images": [
+      {
+        "name": "0a2c0c55-fa58-4822-8ad0-ce92ea86c54c_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\0a2c0c55-fa58-4822-8ad0-ce92ea86c54c_basecolor.jpg"
+      },
+      {
+        "name": "2110fc9c-189f-483b-af4a-cbaca1b69bea_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\2110fc9c-189f-483b-af4a-cbaca1b69bea_basecolor.jpg"
+      },
+      {
+        "name": "24aec453-47cd-475a-a8b7-c2fec71edf30_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\24aec453-47cd-475a-a8b7-c2fec71edf30_basecolor.jpg"
+      },
+      {
+        "name": "35ad7ced-c425-407b-be98-e37dc3bd5d60_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\35ad7ced-c425-407b-be98-e37dc3bd5d60_basecolor.jpg"
+      },
+      {
+        "name": "37f091a1-93ce-490e-ab23-2dd5cc2d41e4_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\37f091a1-93ce-490e-ab23-2dd5cc2d41e4_basecolor.jpg"
+      },
+      {
+        "name": "49db061a-4949-49af-b791-7eb86745f2ff_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\49db061a-4949-49af-b791-7eb86745f2ff_basecolor.jpg"
+      },
+      {
+        "name": "616287b3-b6ea-477c-98bd-52087b9d563c_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\616287b3-b6ea-477c-98bd-52087b9d563c_basecolor.jpg"
+      },
+      {
+        "name": "65fbc458-0833-44c7-b125-2885ac8efc5e_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\65fbc458-0833-44c7-b125-2885ac8efc5e_basecolor.jpg"
+      },
+      {
+        "name": "68946275-5acc-4fc8-a55a-548c7dbf8a38_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\68946275-5acc-4fc8-a55a-548c7dbf8a38_basecolor.jpg"
+      },
+      {
+        "name": "6d00c541-9c1e-42f5-bdd1-3475b0d613d0_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\6d00c541-9c1e-42f5-bdd1-3475b0d613d0_basecolor.jpg"
+      },
+      {
+        "name": "71d0d5a4-fa8e-4375-bb31-dc33549b281e_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\71d0d5a4-fa8e-4375-bb31-dc33549b281e_basecolor.jpg"
+      },
+      {
+        "name": "738cffd6-948f-4d6f-87e3-1c13fa4187bc_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\738cffd6-948f-4d6f-87e3-1c13fa4187bc_basecolor.jpg"
+      },
+      {
+        "name": "828262b5-99f4-48f1-afc7-29ab54e92d34_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\828262b5-99f4-48f1-afc7-29ab54e92d34_basecolor.jpg"
+      },
+      {
+        "name": "8699bc23-8e8d-4983-a663-33ff118c3da3_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\8699bc23-8e8d-4983-a663-33ff118c3da3_basecolor.jpg"
+      },
+      {
+        "name": "86cfab13-f1e3-42c3-9c47-d59979d63457_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\86cfab13-f1e3-42c3-9c47-d59979d63457_basecolor.jpg"
+      },
+      {
+        "name": "a0786a8f-fe69-4724-8bd8-aa7b8ed7a57f_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\a0786a8f-fe69-4724-8bd8-aa7b8ed7a57f_basecolor.jpg"
+      },
+      {
+        "name": "aa98e3a9-34ed-4037-bab8-a4344d018873_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\aa98e3a9-34ed-4037-bab8-a4344d018873_basecolor.jpg"
+      },
+      {
+        "name": "ba956f36-4051-4087-a2ba-15b622e9bb75_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\ba956f36-4051-4087-a2ba-15b622e9bb75_basecolor.jpg"
+      },
+      {
+        "name": "ceb6cfd5-d832-4afd-9d93-dabb3d57561a_basecolor.001",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\ceb6cfd5-d832-4afd-9d93-dabb3d57561a_basecolor.001.jpg"
+      },
+      {
+        "name": "cf33c108-6e2a-4dc3-852f-70f26a56023a_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\cf33c108-6e2a-4dc3-852f-70f26a56023a_basecolor.jpg"
+      },
+      {
+        "name": "d96e0f13-200a-4d89-b59a-458c6ac17ed7_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\d96e0f13-200a-4d89-b59a-458c6ac17ed7_basecolor.jpg"
+      },
+      {
+        "name": "e1d52510-bdaf-4998-a4ff-2e5695223a85_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\e1d52510-bdaf-4998-a4ff-2e5695223a85_basecolor.jpg"
+      },
+      {
+        "name": "e24026bf-5c01-4cfd-9e9d-3601001718f5_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\e24026bf-5c01-4cfd-9e9d-3601001718f5_basecolor.jpg"
+      },
+      {
+        "name": "ef6632ad-5997-4333-a080-b492a7b4b3fb_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\ef6632ad-5997-4333-a080-b492a7b4b3fb_basecolor.jpg"
+      },
+      {
+        "name": "fa361b88-7056-4113-8866-3f697624d8f2_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\fa361b88-7056-4113-8866-3f697624d8f2_basecolor.jpg"
+      },
+      {
+        "name": "leafy_grass_diff_2k.jpg",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          2048,
+          2048
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\..\\..\\shared\\textures\\leafy_grass\\leafy_grass_diff_2k.jpg"
+      },
+      {
+        "name": "leafy_grass_nor_gl_2k.jpg",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          2048,
+          2048
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\..\\..\\shared\\textures\\leafy_grass\\leafy_grass_nor_gl_2k.jpg"
+      },
+      {
+        "name": "leafy_grass_rough_2k.jpg",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          2048,
+          2048
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\..\\..\\shared\\textures\\leafy_grass\\leafy_grass_rough_2k.jpg"
+      },
+      {
+        "name": "treasure_chest_3d_model_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          2048,
+          2048
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\treasure_chest_3d_model_basecolor.jpg"
+      },
+      {
+        "name": "tripo_image_1a3ceeaa_0",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\tripo_image_1a3ceeaa_0.jpg"
+      },
+      {
+        "name": "tripo_image_2a121d0a_0",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\tripo_image_2a121d0a_0.jpg"
+      },
+      {
+        "name": "tripo_image_32547aef_0",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\tripo_image_32547aef_0.jpg"
+      },
+      {
+        "name": "tripo_image_9e5f4f3f_0",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\tripo_image_9e5f4f3f_0.jpg"
+      },
+      {
+        "name": "tripo_image_a3200ee0_0",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\tripo_image_a3200ee0_0.jpg"
+      },
+      {
+        "name": "tripo_image_ae43a2b6_0",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\tripo_image_ae43a2b6_0.jpg"
+      },
+      {
+        "name": "tripo_image_ed77e93e_0",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\tripo_image_ed77e93e_0.jpg"
+      },
+      {
+        "name": "tripo_image_eec108a3_0",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\tripo_image_eec108a3_0.jpg"
+      },
+      {
+        "name": "tripo_rgb_74ca097a-23a2-45f5-9a7b-053f04b2fee8",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          4096,
+          4096
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\tripo_rgb_74ca097a-23a2-45f5-9a7b-053f04b2fee8.jpg"
+      },
+      {
+        "name": "wooden_crate_3d_model_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          2048,
+          2048
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\wooden_crate_3d_model_basecolor.jpg"
+      },
+      {
+        "name": "worn_rock_natural_01_diff_2k.jpg",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          2048,
+          2048
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\..\\..\\shared\\textures\\worn_rock_natural_01\\worn_rock_natural_01_diff_2k.jpg"
+      },
+      {
+        "name": "worn_rock_natural_01_nor_gl_2k.jpg",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          2048,
+          2048
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\..\\..\\shared\\textures\\worn_rock_natural_01\\worn_rock_natural_01_nor_gl_2k.jpg"
+      },
+      {
+        "name": "worn_rock_natural_01_rough_2k.jpg",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          2048,
+          2048
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\..\\..\\shared\\textures\\worn_rock_natural_01\\worn_rock_natural_01_rough_2k.jpg"
+      },
+      {
+        "name": "木桶3d模型_basecolor",
+        "packed": true,
+        "local_file_exists": true,
+        "size": [
+          2048,
+          2048
+        ],
+        "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\..\\textures\\木桶3d模型_basecolor.jpg"
+      }
+    ],
+    "external_linked_libraries": [],
+    "mesh_objects": 1201,
+    "unique_mesh_triangles": 776614,
+    "instanced_mesh_triangles": 5935199,
+    "camera_names": [
+      "Camera_Gameplay_Hero",
+      "Camera_Whole_Room_Topdown",
+      "Camera_Shrine_Detail",
+      "Camera_Oak_Detail"
+    ],
+    "helper_icosphere_present": false
+  },
+  "scope": "Saved Blender art, textures and measured scale only. No game runtime, collision or performance claim."
+}

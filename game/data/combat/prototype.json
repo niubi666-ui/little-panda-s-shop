@@ -1,0 +1,191 @@
+{
+  "schema_version": 2,
+  "abilities": [
+    {
+      "id": "slash.1",
+      "windup_sec": 0.13,
+      "active_sec": 0.12,
+      "recovery_sec": 0.18,
+      "cooldown_sec": 0.4,
+      "radius_m": 2.5,
+      "angle_deg": 160,
+      "damage": 16,
+      "interruptible": true,
+      "commit_policy": "start",
+      "aim_policy": "lock_at_start",
+      "movement_speed_multiplier": 1.0,
+      "knockback_speed_mps": 0.0,
+      "knockback_duration_sec": 0.0,
+      "hit_shape": "sector",
+      "thrust_width_m": 0.0
+    },
+    {
+      "id": "slash.2",
+      "windup_sec": 0.12,
+      "active_sec": 0.12,
+      "recovery_sec": 0.18,
+      "cooldown_sec": 0.39,
+      "radius_m": 2.5,
+      "angle_deg": 160,
+      "damage": 18,
+      "interruptible": true,
+      "commit_policy": "start",
+      "aim_policy": "lock_at_start",
+      "movement_speed_multiplier": 1.0,
+      "knockback_speed_mps": 10.0,
+      "knockback_duration_sec": 0.24,
+      "hit_shape": "sector",
+      "thrust_width_m": 0.0
+    },
+    {
+      "id": "slash.3",
+      "windup_sec": 0.22,
+      "active_sec": 0.14,
+      "recovery_sec": 0.3,
+      "cooldown_sec": 0.6,
+      "radius_m": 2.8,
+      "angle_deg": 0,
+      "damage": 27,
+      "interruptible": true,
+      "commit_policy": "start",
+      "aim_policy": "lock_at_start",
+      "movement_speed_multiplier": 1.0,
+      "knockback_speed_mps": 0.0,
+      "knockback_duration_sec": 0.0,
+      "hit_shape": "thrust",
+      "thrust_width_m": 1.0
+    },
+    {
+      "id": "enemy.swipe",
+      "windup_sec": 0.75,
+      "active_sec": 0.15,
+      "recovery_sec": 0.65,
+      "cooldown_sec": 1.65,
+      "radius_m": 1.65,
+      "angle_deg": 85,
+      "damage": 12,
+      "interruptible": true,
+      "commit_policy": "start",
+      "aim_policy": "lock_at_start",
+      "movement_speed_multiplier": 0.0,
+      "knockback_speed_mps": 0.0,
+      "knockback_duration_sec": 0.0,
+      "hit_shape": "sector",
+      "thrust_width_m": 0.0
+    },
+    {
+      "id": "enemy.slam",
+      "windup_sec": 1.15,
+      "active_sec": 0.18,
+      "recovery_sec": 0.9,
+      "cooldown_sec": 2.5,
+      "radius_m": 2.25,
+      "angle_deg": 115,
+      "damage": 22,
+      "interruptible": false,
+      "commit_policy": "start",
+      "aim_policy": "lock_at_start",
+      "movement_speed_multiplier": 0.0,
+      "knockback_speed_mps": 0.0,
+      "knockback_duration_sec": 0.0,
+      "hit_shape": "sector",
+      "thrust_width_m": 0.0
+    }
+  ],
+  "actors": [
+    {
+      "id": "player",
+      "name_key": "combat.player",
+      "health": 100,
+      "move_speed_mps": 5,
+      "stagger_sec": 0.16,
+      "attack_ids": [
+        "slash.1",
+        "slash.2",
+        "slash.3"
+      ],
+      "decision_interval_sec": 0.1,
+      "aggro_range_m": 30,
+      "combo_reset_sec": 0.9
+    },
+    {
+      "id": "scout",
+      "name_key": "combat.scout",
+      "health": 46,
+      "move_speed_mps": 2.1,
+      "stagger_sec": 0.28,
+      "attack_ids": [
+        "enemy.swipe"
+      ],
+      "decision_interval_sec": 0.12,
+      "aggro_range_m": 30,
+      "combo_reset_sec": 1
+    },
+    {
+      "id": "brute",
+      "name_key": "combat.brute",
+      "health": 100,
+      "move_speed_mps": 1.3,
+      "stagger_sec": 0.1,
+      "attack_ids": [
+        "enemy.slam"
+      ],
+      "decision_interval_sec": 0.18,
+      "aggro_range_m": 30,
+      "combo_reset_sec": 1
+    },
+    {
+      "id": "crossbow",
+      "name_key": "combat.crossbow",
+      "health": 28,
+      "move_speed_mps": 2.4,
+      "stagger_sec": 0.3,
+      "attack_ids": [],
+      "decision_interval_sec": 0.1,
+      "aggro_range_m": 30,
+      "combo_reset_sec": 1
+    },
+    {
+      "id": "charger",
+      "name_key": "combat.charger",
+      "health": 64,
+      "move_speed_mps": 1.5,
+      "stagger_sec": 0.22,
+      "attack_ids": [],
+      "decision_interval_sec": 0.1,
+      "aggro_range_m": 30,
+      "combo_reset_sec": 1
+    },
+    {
+      "id": "banner",
+      "name_key": "combat.banner",
+      "health": 35,
+      "move_speed_mps": 1.5,
+      "stagger_sec": 0.35,
+      "attack_ids": [],
+      "decision_interval_sec": 0.1,
+      "aggro_range_m": 30,
+      "combo_reset_sec": 1
+    }
+  ],
+  "player_id": "player",
+  "dodge": {
+    "charges": 2,
+    "duration_sec": 0.24,
+    "invulnerable_sec": 0.2,
+    "recharge_sec": 1.8,
+    "speed_mps": 13
+  },
+  "waves": [
+    [
+      "scout",
+      "scout"
+    ],
+    [
+      "scout",
+      "brute",
+      "scout"
+    ]
+  ],
+  "wave_delay_sec": 2
+}

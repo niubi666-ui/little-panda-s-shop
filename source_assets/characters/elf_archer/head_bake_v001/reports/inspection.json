@@ -1,0 +1,129 @@
+{
+  "high_bounds": [
+    [
+      -0.3147735595703125,
+      -0.4421539306640625,
+      0.0
+    ],
+    [
+      0.3147735595703125,
+      0.4421539306640625,
+      0.979156494140625
+    ]
+  ],
+  "low_bounds": [
+    [
+      -0.31115663051605225,
+      -0.4388636350631714,
+      0.0
+    ],
+    [
+      0.31115663051605225,
+      0.4388636350631714,
+      0.9785008430480957
+    ]
+  ],
+  "alignment_shift": [
+    0.0,
+    0.0,
+    0.00032782554626464844
+  ],
+  "distance_quantiles": [
+    8.56006536764653e-08,
+    0.001012912136502564,
+    0.0022531301248818634,
+    0.002825231291353701,
+    0.004055905276909466,
+    0.00625280337408185
+  ],
+  "signed_quantiles": [
+    -0.00516790616165963,
+    7.93463877926115e-05,
+    0.0017556331647938354,
+    0.002344953487408928,
+    0.003578543594048824,
+    0.005850790243130177
+  ],
+  "images": [
+    {
+      "name": "Body_Normal_OpenGL_Adaptive",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "elf_character_3d_model_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "elf_head_3d_model_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "fantasy_archer_3d_model_basecolor",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "Repair_DIFFUSE",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "Repair_NORMAL",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "tripo_image_2830fb9a_0",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "tripo_image_975194b2_0",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "tripo_image_e7f28f4a_0",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "tripo_image_e7f28f4a_0.001",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    }
+  ]
+}

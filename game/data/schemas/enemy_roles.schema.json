@@ -1,0 +1,270 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "content_version",
+    "profiles"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "content_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "actor_id",
+          "role",
+          "budget_cost",
+          "loot_table_id",
+          "config"
+        ],
+        "properties": {
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "melee",
+              "ranged",
+              "charger",
+              "support"
+            ]
+          },
+          "budget_cost": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "loot_table_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "config": {}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "melee": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {}
+    },
+    "ranged": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "safe_min_m",
+        "safe_max_m",
+        "fire_range_m",
+        "shot_interval_sec",
+        "windup_sec",
+        "recovery_sec",
+        "damage",
+        "projectile_speed_mps",
+        "projectile_radius_m",
+        "projectile_lifetime_sec",
+        "retreat_speed_multiplier",
+        "minimum_windup_sec"
+      ],
+      "properties": {
+        "safe_min_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "safe_max_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "fire_range_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "shot_interval_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "windup_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "recovery_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "damage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "projectile_speed_mps": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "projectile_radius_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "projectile_lifetime_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "retreat_speed_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "minimum_windup_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "charger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trigger_range_m",
+        "minimum_range_m",
+        "windup_sec",
+        "charge_speed_mps",
+        "charge_distance_m",
+        "hit_radius_m",
+        "damage",
+        "knockback_speed_mps",
+        "knockback_duration_sec",
+        "recovery_sec",
+        "cooldown_sec",
+        "minimum_windup_sec"
+      ],
+      "properties": {
+        "trigger_range_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "minimum_range_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "windup_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "charge_speed_mps": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "charge_distance_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "hit_radius_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "damage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "knockback_speed_mps": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "knockback_duration_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "recovery_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "cooldown_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "minimum_windup_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "aura_radius_m",
+        "attack_speed_bonus",
+        "move_speed_bonus",
+        "retreat_range_m",
+        "safe_max_m",
+        "retreat_speed_multiplier"
+      ],
+      "properties": {
+        "aura_radius_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "attack_speed_bonus": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "move_speed_bonus": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "retreat_range_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "safe_max_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "retreat_speed_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    }
+  }
+}

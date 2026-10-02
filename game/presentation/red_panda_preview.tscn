@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/characters/red_panda/red_panda_v008.glb" id="1_model"]
+
+[sub_resource type="CapsuleShape3D" id="BodyShape"]
+radius = 0.23
+height = 1.05
+
+[node name="Player" type="CharacterBody3D"]
+floor_snap_length = 0.15
+
+[node name="Body" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.525, 0)
+shape = SubResource("BodyShape")
+
+[node name="Visual" parent="." instance=ExtResource("1_model")]
+rotation = Vector3(0, -0.96, 0)
+scale = Vector3(1.20058629, 1.20058629, 1.20058629)

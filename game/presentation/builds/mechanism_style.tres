@@ -1,0 +1,46 @@
+[gd_resource type="Resource" load_steps=8 format=3]
+[ext_resource type="Script" path="res://presentation/builds/mechanism_style.gd" id="script"]
+[sub_resource type="TorusMesh" id="area"]
+inner_radius = 0.965
+outer_radius = 1.0
+rings = 64
+ring_segments = 8
+[sub_resource type="StandardMaterial3D" id="area_mat"]
+shading_mode = 0
+albedo_color = Color(1, 0.45, 0.1, 1)
+emission_enabled = true
+emission = Color(1, 0.3, 0.05, 1)
+emission_energy_multiplier = 2.0
+[sub_resource type="TorusMesh" id="slow"]
+inner_radius = 0.52
+outer_radius = 0.62
+rings = 32
+ring_segments = 8
+[sub_resource type="StandardMaterial3D" id="slow_mat"]
+shading_mode = 0
+albedo_color = Color(0.65, 0.3, 1, 1)
+emission_enabled = true
+emission = Color(0.65, 0.2, 1, 1)
+[sub_resource type="CapsuleMesh" id="freeze"]
+radius = 0.65
+height = 2.0
+radial_segments = 12
+rings = 4
+[sub_resource type="StandardMaterial3D" id="freeze_mat"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.15, 0.8, 1, 0.42)
+emission_enabled = true
+emission = Color(0.08, 0.5, 0.8, 1)
+[resource]
+script = ExtResource("script")
+area_mesh = SubResource("area")
+area_material = SubResource("area_mat")
+area_lifetime = 0.38
+area_offset = Vector3(0,0.06,0)
+slow_mesh = SubResource("slow")
+slow_material = SubResource("slow_mat")
+slow_offset = Vector3(0,0.08,0)
+freeze_mesh = SubResource("freeze")
+freeze_material = SubResource("freeze_mat")
+freeze_offset = Vector3(0,1.0,0)

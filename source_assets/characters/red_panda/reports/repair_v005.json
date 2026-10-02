@@ -1,0 +1,26 @@
+[
+  {
+    "scene": "RepairPose_01_Contact",
+    "rigid_paw_boot_vertices": 1699,
+    "closure_faces": 21,
+    "new_animation": false
+  },
+  {
+    "scene": "RepairPose_02_Down",
+    "rigid_paw_boot_vertices": 1699,
+    "closure_faces": 21,
+    "new_animation": false
+  },
+  {
+    "scene": "RepairPose_03_Passing",
+    "rigid_paw_boot_vertices": 1699,
+    "closure_faces": 21,
+    "new_animation": false
+  },
+  {
+    "scene": "RepairPose_04_Flight",
+    "rigid_paw_boot_vertices": 1699,
+    "closure_faces": 21,
+    "new_animation": false
+  }
+]

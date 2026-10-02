@@ -1,0 +1,296 @@
+[gd_resource type="Resource" load_steps=43 format=3]
+
+[ext_resource type="Script" path="res://presentation/decorating/decorating_ui_skin.gd" id="script"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/chrome/catalog_panel.png" id="tex_panel"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/chrome/item_slot.png" id="tex_slot"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/chrome/item_selected.png" id="tex_selected"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/chrome/tab_button.png" id="tex_tab"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/chrome/mode_banner.png" id="tex_banner"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/chrome/button_primary.png" id="tex_primary"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/chrome/button_secondary.png" id="tex_secondary"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/chrome/leaf_corner.png" id="tex_leaf"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/thumbnails/barrel.png" id="thumb_barrel"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/thumbnails/scroll_bin.png" id="thumb_scroll_bin"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/thumbnails/supply_crate.png" id="thumb_supply_crate"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/thumbnails/storage_chest.png" id="thumb_chest"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/icons/rotate.svg" id="icon_rotate"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/icons/close.svg" id="icon_cancel"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/icons/remove.svg" id="icon_remove"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/icons/confirm.svg" id="icon_done"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/icons/chair.svg" id="icon_furniture"]
+[ext_resource type="Texture2D" path="res://assets/ui/foliage/leaf.svg" id="icon_ornaments"]
+[ext_resource type="Texture2D" path="res://assets/ui/foliage/lamp.svg" id="icon_lights"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/icons/mouse_left.svg" id="icon_mouse_left"]
+[ext_resource type="Texture2D" path="res://assets/ui/decoration/v001/icons/mouse_right.svg" id="icon_mouse_right"]
+
+[sub_resource type="AtlasTexture" id="atlas_panel"]
+atlas = ExtResource("tex_panel")
+region = Rect2(27, 28, 970, 1465)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_slot"]
+atlas = ExtResource("tex_slot")
+region = Rect2(59, 61, 1136, 1134)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_selected"]
+atlas = ExtResource("tex_selected")
+region = Rect2(31, 36, 1192, 1177)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_tab"]
+atlas = ExtResource("tex_tab")
+region = Rect2(68, 241, 1636, 412)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_banner"]
+atlas = ExtResource("tex_banner")
+region = Rect2(11, 191, 2151, 326)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_primary"]
+atlas = ExtResource("tex_primary")
+region = Rect2(33, 129, 2133, 443)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_secondary"]
+atlas = ExtResource("tex_secondary")
+region = Rect2(43, 167, 2087, 382)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_leaf"]
+atlas = ExtResource("tex_leaf")
+region = Rect2(30, 20, 893, 1085)
+filter_clip = true
+
+[sub_resource type="StyleBoxTexture" id="style_panel"]
+texture = SubResource("atlas_panel")
+texture_margin_left = 28.0
+texture_margin_top = 28.0
+texture_margin_right = 28.0
+texture_margin_bottom = 28.0
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_slot"]
+texture = SubResource("atlas_slot")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+modulate_color = Color(1.06, 1.08, 1.04, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_slot_hover"]
+texture = SubResource("atlas_slot")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+modulate_color = Color(1.3, 1.35, 1.15, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_slot_focus"]
+texture = SubResource("atlas_selected")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_tab"]
+texture = SubResource("atlas_tab")
+texture_margin_left = 18.0
+texture_margin_top = 10.0
+texture_margin_right = 18.0
+texture_margin_bottom = 10.0
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+modulate_color = Color(0.94, 0.98, 0.9, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_tab_hover"]
+texture = SubResource("atlas_tab")
+texture_margin_left = 18.0
+texture_margin_top = 10.0
+texture_margin_right = 18.0
+texture_margin_bottom = 10.0
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+modulate_color = Color(1.18, 1.24, 1.06, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_tab_selected"]
+texture = SubResource("atlas_tab")
+texture_margin_left = 18.0
+texture_margin_top = 10.0
+texture_margin_right = 18.0
+texture_margin_bottom = 10.0
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+modulate_color = Color(1.3, 1.4, 1.16, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_primary"]
+texture = SubResource("atlas_primary")
+texture_margin_left = 30.0
+texture_margin_top = 15.0
+texture_margin_right = 52.0
+texture_margin_bottom = 15.0
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 18.0
+content_margin_bottom = 6.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_secondary"]
+texture = SubResource("atlas_secondary")
+texture_margin_left = 26.0
+texture_margin_top = 14.0
+texture_margin_right = 26.0
+texture_margin_bottom = 14.0
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_button_hover"]
+texture = SubResource("atlas_secondary")
+texture_margin_left = 26.0
+texture_margin_top = 14.0
+texture_margin_right = 26.0
+texture_margin_bottom = 14.0
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+modulate_color = Color(1.2, 1.28, 1.08, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_button_pressed"]
+texture = SubResource("atlas_secondary")
+texture_margin_left = 26.0
+texture_margin_top = 14.0
+texture_margin_right = 26.0
+texture_margin_bottom = 14.0
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+modulate_color = Color(0.82, 0.94, 0.82, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_button_disabled"]
+texture = SubResource("atlas_secondary")
+texture_margin_left = 26.0
+texture_margin_top = 14.0
+texture_margin_right = 26.0
+texture_margin_bottom = 14.0
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+modulate_color = Color(0.55, 0.64, 0.57, 0.85)
+
+[resource]
+script = ExtResource("script")
+textures = Dictionary[String, Texture2D]({
+"panel": SubResource("atlas_panel"),
+"slot": SubResource("atlas_slot"),
+"selected": SubResource("atlas_selected"),
+"tab": SubResource("atlas_tab"),
+"banner": SubResource("atlas_banner"),
+"primary": SubResource("atlas_primary"),
+"secondary": SubResource("atlas_secondary"),
+"leaf": SubResource("atlas_leaf"),
+"barrel": ExtResource("thumb_barrel"),
+"scroll_bin": ExtResource("thumb_scroll_bin"),
+"supply_crate": ExtResource("thumb_supply_crate"),
+"chest": ExtResource("thumb_chest")
+})
+icons = Dictionary[String, Texture2D]({
+"rotate": ExtResource("icon_rotate"),
+"cancel": ExtResource("icon_cancel"),
+"remove": ExtResource("icon_remove"),
+"done": ExtResource("icon_done"),
+"furniture": ExtResource("icon_furniture"),
+"ornaments": ExtResource("icon_ornaments"),
+"lights": ExtResource("icon_lights"),
+"mouse_left": ExtResource("icon_mouse_left"),
+"mouse_right": ExtResource("icon_mouse_right")
+})
+style_boxes = Dictionary[String, StyleBox]({
+"panel": SubResource("style_panel"),
+"slot": SubResource("style_slot"),
+"slot_hover": SubResource("style_slot_hover"),
+"slot_focus": SubResource("style_slot_focus"),
+"tab": SubResource("style_tab"),
+"tab_hover": SubResource("style_tab_hover"),
+"tab_selected": SubResource("style_tab_selected"),
+"primary": SubResource("style_primary"),
+"secondary": SubResource("style_secondary"),
+"button_hover": SubResource("style_button_hover"),
+"button_pressed": SubResource("style_button_pressed"),
+"button_disabled": SubResource("style_button_disabled")
+})
+metrics = Dictionary[String, float]({
+"margin": 18.0,
+"sidebar_width": 336.0,
+"padding": 18.0,
+"gap": 10.0,
+"header_height": 60.0,
+"tab_height": 42.0,
+"card_height": 156.0,
+"card_icon_height": 108.0,
+"detail_height": 140.0,
+"detail_icon_size": 76.0,
+"bar_height": 64.0,
+"button_height": 52.0,
+"button_width": 170.0,
+"icon_size": 22.0,
+"leaf_size": 100.0,
+"banner_width": 330.0,
+"status_height": 60.0,
+"thumbnail_padding": 10.0
+})
+text_color = Color(0.94902, 0.890196, 0.72549, 1)
+muted_color = Color(0.698039, 0.701961, 0.580392, 1)
+valid_color = Color(0.843137, 0.913725, 0.596078, 1)
+invalid_color = Color(1, 0.537255, 0.411765, 1)
+style_texture_sizes = Dictionary[String, Vector2i]({
+"panel": Vector2i(336, 507),
+"slot": Vector2i(144, 144),
+"selected": Vector2i(144, 142),
+"tab": Vector2i(160, 40),
+"primary": Vector2i(260, 54),
+"secondary": Vector2i(284, 52)
+})
+style_sources = Dictionary[String, String]({
+"panel": "panel",
+"slot": "slot",
+"slot_hover": "slot",
+"slot_focus": "selected",
+"tab": "tab",
+"tab_hover": "tab",
+"tab_selected": "tab",
+"primary": "primary",
+"secondary": "secondary",
+"button_hover": "secondary",
+"button_pressed": "secondary",
+"button_disabled": "secondary"
+})

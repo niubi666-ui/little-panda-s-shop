@@ -1,0 +1,117 @@
+# GENERATED from game/data/locales; edit JSON and rerun the build tool.
+msgid ""
+msgstr ""
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "decor.access_blocked"
+msgstr "Would block an entrance or interaction route"
+
+msgid "decor.applied"
+msgstr "Placement applied"
+
+msgid "decor.blocked"
+msgstr "Blocked by a fixture or wall"
+
+msgid "decor.cancel"
+msgstr "Cancel preview"
+
+msgid "decor.category.furniture"
+msgstr "Furniture"
+
+msgid "decor.category.lights"
+msgstr "Lights"
+
+msgid "decor.category.ornaments"
+msgstr "Decor"
+
+msgid "decor.count"
+msgstr "Placed {count}/{limit} · Grid {grid} m"
+
+msgid "decor.description.barrel"
+msgstr "A small wooden storage barrel."
+
+msgid "decor.description.chest"
+msgstr "A wood chest with metal trim."
+
+msgid "decor.description.scroll_bin"
+msgstr "A wooden bin filled with scrolls."
+
+msgid "decor.description.supply_crate"
+msgstr "A supply crate with a jar."
+
+msgid "decor.detail.empty"
+msgstr "Choose above, or click an item you have placed."
+
+msgid "decor.detail.empty_title"
+msgstr "Choose furniture"
+
+msgid "decor.done"
+msgstr "Finish"
+
+msgid "decor.empty"
+msgstr "Coming later.\nTry the available items in Furniture."
+
+msgid "decor.footprint"
+msgstr "Footprint {width} × {depth}"
+
+msgid "decor.help"
+msgstr "Left click: place / select · Right click or {cancel_key}: cancel · {mode_key}: exit"
+
+msgid "decor.idle"
+msgstr "Choose an item to add, or click placed prototype furniture."
+
+msgid "decor.invalid"
+msgstr "Invalid layout parameters"
+
+msgid "decor.item.barrel"
+msgstr "Small barrel"
+
+msgid "decor.item.chest"
+msgstr "Treasure chest"
+
+msgid "decor.item.scroll_bin"
+msgstr "Scroll bin"
+
+msgid "decor.item.supply_crate"
+msgstr "Crate with jar"
+
+msgid "decor.limit"
+msgstr "Prototype furniture limit reached"
+
+msgid "decor.mode"
+msgstr "Decorating mode"
+
+msgid "decor.note"
+msgstr "Prototype · Layout lasts only for this visit. No inventory costs or saving."
+
+msgid "decor.occupied"
+msgstr "Overlaps furniture or the player"
+
+msgid "decor.ok"
+msgstr "Valid position · Click floor to confirm"
+
+msgid "decor.out_of_bounds"
+msgstr "Outside the decorating area"
+
+msgid "decor.remove"
+msgstr "Remove"
+
+msgid "decor.removed"
+msgstr "Furniture removed"
+
+msgid "decor.rotate"
+msgstr "Rotate 90°"
+
+msgid "decor.scene_unavailable"
+msgstr "Decorating area validation failed. Check the development log."
+
+msgid "decor.stale"
+msgstr "Layout changed. Please select again."
+
+msgid "decor.title"
+msgstr "Shop decorating"
+

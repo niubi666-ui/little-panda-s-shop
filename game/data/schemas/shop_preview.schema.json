@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shop preview configuration (temporary slice, version 1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+	"schema_version",
+	"id",
+	"movement",
+	"interaction",
+	"localization",
+    "decorating_file"
+  ],
+  "properties": {
+	"schema_version": {
+	  "type": "integer",
+	  "const": 1
+	},
+	"id": {
+	  "type": "string",
+	  "const": "preview.shop_interior"
+	},
+	"movement": {
+	  "type": "object",
+	  "additionalProperties": false,
+	  "required": [
+		"speed_mps",
+		"turn_speed_radps",
+        "gravity_mps2"
+	  ],
+	  "properties": {
+		"speed_mps": {
+		  "type": "number",
+		  "exclusiveMinimum": 0
+		},
+		"turn_speed_radps": {
+		  "type": "number",
+		  "exclusiveMinimum": 0
+		},
+		"gravity_mps2": {
+		  "type": "number",
+		  "exclusiveMinimum": 0
+		}
+	  }
+	},
+	"interaction": {
+	  "type": "object",
+	  "additionalProperties": false,
+	  "required": [
+        "distance_m"
+	  ],
+	  "properties": {
+		"distance_m": {
+		  "type": "number",
+		  "exclusiveMinimum": 0
+		}
+	  }
+	},
+	"localization": {
+	  "type": "object",
+	  "additionalProperties": false,
+	  "required": [
+        "default_locale"
+	  ],
+	  "properties": {
+		"default_locale": {
+		  "type": "string",
+		  "enum": [
+			"zh_CN",
+            "en"
+		  ]
+		}
+	  }
+	},
+	"decorating_file": {
+	  "type": "string",
+	  "pattern": "^res://data/shop/decorating/[a-z0-9_]+\\.json$"
+	}
+  }
+}

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://rogue/rooms/composition.gd" id="preset"]
+[ext_resource type="Script" path="res://rogue/rooms/composition_member.gd" id="member"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v004/long_wall.glb" id="art"]
+[sub_resource type="Resource" id="m0"]
+script = ExtResource("member")
+id = "low_ruin_dressed_ruin_0"
+prop_id = "long_wall_low_ruin_dressed_ruin_0"
+position = Vector3(-0.84000003, 0.00000000, -0.00000000)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m1"]
+script = ExtResource("member")
+id = "low_ruin_dressed_ruin_1"
+prop_id = "long_wall_low_ruin_dressed_ruin_1"
+position = Vector3(0.83999979, 0.00000000, -0.00000000)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m2"]
+script = ExtResource("member")
+id = "west_end_weathered_endpost"
+prop_id = "long_wall_west_end_weathered_endpost"
+position = Vector3(-1.90999997, 0.00000000, -0.00000000)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m3"]
+script = ExtResource("member")
+id = "east_end_weathered_endpost"
+prop_id = "long_wall_east_end_weathered_endpost"
+position = Vector3(1.90999997, 0.00000000, -0.00000000)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m4"]
+script = ExtResource("member")
+id = "barrel_foreground"
+prop_id = "long_wall_barrel_foreground"
+position = Vector3(-1.66999996, 0.01200000, 0.58999997)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m5"]
+script = ExtResource("member")
+id = "barrel_behind"
+prop_id = "long_wall_barrel_behind"
+position = Vector3(1.42999995, 0.01200000, -0.49000001)
+yaw_radians = 0.0
+[resource]
+script = ExtResource("preset")
+id = "long_wall"
+members = Array[Resource]([SubResource("m0"), SubResource("m1"), SubResource("m2"), SubResource("m3"), SubResource("m4"), SubResource("m5")])
+decoration = ExtResource("art")

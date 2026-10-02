@@ -1,0 +1,5 @@
+# 单叶图集
+
+内置 imagegen 生成，透明背景；用于独立弯曲叶片的表面颜色和轮廓。原生成图保留，工程使用副本。不是高模烘焙。
+
+Production texture atlas for 3D oak leaves, square image, true transparent background. Exactly FOUR individual separate short broad oak leaves arranged precisely in equal 2x2 quadrants, centers (25%,25%), (75%,25%), (25%,75%), (75%,75%). Each leaf tip points straight up, short petiole points down, full leaf inside its cell with 8% margins. Mature sacred ancient oak species: oval broad shape with 4-5 pairs of gently rounded shallow lobes and a rounded terminal lobe; leaf blade length only 1.5 times width, NOT long thin, NOT maple, NOT fern. Fine natural veins and organic subtle mottled texture. Four variations: muted olive green, warm medium green, slightly golden olive young leaf, dark muted forest green. Flat front-facing orthographic top surface, no perspective, neutral diffuse albedo-like illumination, no baked directional cast shadow, no dramatic highlights, no border or text, no branches except individual short petioles, no overlapping leaves, no background. Photoreal botanical material texture suitable to map each quadrant to one small curved leaf mesh.

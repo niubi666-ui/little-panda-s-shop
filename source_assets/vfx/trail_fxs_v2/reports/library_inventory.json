@@ -1,0 +1,5309 @@
+[
+  {
+    "file": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\original\\武器拖影(Trail_FXs_v2)blender资产预设\\Trail_FXs_v2_Extra\\Trail_FXs_Extra\\TrailFXs_Basic.blend",
+    "version": "5.2.1 LTS",
+    "scenes": [
+      {
+        "name": "Scene",
+        "frames": [
+          0,
+          120
+        ],
+        "fps": 24
+      }
+    ],
+    "objects": [
+      {
+        "name": "Camera",
+        "type": "CAMERA",
+        "asset": false,
+        "location": [
+          6.50416898727417,
+          -14.868375778198242,
+          -0.29450523853302
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Heart_0",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          1.9570975303649902,
+          1.6208511590957642,
+          0.33482474088668823
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Heart_1",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          1.5955065488815308,
+          1.6217708587646484,
+          0.38002073764801025
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "MaterialContainer",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Plane",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          -5.093483924865723
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Star_0",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          1.8081766366958618,
+          1.9012295007705688,
+          0.2598792016506195
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Star_1",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          1.900085687637329,
+          1.9489500522613525,
+          0.2598792016506195
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Star_2",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          1.4993031024932861,
+          1.7312462329864502,
+          0.2598792016506195
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Suzanne",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          1.3635518550872803,
+          0.8492980003356934,
+          0.9817573428153992
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Trail_Emitter",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Emitter",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Emitter_Advance",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Emitter_Advance",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Emitter_Particles",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Emitter_Particles",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Emitter_Particles_Advance",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Emitter_Particles_Advance",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Line",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Line",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Line_Multiple",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.022427961230278015,
+          0.16339503228664398,
+          0.18057334423065186
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Line_Multiple",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Origin",
+        "type": "EMPTY",
+        "asset": false,
+        "location": [
+          0.13021083176136017,
+          0.12572406232357025,
+          0.06950776278972626
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Trail_Origin.001",
+        "type": "EMPTY",
+        "asset": false,
+        "location": [
+          0.13021083176136017,
+          0.12572406232357025,
+          0.06950776278972626
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Trail_Particles",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Particles",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Particles_withCollision",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Particles_withCollision",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Tube",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Tube",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Tube_Multiple",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.022427961230278015,
+          0.16339503228664398,
+          0.18057334423065186
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Tube_Multiple",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "materials": [
+      {
+        "name": "Dots Stroke",
+        "asset": false,
+        "nodes": 5
+      },
+      {
+        "name": "Heart",
+        "asset": false,
+        "nodes": 12
+      },
+      {
+        "name": "Star",
+        "asset": false,
+        "nodes": 10
+      },
+      {
+        "name": "Trail_Line_1",
+        "asset": true,
+        "nodes": 21
+      },
+      {
+        "name": "Trail_Line_2",
+        "asset": true,
+        "nodes": 26
+      },
+      {
+        "name": "Trail_Line_3",
+        "asset": true,
+        "nodes": 28
+      },
+      {
+        "name": "Trail_Line_4",
+        "asset": true,
+        "nodes": 24
+      },
+      {
+        "name": "Trail_Line_5",
+        "asset": true,
+        "nodes": 29
+      },
+      {
+        "name": "Trail_Particles_1",
+        "asset": true,
+        "nodes": 34
+      },
+      {
+        "name": "Trail_Tube_1",
+        "asset": true,
+        "nodes": 16
+      },
+      {
+        "name": "Trail_Tube_2",
+        "asset": true,
+        "nodes": 27
+      }
+    ],
+    "groups": [
+      {
+        "name": "Curve_To_Mesh",
+        "nodes": 11,
+        "interface": [
+          {
+            "name": "Output Mesh",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "UVs",
+            "id": "Output_8",
+            "direction": "OUTPUT",
+            "type": "NodeSocketVector",
+            "value": "<bpy_float[3], NodeTreeInterfaceSocketVector.default_value>"
+          },
+          {
+            "name": "Input Curve",
+            "id": "Input_0",
+            "direction": "INPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Profile Curve",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Curve Radius",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Fill Caps",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "UV_name",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "CurveUVs"
+          }
+        ]
+      },
+      {
+        "name": "Curve_To_Mesh.001",
+        "nodes": 11,
+        "interface": [
+          {
+            "name": "Output Mesh",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "UVs",
+            "id": "Output_8",
+            "direction": "OUTPUT",
+            "type": "NodeSocketVector",
+            "value": "<bpy_float[3], NodeTreeInterfaceSocketVector.default_value>"
+          },
+          {
+            "name": "Input Curve",
+            "id": "Input_0",
+            "direction": "INPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Profile Curve",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Curve Radius",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Fill Caps",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "UV_name",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "CurveUVs"
+          }
+        ]
+      },
+      {
+        "name": "Curve_To_Tube",
+        "nodes": 12,
+        "interface": [
+          {
+            "name": "Output Mesh",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "UVs",
+            "id": "Output_8",
+            "direction": "OUTPUT",
+            "type": "NodeSocketVector",
+            "value": "<bpy_float[3], NodeTreeInterfaceSocketVector.default_value>"
+          },
+          {
+            "name": "Input Curve",
+            "id": "Input_0",
+            "direction": "INPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Curve Radius",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Profile Circle Res",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "32"
+          },
+          {
+            "name": "Profile Circle Radius",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Fill Caps",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "UV_name",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "CurveUVs"
+          }
+        ]
+      },
+      {
+        "name": "ParticleCollision",
+        "nodes": 22,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Socket_0",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Geometry",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "name": "Trail_Emitter",
+        "nodes": 92,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Emitter Object",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Vertex Group",
+            "id": "Socket_11",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": ""
+          },
+          {
+            "name": "Trail Density",
+            "id": "Socket_12",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "5.0"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "40"
+          },
+          {
+            "name": "Animated-Emitter",
+            "id": "Socket_20",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Animated Seed",
+            "id": "Socket_14",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Smooth Trail",
+            "id": "Socket_15",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Radius",
+            "id": "Socket_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.07999999821186066"
+          },
+          {
+            "name": "Trail Flow",
+            "id": "Socket_16",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Linear"
+          },
+          {
+            "name": "Resolution",
+            "id": "Socket_17",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "6"
+          },
+          {
+            "name": "Fill Caps",
+            "id": "Socket_18",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.9800000190734863"
+          },
+          {
+            "name": "Gravity",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "-1.0"
+          },
+          {
+            "name": "Material",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Emitter_Advance",
+        "nodes": 99,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Origin",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Particles Per Frame",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "2"
+          },
+          {
+            "name": "Particles Offset",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.1599999964237213"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "40"
+          },
+          {
+            "name": "",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Particles Radius",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05000000074505806"
+          },
+          {
+            "name": "Quality",
+            "id": "Socket_11",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "0"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.9800000190734863"
+          },
+          {
+            "name": "Gravity",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "-1.0"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketCollection",
+            "value": "None"
+          },
+          {
+            "name": "Rotation Speed",
+            "id": "Socket_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "2.799999952316284"
+          },
+          {
+            "name": "Material",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "<bpy_struct, Material(\"Trail_Particles_1\") at 0x000001F6273786A0>"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Color",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Emitter_Particles",
+        "nodes": 151,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Emitter Object",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Particle Density",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "100.0"
+          },
+          {
+            "name": "Vertex Group",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "1"
+          },
+          {
+            "name": "Trail Substeps",
+            "id": "Socket_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.4000000059604645"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "40"
+          },
+          {
+            "name": "",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Max Particles Radius",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05000000074505806"
+          },
+          {
+            "name": "Radius Flow",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Constant"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.9800000190734863"
+          },
+          {
+            "name": "Gravity",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "-1.0"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_6",
+            "direction": "INPUT",
+            "type": "NodeSocketCollection",
+            "value": "None"
+          },
+          {
+            "name": "Rotation Speed",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "2.799999952316284"
+          },
+          {
+            "name": "Use Custom particle material",
+            "id": "Socket_13",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Material",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_11",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_12",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Emitter_Particles_Advance",
+        "nodes": 186,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Emitter Object",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Vertex Group",
+            "id": "Socket_12",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": ""
+          },
+          {
+            "name": "Particle Density",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "100.0"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "40"
+          },
+          {
+            "name": "Max Particles Radius",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05000000074505806"
+          },
+          {
+            "name": "Animated Seed",
+            "id": "Socket_13",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Substeps",
+            "id": "Socket_14",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Radius Flow",
+            "id": "Socket_19",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Constant"
+          },
+          {
+            "name": "Collision Type",
+            "id": "Socket_11",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "True Collision"
+          },
+          {
+            "name": "Collison Quality",
+            "id": "Socket_8",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "1"
+          },
+          {
+            "name": "Collision Object",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Collision Offset",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.9800000190734863"
+          },
+          {
+            "name": "Gravity",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "-1.0"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_6",
+            "direction": "INPUT",
+            "type": "NodeSocketCollection",
+            "value": "None"
+          },
+          {
+            "name": "Rotation Speed",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "2.799999952316284"
+          },
+          {
+            "name": "Material",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_18",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_17",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Line",
+        "nodes": 75,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Origin",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "40"
+          },
+          {
+            "name": "",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Face Camera",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Smooth Trail",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Profile",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Linear"
+          },
+          {
+            "name": "Trail Width",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.25"
+          },
+          {
+            "name": "Resolution",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "2"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.31000006198883057"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Material",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_6",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_7",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_14",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Line_Multiple",
+        "nodes": 104,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Origin",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Trails Count",
+            "id": "Socket_8",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "3"
+          },
+          {
+            "name": "Trail Offset",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "40"
+          },
+          {
+            "name": "",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Max Trim",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.4000000059604645"
+          },
+          {
+            "name": "Clump at Origin",
+            "id": "Socket_12",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "0"
+          },
+          {
+            "name": "Smooth Trail",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Face Camera",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Trail Profile",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Linear"
+          },
+          {
+            "name": "Trail  Width",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Trail Profile Resolution",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "2"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.31000006198883057"
+          },
+          {
+            "name": "Material",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_11",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Particles",
+        "nodes": 147,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Origin",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Particles Per Frame",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "2"
+          },
+          {
+            "name": "Particles Offset",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.1599999964237213"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "40"
+          },
+          {
+            "name": "Trail Substeps",
+            "id": "Socket_11",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Max Particles Radius",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05000000074505806"
+          },
+          {
+            "name": "Radius Flow",
+            "id": "Socket_12",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Constant"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.9800000190734863"
+          },
+          {
+            "name": "Gravity",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "-1.0"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketCollection",
+            "value": "None"
+          },
+          {
+            "name": "Rotation Speed",
+            "id": "Socket_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "2.799999952316284"
+          },
+          {
+            "name": "Material",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Particles_withCollision",
+        "nodes": 188,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Origin",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Particles Per Frame",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "2"
+          },
+          {
+            "name": "Particles Offset",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.1599999964237213"
+          },
+          {
+            "name": "Trail Substeps",
+            "id": "Socket_15",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.25"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "40"
+          },
+          {
+            "name": "",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- Make Sure to Bake the Simulation Before Render-"
+          },
+          {
+            "name": "Max Particles Radius",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05000000074505806"
+          },
+          {
+            "name": "Radius Flow",
+            "id": "Socket_16",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Constant"
+          },
+          {
+            "name": "Collision Object",
+            "id": "Socket_12",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Collsion Type",
+            "id": "Socket_14",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "True Collision"
+          },
+          {
+            "name": "Collision Quality",
+            "id": "Socket_11",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "1"
+          },
+          {
+            "name": "Collision Offset",
+            "id": "Socket_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.9800000190734863"
+          },
+          {
+            "name": "Gravity",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "-1.0"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketCollection",
+            "value": "None"
+          },
+          {
+            "name": "Rotation Speed",
+            "id": "Socket_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "2.799999952316284"
+          },
+          {
+            "name": "Material",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Tube",
+        "nodes": 59,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Origin",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "40"
+          },
+          {
+            "name": "",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Smooth Trail",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Profile",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Linear"
+          },
+          {
+            "name": "Radius",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.07999998331069946"
+          },
+          {
+            "name": "Circular Resolution",
+            "id": "Input_14",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "6"
+          },
+          {
+            "name": "Fill Caps",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.31000006198883057"
+          },
+          {
+            "name": "Material",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Tube_Multiple",
+        "nodes": 86,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Origin",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Trail Count",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "3"
+          },
+          {
+            "name": "Trail Offset",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "40"
+          },
+          {
+            "name": "",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Smooth Trail",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Clump at Origin",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "0"
+          },
+          {
+            "name": "Trim",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.20000000298023224"
+          },
+          {
+            "name": "Trail Profile",
+            "id": "Socket_7",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Linear"
+          },
+          {
+            "name": "Radius",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.07999998331069946"
+          },
+          {
+            "name": "Circular Resolution",
+            "id": "Input_14",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "16"
+          },
+          {
+            "name": "Fill Caps",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.31000006198883057"
+          },
+          {
+            "name": "Material",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_6",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "name": "Render Result",
+        "path": "",
+        "packed": false,
+        "size": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "file": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\original\\武器拖影(Trail_FXs_v2)blender资产预设\\Trail_FXs_v2_Extra\\Trail_FXs_Extra\\TrailFXs_Blades.blend",
+    "version": "5.2.1 LTS",
+    "scenes": [
+      {
+        "name": "Scene",
+        "frames": [
+          1,
+          130
+        ],
+        "fps": 24
+      }
+    ],
+    "objects": [
+      {
+        "name": "Blade",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.3119999170303345,
+          0.05000000074505806,
+          1.3656399250030518
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Blade_Reference",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.03999998793005943,
+          0.0,
+          1.051947832107544
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "MaterialContainer",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Trail_Blade",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Blade",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "materials": [
+      {
+        "name": "Dots Stroke",
+        "asset": false,
+        "nodes": 5
+      },
+      {
+        "name": "Trail_Blade_01",
+        "asset": true,
+        "nodes": 22
+      },
+      {
+        "name": "Trail_Blade_02",
+        "asset": true,
+        "nodes": 40
+      },
+      {
+        "name": "Trail_Blade_03",
+        "asset": true,
+        "nodes": 39
+      },
+      {
+        "name": "Trail_Blade_04",
+        "asset": true,
+        "nodes": 33
+      },
+      {
+        "name": "Trail_Blade_05",
+        "asset": true,
+        "nodes": 26
+      },
+      {
+        "name": "Trail_Blade_06",
+        "asset": true,
+        "nodes": 31
+      },
+      {
+        "name": "Trail_Blade_07",
+        "asset": true,
+        "nodes": 50
+      },
+      {
+        "name": "Trail_Blade_08",
+        "asset": true,
+        "nodes": 39
+      },
+      {
+        "name": "Trail_Blade_09",
+        "asset": true,
+        "nodes": 36
+      },
+      {
+        "name": "Trail_Blade_10",
+        "asset": true,
+        "nodes": 24
+      },
+      {
+        "name": "Trail_Blade_11",
+        "asset": true,
+        "nodes": 38
+      },
+      {
+        "name": "Trail_Blade_12",
+        "asset": true,
+        "nodes": 34
+      },
+      {
+        "name": "Trail_Blade_13",
+        "asset": true,
+        "nodes": 45
+      },
+      {
+        "name": "Trail_Blade_14",
+        "asset": true,
+        "nodes": 41
+      },
+      {
+        "name": "Trail_Blade_15",
+        "asset": true,
+        "nodes": 44
+      },
+      {
+        "name": "Trail_Blade_16",
+        "asset": true,
+        "nodes": 57
+      },
+      {
+        "name": "Trail_Blade_17",
+        "asset": true,
+        "nodes": 46
+      },
+      {
+        "name": "Trail_Blade_18",
+        "asset": true,
+        "nodes": 48
+      },
+      {
+        "name": "Trail_Blade_19",
+        "asset": true,
+        "nodes": 29
+      },
+      {
+        "name": "Trail_Blade_20",
+        "asset": true,
+        "nodes": 40
+      },
+      {
+        "name": "Trail_Blade_21",
+        "asset": true,
+        "nodes": 35
+      },
+      {
+        "name": "Trail_Blade_22",
+        "asset": true,
+        "nodes": 45
+      },
+      {
+        "name": "Trail_Blade_23",
+        "asset": true,
+        "nodes": 36
+      },
+      {
+        "name": "Trail_Blade_24",
+        "asset": true,
+        "nodes": 50
+      },
+      {
+        "name": "Trail_Blade_25",
+        "asset": true,
+        "nodes": 49
+      },
+      {
+        "name": "Trail_Blade_26",
+        "asset": true,
+        "nodes": 51
+      },
+      {
+        "name": "Trail_Blade_27",
+        "asset": true,
+        "nodes": 42
+      },
+      {
+        "name": "Trail_Blade_28",
+        "asset": true,
+        "nodes": 30
+      },
+      {
+        "name": "Trail_Blade_29",
+        "asset": true,
+        "nodes": 38
+      },
+      {
+        "name": "Trail_Blade_30",
+        "asset": true,
+        "nodes": 64
+      }
+    ],
+    "groups": [
+      {
+        "name": "Trail_Blade",
+        "nodes": 88,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Reference",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "10"
+          },
+          {
+            "name": "",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Subdivisions",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "2"
+          },
+          {
+            "name": "Flip Faces",
+            "id": "Input_10",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Flip UVs (Y)",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Speed",
+            "id": "Input_11",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Displacement",
+            "id": "Socket_6",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Scale",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "3.799999713897705"
+          },
+          {
+            "name": "Strength",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.28999999165534973"
+          },
+          {
+            "name": "Roughness",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.4166666865348816"
+          },
+          {
+            "name": "Distortion",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.08000001311302185"
+          },
+          {
+            "name": "Material",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "name": "img_2.jpeg",
+        "path": "//Textures\\img_2.jpeg",
+        "packed": false,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Render Result",
+        "path": "",
+        "packed": false,
+        "size": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "file": "E:\\ShopGame\\source_assets\\vfx\\trail_fxs_v2\\original\\武器拖影(Trail_FXs_v2)blender资产预设\\Trail_FXs_v2_Extra\\Trail_FXs_Extra\\TrailFXs_Blades_Particles.blend",
+    "version": "5.2.1 LTS",
+    "scenes": [
+      {
+        "name": "Scene",
+        "frames": [
+          1,
+          130
+        ],
+        "fps": 24
+      }
+    ],
+    "objects": [
+      {
+        "name": "Blade",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.3119999170303345,
+          0.05000000074505806,
+          1.3656399250030518
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Blade_Reference",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.03999998793005943,
+          0.0,
+          1.051947832107544
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Camera",
+        "type": "CAMERA",
+        "asset": false,
+        "location": [
+          1.4540066719055176,
+          -4.82735538482666,
+          1.161552906036377
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Ground",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          -1.7366151809692383
+        ],
+        "dimensions": [
+          12.148157119750977,
+          12.148157119750977,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "MaterialContainer_2",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Petals_1",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          1.016043782234192,
+          1.0446422100067139,
+          0.1651347130537033
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Petals_2",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.9719359874725342,
+          0.9172418117523193,
+          0.20458899438381195
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Petals_3",
+        "type": "MESH",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          1.095759630203247,
+          1.0457062721252441,
+          0.14515568315982819
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Sun",
+        "type": "LIGHT",
+        "asset": false,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": []
+      },
+      {
+        "name": "Trail_Blade_FireSprites",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Blade_FireSprites",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Lines",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Blade_Lines",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Liquid",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Blade_Liquid",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Liquid_2",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Blade_Liquid_2",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Liquid_3",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Blade_Liquid_3",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Particles",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Blade_Particles",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Smoke",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": false,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Blade_Smoke",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_SmokeSprites",
+        "type": "MESH",
+        "asset": true,
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "animation": true,
+        "parent": null,
+        "modifiers": [
+          {
+            "name": "GeometryNodes",
+            "type": "NODES",
+            "node_group": "Trail_Blade_SmokeSprites",
+            "values": {
+              "rna_properties": [
+                "rna_type",
+                "name",
+                "type",
+                "show_viewport",
+                "show_render",
+                "show_in_editmode",
+                "show_on_cage",
+                "show_expanded",
+                "is_active",
+                "use_pin_to_last",
+                "is_override_data",
+                "use_apply_on_spline",
+                "execution_time",
+                "persistent_uid",
+                "node_group",
+                "bake_directory",
+                "bake_target",
+                "bakes",
+                "panels",
+                "show_group_selector",
+                "show_manage_panel",
+                "node_warnings",
+                "open_output_attributes_panel",
+                "open_manage_panel",
+                "open_bake_panel",
+                "open_named_attributes_panel",
+                "open_bake_data_blocks_panel",
+                "open_warnings_panel",
+                "properties"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "materials": [
+      {
+        "name": "Material",
+        "asset": false,
+        "nodes": 2
+      },
+      {
+        "name": "Petals",
+        "asset": false,
+        "nodes": 10
+      },
+      {
+        "name": "Trail Blade particles",
+        "asset": true,
+        "nodes": 17
+      },
+      {
+        "name": "Trail_Blade_Lines_1",
+        "asset": true,
+        "nodes": 23
+      },
+      {
+        "name": "Trail_Blade_Liquid_1",
+        "asset": true,
+        "nodes": 6
+      },
+      {
+        "name": "Trail_Blade_Liquid_2",
+        "asset": true,
+        "nodes": 10
+      },
+      {
+        "name": "Trail_FireSprites",
+        "asset": true,
+        "nodes": 34
+      },
+      {
+        "name": "Trail_SmokeSprites",
+        "asset": true,
+        "nodes": 28
+      },
+      {
+        "name": "Traill_Blade_SmokeVolume",
+        "asset": true,
+        "nodes": 8
+      }
+    ],
+    "groups": [
+      {
+        "name": "Curve_To_Tube",
+        "nodes": 12,
+        "interface": [
+          {
+            "name": "Output Mesh",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "UVs",
+            "id": "Output_8",
+            "direction": "OUTPUT",
+            "type": "NodeSocketVector",
+            "value": "<bpy_float[3], NodeTreeInterfaceSocketVector.default_value>"
+          },
+          {
+            "name": "Input Curve",
+            "id": "Input_0",
+            "direction": "INPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Curve Radius",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Profile Circle Res",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "32"
+          },
+          {
+            "name": "Profile Circle Radius",
+            "id": "Input_5",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Fill Caps",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "UV_name",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "CurveUVs"
+          }
+        ]
+      },
+      {
+        "name": "ParticleCollision",
+        "nodes": 22,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Socket_0",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Geometry",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_FireSprites",
+        "nodes": 128,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Reference",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Particles per Frame",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "42"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "10"
+          },
+          {
+            "name": "Age Randomness",
+            "id": "Input_18",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Particles Substeps",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "",
+            "id": "Input_25",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "7.099999904632568"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_14",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Distortion",
+            "id": "Input_16",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_17",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Gravity",
+            "id": "Input_19",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.02500000037252903"
+          },
+          {
+            "name": "Sprite Scale",
+            "id": "Input_20",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05999999865889549"
+          },
+          {
+            "name": "Scale Randomness",
+            "id": "Input_21",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.29999998211860657"
+          },
+          {
+            "name": "Rotation Speed",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "10.0"
+          },
+          {
+            "name": "Material",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_11",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Color 1",
+            "id": "Socket_5",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Color 2",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Socket_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Lines",
+        "nodes": 105,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Reference",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Lines",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "42"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "10"
+          },
+          {
+            "name": "",
+            "id": "Input_25",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Smooth Curve",
+            "id": "Socket_15",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Scale",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "7.099999904632568"
+          },
+          {
+            "name": "Distortion",
+            "id": "Input_16",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_14",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_17",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Gravity",
+            "id": "Input_19",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.02500000037252903"
+          },
+          {
+            "name": "Max Trim",
+            "id": "Input_18",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Profile Radius",
+            "id": "Input_20",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05999999865889549"
+          },
+          {
+            "name": "Radius Flow",
+            "id": "Socket_16",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Constant"
+          },
+          {
+            "name": "Profile Resolution",
+            "id": "Socket_17",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "6"
+          },
+          {
+            "name": "Fill Caps",
+            "id": "Socket_18",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Material",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_12",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_13",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Glow 1",
+            "id": "Socket_5",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow 2",
+            "id": "Socket_6",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Socket_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Liquid",
+        "nodes": 160,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Reference",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Particles per Frame",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "42"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "10"
+          },
+          {
+            "name": "Age Randomness",
+            "id": "Input_18",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Particles Substeps",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "",
+            "id": "Input_25",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_17",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Scale",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "7.099999904632568"
+          },
+          {
+            "name": "Distortion",
+            "id": "Input_16",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_14",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Gravity",
+            "id": "Input_19",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.02500000037252903"
+          },
+          {
+            "name": "Collision Type",
+            "id": "Socket_22",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "True + Normal Collison"
+          },
+          {
+            "name": "Collision Quality",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "1"
+          },
+          {
+            "name": "Collision Object",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Collision Offset",
+            "id": "Socket_11",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Particle Scale",
+            "id": "Input_20",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05999999865889549"
+          },
+          {
+            "name": "Scale Randomness",
+            "id": "Input_21",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Meshing Flow",
+            "id": "Socket_20",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Constant Radius"
+          },
+          {
+            "name": "Density",
+            "id": "Socket_12",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "10.0"
+          },
+          {
+            "name": "Voxel Size",
+            "id": "Socket_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.029999999329447746"
+          },
+          {
+            "name": "Subdivisions",
+            "id": "Socket_14",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "1"
+          },
+          {
+            "name": "Material",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Color",
+            "id": "Socket_5",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Roughness",
+            "id": "Socket_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Glow",
+            "id": "Socket_15",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Socket_21",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "10.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Liquid_2",
+        "nodes": 117,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Reference",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Particles per Frame",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "42"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "10"
+          },
+          {
+            "name": "Age Randomness",
+            "id": "Input_18",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Particles Substeps",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "",
+            "id": "Input_25",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_17",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Scale",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "7.099999904632568"
+          },
+          {
+            "name": "Distortion",
+            "id": "Input_16",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_14",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Particle Scale",
+            "id": "Input_20",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05999999865889549"
+          },
+          {
+            "name": "Scale Randomness",
+            "id": "Input_21",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Meshing Flow",
+            "id": "Socket_12",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Custom_1"
+          },
+          {
+            "name": "Density",
+            "id": "Socket_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "10.0"
+          },
+          {
+            "name": "Voxel Size",
+            "id": "Socket_14",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.029999999329447746"
+          },
+          {
+            "name": "Subdivisions",
+            "id": "Socket_15",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "1"
+          },
+          {
+            "name": "Material",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Color",
+            "id": "Socket_5",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Roughness",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.019999999552965164"
+          },
+          {
+            "name": "Glow",
+            "id": "Socket_11",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Socket_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Liquid_3",
+        "nodes": 98,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Reference",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "10"
+          },
+          {
+            "name": "Trail Subdivisions",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "1"
+          },
+          {
+            "name": "",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Displacement",
+            "id": "Socket_6",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Scale",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "3.799999713897705"
+          },
+          {
+            "name": "Strength",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.28999999165534973"
+          },
+          {
+            "name": "Roughness",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.4166666865348816"
+          },
+          {
+            "name": "Distortion",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.08000001311302185"
+          },
+          {
+            "name": "Meshing Flow",
+            "id": "Socket_14",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Linear"
+          },
+          {
+            "name": "Density",
+            "id": "Socket_10",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "10.0"
+          },
+          {
+            "name": "Voxel Size",
+            "id": "Socket_9",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.029999999329447746"
+          },
+          {
+            "name": "Subdivisions",
+            "id": "Socket_8",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "1"
+          },
+          {
+            "name": "Material",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Color",
+            "id": "Input_6",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Roughness",
+            "id": "Input_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Glow",
+            "id": "Socket_7",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Input_8",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "20.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Particles",
+        "nodes": 153,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Reference",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Particles per Frame",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "42"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "10"
+          },
+          {
+            "name": "Age Randomness",
+            "id": "Input_18",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Trail Substeps",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "",
+            "id": "Input_25",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Gravity",
+            "id": "Input_19",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.02500000037252903"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_17",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Scale",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "7.099999904632568"
+          },
+          {
+            "name": "Distortion",
+            "id": "Input_16",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_14",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_3",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Custom Particles",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketCollection",
+            "value": "None"
+          },
+          {
+            "name": "Particle Radius",
+            "id": "Input_20",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05999999865889549"
+          },
+          {
+            "name": "Radius Randomness",
+            "id": "Input_21",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Radius Flow",
+            "id": "Socket_15",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Constant"
+          },
+          {
+            "name": "Rotate Particles",
+            "id": "Socket_8",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Rotation Speed",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Custom Particle Material",
+            "id": "Socket_14",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "False"
+          },
+          {
+            "name": "Material",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Hue",
+            "id": "Socket_12",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Use Glow Colors",
+            "id": "Socket_13",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Glow 1",
+            "id": "Socket_5",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow 2",
+            "id": "Socket_6",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Glow Strength",
+            "id": "Socket_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_Smoke",
+        "nodes": 106,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Reference",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Particles per Frame",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "42"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "10"
+          },
+          {
+            "name": "Age Randomness",
+            "id": "Input_18",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Particle Substeps",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "",
+            "id": "Input_25",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- Make Sure to Bake the Simulation Before Render -"
+          },
+          {
+            "name": "Noise Scale",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "7.099999904632568"
+          },
+          {
+            "name": "Noise Distortion",
+            "id": "Input_16",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_14",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_17",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Gravity",
+            "id": "Input_19",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.02500000037252903"
+          },
+          {
+            "name": "Volume Method",
+            "id": "Socket_2",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Points Volume"
+          },
+          {
+            "name": "Density",
+            "id": "Socket_0",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "10.0"
+          },
+          {
+            "name": "Flow Method",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketMenu",
+            "value": "Custom_1"
+          },
+          {
+            "name": "Volume Radius",
+            "id": "Input_20",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05999999865889549"
+          },
+          {
+            "name": "Radius Randomness",
+            "id": "Input_21",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Voxel Size",
+            "id": "Socket_1",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.029999999329447746"
+          },
+          {
+            "name": "Material",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          }
+        ]
+      },
+      {
+        "name": "Trail_Blade_SmokeSprites",
+        "nodes": 124,
+        "interface": [
+          {
+            "name": "Geometry",
+            "id": "Output_1",
+            "direction": "OUTPUT",
+            "type": "NodeSocketGeometry",
+            "value": ""
+          },
+          {
+            "name": "Run Simulation",
+            "id": "Input_2",
+            "direction": "INPUT",
+            "type": "NodeSocketBool",
+            "value": "True"
+          },
+          {
+            "name": "Trail Reference",
+            "id": "Input_3",
+            "direction": "INPUT",
+            "type": "NodeSocketObject",
+            "value": "None"
+          },
+          {
+            "name": "Particles per Frame",
+            "id": "Input_12",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "42"
+          },
+          {
+            "name": "Max Age",
+            "id": "Input_4",
+            "direction": "INPUT",
+            "type": "NodeSocketInt",
+            "value": "10"
+          },
+          {
+            "name": "Age Randomness",
+            "id": "Input_18",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Particles Substeps",
+            "id": "Input_13",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "",
+            "id": "Input_25",
+            "direction": "INPUT",
+            "type": "NodeSocketString",
+            "value": "- - - - - Make Sure to Bake the Simulation - - - - - "
+          },
+          {
+            "name": "Scale",
+            "id": "Input_15",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "7.099999904632568"
+          },
+          {
+            "name": "Distortion",
+            "id": "Input_16",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Noise Speed",
+            "id": "Input_14",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          },
+          {
+            "name": "Noise Strength",
+            "id": "Input_17",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.10000000149011612"
+          },
+          {
+            "name": "Gravity",
+            "id": "Input_19",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.02500000037252903"
+          },
+          {
+            "name": "Sprite Scale",
+            "id": "Input_20",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.05999999865889549"
+          },
+          {
+            "name": "Scale Randomness",
+            "id": "Input_21",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.0"
+          },
+          {
+            "name": "Rotation Speed",
+            "id": "Socket_4",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "0.5"
+          },
+          {
+            "name": "Material",
+            "id": "Input_9",
+            "direction": "INPUT",
+            "type": "NodeSocketMaterial",
+            "value": "None"
+          },
+          {
+            "name": "Smoke Color",
+            "id": "Socket_5",
+            "direction": "INPUT",
+            "type": "NodeSocketColor",
+            "value": "<bpy_float[4], NodeTreeInterfaceSocketColor.default_value>"
+          },
+          {
+            "name": "Smoke Transparency",
+            "id": "Socket_7",
+            "direction": "INPUT",
+            "type": "NodeSocketFloat",
+            "value": "1.0"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "name": "Petals_Texture",
+        "path": "//Textures\\Petals_Texture.jpg",
+        "packed": false,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Render Result",
+        "path": "",
+        "packed": false,
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "T_Fire_SubUV.TGA.001",
+        "path": "//Textures\\T_Fire_SubUV.TGA",
+        "packed": false,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "T_Smoke_SubUV.TGA",
+        "path": "//textures\\T_Smoke_SubUV.TGA",
+        "packed": false,
+        "size": [
+          2048,
+          2048
+        ]
+      }
+    ]
+  }
+]

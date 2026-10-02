@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "content_version": "encounters.1",
+  "generation_version": 1,
+  "training_depth": 6,
+  "training_max_depth": 30,
+  "wave_count": 2,
+  "minimum_budget_fraction": 0.8,
+  "role_caps": {
+    "ranged": 1,
+    "charger": 1,
+    "support": 1
+  },
+  "escort_rules": [
+    {
+      "role": "ranged",
+      "requires_actor_id": "scout"
+    }
+  ],
+  "depth_bands": [
+    {
+      "min_depth": 1,
+      "budget": 3,
+      "max_enemies": 3
+    },
+    {
+      "min_depth": 3,
+      "budget": 4,
+      "max_enemies": 3
+    },
+    {
+      "min_depth": 6,
+      "budget": 5,
+      "max_enemies": 3
+    },
+    {
+      "min_depth": 10,
+      "budget": 6,
+      "max_enemies": 3
+    },
+    {
+      "min_depth": 15,
+      "budget": 7,
+      "max_enemies": 3
+    }
+  ],
+  "combinations": [
+    {
+      "id": "scout_crossbow",
+      "name_key": "encounter.scout_crossbow",
+      "weight": 1,
+      "enemy_ids": [
+        "scout",
+        "crossbow"
+      ]
+    },
+    {
+      "id": "scout_charge",
+      "name_key": "encounter.scout_charge",
+      "weight": 1,
+      "enemy_ids": [
+        "scout",
+        "charger"
+      ]
+    },
+    {
+      "id": "scout_brute",
+      "name_key": "encounter.scout_brute",
+      "weight": 1,
+      "enemy_ids": [
+        "scout",
+        "brute"
+      ]
+    },
+    {
+      "id": "escort_crossbow",
+      "name_key": "encounter.escort_crossbow",
+      "weight": 1,
+      "enemy_ids": [
+        "scout",
+        "scout",
+        "crossbow"
+      ]
+    },
+    {
+      "id": "crossfire_charge",
+      "name_key": "encounter.crossfire_charge",
+      "weight": 1,
+      "enemy_ids": [
+        "scout",
+        "crossbow",
+        "charger"
+      ]
+    },
+    {
+      "id": "banner_brute",
+      "name_key": "encounter.banner_brute",
+      "weight": 1,
+      "enemy_ids": [
+        "brute",
+        "banner"
+      ]
+    },
+    {
+      "id": "banner_crossbow",
+      "name_key": "encounter.banner_crossbow",
+      "weight": 1,
+      "enemy_ids": [
+        "scout",
+        "crossbow",
+        "banner"
+      ]
+    },
+    {
+      "id": "banner_charge",
+      "name_key": "encounter.banner_charge",
+      "weight": 1,
+      "enemy_ids": [
+        "scout",
+        "charger",
+        "banner"
+      ]
+    },
+    {
+      "id": "brute_charge",
+      "name_key": "encounter.brute_charge",
+      "weight": 1,
+      "enemy_ids": [
+        "scout",
+        "brute",
+        "charger"
+      ]
+    },
+    {
+      "id": "brute_guard",
+      "name_key": "encounter.brute_guard",
+      "weight": 1,
+      "enemy_ids": [
+        "scout",
+        "brute",
+        "banner"
+      ]
+    },
+    {
+      "id": "brute_crossbow",
+      "name_key": "encounter.brute_crossbow",
+      "weight": 1,
+      "enemy_ids": [
+        "scout",
+        "brute",
+        "crossbow"
+      ]
+    },
+    {
+      "id": "heavy_breakthrough",
+      "name_key": "encounter.heavy_breakthrough",
+      "weight": 1,
+      "enemy_ids": [
+        "brute",
+        "charger",
+        "banner"
+      ]
+    }
+  ]
+}

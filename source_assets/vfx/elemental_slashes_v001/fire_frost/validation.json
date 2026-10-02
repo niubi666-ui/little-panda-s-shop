@@ -1,0 +1,22 @@
+{
+  "blender": "5.2.1 LTS",
+  "effects": {
+    "fire": {
+      "blend": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\blender\\fire_study.blend",
+      "shader_nodes": 893,
+      "shader_links": 1113,
+      "scene_dependency_count": 11,
+      "texture_files": 8,
+      "source_reopen": "ok"
+    },
+    "frost": {
+      "blend": "source_assets\\vfx\\elemental_slashes_v001\\fire_frost\\blender\\frost_study.blend",
+      "shader_nodes": 652,
+      "shader_links": 827,
+      "scene_dependency_count": 11,
+      "texture_files": 8,
+      "source_reopen": "ok"
+    }
+  },
+  "failures": []
+}

@@ -1,0 +1,38 @@
+{
+  "method": "built-in image_gen",
+  "date": "2026-09-26",
+  "reference": "D:/Temp/codex-clipboard-f3373796-78f2-410a-a53d-371140c7de5b.png",
+  "reference_usage": "Visually inspected for art direction; textual style specification passed to generation.",
+  "pixel_processing": "None. Generated RGBA images copied byte-for-byte.",
+  "assets": [
+    {
+      "file": "potted_fern.png",
+      "prompt": "Use case: stylized-concept. Asset type: one standalone furniture thumbnail PNG for a premium fantasy shop decoration game UI. Generate a single lush green fern in a round cream ivory ceramic pot, subtle carved botanical ornament and warm antique-gold accents, based on the potted fern icon in the supplied shop decoration reference. Match its warm high-quality stylized 3D hand-painted PBR game rendering, readable dense fern fronds, nuanced light and shadows, earthy materials; no cartoon outline. Camera: three-quarter front view, elevated about 30 degrees, orthographic-like catalog icon; entire fern and pot visible, centered, 10 percent clear margin on all sides, square canvas preferably 1024x1024. Warm soft key light from upper left, gentle fill, crisp silhouette and tiny details readable at 128px. Background must be genuinely transparent RGBA with transparent empty pixels, NOT a checkerboard painted into the image, no ground plane, no cast floor shadow, no backdrop, no border, no card, no text, no characters, no watermark, no extra objects. Only one complete potted fern isolated.",
+      "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc19-d654-7081-88a7-02e5c927a4f4/exec-20c63c67-339e-4783-94e9-6bf8da254c2a.png",
+      "export": "E:/ShopGame/source_assets/ui/decoration/v001/exports/thumbnails/potted_fern.png",
+      "runtime": "E:/ShopGame/game/assets/ui/decoration/v001/thumbnails/potted_fern.png"
+    },
+    {
+      "file": "rug_crimson.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY the framing of this provided crimson rug furniture thumbnail. Preserve exactly the same single rectangular crimson rug, antique gold botanical pattern, woven cloth material, warm upper-left illumination, diagonal elevated perspective and full four corners. Make the complete rug SMALLER WITHIN THE SQUARE CANVAS: maximum total width 74% of canvas, centered, at least 12% genuinely empty transparent margin at left and right and at least 12% at top and bottom. The rug must not touch any edge. Show the entire four corners and hem. Do not zoom in, do not crop. Only this single same rug, no other items, no scene, no floor, no shadow, no text, no labels or frame. Background must be actual transparent RGBA pixels, NOT a checkerboard image, NOT a black background. Preserve detailed gold decoration and wine red woven material; do not change the design. Square canvas. This is a game inventory icon, so deliberate empty transparent padding around the complete object is essential.",
+      "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc19-d654-7081-88a7-02e5c927a4f4/exec-57878fc8-2fdf-4a9e-95f7-83b0a89325b0.png",
+      "export": "E:/ShopGame/source_assets/ui/decoration/v001/exports/thumbnails/rug_crimson.png",
+      "runtime": "E:/ShopGame/game/assets/ui/decoration/v001/thumbnails/rug_crimson.png",
+      "history": [
+        {
+          "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc19-d654-7081-88a7-02e5c927a4f4/exec-c68f96a8-df4c-4b3f-8377-edecf09f1b92.png",
+          "prompt": "Use case: stylized-concept. Asset type: one standalone furniture thumbnail PNG for a premium fantasy shop decoration game UI. Generate one rectangular thin crimson wine-red woven rug with elegant muted antique-gold botanical scrolling border and a central botanical medallion, based on the red rug icon in the supplied shop decoration reference. Warm high-quality stylized 3D hand-painted PBR game render with readable textile material and restrained golden details; no cartoon outline. Camera: three-quarter elevated view looking downward about 45 degrees so nearly the whole rug's beautiful top pattern is readable; diagonal orientation as a perspective rectangle, NOT rolled, flat and thin, no floating curled corners. Entire rug visible, centered, approximately 10 percent empty margin, square canvas preferably 1024x1024. Warm upper-left light, subtle shading along fabric thickness. Background must be genuinely transparent RGBA with transparent empty pixels, NOT a checkerboard painted in, no ground plane, no cast floor shadow, no backdrop, no frame, no border outside the rug, no card, no writing, no characters, no watermark, no other objects. One isolated complete rug.",
+          "reason_replaced": "Right rug corner too close to canvas edge. Original generated file retained."
+        }
+      ],
+      "revision": "2026-09-26 framing correction, built-in image_gen edit"
+    },
+    {
+      "file": "wall_lantern.png",
+      "prompt": "Use case: stylized-concept. Asset type: one standalone furniture thumbnail PNG for a premium fantasy shop decoration game UI. Generate one elegant old brass fantasy wall lantern, warm amber luminous glass panes, small candle inside, dark antique brass beveled frame with pointed cap and curved hanging loop, mounted to a short gracefully curved wall bracket with a small wall fixing plate. Based on the lantern furniture icon in the supplied shop decoration reference. Warm high-quality stylized 3D hand-painted PBR game render, refined warm gold light, nuanced brass highlights, readable shape at 128px, no cartoon outline. Three-quarter elevated front view about 30 degrees, orthographic-like catalog icon, the complete lantern including bracket is centered with 10 percent empty margin, square canvas preferably 1024x1024. Warm upper-left key light. Background must be genuinely transparent RGBA with transparent empty pixels, NOT checkerboard painted into image. Keep candle glow inside the glass with restrained soft edge, no large glow halo. No wall, no ground, no floor shadow, no scene, no backdrop, no border, no card, no text, no watermark, no extra objects, no ivy. One isolated complete wall lantern.",
+      "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc19-d654-7081-88a7-02e5c927a4f4/exec-d90ae9c5-d1db-4d50-b7a1-bb4e833e026a.png",
+      "export": "E:/ShopGame/source_assets/ui/decoration/v001/exports/thumbnails/wall_lantern.png",
+      "runtime": "E:/ShopGame/game/assets/ui/decoration/v001/thumbnails/wall_lantern.png"
+    }
+  ]
+}

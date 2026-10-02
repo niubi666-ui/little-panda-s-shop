@@ -1,0 +1,87 @@
+{
+  "png_count": 16,
+  "all_original_bytes_preserved": true,
+  "records": [
+    {
+      "file": "window_panel.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-40f2dc37-951e-47ee-99d4-d22e69876ef3.png"
+    },
+    {
+      "file": "details_parchment.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-0b2c26fc-5d31-4865-bd2f-8bffc46b92de.png"
+    },
+    {
+      "file": "slot_regular.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-25c58ba6-06b8-4294-b0db-6a7bf51dfdf4.png"
+    },
+    {
+      "file": "slot_selected.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-53ff805e-a0e9-4b32-9e29-54c8a8cb9714.png"
+    },
+    {
+      "file": "tab_regular.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-47122751-6470-4821-b37e-20bebac8ff2e.png"
+    },
+    {
+      "file": "tab_selected.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-070ecba2-c91e-4ac3-a281-28d2c1142e09.png"
+    },
+    {
+      "file": "button_primary.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-f417cb50-b644-4386-ae34-e8943c9dae78.png"
+    },
+    {
+      "file": "button_secondary.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-c072e0ab-1517-4039-9087-f8975cf25fed.png"
+    },
+    {
+      "file": "close_socket.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-6810de3c-4d87-425a-af1f-e1c5e6e780b2.png"
+    },
+    {
+      "file": "header_leaf_sprig.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-e6309ddf-5273-40df-a1b5-9c5b881ad744.png"
+    },
+    {
+      "file": "potion_red.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dc5c-fd92-70a1-b2f4-f886b7782c5d\\exec-25c56293-a04c-4689-8af8-45f4796b5c73.png"
+    },
+    {
+      "file": "sword_iron.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dc5c-fd92-70a1-b2f4-f886b7782c5d\\exec-35ff327c-2138-4412-b0cd-75741fd8a605.png"
+    },
+    {
+      "file": "travel_pouch.png",
+      "original_matches": true,
+      "original": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dc5c-fd92-70a1-b2f4-f886b7782c5d\\exec-107d4c5b-08cc-4d33-b0e9-76eea0a5a667.png"
+    },
+    {
+      "file": "herb_sprig.png",
+      "original_matches": true,
+      "original": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-525b7806-6392-465d-808d-aee742437013.png"
+    },
+    {
+      "file": "crystal_blue.png",
+      "original_matches": true,
+      "original": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-1874e316-dec8-4acb-a94e-5852ba3853b7.png"
+    },
+    {
+      "file": "scroll_parchment.png",
+      "original_matches": true,
+      "original": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-5c421782-b468-4add-86e5-26a87970227b.png"
+    }
+  ],
+  "javascript_syntax": "Node vm.Script parse passed for template and generated preview; no browser execution"
+}

@@ -1,0 +1,12 @@
+{
+  "mode": "neutral",
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\previews\\forest_courtyard_neutral.png",
+  "resolution": [
+    1600,
+    900
+  ],
+  "samples": 64,
+  "seconds": 12.042423009872437,
+  "engine": "CYCLES",
+  "device": "GPU"
+}

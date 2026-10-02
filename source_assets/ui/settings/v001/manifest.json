@@ -1,0 +1,297 @@
+{
+  "stage": "art assets only; not integrated",
+  "assets": [
+    {
+      "file": "chrome/button_primary.png",
+      "source": "E:\\ShopGame\\source_assets\\ui\\inventory\\v001\\exports\\chrome\\button_primary.png",
+      "sha256": "9e5058ddcfab3747d4fd4d5dd5ded54795a3e2d5747637555c4ebf32feada33e",
+      "runtime": "res://assets/ui/settings/v001/chrome/button_primary.png",
+      "runtime_hash_match": true,
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_bbox_xyxy": [
+        42,
+        19,
+        2134,
+        698
+      ],
+      "atlas_region_xywh": [
+        42,
+        19,
+        2092,
+        679
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "chrome/button_secondary.png",
+      "source": "E:\\ShopGame\\source_assets\\ui\\inventory\\v001\\exports\\chrome\\button_secondary.png",
+      "sha256": "e824738a0411ad569e10324cb71bc061e6152c0b220fecb8ba07548e0c1d9337",
+      "runtime": "res://assets/ui/settings/v001/chrome/button_secondary.png",
+      "runtime_hash_match": true,
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_bbox_xyxy": [
+        62,
+        17,
+        2111,
+        700
+      ],
+      "atlas_region_xywh": [
+        62,
+        17,
+        2049,
+        683
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "chrome/close_socket.png",
+      "source": "E:\\ShopGame\\source_assets\\ui\\inventory\\v001\\exports\\chrome\\close_socket.png",
+      "sha256": "65314a0fa94df59a1386125c9aaa9ff531b2969e525ab48fbdaa162b1b76ae7c",
+      "runtime": "res://assets/ui/settings/v001/chrome/close_socket.png",
+      "runtime_hash_match": true,
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_bbox_xyxy": [
+        87,
+        21,
+        1226,
+        1230
+      ],
+      "atlas_region_xywh": [
+        87,
+        21,
+        1139,
+        1209
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "chrome/controls_parchment.png",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-1eead3c1-c0df-428d-8bb0-272cb76daf80.png",
+      "sha256": "e47482dc8188699e013f38b921a5c45bf47dfb2b5ac0d5672fe7f52577ad77e5",
+      "runtime": "res://assets/ui/settings/v001/chrome/controls_parchment.png",
+      "runtime_hash_match": true,
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_bbox_xyxy": [
+        49,
+        21,
+        1728,
+        887
+      ],
+      "atlas_region_xywh": [
+        49,
+        21,
+        1679,
+        866
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "chrome/header_leaf_sprig.png",
+      "source": "E:\\ShopGame\\source_assets\\ui\\inventory\\v001\\exports\\chrome\\header_leaf_sprig.png",
+      "sha256": "f4bba1bfe12255f2c378cfa642003e4b6750b52e99b05c9d38628525c3d539fd",
+      "runtime": "res://assets/ui/settings/v001/chrome/header_leaf_sprig.png",
+      "runtime_hash_match": true,
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_bbox_xyxy": [
+        43,
+        42,
+        1240,
+        1190
+      ],
+      "atlas_region_xywh": [
+        43,
+        42,
+        1197,
+        1148
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "chrome/keycap.png",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-85327403-4a28-40b9-9979-4e9d7c577b8d.png",
+      "sha256": "076984aa2fcc614e0c6d792d22fdcb30e954a435a2a90c036b6f4bcc6161da6a",
+      "runtime": "res://assets/ui/settings/v001/chrome/keycap.png",
+      "runtime_hash_match": true,
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_bbox_xyxy": [
+        0,
+        0,
+        1242,
+        1254
+      ],
+      "atlas_region_xywh": [
+        0,
+        0,
+        1242,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "chrome/tab_regular.png",
+      "source": "E:\\ShopGame\\source_assets\\ui\\inventory\\v001\\exports\\chrome\\tab_regular.png",
+      "sha256": "a6480121da37234a1db0ce0605483bda9a5cd717e0cf3389bc759462322544c1",
+      "runtime": "res://assets/ui/settings/v001/chrome/tab_regular.png",
+      "runtime_hash_match": true,
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_bbox_xyxy": [
+        98,
+        192,
+        1629,
+        717
+      ],
+      "atlas_region_xywh": [
+        98,
+        192,
+        1531,
+        525
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "chrome/tab_selected.png",
+      "source": "E:\\ShopGame\\source_assets\\ui\\inventory\\v001\\exports\\chrome\\tab_selected.png",
+      "sha256": "9402b1f2103efe62bad43a1f34dc78dd9b2116cb0fb3bca4f49e49b673871204",
+      "runtime": "res://assets/ui/settings/v001/chrome/tab_selected.png",
+      "runtime_hash_match": true,
+      "size": [
+        2048,
+        768
+      ],
+      "alpha_bbox_xyxy": [
+        109,
+        9,
+        2004,
+        768
+      ],
+      "atlas_region_xywh": [
+        109,
+        9,
+        1895,
+        759
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "file": "chrome/window_panel.png",
+      "source": "E:\\ShopGame\\source_assets\\ui\\inventory\\v001\\exports\\chrome\\window_panel.png",
+      "sha256": "7139400a833d9d0d321bce81df28b884d67722c3609953a7d43039c727256fe6",
+      "runtime": "res://assets/ui/settings/v001/chrome/window_panel.png",
+      "runtime_hash_match": true,
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_bbox_xyxy": [
+        49,
+        0,
+        1480,
+        1024
+      ],
+      "atlas_region_xywh": [
+        49,
+        0,
+        1431,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "file": "icons/close.svg",
+      "source": "E:\\ShopGame\\source_assets\\ui\\inventory\\v001\\exports\\icons\\close.svg",
+      "sha256": "1f9f5b51266a54dd7411c03b0c1c820965379a5acf6e1757bcc0cce041777efd",
+      "runtime": "res://assets/ui/settings/v001/icons/close.svg",
+      "runtime_hash_match": true
+    },
+    {
+      "file": "icons/control_row.svg",
+      "source": "Project-native SVG supplement matching existing icon palette",
+      "sha256": "041779d3c65000cb4864db45ba303ccf0002ec3f3f4cb3bbc311602237c5f485",
+      "runtime": "res://assets/ui/settings/v001/icons/control_row.svg",
+      "runtime_hash_match": true
+    },
+    {
+      "file": "icons/divider_gold.svg",
+      "source": "E:\\ShopGame\\source_assets\\ui\\inventory\\v001\\exports\\icons\\divider_gold.svg",
+      "sha256": "950705250b6b56fa25c8180eda1ff0375daa8eb7340fdd602fbef44d5d551050",
+      "runtime": "res://assets/ui/settings/v001/icons/divider_gold.svg",
+      "runtime_hash_match": true
+    },
+    {
+      "file": "icons/divider_ink.svg",
+      "source": "E:\\ShopGame\\source_assets\\ui\\inventory\\v001\\exports\\icons\\divider_ink.svg",
+      "sha256": "80a6f781b19e8ca3bc01fc5c21862bd7afbe2fed41ac9bed55f015ba5c6c8821",
+      "runtime": "res://assets/ui/settings/v001/icons/divider_ink.svg",
+      "runtime_hash_match": true
+    },
+    {
+      "file": "icons/focus_ring.svg",
+      "source": "Project-native SVG supplement matching existing icon palette",
+      "sha256": "d71af8d75de63174ed971a0ef616527b30608c587434971ddd4a436b85752844",
+      "runtime": "res://assets/ui/settings/v001/icons/focus_ring.svg",
+      "runtime_hash_match": true
+    },
+    {
+      "file": "icons/language.svg",
+      "source": "Project-native SVG supplement matching existing icon palette",
+      "sha256": "63b8c3c7296af2e927be42441a6c56a1a91639536643479458f6863489da3b4c",
+      "runtime": "res://assets/ui/settings/v001/icons/language.svg",
+      "runtime_hash_match": true
+    },
+    {
+      "file": "icons/mouse_wheel.svg",
+      "source": "Project-native SVG supplement matching existing icon palette",
+      "sha256": "357441b579e2de433699046c993c2c0550e4e8610e94ba7060c62bb2953df4d9",
+      "runtime": "res://assets/ui/settings/v001/icons/mouse_wheel.svg",
+      "runtime_hash_match": true
+    }
+  ]
+}

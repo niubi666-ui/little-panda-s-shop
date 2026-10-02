@@ -1,0 +1,76 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/settings/settings_skin.gd" id="script"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/button_exit.png" id="t0"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/button_primary.png" id="t1"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/button_secondary.png" id="t2"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/close_socket.png" id="t3"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/controls_parchment.png" id="t4"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/header_leaf_sprig.png" id="t5"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/keycap.png" id="t6"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/slider_thumb.png" id="t7"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/slider_track.png" id="t8"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/tab_regular.png" id="t9"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/tab_selected.png" id="t10"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/v002/chrome/window_panel.png" id="t11"]
+[sub_resource type="AtlasTexture" id="a0"]
+atlas = ExtResource("t0")
+region = Rect2(72, 210, 1840, 372)
+[sub_resource type="AtlasTexture" id="a1"]
+atlas = ExtResource("t1")
+region = Rect2(44, 190, 2084, 332)
+[sub_resource type="AtlasTexture" id="a2"]
+atlas = ExtResource("t2")
+region = Rect2(62, 212, 2048, 300)
+[sub_resource type="AtlasTexture" id="a3"]
+atlas = ExtResource("t3")
+region = Rect2(222, 238, 810, 774)
+[sub_resource type="AtlasTexture" id="a4"]
+atlas = ExtResource("t4")
+region = Rect2(56, 156, 1664, 572)
+[sub_resource type="AtlasTexture" id="a5"]
+atlas = ExtResource("t5")
+region = Rect2(174, 114, 992, 1034)
+[sub_resource type="AtlasTexture" id="a6"]
+atlas = ExtResource("t6")
+region = Rect2(174, 196, 904, 862)
+[sub_resource type="AtlasTexture" id="a7"]
+atlas = ExtResource("t7")
+region = Rect2(158, 150, 936, 938)
+[sub_resource type="AtlasTexture" id="a8"]
+atlas = ExtResource("t8")
+region = Rect2(114, 436, 1444, 82)
+[sub_resource type="AtlasTexture" id="a9"]
+atlas = ExtResource("t9")
+region = Rect2(148, 342, 1478, 218)
+[sub_resource type="AtlasTexture" id="a10"]
+atlas = ExtResource("t10")
+region = Rect2(114, 188, 1818, 392)
+[sub_resource type="AtlasTexture" id="a11"]
+atlas = ExtResource("t11")
+region = Rect2(60, 92, 1416, 830)
+[resource]
+script = ExtResource("script")
+textures = {
+"button_exit": SubResource("a0"),
+"button_primary": SubResource("a1"),
+"button_secondary": SubResource("a2"),
+"close_socket": SubResource("a3"),
+"controls_parchment": SubResource("a4"),
+"header_leaf_sprig": SubResource("a5"),
+"keycap": SubResource("a6"),
+"slider_thumb": SubResource("a7"),
+"slider_track": SubResource("a8"),
+"tab_regular": SubResource("a9"),
+"tab_selected": SubResource("a10"),
+"window_panel": SubResource("a11")
+}
+design_size = Vector2(1100, 700)
+ink = Color(0.12, 0.16, 0.10, 1)
+gold = Color(0.95, 0.87, 0.65, 1)
+dim = Color(0.015, 0.025, 0.02, 0.72)
+frame = Rect2(0, 0, 1100, 700)
+paper = Rect2(305, 108, 758, 465)
+navigation = Rect2(34, 130, 252, 72)
+content = Rect2(350, 145, 660, 390)
+row_height = 55.0
+fps_limits = PackedInt32Array(0, 30, 60, 120, 144)

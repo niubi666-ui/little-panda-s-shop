@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+[ext_resource type="Script" path="res://presentation/combat/hit_feedback_settings.gd" id="script"]
+[ext_resource type="Material" path="res://presentation/combat/fx/hit_flash.tres" id="flash"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/damage_bar.tres" id="bar"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/hit_sparks.tscn" id="particles"]
+[resource]
+script = ExtResource("script")
+flash_material = ExtResource("flash")
+flash_sec = 0.16
+hit_particles = ExtResource("particles")
+bar_material = ExtResource("bar")
+bar_size = Vector2(1.5, 0.18)
+bar_height = 2.05
+bar_delay_sec = 0.12
+bar_drain_ratio_per_sec = 0.85

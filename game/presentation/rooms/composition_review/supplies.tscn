@@ -1,0 +1,38 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://presentation/rooms/props/barrel.tscn" id="barrel"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/props/crate.tscn" id="crate"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/props/crate_long.tscn" id="crate_long"]
+[ext_resource type="ArrayMesh" path="res://presentation/rooms/composition_review/assets/fern.res" id="fern"]
+[ext_resource type="ArrayMesh" path="res://presentation/rooms/composition_review/assets/flowers.res" id="flowers"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/props/forest_bag.tscn" id="forest_bag"]
+[node name="supplies" type="Node3D"]
+[node name="crate_long_0" parent="." instance=ExtResource("crate_long")]
+position = Vector3(-0.38, 0.0, 0.0)
+rotation = Vector3(0.0, 0.0, 0.0)
+scale = Vector3(1.0, 1.0, 1.0)
+[node name="crate_1" parent="." instance=ExtResource("crate")]
+position = Vector3(-0.64, 0.7, -0.04)
+rotation = Vector3(0.0, -0.06981317007977318, 0.0)
+scale = Vector3(0.79, 0.79, 0.79)
+[node name="barrel_2" parent="." instance=ExtResource("barrel")]
+position = Vector3(0.91, 0.0, 0.16)
+rotation = Vector3(0.0, 0.20943951023931956, 0.0)
+scale = Vector3(0.92, 0.92, 0.92)
+[node name="crate_3" parent="." instance=ExtResource("crate")]
+position = Vector3(-1.4, 0.0, 0.18)
+rotation = Vector3(0.0, 0.08726646259971647, 0.0)
+scale = Vector3(0.72, 0.72, 0.72)
+[node name="forest_bag_4" parent="." instance=ExtResource("forest_bag")]
+position = Vector3(0.2, 0.0, 0.73)
+rotation = Vector3(0.0, -0.20943951023931956, 0.0)
+scale = Vector3(0.66, 0.66, 0.66)
+[node name="flowers_5" type="MeshInstance3D" parent="."]
+mesh = ExtResource("flowers")
+position = Vector3(-1.4, 0.0, -0.48)
+rotation = Vector3(0.0, 0.5585053606381855, 0.0)
+scale = Vector3(0.72, 0.72, 0.72)
+[node name="fern_6" type="MeshInstance3D" parent="."]
+mesh = ExtResource("fern")
+position = Vector3(1.21, 0.0, -0.43)
+rotation = Vector3(0.0, 0.3141592653589793, 0.0)
+scale = Vector3(0.76, 0.76, 0.76)

@@ -1,0 +1,47 @@
+{
+	"checks": 98,
+	"effect_scene": "res://presentation/combat/fx/fire_slash_v002/fire_slash.tscn",
+	"failures": [],
+	"particle_layers": [
+		{
+			"amount": 138,
+			"lifetime_sec": 0.42,
+			"local_coords": false,
+			"name": "Particles",
+			"type": "CPUParticles3D"
+		},
+		{
+			"amount": 28,
+			"lifetime_sec": 0.24,
+			"local_coords": false,
+			"name": "FlamePlumes",
+			"type": "CPUParticles3D"
+		},
+		{
+			"amount": 42,
+			"lifetime_sec": 0.23,
+			"local_coords": false,
+			"name": "LongSparks",
+			"type": "CPUParticles3D"
+		},
+		{
+			"amount": 22,
+			"lifetime_sec": 0.42,
+			"local_coords": false,
+			"name": "SmokeWisps",
+			"type": "CPUParticles3D"
+		}
+	],
+	"renderer": "forward_plus",
+	"scope": [
+		"all-layer pause",
+		"playback speed",
+		"cancel",
+		"natural decay",
+		"stroke isolation",
+		"clear",
+		"switch",
+		"material isolation",
+		"actual health death"
+	]
+}

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/attack_motion.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+motion_kind = "swing"
+yaw_start_deg = -80.0
+yaw_end_deg = 80.0
+pullback_distance = 0.12
+extension_distance = 0.0
+lateral_offset = 0.0
+grip_height_offset = 0.0
+active_completion_fraction = 0.85
+body_windup_degrees = Vector3(2, -7, 2)
+body_strike_degrees = Vector3(-3, 6, -2)

@@ -1,0 +1,22 @@
+{
+	"failures": [],
+	"renderer": "forward_plus",
+	"verified_options": [
+		"golden",
+		"fire_slash_v002",
+		"element_fire",
+		"element_lightning",
+		"element_thunder",
+		"element_frost",
+		"clean",
+		"heavy",
+		"streak",
+		"preset01",
+		"preset06",
+		"fire_slash_v001"
+	],
+	"viewport": [
+		1280,
+		800
+	]
+}

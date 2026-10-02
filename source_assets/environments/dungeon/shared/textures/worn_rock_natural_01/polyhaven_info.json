@@ -1,0 +1,55 @@
+{
+  "name": "Worn Rock Natural 01",
+  "categories": [
+    "outdoor",
+    "natural",
+    "terrain",
+    "rock",
+    "sandstone"
+  ],
+  "type": 1,
+  "tags": [
+    "weathered",
+    "yellow",
+    "rock face",
+    "rock",
+    "flat",
+    "brown",
+    "boulder",
+    "cliff",
+    "chipped",
+    "nature",
+    "costal"
+  ],
+  "info": null,
+  "authors": {
+    "Rob Tuytel": "Processing",
+    "Dimitrios Savva": "Photography"
+  },
+  "dimensions": [
+    2000,
+    2000
+  ],
+  "date_published": 1661385600,
+  "staging": null,
+  "prepaid": true,
+  "max_resolution": [
+    8192,
+    8192
+  ],
+  "files_hash": "a5e10beb7649207d76c559cc7f3792e334a1c6d2",
+  "description": "Free 8K texture of weathered yellow-brown sandstone: coarse, chipped and pitted rock face with matte, grainy surface and subtle yellow lichen speckles.",
+  "category_id": "bf84369c-cc7c-5347-ad17-173353e859b8",
+  "category": "Stone/Rock & Cliffs/Rough Rock Faces",
+  "attributes": {
+    "condition": [
+      "weathered",
+      "damaged"
+    ],
+    "origin": "natural",
+    "setting": "outdoor"
+  },
+  "img_version": "f5356574",
+  "download_count": 53967,
+  "thumbnail_url": "https://cdn.polyhaven.com/asset_img/thumbs/worn_rock_natural_01.png?width=256&height=256&v=f5356574"
+}

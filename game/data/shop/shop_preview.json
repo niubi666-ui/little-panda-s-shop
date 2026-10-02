@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "preview.shop_interior",
+  "movement": {
+    "speed_mps": 2.4,
+    "turn_speed_radps": 12.0,
+    "gravity_mps2": 18.0
+  },
+  "interaction": {
+    "distance_m": 1.65
+  },
+  "localization": {
+    "default_locale": "zh_CN"
+  },
+  "decorating_file": "res://data/shop/decorating/catalog.json"
+}

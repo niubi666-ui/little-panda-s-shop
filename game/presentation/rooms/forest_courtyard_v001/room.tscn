@@ -1,0 +1,274 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://presentation/rooms/forest_courtyard_v001/forest_surfaces.gd" id="contract"]
+[ext_resource type="PackedScene" path="res://assets/environments/forest_courtyard_v001/forest_courtyard.glb" id="art"]
+[ext_resource type="ShaderMaterial" path="res://presentation/rooms/forest_courtyard_v001/wet_paving.tres" id="wet"]
+[ext_resource type="Material" path="res://presentation/rooms/forest_courtyard_v001/water.tres" id="water"]
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
+sky_top_color = Color(0.36, 0.5, 0.72, 1)
+sky_horizon_color = Color(0.65, 0.71, 0.73, 1)
+ground_bottom_color = Color(0.12, 0.16, 0.09, 1)
+ground_horizon_color = Color(0.55, 0.62, 0.55, 1)
+sky_energy_multiplier = 0.65
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_mat")
+[sub_resource type="Environment" id="env"]
+sky = SubResource("sky")
+background_mode = 1
+background_color = Color(0.23, 0.29, 0.25, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.65, 0.77, 0.93, 1)
+ambient_light_energy = 0.30
+reflected_light_source = 2
+tonemap_mode = 4
+ssao_enabled = true
+ssao_radius = 1.3
+ssao_intensity = 1.6
+ssil_enabled = true
+ssil_intensity = 0.65
+ssr_enabled = true
+glow_enabled = true
+glow_intensity = 0.25
+glow_bloom = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0025
+volumetric_fog_albedo = Color(0.58, 0.66, 0.77, 1)
+volumetric_fog_anisotropy = 0.45
+volumetric_fog_length = 100.0
+[sub_resource type="BoxShape3D" id="side"]
+size = Vector3(0.8, 4, 17.5)
+[sub_resource type="BoxShape3D" id="rear"]
+size = Vector3(18.8, 4, 0.8)
+[sub_resource type="BoxShape3D" id="shrine"]
+size = Vector3(5.2, 4.5, 1.9)
+[sub_resource type="CylinderShape3D" id="pot"]
+radius = 0.42
+height = 0.85
+[sub_resource type="BoxShape3D" id="floor"]
+size = Vector3(18, 0.2, 16)
+[node name="ForestCourtyard" type="Node3D"]
+script = ExtResource("contract")
+wet_paving = ExtResource("wet")
+water = ExtResource("water")
+paving_casts_shadow = false
+[node name="Art" parent="." instance=ExtResource("art")]
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+[node name="Lights" type="Node3D" parent="."]
+[node name="West_Railing_Lantern_0_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -9.0, 1.7316, 8.1099997)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="West_Railing_Lantern_1_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -9.0, 1.7316, 4.9299998)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="West_Railing_Lantern_2_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -9.0, 1.7316, 1.75)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="West_Railing_Lantern_3_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -9.0, 1.7316, -1.4299999)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="West_Railing_Lantern_4_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -9.0, 1.7316, -4.6100001)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="West_Railing_Lantern_5_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -9.0, 1.7316, -7.79)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="East_Railing_Lantern_0_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, 9.0, 1.7316, 8.1099997)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="East_Railing_Lantern_1_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, 9.0, 1.7316, 4.9299998)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="East_Railing_Lantern_2_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, 9.0, 1.7316, 1.75)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="East_Railing_Lantern_3_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, 9.0, 1.7316, -1.4299999)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="East_Railing_Lantern_4_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, 9.0, 1.7316, -4.6100001)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="East_Railing_Lantern_5_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, 9.0, 1.7316, -7.79)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="Rear_Center_Railing_Lantern_0_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -1.3, 1.7316, -8.04)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="Rear_Center_Railing_Lantern_1_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, 1.725, 1.7316, -8.04)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="Rear_Center_Railing_Lantern_2_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, 4.75, 1.7316, -8.04)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="Front_Left_Short_Rail_Lantern_0_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -9.0, 1.7316, 8.1099997)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="Front_Left_Short_Rail_Lantern_1_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -6.0, 1.7316, 8.1099997)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="Front_Right_Short_Rail_Lantern_0_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, 6.0, 1.7316, 8.1099997)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="Front_Right_Short_Rail_Lantern_1_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, 9.0, 1.7316, 8.1099997)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="Shrine_Offering_Candle_candle_pool" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -4.77, 1.155899, -7.25)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="Shrine_Offering_Candle_candle_pool.001" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -1.0, -0.0, -2.3299999, 0.4871513, -7.25)
+light_color = Color(1.0, 0.728732, 0.423583, 1)
+light_energy = 1.0
+omni_range = 2.0
+omni_attenuation = 1.3
+light_size = 0.13
+[node name="Sun_Warm_Left_Back" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(-0.5812382, 0.6294594, -0.5156966, 0.0, 0.6337414, 0.773545, 0.8137335, 0.4496138, -0.3683547, -14.0, 21.0, -10.0)
+light_color = Color(1.0, 0.891143, 0.701411, 1)
+light_energy = 3.2
+shadow_enabled = true
+directional_shadow_max_distance = 65.0
+shadow_bias = 0.12
+shadow_normal_bias = 0.8
+light_angular_distance = 1.43
+[node name="Warm_canopy_opening" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(-0.7071068, 0.5499719, -0.4444444, 0.0, 0.6285394, 0.7777777, 0.7071068, 0.5499719, -0.4444445, -8.0, 14.0, -7.0)
+light_color = Color(1.0, 0.891143, 0.694361, 1)
+light_energy = 0.15
+omni_range = 35.0
+omni_attenuation = 0.8
+[node name="Sky_Soft_Fill" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 0.2425355, 0.9701425, -0.0, -0.9701425, 0.2425355, 0.0, 16.0, 2.0)
+light_color = Color(0.82098, 0.896244, 1.0, 1)
+light_energy = 0.15
+omni_range = 35.0
+omni_attenuation = 0.8
+[node name="Boundary" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+[node name="West" type="CollisionShape3D" parent="Boundary"]
+position = Vector3(-9, 1.7, 0)
+shape = SubResource("side")
+[node name="East" type="CollisionShape3D" parent="Boundary"]
+position = Vector3(9, 1.7, 0)
+shape = SubResource("side")
+[node name="North" type="CollisionShape3D" parent="Boundary"]
+position = Vector3(0, 1.7, -8.3)
+shape = SubResource("rear")
+[node name="South" type="CollisionShape3D" parent="Boundary"]
+position = Vector3(0, 1.7, 8.1)
+shape = SubResource("rear")
+[node name="Shrine" type="CollisionShape3D" parent="Boundary"]
+position = Vector3(-3.55, 2, -7.9)
+shape = SubResource("shrine")
+[node name="OfferingLeft" type="CollisionShape3D" parent="Boundary"]
+position = Vector3(-5.78, 0.425, -6.73)
+shape = SubResource("pot")
+[node name="OfferingRight" type="CollisionShape3D" parent="Boundary"]
+position = Vector3(-1.32, 0.425, -6.73)
+shape = SubResource("pot")
+[node name="Floor" type="CollisionShape3D" parent="Boundary"]
+position = Vector3(0, -0.18, 0)
+shape = SubResource("floor")
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+position = Vector3(0, 0.04, 3)
+[node name="EnemySpawns" type="Node3D" parent="."]
+[node name="A" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(-3, 0.04, -3)
+[node name="B" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(3, 0.04, -3)
+[node name="C" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(0, 0.04, -5)
+[node name="ReservedRuntimeProps" type="Node3D" parent="."]
+[node name="ReferenceCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.9160038, -0.2093574, 0.3422083, 0.0, 0.8530265, 0.5218676, -0.4011695, -0.4780327, 0.7813755, 12.0, 19.0, 25.0)
+fov = 24.8355
+far = 180.0
+current = false
+
+[node name="CourtyardReflection" type="ReflectionProbe" parent="."]
+position = Vector3(0, 2.5, 0)
+size = Vector3(24, 12, 24)
+origin_offset = Vector3(0, 0, 0)
+max_distance = 90.0
+blend_distance = 5.0
+intensity = 0.8

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>三选一构筑 · 三种风格对比</title>
+  <style>
+    :root{--paper:#f5f2eb;--ink:#23382f;--muted:#69766c;--line:#d7ded4;--green:#274d3d;--accent:#a2773c;--white:#fffefb}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 "Microsoft YaHei","PingFang SC",system-ui,sans-serif}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{font:inherit;cursor:pointer}
+    button:focus-visible,a:focus-visible{outline:3px solid #c69445;outline-offset:4px}
+    a{color:var(--green);text-underline-offset:4px}
+    main{width:min(1540px,100%);margin:auto;padding:42px 40px 26px}
+    .masthead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}
+    .eyebrow{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:12px;letter-spacing:.1em}
+    .eyebrow:before{content:"";width:24px;height:1px;background:var(--accent)}
+    h1{margin:9px 0 5px;font-family:"Noto Serif SC","Songti SC","SimSun",serif;font-size:clamp(27px,3vw,40px);font-weight:500;letter-spacing:.07em;line-height:1.4}
+    .intro{margin:0;color:var(--muted);font-size:14px}
+    .version{white-space:nowrap;color:var(--muted);font-size:12px;letter-spacing:.03em;text-align:right}
+    .version span{display:block;color:var(--accent);font-size:11px;letter-spacing:.16em}
+    .toolbar{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:0 0 18px;border-bottom:1px solid var(--line)}
+    .switch{display:inline-flex;gap:4px;background:#e7ece4;border:1px solid #dbe1d7;padding:4px;border-radius:8px}
+    .switch button{border:0;padding:8px 19px;background:transparent;color:#5d6b60;border-radius:5px;font-size:13px}
+    .switch button[aria-pressed="true"]{background:var(--white);color:var(--ink);box-shadow:0 1px 5px #263c2512}
+    .legend{display:flex;gap:17px;flex-wrap:wrap;color:var(--muted);font-size:12px}
+    .legend span{display:flex;align-items:center;gap:6px}
+    .dot{width:8px;height:8px;border-radius:50%;display:inline-block;border:1px solid #b4bbb3;background:#f8f8f5}
+    .dot.blue{background:#4a8cbb;border-color:#4a8cbb}.dot.purple{background:#9560b1;border-color:#9560b1}.dot.gold{background:#c48a2d;border-color:#c48a2d}
+    .style-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:22px 0 18px}
+    .style-tab{display:flex;align-items:center;gap:12px;text-align:left;border:1px solid transparent;background:transparent;padding:13px 16px;border-radius:8px;color:var(--muted);transition:background .16s,border-color .16s}
+    .style-tab:hover{background:#eeeee6}
+    .style-tab[aria-pressed="true"]{border-color:#aebcab;background:#e7ece2;color:var(--ink)}
+    .style-letter{width:32px;height:36px;display:grid;place-items:center;border-right:1px solid #cdd4c8;padding-right:10px;font:23px/1 Georgia,serif;color:var(--accent);flex-shrink:0}
+    .style-tab strong{display:block;font-size:14px;font-weight:600;letter-spacing:.02em}
+    .style-tab small{display:block;margin-top:1px;font-size:11px;font-weight:400;letter-spacing:.02em;color:var(--muted)}
+    .stage{overflow:hidden;background:var(--white);border:1px solid #d5ddd1;border-radius:10px;box-shadow:0 10px 35px #23382f07}
+    .stage-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;gap:16px;border-bottom:1px solid #e6e9e1}
+    .stage-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .stage-title h2{margin:0;font-weight:500;font-size:15px}
+    .stage-title span{font-size:11px;color:var(--muted);padding-left:10px;border-left:1px solid var(--line)}
+    .original{display:inline-flex;align-items:center;gap:8px;border:1px solid #d2dace;border-radius:5px;padding:5px 12px;white-space:nowrap;text-decoration:none;font-size:12px}
+    .original:hover{background:#edf0e8}
+    .hero-wrap{display:flex;justify-content:center;background:#142219;min-height:230px;position:relative}
+    .hero-link{display:block;width:100%;line-height:0}
+    .hero-link img{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain;min-height:180px}
+    .image-error{display:none;padding:75px 24px;text-align:center;color:#d7ddca;line-height:1.8;font-size:14px;width:100%}
+    .hero-wrap.failed .hero-link{display:none}.hero-wrap.failed .image-error{display:block}
+    .stage-note{display:flex;justify-content:space-between;gap:20px;padding:13px 20px;color:var(--muted);font-size:12px}
+    .stage-note p{margin:0}
+    .stage-note .scope{white-space:nowrap;color:#8c724a}
+    .compare-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:29px 0 13px}
+    .compare-heading h2{margin:0;font-size:14px;font-weight:500;letter-spacing:.07em}
+    .compare-heading p{margin:0;color:var(--muted);font-size:11px}
+    .compare-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+    .compare-card{min-width:0}
+    .thumb-button{display:block;width:100%;border:1px solid #cdd6c8;background:#1a2920;overflow:hidden;border-radius:7px;padding:0;position:relative;line-height:0}
+    .thumb-button:after{content:"";position:absolute;inset:0;border:3px solid transparent;border-radius:6px;pointer-events:none}
+    .thumb-button[aria-pressed="true"]:after{border-color:#aa854f}
+    .thumb-button:hover:after{border-color:#c2a67b}
+    .thumb-button img{width:100%;aspect-ratio:3/2;object-fit:contain;display:block;transition:opacity .16s}
+    .thumb-button:hover img{opacity:.88}
+    .thumb-caption{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:9px;font-size:12px}
+    .thumb-caption strong{font-weight:500}.thumb-caption a{color:var(--muted);font-size:11px}
+    .thumb-subtitle{margin:3px 0 0;color:var(--muted);font-size:11px}
+    .boundary{display:flex;gap:26px;margin-top:27px;padding:19px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+    .boundary strong{flex-shrink:0;color:#657361;font-weight:500}.boundary p{margin:0;max-width:1120px}
+    footer{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:18px;color:#7b8478;font-size:11px}
+    footer p{margin:0}footer nav{display:flex;gap:18px;flex-wrap:wrap}footer a{color:#657361}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    @media(min-width:1900px){.hero-link img{max-height:900px}}
+    @media(max-width:800px){main{padding:25px 20px}.masthead{gap:14px}.version{display:none}.toolbar{align-items:flex-start;flex-direction:column;gap:12px}.legend{gap:16px}.style-tabs{gap:5px}.style-tab{padding:10px 8px;gap:7px}.style-letter{width:23px;font-size:21px;padding-right:7px}.style-tab strong{font-size:12px}.style-tab small{font-size:10px}.stage-note{flex-direction:column;gap:4px}.compare-grid{gap:10px}.thumb-caption{align-items:flex-start;flex-direction:column;gap:2px}.boundary{gap:15px}.stage-header{padding:13px 14px}.stage-note{padding:12px 14px}.stage-title h2{font-size:13px}.hero-link img{max-height:none}footer{align-items:flex-start;flex-direction:column;gap:7px}}
+    @media(max-width:480px){main{padding:23px 14px}.intro{font-size:12px}.style-tabs{grid-template-columns:1fr;gap:4px;padding:15px 0}.style-tab{padding:9px 12px}.style-tab>span:last-child{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.style-tab small{margin:0}.style-letter{height:23px;width:25px}.stage-title{gap:4px}.stage-title span{padding-left:0;border:0;width:100%}.original{padding:5px 9px}.compare-heading p{font-size:10px}.compare-grid{grid-template-columns:1fr;gap:18px}.thumb-caption{flex-direction:row}.thumb-button img{aspect-ratio:auto}.boundary{flex-direction:column;gap:5px}.hero-wrap{min-height:140px}}
+  </style>
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <div>
+        <div class="eyebrow">小熊猫的小店 · 界面美术研究</div>
+        <h1>三选一构筑，三种气质</h1>
+        <p class="intro">相同的信息结构，比较材质、明暗与装饰节奏。</p>
+      </div>
+      <div class="version"><span>风格探索 · 第二版</span>2026.10.02 · 原版与两套新增方向</div>
+    </header>
+
+    <section aria-label="图片类型与品质说明" class="toolbar">
+      <div class="switch" aria-label="图片类型">
+        <button type="button" data-view="example" aria-pressed="true">完整界面</button>
+        <button type="button" data-view="frames" aria-pressed="false">四品质边框</button>
+      </div>
+      <div class="legend" aria-label="四种品质及颜色">
+        <span><i class="dot" aria-hidden="true"></i>普通 · 白</span>
+        <span><i class="dot blue" aria-hidden="true"></i>稀有 · 蓝</span>
+        <span><i class="dot purple" aria-hidden="true"></i>史诗 · 紫</span>
+        <span><i class="dot gold" aria-hidden="true"></i>传说 · 橙金</span>
+      </div>
+    </section>
+
+    <nav class="style-tabs" aria-label="选择要查看的风格">
+      <button class="style-tab" type="button" data-style="a" aria-pressed="false"><span class="style-letter">A</span><span><strong>原版树叶</strong><small>森林绿 · 羊皮纸 · 古金叶饰</small></span></button>
+      <button class="style-tab" type="button" data-style="b" aria-pressed="true"><span class="style-letter">B</span><span><strong>古籍羊皮纸</strong><small>明亮暖纸 · 皮革 · 植物压纹</small></span></button>
+      <button class="style-tab" type="button" data-style="c" aria-pressed="false"><span class="style-letter">C</span><span><strong>森林珐琅与藤蔓</strong><small>深绿珐琅 · 藤蔓 · 奶白字</small></span></button>
+    </nav>
+
+    <section class="stage" aria-labelledby="stage-heading">
+      <div class="stage-header">
+        <div class="stage-title"><h2 id="stage-heading">B · 古籍羊皮纸</h2><span id="view-label">完整界面示例</span></div>
+        <a class="original" id="original-link" href="../parchment_codex/02_example.png" target="_blank" rel="noopener">打开原图 <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-wrap" id="hero-wrap">
+        <a class="hero-link" id="hero-link" href="../parchment_codex/02_example.png" target="_blank" rel="noopener" aria-label="打开古籍羊皮纸完整界面原图">
+          <img id="hero-image" src="../parchment_codex/02_example.png" alt="古籍羊皮纸风格的三选一构筑完整界面示例" decoding="async">
+        </a>
+        <div class="image-error" role="status">图片尚未就绪。<br>请确认概念图与预览页保留原有目录结构。</div>
+      </div>
+      <div class="stage-note"><p id="style-description">暖纸与皮革书页，细腻植物压纹。品质色收在细嵌边中，整体温暖轻巧。</p><p class="scope">美术概念 · 尚未接入游戏</p></div>
+    </section>
+
+    <section aria-labelledby="compare-heading">
+      <div class="compare-heading"><h2 id="compare-heading">同类稿件并排对照</h2><p>点击缩略图，切换上方大图</p></div>
+      <div class="compare-grid">
+        <article class="compare-card">
+          <button class="thumb-button" type="button" data-style="a" aria-pressed="false" aria-label="查看原版树叶大图"><img id="thumb-a" src="../../v001/concepts/02_build_selection_screen.png" alt="原版树叶完整界面" loading="lazy" decoding="async"></button>
+          <div class="thumb-caption"><strong>A · 原版树叶</strong><a id="source-a" href="../../v001/concepts/02_build_selection_screen.png" target="_blank" rel="noopener">查看原图 ↗</a></div>
+          <p class="thumb-subtitle">深浅分区清楚，古金叶饰丰富</p>
+        </article>
+        <article class="compare-card">
+          <button class="thumb-button" type="button" data-style="b" aria-pressed="true" aria-label="查看古籍羊皮纸大图"><img id="thumb-b" src="../parchment_codex/02_example.png" alt="古籍羊皮纸完整界面" loading="lazy" decoding="async"></button>
+          <div class="thumb-caption"><strong>B · 古籍羊皮纸</strong><a id="source-b" href="../parchment_codex/02_example.png" target="_blank" rel="noopener">查看原图 ↗</a></div>
+          <p class="thumb-subtitle">明亮柔和，纸张与书册质感</p>
+        </article>
+        <article class="compare-card">
+          <button class="thumb-button" type="button" data-style="c" aria-pressed="false" aria-label="查看森林珐琅与藤蔓大图"><img id="thumb-c" src="../forest_enamel/02_example.png" alt="森林珐琅与藤蔓完整界面" loading="lazy" decoding="async"></button>
+          <div class="thumb-caption"><strong>C · 森林珐琅与藤蔓</strong><a id="source-c" href="../forest_enamel/02_example.png" target="_blank" rel="noopener">查看原图 ↗</a></div>
+          <p class="thumb-subtitle">深绿与奶白，弧线简洁神秘</p>
+        </article>
+      </div>
+    </section>
+
+    <aside class="boundary"><strong>评审范围</strong><p>所有方案共用普通白、稀有蓝、史诗紫、传说橙金四品质，刷新位于卡组下方。技能与品质分配仅为示例。图片包含背景和示例文字，尚非透明切片；正式文字、等级与效果需要动态排版与本地化。</p></aside>
+    <footer><p>源图片直接展示 · 不替代 Godot 实机验收</p><nav aria-label="资料"><a href="../README.md">设计说明</a><a href="../generation/prompts_and_sources.json">提示词与来源</a><a href="../../v001/previews/index.html">原版归档</a></nav></footer>
+    <noscript><p>当前显示 B 方案完整界面。启用 JavaScript 可切换风格与边框；也可通过原图链接直接查看。</p></noscript>
+  </main>
+
+  <script>
+    'use strict';
+    const variants = {
+      a: { title: 'A · 原版树叶', name: '原版树叶', description: '深森林绿标题、浅羊皮纸正文与古金叶饰。保留原版作为材质与装饰密度的比较基准。', example: '../../v001/concepts/02_build_selection_screen.png', frames: '../../v001/concepts/01_rarity_frames.png' },
+      b: { title: 'B · 古籍羊皮纸', name: '古籍羊皮纸', description: '暖纸与皮革书页，细腻植物压纹。品质色收在细嵌边中，整体温暖轻巧。', example: '../parchment_codex/02_example.png', frames: '../parchment_codex/01_frames.png' },
+      c: { title: 'C · 森林珐琅与藤蔓', name: '森林珐琅与藤蔓', description: '深墨绿珐琅、藤蔓弧线与窄金属边。高对比奶白字建立清晰阅读层次，整体神秘简洁。', example: '../forest_enamel/02_example.png', frames: '../forest_enamel/01_frames.png' }
+    };
+    let selectedStyle = 'b';
+    let selectedView = 'example';
+    const hero = document.getElementById('hero-image');
+    const heroWrap = document.getElementById('hero-wrap');
+    hero.addEventListener('error', () => heroWrap.classList.add('failed'));
+    hero.addEventListener('load', () => heroWrap.classList.remove('failed'));
+
+    function render() {
+      const current = variants[selectedStyle];
+      const viewName = selectedView === 'example' ? '完整界面示例' : '四品质边框与刷新按钮';
+      document.getElementById('stage-heading').textContent = current.title;
+      document.getElementById('view-label').textContent = viewName;
+      document.getElementById('style-description').textContent = current.description;
+      hero.alt = current.name + ' · ' + viewName;
+      if (hero.getAttribute('src') !== current[selectedView]) {
+        heroWrap.classList.remove('failed');
+        hero.src = current[selectedView];
+      }
+      document.getElementById('original-link').href = current[selectedView];
+      const heroLink = document.getElementById('hero-link');
+      heroLink.href = current[selectedView];
+      heroLink.setAttribute('aria-label', '打开' + current.name + viewName + '原图');
+      document.querySelectorAll('[data-style]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.style === selectedStyle)));
+      document.querySelectorAll('[data-view]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === selectedView)));
+      Object.entries(variants).forEach(([key, variant]) => {
+        const thumbnail = document.getElementById('thumb-' + key);
+        thumbnail.src = variant[selectedView];
+        thumbnail.alt = variant.name + ' · ' + viewName;
+        document.getElementById('source-' + key).href = variant[selectedView];
+      });
+    }
+    document.querySelectorAll('[data-style]').forEach(button => button.addEventListener('click', () => { selectedStyle = button.dataset.style; render(); }));
+    document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => { selectedView = button.dataset.view; render(); }));
+    if (hero.complete && hero.naturalWidth === 0) heroWrap.classList.add('failed');
+  </script>
+</body>
+</html>

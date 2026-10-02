@@ -1,0 +1,555 @@
+[gd_resource type="Resource" load_steps=74 format=3]
+
+[ext_resource type="Script" path="res://presentation/inventory/inventory_ui_skin.gd" id="script"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/chrome/window_panel.png" id="tex_window"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/chrome/details_parchment.png" id="tex_paper"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/chrome/slot_regular.png" id="tex_slot"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/chrome/slot_selected.png" id="tex_selection"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/chrome/tab_regular.png" id="tex_tab"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/chrome/tab_selected.png" id="tex_tab_selected"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/chrome/button_primary.png" id="tex_primary"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/chrome/button_secondary.png" id="tex_secondary"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/chrome/close_socket.png" id="tex_close"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/chrome/header_leaf_sprig.png" id="tex_leaf"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/items/potion_red.png" id="item_potion"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/items/sword_iron.png" id="item_sword"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/items/travel_pouch.png" id="item_bag"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/items/herb_sprig.png" id="item_herb"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/items/crystal_blue.png" id="item_crystal"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/items/scroll_parchment.png" id="item_scroll"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/action_use.svg" id="icon_action_use"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/action_store.svg" id="icon_action_store"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/action_sort.svg" id="icon_action_sort"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/close.svg" id="icon_close"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/quantity_badge.svg" id="icon_quantity_badge"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/empty_slot_mark.svg" id="icon_empty_slot_mark"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/divider_gold.svg" id="icon_divider_gold"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/divider_ink.svg" id="icon_divider_ink"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/marker_blue.svg" id="icon_marker_blue"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/marker_green.svg" id="icon_marker_green"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/marker_olive.svg" id="icon_marker_olive"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/marker_amber.svg" id="icon_marker_amber"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/marker_violet.svg" id="icon_marker_violet"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/title_bag.svg" id="icon_title_bag"]
+[ext_resource type="Texture2D" path="res://assets/ui/inventory/v001/icons/title_coin.svg" id="icon_title_coin"]
+
+[sub_resource type="AtlasTexture" id="atlas_window"]
+atlas = ExtResource("tex_window")
+region = Rect2(52, 87, 1433, 846)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_paper"]
+atlas = ExtResource("tex_paper")
+region = Rect2(70, 73, 885, 1390)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_slot"]
+atlas = ExtResource("tex_slot")
+region = Rect2(120, 123, 1014, 1008)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_selection"]
+atlas = ExtResource("tex_selection")
+region = Rect2(83, 91, 1088, 1070)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_tab"]
+atlas = ExtResource("tex_tab")
+region = Rect2(141, 333, 1493, 236)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_tab_selected"]
+atlas = ExtResource("tex_tab_selected")
+region = Rect2(107, 181, 1833, 406)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_primary"]
+atlas = ExtResource("tex_primary")
+region = Rect2(35, 183, 2102, 347)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_secondary"]
+atlas = ExtResource("tex_secondary")
+region = Rect2(55, 203, 2063, 317)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_close"]
+atlas = ExtResource("tex_close")
+region = Rect2(215, 231, 826, 789)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="atlas_leaf"]
+atlas = ExtResource("tex_leaf")
+region = Rect2(168, 107, 1007, 1050)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="item_atlas_potion"]
+atlas = ExtResource("item_potion")
+region = Rect2(320, 207, 617, 874)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="item_atlas_sword"]
+atlas = ExtResource("item_sword")
+region = Rect2(248, 241, 794, 823)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="item_atlas_bag"]
+atlas = ExtResource("item_bag")
+region = Rect2(300, 236, 667, 833)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="item_atlas_herb"]
+atlas = ExtResource("item_herb")
+region = Rect2(255, 189, 841, 895)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="item_atlas_crystal"]
+atlas = ExtResource("item_crystal")
+region = Rect2(244, 217, 780, 867)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="item_atlas_scroll"]
+atlas = ExtResource("item_scroll")
+region = Rect2(220, 297, 824, 706)
+filter_clip = true
+
+[sub_resource type="StyleBoxTexture" id="style_window"]
+texture = SubResource("atlas_window")
+texture_margin_left = 36.0
+content_margin_left = 0.0
+texture_margin_top = 32.0
+content_margin_top = 0.0
+texture_margin_right = 36.0
+content_margin_right = 0.0
+texture_margin_bottom = 32.0
+content_margin_bottom = 0.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_paper"]
+texture = SubResource("atlas_paper")
+texture_margin_left = 28.0
+content_margin_left = 0.0
+texture_margin_top = 28.0
+content_margin_top = 0.0
+texture_margin_right = 28.0
+content_margin_right = 0.0
+texture_margin_bottom = 32.0
+content_margin_bottom = 0.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_selection"]
+texture = SubResource("atlas_selection")
+texture_margin_left = 14.0
+content_margin_left = 0.0
+texture_margin_top = 14.0
+content_margin_top = 0.0
+texture_margin_right = 14.0
+content_margin_right = 0.0
+texture_margin_bottom = 14.0
+content_margin_bottom = 0.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_tab_selected"]
+texture = SubResource("atlas_tab_selected")
+texture_margin_left = 24.0
+content_margin_left = 12.0
+texture_margin_top = 13.0
+content_margin_top = 5.0
+texture_margin_right = 24.0
+content_margin_right = 12.0
+texture_margin_bottom = 13.0
+content_margin_bottom = 5.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_slot"]
+texture = SubResource("atlas_slot")
+texture_margin_left = 12.0
+content_margin_left = 8.0
+texture_margin_top = 12.0
+content_margin_top = 8.0
+texture_margin_right = 12.0
+content_margin_right = 8.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 8.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_slot_hover"]
+texture = SubResource("atlas_slot")
+texture_margin_left = 12.0
+content_margin_left = 8.0
+texture_margin_top = 12.0
+content_margin_top = 8.0
+texture_margin_right = 12.0
+content_margin_right = 8.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 8.0
+modulate_color = Color(1.17, 1.2, 1.07, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_slot_pressed"]
+texture = SubResource("atlas_slot")
+texture_margin_left = 12.0
+content_margin_left = 8.0
+texture_margin_top = 12.0
+content_margin_top = 8.0
+texture_margin_right = 12.0
+content_margin_right = 8.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 8.0
+modulate_color = Color(0.9, 0.96, 0.87, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_slot_disabled"]
+texture = SubResource("atlas_slot")
+texture_margin_left = 12.0
+content_margin_left = 8.0
+texture_margin_top = 12.0
+content_margin_top = 8.0
+texture_margin_right = 12.0
+content_margin_right = 8.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 8.0
+modulate_color = Color(0.59, 0.65, 0.59, 0.88)
+
+[sub_resource type="StyleBoxTexture" id="style_tab"]
+texture = SubResource("atlas_tab")
+texture_margin_left = 20.0
+content_margin_left = 12.0
+texture_margin_top = 10.0
+content_margin_top = 5.0
+texture_margin_right = 20.0
+content_margin_right = 12.0
+texture_margin_bottom = 10.0
+content_margin_bottom = 5.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_tab_hover"]
+texture = SubResource("atlas_tab")
+texture_margin_left = 20.0
+content_margin_left = 12.0
+texture_margin_top = 10.0
+content_margin_top = 5.0
+texture_margin_right = 20.0
+content_margin_right = 12.0
+texture_margin_bottom = 10.0
+content_margin_bottom = 5.0
+modulate_color = Color(1.17, 1.2, 1.07, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_tab_pressed"]
+texture = SubResource("atlas_tab_selected")
+texture_margin_left = 20.0
+content_margin_left = 12.0
+texture_margin_top = 10.0
+content_margin_top = 5.0
+texture_margin_right = 20.0
+content_margin_right = 12.0
+texture_margin_bottom = 10.0
+content_margin_bottom = 5.0
+modulate_color = Color(0.9, 0.96, 0.87, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_tab_disabled"]
+texture = SubResource("atlas_tab")
+texture_margin_left = 20.0
+content_margin_left = 12.0
+texture_margin_top = 10.0
+content_margin_top = 5.0
+texture_margin_right = 20.0
+content_margin_right = 12.0
+texture_margin_bottom = 10.0
+content_margin_bottom = 5.0
+modulate_color = Color(0.59, 0.65, 0.59, 0.88)
+
+[sub_resource type="StyleBoxTexture" id="style_primary"]
+texture = SubResource("atlas_primary")
+texture_margin_left = 28.0
+content_margin_left = 14.0
+texture_margin_top = 13.0
+content_margin_top = 5.0
+texture_margin_right = 28.0
+content_margin_right = 14.0
+texture_margin_bottom = 13.0
+content_margin_bottom = 5.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_primary_hover"]
+texture = SubResource("atlas_primary")
+texture_margin_left = 28.0
+content_margin_left = 14.0
+texture_margin_top = 13.0
+content_margin_top = 5.0
+texture_margin_right = 28.0
+content_margin_right = 14.0
+texture_margin_bottom = 13.0
+content_margin_bottom = 5.0
+modulate_color = Color(1.17, 1.2, 1.07, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_primary_pressed"]
+texture = SubResource("atlas_primary")
+texture_margin_left = 28.0
+content_margin_left = 14.0
+texture_margin_top = 13.0
+content_margin_top = 5.0
+texture_margin_right = 28.0
+content_margin_right = 14.0
+texture_margin_bottom = 13.0
+content_margin_bottom = 5.0
+modulate_color = Color(0.9, 0.96, 0.87, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_primary_disabled"]
+texture = SubResource("atlas_primary")
+texture_margin_left = 28.0
+content_margin_left = 14.0
+texture_margin_top = 13.0
+content_margin_top = 5.0
+texture_margin_right = 28.0
+content_margin_right = 14.0
+texture_margin_bottom = 13.0
+content_margin_bottom = 5.0
+modulate_color = Color(0.59, 0.65, 0.59, 0.88)
+
+[sub_resource type="StyleBoxTexture" id="style_secondary"]
+texture = SubResource("atlas_secondary")
+texture_margin_left = 28.0
+content_margin_left = 14.0
+texture_margin_top = 12.0
+content_margin_top = 5.0
+texture_margin_right = 28.0
+content_margin_right = 14.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 5.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_secondary_hover"]
+texture = SubResource("atlas_secondary")
+texture_margin_left = 28.0
+content_margin_left = 14.0
+texture_margin_top = 12.0
+content_margin_top = 5.0
+texture_margin_right = 28.0
+content_margin_right = 14.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 5.0
+modulate_color = Color(1.17, 1.2, 1.07, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_secondary_pressed"]
+texture = SubResource("atlas_secondary")
+texture_margin_left = 28.0
+content_margin_left = 14.0
+texture_margin_top = 12.0
+content_margin_top = 5.0
+texture_margin_right = 28.0
+content_margin_right = 14.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 5.0
+modulate_color = Color(0.9, 0.96, 0.87, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_secondary_disabled"]
+texture = SubResource("atlas_secondary")
+texture_margin_left = 28.0
+content_margin_left = 14.0
+texture_margin_top = 12.0
+content_margin_top = 5.0
+texture_margin_right = 28.0
+content_margin_right = 14.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 5.0
+modulate_color = Color(0.59, 0.65, 0.59, 0.88)
+
+[sub_resource type="StyleBoxTexture" id="style_close"]
+texture = SubResource("atlas_close")
+texture_margin_left = 12.0
+content_margin_left = 6.0
+texture_margin_top = 12.0
+content_margin_top = 6.0
+texture_margin_right = 12.0
+content_margin_right = 6.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 6.0
+modulate_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_close_hover"]
+texture = SubResource("atlas_close")
+texture_margin_left = 12.0
+content_margin_left = 6.0
+texture_margin_top = 12.0
+content_margin_top = 6.0
+texture_margin_right = 12.0
+content_margin_right = 6.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 6.0
+modulate_color = Color(1.17, 1.2, 1.07, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_close_pressed"]
+texture = SubResource("atlas_close")
+texture_margin_left = 12.0
+content_margin_left = 6.0
+texture_margin_top = 12.0
+content_margin_top = 6.0
+texture_margin_right = 12.0
+content_margin_right = 6.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 6.0
+modulate_color = Color(0.9, 0.96, 0.87, 1)
+
+[sub_resource type="StyleBoxTexture" id="style_close_disabled"]
+texture = SubResource("atlas_close")
+texture_margin_left = 12.0
+content_margin_left = 6.0
+texture_margin_top = 12.0
+content_margin_top = 6.0
+texture_margin_right = 12.0
+content_margin_right = 6.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 6.0
+modulate_color = Color(0.59, 0.65, 0.59, 0.88)
+
+[sub_resource type="StyleBoxFlat" id="style_focus"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.90588, 0.6, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_left = 5
+corner_radius_bottom_right = 5
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[resource]
+script = ExtResource("script")
+textures = Dictionary[String, Texture2D]({
+"window": SubResource("atlas_window"),
+"paper": SubResource("atlas_paper"),
+"slot": SubResource("atlas_slot"),
+"selection": SubResource("atlas_selection"),
+"tab": SubResource("atlas_tab"),
+"tab_selected": SubResource("atlas_tab_selected"),
+"primary": SubResource("atlas_primary"),
+"secondary": SubResource("atlas_secondary"),
+"close": SubResource("atlas_close"),
+"leaf": SubResource("atlas_leaf")
+})
+items = Dictionary[String, Texture2D]({
+"potion": SubResource("item_atlas_potion"),
+"sword": SubResource("item_atlas_sword"),
+"bag": SubResource("item_atlas_bag"),
+"herb": SubResource("item_atlas_herb"),
+"crystal": SubResource("item_atlas_crystal"),
+"scroll": SubResource("item_atlas_scroll")
+})
+icons = Dictionary[String, Texture2D]({
+"action_use": ExtResource("icon_action_use"),
+"action_store": ExtResource("icon_action_store"),
+"action_sort": ExtResource("icon_action_sort"),
+"close": ExtResource("icon_close"),
+"quantity_badge": ExtResource("icon_quantity_badge"),
+"empty_slot_mark": ExtResource("icon_empty_slot_mark"),
+"divider_gold": ExtResource("icon_divider_gold"),
+"divider_ink": ExtResource("icon_divider_ink"),
+"marker_blue": ExtResource("icon_marker_blue"),
+"marker_green": ExtResource("icon_marker_green"),
+"marker_olive": ExtResource("icon_marker_olive"),
+"marker_amber": ExtResource("icon_marker_amber"),
+"marker_violet": ExtResource("icon_marker_violet"),
+"title_bag": ExtResource("icon_title_bag"),
+"title_coin": ExtResource("icon_title_coin")
+})
+styles = Dictionary[String, StyleBox]({
+"window": SubResource("style_window"),
+"paper": SubResource("style_paper"),
+"selection": SubResource("style_selection"),
+"tab_selected": SubResource("style_tab_selected"),
+"slot": SubResource("style_slot"),
+"slot_hover": SubResource("style_slot_hover"),
+"slot_pressed": SubResource("style_slot_pressed"),
+"slot_disabled": SubResource("style_slot_disabled"),
+"tab": SubResource("style_tab"),
+"tab_hover": SubResource("style_tab_hover"),
+"tab_pressed": SubResource("style_tab_pressed"),
+"tab_disabled": SubResource("style_tab_disabled"),
+"primary": SubResource("style_primary"),
+"primary_hover": SubResource("style_primary_hover"),
+"primary_pressed": SubResource("style_primary_pressed"),
+"primary_disabled": SubResource("style_primary_disabled"),
+"secondary": SubResource("style_secondary"),
+"secondary_hover": SubResource("style_secondary_hover"),
+"secondary_pressed": SubResource("style_secondary_pressed"),
+"secondary_disabled": SubResource("style_secondary_disabled"),
+"close": SubResource("style_close"),
+"close_hover": SubResource("style_close_hover"),
+"close_pressed": SubResource("style_close_pressed"),
+"close_disabled": SubResource("style_close_disabled"),
+"focus": SubResource("style_focus")
+})
+metrics = Dictionary[String, float]({
+"window_width": 1120.0,
+"window_height": 700.0,
+"padding": 32.0,
+"gap": 12.0,
+"slot_size": 104.0,
+"slot_icon": 80.0,
+"detail_width": 340.0,
+"detail_icon": 116.0,
+"tab_height": 44.0,
+"button_height": 44.0,
+"close_size": 44.0,
+"title_icon": 40.0,
+"leaf_width": 104.0,
+"leaf_height": 44.0,
+"columns": 5.0,
+"rows": 3.0,
+"grid_gap": 12.0,
+"detail_padding": 20.0,
+"icon_size": 22.0,
+"header_height": 44.0,
+"header_inset": 32.0,
+"notice_inset": 64.0,
+"sort_width": 164.0,
+"tab_width": 142.0,
+"window_margin": 28.0
+})
+text_color = Color(0.956863, 0.898039, 0.741176, 1)
+muted_color = Color(0.741176, 0.74902, 0.631373, 1)
+paper_color = Color(0.219608, 0.184314, 0.117647, 1)
+disabled_color = Color(0.654902, 0.639216, 0.517647, 1)
+hover_color = Color(1, 0.964706, 0.823529, 1)
+dim_color = Color(0.012, 0.023, 0.017, 0.58)
+style_texture_sizes = Dictionary[String, Vector2i]({
+"window": Vector2i(1120, 661),
+"paper": Vector2i(340, 534),
+"slot": Vector2i(104, 104),
+"selection": Vector2i(104, 104),
+"tab": Vector2i(196, 31),
+"tab_selected": Vector2i(198, 44),
+"primary": Vector2i(268, 44),
+"secondary": Vector2i(286, 44),
+"close": Vector2i(44, 42)
+})
+style_sources = Dictionary[String, String]({
+"window": "window",
+"paper": "paper",
+"selection": "selection",
+"tab_selected": "tab_selected",
+"slot": "slot",
+"slot_hover": "slot",
+"slot_pressed": "slot",
+"slot_disabled": "slot",
+"tab": "tab",
+"tab_hover": "tab",
+"tab_pressed": "tab_selected",
+"tab_disabled": "tab",
+"primary": "primary",
+"primary_hover": "primary",
+"primary_pressed": "primary",
+"primary_disabled": "primary",
+"secondary": "secondary",
+"secondary_hover": "secondary",
+"secondary_pressed": "secondary",
+"secondary_disabled": "secondary",
+"close": "close",
+"close_hover": "close",
+"close_pressed": "close",
+"close_disabled": "close"
+})

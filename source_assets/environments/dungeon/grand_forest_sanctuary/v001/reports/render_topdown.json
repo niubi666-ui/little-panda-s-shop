@@ -1,0 +1,12 @@
+{
+  "mode": "topdown",
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\previews\\sanctuary_topdown.png",
+  "resolution": [
+    1800,
+    1800
+  ],
+  "samples": 64,
+  "seconds": 111.57097005844116,
+  "engine": "CYCLES",
+  "device": "GPU"
+}

@@ -1,0 +1,117 @@
+# GENERATED from game/data/locales; edit JSON and rerun the build tool.
+msgid ""
+msgstr ""
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "decor.access_blocked"
+msgstr "会堵住入口或必要交互通道"
+
+msgid "decor.applied"
+msgstr "摆放已应用"
+
+msgid "decor.blocked"
+msgstr "此处有固定陈设或墙体"
+
+msgid "decor.cancel"
+msgstr "取消预览"
+
+msgid "decor.category.furniture"
+msgstr "家具"
+
+msgid "decor.category.lights"
+msgstr "灯具"
+
+msgid "decor.category.ornaments"
+msgstr "装饰"
+
+msgid "decor.count"
+msgstr "已摆放 {count}/{limit} · 网格 {grid} 米"
+
+msgid "decor.description.barrel"
+msgstr "温润木色的小巧储物桶。"
+
+msgid "decor.description.chest"
+msgstr "带金属扣饰的木制宝箱。"
+
+msgid "decor.description.scroll_bin"
+msgstr "装着卷轴的木质收纳桶。"
+
+msgid "decor.description.supply_crate"
+msgstr "木箱与药罐组成的库存装饰。"
+
+msgid "decor.detail.empty"
+msgstr "从上方选择，或点击店内已添加的家具。"
+
+msgid "decor.detail.empty_title"
+msgstr "选择家具"
+
+msgid "decor.done"
+msgstr "完成装修"
+
+msgid "decor.empty"
+msgstr "此分类暂未开放。\n可在「家具」中试摆现有物品。"
+
+msgid "decor.footprint"
+msgstr "占地 {width} × {depth} 格"
+
+msgid "decor.help"
+msgstr "左键放置 / 点选家具 · 右键或 {cancel_key} 取消 · {mode_key} 退出装修"
+
+msgid "decor.idle"
+msgstr "点击家具目录添加，或点击已摆放的原型家具。"
+
+msgid "decor.invalid"
+msgstr "布局参数无效"
+
+msgid "decor.item.barrel"
+msgstr "小木桶"
+
+msgid "decor.item.chest"
+msgstr "宝箱"
+
+msgid "decor.item.scroll_bin"
+msgstr "卷轴桶"
+
+msgid "decor.item.supply_crate"
+msgstr "药罐货箱"
+
+msgid "decor.limit"
+msgstr "已达到原型家具数量上限"
+
+msgid "decor.mode"
+msgstr "装修模式"
+
+msgid "decor.note"
+msgstr "原型试摆 · 布局仅保留至离开店铺；不消耗库存，暂不保存。"
+
+msgid "decor.occupied"
+msgstr "与家具或角色重叠"
+
+msgid "decor.ok"
+msgstr "可以摆放 · 点击地面确认"
+
+msgid "decor.out_of_bounds"
+msgstr "超出店内可摆放区域"
+
+msgid "decor.remove"
+msgstr "移除家具"
+
+msgid "decor.removed"
+msgstr "家具已移除"
+
+msgid "decor.rotate"
+msgstr "旋转 90°"
+
+msgid "decor.scene_unavailable"
+msgstr "摆放区域校验未通过，请查看开发日志。"
+
+msgid "decor.stale"
+msgstr "布局已变化，请重新选择"
+
+msgid "decor.title"
+msgstr "店铺装修"
+

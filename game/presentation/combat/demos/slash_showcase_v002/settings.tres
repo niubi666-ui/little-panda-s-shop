@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+[ext_resource type="Script" path="res://presentation/combat/demos/slash_showcase_v002/settings.gd" id="script"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/slash_candidates_v002/a_clean.tscn" id="0"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/slash_candidates_v002/b_weight.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/slash_candidates_v002/c_streak.tscn" id="2"]
+[resource]
+script = ExtResource("script")
+effects = Array[PackedScene]([ExtResource("0"), ExtResource("1"), ExtResource("2")])
+camera_size = 12.0
+close_camera_size = 6.0
+repeat_interval_sec = 1.1
+variant_duration_sec = 4.5
+slow_scale = 0.35
+slow_start_sec = 2.2
+capture_length_sec = 13.4
+capture_progress = 0.72
+overlay_margin = 24.0
+overlay_font_size = 36

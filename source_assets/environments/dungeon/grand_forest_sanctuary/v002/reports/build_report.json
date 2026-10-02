@@ -1,0 +1,119 @@
+{
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v002\\blender\\grand_forest_sanctuary_v002.blend",
+  "source_sha256": "8c230a503fdc3c0ddaee977b66db8bfb447cfd241536692fc8c6cde71b4162cd",
+  "tree_source": "E:\\ShopGame\\source_assets\\environments\\dungeon\\sunlit_forest_court\\tree_foliage_v005\\blender\\sacred_oak_balanced_v005.blend",
+  "tree_sha256": "fe66c1a4c0192d7a2bc7b40bf1a3883df805d65c613ec4eb02a3589819d8380a",
+  "court_m": [
+    36,
+    32
+  ],
+  "area_m2": 1152,
+  "previous_area_m2": 288,
+  "ratio": 4,
+  "player_height_m": 1.2000004518777132,
+  "objects": 9999,
+  "base_triangles_instanced": 29536447,
+  "source_roles_used": {
+    "rail": 0,
+    "broken_wall": 0,
+    "corner": 0,
+    "pier": 67,
+    "bridge": 0,
+    "chest": 1,
+    "mushrooms": 1,
+    "hive": 0,
+    "stump": 0,
+    "low_wall": 41,
+    "low_corner": 0,
+    "stone_chest": 0,
+    "bag": 0,
+    "fallen_column": 0,
+    "barrel": 4,
+    "crate": 4,
+    "moss_patch": 821,
+    "moss_cushion": 0,
+    "moss_seam": 201,
+    "litter": 70,
+    "oak": 0,
+    "ivy": 4,
+    "flowerpot": 2,
+    "white_flower": 2123,
+    "purple_flower": 404,
+    "steps": 1,
+    "rock_flat": 31,
+    "roundel": 3,
+    "rock_medium": 21,
+    "rock_large": 23,
+    "paving": 188,
+    "curb": 0,
+    "statue": 1,
+    "shrine": 1
+  },
+  "roundels": [
+    [
+      -6.4,
+      2.4,
+      3.8
+    ],
+    [
+      8.2,
+      1.6,
+      3.85
+    ],
+    [
+      0.2,
+      -8.5,
+      3.9
+    ]
+  ],
+  "obstacle_islands": [
+    {
+      "id": "West_cover",
+      "a": [
+        -11.2,
+        -6.3
+      ],
+      "b": [
+        -6.5,
+        -6.3
+      ],
+      "return": [
+        -11.2,
+        -3.6
+      ]
+    },
+    {
+      "id": "Centre_cover",
+      "a": [
+        1.0,
+        5.9
+      ],
+      "b": [
+        5.6,
+        5.9
+      ],
+      "return": [
+        5.6,
+        8.0
+      ]
+    },
+    {
+      "id": "East_cover",
+      "a": [
+        9.5,
+        -8.7
+      ],
+      "b": [
+        14,
+        -8.7
+      ],
+      "return": [
+        14,
+        -5.7
+      ]
+    }
+  ],
+  "west_exits": 2,
+  "godot_changed": false,
+  "status": "pending visual review"
+}

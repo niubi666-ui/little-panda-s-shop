@@ -1,0 +1,1512 @@
+{
+  "source": "E:\\ShopGame\\source_assets\\characters\\red_panda\\blender\\red_panda_run_v008.blend",
+  "blender_version": "5.2.1 LTS",
+  "active_scene": "RedPanda_Run_v008",
+  "scenes": [
+    {
+      "name": "ConnectedPose_01_Contact",
+      "objects": [
+        {
+          "name": "ConnectedRig_01_Contact",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.12577689,
+            0.42212564,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "ConnectedMesh_01_Contact",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "ConnectedPose_02_Down",
+      "objects": [
+        {
+          "name": "ConnectedRig_02_Down",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.08316207,
+            0.42268616,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "ConnectedMesh_02_Down",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "ConnectedPose_03_Passing",
+      "objects": [
+        {
+          "name": "ConnectedRig_03_Passing",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.94859374,
+            0.42490515,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "ConnectedMesh_03_Passing",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "ConnectedPose_04_Flight",
+      "objects": [
+        {
+          "name": "ConnectedRig_04_Flight",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.02430749,
+            0.42503154,
+            0.65626371
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "ConnectedMesh_04_Flight",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "KneePose_01_Contact",
+      "objects": [
+        {
+          "name": "KneeRig_01_Contact",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.12577689,
+            0.42212564,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "KneeMesh_01_Contact",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "KneePose_02_Down",
+      "objects": [
+        {
+          "name": "KneeRig_02_Down",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.08316207,
+            0.42268616,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "KneeMesh_02_Down",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "KneePose_03_Passing",
+      "objects": [
+        {
+          "name": "KneeRig_03_Passing",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.94859374,
+            0.42490515,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "KneeMesh_03_Passing",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "KneePose_04_Flight",
+      "objects": [
+        {
+          "name": "KneeRig_04_Flight",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.02430749,
+            0.42503154,
+            0.65626371
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "KneeMesh_04_Flight",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RedPanda_Animation_Review",
+      "objects": [
+        {
+          "name": "Armature",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.49700177,
+            0.36015528,
+            0.65680218
+          ],
+          "parent": null,
+          "action": "Armature|afraid.001"
+        },
+        {
+          "name": "tripo_node_89e57958",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "Armature",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RedPanda_ARP_v003",
+      "objects": [
+        {
+          "name": "RedPanda_ARP_Rig_v003",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.95066631,
+            0.69041216,
+            0.52935565
+          ],
+          "parent": null,
+          "action": "RP3_run"
+        },
+        {
+          "name": "RedPanda_ARP_Mesh_v003",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RedPanda_Rig_v002",
+      "objects": [
+        {
+          "name": "RedPanda_Rig_v002",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.95029336,
+            0.77978057,
+            0.52735114
+          ],
+          "parent": null,
+          "action": "RP_run"
+        },
+        {
+          "name": "RedPanda_Mesh_v002",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_Rig_v002",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RedPanda_Run_v008",
+      "objects": [
+        {
+          "name": "RedPanda_RunRig_v008",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.95712024,
+            0.38760713,
+            0.65879846
+          ],
+          "parent": null,
+          "action": "RP_Run_New_v008"
+        },
+        {
+          "name": "RedPanda_RunMesh_v008",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.00899982,
+            0.51782978,
+            0.94620901
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RedPanda_Source_v002",
+      "objects": [
+        {
+          "name": "RedPanda_Source_Rig_v002",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.94012356,
+            0.50182706,
+            0.53629321
+          ],
+          "parent": null,
+          "action": "SRC_TRIPO_run"
+        },
+        {
+          "name": "RedPanda_Source_Mesh_v002",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_Source_Rig_v002",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RepairPose_01_Contact",
+      "objects": [
+        {
+          "name": "RepairRig_01_Contact",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.12577689,
+            0.42212564,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "RepairMesh_01_Contact",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        },
+        {
+          "name": "InnerWaist_01_Contact",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.23599993,
+            0.24399996,
+            0.16600001
+          ],
+          "parent": null,
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RepairPose_02_Down",
+      "objects": [
+        {
+          "name": "RepairRig_02_Down",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.08316207,
+            0.42268616,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "RepairMesh_02_Down",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        },
+        {
+          "name": "InnerWaist_02_Down",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.23599993,
+            0.24399996,
+            0.16600001
+          ],
+          "parent": null,
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RepairPose_03_Passing",
+      "objects": [
+        {
+          "name": "RepairRig_03_Passing",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.94859374,
+            0.42490515,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "RepairMesh_03_Passing",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        },
+        {
+          "name": "InnerWaist_03_Passing",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.23599993,
+            0.24399996,
+            0.16600001
+          ],
+          "parent": null,
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RepairPose_04_Flight",
+      "objects": [
+        {
+          "name": "RepairRig_04_Flight",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.02430749,
+            0.42503154,
+            0.65626371
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "RepairMesh_04_Flight",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        },
+        {
+          "name": "InnerWaist_04_Flight",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.23599993,
+            0.24399996,
+            0.16600001
+          ],
+          "parent": null,
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RunPose_01_Contact",
+      "objects": [
+        {
+          "name": "PoseRig_01_Contact",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.17773938,
+            0.4029462,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "PoseMesh_01_Contact",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RunPose_02_Down",
+      "objects": [
+        {
+          "name": "PoseRig_02_Down",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.14820766,
+            0.40286177,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "PoseMesh_02_Down",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RunPose_03_Passing",
+      "objects": [
+        {
+          "name": "PoseRig_03_Passing",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.95534033,
+            0.40230399,
+            0.65626365
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "PoseMesh_03_Passing",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "RunPose_04_Flight",
+      "objects": [
+        {
+          "name": "PoseRig_04_Flight",
+          "type": "ARMATURE",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            1.02541339,
+            0.40241188,
+            0.65626371
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "PoseMesh_04_Flight",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -4e-08,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.69775391,
+            0.97705066,
+            0.99951166
+          ],
+          "parent": "RedPanda_ARP_Rig_v003",
+          "action": null
+        }
+      ]
+    },
+    {
+      "name": "Scene",
+      "objects": [
+        {
+          "name": "Cube",
+          "type": "MESH",
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "Light",
+          "type": "LIGHT",
+          "location": [
+            4.07624531,
+            1.00545394,
+            5.903862
+          ],
+          "rotation": [
+            0.65032798,
+            0.05521711,
+            1.86639082
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "parent": null,
+          "action": null
+        },
+        {
+          "name": "Camera",
+          "type": "CAMERA",
+          "location": [
+            7.35889149,
+            -6.92579079,
+            4.95830917
+          ],
+          "rotation": [
+            1.10931897,
+            0.0,
+            0.81492817
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "dimensions": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "parent": null,
+          "action": null
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "name": "Armature|afraid.001",
+      "frames": [
+        1.0,
+        63.0
+      ]
+    },
+    {
+      "name": "RP3_agree",
+      "frames": [
+        1.0,
+        97.0
+      ]
+    },
+    {
+      "name": "RP3_idle",
+      "frames": [
+        1.0,
+        369.0
+      ]
+    },
+    {
+      "name": "RP3_jump",
+      "frames": [
+        1.0,
+        54.0
+      ]
+    },
+    {
+      "name": "RP3_run",
+      "frames": [
+        1.0,
+        31.0
+      ]
+    },
+    {
+      "name": "RP3_walk",
+      "frames": [
+        1.0,
+        57.0
+      ]
+    },
+    {
+      "name": "RP_agree",
+      "frames": [
+        1.0,
+        97.0
+      ]
+    },
+    {
+      "name": "RP_idle",
+      "frames": [
+        1.0,
+        369.0
+      ]
+    },
+    {
+      "name": "RP_jump",
+      "frames": [
+        1.0,
+        54.0
+      ]
+    },
+    {
+      "name": "RP_run",
+      "frames": [
+        1.0,
+        31.0
+      ]
+    },
+    {
+      "name": "RP_Run_New_v008",
+      "frames": [
+        1.0,
+        25.0
+      ]
+    },
+    {
+      "name": "RP_walk",
+      "frames": [
+        1.0,
+        57.0
+      ]
+    },
+    {
+      "name": "SRC_TRIPO_agree",
+      "frames": [
+        1.0,
+        97.0
+      ]
+    },
+    {
+      "name": "SRC_TRIPO_idle",
+      "frames": [
+        1.0,
+        369.0
+      ]
+    },
+    {
+      "name": "SRC_TRIPO_jump",
+      "frames": [
+        1.0,
+        54.0
+      ]
+    },
+    {
+      "name": "SRC_TRIPO_run",
+      "frames": [
+        1.0,
+        31.0
+      ]
+    },
+    {
+      "name": "SRC_TRIPO_walk",
+      "frames": [
+        1.0,
+        57.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "version": "v001",
+  "date": "2026-10-02",
+  "generator": "built-in image_gen",
+  "use_case": "ui-mockup",
+  "status": "visual_design_reference_not_runtime_skin",
+  "references": [
+    "E:/ShopGame/source_assets/ui/reference/foliage_v001/03_orders.png",
+    "E:/ShopGame/source_assets/ui/reference/foliage_v001/05_ui_components.png"
+  ],
+  "images": [
+    {
+      "path": "concepts/01_rarity_frames.png",
+      "original_path": "C:/Users/陈旭辉/.codex/generated_images/01a0dbbb-e5a8-7b32-a068-ebcadcf5d960/exec-be7df8af-77db-44dc-b632-2bbb9829abd7.png",
+      "prompt": "Use case: ui-mockup.\nCreate a polished landscape GAME UI DESIGN SHEET for the cozy fantasy game Little Red Panda's Shop. Input image 1 and 2 are STYLE REFERENCES ONLY: retain dark forest-green, antique metal filigree, ivory parchment, refined natural leaf flourishes, tactile semi-realistic hand-painted craftsmanship. New subject is roguelike upgrade choice card borders, not a shop order screen.\nLayout: wide 16:9 art direction sheet, dark uniform deep forest-green backdrop with subtle texture. Across the upper main area show EXACTLY FOUR large equal-size portrait card frames aligned in one row, identical content-safe inner dimensions. No perspective; front-on flat interface graphics. Comfortable gutters and margins, all frames fully visible.\nThe four frames left-to-right:\n1 COMMON: primary edging PEARL WHITE / SILVER, quiet single small leaf engraving crest, restrained clean corners, no blue cast.\n2 RARE: primary edging CLEAR SAPPHIRE BLUE, paired leaf metal crest, subtle blue rim light.\n3 EPIC: primary edging AMETHYST PURPLE, three-leaf crest and fine curled botanical corners, subtle purple rim light.\n4 LEGENDARY: primary edging WARM AMBER GOLD / ORANGE GOLD, elegant full laurel crown crest, richer fine leaf ornament, controlled golden glow.\nAll are members of the SAME family, simple graceful clipped-corner elongated rectangles with a small leaf crest above center, slender detailed edge, rich material shading. White, blue, purple, and gold must be immediately distinguishable even in small thumbnails. Keep gold secondary only for common/rare/epic so it does not overwhelm their rarity color. No giant wings, spikes, gems everywhere, skulls, ornate gothic clutter or sci-fi neon.\nWithin each card: a short dark green empty header zone and a large softly textured ivory parchment body with a faint botanical watermark at its bottom; largely empty to reserve space for icon, title, level and multiline description. Do not draw sample skill icons, text, lines, numbers, or dummy copy inside the card. These are FRAME designs.\nCentered ABOVE the row print exact elegant Chinese title \"构筑卡片 · 四种品质\". Under each card, OUTSIDE the frame, label exactly \"普通\", \"稀有\", \"史诗\", \"传说\" in readable serif-style Chinese; match label accent to frame color.\nAt bottom BELOW the cards, show a small button state comparison row: three identical wide low-profile leaf-trimmed dark-green antique-gold buttons with a circular two-arrow refresh glyph at left and exact label \"刷新选项\" centered. First normal, second hover/focus with softly brighter edge, third disabled desaturated. Under each button small exact captions \"默认\", \"悬停\", \"不可用\". Keep these buttons much smaller than the cards and clearly separated from the four rarity labels. Do not show costs, counts or gameplay numbers.\nPremium readable cohesive UI, intricate leaves at corners only, no surrounding scenery, no character, no watermark. Full front facing graphic, crisp edges, precise symmetry, balanced spacing."
+    },
+    {
+      "path": "concepts/02_build_selection_screen.png",
+      "original_path": "C:/Users/陈旭辉/.codex/generated_images/01a0dbbb-e5a8-7b32-a068-ebcadcf5d960/exec-4652a25e-05c4-4a02-9b1d-58aa79d12a18.png",
+      "additional_reference": "concepts/01_rarity_frames.png",
+      "prompt": "Use case: ui-mockup.\nCreate one finished landscape 16:9 in-game roguelike upgrade-selection UI concept for Little Red Panda's Shop. Image 1 is the EXACT CARD DESIGN FAMILY to follow (the four rarity borders); image 2 is the established foliage UI style reference. Translate the design into a complete playable-looking three-choice screen. This is a NEW concept, not a direct edit.\nBackground: our sunlit ancient forest stone courtyard arena seen from high isometric gameplay camera, diffuse warm shafts of light and plants, softly defocused and strongly darkened behind a modal. The UI must dominate readability.\nLayout: centered elegant compact title \"选择你的成长\", smaller subtitle \"选择一项能力，强化本次冒险\". A thin antique-gold botanical divider. Below, EXACTLY THREE equal-height upright large cards across the center. They should fit inside a 16:9 screen with comfortable margins and a clear footer. No fourth choice. Keep the same tall clipped-corner leaf-crested frames, forest-green headers and ivory parchment body seen in image 1. First card BLUE / RARE, second PURPLE / EPIC, third AMBER-GOLD / LEGENDARY. Each is fully visible, perfectly front-on, no 3D rotation.\nEach card should contain in reading order: small distinct rarity label in its green top header, one medium circular illustrated skill medallion near the top of the parchment (not huge; reserve abundant text area), two-line-capable skill title, a small level/status line, short effect text, a faint divider and generous quiet parchment area that can later fit longer translated effects, and a clearly subordinate small footer action button \"选择此升级\". In the parchment use DARK forest-green text with high contrast, not luminous pale copy. No invented numerical stats, percentages, prices, keyboard shortcuts or refresh limits.\nFirst card exact text: rarity \"稀有\"; name \"挥刀剑气\"; status \"新能力\"; description \"近战挥击释放剑气。\\n沿攻击方向飞行。\"; footer \"选择此升级\". Medallion art: one elegant steel sword with an ivory curved wind slash, leaf-green shadow tones.\nSecond card exact text: rarity \"史诗\"; name \"投射物分裂\"; status \"升级至 2 级\"; description \"投射物向两侧分裂。\\n适用于剑气与箭矢。\"; footer \"选择此升级\". Medallion art: three diverging pale-gold magical arrow trails, readable clear shape. Give this center card a subtle HOVER treatment preserving its PURPLE border hue; small warm-ivory corner brackets or a very small leaf pointer may mark focus. It is hovered, not yet committed, so NO selected checkmark.\nThird card exact text: rarity \"传说\"; name \"回响连锁\"; status \"新能力\"; description \"打击在附近目标间传递。\\n形成连续的回响。\"; footer \"选择此升级\". Medallion art: three antique circular sigils linked by a curling golden energy arc, no literal lightning element commitment.\nCENTERED BELOW ALL THREE CARDS, outside the cards with a real visual gap, place ONE prominent medium-wide refresh button in forest-green with fine antique-gold leaf trim, a circular two-arrow icon and exact Chinese text \"刷新选项\". Under it a short subdued line \"重新生成本次候选\". No cost or remaining count because those rules are not specified. The refresh control must be obvious and not attached to any individual card. No close or skip action.\nStyle: tactile premium hand-painted fantasy interface matching the attached reference, refined leaves and vines confined to margins, warm paper with delicate botanical corner illustration, fine metal bevels, restrained soft glow, consistent calm visual hierarchy. Avoid plastic mobile-game cartoon, sci-fi neon, huge particle clouds, cluttered illustrations, unreadable microtext, extra UI panels, inventory grids, order portraits and watermark. Highly polished clear lettering."
+    }
+  ],
+  "rarities": [
+    {
+      "art_id": "common",
+      "name_zh": "普通",
+      "name_en": "Common",
+      "accent_suggestion": "#E7E5D9"
+    },
+    {
+      "art_id": "rare",
+      "name_zh": "稀有",
+      "name_en": "Rare",
+      "accent_suggestion": "#58AEFF"
+    },
+    {
+      "art_id": "epic",
+      "name_zh": "史诗",
+      "name_en": "Epic",
+      "accent_suggestion": "#C783F1"
+    },
+    {
+      "art_id": "legendary",
+      "name_zh": "传说",
+      "name_en": "Legendary",
+      "accent_suggestion": "#E5AA46"
+    }
+  ],
+  "notes": [
+    "Rarity assignments and skill copy in mockups are illustrative only, not gameplay definitions.",
+    "In-image text is for review; runtime text must use localization.",
+    "Refresh is a proposed UI control, not implemented by this art task.",
+    "Images copied without pixel editing."
+  ]
+}

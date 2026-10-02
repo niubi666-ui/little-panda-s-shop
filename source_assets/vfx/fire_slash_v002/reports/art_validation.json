@@ -1,0 +1,212 @@
+{
+  "blender": "5.2.1 LTS",
+  "failures": [],
+  "textures": [
+    {
+      "file": "ribbon_body_0_emission.exr",
+      "size": [
+        2048,
+        512
+      ]
+    },
+    {
+      "file": "ribbon_body_0_mask.png",
+      "size": [
+        2048,
+        512
+      ]
+    },
+    {
+      "file": "ribbon_body_1_emission.exr",
+      "size": [
+        2048,
+        512
+      ]
+    },
+    {
+      "file": "ribbon_body_1_mask.png",
+      "size": [
+        2048,
+        512
+      ]
+    },
+    {
+      "file": "ribbon_body_2_emission.exr",
+      "size": [
+        2048,
+        512
+      ]
+    },
+    {
+      "file": "ribbon_body_2_mask.png",
+      "size": [
+        2048,
+        512
+      ]
+    },
+    {
+      "file": "ribbon_body_3_emission.exr",
+      "size": [
+        2048,
+        512
+      ]
+    },
+    {
+      "file": "ribbon_body_3_mask.png",
+      "size": [
+        2048,
+        512
+      ]
+    }
+  ],
+  "animation": [
+    {
+      "frame": 1,
+      "sword_angle_deg": -154.99999634471394,
+      "arc_hidden": true,
+      "active_shape_keys": [
+        [
+          "Basis",
+          1.0
+        ],
+        [
+          "Sweep_00",
+          1.0
+        ]
+      ]
+    },
+    {
+      "frame": 10,
+      "sword_angle_deg": -103.00773577874143,
+      "arc_hidden": false,
+      "active_shape_keys": [
+        [
+          "Basis",
+          1.0
+        ],
+        [
+          "Sweep_03",
+          0.75
+        ],
+        [
+          "Sweep_04",
+          0.25
+        ]
+      ]
+    },
+    {
+      "frame": 18,
+      "sword_angle_deg": 4.99999985454646,
+      "arc_hidden": false,
+      "active_shape_keys": [
+        [
+          "Basis",
+          1.0
+        ],
+        [
+          "Sweep_10",
+          1.0
+        ]
+      ]
+    },
+    {
+      "frame": 28,
+      "sword_angle_deg": 4.99999985454646,
+      "arc_hidden": false,
+      "active_shape_keys": [
+        [
+          "Basis",
+          1.0
+        ],
+        [
+          "Sweep_10",
+          1.0
+        ]
+      ]
+    },
+    {
+      "frame": 47,
+      "sword_angle_deg": 4.99999985454646,
+      "arc_hidden": false,
+      "active_shape_keys": [
+        [
+          "Basis",
+          1.0
+        ],
+        [
+          "Sweep_10",
+          1.0
+        ]
+      ]
+    },
+    {
+      "frame": 66,
+      "sword_angle_deg": -74.43262168780676,
+      "arc_hidden": false,
+      "active_shape_keys": [
+        [
+          "Basis",
+          1.0
+        ],
+        [
+          "Sweep_05",
+          0.965
+        ],
+        [
+          "Sweep_06",
+          0.035
+        ]
+      ]
+    },
+    {
+      "frame": 90,
+      "sword_angle_deg": 4.99999985454646,
+      "arc_hidden": false,
+      "active_shape_keys": [
+        [
+          "Basis",
+          1.0
+        ],
+        [
+          "Sweep_10",
+          1.0
+        ]
+      ]
+    },
+    {
+      "frame": 96,
+      "sword_angle_deg": 4.99999985454646,
+      "arc_hidden": true,
+      "active_shape_keys": [
+        [
+          "Basis",
+          1.0
+        ],
+        [
+          "Sweep_10",
+          1.0
+        ]
+      ]
+    }
+  ],
+  "atlas": {
+    "size": [
+      1024,
+      1024
+    ],
+    "channels": 4,
+    "alpha_mode": "STRAIGHT"
+  },
+  "source": {
+    "shader_nodes": 638,
+    "shape_keys": 12,
+    "frame_range": [
+      1,
+      96
+    ]
+  },
+  "atlas_source": {
+    "mesh_objects": 4,
+    "film_transparent": true
+  }
+}

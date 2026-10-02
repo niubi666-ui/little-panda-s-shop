@@ -1,0 +1,30 @@
+{
+  "01_long_wall": {
+    "objects": 92,
+    "base_triangles": 469988
+  },
+  "02_treasure_wall": {
+    "objects": 64,
+    "base_triangles": 277315
+  },
+  "03_column_crates": {
+    "objects": 68,
+    "base_triangles": 287992
+  },
+  "04_rock_corner": {
+    "objects": 71,
+    "base_triangles": 254046
+  },
+  "source_sha256": "ee17601243b5a936fded4422854939ed7549d3cb7b2a26a3d09f3ce9f9630af0",
+  "source": "E:\\ShopGame\\source_assets\\characters\\red_panda\\blender\\item2.blend",
+  "blender_file": "E:\\ShopGame\\source_assets\\environments\\dungeon\\room_compositions\\v004\\blender\\forest_compositions_art_v004.blend",
+  "scenes": [
+    "01 Long wall - barrels and wildflowers",
+    "02 Broken wall - treasure alcove",
+    "03 Broken column - supply cache",
+    "04 L wall - mossy boulder"
+  ],
+  "packed_images": 15,
+  "godot_imported": false,
+  "review_copy": "E:\\ShopGame\\source_assets\\environments\\dungeon\\room_compositions\\v004\\blender\\forest_compositions_review_v004.blend"
+}

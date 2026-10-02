@@ -1,0 +1,142 @@
+{
+  "checks": {
+    "source_unchanged": true,
+    "all_15_source_roles_used": true,
+    "all_images_embedded": true,
+    "all_texture_copies_resolve": true,
+    "finite_vertices": true,
+    "hero_camera_exists": true
+  },
+  "objects": 922,
+  "unique_mesh_triangles": 510137,
+  "instanced_mesh_triangles": 19040555,
+  "images": [
+    {
+      "name": "115c48f7-0bd2-42f7-891a-cd0c6f8bac05_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\115c48f7-0bd2-42f7-891a-cd0c6f8bac05_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "2759e1c7-e152-4b7b-8389-bf8bfc3e4cc2_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\2759e1c7-e152-4b7b-8389-bf8bfc3e4cc2_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "37f091a1-93ce-490e-ab23-2dd5cc2d41e4_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\37f091a1-93ce-490e-ab23-2dd5cc2d41e4_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "5f2e94b5-7733-4499-9e3e-d6fbc5dcda57_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\5f2e94b5-7733-4499-9e3e-d6fbc5dcda57_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "616287b3-b6ea-477c-98bd-52087b9d563c_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\616287b3-b6ea-477c-98bd-52087b9d563c_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "6d00c541-9c1e-42f5-bdd1-3475b0d613d0_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\6d00c541-9c1e-42f5-bdd1-3475b0d613d0_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "738cffd6-948f-4d6f-87e3-1c13fa4187bc_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\738cffd6-948f-4d6f-87e3-1c13fa4187bc_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "8699bc23-8e8d-4983-a663-33ff118c3da3_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\8699bc23-8e8d-4983-a663-33ff118c3da3_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "86cfab13-f1e3-42c3-9c47-d59979d63457_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\86cfab13-f1e3-42c3-9c47-d59979d63457_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "ba956f36-4051-4087-a2ba-15b622e9bb75_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\ba956f36-4051-4087-a2ba-15b622e9bb75_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "cf33c108-6e2a-4dc3-852f-70f26a56023a_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\cf33c108-6e2a-4dc3-852f-70f26a56023a_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "e1d52510-bdaf-4998-a4ff-2e5695223a85_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\e1d52510-bdaf-4998-a4ff-2e5695223a85_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "ef6632ad-5997-4333-a080-b492a7b4b3fb_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\ef6632ad-5997-4333-a080-b492a7b4b3fb_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "fc0c452e-9249-4128-a768-9aa9497ee7d0_basecolor",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\fc0c452e-9249-4128-a768-9aa9497ee7d0_basecolor.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "leafy_grass_diff_2k.jpg",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\..\\..\\shared\\textures\\leafy_grass\\leafy_grass_diff_2k.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "leafy_grass_nor_gl_2k.jpg",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\..\\..\\shared\\textures\\leafy_grass\\leafy_grass_nor_gl_2k.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "leafy_grass_rough_2k.jpg",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\..\\..\\shared\\textures\\leafy_grass\\leafy_grass_rough_2k.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "tripo_image_37d4c14f_0",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\textures\\tripo_image_37d4c14f_0.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "worn_rock_natural_01_diff_2k.jpg",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\..\\..\\shared\\textures\\worn_rock_natural_01\\worn_rock_natural_01_diff_2k.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "worn_rock_natural_01_nor_gl_2k.jpg",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\..\\..\\shared\\textures\\worn_rock_natural_01\\worn_rock_natural_01_nor_gl_2k.jpg",
+      "local_exists": true
+    },
+    {
+      "name": "worn_rock_natural_01_rough_2k.jpg",
+      "packed": true,
+      "path": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\blender\\..\\..\\..\\shared\\textures\\worn_rock_natural_01\\worn_rock_natural_01_rough_2k.jpg",
+      "local_exists": true
+    }
+  ],
+  "scope": "Blender source-art checks only; no Godot performance, collisions or navigation validation."
+}

@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bvtsndicjukye"]
+
+[ext_resource type="Shader" uid="uid://bbnbnipkkhyvn" path="res://presentation/combat/fx/red_outline.gdshader" id="outline"]
+[ext_resource type="Shader" uid="uid://lsj6a0cvqo07" path="res://presentation/combat/fx/white_hit.gdshader" id="white"]
+
+[sub_resource type="ShaderMaterial" id="outline_mat"]
+render_priority = 0
+shader = ExtResource("outline")
+shader_parameter/outline_width = 0.055
+shader_parameter/outline_color = Color(1, 0.035, 0.015, 1)
+shader_parameter/emission_energy = 1.2
+
+[resource]
+render_priority = 0
+next_pass = SubResource("outline_mat")
+shader = ExtResource("white")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/emission_energy = 2.0

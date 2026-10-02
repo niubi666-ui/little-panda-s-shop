@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://presentation/combat/demos/slash_showcase_v002/showcase.gd" id="1"]
+[node name="SlashShowcase" type="Node"]
+script = ExtResource("1")

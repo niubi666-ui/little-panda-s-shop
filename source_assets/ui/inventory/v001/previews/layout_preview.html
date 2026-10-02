@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>背包 UI · 独立素材拼装示意</title>
+<style>
+@font-face{font-family:ShopSerif;src:url('../../../../../game/assets/fonts/NotoSerifSC-VF.ttf')}
+*{box-sizing:border-box}body{margin:0;background:#0a1612;color:#f1dfb0;font:15px/1.6 "Microsoft YaHei",sans-serif}
+.toolbar{max-width:1600px;padding:18px 26px;margin:auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.toolbar p{margin:0;flex:1;min-width:350px;color:#b6bea9}.toolbar a{color:#ddcb94}.toolbar button{background:#274336;color:#eee0b7;border:1px solid #8f8055;padding:7px 18px;cursor:pointer}
+.viewport{position:relative;width:100%;max-width:1600px;margin:auto;overflow:hidden}.stage{position:relative;width:1600px;height:1000px;transform-origin:top left;background:#13221b}
+.scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.4) blur(3px);opacity:.75}.veil{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent,#06100ccb)}
+.window{position:absolute;left:115px;top:90px;width:1370px;height:820px;filter:drop-shadow(0 25px 30px #000a);font-family:ShopSerif,serif}
+.skin{position:absolute;inset:0;pointer-events:none;display:grid}.skin .piece{position:relative;overflow:hidden;min-width:0;min-height:0}.skin img{position:absolute;max-width:none;pointer-events:none}
+.title{position:absolute;left:65px;top:37px;display:flex;align-items:center;gap:21px}.title>img{width:58px;height:58px}.title h1{margin:0;font-size:44px;letter-spacing:8px;font-weight:600}
+.title-leaf{position:absolute;width:75px;height:75px;left:268px;top:27px;opacity:.65}.meta{position:absolute;right:126px;top:54px;font:16px "Microsoft YaHei";color:#b3b892}
+.close{position:absolute;right:52px;top:36px;width:58px;height:58px;border:0;background:transparent;opacity:.8}.close>img{position:absolute;inset:17px;width:24px;height:24px}
+.divider{position:absolute;top:119px;left:64px;width:1242px;height:16px}
+.tabs{position:absolute;left:66px;top:153px;width:788px;display:flex;gap:12px}.tab{position:relative;height:62px;flex:1;border:0;background:transparent;color:#d7d9b4;font:24px ShopSerif;cursor:pointer}.tab .label{position:relative;z-index:1}.tab.active{color:#ffedb9}
+.grid{position:absolute;left:66px;top:235px;width:788px;display:grid;grid-template-columns:repeat(5,148px);gap:12px}
+.slot{width:148px;height:148px;position:relative;background:transparent;border:0;padding:0;cursor:pointer}.slot:focus-visible,.tab:focus-visible{outline:2px solid #fff0b3;outline-offset:4px}
+.slot .item{position:absolute;inset:1px;width:146px;height:146px;object-fit:contain;filter:drop-shadow(0 4px 5px #0009)}.slot .empty{position:absolute;inset:54px;width:40px;height:40px;opacity:.35}
+.slot .selected{position:absolute;inset:-3px;pointer-events:none}.slot .selected .skin{opacity:.9}.slot.is-empty{cursor:default}
+.detail{position:absolute;left:891px;top:151px;width:411px;height:594px;color:#3a3323}
+.detail-body{position:absolute;inset:27px 29px;display:flex;flex-direction:column;align-items:center}
+.detail-portrait{width:179px;height:179px;object-fit:contain;filter:drop-shadow(0 4px 6px #5b3c2433)}
+.detail h2{font-weight:600;font-size:29px;line-height:1.35;text-align:center;margin:6px 0 7px}
+.type{color:#746545;font:15px "Microsoft YaHei";letter-spacing:2px;margin:0 0 14px}
+.detail-rule{width:100%;height:15px}.description{margin:13px 0 0;font-size:18px;line-height:1.7;text-align:left;min-height:65px;width:100%}
+.action{position:relative;width:100%;height:55px;border:0;background:transparent;color:#efdfba;font:22px ShopSerif;margin-top:13px;opacity:.6}
+.action-inner{position:relative;display:flex;justify-content:center;align-items:center;gap:12px;line-height:1.2}.action-inner img{width:24px;height:24px}
+.art-warning{font:12px/1.45 "Microsoft YaHei";color:#88724b;text-align:center;margin:10px 0 0}
+.footer-note{position:absolute;left:76px;bottom:49px;font:15px/1.65 "Microsoft YaHei";color:#b4b38c}
+.sort{position:absolute;left:642px;bottom:40px;width:210px;height:56px;background:transparent;border:0;color:#ead9ad;font:22px ShopSerif;cursor:pointer}.sort .action-inner{gap:9px}
+.frame-note{position:absolute;bottom:23px;left:0;right:0;text-align:center;letter-spacing:3px;font-size:14px;color:#b5bba3}
+.after{max-width:1460px;margin:20px auto 40px;padding:0 22px;color:#b3b99f;font-size:14px}.after strong{color:#e4d3a5}
+</style>
+</head>
+<body>
+<div class="toolbar"><a href="index.html">← 素材图库</a><p>独立 PNG / SVG 拼装示意。点击物品与分类查看，按钮不执行游戏操作。</p><button id="language">EN / 中文</button></div>
+<div class="viewport" id="viewport"><div class="stage" id="stage">
+<img class="scene" src="../../../../environments/shop/previews/shop_interior_v006.png" alt=""><div class="veil"></div>
+<section class="window" id="window">
+<div class="title"><img src="../exports/icons/title_bag.svg" alt=""><h1 id="heading">背包</h1></div>
+<img class="title-leaf" src="../exports/chrome/header_leaf_sprig.png" alt="">
+<div class="meta" id="mode">树叶主题 · 美术拼装</div>
+<div class="close" id="close" aria-hidden="true"><img src="../exports/icons/close.svg" alt=""></div>
+<img class="divider" src="../exports/icons/divider_gold.svg" alt="">
+<nav class="tabs" id="tabs" aria-label="物品分类"></nav><div class="grid" id="grid"></div>
+<aside class="detail" id="detail">
+<div class="detail-body">
+<img class="detail-portrait" id="portrait" alt="">
+<h2 id="itemname"></h2><p class="type" id="itemtype"></p><img class="detail-rule" src="../exports/icons/divider_ink.svg" alt="">
+<p class="description" id="description"></p>
+<button class="action" id="use" disabled><span class="action-inner"><img src="../exports/icons/action_use.svg" alt=""><span id="use-label">使用</span></span></button>
+<button class="action" id="store" disabled><span class="action-inner"><img src="../exports/icons/action_store.svg" alt=""><span id="store-label">移入仓库</span></span></button>
+<p class="art-warning" id="action-note">按钮外观示例 · 操作尚未接入</p>
+</div></aside>
+<div class="footer-note" id="footer-note">6 张样例物品图标<br>网格仅演示排版，不代表背包容量</div>
+<button class="sort" id="sort"><span class="action-inner"><img src="../exports/icons/action_sort.svg" alt=""><span id="sort-label">展示排序</span></span></button>
+</section><div class="frame-note" id="frame-note">ART ASSEMBLY · 非游戏实机截图</div>
+</div></div>
+<p class="after"><strong>素材说明：</strong>标题、名称、分类、数量与说明文字保持为独立文本层。此页没有伪造金币、库存数量、容量或稀有度；颜色标记与数量底板可在图库单独查看。HTML 使用原始透明图片分区显示，本轮只做静态文件检查，尚未进行浏览器和 Godot 的装配验收。</p>
+<script>
+const assets=[{"id": "inventory.chrome.button_primary", "label_zh_for_art_browser_only": "主要操作按钮", "source_path": "source_assets/ui/inventory/v001/exports/chrome/button_primary.png", "runtime_path": "res://assets/ui/inventory/v001/chrome/button_primary.png", "size_px": [2172, 724], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [43, 191, 2086, 331], "atlas_region_xywh": [35, 183, 2102, 347], "center_alpha": 254, "transparent_pixel_fraction": 0.564022, "sha256": "9e5058ddcfab3747d4fd4d5dd5ded54795a3e2d5747637555c4ebf32feada33e", "sample_entry_id": null, "status": "ui_art_candidate"}, {"id": "inventory.chrome.button_secondary", "label_zh_for_art_browser_only": "仓库操作按钮", "source_path": "source_assets/ui/inventory/v001/exports/chrome/button_secondary.png", "runtime_path": "res://assets/ui/inventory/v001/chrome/button_secondary.png", "size_px": [2172, 724], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [63, 211, 2047, 301], "atlas_region_xywh": [55, 203, 2063, 317], "center_alpha": 253, "transparent_pixel_fraction": 0.604256, "sha256": "e824738a0411ad569e10324cb71bc061e6152c0b220fecb8ba07548e0c1d9337", "sample_entry_id": null, "status": "ui_art_candidate"}, {"id": "inventory.chrome.close_socket", "label_zh_for_art_browser_only": "关闭按钮底板", "source_path": "source_assets/ui/inventory/v001/exports/chrome/close_socket.png", "runtime_path": "res://assets/ui/inventory/v001/chrome/close_socket.png", "size_px": [1254, 1254], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [223, 239, 810, 773], "atlas_region_xywh": [215, 231, 826, 789], "center_alpha": 253, "transparent_pixel_fraction": 0.605983, "sha256": "65314a0fa94df59a1386125c9aaa9ff531b2969e525ab48fbdaa162b1b76ae7c", "sample_entry_id": null, "status": "ui_art_candidate"}, {"id": "inventory.chrome.details_parchment", "label_zh_for_art_browser_only": "羊皮纸详情区", "source_path": "source_assets/ui/inventory/v001/exports/chrome/details_parchment.png", "runtime_path": "res://assets/ui/inventory/v001/chrome/details_parchment.png", "size_px": [1024, 1536], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [78, 81, 869, 1374], "atlas_region_xywh": [70, 73, 885, 1390], "center_alpha": 253, "transparent_pixel_fraction": 0.239013, "sha256": "6a5140acc634ae6f5cf5cc3d687bff463230041b9499e0ebcbde418214ad293f", "sample_entry_id": null, "status": "ui_art_candidate"}, {"id": "inventory.chrome.header_leaf_sprig", "label_zh_for_art_browser_only": "独立标题叶饰", "source_path": "source_assets/ui/inventory/v001/exports/chrome/header_leaf_sprig.png", "runtime_path": "res://assets/ui/inventory/v001/chrome/header_leaf_sprig.png", "size_px": [1254, 1254], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [176, 115, 991, 1034], "atlas_region_xywh": [168, 107, 1007, 1050], "center_alpha": 0, "transparent_pixel_fraction": 0.875702, "sha256": "f4bba1bfe12255f2c378cfa642003e4b6750b52e99b05c9d38628525c3d539fd", "sample_entry_id": null, "status": "ui_art_candidate"}, {"id": "inventory.chrome.slot_regular", "label_zh_for_art_browser_only": "物品格常态", "source_path": "source_assets/ui/inventory/v001/exports/chrome/slot_regular.png", "runtime_path": "res://assets/ui/inventory/v001/chrome/slot_regular.png", "size_px": [1254, 1254], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [128, 131, 998, 992], "atlas_region_xywh": [120, 123, 1014, 1008], "center_alpha": 253, "transparent_pixel_fraction": 0.372679, "sha256": "0effc0f3df04e236daeb17052fe8efc762fa3bf7662ad2ae5ce8eb0e795e52d1", "sample_entry_id": null, "status": "ui_art_candidate"}, {"id": "inventory.chrome.slot_selected", "label_zh_for_art_browser_only": "金色选中框", "source_path": "source_assets/ui/inventory/v001/exports/chrome/slot_selected.png", "runtime_path": "res://assets/ui/inventory/v001/chrome/slot_selected.png", "size_px": [1254, 1254], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [91, 99, 1072, 1054], "atlas_region_xywh": [83, 91, 1088, 1070], "center_alpha": 0, "transparent_pixel_fraction": 0.746591, "sha256": "a76cbcc2fb1ff294bff25728d979937dc21c9ff642a8eab7a1455b0f1c3de759", "sample_entry_id": null, "status": "ui_art_candidate"}, {"id": "inventory.chrome.tab_regular", "label_zh_for_art_browser_only": "分类页签常态", "source_path": "source_assets/ui/inventory/v001/exports/chrome/tab_regular.png", "runtime_path": "res://assets/ui/inventory/v001/chrome/tab_regular.png", "size_px": [1774, 887], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [149, 341, 1477, 220], "atlas_region_xywh": [141, 333, 1493, 236], "center_alpha": 253, "transparent_pixel_fraction": 0.793343, "sha256": "a6480121da37234a1db0ce0605483bda9a5cd717e0cf3389bc759462322544c1", "sample_entry_id": null, "status": "ui_art_candidate"}, {"id": "inventory.chrome.tab_selected", "label_zh_for_art_browser_only": "分类页签选中态", "source_path": "source_assets/ui/inventory/v001/exports/chrome/tab_selected.png", "runtime_path": "res://assets/ui/inventory/v001/chrome/tab_selected.png", "size_px": [2048, 768], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [115, 189, 1817, 390], "atlas_region_xywh": [107, 181, 1833, 406], "center_alpha": 253, "transparent_pixel_fraction": 0.547716, "sha256": "9402b1f2103efe62bad43a1f34dc78dd9b2116cb0fb3bca4f49e49b673871204", "sample_entry_id": null, "status": "ui_art_candidate"}, {"id": "inventory.chrome.window_panel", "label_zh_for_art_browser_only": "背包主面板", "source_path": "source_assets/ui/inventory/v001/exports/chrome/window_panel.png", "runtime_path": "res://assets/ui/inventory/v001/chrome/window_panel.png", "size_px": [1536, 1024], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [60, 95, 1417, 830], "atlas_region_xywh": [52, 87, 1433, 846], "center_alpha": 253, "transparent_pixel_fraction": 0.242173, "sha256": "7139400a833d9d0d321bce81df28b884d67722c3609953a7d43039c727256fe6", "sample_entry_id": null, "status": "ui_art_candidate"}, {"id": "inventory.items.crystal_blue", "label_zh_for_art_browser_only": "蓝色晶簇", "source_path": "source_assets/ui/inventory/v001/exports/items/crystal_blue.png", "runtime_path": "res://assets/ui/inventory/v001/items/crystal_blue.png", "size_px": [1254, 1254], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [252, 225, 764, 851], "atlas_region_xywh": [244, 217, 780, 867], "center_alpha": 253, "transparent_pixel_fraction": 0.768489, "sha256": "98fe3193e809baa3524e10abc328351a15def93b0bee15262f9fcd15d6de67b2", "sample_entry_id": "crystal", "status": "sample_catalog_concept_icon"}, {"id": "inventory.items.herb_sprig", "label_zh_for_art_browser_only": "芳香草叶", "source_path": "source_assets/ui/inventory/v001/exports/items/herb_sprig.png", "runtime_path": "res://assets/ui/inventory/v001/items/herb_sprig.png", "size_px": [1254, 1254], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [263, 197, 825, 879], "atlas_region_xywh": [255, 189, 841, 895], "center_alpha": 253, "transparent_pixel_fraction": 0.825277, "sha256": "196070371510801c46b77596e4d94f85ae79d323da6594dfae29648a89a3cc92", "sample_entry_id": "herb", "status": "sample_catalog_concept_icon"}, {"id": "inventory.items.potion_red", "label_zh_for_art_browser_only": "红色药剂", "source_path": "source_assets/ui/inventory/v001/exports/items/potion_red.png", "runtime_path": "res://assets/ui/inventory/v001/items/potion_red.png", "size_px": [1254, 1254], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [328, 215, 601, 858], "atlas_region_xywh": [320, 207, 617, 874], "center_alpha": 253, "transparent_pixel_fraction": 0.782911, "sha256": "4a62e38e7686c63e394dea7cac05911257974cda65edc212cef6747ed64cacff", "sample_entry_id": "potion", "status": "sample_catalog_concept_icon"}, {"id": "inventory.items.scroll_parchment", "label_zh_for_art_browser_only": "旧卷轴", "source_path": "source_assets/ui/inventory/v001/exports/items/scroll_parchment.png", "runtime_path": "res://assets/ui/inventory/v001/items/scroll_parchment.png", "size_px": [1254, 1254], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [228, 305, 808, 690], "atlas_region_xywh": [220, 297, 824, 706], "center_alpha": 253, "transparent_pixel_fraction": 0.858572, "sha256": "e541e226b367c9551a6b4323bdff2302d9713c301b18ec4c6bf4ed0bc308404c", "sample_entry_id": "scroll", "status": "sample_catalog_concept_icon"}, {"id": "inventory.items.sword_iron", "label_zh_for_art_browser_only": "旅行短剑", "source_path": "source_assets/ui/inventory/v001/exports/items/sword_iron.png", "runtime_path": "res://assets/ui/inventory/v001/items/sword_iron.png", "size_px": [1254, 1254], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [256, 249, 778, 807], "atlas_region_xywh": [248, 241, 794, 823], "center_alpha": 1, "transparent_pixel_fraction": 0.955455, "sha256": "34ae4eb718737a9ce17e571a0fcdca43fb262b99e9ec2e53d5d50271cc6bcae3", "sample_entry_id": "sword", "status": "sample_catalog_concept_icon"}, {"id": "inventory.items.travel_pouch", "label_zh_for_art_browser_only": "旅行布袋", "source_path": "source_assets/ui/inventory/v001/exports/items/travel_pouch.png", "runtime_path": "res://assets/ui/inventory/v001/items/travel_pouch.png", "size_px": [1254, 1254], "mode": "RGBA", "alpha_gt_4_bbox_xywh": [308, 244, 651, 817], "atlas_region_xywh": [300, 236, 667, 833], "center_alpha": 253, "transparent_pixel_fraction": 0.764456, "sha256": "59820b9ae998e05d80b4acaccc62f977c1bf0f40f713c5624e3e7181e10d2f1f", "sample_entry_id": "bag", "status": "sample_catalog_concept_icon"}];
+const byName=Object.fromEntries(assets.map(a=>[a.id.split(".").pop(),a]));
+function imagePath(id){const a=byName[id];return "../exports/"+a.runtime_path.split("/v001/")[1];}
+// Nine regions display the untouched original file; no pixels are cropped or resampled on disk.
+function skin(host,id,src=70,dst=14){
+ const a=byName[id],[W,H]=a.size_px,[x,y,w,h]=a.atlas_region_xywh;
+ const s=Math.min(src,Math.floor(w/3),Math.floor(h/3));
+ const xs=[x,x+s,x+w-s,x+w],ys=[y,y+s,y+h-s,y+h];
+ const layer=document.createElement("div");layer.className="skin";layer.style.gridTemplateColumns=dst+"px 1fr "+dst+"px";layer.style.gridTemplateRows=dst+"px 1fr "+dst+"px";
+ for(let row=0;row<3;row++)for(let col=0;col<3;col++){
+  const sw=xs[col+1]-xs[col],sh=ys[row+1]-ys[row],clip=document.createElement("div"),im=document.createElement("img");
+  clip.className="piece";im.src=imagePath(id);im.alt="";im.style.cssText="width:"+(W/sw*100)+"%;height:"+(H/sh*100)+"%;left:"+(-xs[col]/sw*100)+"%;top:"+(-ys[row]/sh*100)+"%";
+  clip.append(im);layer.append(clip);
+ }
+ host.prepend(layer);
+}
+const items=[
+ {id:"potion",image:"potion_red",category:"potions",zh:"红色药剂",en:"Red Potion",descriptionZh:"玻璃瓶、红色液体与皮革封口。\n此处仅展示图标和文字层。",descriptionEn:"Glass, red liquid and a leather-bound cork. An icon and text layout sample."},
+ {id:"sword",image:"sword_iron",category:"equipment",zh:"旅行短剑",en:"Travel Shortsword",descriptionZh:"冷色钢刃，搭配黄铜护手。\n物品属性由后续正式数据提供。",descriptionEn:"A cool steel blade with a brass guard. Item statistics belong to future game data."},
+ {id:"bag",image:"travel_pouch",category:"equipment",zh:"旅行布袋",en:"Travel Pouch",descriptionZh:"粗织布料、皮革包边与系绳。\n美术样例，不定义装备效果。",descriptionEn:"Heavy canvas, leather trim and a tied cord. An art sample with no equipment effect."},
+ {id:"herb",image:"herb_sprig",category:"materials",zh:"芳香草叶",en:"Aromatic Herbs",descriptionZh:"完整叶簇与清晰的枝叶轮廓。\n用途及数量以正式数据为准。",descriptionEn:"A compact sprig with a clear leafy silhouette. Uses and amounts await actual content."},
+ {id:"crystal",image:"crystal_blue",category:"materials",zh:"蓝色晶簇",en:"Blue Crystal Cluster",descriptionZh:"带暖色反光的蓝色晶体。\n此颜色不代表稀有度等级。",descriptionEn:"Blue facets with warm reflected highlights. This color does not define a rarity tier."},
+ {id:"scroll",image:"scroll_parchment",category:"materials",zh:"旧卷轴",en:"Old Scroll",descriptionZh:"羊皮纸卷与红色系绳。\n图标上没有烘焙文字。",descriptionEn:"A parchment roll tied with red cord. No text is baked into the icon."}
+];
+const categories=[["all","全部","All"],["equipment","装备","Equipment"],["potions","药剂","Potions"],["materials","材料","Materials"]];
+let lang="zh",category="all",selected="potion",reverse=false;
+skin(document.getElementById("window"),"window_panel",112,48);
+skin(document.getElementById("detail"),"details_parchment",130,36);
+skin(document.getElementById("close"),"close_socket",160,12);
+skin(document.getElementById("use"),"button_primary",140,17);
+skin(document.getElementById("store"),"button_secondary",140,17);
+skin(document.getElementById("sort"),"button_secondary",140,17);
+function render(){
+ const english=lang==="en",visible=items.filter(i=>category==="all"||i.category===category);
+ if(reverse)visible.reverse();
+ if(!visible.some(i=>i.id===selected))selected=visible[0]?.id;
+ const tabs=document.getElementById("tabs");tabs.replaceChildren();
+ categories.forEach(c=>{
+  const b=document.createElement("button");b.className="tab"+(c[0]===category?" active":"");b.setAttribute("aria-pressed",String(c[0]===category));
+  const label=document.createElement("span");label.className="label";label.textContent=c[english?2:1];b.append(label);
+  skin(b,c[0]===category?"tab_selected":"tab_regular",100,13);b.onclick=()=>{category=c[0];render()};tabs.append(b);
+ });
+ const grid=document.getElementById("grid");grid.replaceChildren();
+ for(let n=0;n<15;n++){
+  const item=visible[n],b=document.createElement(item?"button":"div");b.className="slot"+(item?"":" is-empty");
+  skin(b,"slot_regular",160,19);
+  const im=document.createElement("img");im.className=item?"item":"empty";im.src=item?imagePath(item.image):"../exports/icons/empty_slot_mark.svg";im.alt="";
+  b.append(im);
+  if(item){
+   b.title=item[lang];b.setAttribute("aria-label",item[lang]);b.setAttribute("aria-pressed",String(selected===item.id));b.onclick=()=>{selected=item.id;render()};
+   if(selected===item.id){const ring=document.createElement("div");ring.className="selected";skin(ring,"slot_selected",170,21);b.append(ring);}
+  }
+  grid.append(b);
+ }
+ const current=items.find(i=>i.id===selected);
+ document.getElementById("portrait").src=imagePath(current.image);
+ document.getElementById("itemname").textContent=current[lang];
+ document.getElementById("itemtype").textContent=categories.find(c=>c[0]===current.category)[english?2:1];
+ document.getElementById("description").textContent=current[english?"descriptionEn":"descriptionZh"];
+ const text=english?{
+  heading:"Inventory",mode:"Foliage · Art assembly","use-label":"Use","store-label":"Move to storage","action-note":"Visual samples · actions not connected","sort-label":"Reorder samples","footer-note":"6 sample item icons\nGrid layout is not inventory capacity","frame-note":"ART ASSEMBLY · NOT A GAME SCREENSHOT"
+ }:{
+  heading:"背包",mode:"树叶主题 · 美术拼装","use-label":"使用","store-label":"移入仓库","action-note":"按钮外观示例 · 操作尚未接入","sort-label":"展示排序","footer-note":"6 张样例物品图标\n网格仅演示排版，不代表背包容量","frame-note":"ART ASSEMBLY · 非游戏实机截图"
+ };
+ for(const [id,value]of Object.entries(text)){const el=document.getElementById(id);el.textContent=value;el.style.whiteSpace="pre-line";}
+ document.getElementById("heading").style.fontSize=english?"37px":"44px";document.getElementById("heading").style.letterSpacing=english?"1px":"8px";
+ document.querySelector(".title-leaf").style.left=english?"395px":"268px";
+ document.querySelectorAll(".tab").forEach(t=>t.style.fontSize=english?"20px":"24px");
+}
+document.getElementById("language").onclick=()=>{lang=lang==="zh"?"en":"zh";document.documentElement.lang=lang==="zh"?"zh-CN":"en";render()};
+document.getElementById("sort").onclick=()=>{reverse=!reverse;render()};
+function fit(){const viewport=document.getElementById("viewport"),scale=viewport.clientWidth/1600;document.getElementById("stage").style.transform="scale("+scale+")";viewport.style.height=(1000*scale)+"px"}
+window.addEventListener("resize",fit);render();fit();
+</script>
+</body></html>

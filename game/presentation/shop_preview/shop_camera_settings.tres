@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://presentation/shop_preview/shop_camera_settings.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+initial_size = 7.4
+minimum_size = 5.0
+maximum_size = 11.5
+zoom_step = 0.7
+zoom_response = 12.0
+follow_response = 7.0
+focus_height = 0.6
+focus_bounds = Rect2(-0.8, -2.7, 2.0, 3.5)
+camera_distance = 24.0

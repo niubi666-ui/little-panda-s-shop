@@ -1,0 +1,456 @@
+{
+	"arena": "res://rogue/scenes/training_arena.tscn",
+	"casts": [
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 1,
+			"damage_applied": 0.0,
+			"hit_count": 0,
+			"opening_empty_swing": true,
+			"radius_m": 1.9,
+			"start_review_sec": 0.35,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 18,
+			"arc_deg": 160.0,
+			"cast_id": 2,
+			"damage_applied": 0.0,
+			"hit_count": 0,
+			"opening_empty_swing": true,
+			"radius_m": 1.9,
+			"start_review_sec": 1.25,
+			"time_scale": 0.4
+		},
+		{
+			"ability_id": "slash.3",
+			"active_fx_frames": 9,
+			"arc_deg": 160.0,
+			"cast_id": 3,
+			"damage_applied": 54.0,
+			"hit_count": 2,
+			"opening_empty_swing": false,
+			"radius_m": 2.2,
+			"start_review_sec": 3.01666666666666,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 4,
+			"damage_applied": 32.0,
+			"hit_count": 2,
+			"opening_empty_swing": false,
+			"radius_m": 1.9,
+			"start_review_sec": 3.69999999999999,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 7,
+			"arc_deg": 160.0,
+			"cast_id": 5,
+			"damage_applied": 6.0,
+			"hit_count": 2,
+			"opening_empty_swing": false,
+			"radius_m": 1.9,
+			"start_review_sec": 4.13333333333332,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.3",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 6,
+			"damage_applied": 0.0,
+			"hit_count": 0,
+			"opening_empty_swing": false,
+			"radius_m": 2.2,
+			"start_review_sec": 4.56666666666666,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 7,
+			"damage_applied": 48.0,
+			"hit_count": 3,
+			"opening_empty_swing": false,
+			"radius_m": 1.9,
+			"start_review_sec": 6.26666666666665,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 7,
+			"arc_deg": 160.0,
+			"cast_id": 8,
+			"damage_applied": 54.0,
+			"hit_count": 3,
+			"opening_empty_swing": false,
+			"radius_m": 1.9,
+			"start_review_sec": 6.69999999999998,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.3",
+			"active_fx_frames": 3,
+			"arc_deg": 160.0,
+			"cast_id": 9,
+			"damage_applied": 39.0,
+			"hit_count": 2,
+			"opening_empty_swing": false,
+			"radius_m": 2.2,
+			"start_review_sec": 7.13333333333331,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 8,
+			"arc_deg": 160.0,
+			"cast_id": 10,
+			"damage_applied": 16.0,
+			"hit_count": 1,
+			"opening_empty_swing": false,
+			"radius_m": 1.9,
+			"start_review_sec": 7.73333333333331,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 7,
+			"arc_deg": 160.0,
+			"cast_id": 11,
+			"damage_applied": 18.0,
+			"hit_count": 1,
+			"opening_empty_swing": false,
+			"radius_m": 1.9,
+			"start_review_sec": 8.16666666666665,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.3",
+			"active_fx_frames": 0,
+			"arc_deg": 160.0,
+			"cast_id": 12,
+			"damage_applied": 0.0,
+			"hit_count": 0,
+			"opening_empty_swing": false,
+			"radius_m": 2.2,
+			"start_review_sec": 8.60000000000001,
+			"time_scale": 1.0
+		},
+		{
+			"ability_id": "slash.1",
+			"active_fx_frames": 18,
+			"arc_deg": 160.0,
+			"cast_id": 13,
+			"damage_applied": 12.0,
+			"hit_count": 1,
+			"opening_empty_swing": false,
+			"radius_m": 1.9,
+			"start_review_sec": 9.48333333333338,
+			"time_scale": 0.4
+		},
+		{
+			"ability_id": "slash.2",
+			"active_fx_frames": 0,
+			"arc_deg": 160.0,
+			"cast_id": 14,
+			"damage_applied": 5.0,
+			"hit_count": 1,
+			"opening_empty_swing": false,
+			"radius_m": 1.9,
+			"start_review_sec": 10.5666666666668,
+			"time_scale": 0.4
+		}
+	],
+	"close_camera_size": 6.5,
+	"deaths": [
+		{
+			"actor_id": "scout",
+			"handle": 2,
+			"review_sec": 4.24999999999999
+		},
+		{
+			"actor_id": "scout",
+			"handle": 3,
+			"review_sec": 4.24999999999999
+		},
+		{
+			"actor_id": "scout",
+			"handle": 6,
+			"review_sec": 7.34999999999998
+		},
+		{
+			"actor_id": "scout",
+			"handle": 4,
+			"review_sec": 9.80000000000007
+		},
+		{
+			"actor_id": "brute",
+			"handle": 5,
+			"review_sec": 10.8500000000001
+		}
+	],
+	"default_effect_scene": "res://presentation/combat/fx/slash_default.tscn",
+	"default_effect_script": "res://presentation/combat/fx/golden_trail_v001/golden_effect.gd",
+	"effect_active_frames": 109,
+	"enemy_ai_enabled": true,
+	"failures": [],
+	"final_state": "victory",
+	"hits": [
+		{
+			"ability_id": "slash.3",
+			"amount": 27.0,
+			"cast_id": 3,
+			"review_sec": 3.23333333333333,
+			"source_handle": 1,
+			"target_handle": 2,
+			"target_hp": 19.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.3",
+			"amount": 27.0,
+			"cast_id": 3,
+			"review_sec": 3.23333333333333,
+			"source_handle": 1,
+			"target_handle": 3,
+			"target_hp": 19.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.1",
+			"amount": 16.0,
+			"cast_id": 4,
+			"review_sec": 3.81666666666666,
+			"source_handle": 1,
+			"target_handle": 2,
+			"target_hp": 3.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.1",
+			"amount": 16.0,
+			"cast_id": 4,
+			"review_sec": 3.81666666666666,
+			"source_handle": 1,
+			"target_handle": 3,
+			"target_hp": 3.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.2",
+			"amount": 3.0,
+			"cast_id": 5,
+			"review_sec": 4.24999999999999,
+			"source_handle": 1,
+			"target_handle": 2,
+			"target_hp": 0.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.2",
+			"amount": 3.0,
+			"cast_id": 5,
+			"review_sec": 4.24999999999999,
+			"source_handle": 1,
+			"target_handle": 3,
+			"target_hp": 0.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.1",
+			"amount": 16.0,
+			"cast_id": 7,
+			"review_sec": 6.38333333333332,
+			"source_handle": 1,
+			"target_handle": 4,
+			"target_hp": 30.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.1",
+			"amount": 16.0,
+			"cast_id": 7,
+			"review_sec": 6.38333333333332,
+			"source_handle": 1,
+			"target_handle": 5,
+			"target_hp": 84.0,
+			"target_id": "brute"
+		},
+		{
+			"ability_id": "slash.1",
+			"amount": 16.0,
+			"cast_id": 7,
+			"review_sec": 6.51666666666665,
+			"source_handle": 1,
+			"target_handle": 6,
+			"target_hp": 30.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.2",
+			"amount": 18.0,
+			"cast_id": 8,
+			"review_sec": 6.81666666666665,
+			"source_handle": 1,
+			"target_handle": 4,
+			"target_hp": 12.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.2",
+			"amount": 18.0,
+			"cast_id": 8,
+			"review_sec": 6.81666666666665,
+			"source_handle": 1,
+			"target_handle": 5,
+			"target_hp": 66.0,
+			"target_id": "brute"
+		},
+		{
+			"ability_id": "slash.2",
+			"amount": 18.0,
+			"cast_id": 8,
+			"review_sec": 6.81666666666665,
+			"source_handle": 1,
+			"target_handle": 6,
+			"target_hp": 12.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.3",
+			"amount": 27.0,
+			"cast_id": 9,
+			"review_sec": 7.34999999999998,
+			"source_handle": 1,
+			"target_handle": 5,
+			"target_hp": 39.0,
+			"target_id": "brute"
+		},
+		{
+			"ability_id": "slash.3",
+			"amount": 12.0,
+			"cast_id": 9,
+			"review_sec": 7.34999999999998,
+			"source_handle": 1,
+			"target_handle": 6,
+			"target_hp": 0.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "enemy.slam",
+			"amount": 22.0,
+			"cast_id": 1,
+			"review_sec": 7.39999999999998,
+			"source_handle": 5,
+			"target_handle": 1,
+			"target_hp": 78.0,
+			"target_id": "player"
+		},
+		{
+			"ability_id": "slash.1",
+			"amount": 16.0,
+			"cast_id": 10,
+			"review_sec": 7.84999999999998,
+			"source_handle": 1,
+			"target_handle": 5,
+			"target_hp": 23.0,
+			"target_id": "brute"
+		},
+		{
+			"ability_id": "slash.2",
+			"amount": 18.0,
+			"cast_id": 11,
+			"review_sec": 8.28333333333332,
+			"source_handle": 1,
+			"target_handle": 5,
+			"target_hp": 5.0,
+			"target_id": "brute"
+		},
+		{
+			"ability_id": "enemy.swipe",
+			"amount": 12.0,
+			"cast_id": 2,
+			"review_sec": 8.75000000000001,
+			"source_handle": 4,
+			"target_handle": 1,
+			"target_hp": 66.0,
+			"target_id": "player"
+		},
+		{
+			"ability_id": "slash.1",
+			"amount": 12.0,
+			"cast_id": 13,
+			"review_sec": 9.80000000000007,
+			"source_handle": 1,
+			"target_handle": 4,
+			"target_hp": 0.0,
+			"target_id": "scout"
+		},
+		{
+			"ability_id": "slash.2",
+			"amount": 5.0,
+			"cast_id": 14,
+			"review_sec": 10.8500000000001,
+			"source_handle": 1,
+			"target_handle": 5,
+			"target_hp": 0.0,
+			"target_id": "brute"
+		}
+	],
+	"normal_camera_size": 12.0,
+	"opening_empty_swing_sec": 3.0,
+	"opening_enemy_distance_scale": 4.0,
+	"opening_facing": [
+		0.649999976158142,
+		0.0,
+		0.759999990463257
+	],
+	"opening_slow_start_sec": 1.25,
+	"player_hp": 66.0,
+	"review_duration_sec": 16.0000000000004,
+	"screenshots": {
+		"opening_empty_swing": {
+			"active_progress": 0.722222222222222,
+			"cast_id": 1,
+			"review_sec": 0.55
+		},
+		"opening_slow_sweep": {
+			"active_progress": 1.0,
+			"cast_id": 2,
+			"phase": "first_recovery",
+			"review_sec": 1.81666666666667
+		},
+		"slash_1_normal": {
+			"active_progress": 0.722222222222222,
+			"cast_id": 4,
+			"review_sec": 3.89999999999999
+		},
+		"slash_1_slow": {
+			"active_progress": 0.749999999999999,
+			"cast_id": 13,
+			"review_sec": 10.0166666666667
+		},
+		"slash_2_normal": {
+			"active_progress": 0.805555555555555,
+			"cast_id": 5,
+			"review_sec": 4.33333333333332
+		},
+		"slash_3_normal": {
+			"active_progress": 0.738095238095238,
+			"cast_id": 3,
+			"review_sec": 3.33333333333333
+		}
+	},
+	"slow_scale": 0.4,
+	"slow_start_sec": 9.0,
+	"staged_enemy_positions": true
+}

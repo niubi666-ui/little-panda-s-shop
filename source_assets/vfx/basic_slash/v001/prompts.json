@@ -1,0 +1,35 @@
+{
+  "mode": "built-in imagegen",
+  "purpose": "Neutral sword slash unwrapped RGBA ribbon candidates",
+  "prompts": [
+    {
+      "key": "a_clean",
+      "name": "A 清晰银线",
+      "prompt": "Use case: stylized-concept. Asset type: neutral sword-slash RIBBON texture for a 3D fantasy action game. Generate ONE isolated straight horizontal luminous trail strip on genuinely transparent RGBA background. It is an UNWRAPPED texture, NOT a curved crescent, not a weapon, not a whole scene. Entire strip fully inside canvas, extending horizontally left-to-right, sharp ivory/silver-white core, softer edges, zero elemental symbols, no fire/ice/lightning, no text, no watermark. Fully transparent exterior, no checkerboard baked in. Long slim shape centered in wide landscape image, original texture detail suitable for sampling on a swept sword ribbon mesh. Restrained high quality stylized fantasy, silhouette readable at small scale. Variant A: a single clean elegant thin silver-white ribbon, continuous smooth luminous core, gentle translucent soft falloff, little texture, needle-tapered at both ends. Quiet precise normal sword attack, no sparks included."
+    },
+    {
+      "key": "b_weight",
+      "name": "B 厚重月刃",
+      "prompt": "Use case: stylized-concept. Asset type: neutral sword-slash RIBBON texture for a 3D fantasy action game. Generate ONE isolated straight horizontal luminous trail strip on genuinely transparent RGBA background. It is an UNWRAPPED texture, NOT a curved crescent, not a weapon, not a whole scene. Entire strip fully inside canvas, extending horizontally left-to-right, sharp ivory/silver-white core, softer edges, zero elemental symbols, no fire/ice/lightning, no text, no watermark. Fully transparent exterior, no checkerboard baked in. Long slim shape centered in wide landscape image, original texture detail suitable for sampling on a swept sword ribbon mesh. Restrained high quality stylized fantasy, silhouette readable at small scale. Variant B: a broader weighty ivory-white ribbon, stronger broad luminous core and softer feathery trailing layer, still smooth and continuous, subtly brushed surface, taper ends. More impact and volume than A, but no giant glow cloud and no sparks."
+    },
+    {
+      "key": "c_streak",
+      "name": "C 迅捷碎光",
+      "prompt": "Use case: stylized-concept. Asset type: neutral sword-slash RIBBON texture for a 3D fantasy action game. Generate ONE isolated straight horizontal luminous trail strip on genuinely transparent RGBA background. It is an UNWRAPPED texture, NOT a curved crescent, not a weapon, not a whole scene. Entire strip fully inside canvas, extending horizontally left-to-right, sharp ivory/silver-white core, softer edges, zero elemental symbols, no fire/ice/lightning, no text, no watermark. Fully transparent exterior, no checkerboard baked in. Long slim shape centered in wide landscape image, original texture detail suitable for sampling on a swept sword ribbon mesh. Restrained high quality stylized fantasy, silhouette readable at small scale. Variant C: a dynamic main thin ivory-white ribbon with 2 or 3 close parallel broken short streaks inside the SAME narrow horizontal band, tapering brush texture and small gaps, crisp fast motion, sparse translucent fragments. Maintain one readable long overall silhouette; no scattered sparks outside strip."
+    }
+  ],
+  "original_generated_images": [
+    {
+      "key": "a_clean",
+      "path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0d5df-bad5-7c91-82ee-eb3b05197346\\exec-bb717844-81c9-402c-a07d-6bf1deb81321.png"
+    },
+    {
+      "key": "b_weight",
+      "path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0d5df-bad5-7c91-82ee-eb3b05197346\\exec-22f3b864-00b0-45e5-99c1-d39e8a6da232.png"
+    },
+    {
+      "key": "c_streak",
+      "path": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0d5df-bad5-7c91-82ee-eb3b05197346\\exec-9ea197e6-f7f7-44fe-bae2-ef169a7c3687.png"
+    }
+  ]
+}

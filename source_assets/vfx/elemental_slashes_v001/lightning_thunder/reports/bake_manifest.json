@@ -1,0 +1,268 @@
+{
+  "blender": "5.2.1 LTS",
+  "resolution": [
+    1024,
+    256
+  ],
+  "source": "Original authored zigzag UV paths and native Blender materials; no third-party texture reused",
+  "uv": "U0 tail U1 sword head; V0 tip V1 root",
+  "effects": {
+    "lightning": {
+      "settings": {
+        "seed": 613,
+        "centers": [
+          0.2,
+          0.42,
+          0.68,
+          0.84
+        ],
+        "width": 1.15,
+        "wander": 0.033,
+        "branches": 5,
+        "primary": [
+          2.8,
+          4.8,
+          6.4,
+          1
+        ],
+        "secondary": [
+          0.05,
+          1.9,
+          5.5,
+          1
+        ],
+        "halo": [
+          0.015,
+          0.34,
+          1.2,
+          1
+        ],
+        "spark_count": 32,
+        "tail": 0.23,
+        "rate": 13.0,
+        "runtime_energy": 0.88,
+        "description": "Fine discontinuous cyan-white filaments, narrow root, sparse forks."
+      },
+      "bakes": [
+        {
+          "frame": 0,
+          "channel": "emission",
+          "max": [
+            2.8619260787963867,
+            6.969210624694824,
+            12.851909637451172
+          ],
+          "mean": 0.20241080224514008,
+          "sha256": "9a1a8d83f560c481848e07e463b4100b9cfd3a65bedd83c52bfd02b632e24cb3"
+        },
+        {
+          "frame": 0,
+          "channel": "mask",
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "mean": 0.07041478157043457,
+          "sha256": "92f7e07f0aa1e3ea700fa9685073993a94f852ce656b09b131644735d8b3c6f0"
+        },
+        {
+          "frame": 1,
+          "channel": "emission",
+          "max": [
+            2.8619346618652344,
+            6.969534873962402,
+            12.852846145629883
+          ],
+          "mean": 0.20238585770130157,
+          "sha256": "b7d1bec5b44d412717ff853e4c5c43008459cf70e3ab62cc8bd29cc7467d7f83"
+        },
+        {
+          "frame": 1,
+          "channel": "mask",
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "mean": 0.07117975503206253,
+          "sha256": "464bd0dbcdfc0e7195c6428f6212c54e6bcc7cd637e8a0e1520a22cc5fc78431"
+        },
+        {
+          "frame": 2,
+          "channel": "emission",
+          "max": [
+            2.8615529537200928,
+            6.9684600830078125,
+            12.85069465637207
+          ],
+          "mean": 0.2084464281797409,
+          "sha256": "c889090b12e6778ea1b0b65ae465b2f698b8d623fe9a18a381751009034da436"
+        },
+        {
+          "frame": 2,
+          "channel": "mask",
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "mean": 0.07412595301866531,
+          "sha256": "3bb418ccf207ea111a61db112c0feb34b32e32aa6eed4a75868c9045045019bf"
+        },
+        {
+          "frame": 3,
+          "channel": "emission",
+          "max": [
+            2.861588478088379,
+            6.968317985534668,
+            12.850199699401855
+          ],
+          "mean": 0.20300203561782837,
+          "sha256": "6a1b3718138a81f2d6be93d9a4bf72474bf7be74b5874718fede973795ef00be"
+        },
+        {
+          "frame": 3,
+          "channel": "mask",
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "mean": 0.07129479199647903,
+          "sha256": "7f7f08bcc1e22bb5986693542e0990fc78d39d78ca595470525219f962600778"
+        }
+      ],
+      "blend": "E:\\ShopGame\\source_assets\\vfx\\elemental_slashes_v001\\lightning_thunder\\blender\\lightning_slash.blend",
+      "hero": "E:\\ShopGame\\source_assets\\vfx\\elemental_slashes_v001\\lightning_thunder\\renders\\lightning_hero.png"
+    },
+    "thunder": {
+      "settings": {
+        "seed": 1783,
+        "centers": [
+          0.25,
+          0.52,
+          0.76
+        ],
+        "width": 3.7,
+        "wander": 0.095,
+        "branches": 10,
+        "primary": [
+          5.5,
+          3.6,
+          7.2,
+          1
+        ],
+        "secondary": [
+          5.8,
+          2.4,
+          0.12,
+          1
+        ],
+        "halo": [
+          0.54,
+          0.035,
+          1.15,
+          1
+        ],
+        "spark_count": 56,
+        "tail": 0.3,
+        "rate": 10.0,
+        "runtime_energy": 0.78,
+        "description": "Wide angular violet-white bolts, braided golden branches, broken shock ripples."
+      },
+      "bakes": [
+        {
+          "frame": 0,
+          "channel": "emission",
+          "max": [
+            11.731999397277832,
+            6.0279998779296875,
+            8.239998817443848
+          ],
+          "mean": 0.6424952149391174,
+          "sha256": "186df0948bc8280546a10e18c44b6af9aec3f1b18bf4a29e0c615715a511acaa"
+        },
+        {
+          "frame": 0,
+          "channel": "mask",
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "mean": 0.17299209535121918,
+          "sha256": "abd169380dfba49db13b49e58663b550135029bc88b153e496d14ae379696f98"
+        },
+        {
+          "frame": 1,
+          "channel": "emission",
+          "max": [
+            11.731999397277832,
+            6.0279998779296875,
+            8.239998817443848
+          ],
+          "mean": 0.6418476700782776,
+          "sha256": "545d82bab6358e39f16c96d468f66d1e9c09fe35eaa7e87d2200d759e2d1ac15"
+        },
+        {
+          "frame": 1,
+          "channel": "mask",
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "mean": 0.17331962287425995,
+          "sha256": "8baa40749845bc95ca319c23b3262b47e201c3d05db61be3d9d706704c02904c"
+        },
+        {
+          "frame": 2,
+          "channel": "emission",
+          "max": [
+            11.732000350952148,
+            6.0279998779296875,
+            8.239999771118164
+          ],
+          "mean": 0.6430966258049011,
+          "sha256": "fb2f51bd0cb8485b5f1b96ae235417f6b12852144c0e7c926dcfc5865cb414c4"
+        },
+        {
+          "frame": 2,
+          "channel": "mask",
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "mean": 0.174845889210701,
+          "sha256": "e8aeb67b20eaecf11b9e375ccc8ed77dfbf7dbc634f6dc20fb8336c341e7013d"
+        },
+        {
+          "frame": 3,
+          "channel": "emission",
+          "max": [
+            11.731999397277832,
+            6.0279998779296875,
+            8.239996910095215
+          ],
+          "mean": 0.6455317139625549,
+          "sha256": "ba23596dc2bf1281560ec14c66b01197d1d05beb2db109a7c9c7d5a8ba3b6cde"
+        },
+        {
+          "frame": 3,
+          "channel": "mask",
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "mean": 0.17523865401744843,
+          "sha256": "60521a7f90147f9c93badd138ddad2f9a5cbc43deb807d15b478eac86633d9ca"
+        }
+      ],
+      "blend": "E:\\ShopGame\\source_assets\\vfx\\elemental_slashes_v001\\lightning_thunder\\blender\\thunder_slash.blend",
+      "hero": "E:\\ShopGame\\source_assets\\vfx\\elemental_slashes_v001\\lightning_thunder\\renders\\thunder_hero.png"
+    }
+  }
+}

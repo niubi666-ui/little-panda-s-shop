@@ -1,0 +1,481 @@
+{
+  "source_library": "original/forest_yard_item.blend",
+  "assets": [
+    {
+      "role": "rail",
+      "source_object": "e1d52510-bdaf-4998-a4ff-2e5695223a85",
+      "source_catalog_index": 0,
+      "catalog_image": "previews/catalog/00.png",
+      "instance_count": 0,
+      "source_triangles": 9807,
+      "source_dimensions": [
+        0.269317626953125,
+        1.0,
+        0.47235107421875
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "broken_wall",
+      "source_object": "ba956f36-4051-4087-a2ba-15b622e9bb75",
+      "source_catalog_index": 1,
+      "catalog_image": "previews/catalog/01.png",
+      "instance_count": 2,
+      "source_triangles": 9578,
+      "source_dimensions": [
+        0.242279052734375,
+        1.0,
+        0.470184326171875
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "corner",
+      "source_object": "37f091a1-93ce-490e-ab23-2dd5cc2d41e4",
+      "source_catalog_index": 2,
+      "catalog_image": "previews/catalog/02.png",
+      "instance_count": 0,
+      "source_triangles": 9458,
+      "source_dimensions": [
+        0.9075927734375,
+        1.0,
+        0.569580078125
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "pier",
+      "source_object": "6d00c541-9c1e-42f5-bdd1-3475b0d613d0",
+      "source_catalog_index": 3,
+      "catalog_image": "previews/catalog/03.png",
+      "instance_count": 20,
+      "source_triangles": 9885,
+      "source_dimensions": [
+        0.488311767578125,
+        0.487579345703125,
+        1.0
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "bridge",
+      "source_object": "ef6632ad-5997-4333-a080-b492a7b4b3fb",
+      "source_catalog_index": 4,
+      "catalog_image": "previews/catalog/04.png",
+      "instance_count": 50,
+      "source_triangles": 9226,
+      "source_dimensions": [
+        1.0,
+        0.50726318359375,
+        0.298004150390625
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "chest",
+      "source_object": "chest1",
+      "source_catalog_index": 5,
+      "catalog_image": "previews/catalog/05.png",
+      "instance_count": 1,
+      "source_triangles": 5407,
+      "source_dimensions": [
+        0.705078125,
+        1.0,
+        0.70904541015625
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "mushrooms",
+      "source_object": "e24026bf-5c01-4cfd-9e9d-3601001718f5",
+      "source_catalog_index": 6,
+      "catalog_image": "previews/catalog/06.png",
+      "instance_count": 1,
+      "source_triangles": 11339,
+      "source_dimensions": [
+        0.8992919921875,
+        1.0,
+        0.9456787109375
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "hive",
+      "source_object": "ceb6cfd5-d832-4afd-9d93-dabb3d57561a",
+      "source_catalog_index": 7,
+      "catalog_image": "previews/catalog/07.png",
+      "instance_count": 0,
+      "source_triangles": 11386,
+      "source_dimensions": [
+        0.46240234375,
+        1.0,
+        0.9351806640625
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "stump",
+      "source_object": "a0786a8f-fe69-4724-8bd8-aa7b8ed7a57f",
+      "source_catalog_index": 8,
+      "catalog_image": "previews/catalog/08.png",
+      "instance_count": 0,
+      "source_triangles": 11490,
+      "source_dimensions": [
+        1.0,
+        0.98114013671875,
+        0.5765380859375
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "low_wall",
+      "source_object": "71d0d5a4-fa8e-4375-bb31-dc33549b281e",
+      "source_catalog_index": 9,
+      "catalog_image": "previews/catalog/09.png",
+      "instance_count": 6,
+      "source_triangles": 6364,
+      "source_dimensions": [
+        0.233551025390625,
+        1.0,
+        0.475006103515625
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "low_corner",
+      "source_object": "24aec453-47cd-475a-a8b7-c2fec71edf30",
+      "source_catalog_index": 10,
+      "catalog_image": "previews/catalog/10.png",
+      "instance_count": 0,
+      "source_triangles": 6286,
+      "source_dimensions": [
+        0.8521728515625,
+        1.0,
+        0.53582763671875
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "stone_chest",
+      "source_object": "chest2",
+      "source_catalog_index": 11,
+      "catalog_image": "previews/catalog/11.png",
+      "instance_count": 1,
+      "source_triangles": 5962,
+      "source_dimensions": [
+        0.88751220703125,
+        1.0,
+        0.67291259765625
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "bag",
+      "source_object": "forest_bag1",
+      "source_catalog_index": 12,
+      "catalog_image": "previews/catalog/12.png",
+      "instance_count": 0,
+      "source_triangles": 6121,
+      "source_dimensions": [
+        0.7799072265625,
+        1.0,
+        0.94940185546875
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "fallen_column",
+      "source_object": "65fbc458-0833-44c7-b125-2885ac8efc5e",
+      "source_catalog_index": 13,
+      "catalog_image": "previews/catalog/13.png",
+      "instance_count": 1,
+      "source_triangles": 6152,
+      "source_dimensions": [
+        0.366180419921875,
+        1.0,
+        0.436767578125
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "barrel",
+      "source_object": "木桶3d模型",
+      "source_catalog_index": 14,
+      "catalog_image": "previews/catalog/14.png",
+      "instance_count": 5,
+      "source_triangles": 2465,
+      "source_dimensions": [
+        0.97412109375,
+        0.97607421875,
+        0.99951171875
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "crate",
+      "source_object": "板条箱",
+      "source_catalog_index": 15,
+      "catalog_image": "previews/catalog/15.png",
+      "instance_count": 6,
+      "source_triangles": 6124,
+      "source_dimensions": [
+        0.998046875,
+        0.998046875,
+        0.970703125
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "moss_patch",
+      "source_object": "35ad7ced-c425-407b-be98-e37dc3bd5d60",
+      "source_catalog_index": 16,
+      "catalog_image": "previews/catalog/16.png",
+      "instance_count": 198,
+      "source_triangles": 4846,
+      "source_dimensions": [
+        0.96044921875,
+        1.0,
+        0.0909576416015625
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "moss_cushion",
+      "source_object": "d96e0f13-200a-4d89-b59a-458c6ac17ed7",
+      "source_catalog_index": 17,
+      "catalog_image": "previews/catalog/17.png",
+      "instance_count": 67,
+      "source_triangles": 4834,
+      "source_dimensions": [
+        0.97784423828125,
+        1.0,
+        0.12084197998046875
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "moss_seam",
+      "source_object": "aa98e3a9-34ed-4037-bab8-a4344d018873",
+      "source_catalog_index": 18,
+      "catalog_image": "previews/catalog/18.png",
+      "instance_count": 78,
+      "source_triangles": 4830,
+      "source_dimensions": [
+        0.9075927734375,
+        1.0,
+        0.0738983154296875
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "litter",
+      "source_object": "fa361b88-7056-4113-8866-3f697624d8f2",
+      "source_catalog_index": 19,
+      "catalog_image": "previews/catalog/19.png",
+      "instance_count": 65,
+      "source_triangles": 4952,
+      "source_dimensions": [
+        0.88140869140625,
+        1.0,
+        0.11103057861328125
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "oak",
+      "source_object": "0a2c0c55-fa58-4822-8ad0-ce92ea86c54c",
+      "source_catalog_index": 21,
+      "catalog_image": "previews/catalog/21.png",
+      "instance_count": 9,
+      "source_triangles": 9299,
+      "source_dimensions": [
+        5.375041961669922,
+        6.108391761779785,
+        5.271023273468018
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "ivy",
+      "source_object": "738cffd6-948f-4d6f-87e3-1c13fa4187bc",
+      "source_catalog_index": 22,
+      "catalog_image": "previews/catalog/22.png",
+      "instance_count": 10,
+      "source_triangles": 9350,
+      "source_dimensions": [
+        0.258819580078125,
+        0.681640625,
+        1.0
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "flowerpot",
+      "source_object": "616287b3-b6ea-477c-98bd-52087b9d563c",
+      "source_catalog_index": 23,
+      "catalog_image": "previews/catalog/23.png",
+      "instance_count": 2,
+      "source_triangles": 9165,
+      "source_dimensions": [
+        0.7252197265625,
+        1.0,
+        0.9521484375
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "white_flower",
+      "source_object": "2110fc9c-189f-483b-af4a-cbaca1b69bea",
+      "source_catalog_index": 24,
+      "catalog_image": "previews/catalog/24.png",
+      "instance_count": 279,
+      "source_triangles": 3645,
+      "source_dimensions": [
+        0.775634765625,
+        1.0,
+        0.9278564453125
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "purple_flower",
+      "source_object": "68946275-5acc-4fc8-a55a-548c7dbf8a38",
+      "source_catalog_index": 25,
+      "catalog_image": "previews/catalog/25.png",
+      "instance_count": 82,
+      "source_triangles": 3581,
+      "source_dimensions": [
+        0.6490478515625,
+        0.9874267578125,
+        1.0
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "steps",
+      "source_object": "86cfab13-f1e3-42c3-9c47-d59979d63457",
+      "source_catalog_index": 26,
+      "catalog_image": "previews/catalog/26.png",
+      "instance_count": 1,
+      "source_triangles": 9275,
+      "source_dimensions": [
+        0.68585205078125,
+        1.0,
+        0.471099853515625
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "rock_flat",
+      "source_object": "4dd9fc88-416a-4740-9736-513cbdab2d05",
+      "source_catalog_index": 27,
+      "catalog_image": "previews/catalog/27.png",
+      "instance_count": 0,
+      "source_triangles": 10204,
+      "source_dimensions": [
+        0.8279986381530762,
+        0.9945610761642456,
+        0.40171927213668823
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "roundel",
+      "source_object": "e786c28c-456f-4d8f-b0df-03c392d5f22b",
+      "source_catalog_index": 28,
+      "catalog_image": "previews/catalog/28.png",
+      "instance_count": 4,
+      "source_triangles": 9627,
+      "source_dimensions": [
+        0.10026784241199493,
+        0.9976626634597778,
+        0.9947922229766846
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "rock_medium",
+      "source_object": "51178fa9-d899-4a2b-abe9-ea73f7728ca4",
+      "source_catalog_index": 29,
+      "catalog_image": "previews/catalog/29.png",
+      "instance_count": 4,
+      "source_triangles": 9843,
+      "source_dimensions": [
+        0.996463418006897,
+        0.9299198389053345,
+        0.43319058418273926
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "rock_large",
+      "source_object": "fd0b0d4d-3878-4001-8fd5-9a0b3f885f7a",
+      "source_catalog_index": 30,
+      "catalog_image": "previews/catalog/30.png",
+      "instance_count": 0,
+      "source_triangles": 9832,
+      "source_dimensions": [
+        0.9914975166320801,
+        0.8848377466201782,
+        0.6263402700424194
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "paving",
+      "source_object": "dcb8655f-a368-4dd3-a27c-ab7b07cdb34c",
+      "source_catalog_index": 31,
+      "catalog_image": "previews/catalog/31.png",
+      "instance_count": 0,
+      "source_triangles": 6347,
+      "source_dimensions": [
+        0.9937624931335449,
+        0.9994122385978699,
+        0.07267454266548157
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "curb",
+      "source_object": "b7199c35-44de-48df-9cb5-0f504ab93ca1",
+      "source_catalog_index": 32,
+      "catalog_image": "previews/catalog/32.png",
+      "instance_count": 12,
+      "source_triangles": 6370,
+      "source_dimensions": [
+        0.10414312779903412,
+        0.9996986389160156,
+        0.14814075827598572
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "statue",
+      "source_object": "0f0d8c35-5c4c-4df0-ba83-52fe6838f2cc",
+      "source_catalog_index": 33,
+      "catalog_image": "previews/catalog/33.png",
+      "instance_count": 1,
+      "source_triangles": 16324,
+      "source_dimensions": [
+        0.3466685712337494,
+        0.34491345286369324,
+        0.9977775812149048
+      ],
+      "source_is_preserved_in_archive": true
+    },
+    {
+      "role": "shrine",
+      "source_object": "aa1baab0-7098-4ae1-b457-9c3b02e478c1",
+      "source_catalog_index": 34,
+      "catalog_image": "previews/catalog/34.png",
+      "instance_count": 1,
+      "source_triangles": 6856,
+      "source_dimensions": [
+        0.29505684971809387,
+        0.6842509508132935,
+        0.9991397857666016
+      ],
+      "source_is_preserved_in_archive": true
+    }
+  ]
+}

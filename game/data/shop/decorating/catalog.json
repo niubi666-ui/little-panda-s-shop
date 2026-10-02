@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "grid_size_m": 0.25,
+  "maximum_instances": 20,
+  "furniture": [
+    {
+      "id": "barrel",
+      "name_key": "decor.item.barrel",
+      "asset_id": "barrel",
+      "footprint_cells": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "scroll_bin",
+      "name_key": "decor.item.scroll_bin",
+      "asset_id": "scroll_bin",
+      "footprint_cells": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "supply_crate",
+      "name_key": "decor.item.supply_crate",
+      "asset_id": "supply_crate",
+      "footprint_cells": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "chest",
+      "name_key": "decor.item.chest",
+      "asset_id": "chest",
+      "footprint_cells": [
+        4,
+        5
+      ]
+    }
+  ]
+}

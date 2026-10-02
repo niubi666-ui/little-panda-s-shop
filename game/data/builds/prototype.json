@@ -1,0 +1,350 @@
+{
+  "schema_version": 3,
+  "offer": {
+    "count": 3,
+    "pool_ids": [
+      "power",
+      "agility",
+      "wave",
+      "chain",
+      "split",
+      "impact_blast",
+      "contact_slow",
+      "contact_freeze",
+      "freeze_duration"
+    ],
+    "fallback_ids": [
+      "power",
+      "agility"
+    ],
+    "initial_offers": 1,
+    "rewards_per_wave": 1,
+    "max_queued_offers": 4
+  },
+  "limits": {
+    "root_effect_budget": 24,
+    "requests_per_step": 32,
+    "max_queue": 256,
+    "max_projectiles": 64,
+    "max_chain_jumps": 6,
+    "max_split_generation": 2,
+    "max_projectiles_per_root": 12,
+    "projectiles_survive_source_death": false
+  },
+  "stats": {
+    "damage_scale_min": 0.1,
+    "damage_scale_max": 5.0,
+    "move_scale_min": 0.25,
+    "move_scale_max": 2.0
+  },
+  "upgrades": [
+    {
+      "id": "power",
+      "name_key": "build.test.power.name",
+      "description_key": "build.test.power.description",
+      "weight": 1.0,
+      "max_rank": 3,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "damage_scale",
+      "ranks": [
+        {
+          "bonus": 0.2
+        },
+        {
+          "bonus": 0.4
+        },
+        {
+          "bonus": 0.6
+        }
+      ]
+    },
+    {
+      "id": "agility",
+      "name_key": "build.test.agility.name",
+      "description_key": "build.test.agility.description",
+      "weight": 1.0,
+      "max_rank": 3,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "move_scale",
+      "ranks": [
+        {
+          "bonus": 0.1
+        },
+        {
+          "bonus": 0.2
+        },
+        {
+          "bonus": 0.3
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "name_key": "build.test.wave.name",
+      "description_key": "build.test.wave.description",
+      "weight": 1.0,
+      "max_rank": 3,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [
+        "projectile"
+      ],
+      "effect_type": "projectile",
+      "ranks": [
+        {
+          "damage_ratio": 0.5,
+          "projectile_id": "sword_wave"
+        },
+        {
+          "damage_ratio": 0.7,
+          "projectile_id": "sword_wave"
+        },
+        {
+          "damage_ratio": 0.9,
+          "projectile_id": "sword_wave"
+        }
+      ]
+    },
+    {
+      "id": "chain",
+      "name_key": "build.test.chain.name",
+      "description_key": "build.test.chain.description",
+      "weight": 1.0,
+      "max_rank": 3,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "chain",
+      "ranks": [
+        {
+          "damage_ratio": 0.45,
+          "radius_m": 3.8,
+          "jumps": 2,
+          "falloff": 0.75
+        },
+        {
+          "damage_ratio": 0.55,
+          "radius_m": 3.8,
+          "jumps": 3,
+          "falloff": 0.75
+        },
+        {
+          "damage_ratio": 0.65,
+          "radius_m": 3.8,
+          "jumps": 4,
+          "falloff": 0.75
+        }
+      ]
+    },
+    {
+      "id": "split",
+      "name_key": "build.test.split.name",
+      "description_key": "build.test.split.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "split",
+      "ranks": [
+        {
+          "count": 2,
+          "spread_deg": 50,
+          "damage_ratio": 0.65,
+          "max_generation": 1,
+          "trigger": "enemy_contact",
+          "scope": "linear_projectile"
+        },
+        {
+          "count": 2,
+          "spread_deg": 70,
+          "damage_ratio": 0.85,
+          "max_generation": 1,
+          "trigger": "enemy_contact",
+          "scope": "linear_projectile"
+        }
+      ]
+    },
+    {
+      "id": "impact_blast",
+      "name_key": "build.test.blast.name",
+      "description_key": "build.test.blast.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "explosion",
+      "ranks": [
+        {
+          "trigger": "enemy_contact",
+          "allowed_origins": [
+            "direct_melee",
+            "direct_projectile",
+            "split_projectile"
+          ],
+          "max_per_parent": 1,
+          "max_per_root": 4,
+          "damage_ratio": 0.5,
+          "radius_m": 2.8,
+          "edge_ratio": 0.5,
+          "max_targets": 6,
+          "include_primary": false,
+          "occlusion": "world_ray",
+          "sight_height_m": 0.8
+        }
+      ]
+    },
+    {
+      "id": "contact_slow",
+      "name_key": "build.test.contact_slow.name",
+      "description_key": "build.test.contact_slow.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "status",
+      "ranks": [
+        {
+          "status_id": "test_slow",
+          "trigger": "enemy_contact",
+          "allowed_origins": [
+            "direct_melee",
+            "direct_projectile",
+            "split_projectile"
+          ],
+          "max_per_parent": 8,
+          "max_per_root": 8
+        }
+      ]
+    },
+    {
+      "id": "contact_freeze",
+      "name_key": "build.test.contact_freeze.name",
+      "description_key": "build.test.contact_freeze.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "status",
+      "ranks": [
+        {
+          "status_id": "test_freeze",
+          "trigger": "enemy_contact",
+          "allowed_origins": [
+            "direct_melee",
+            "direct_projectile",
+            "split_projectile"
+          ],
+          "max_per_parent": 8,
+          "max_per_root": 8
+        }
+      ]
+    },
+    {
+      "id": "freeze_duration",
+      "name_key": "build.test.freeze_duration.name",
+      "description_key": "build.test.freeze_duration.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "status_duration",
+      "ranks": [
+        {
+          "status_id": "test_freeze",
+          "bonus": 0.5
+        }
+      ]
+    }
+  ],
+  "projectiles": [
+    {
+      "id": "sword_wave",
+      "executor": "linear_contact",
+      "child_id": "sword_wave",
+      "speed_mps": 12.0,
+      "radius_m": 0.38,
+      "height_m": 0.8,
+      "lifetime_sec": 0.85
+    },
+    {
+      "id": "test_arrow",
+      "executor": "linear_contact",
+      "child_id": "test_arrow",
+      "speed_mps": 16.0,
+      "radius_m": 0.22,
+      "height_m": 0.8,
+      "lifetime_sec": 1.2
+    }
+  ],
+  "test_attacks": [
+    {
+      "id": "test_arrow",
+      "projectile_id": "test_arrow",
+      "damage": 12.0,
+      "cooldown_sec": 0.6
+    }
+  ],
+  "statuses": [
+    {
+      "id": "test_slow",
+      "kind": "slow",
+      "duration_sec": 2.5,
+      "max_duration_sec": 6.0,
+      "move_scale": 0.55,
+      "refresh": "longest"
+    },
+    {
+      "id": "test_freeze",
+      "kind": "freeze",
+      "duration_sec": 1.2,
+      "max_duration_sec": 3.0,
+      "move_scale": 0.0,
+      "refresh": "longest"
+    }
+  ],
+  "status_rules": {
+    "default_response_id": "normal",
+    "actor_responses": {},
+    "responses": [
+      {
+        "id": "normal",
+        "immune_kinds": [],
+        "slow_duration_scale": 1.0,
+        "freeze_duration_scale": 1.0
+      },
+      {
+        "id": "immune",
+        "immune_kinds": [
+          "slow",
+          "freeze"
+        ],
+        "slow_duration_scale": 1.0,
+        "freeze_duration_scale": 1.0
+      },
+      {
+        "id": "resistant",
+        "immune_kinds": [],
+        "slow_duration_scale": 0.5,
+        "freeze_duration_scale": 0.5
+      }
+    ]
+  }
+}

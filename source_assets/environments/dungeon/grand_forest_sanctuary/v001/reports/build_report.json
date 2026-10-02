@@ -1,0 +1,145 @@
+{
+  "source": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\original\\forest_yard_item.blend",
+  "source_sha256": "2c0062d24bfb6e832cd4642e4ee560ceb2500fd288b5acdce7fdd4e58183d2a4",
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\blender\\grand_forest_sanctuary_v001.blend",
+  "roles_used": {
+    "rail": 0,
+    "broken_wall": 2,
+    "corner": 0,
+    "pier": 20,
+    "bridge": 50,
+    "chest": 1,
+    "mushrooms": 1,
+    "hive": 0,
+    "stump": 0,
+    "low_wall": 6,
+    "low_corner": 0,
+    "stone_chest": 1,
+    "bag": 0,
+    "fallen_column": 1,
+    "barrel": 5,
+    "crate": 6,
+    "moss_patch": 198,
+    "moss_cushion": 67,
+    "moss_seam": 78,
+    "litter": 65,
+    "oak": 9,
+    "ivy": 10,
+    "flowerpot": 2,
+    "white_flower": 279,
+    "purple_flower": 82,
+    "steps": 1,
+    "rock_flat": 0,
+    "roundel": 4,
+    "rock_medium": 4,
+    "rock_large": 0,
+    "paving": 0,
+    "curb": 12,
+    "statue": 1,
+    "shrine": 1
+  },
+  "source_ids": {
+    "rail": "e1d52510-bdaf-4998-a4ff-2e5695223a85",
+    "broken_wall": "ba956f36-4051-4087-a2ba-15b622e9bb75",
+    "corner": "37f091a1-93ce-490e-ab23-2dd5cc2d41e4",
+    "pier": "6d00c541-9c1e-42f5-bdd1-3475b0d613d0",
+    "bridge": "ef6632ad-5997-4333-a080-b492a7b4b3fb",
+    "chest": "chest1",
+    "mushrooms": "e24026bf-5c01-4cfd-9e9d-3601001718f5",
+    "hive": "ceb6cfd5-d832-4afd-9d93-dabb3d57561a",
+    "stump": "a0786a8f-fe69-4724-8bd8-aa7b8ed7a57f",
+    "low_wall": "71d0d5a4-fa8e-4375-bb31-dc33549b281e",
+    "low_corner": "24aec453-47cd-475a-a8b7-c2fec71edf30",
+    "stone_chest": "chest2",
+    "bag": "forest_bag1",
+    "fallen_column": "65fbc458-0833-44c7-b125-2885ac8efc5e",
+    "barrel": "木桶3d模型",
+    "crate": "板条箱",
+    "moss_patch": "35ad7ced-c425-407b-be98-e37dc3bd5d60",
+    "moss_cushion": "d96e0f13-200a-4d89-b59a-458c6ac17ed7",
+    "moss_seam": "aa98e3a9-34ed-4037-bab8-a4344d018873",
+    "litter": "fa361b88-7056-4113-8866-3f697624d8f2",
+    "oak": "0a2c0c55-fa58-4822-8ad0-ce92ea86c54c",
+    "ivy": "738cffd6-948f-4d6f-87e3-1c13fa4187bc",
+    "flowerpot": "616287b3-b6ea-477c-98bd-52087b9d563c",
+    "white_flower": "2110fc9c-189f-483b-af4a-cbaca1b69bea",
+    "purple_flower": "68946275-5acc-4fc8-a55a-548c7dbf8a38",
+    "steps": "86cfab13-f1e3-42c3-9c47-d59979d63457",
+    "rock_flat": "4dd9fc88-416a-4740-9736-513cbdab2d05",
+    "roundel": "e786c28c-456f-4d8f-b0df-03c392d5f22b",
+    "rock_medium": "51178fa9-d899-4a2b-abe9-ea73f7728ca4",
+    "rock_large": "fd0b0d4d-3878-4001-8fd5-9a0b3f885f7a",
+    "paving": "dcb8655f-a368-4dd3-a27c-ab7b07cdb34c",
+    "curb": "b7199c35-44de-48df-9cb5-0f504ab93ca1",
+    "statue": "0f0d8c35-5c4c-4df0-ba83-52fe6838f2cc",
+    "shrine": "aa1baab0-7098-4ae1-b457-9c3b02e478c1"
+  },
+  "court_dimensions_m": [
+    36,
+    32
+  ],
+  "court_area_m2": 1152,
+  "previous_area_m2": 288,
+  "area_ratio": 4,
+  "player_height_m": 1.2000004518777132,
+  "player_game_scale": 1.20058629,
+  "player_static_reference_only": true,
+  "obstacle_islands": [
+    {
+      "center": [
+        -7,
+        -5.6
+      ],
+      "length": 4.6,
+      "width": 0.75,
+      "angle": -0.08
+    },
+    {
+      "center": [
+        5.1,
+        1.65
+      ],
+      "length": 4.2,
+      "width": 0.75,
+      "angle": 1.5707963267948966
+    },
+    {
+      "center": [
+        11.1,
+        -9
+      ],
+      "length": 4.6,
+      "width": 0.75,
+      "angle": 0.14
+    },
+    {
+      "center": [
+        -11,
+        11
+      ],
+      "length": 5.3,
+      "width": 0.75,
+      "angle": 0.05
+    },
+    {
+      "center": [
+        15.5,
+        7
+      ],
+      "length": 4,
+      "width": 0.75,
+      "angle": 1.5707963267948966
+    },
+    {
+      "center": [
+        -13,
+        -13.6
+      ],
+      "length": 4.1,
+      "width": 0.75,
+      "angle": 0.2
+    }
+  ],
+  "objects": 1310,
+  "packed_images": 43
+}

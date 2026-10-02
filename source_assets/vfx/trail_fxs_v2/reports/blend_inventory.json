@@ -1,0 +1,110 @@
+[
+  {
+    "file": "original/武器拖影(Trail_FXs_v2)blender资产预设/Trail_FXs_v2_Extra/Trail_FXs_Extra/TrailFXs_Basic.blend",
+    "objects": 21,
+    "materials": 11,
+    "node_groups": 15,
+    "asset_objects": [
+      "Trail_Emitter",
+      "Trail_Emitter_Particles",
+      "Trail_Emitter_Particles_Advance",
+      "Trail_Line",
+      "Trail_Line_Multiple",
+      "Trail_Particles",
+      "Trail_Particles_withCollision",
+      "Trail_Tube",
+      "Trail_Tube_Multiple"
+    ],
+    "asset_materials": [
+      "Trail_Line_1",
+      "Trail_Line_2",
+      "Trail_Line_3",
+      "Trail_Line_4",
+      "Trail_Line_5",
+      "Trail_Particles_1",
+      "Trail_Tube_1",
+      "Trail_Tube_2"
+    ],
+    "asset_node_groups": [],
+    "frames": [
+      0,
+      120
+    ]
+  },
+  {
+    "file": "original/武器拖影(Trail_FXs_v2)blender资产预设/Trail_FXs_v2_Extra/Trail_FXs_Extra/TrailFXs_Blades.blend",
+    "objects": 4,
+    "materials": 31,
+    "node_groups": 2,
+    "asset_objects": [
+      "Trail_Blade"
+    ],
+    "asset_materials": [
+      "Trail_Blade_01",
+      "Trail_Blade_02",
+      "Trail_Blade_03",
+      "Trail_Blade_04",
+      "Trail_Blade_05",
+      "Trail_Blade_06",
+      "Trail_Blade_07",
+      "Trail_Blade_08",
+      "Trail_Blade_09",
+      "Trail_Blade_10",
+      "Trail_Blade_11",
+      "Trail_Blade_12",
+      "Trail_Blade_13",
+      "Trail_Blade_14",
+      "Trail_Blade_15",
+      "Trail_Blade_16",
+      "Trail_Blade_17",
+      "Trail_Blade_18",
+      "Trail_Blade_19",
+      "Trail_Blade_20",
+      "Trail_Blade_21",
+      "Trail_Blade_22",
+      "Trail_Blade_23",
+      "Trail_Blade_24",
+      "Trail_Blade_25",
+      "Trail_Blade_26",
+      "Trail_Blade_27",
+      "Trail_Blade_28",
+      "Trail_Blade_29",
+      "Trail_Blade_30"
+    ],
+    "asset_node_groups": [],
+    "frames": [
+      1,
+      130
+    ]
+  },
+  {
+    "file": "original/武器拖影(Trail_FXs_v2)blender资产预设/Trail_FXs_v2_Extra/Trail_FXs_Extra/TrailFXs_Blades_Particles.blend",
+    "objects": 17,
+    "materials": 9,
+    "node_groups": 12,
+    "asset_objects": [
+      "Trail_Blade_FireSprites",
+      "Trail_Blade_Lines",
+      "Trail_Blade_Liquid",
+      "Trail_Blade_Liquid_2",
+      "Trail_Blade_Liquid_3",
+      "Trail_Blade_Particles",
+      "Trail_Blade_Smoke",
+      "Trail_Blade_SmokeSprites"
+    ],
+    "asset_materials": [
+      "Trail Blade particles",
+      "Trail_Blade_Lines_1",
+      "Trail_Blade_Liquid_1",
+      "Trail_Blade_Liquid_2",
+      "Trail_FireSprites",
+      "Trail_SmokeSprites",
+      "Traill_Blade_SmokeVolume"
+    ],
+    "asset_node_groups": [],
+    "frames": [
+      1,
+      130
+    ]
+  }
+]

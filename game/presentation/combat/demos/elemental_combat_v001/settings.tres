@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://presentation/combat/demos/elemental_combat_v001/settings.gd" id="script"]
+[resource]
+script = ExtResource("script")
+effect_ids = Array[StringName]([&"element_fire", &"element_lightning", &"element_thunder", &"element_frost"])
+segment_duration_sec = 6.0
+normal_attack_sec = 0.40
+slow_start_sec = 1.45
+slow_attack_sec = 1.60
+slow_end_sec = 3.50
+target_stage_sec = 3.70
+hit_attack_sec = 4.05
+slow_scale = 0.40
+normal_camera_size = 8.0
+close_camera_size = 6.5
+camera_right_shift = 1.15
+player_start = Vector3(0, 0, 0)
+facing = Vector3(0.65, 0, 0.76)
+distant_enemy_offsets = PackedVector3Array(8, 0, 9, -8, 0, 9, 9, 0, -8)
+target_distance_m = 2.35
+distance_tolerance_m = 0.01
+expected_arc_deg = 160.0
+arc_tolerance_deg = 0.01
+title_position = Vector2(24, 160)
+title_font_size = 24
+previews_path = "res://../source_assets/vfx/elemental_slashes_v001/previews"
+report_path = "res://../source_assets/vfx/elemental_slashes_v001/reports/capture_result.json"

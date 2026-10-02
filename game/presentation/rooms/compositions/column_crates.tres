@@ -1,0 +1,39 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://rogue/rooms/composition.gd" id="preset"]
+[ext_resource type="Script" path="res://rogue/rooms/composition_member.gd" id="member"]
+[ext_resource type="PackedScene" path="res://assets/environments/room_compositions_v004/column_crates.glb" id="art"]
+[sub_resource type="Resource" id="m0"]
+script = ExtResource("member")
+id = "column_plinth_lower"
+prop_id = "column_crates_column_plinth_lower"
+position = Vector3(-0.23798841, -0.01729394, -0.21497850)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m1"]
+script = ExtResource("member")
+id = "fluted_broken_column"
+prop_id = "column_crates_fluted_broken_column"
+position = Vector3(-0.23999999, 0.58999997, -0.22000000)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m2"]
+script = ExtResource("member")
+id = "crate_front"
+prop_id = "column_crates_crate_front"
+position = Vector3(0.56000000, 0.01200000, 0.16000000)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m3"]
+script = ExtResource("member")
+id = "crate_back"
+prop_id = "column_crates_crate_back"
+position = Vector3(0.71000004, 0.01200000, -0.56999999)
+yaw_radians = 0.0
+[sub_resource type="Resource" id="m4"]
+script = ExtResource("member")
+id = "ancient_garden_urn"
+prop_id = "column_crates_ancient_garden_urn"
+position = Vector3(-0.87000000, 0.01200000, 0.31999999)
+yaw_radians = 0.0
+[resource]
+script = ExtResource("preset")
+id = "column_crates"
+members = Array[Resource]([SubResource("m0"), SubResource("m1"), SubResource("m2"), SubResource("m3"), SubResource("m4")])
+decoration = ExtResource("art")

@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/fire_slash_v002/hot_edge.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/hot_color = Color(1, 0.9, 0.42, 1)
+shader_parameter/edge_color = Color(1, 0.18, 0.012, 1)
+shader_parameter/edge_position = 0.934
+shader_parameter/edge_width = 0.01
+shader_parameter/energy = 2.8
+shader_parameter/height_offset = 0.012
+shader_parameter/heat_phase = 0.0
+shader_parameter/breakup_amount = 0.006
+shader_parameter/fade_exponent = 3.0

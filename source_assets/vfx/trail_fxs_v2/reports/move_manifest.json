@@ -1,0 +1,417 @@
+[
+  {
+    "path": "Trail_FXs_v2_Extra.zip",
+    "bytes": 25724118,
+    "sha256": "F6D64D2464B73AB0061B815209D6E9D9B2F4B03949E2B5BAA60B138C5AE8A785"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\bd.gitignore",
+    "bytes": 523,
+    "sha256": "182609D6534AA33C922EA406DD8737CDF65041C919A86C1F15888FFE6DA37756"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\blender_assets.cats.txt",
+    "bytes": 2096,
+    "sha256": "4FD15C797C5957BB52CC6966BDA8AA634ECF4D77AEBBB5D71F9768998E2A5807"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\blender_assets.cats.txt~",
+    "bytes": 2096,
+    "sha256": "4FD15C797C5957BB52CC6966BDA8AA634ECF4D77AEBBB5D71F9768998E2A5807"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\TrailFXs_Basic.blend",
+    "bytes": 11335134,
+    "sha256": "7629C01D6C46CA780E8AA750CBC4C4796C4C6DF92D24C7501FB8726F5EFE02E0"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\TrailFXs_Basic.blend1",
+    "bytes": 11335134,
+    "sha256": "9CC0C5FC73AB03454AF49D15BFF33C03B62C6D49C578EA4DA987E4606F3E5CD6"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\TrailFXs_Blades_Particles.blend",
+    "bytes": 9067691,
+    "sha256": "626FED2002B17C1AC0911081E6841227F0CFC1EA220D9DA0E91E4525FF4417F1"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\TrailFXs_Blades_Particles.blend1",
+    "bytes": 9064515,
+    "sha256": "D38C87105503CE5D858A34E7E313A468E9F07441E149AEBB9557E602FBCBF41D"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\TrailFXs_Blades.blend",
+    "bytes": 9663833,
+    "sha256": "022128E58685408C6D53F3D52CD821B281CBAF87F6CC45569E7E6C2AAF203A2A"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\TrailFXs_Blades.blend1",
+    "bytes": 9663833,
+    "sha256": "90670C7F56CD0A54D82243BD301599A6A039867E9C60E146ADA9C0334C6ACD7A"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Hearts.jpg",
+    "bytes": 127224,
+    "sha256": "D3EEBA31F82ACE34A9ECA80FC8E395F25143E5574F0CCC9A22C572F242B036B5"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_01.jpg",
+    "bytes": 121555,
+    "sha256": "B692ADDCFCBAD3772F31FE2DD796A08FFCF9B20BCC4E691679CE40C354E5F76A"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_02.jpg",
+    "bytes": 159003,
+    "sha256": "00D052D25B75533163CAF4616161CFDA949C2E4EDD3557CF4306D0662577CE3A"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_03.jpg",
+    "bytes": 180542,
+    "sha256": "FA2A39D8BC0B19A566A97F461B7FE86F703E6D07141C8F2FF79E3B1945E2F6B2"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_04.jpg",
+    "bytes": 145017,
+    "sha256": "5F7CB364EAE0A642B3B843F72A53FFFDCD09DA8970EACFE6FACF15AF36DAF739"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_05.jpg",
+    "bytes": 132199,
+    "sha256": "3C9990E5D7C06C2EE1016AD76E042FA53BD709FF453314EB6E991A0E07948ED1"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_06.jpg",
+    "bytes": 156626,
+    "sha256": "16F56A84BAB88FF1A5E792F2B1C34F3D3FC549482578273DDBBA4D4C7BABA141"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_07.jpg",
+    "bytes": 165025,
+    "sha256": "A88697BB09407879ABF3A77E72652F1D5B72E682F41B6BE5110CB7F97493EBC1"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_08.jpg",
+    "bytes": 137278,
+    "sha256": "99D6DB323F3AB58CBFFD69377BF4ED9F3BE3475B7E5249DF4D15053355EC769B"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_09.jpg",
+    "bytes": 147962,
+    "sha256": "BD3D60075BC2FF62535E2192808997569CEE5F15916747DE6129BB7856559430"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_10.jpg",
+    "bytes": 149018,
+    "sha256": "0E863519591548B8CF4A43C2C0AD941DAEBB11CFAA24BBFA01092B217823CE2C"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_11.jpg",
+    "bytes": 152183,
+    "sha256": "7A97C7D3E45D89665F94522C3CB80AF83C966612D1ECC1DB9674ED513D138456"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_12.jpg",
+    "bytes": 139641,
+    "sha256": "F3C2CFB51F0DFE36F9A9A2E907CE5D0C0B0BB2FC0B6C2F712BD5C81142D03182"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_13.jpg",
+    "bytes": 203420,
+    "sha256": "4982D953B24307B3857C885021700F8AB41FE28433CBBE243CE71A7A82B0AEC7"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_14.jpg",
+    "bytes": 173955,
+    "sha256": "B816C4D3F7396AB1DB8C8DB1D49B8CDA9A4BD896658B8D2EC8828D8FEDF63E4D"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_15.jpg",
+    "bytes": 155795,
+    "sha256": "15D24804BB8F530805745451DF9B499FCC37541C887475E75AE16C7B90897AE4"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_16.jpg",
+    "bytes": 186462,
+    "sha256": "B091D66F9F20BF09F7301E9CE97C93D7447D1F38506322A38F8E004253E10AA6"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_17.jpg",
+    "bytes": 183733,
+    "sha256": "2CC73DA9F277A1E733833F97FB5DA238B5DFBAA0EC3618FA7E591EB28E1570ED"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_18.jpg",
+    "bytes": 205946,
+    "sha256": "4409F4F824CDCFB82D15C2D040BEC002233C15123D0A61649AC940F2FA28C209"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_19.jpg",
+    "bytes": 131000,
+    "sha256": "C2AEF116C2D00F60185E848EADFB0AC7403710E49D55CF20C53E685C1279969C"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_20.jpg",
+    "bytes": 129632,
+    "sha256": "153D575A27B2423EAE19C4261D3D939B02C66033862A6EAA59121F26BF88E7FC"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_21.jpg",
+    "bytes": 199070,
+    "sha256": "B7B0219B6BFA439272B1C725B487364EB261F3F612EEBC13A7349EEB82499271"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_22.jpg",
+    "bytes": 181541,
+    "sha256": "1F4B1F7C2070A15A0738C717E746ACCA2535B773261C7B383B43F94F6F96E156"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_23.jpg",
+    "bytes": 144610,
+    "sha256": "17179606E5E6B67E9F2CE8A02F0F6422F9FE614E7098BC39E75B3CE06D59FB1A"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_24.jpg",
+    "bytes": 154410,
+    "sha256": "0CB7CD04829E9E206CE75A57F63DADFBE2C7FE4DD120D4DD752746709192C019"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_25.jpg",
+    "bytes": 161364,
+    "sha256": "E0E2153965B678769DCCF909F120D4DF45D72622287C31D5CB70C28E92A9AD37"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_26.jpg",
+    "bytes": 229195,
+    "sha256": "2E81C947A7210D30BD66EBF3E6DACC821AD894F882527E818EB83051F7E712D5"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_27.jpg",
+    "bytes": 172568,
+    "sha256": "B55C7C95DFB5D00BF6E36133203A5E64376FA0CCB77DB030400699D3C14B7F9A"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_28.jpg",
+    "bytes": 136354,
+    "sha256": "B47449C5C2984F92FBABE00DB4168375356234FA9409E4BA3157A6A204FC28AE"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_29.jpg",
+    "bytes": 174096,
+    "sha256": "9AD145BEAE4EE4A99B7B63A71C8642B87A389C131BE501A8783FB390682715C1"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\M_Trail_Blade_30.jpg",
+    "bytes": 169120,
+    "sha256": "9CD8D71C42CFEFC2E27CF9E4C3EEB663FB38AEE8790E853A9885AEB9D7EE6C63"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Petals.jpg",
+    "bytes": 148044,
+    "sha256": "C7A008B3938E66A06CA749B8463B3BEB9637A4CC49D2CCC9FBEB572CB690AAC0"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Star.jpg",
+    "bytes": 133149,
+    "sha256": "3C8A5902E9276AAB1A5C78113A2DE11BD5FD184CEE090797C4DF458CC39DF99A"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_FireSprites_M.jpg",
+    "bytes": 310215,
+    "sha256": "D159464D6261F834A89A2C68826CB222578429EA5C0A98E0D69ABE8702333AC1"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_FireSprites.jpg",
+    "bytes": 214599,
+    "sha256": "263C51BC4B1A146352F92E9C8D7FCC28461077D826F2C6FEB1B7908DF6A4E027"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Lines_1.jpg",
+    "bytes": 232236,
+    "sha256": "08B16C9A24274B2C91F2DFC2B918EC5B9EA613F64A49CC2AEC29B6B3B77852F3"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Lines.jpg",
+    "bytes": 216081,
+    "sha256": "6A2D9A901777D88E8B65F16AEBE99A01D14F932BA210D2302E96A9BD6A5B5805"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Liquid_2.jpg",
+    "bytes": 309508,
+    "sha256": "C9D5D76CB5A9A7DD083550A26803CE700CB93F4B43DBB8EA570A3BC0BEB6FB3C"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Liquid_3.jpg",
+    "bytes": 292525,
+    "sha256": "8F560F5C061C208FE82B9608D7511A4B908C73B37F716DA57A4247F3964A1D29"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Liquid_M_1.jpg",
+    "bytes": 251109,
+    "sha256": "718B91D8C9C7BEAAC8C96B85456975FAFB9C2A63B8954C22B82EB6C5A6F4FD90"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Liquid_M_2.jpg",
+    "bytes": 211076,
+    "sha256": "8DE84DE081B7884ED850F451EFBA9BA848F03E7B208B5604E7B5B5441A598EC3"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Liquid.jpg",
+    "bytes": 242846,
+    "sha256": "E8658707C9916EBB6361D3DB76D7763688962A1B5809289A50036ED65FDE0BAE"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Particles_1.jpg",
+    "bytes": 288506,
+    "sha256": "6CDF8DD8AD23D9FAA4891291AF2897683D8248DCCBB6E0E346EE8580ED835AD2"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Particles.jpg",
+    "bytes": 255718,
+    "sha256": "C6627B0947391DA3BB78E24696A34AA1AE5CFD24DC0DA0AC0F5CD742526646CD"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Smoke_M.jpg",
+    "bytes": 121708,
+    "sha256": "28C2E458BA344031FA8B766652C8FFF9C3AB057D141A7177452EDC465E3BEC0E"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_Smoke.jpg",
+    "bytes": 118923,
+    "sha256": "C44DA1DDA2C72B1680704383B3CB01C08CD95B001BB3066209DA00D039F119E0"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_SmokeSprites_M.jpg",
+    "bytes": 187216,
+    "sha256": "921268CD05394ED00C2DD85E64C60FCEE71E3FB231EAE4EA4C5C02B527606309"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade_SmokeSprites.jpg",
+    "bytes": 187170,
+    "sha256": "DF724073E47B712206D86754425EB22059983D0EBE07F0C572BF6AC3A95F2350"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Blade.jpg",
+    "bytes": 133992,
+    "sha256": "CD3DD8E02A0B276D4F30DFE1F6896D9CF20B4856EBF7E0DC093107BCF471265F"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Emitter_Particles_Advance.jpg",
+    "bytes": 216576,
+    "sha256": "36A9EF4BEE8BBE0FE3BD8FDD8CB4DE0C3A388D55E92146824D1651C2DA5FA6F4"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Emitter_Particles.jpg",
+    "bytes": 227315,
+    "sha256": "CE015F3CC8D0F54868494BA8429FF379AC4315048E10ADFEA0B65CE6DA82DF7B"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Emitter.jpg",
+    "bytes": 160535,
+    "sha256": "8F1407C6C04AAD51E9AD84248392A396BED028259E443EF22DE5F42FF5B9964F"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Line_1.jpg",
+    "bytes": 114518,
+    "sha256": "8E8CC0E1D9243E870FDDE79324A43FB4274AF8543FE81EB8A0FB7EB2623DDAB8"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Line_2.jpg",
+    "bytes": 114876,
+    "sha256": "C0601C47C33E79B5B344AB43D030E0EA59940A5FAB53F821407D871438AA901C"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Line_3.jpg",
+    "bytes": 117059,
+    "sha256": "711A3CC539CE3C9EDD1F4435674086C45B9DDAE78BA80230E3BB4ACEC71E755E"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Line_4.jpg",
+    "bytes": 131659,
+    "sha256": "4F9F3C51DA377CF2EC0EFFA07D1446B7E1AAA384B3D5B29C9F8F706CEADD1C48"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Line_5.jpg",
+    "bytes": 124664,
+    "sha256": "F7F2A2940CBD13CEB648CC14B657DF5CE5C25B0AE8AF2A2500172A1F8F82271E"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Line_Multiple.jpg",
+    "bytes": 106086,
+    "sha256": "820D373BD44FFA92FF8B2CE32172C83BBCA2A6D9826FA1BCE1BC3CE8F0FA7DFF"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Line.jpg",
+    "bytes": 102681,
+    "sha256": "F75257218BE630572D27FBB20CB18B8C63E8D240C808103FAFE8381DED5AD3B4"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Particles_1.jpg",
+    "bytes": 154350,
+    "sha256": "56BA26CC337214BF6CABE0375F0DF1F69DDE209A7A7D08575CFCBCD40A94360D"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Particles_withCollision.jpg",
+    "bytes": 162235,
+    "sha256": "A8B3452AD09CF09B53DA1C42755835441254496CDA2468223E2E267EDAB0000E"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Particles.jpg",
+    "bytes": 136145,
+    "sha256": "7308B0739FD69A9923BAA3BEA1A391BDDC11621492D4FB623F17C9960462AFDB"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Tube_1.jpg",
+    "bytes": 118521,
+    "sha256": "E753B0FD303C5E24145D4136680F08A5D393792F19974DA3EA1CBFBD10B30089"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Tube_2.jpg",
+    "bytes": 123414,
+    "sha256": "0C2121778C02FD36633F2D273828AEA7DD382AB3F71F8E652CF9F70CFC24888C"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Tube_Multiple.jpg",
+    "bytes": 107046,
+    "sha256": "4ECEC369EC94528AB19C674351CFD49F6D9DF710C3C6F750B699BE59369159C8"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Images\\Trail_Tube.jpg",
+    "bytes": 104068,
+    "sha256": "CBBB90EBE1C67F3A220C8CB216152C356CF27D5AD972B304DE815A1C860976BF"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Textures\\img_1.jpeg",
+    "bytes": 124639,
+    "sha256": "052828FC6303A4270B415F5D823401B950025418A99E09F08D62B8917B52971B"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Textures\\img_2.jpeg",
+    "bytes": 124113,
+    "sha256": "2F91328F60E06690170BF8384E224B836BF212326AE7912E1F5161CEF2925B5A"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Textures\\Petals_Texture.jpg",
+    "bytes": 444033,
+    "sha256": "B2784B969FED893ED8BF216F36380E1A1EBA9F3597BCE87CE7B8294A9C1B2B5B"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Textures\\T_Fire_SubUV.TGA",
+    "bytes": 3145772,
+    "sha256": "2211D3C28131C6142DB7E1A10906A519DB4F5DEC3FDECA4A100FF837C421D639"
+  },
+  {
+    "path": "Trail_FXs_v2_Extra\\Trail_FXs_Extra\\Textures\\T_Smoke_SubUV.TGA",
+    "bytes": 16777260,
+    "sha256": "F54C2E7F39C142BF690921391DEFD653B38D57E9A856490D005CDAE7FF16F9AB"
+  },
+  {
+    "path": "赠送教程\\Trail Fxs V2 - 02.mp4",
+    "bytes": 74428336,
+    "sha256": "C8C375385FD2FB5445ACA8E9688EAC699942080993E63BB6C058A911D0B584B5"
+  },
+  {
+    "path": "赠送教程\\Trail Fxs V2-01.mp4",
+    "bytes": 59465087,
+    "sha256": "2DFCA73D017258E0C9549F5D168D9DED886B56161681FE06C323A8D9431F0D99"
+  }
+]

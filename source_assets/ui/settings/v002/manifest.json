@@ -1,0 +1,311 @@
+{
+  "stage": "full settings art proposal, no engine logic implemented",
+  "assets": [
+    {
+      "file": "chrome/button_exit.png",
+      "origin": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-e98213bc-189a-48aa-a1c3-0283b03be299.png",
+      "sha256": "981a35dcebabfafb1e1b1715aa64e65c67ac3bf2a40c28c5e7a09d3fb2eeabc7",
+      "runtime": "res://assets/ui/settings/v002/chrome/button_exit.png",
+      "size": [
+        1983,
+        793
+      ],
+      "atlas_region_xywh": [
+        68,
+        20,
+        1851,
+        751
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/button_primary.png",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\chrome\\button_primary.png",
+      "sha256": "9e5058ddcfab3747d4fd4d5dd5ded54795a3e2d5747637555c4ebf32feada33e",
+      "runtime": "res://assets/ui/settings/v002/chrome/button_primary.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_region_xywh": [
+        42,
+        19,
+        2092,
+        679
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/button_secondary.png",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\chrome\\button_secondary.png",
+      "sha256": "e824738a0411ad569e10324cb71bc061e6152c0b220fecb8ba07548e0c1d9337",
+      "runtime": "res://assets/ui/settings/v002/chrome/button_secondary.png",
+      "size": [
+        2172,
+        724
+      ],
+      "atlas_region_xywh": [
+        62,
+        17,
+        2049,
+        683
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/close_socket.png",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\chrome\\close_socket.png",
+      "sha256": "65314a0fa94df59a1386125c9aaa9ff531b2969e525ab48fbdaa162b1b76ae7c",
+      "runtime": "res://assets/ui/settings/v002/chrome/close_socket.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "atlas_region_xywh": [
+        87,
+        21,
+        1139,
+        1209
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/controls_parchment.png",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\chrome\\controls_parchment.png",
+      "sha256": "e47482dc8188699e013f38b921a5c45bf47dfb2b5ac0d5672fe7f52577ad77e5",
+      "runtime": "res://assets/ui/settings/v002/chrome/controls_parchment.png",
+      "size": [
+        1774,
+        887
+      ],
+      "atlas_region_xywh": [
+        49,
+        21,
+        1679,
+        866
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/header_leaf_sprig.png",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\chrome\\header_leaf_sprig.png",
+      "sha256": "f4bba1bfe12255f2c378cfa642003e4b6750b52e99b05c9d38628525c3d539fd",
+      "runtime": "res://assets/ui/settings/v002/chrome/header_leaf_sprig.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "atlas_region_xywh": [
+        43,
+        42,
+        1197,
+        1148
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/keycap.png",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\chrome\\keycap.png",
+      "sha256": "076984aa2fcc614e0c6d792d22fdcb30e954a435a2a90c036b6f4bcc6161da6a",
+      "runtime": "res://assets/ui/settings/v002/chrome/keycap.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "atlas_region_xywh": [
+        0,
+        0,
+        1242,
+        1254
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/slider_thumb.png",
+      "origin": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-26a6a976-30e1-4332-813d-18645e829392.png",
+      "sha256": "0c52c20a814dc084e6ee576df1e957ed55cdad609fc12f3447f900d8e4fb5de5",
+      "runtime": "res://assets/ui/settings/v002/chrome/slider_thumb.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "atlas_region_xywh": [
+        0,
+        30,
+        1192,
+        1224
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/slider_track.png",
+      "origin": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-dfdb083c-1829-40f4-9bfa-1d133a62a134.png",
+      "sha256": "3ab24430ed5c51838764d5d84fa724499ce82b97a586e939705e9e0deae86efe",
+      "runtime": "res://assets/ui/settings/v002/chrome/slider_track.png",
+      "size": [
+        1672,
+        941
+      ],
+      "atlas_region_xywh": [
+        113,
+        266,
+        1446,
+        422
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/tab_regular.png",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\chrome\\tab_regular.png",
+      "sha256": "a6480121da37234a1db0ce0605483bda9a5cd717e0cf3389bc759462322544c1",
+      "runtime": "res://assets/ui/settings/v002/chrome/tab_regular.png",
+      "size": [
+        1774,
+        887
+      ],
+      "atlas_region_xywh": [
+        98,
+        192,
+        1531,
+        525
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/tab_selected.png",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\chrome\\tab_selected.png",
+      "sha256": "9402b1f2103efe62bad43a1f34dc78dd9b2116cb0fb3bca4f49e49b673871204",
+      "runtime": "res://assets/ui/settings/v002/chrome/tab_selected.png",
+      "size": [
+        2048,
+        768
+      ],
+      "atlas_region_xywh": [
+        109,
+        9,
+        1895,
+        759
+      ],
+      "transparent": true
+    },
+    {
+      "file": "chrome/window_panel.png",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\chrome\\window_panel.png",
+      "sha256": "7139400a833d9d0d321bce81df28b884d67722c3609953a7d43039c727256fe6",
+      "runtime": "res://assets/ui/settings/v002/chrome/window_panel.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "atlas_region_xywh": [
+        49,
+        0,
+        1431,
+        1024
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icons/check.svg",
+      "origin": "New project-native SVG matching foliage palette",
+      "sha256": "db73884485b7ea8b24db1a79845ac4dbd59c91136aaa834b7d61efb1b26521a9",
+      "runtime": "res://assets/ui/settings/v002/icons/check.svg"
+    },
+    {
+      "file": "icons/chevron_down.svg",
+      "origin": "New project-native SVG matching foliage palette",
+      "sha256": "0615a2fc623993b58134012485a471b0fb7eb6bef14fbec7fae92acee3d9c6bd",
+      "runtime": "res://assets/ui/settings/v002/icons/chevron_down.svg"
+    },
+    {
+      "file": "icons/close.svg",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\icons\\close.svg",
+      "sha256": "1f9f5b51266a54dd7411c03b0c1c820965379a5acf6e1757bcc0cce041777efd",
+      "runtime": "res://assets/ui/settings/v002/icons/close.svg"
+    },
+    {
+      "file": "icons/control_row.svg",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\icons\\control_row.svg",
+      "sha256": "041779d3c65000cb4864db45ba303ccf0002ec3f3f4cb3bbc311602237c5f485",
+      "runtime": "res://assets/ui/settings/v002/icons/control_row.svg"
+    },
+    {
+      "file": "icons/divider_gold.svg",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\icons\\divider_gold.svg",
+      "sha256": "950705250b6b56fa25c8180eda1ff0375daa8eb7340fdd602fbef44d5d551050",
+      "runtime": "res://assets/ui/settings/v002/icons/divider_gold.svg"
+    },
+    {
+      "file": "icons/divider_ink.svg",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\icons\\divider_ink.svg",
+      "sha256": "80a6f781b19e8ca3bc01fc5c21862bd7afbe2fed41ac9bed55f015ba5c6c8821",
+      "runtime": "res://assets/ui/settings/v002/icons/divider_ink.svg"
+    },
+    {
+      "file": "icons/exit.svg",
+      "origin": "New project-native SVG matching foliage palette",
+      "sha256": "7e25044bbf93037d3b46f3fdc2f96b7821284954da6594d9bc889c5e683484a3",
+      "runtime": "res://assets/ui/settings/v002/icons/exit.svg"
+    },
+    {
+      "file": "icons/focus_ring.svg",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\icons\\focus_ring.svg",
+      "sha256": "d71af8d75de63174ed971a0ef616527b30608c587434971ddd4a436b85752844",
+      "runtime": "res://assets/ui/settings/v002/icons/focus_ring.svg"
+    },
+    {
+      "file": "icons/gamepad.svg",
+      "origin": "New project-native SVG matching foliage palette",
+      "sha256": "b98416fc79e3cc7d3fff73a4ca27af59750e50f363652c69c4d369e2f717ae30",
+      "runtime": "res://assets/ui/settings/v002/icons/gamepad.svg"
+    },
+    {
+      "file": "icons/language.svg",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\icons\\language.svg",
+      "sha256": "63b8c3c7296af2e927be42441a6c56a1a91639536643479458f6863489da3b4c",
+      "runtime": "res://assets/ui/settings/v002/icons/language.svg"
+    },
+    {
+      "file": "icons/load.svg",
+      "origin": "New project-native SVG matching foliage palette",
+      "sha256": "d9ed3037ec0a89a9f87197a42f02b1f070d9bfa24d1479527e3405cec1a75e96",
+      "runtime": "res://assets/ui/settings/v002/icons/load.svg"
+    },
+    {
+      "file": "icons/monitor.svg",
+      "origin": "New project-native SVG matching foliage palette",
+      "sha256": "163d8ff6915fdff0301bd93d82719bf05391e35fc8868d745d12e62a7246de58",
+      "runtime": "res://assets/ui/settings/v002/icons/monitor.svg"
+    },
+    {
+      "file": "icons/mouse_wheel.svg",
+      "origin": "E:\\ShopGame\\source_assets\\ui\\settings\\v001\\exports\\icons\\mouse_wheel.svg",
+      "sha256": "357441b579e2de433699046c993c2c0550e4e8610e94ba7060c62bb2953df4d9",
+      "runtime": "res://assets/ui/settings/v002/icons/mouse_wheel.svg"
+    },
+    {
+      "file": "icons/save.svg",
+      "origin": "New project-native SVG matching foliage palette",
+      "sha256": "76f0074718d7823f4cadf1305117cef47862288e2982920cfbad936a11e50729",
+      "runtime": "res://assets/ui/settings/v002/icons/save.svg"
+    },
+    {
+      "file": "icons/save_slot.svg",
+      "origin": "New project-native SVG supplement",
+      "sha256": "2766997abcdd4eb5ddb21c41e35245fb16c6b409c0d3f95fbbbbb2f69397674e",
+      "runtime": "res://assets/ui/settings/v002/icons/save_slot.svg"
+    },
+    {
+      "file": "icons/slider_fill.svg",
+      "origin": "New project-native SVG supplement",
+      "sha256": "0412e61d0c3f3ba68f8f0b85447a05c2c380c2cc331308ff9f9407cf1df85283",
+      "runtime": "res://assets/ui/settings/v002/icons/slider_fill.svg"
+    },
+    {
+      "file": "icons/speaker.svg",
+      "origin": "New project-native SVG matching foliage palette",
+      "sha256": "3d5469b4d0d68ab34917062a410c50da6d4874056a1324d9a2f733f2b727e6be",
+      "runtime": "res://assets/ui/settings/v002/icons/speaker.svg"
+    }
+  ]
+}

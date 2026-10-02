@@ -1,0 +1,20 @@
+{
+  "source_vertex_count": 5074,
+  "tail_component_seed": 2331,
+  "tail_component_count": 179,
+  "tail_parent": "Waist",
+  "tail_points": [[-0.035, -0.015, 0.32], [-0.084, 0.085, 0.293], [-0.146, 0.185, 0.275], [-0.205, 0.295, 0.277], [-0.245, 0.395, 0.309], [-0.246, 0.486, 0.344]],
+  "tail_anchor_blend_length": 0.075,
+  "wrist_blend_start_abs_y": 0.355,
+  "palm_rigid_start_abs_y": 0.427,
+  "hand_region_x_min": 0.0,
+  "hand_region_z_min": 0.48,
+  "hand_region_z_max": 0.66,
+  "sway": {
+    "run": {"yaw_deg": [1.2, 1.8, 2.4, 3.0, 3.5], "pitch_deg": [0.7, 0.8, 1.0, 1.2, 1.4], "cycles": 1, "phase_lag": 0.38},
+    "walk": {"yaw_deg": [0.9, 1.3, 1.8, 2.2, 2.5], "pitch_deg": [0.4, 0.5, 0.6, 0.8, 1.0], "cycles": 1, "phase_lag": 0.32},
+    "idle": {"yaw_deg": [0.4, 0.6, 0.8, 1.0, 1.2], "pitch_deg": [0.2, 0.3, 0.4, 0.5, 0.6], "cycles": 3, "phase_lag": 0.35},
+    "agree": {"yaw_deg": [0.5, 0.8, 1.0, 1.3, 1.6], "pitch_deg": [0.3, 0.4, 0.5, 0.6, 0.7], "cycles": 1, "phase_lag": 0.35},
+    "jump": {"yaw_deg": [0.6, 0.9, 1.2, 1.5, 1.8], "pitch_deg": [1.0, 1.5, 2.0, 2.5, 3.0], "cycles": 1, "phase_lag": 0.25}
+  }
+}

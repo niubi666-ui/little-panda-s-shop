@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3]
+[ext_resource type="Script" path="res://presentation/combat/fx/slash_candidates_v001/ribbon_effect.gd" id="script"]
+[ext_resource type="Material" path="res://presentation/combat/fx/slash_candidates_v001/a_clean.tres" id="ribbon"]
+[sub_resource type="StandardMaterial3D" id="spark_mat"]
+shading_mode = 0
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.99, 0.93, 1)
+emission_enabled = true
+emission = Color(1, 0.99, 0.93, 1)
+emission_energy_multiplier = 2.0
+[sub_resource type="SphereMesh" id="spark"]
+material = SubResource("spark_mat")
+radius = 0.012
+height = 0.024
+radial_segments = 8
+rings = 4
+[sub_resource type="Gradient" id="gradient"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+[node name="NeutralSlash" type="Node3D"]
+script = ExtResource("script")
+ribbon_material = ExtResource("ribbon")
+blade_span = 0.95
+tail_lifetime_sec = 0.16
+sample_distance = 0.01
+fade_power = 1.7
+[node name="Particles" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 18
+lifetime = 0.16
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 0.025
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.8
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 1.2
+color_ramp = SubResource("gradient")
+mesh = SubResource("spark")
+cast_shadow = 0

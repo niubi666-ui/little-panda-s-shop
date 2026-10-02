@@ -1,0 +1,197 @@
+{
+  "acquired_at_utc": "2026-09-26T08:17:49.017050+00:00",
+  "scope": "Two source-art PBR texture sets downloaded from official Poly Haven public API/CDN; no scene or script edited.",
+  "license_verification": "Official asset pages identify CC0; Poly Haven license page confirms commercial use and redistribution permitted. Only texture image assets are included, no protected asset preview renders.",
+  "assets": [
+    {
+      "asset_id": "worn_rock_natural_01",
+      "name": "Worn Rock Natural 01",
+      "authors": {
+        "Rob Tuytel": "Processing",
+        "Dimitrios Savva": "Photography"
+      },
+      "source": "Poly Haven",
+      "source_url": "https://polyhaven.com/a/worn_rock_natural_01",
+      "info_api": "https://api.polyhaven.com/info/worn_rock_natural_01",
+      "files_api": "https://api.polyhaven.com/files/worn_rock_natural_01",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "license_deed_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "use_in_scene": "individual modeled flagstones, stone piers and carved masonry; no photographed brick joints",
+      "native_width_m": 2,
+      "resolution": "2k",
+      "format": "jpg",
+      "maps": {
+        "base_color": {
+          "file": "E:/ShopGame/source_assets/environments/dungeon/shared/textures/worn_rock_natural_01/worn_rock_natural_01_diff_2k.jpg",
+          "relative_to_shared": "textures/worn_rock_natural_01/worn_rock_natural_01_diff_2k.jpg",
+          "source_file_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_rock_natural_01/worn_rock_natural_01_diff_2k.jpg",
+          "sha256": "084e528a8b63684cf6cd9c9c1d44cef32a8f4c9e8404394a4a1a40c70cbf000d",
+          "source_md5": "7fd6546ffdb78eb3d1a541f6c25a0fcf",
+          "source_md5_verified": true,
+          "bytes": 3376056,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "mode": "RGB",
+          "colorspace": "sRGB",
+          "pixel_edits": false
+        },
+        "roughness": {
+          "file": "E:/ShopGame/source_assets/environments/dungeon/shared/textures/worn_rock_natural_01/worn_rock_natural_01_rough_2k.jpg",
+          "relative_to_shared": "textures/worn_rock_natural_01/worn_rock_natural_01_rough_2k.jpg",
+          "source_file_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_rock_natural_01/worn_rock_natural_01_rough_2k.jpg",
+          "sha256": "1aac2cf72392f1207b5dbf880cbe0ef58d4c7eecd9dadc12640f031670969395",
+          "source_md5": "02d285642f9291b1a9584f82ba934b90",
+          "source_md5_verified": true,
+          "bytes": 2166423,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "mode": "L",
+          "colorspace": "Non-Color",
+          "pixel_edits": false
+        },
+        "normal_gl": {
+          "file": "E:/ShopGame/source_assets/environments/dungeon/shared/textures/worn_rock_natural_01/worn_rock_natural_01_nor_gl_2k.jpg",
+          "relative_to_shared": "textures/worn_rock_natural_01/worn_rock_natural_01_nor_gl_2k.jpg",
+          "source_file_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_rock_natural_01/worn_rock_natural_01_nor_gl_2k.jpg",
+          "sha256": "51fb7b64eda0d68babd621c43a06d89300d789f27fbe63d917cd7b6ab93365cb",
+          "source_md5": "ab1fb690207d20d0443199c6b49f05c1",
+          "source_md5_verified": true,
+          "bytes": 3486332,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "mode": "RGB",
+          "colorspace": "Non-Color",
+          "pixel_edits": false
+        },
+        "height": {
+          "file": "E:/ShopGame/source_assets/environments/dungeon/shared/textures/worn_rock_natural_01/worn_rock_natural_01_disp_2k.jpg",
+          "relative_to_shared": "textures/worn_rock_natural_01/worn_rock_natural_01_disp_2k.jpg",
+          "source_file_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/worn_rock_natural_01/worn_rock_natural_01_disp_2k.jpg",
+          "sha256": "39f2680f1c09926cd6350e4e3e39d6e203c2394708a97559c4ae6536dcbb10ea",
+          "source_md5": "cb1ecda1df9a5a627f2b874fa0b1a16d",
+          "source_md5_verified": true,
+          "bytes": 791031,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "mode": "L",
+          "colorspace": "Non-Color",
+          "pixel_edits": false
+        }
+      },
+      "visual_review": {
+        "base_color_viewed": true,
+        "accepted": true,
+        "notes": "Warm sandy grey, naturally mottled with tiny yellow lichen; no masonry joints. Can lower saturation in Blender shader if needed."
+      }
+    },
+    {
+      "asset_id": "leafy_grass",
+      "name": "Leafy Grass",
+      "authors": {
+        "Charlotte Baglioni": "All"
+      },
+      "source": "Poly Haven",
+      "source_url": "https://polyhaven.com/a/leafy_grass",
+      "info_api": "https://api.polyhaven.com/info/leafy_grass",
+      "files_api": "https://api.polyhaven.com/files/leafy_grass",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "license_deed_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "use_in_scene": "perimeter forest ground; small green leaves, grass and scattered brown litter",
+      "native_width_m": 2,
+      "resolution": "2k",
+      "format": "jpg",
+      "maps": {
+        "base_color": {
+          "file": "E:/ShopGame/source_assets/environments/dungeon/shared/textures/leafy_grass/leafy_grass_diff_2k.jpg",
+          "relative_to_shared": "textures/leafy_grass/leafy_grass_diff_2k.jpg",
+          "source_file_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/leafy_grass/leafy_grass_diff_2k.jpg",
+          "sha256": "8e1c6d21365d4b89bc5a35ab664da98a78dbc3ab9ba6100474881c8619a5b113",
+          "source_md5": "8014f4dace676a62ed71b3dd76119dae",
+          "source_md5_verified": true,
+          "bytes": 4766204,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "mode": "RGB",
+          "colorspace": "sRGB",
+          "pixel_edits": false
+        },
+        "roughness": {
+          "file": "E:/ShopGame/source_assets/environments/dungeon/shared/textures/leafy_grass/leafy_grass_rough_2k.jpg",
+          "relative_to_shared": "textures/leafy_grass/leafy_grass_rough_2k.jpg",
+          "source_file_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/leafy_grass/leafy_grass_rough_2k.jpg",
+          "sha256": "34e1733bf4064b6950a575ff57e78c8b7ff71b63749eb48a49221bd65de6fb4f",
+          "source_md5": "b5c551ed91162aab5afbfb03b73ae3f5",
+          "source_md5_verified": true,
+          "bytes": 2274652,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "mode": "RGB",
+          "colorspace": "Non-Color",
+          "pixel_edits": false
+        },
+        "normal_gl": {
+          "file": "E:/ShopGame/source_assets/environments/dungeon/shared/textures/leafy_grass/leafy_grass_nor_gl_2k.jpg",
+          "relative_to_shared": "textures/leafy_grass/leafy_grass_nor_gl_2k.jpg",
+          "source_file_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/leafy_grass/leafy_grass_nor_gl_2k.jpg",
+          "sha256": "df0cf0ce96e653f033e5b934d5b12995464bda027aa53bd12e329be889aa9f45",
+          "source_md5": "ea5e91abe01dc5e5d7028c68c3bc9194",
+          "source_md5_verified": true,
+          "bytes": 6047262,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "mode": "RGB",
+          "colorspace": "Non-Color",
+          "pixel_edits": false
+        },
+        "height": {
+          "file": "E:/ShopGame/source_assets/environments/dungeon/shared/textures/leafy_grass/leafy_grass_disp_2k.jpg",
+          "relative_to_shared": "textures/leafy_grass/leafy_grass_disp_2k.jpg",
+          "source_file_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/leafy_grass/leafy_grass_disp_2k.jpg",
+          "sha256": "de34be0f135a3c92fe6e55cca9501a4cc40e02e84de9cc4c7fefded1da5bd3f3",
+          "source_md5": "9c0a5f6c375be590bda0c28e2c1dfa2a",
+          "source_md5_verified": true,
+          "bytes": 2545281,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "mode": "L",
+          "colorspace": "Non-Color",
+          "pixel_edits": false
+        }
+      },
+      "visual_review": {
+        "base_color_viewed": true,
+        "accepted": true,
+        "notes": "Mixed low green grass and small scattered leaves, short twig debris. No dominant large roots."
+      }
+    }
+  ],
+  "total_texture_bytes": 25453241,
+  "validation": {
+    "asset_count": 2,
+    "image_count": 8,
+    "all_jpeg_2048_square": true,
+    "all_source_md5_match": true,
+    "all_base_colors_visually_reviewed": true,
+    "pixel_edits": false,
+    "blender_started": false,
+    "scene_modified": false
+  }
+}

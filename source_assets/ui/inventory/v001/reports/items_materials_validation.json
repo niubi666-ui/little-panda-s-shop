@@ -1,0 +1,128 @@
+{
+  "validation": "read-only image inspection; no resampling or pixel edits",
+  "visual_review": "All three subjects visually inspected: complete silhouettes; no baked text, numeric labels, rarity gem, card frame, ground or ground shadow. Warm stylized fantasy artwork.",
+  "known_limits": [
+    "Built-in tool output is 1254 x 1254 although 1024 x 1024 was requested; original bytes preserved.",
+    "These are sample inventory UI illustrations, not new inventory content definitions.",
+    "Godot import and UI interaction were not tested; this subtask makes only image assets."
+  ],
+  "assets": [
+    {
+      "filename": "herb_sprig.png",
+      "sample_id": "herb",
+      "mode": "RGBA",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "alpha_min_max": [
+        0,
+        255
+      ],
+      "transparent_pixel_fraction": 0.825277,
+      "alpha_positive_bbox": [
+        73,
+        51,
+        1222,
+        1228
+      ],
+      "alpha_gt_16_bbox": [
+        265,
+        197,
+        1088,
+        1076
+      ],
+      "effective_margins_px_ltrb": [
+        265,
+        197,
+        166,
+        178
+      ],
+      "effective_min_margin_fraction": 0.132376,
+      "longest_subject_fraction": 0.700957,
+      "edge_alpha_max": 0,
+      "all_edges_clear": true,
+      "sha256": "196070371510801c46b77596e4d94f85ae79d323da6594dfae29648a89a3cc92",
+      "source_export_runtime_hash_match": true,
+      "visual_integrity": "pass"
+    },
+    {
+      "filename": "crystal_blue.png",
+      "sample_id": "crystal",
+      "mode": "RGBA",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "alpha_min_max": [
+        0,
+        255
+      ],
+      "transparent_pixel_fraction": 0.768489,
+      "alpha_positive_bbox": [
+        67,
+        212,
+        1194,
+        1188
+      ],
+      "alpha_gt_16_bbox": [
+        254,
+        227,
+        1015,
+        1076
+      ],
+      "effective_margins_px_ltrb": [
+        254,
+        227,
+        239,
+        178
+      ],
+      "effective_min_margin_fraction": 0.141946,
+      "longest_subject_fraction": 0.677033,
+      "edge_alpha_max": 0,
+      "all_edges_clear": true,
+      "sha256": "98fe3193e809baa3524e10abc328351a15def93b0bee15262f9fcd15d6de67b2",
+      "source_export_runtime_hash_match": true,
+      "visual_integrity": "pass"
+    },
+    {
+      "filename": "scroll_parchment.png",
+      "sample_id": "scroll",
+      "mode": "RGBA",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "alpha_min_max": [
+        0,
+        255
+      ],
+      "transparent_pixel_fraction": 0.858572,
+      "alpha_positive_bbox": [
+        210,
+        53,
+        1192,
+        996
+      ],
+      "alpha_gt_16_bbox": [
+        229,
+        307,
+        1035,
+        993
+      ],
+      "effective_margins_px_ltrb": [
+        229,
+        307,
+        219,
+        261
+      ],
+      "effective_min_margin_fraction": 0.174641,
+      "longest_subject_fraction": 0.642743,
+      "edge_alpha_max": 0,
+      "all_edges_clear": true,
+      "sha256": "e541e226b367c9551a6b4323bdff2302d9713c301b18ec4c6bf4ed0bc308404c",
+      "source_export_runtime_hash_match": true,
+      "visual_integrity": "pass"
+    }
+  ]
+}

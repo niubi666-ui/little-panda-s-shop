@@ -1,0 +1,12 @@
+{
+  "mode": "material",
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\forest_courtyard\\v001\\previews\\forest_courtyard_material.png",
+  "resolution": [
+    1600,
+    1000
+  ],
+  "samples": 96,
+  "seconds": 26.71448540687561,
+  "engine": "CYCLES",
+  "device": "GPU"
+}

@@ -1,0 +1,1298 @@
+{
+  "properties_type": "<class 'bpy.types.GeometryNodesModifierInterface'>",
+  "properties": "bpy.data.objects['Trail_Blade'].modifiers[\"GeometryNodes\"].properties",
+  "keys": [
+    "rna_type",
+    "inputs",
+    "outputs",
+    "panels"
+  ],
+  "values": {
+    "rna_type": "<bpy_struct, Struct(\"GeometryNodesModifierInterface\") at 0x000001D16E79E700>",
+    "inputs": "<bpy_struct, GeometryNodesInterfaceInputs(\"\") at 0x000001D170853358>",
+    "outputs": "<bpy_struct, GeometryNodesInterfaceOutputs(\"\") at 0x000001D171757898>",
+    "panels": "<bpy_struct, GeometryNodesInterfacePanels(\"\") at 0x000001D171755798>"
+  },
+  "inputs": {
+    "rna_type": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Struct(\"GeometryNodesInterfaceInputs\") at 0x000001D16E79E600>"
+    },
+    "name": {
+      "type": "STRING",
+      "value": ""
+    },
+    "Input_2": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_2(\"\") at 0x000001D170853298>"
+    },
+    "Input_3": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_3(\"\") at 0x000001D170852F98>"
+    },
+    "Input_4": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_4(\"\") at 0x000001D170852C98>"
+    },
+    "Input_13": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_13(\"\") at 0x000001D170852998>"
+    },
+    "Socket_0": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Socket_0(\"\") at 0x000001D170852698>"
+    },
+    "Input_10": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_10(\"\") at 0x000001D170852398>"
+    },
+    "Input_12": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_12(\"\") at 0x000001D170852098>"
+    },
+    "Input_11": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_11(\"\") at 0x000001D170851D98>"
+    },
+    "Socket_6": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Socket_6(\"\") at 0x000001D170851A98>"
+    },
+    "Socket_1": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Socket_1(\"\") at 0x000001D170851798>"
+    },
+    "Socket_4": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Socket_4(\"\") at 0x000001D170851498>"
+    },
+    "Socket_2": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Socket_2(\"\") at 0x000001D170851198>"
+    },
+    "Socket_3": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Socket_3(\"\") at 0x000001D170850E98>"
+    },
+    "Input_9": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_9(\"\") at 0x000001D170850B98>"
+    },
+    "Socket_9": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Socket_9(\"\") at 0x000001D170850898>"
+    },
+    "Socket_10": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Socket_10(\"\") at 0x000001D170850598>"
+    },
+    "Input_6": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_6(\"\") at 0x000001D170850298>"
+    },
+    "Input_7": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_7(\"\") at 0x000001D171757E98>"
+    },
+    "Input_8": {
+      "type": "POINTER",
+      "value": "<bpy_struct, Input_8(\"\") at 0x000001D171757B98>"
+    }
+  },
+  "socket_fields": {
+    "Input_2": {
+      "rna_type": "<bpy_struct, Struct(\"Input_2\") at 0x000001D16E79E500>",
+      "name": "",
+      "value": "True",
+      "type": "VALUE",
+      "attribute_name": "",
+      "layer_name": ""
+    },
+    "Input_3": {
+      "rna_type": "<bpy_struct, Struct(\"Input_3\") at 0x000001D16E79E400>",
+      "name": "",
+      "value": "None",
+      "type": "VALUE"
+    },
+    "Input_8": {
+      "rna_type": "<bpy_struct, Struct(\"Input_8\") at 0x000001D16E79D300>",
+      "name": "",
+      "value": "10.0",
+      "type": "VALUE",
+      "attribute_name": ""
+    }
+  },
+  "objects": {
+    "Blade": {
+      "vertices": [
+        [
+          -0.03999998793005943,
+          -0.02500000037252903,
+          0.1952512264251709
+        ],
+        [
+          0.03999998793005943,
+          -0.02500000037252903,
+          0.1952512264251709
+        ],
+        [
+          -0.03999998793005943,
+          -0.004748104140162468,
+          1.195251226425171
+        ],
+        [
+          0.03999998793005943,
+          -0.004748104140162468,
+          1.195251226425171
+        ],
+        [
+          0.03999998793005943,
+          -0.02500000037252903,
+          0.12025122344493866
+        ],
+        [
+          -0.03999998793005943,
+          -0.02500000037252903,
+          0.12025122344493866
+        ],
+        [
+          -0.03999998793005943,
+          0.004748104140162468,
+          1.195251226425171
+        ],
+        [
+          -0.03999998793005943,
+          0.02500000037252903,
+          0.1952512264251709
+        ]
+      ],
+      "drivers": []
+    },
+    "Blade_Reference": {
+      "vertices": [
+        [
+          -0.03999998793005943,
+          0.0,
+          1.195251226425171
+        ],
+        [
+          0.0,
+          0.0,
+          1.260891079902649
+        ],
+        [
+          -0.03999998793005943,
+          0.0,
+          0.20894324779510498
+        ],
+        [
+          -0.03999998793005943,
+          0.0,
+          0.3185330331325531
+        ],
+        [
+          -0.03999998793005943,
+          0.0,
+          0.4281228184700012
+        ],
+        [
+          -0.03999998793005943,
+          0.0,
+          0.537712574005127
+        ],
+        [
+          -0.03999998793005943,
+          0.0,
+          0.6473023295402527
+        ],
+        [
+          -0.03999998793005943,
+          0.0,
+          0.7568920850753784
+        ]
+      ],
+      "drivers": []
+    },
+    "MaterialContainer": {
+      "vertices": [],
+      "drivers": []
+    },
+    "Trail_Blade": {
+      "vertices": [
+        [
+          -1.0,
+          -1.0,
+          0.0
+        ],
+        [
+          1.0,
+          -1.0,
+          0.0
+        ],
+        [
+          -1.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "drivers": []
+    }
+  },
+  "shader_attributes": {
+    "Dots Stroke": [],
+    "Trail_Blade_01": [
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_02": [
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_03": [
+      [
+        "TEX_COORD",
+        ""
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_04": [
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_05": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_06": [
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_07": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_08": [
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_09": [
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_10": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_11": [
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_12": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_13": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_14": [
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_15": [
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_16": [
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_17": [
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_18": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_19": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_20": [
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_21": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_22": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_23": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_24": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ]
+    ],
+    "Trail_Blade_25": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ]
+    ],
+    "Trail_Blade_26": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ]
+    ],
+    "Trail_Blade_27": [
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ]
+    ],
+    "Trail_Blade_28": [
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_29": [
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ]
+    ],
+    "Trail_Blade_30": [
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Speed"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Hue"
+      ],
+      [
+        "ATTRIBUTE",
+        "UseGlowColors"
+      ],
+      [
+        "ATTRIBUTE",
+        "BladeUVs"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow2"
+      ],
+      [
+        "ATTRIBUTE",
+        "Glow"
+      ]
+    ]
+  },
+  "bake_operator": "['rna_type', 'selected']",
+  "bake_data": [
+    {
+      "type": "NodesModifierBake",
+      "props": [
+        "rna_type",
+        "directory",
+        "frame_start",
+        "frame_end",
+        "use_custom_simulation_frame_range",
+        "use_custom_path",
+        "bake_target",
+        "bake_mode",
+        "bake_id",
+        "node",
+        "data_blocks"
+      ]
+    }
+  ],
+  "render_enum": [
+    "AVIF",
+    "JPEG",
+    "OPEN_EXR",
+    "PNG",
+    "WEBP",
+    "BMP",
+    "CINEON",
+    "DPX",
+    "IRIS",
+    "JPEG2000",
+    "HDR",
+    "TARGA",
+    "TARGA_RAW",
+    "TIFF",
+    "OPEN_EXR_MULTILAYER",
+    "FFMPEG"
+  ]
+}

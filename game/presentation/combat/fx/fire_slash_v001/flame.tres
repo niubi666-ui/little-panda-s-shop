@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/fire_slash_v001/flame.gdshader" id="1"]
+[resource]
+shader = ExtResource("1")
+shader_parameter/core_color = Color(1, 0.9, 0.48, 1)
+shader_parameter/fire_color = Color(1, 0.24, 0.025, 1)
+shader_parameter/edge_color = Color(0.72, 0.045, 0.008, 1)
+shader_parameter/energy = 1.25
+shader_parameter/core_width = 0.035
+shader_parameter/flame_speed = 1.8
+shader_parameter/flame_frequency = Vector2(13, 6)
+shader_parameter/effect_opacity = 0.0
+shader_parameter/flame_time = 0.0

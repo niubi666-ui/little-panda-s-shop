@@ -1,0 +1,40 @@
+{
+  "blender_version": "5.2.1 LTS",
+  "checks": [
+    {
+      "frame": 15,
+      "vertices": 2337,
+      "distance_to_tip": 0.0
+    },
+    {
+      "frame": 20,
+      "vertices": 2337,
+      "distance_to_tip": 0.0
+    },
+    {
+      "frame": 85,
+      "vertices": 4797,
+      "distance_to_tip": 0.0
+    },
+    {
+      "frame": 95,
+      "vertices": 4797,
+      "distance_to_tip": 0.0
+    },
+    {
+      "frame": 99,
+      "vertices": 4797,
+      "distance_to_tip": 0.0
+    },
+    {
+      "frame": 105,
+      "vertices": 4797,
+      "distance_to_tip": 0.0
+    },
+    {
+      "frame": 135,
+      "vertices": 4797,
+      "distance_to_tip": 0.0
+    }
+  ]
+}

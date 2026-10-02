@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/slash_candidates_v001/ribbon.gdshader" id="shader"]
+[ext_resource type="Texture2D" path="res://assets/vfx/basic_slash_v001/b_weight.png" id="texture"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/ribbon_texture = ExtResource("texture")
+shader_parameter/texture_region = Vector4(0.004604052, 0.381215470, 0.990791897, 0.225138122)
+shader_parameter/tint = Color(1, 0.96, 0.87, 1)
+shader_parameter/brightness = 2.3
+shader_parameter/opacity = 0.9
+shader_parameter/streak_amount = 0
+shader_parameter/streak_frequency = Vector2(54, 17)
+shader_parameter/core_width = 0.065
+shader_parameter/texture_strength = 0.3

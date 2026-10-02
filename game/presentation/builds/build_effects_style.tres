@@ -1,0 +1,40 @@
+[gd_resource type="Resource" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://presentation/builds/build_effects_style.gd" id="style"]
+
+[sub_resource type="SphereMesh" id="projectile_mesh"]
+radius = 0.5
+height = 1.0
+radial_segments = 12
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="projectile_material"]
+shading_mode = 0
+albedo_color = Color(0.62, 0.98, 0.8, 1)
+emission_enabled = true
+emission = Color(0.3, 1, 0.64, 1)
+emission_energy_multiplier = 2.8
+
+[sub_resource type="StandardMaterial3D" id="chain_material"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = false
+albedo_color = Color(0.61, 0.81, 1, 1)
+emission_enabled = true
+emission = Color(0.24, 0.58, 1, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="BoxMesh" id="arrow_mesh"]
+size = Vector3(0.4, 0.4, 1.5)
+
+[resource]
+script = ExtResource("style")
+projectile_mesh = SubResource("projectile_mesh")
+projectile_material = SubResource("projectile_material")
+projectile_size_per_radius = Vector3(2.0, 1.6, 4.4)
+projectile_height = 0.0
+chain_material = SubResource("chain_material")
+chain_height = 0.6
+chain_lifetime_sec = 0.16
+
+projectile_mesh_overrides = {"test_arrow": SubResource("arrow_mesh")}

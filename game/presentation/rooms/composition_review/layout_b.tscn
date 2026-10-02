@@ -1,0 +1,14 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://presentation/rooms/composition_review/supplies.tscn" id="supplies"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/composition_review/treasure_corner.tscn" id="treasure_corner"]
+[ext_resource type="PackedScene" path="res://presentation/rooms/composition_review/broken_wall_island.tscn" id="broken_wall_island"]
+[node name="layout_b" type="Node3D"]
+[node name="supplies" parent="." instance=ExtResource("supplies")]
+position = Vector3(-6.5, 0.0, -4.6)
+rotation = Vector3(0.0, 1.5707963267948966, 0.0)
+[node name="treasure_corner" parent="." instance=ExtResource("treasure_corner")]
+position = Vector3(5.0, 0.0, -4.9)
+rotation = Vector3(0.0, 0.0, 0.0)
+[node name="broken_wall_island" parent="." instance=ExtResource("broken_wall_island")]
+position = Vector3(1.8, 0.0, -1.8)
+rotation = Vector3(0.0, 0.0, 0.0)

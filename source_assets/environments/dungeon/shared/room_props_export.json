@@ -1,0 +1,59 @@
+{
+  "source_sha256": "b1359d7bcdffb8655eeb97ee56cb1d835fa6f63075a032b172556eff98522f73",
+  "assets": {
+    "barrel": {
+      "source_object": "木桶3d模型",
+      "dimensions_godot": [
+        0.85,
+        1.0,
+        0.85
+      ],
+      "triangles": 2465
+    },
+    "crate": {
+      "source_object": "板条箱",
+      "dimensions_godot": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "triangles": 6124
+    },
+    "chest1": {
+      "source_object": "chest1",
+      "dimensions_godot": [
+        1.1,
+        0.85,
+        0.78
+      ],
+      "triangles": 5407
+    },
+    "chest2": {
+      "source_object": "chest2",
+      "dimensions_godot": [
+        1.2,
+        0.9,
+        0.8
+      ],
+      "triangles": 5962
+    },
+    "forest_bag": {
+      "source_object": "forest_bag1",
+      "dimensions_godot": [
+        0.85,
+        0.9,
+        0.75
+      ],
+      "triangles": 6121
+    },
+    "stone_wall": {
+      "source_object": "ba956f36-4051-4087-a2ba-15b622e9bb75",
+      "dimensions_godot": [
+        1.8,
+        1.0,
+        0.6
+      ],
+      "triangles": 9578
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "mode": "draft",
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v001\\previews\\sanctuary_draft.png",
+  "resolution": [
+    1280,
+    720
+  ],
+  "samples": 40,
+  "seconds": 42.89742374420166,
+  "engine": "CYCLES",
+  "device": "GPU"
+}

@@ -1,0 +1,11 @@
+{
+  "mode": "draft",
+  "camera": "Camera_Panorama",
+  "resolution": [
+    1400,
+    875
+  ],
+  "samples": 40,
+  "seconds": 15.127368450164795,
+  "device": "GPU"
+}

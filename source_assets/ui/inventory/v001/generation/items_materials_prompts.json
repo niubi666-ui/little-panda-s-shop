@@ -1,0 +1,82 @@
+{
+  "version": "v001",
+  "date": "2026-09-26",
+  "generator": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "reference": "E:/ShopGame/source_assets/ui/reference/foliage_v001/02_inventory.png",
+  "reference_role": "visual style guide inspected, not an edit target",
+  "pixel_editing": "none; copied original generated PNG bytes",
+  "requested_size": [
+    1024,
+    1024
+  ],
+  "actual_size": [
+    1254,
+    1254
+  ],
+  "scope": "Artwork candidates only. Sample IDs do not create authoritative inventory content definitions.",
+  "assets": [
+    {
+      "filename": "herb_sprig.png",
+      "sample_id": "herb",
+      "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-525b7806-6392-465d-808d-aee742437013.png",
+      "export_path": "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/herb_sprig.png",
+      "runtime_path": "E:/ShopGame/game/assets/ui/inventory/v001/items/herb_sprig.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual 3D-styled hand-painted fantasy inventory item icon for a warm, cozy medieval fantasy shop game. Generate a single finished icon on a TRUE TRANSPARENT RGBA BACKGROUND, not a checkerboard illustration, not white or black. Square 1024 x 1024 canvas. Subject silhouette occupies 70 to 75 percent of canvas dimensions at most; leave at least 12 percent completely transparent margin on every side. Complete item entirely within frame. Three-quarter view with rich tactile materials, clean coherent anatomy, restrained painterly surface detail, warmly lit from upper left, soft self-shading. Designed to be readable at 96 pixels on dark forest-green UI. No text, numerals, symbols, UI card, frame, border, diamond, rarity marker, extra background, ground, ground shadow, drop shadow, watermark, surrounding particles or glow halo. Subject: one small freshly picked medicinal herb sprig, 3 to 5 slender branching stems with elongated narrow pointed leaves. Bright fresh natural green leaves with gentle yellow-green sunlit edges. Arrange diagonally lower-left to upper-right with a graceful tidy taper, small loose bundle rather than bush or pot. A few delicate leaf veins. No flowers, no pot, no roots, no containers, no enormous fern.",
+      "edits": [
+        {
+          "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-fd3944ff-f8b4-45b4-8369-065a984ec350.png",
+          "prompt": "Use case: precise-object-edit. This is a finished transparent game inventory icon. Make only one change: scale the complete existing item silhouette DOWN and center it within a square transparent canvas. Preserve the exact subject, visual identity, colors, detail, lighting, and proportions. Fit the entire item's longest extent into the CENTRAL 65 PERCENT of the image width/height; leave at least 17.5 PERCENT fully TRANSPARENT empty margin on every side. The item must be noticeably SMALLER inside the frame than this reference. Do not crop any tips, cord, leaves, or scroll edge. Output requested 1024 x 1024 pixels. Background remains genuine alpha=0 transparency, no painted solid or checkerboard backdrop. No text, no extra objects, no frame, no ground, no drop shadow. Keep the source illustration otherwise unchanged."
+        },
+        {
+          "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-c88b7049-03fa-4d91-9945-eb3e373a0f10.png",
+          "prompt": "Use case: precise-object-edit. Preserve the entire existing icon exactly as it is, same illustration and transparent background. Its padding is currently too large. ONLY enlarge the subject 25 percent compared to its current size and recenter it. Do not change canvas size. The final longest silhouette dimension should be 71 percent of canvas, leaving approximately 14.5 percent transparent margin on its two long-axis ends. Maintain full object integrity, no cropping, true RGBA transparency, no text, no added shadow, no frame, no other marks. Keep illustration style, colors, detailed surface and lighting identical."
+        }
+      ]
+    },
+    {
+      "filename": "crystal_blue.png",
+      "sample_id": "crystal",
+      "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-1874e316-dec8-4acb-a94e-5852ba3853b7.png",
+      "export_path": "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/crystal_blue.png",
+      "runtime_path": "E:/ShopGame/game/assets/ui/inventory/v001/items/crystal_blue.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual 3D-styled hand-painted fantasy inventory item icon for a warm, cozy medieval fantasy shop game. Generate a single finished icon on a TRUE TRANSPARENT RGBA BACKGROUND, not a checkerboard illustration, not white or black. Square 1024 x 1024 canvas. Subject silhouette occupies 70 to 75 percent of canvas dimensions at most; leave at least 12 percent completely transparent margin on every side. Complete item entirely within frame. Three-quarter view with rich tactile materials, clean coherent anatomy, restrained painterly surface detail, warmly lit from upper left, soft self-shading. Designed to be readable at 96 pixels on dark forest-green UI. No text, numerals, symbols, UI card, frame, border, diamond, rarity marker, extra background, ground, ground shadow, drop shadow, watermark, surrounding particles or glow halo. Subject: a single compact cluster of three translucent blue quartz-like mineral crystals, one taller central angled pointed prism and two shorter attached prisms. Crisp attractive faceted geometry, bright cyan edge highlights and deep sapphire-blue internal facets, modest refracted warm top-left light, stylized hand-painted 3D look. All crystal tips and base fully intact. No separate rocks, no gold setting, no runes, no sparkling surrounding particles or glow halo.",
+      "edits": [
+        {
+          "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-447ee281-772e-4d49-b5cf-17306e71b5df.png",
+          "prompt": "Use case: precise-object-edit. This is a finished transparent game inventory icon. Make only one change: scale the complete existing item silhouette DOWN and center it within a square transparent canvas. Preserve the exact subject, visual identity, colors, detail, lighting, and proportions. Fit the entire item's longest extent into the CENTRAL 65 PERCENT of the image width/height; leave at least 17.5 PERCENT fully TRANSPARENT empty margin on every side. The item must be noticeably SMALLER inside the frame than this reference. Do not crop any tips, cord, leaves, or scroll edge. Output requested 1024 x 1024 pixels. Background remains genuine alpha=0 transparency, no painted solid or checkerboard backdrop. No text, no extra objects, no frame, no ground, no drop shadow. Keep the source illustration otherwise unchanged."
+        },
+        {
+          "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-68728fe3-becb-4941-8a24-a1dc1deb34c0.png",
+          "prompt": "Use case: precise-object-edit. Preserve the entire existing icon exactly as it is, same illustration and transparent background. Its padding is currently too large. ONLY enlarge the subject 32 percent compared to its current size and recenter it. Do not change canvas size. The final longest silhouette dimension should be 71 percent of canvas, leaving approximately 14.5 percent transparent margin on its two long-axis ends. Maintain full object integrity, no cropping, true RGBA transparency, no text, no added shadow, no frame, no other marks. Keep illustration style, colors, detailed surface and lighting identical."
+        },
+        {
+          "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-7471dacf-0389-454c-a135-fe1852a16d6b.png",
+          "prompt": "Use case: precise-object-edit. Change only composition: reduce the illustrated subject by 15 percent from this reference and center it exactly in the same-size square transparent canvas. This is a modest 15 percent reduction, not a dramatic shrinking. Keep subject's proportions, illustration, lighting, colors and texture unchanged. Make all side margins at least 14 percent clear transparency. Keep genuine transparent RGBA background. No added text, no ground, no new elements, no ground shadow."
+        }
+      ]
+    },
+    {
+      "filename": "scroll_parchment.png",
+      "sample_id": "scroll",
+      "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-5c421782-b468-4add-86e5-26a87970227b.png",
+      "export_path": "E:/ShopGame/source_assets/ui/inventory/v001/exports/items/scroll_parchment.png",
+      "runtime_path": "E:/ShopGame/game/assets/ui/inventory/v001/items/scroll_parchment.png",
+      "prompt": "Use case: stylized-concept. Asset type: individual 3D-styled hand-painted fantasy inventory item icon for a warm, cozy medieval fantasy shop game. Generate a single finished icon on a TRUE TRANSPARENT RGBA BACKGROUND, not a checkerboard illustration, not white or black. Square 1024 x 1024 canvas. Subject silhouette occupies 70 to 75 percent of canvas dimensions at most; leave at least 12 percent completely transparent margin on every side. Complete item entirely within frame. Three-quarter view with rich tactile materials, clean coherent anatomy, restrained painterly surface detail, warmly lit from upper left, soft self-shading. Designed to be readable at 96 pixels on dark forest-green UI. No text, numerals, symbols, UI card, frame, border, diamond, rarity marker, extra background, ground, ground shadow, drop shadow, watermark, surrounding particles or glow halo. Subject: a single rolled cream-beige parchment scroll tied around the center with a thin reddish-brown cord and simple knot. Diagonally arranged lower-left to upper-right. Slightly exposed rolled layered edge, tactile old but clean parchment fibers, warm edge shading, closed roll and small curling lip. Entire scroll and cord fit within the centered silhouette. Absolutely no writing, no letters, no seal, no emblem, no extra paper sheet, no quill, no book.",
+      "edits": [
+        {
+          "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-7210f1df-b7f7-4593-98c8-9b62366fcde5.png",
+          "prompt": "Use case: precise-object-edit. This is a finished transparent game inventory icon. Make only one change: scale the complete existing item silhouette DOWN and center it within a square transparent canvas. Preserve the exact subject, visual identity, colors, detail, lighting, and proportions. Fit the entire item's longest extent into the CENTRAL 65 PERCENT of the image width/height; leave at least 17.5 PERCENT fully TRANSPARENT empty margin on every side. The item must be noticeably SMALLER inside the frame than this reference. Do not crop any tips, cord, leaves, or scroll edge. Output requested 1024 x 1024 pixels. Background remains genuine alpha=0 transparency, no painted solid or checkerboard backdrop. No text, no extra objects, no frame, no ground, no drop shadow. Keep the source illustration otherwise unchanged."
+        },
+        {
+          "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-aaab28dd-2e7b-4c81-b2b6-93d0825bc008.png",
+          "prompt": "Use case: precise-object-edit. Preserve the entire existing icon exactly as it is, same illustration and transparent background. Its padding is currently too large. ONLY enlarge the subject 36 percent compared to its current size and recenter it. Do not change canvas size. The final longest silhouette dimension should be 71 percent of canvas, leaving approximately 14.5 percent transparent margin on its two long-axis ends. Maintain full object integrity, no cropping, true RGBA transparency, no text, no added shadow, no frame, no other marks. Keep illustration style, colors, detailed surface and lighting identical."
+        },
+        {
+          "source": "C:/Users/陈旭辉/.codex/generated_images/01a0dc5d-822d-7f21-bfaf-76cd872a928f/exec-e6915335-a5be-42f2-8d94-3a0f1752db03.png",
+          "prompt": "Use case: precise-object-edit. Change only composition: reduce the illustrated subject by 8 percent from this reference and center it exactly in the same-size square transparent canvas. This is a modest 8 percent reduction, not a dramatic shrinking. Keep subject's proportions, illustration, lighting, colors and texture unchanged. Make all side margins at least 14 percent clear transparency. Keep genuine transparent RGBA background. No added text, no ground, no new elements, no ground shadow."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "checks": {
+    "source_library_unchanged": true,
+    "tree_source_unchanged": true,
+    "textures_resolve": true,
+    "finite_transforms": true,
+    "approved_tree_triangle_count": true,
+    "hero_tree_has_62_parts": true,
+    "three_medallions": true,
+    "court_four_times_previous": true,
+    "player_1_2m": true,
+    "gameplay_frame_narrower_than_court": true
+  },
+  "all_pass": true,
+  "missing_images": [],
+  "file_images_used": 46,
+  "packed_images_used": 46,
+  "hero_tree_height_m": 15.176745630800724,
+  "hero_tree_triangles": 29768,
+  "cameras": [
+    "Camera_Panorama",
+    "Camera_Gameplay",
+    "Camera_East_Gateway",
+    "Camera_North_Reverse",
+    "Camera_Shrine_Detail"
+  ],
+  "object_count": 9999,
+  "mesh_instances": 9899,
+  "unique_meshes": 710,
+  "scope": "Blender art source only; no runtime navigation, collisions, draw calls, LOD, performance or Godot lighting parity tested"
+}

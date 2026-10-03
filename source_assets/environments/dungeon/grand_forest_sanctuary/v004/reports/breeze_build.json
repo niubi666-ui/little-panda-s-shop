@@ -1,0 +1,39 @@
+{
+  "source": "E:/ShopGame/source_assets/environments/dungeon/grand_forest_sanctuary/v003/blender/grand_forest_sanctuary_v003_leaf_cutout.blend",
+  "source_sha256": "f8283025e6e30093ee08f6a402c3e4419bd598f59f2da4248a85572efb4bd864",
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v004\\blender\\grand_forest_sanctuary_v004_breeze.blend",
+  "flora_objects": 6944,
+  "shared_flora_meshes": 23,
+  "deformed_instance_batches": 552,
+  "canopy_modules": 793,
+  "canopy_unique_meshes": 6,
+  "shadow_proxy_animated": true,
+  "static": "Trunks, roots, architecture, moss and grounded litter retain original shape. No topology changes. Original flora retained hidden, replaced for drawing by instanced deformation batches.",
+  "limits": "Blender prototype batches quantize plant wind direction into 8 sectors and phase into 3 cohorts to retain instancing; separate Godot shader uses continuous instance/world phase. Not a runtime performance claim.",
+  "profile": {
+    "source": "E:/ShopGame/source_assets/environments/dungeon/grand_forest_sanctuary/v003/blender/grand_forest_sanctuary_v003_leaf_cutout.blend",
+    "fps": 24,
+    "seconds": 10,
+    "wind_direction": [
+      0.86,
+      0.51,
+      0.0
+    ],
+    "direction_buckets": 8,
+    "phase_buckets": 3,
+    "main_frequency": 0.92,
+    "secondary_frequency": 1.47,
+    "gust_frequency": 0.36,
+    "flutter_frequency": 4.2,
+    "canopy_amplitude": 0.115,
+    "fern_amplitude": 0.067,
+    "flower_amplitude": 0.058,
+    "bellflower_amplitude": 0.05,
+    "shadow_amplitude": 0.045,
+    "render_samples": 32,
+    "render_resolution": [
+      1152,
+      720
+    ]
+  }
+}

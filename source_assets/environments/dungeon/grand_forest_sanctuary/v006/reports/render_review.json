@@ -1,0 +1,42 @@
+[
+  {
+    "image": "sanctuary_v006_overview.png",
+    "engine": "CYCLES",
+    "camera": "Camera_Panorama",
+    "width": 1800,
+    "height": 1238,
+    "frame": 1,
+    "samples": 96,
+    "seconds": 158.72
+  },
+  {
+    "image": "sanctuary_v006_gameplay.png",
+    "engine": "CYCLES",
+    "camera": "Camera_Gameplay",
+    "width": 1920,
+    "height": 1080,
+    "frame": 1,
+    "samples": 96,
+    "seconds": 153.52
+  },
+  {
+    "image": "sanctuary_v006_shrine_gateway.png",
+    "engine": "CYCLES",
+    "camera": "Camera_V005_Shrine_Gateway",
+    "width": 1800,
+    "height": 1100,
+    "frame": 1,
+    "samples": 96,
+    "seconds": 59.45
+  },
+  {
+    "image": "sanctuary_v006_eevee_gameplay.png",
+    "engine": "BLENDER_EEVEE",
+    "camera": "Camera_Gameplay",
+    "width": 1600,
+    "height": 900,
+    "frame": 1,
+    "samples": 96,
+    "seconds": 46.4
+  }
+]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://presentation/combat/fx/sword_waves_v001/wave_demo.gd" id="script"]
+[ext_resource type="Resource" path="res://presentation/combat/fx/sword_waves_v001/frost_profile.tres" id="profile"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/sword_waves_v001/frost_wave.tscn" id="wave"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/sword_waves_v001/frost_impact.tscn" id="impact"]
+[node name="FrostWaveDemo" type="Node3D"]
+script = ExtResource("script")
+profile = ExtResource("profile")
+wave_scene = ExtResource("wave")
+impact_scene = ExtResource("impact")

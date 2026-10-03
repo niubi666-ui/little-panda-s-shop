@@ -1,4 +1,7 @@
 extends Resource
+@export var enabled: bool
+@export var area_scenes: Dictionary[String, PackedScene] = {}
+@export var status_scenes: Dictionary[String, PackedScene] = {}
 @export var area_mesh: Mesh
 @export var area_material: Material
 @export var frost_area_material: Material

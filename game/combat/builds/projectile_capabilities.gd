@@ -9,8 +9,13 @@ static func supports_pierce(definition: Dictionary, params: Dictionary) -> bool:
 	return params.scope == "linear_projectile" and params.trigger == "enemy_contact" and definition.executor == "linear_contact"
 
 static func valid_program(program: Dictionary, catalog = null) -> bool:
-	# Current upgrades apply globally. Until per-attack binding exists these two
-	# contact strategies are mutually exclusive even if a caller bypasses session.
+	if catalog == null: return false
+	# Dynamic script lookup avoids a preload cycle; compilation calls valid_plan only.
+	var resolver = load("res://combat/builds/build_resolver.gd").new()
+	resolver.configure(catalog)
+	return resolver.valid_program(program)
+
+static func valid_plan(program: Dictionary, catalog = null) -> bool:
 	for field in ["damage_scale", "move_scale", "tags", "effects"]:
 		if not program.has(field): return false
 	if not program.effects is Array or not program.tags is Array: return false
@@ -18,6 +23,7 @@ static func valid_program(program: Dictionary, catalog = null) -> bool:
 	var seen: Dictionary = {}
 	var split := false
 	var pierce := false
+	var area_status := false
 	for effect in program.effects:
 		if not effect is Dictionary: return false
 		for field in ["upgrade_id", "type", "rank", "params"]:
@@ -32,9 +38,11 @@ static func valid_program(program: Dictionary, catalog = null) -> bool:
 			for field in ["trigger", "scope", "max_hits"]:
 				if not effect.params.has(field): return false
 			if effect.params.trigger != "enemy_contact" or effect.params.scope != "linear_projectile" or not _positive_integer(effect.params.max_hits): return false
-		if effect.type == "explosion" and not _valid_area_plan(effect.params): return false
+		if effect.type == "explosion":
+			if not _valid_area_plan(effect.params): return false
+			if effect.params.payloads.size() > 1: area_status = true
 		if catalog != null and not _known_effect(effect, catalog): return false
-	return not (split and pierce)
+	return not (split and (pierce or area_status))
 
 static func _known_effect(effect: Dictionary, catalog) -> bool:
 	if not catalog.has_upgrade(str(effect.upgrade_id)): return false
@@ -96,27 +104,30 @@ static func _positive(value: Variant) -> bool:
 static func _positive_integer(value: Variant) -> bool:
 	return _positive(value) and float(value) == floorf(float(value))
 
-static func summarize(catalog, program: Dictionary, attack_ids: Array, has_melee: bool = false) -> Array:
+static func summarize(catalog, program: Dictionary, _attack_ids: Array = [], _has_melee: bool = false) -> Array:
 	var result: Array = []
-	if not valid_program(program): return Catalog.freeze_copy(result)
-	for id in attack_ids:
-		var attack: Dictionary = catalog.test_attack(id)
-		result.append({"attack_id": id, "projectile": catalog.projectile(attack.projectile_id)})
-	for effect in program.effects:
-		if effect.type == "projectile":
-			result.append({"attack_id": effect.upgrade_id, "projectile": catalog.projectile(effect.params.projectile_id)})
-	# Derived-only carriers exist only after an actual split grant with a valid child.
+	if not valid_program(program, catalog): return result
+	for action_id in program.actions:
+		result.append_array(summarize_plan(catalog, program.actions[action_id]))
+	return Catalog.freeze_copy(result)
+
+static func summarize_plan(catalog, plan: Dictionary) -> Array:
+	var result: Array = []
+	if plan.executor == "projectile":
+		result.append({"attack_id": plan.action_id, "action_id": plan.action_id, "projectile": catalog.projectile(plan.projectile_id), "origin": "direct_projectile"})
+	else:
+		result.append({"attack_id": plan.action_id, "action_id": plan.action_id, "projectile": {}, "origin": "direct_melee"})
+	for effect in plan.effects:
+		if effect.type == "projectile": result.append({"attack_id": effect.upgrade_id, "action_id": plan.action_id, "projectile": catalog.projectile(effect.params.projectile_id), "origin": "direct_projectile"})
 	for attack in result.duplicate():
-		for effect in program.effects:
-			if effect.type == "split" and supports_split(attack.projectile, effect.params):
-				result.append({"attack_id": str(attack.attack_id) + "/split/" + str(effect.upgrade_id), "projectile": catalog.projectile(attack.projectile.child_id), "origin": "split_projectile"})
-	if has_melee: result.append({"attack_id": "melee", "projectile": {}, "origin": "direct_melee"})
+		if attack.projectile.is_empty(): continue
+		for effect in plan.effects:
+			if effect.type == "split" and supports_split(attack.projectile, effect.params): result.append({"attack_id": str(attack.attack_id) + "/split/" + str(effect.upgrade_id), "action_id": plan.action_id, "projectile": catalog.projectile(attack.projectile.child_id), "origin": "split_projectile"})
 	for attack in result:
-		if not attack.has("origin"): attack.origin = "direct_projectile"
 		attack.status_ids = []
 		attack.area_effects = []
 		attack.modifiers = []
-		for effect in program.effects:
+		for effect in plan.effects:
 			if effect.type == "status" and supports_impact(attack.origin, effect.params): attack.status_ids.append(effect.params.status_id)
 			if effect.type in ["pierce", "split"] and not attack.projectile.is_empty():
 				var supported := supports_pierce(attack.projectile, effect.params) if effect.type == "pierce" else supports_split(attack.projectile, effect.params)
@@ -124,8 +135,7 @@ static func summarize(catalog, program: Dictionary, attack_ids: Array, has_melee
 			if effect.type == "explosion" and supports_impact(attack.origin, effect.params):
 				var area := {"source_effect_id": effect.upgrade_id, "status_ids": []}
 				for payload in effect.params.payloads:
-					if payload.type == "apply_status" and payload.allowed_origins.has(attack.origin):
-						area.status_ids.append(payload.status_id)
+					if payload.type == "apply_status" and payload.allowed_origins.has(attack.origin): area.status_ids.append(payload.status_id)
 				attack.area_effects.append(area)
 	return Catalog.freeze_copy(result)
 

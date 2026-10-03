@@ -14,6 +14,10 @@ var _test_attacks: Dictionary = {}
 var _control_groups: Dictionary = {}
 var _test_presets: Array[Dictionary] = []
 var _presets_by_id: Dictionary = {}
+var _actions: Array[Dictionary] = []
+var _actions_by_id: Dictionary = {}
+var _forms: Array[Dictionary] = []
+var _forms_by_id: Dictionary = {}
 
 
 func _init(data: Dictionary) -> void:
@@ -23,6 +27,18 @@ func _init(data: Dictionary) -> void:
 		_by_id[copy.id] = copy
 	_entries.make_read_only()
 	_by_id.make_read_only()
+	for definition in data.actions:
+		var copy: Dictionary = freeze_copy(definition)
+		_actions.append(copy)
+		_actions_by_id[copy.id] = copy
+	for definition in data.forms:
+		var copy: Dictionary = freeze_copy(definition)
+		_forms.append(copy)
+		_forms_by_id[copy.id] = copy
+	_actions.make_read_only()
+	_actions_by_id.make_read_only()
+	_forms.make_read_only()
+	_forms_by_id.make_read_only()
 	_offer = freeze_copy(data.offer)
 	_limits = freeze_copy(data.limits)
 	_stats = freeze_copy(data.stats)
@@ -98,3 +114,10 @@ func test_preset(id: String) -> Dictionary: return _presets_by_id[id] if _preset
 func status_response(actor_id: String) -> Dictionary:
 	var id: String = _status_rules.actor_responses[actor_id] if _status_rules.actor_responses.has(actor_id) else _status_rules.default_response_id
 	return _responses[id]
+
+func actions() -> Array[Dictionary]: return _actions
+func action(id: String) -> Dictionary: return _actions_by_id[id]
+func has_action(id: String) -> bool: return _actions_by_id.has(id)
+func forms() -> Array[Dictionary]: return _forms
+func form(id: String) -> Dictionary: return _forms_by_id[id]
+func has_form(id: String) -> bool: return _forms_by_id.has(id)

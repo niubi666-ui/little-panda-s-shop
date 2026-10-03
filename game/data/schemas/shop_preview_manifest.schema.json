@@ -13,9 +13,14 @@
     "room_props_file",
     "enemy_roles_file",
     "encounters_file",
-    "enemy_loot_file"
+    "enemy_loot_file",
+    "run_route_file"
   ],
   "properties": {
+    "run_route_file": {
+      "type": "string",
+      "pattern": "^res://data/run/[a-z0-9_]+\\.json$"
+    },
     "foliage_preview_file": {
       "type": "string",
       "pattern": "^res://data/shop/[a-z0-9_]+\\.json$"

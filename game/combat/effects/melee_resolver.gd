@@ -10,7 +10,7 @@ func set_hit_filter(filter: Callable) -> void:
 func set_damage_modifier(modifier: Callable) -> void:
 	_damage_modifier = modifier
 func resolve(source, targets: Array) -> void:
-	if not source.health.alive() or not source.runner.active_this_step: return
+	if not source.health.alive() or not source.runner.active_this_step or source.runner.executor != "melee": return
 	var ability = source.runner.ability
 	for target in targets:
 		if target == source or target.team == source.team or not target.health.alive(): continue

@@ -1,0 +1,11 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://presentation/combat/enemies/ranger_visual.gd" id="script"]
+[ext_resource type="PackedScene" path="res://assets/characters/elf_archer/elite_ranger_v001/elite_ranger.glb" id="model"]
+[ext_resource type="Resource" path="res://presentation/combat/enemies/ranger_style.tres" id="style"]
+[node name="RangerVisual" type="Node3D"]
+script = ExtResource("script")
+style = ExtResource("style")
+[node name="Model" parent="." instance=ExtResource("model")]
+scale = Vector3(4.8, 4.8, 4.8)
+[node name="BowMuzzle" type="Marker3D" parent="."]
+position = Vector3(0, 3.9, 1.65)

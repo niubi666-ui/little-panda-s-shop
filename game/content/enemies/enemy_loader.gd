@@ -59,6 +59,14 @@ func load_catalog(combat) -> Catalog:
 				if c.minimum_range_m >= c.trigger_range_m or c.minimum_windup_sec > c.windup_sec or c.cooldown_sec < c.windup_sec + c.charge_distance_m / c.charge_speed_mps + c.recovery_sec: errors.append("charge distance/timing order")
 			"support":
 				if c.retreat_range_m >= c.safe_max_m: errors.append("support distances")
+			"ranger":
+				if c.roll_min_distance_m > c.roll_distance_m: errors.append("ranger roll distance order")
+				if not (c.safe_min_m < c.safe_max_m and c.safe_max_m <= c.fire_range_m and c.roll_trigger_m < c.safe_min_m and c.rain_min_range_m < c.fire_range_m): errors.append("ranger distances")
+				if c.rain_delay_sec <= c.rain_windup_sec or c.volley_count < 2 or c.volley_angle_deg >= 180.0 or c.roll_cooldown_sec <= c.roll_duration_sec: errors.append("ranger attack/roll timing")
+				for id in ["fast", "volley", "rain"]:
+					if c[id + "_cooldown_sec"] < c[id + "_windup_sec"] + c[id + "_recovery_sec"]: errors.append("ranger cooldown " + id)
+				for id in ["fast", "volley"]:
+					if c[id + "_lock_sec"] > c[id + "_windup_sec"]: errors.append("ranger aim lock " + id)
 	var combination_ids: Dictionary = {}
 	for combination in enc.combinations:
 		if combination_ids.has(combination.id): errors.append("duplicate encounter " + combination.id)
@@ -91,5 +99,18 @@ func load_catalog(combat) -> Catalog:
 			if cost <= band.budget and cost >= band.budget * enc.minimum_budget_fraction and team.enemy_ids.size() <= band.max_enemies: eligible = true
 		if not eligible: errors.append("depth band has no legal encounter")
 	if enc.depth_bands[0].min_depth != 1 or enc.training_depth > enc.training_max_depth: errors.append("invalid training depth")
+	_validate_training_tools(enc)
 	if not errors.is_empty(): return null
 	return Catalog.new(roles, enc, loot)
+
+func _validate_training_tools(enc: Dictionary) -> void:
+	# Called only after schema validation. Never replace invalid training config with defaults.
+	var config: Dictionary = enc.training_tools
+	if config.spawn_step_m > config.spawn_search_radius_m:
+		errors.append("encounters.training_tools.spawn_step_m must not exceed spawn_search_radius_m")
+	if config.spawn_search_radius_m / config.spawn_step_m > 8.0:
+		errors.append("encounters.training_tools search radius/step must not exceed 8")
+	for band in enc.depth_bands:
+		if config.max_alive_enemies < band.max_enemies:
+			errors.append("encounters.training_tools.max_alive_enemies must cover every depth_bands.max_enemies")
+			break

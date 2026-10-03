@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>古树圣庭 v006 · 暖光与林冠叶影</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101b15;color:#eee4ca;font:16px/1.7 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1320px;margin:32px auto;padding:0 24px}h1{font-size:30px;font-weight:600;color:#ebcf87;margin:0}h2{font-size:21px;margin:32px 0 12px}p{color:#bcc7b5;max-width:950px}a{color:#e4c97d}figure{margin:0;border:1px solid #516049;background:#18271d;border-radius:9px;overflow:hidden}figure img{width:100%;display:block}figcaption{padding:12px 18px;color:#bfcdb8}.compare{position:relative;aspect-ratio:1800/1238;--split:50%;overflow:hidden}.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.after{clip-path:inset(0 calc(100% - var(--split)) 0 0)}.divider{position:absolute;top:0;bottom:0;left:var(--split);width:2px;background:#f5d588}.badge{position:absolute;top:14px;background:#122119d9;border:1px solid #8b824d;border-radius:5px;padding:4px 11px;z-index:2}.left{left:14px}.right{right:14px}.range{display:flex;align-items:center;gap:16px;margin:14px 0 25px}.range input{width:100%;accent-color:#d9bd70}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.reference{max-width:900px}.hint{border-left:3px solid #d6bd76;padding-left:14px}footer{margin:30px 0;color:#aab5a4;font-size:14px}@media(max-width:760px){.grid{grid-template-columns:1fr}main{padding:0 12px}h1{font-size:25px}}
+</style>
+<main>
+<h1>古树圣庭 v006 · 暖光与林冠叶影</h1>
+<p>2026-10-03 · 下方图片来自保存的 Blender 工程实际渲染。金色斜阳、较深的树荫、叶团间的透光缝隙，以及植被的受光亮边，是本轮调整重点。</p>
+<p><a href="../blender/grand_forest_sanctuary_v006_golden_canopy.blend">Blender 工程</a>　·　<a href="../README.md">制作与验证说明</a></p>
+<h2>同镜头对比 · 拖动分界线</h2>
+<figure>
+  <div class="compare" id="compare">
+    <img src="../../v005/previews/sanctuary_v005_overview.png" alt="v005 原版同镜头渲染">
+    <img class="after" src="sanctuary_v006_overview.png" alt="v006 新版同镜头渲染">
+    <div class="divider"></div><span class="badge left">v006 暖光叶影</span><span class="badge right">v005 原版</span>
+  </div>
+  <figcaption>相同全景相机、相同构图。对比的是两个保存版本的实际 Cycles 渲染。</figcaption>
+</figure>
+<div class="range"><label for="split">新版覆盖</label><input id="split" type="range" min="0" max="100" value="50" aria-label="新版图片覆盖比例"></div>
+<h2>游戏观看距离 · Cycles</h2>
+<figure><a href="sanctuary_v006_gameplay.png"><img src="sanctuary_v006_gameplay.png" alt="游戏镜头实际 Cycles 渲染"></a><figcaption>1920 × 1080。观察地面树荫中的亮斑、主角与地面纹章的可读性，以及绿色植被的明暗。</figcaption></figure>
+<h2>入口细节与 EEVEE 预览</h2>
+<div class="grid">
+  <figure><a href="sanctuary_v006_shrine_gateway.png"><img src="sanctuary_v006_shrine_gateway.png" alt="神龛与双柱入口实际渲染"></a><figcaption>神龛与双柱入口 · Cycles。保留 v005 布局与比例。</figcaption></figure>
+  <figure><a href="sanctuary_v006_eevee_gameplay.png"><img src="sanctuary_v006_eevee_gameplay.png" alt="游戏镜头实际 EEVEE 渲染"></a><figcaption>同一游戏镜头 · EEVEE。新版工程默认使用 EEVEE 场景灯光预览。</figcaption></figure>
+</div>
+<h2>用户指定的氛围参考</h2>
+<figure class="reference"><img src="../reference/01-golden-canopy-target.png" alt="用户指定金色森林概念图"><figcaption>概念参考，用于比较色温、树荫疏密和植物亮边；这张不是 Blender 实现结果。</figcaption></figure>
+<p class="hint">本轮是核心庭院的光照评审，外围森林树木仍按 v005 的决定隐藏。头顶叶团是专用于投影的辅助物体，镜头看不到它们。Godot 尚未接入这一轮光照。</p>
+<footer>实际渲染：Blender 5.2.1 LTS · Cycles / OptiX 与 EEVEE · 96 采样 · 帧 1。没有生成式修图。原 v005 工程保留。</footer>
+</main>
+<script>
+document.getElementById('split').addEventListener('input',e=>document.getElementById('compare').style.setProperty('--split',e.target.value+'%'));
+</script>
+</html>

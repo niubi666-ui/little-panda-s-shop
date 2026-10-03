@@ -40,6 +40,7 @@ emission_enabled = true
 emission = Color(0.08, 0.5, 0.8, 1)
 [resource]
 script = ExtResource("script")
+enabled = true
 area_mesh = SubResource("area")
 area_material = SubResource("area_mat")
 frost_area_material = SubResource("frost_area_mat")

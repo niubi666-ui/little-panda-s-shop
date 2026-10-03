@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "abilities": [
     {
       "id": "slash.1",
@@ -17,7 +17,13 @@
       "knockback_speed_mps": 0.0,
       "knockback_duration_sec": 0.0,
       "hit_shape": "sector",
-      "thrust_width_m": 0.0
+      "thrust_width_m": 0.0,
+      "buffer_sec": 0.3,
+      "dodge_cancel_phases": [
+        "windup",
+        "active",
+        "recovery"
+      ]
     },
     {
       "id": "slash.2",
@@ -35,7 +41,13 @@
       "knockback_speed_mps": 10.0,
       "knockback_duration_sec": 0.24,
       "hit_shape": "sector",
-      "thrust_width_m": 0.0
+      "thrust_width_m": 0.0,
+      "buffer_sec": 0.3,
+      "dodge_cancel_phases": [
+        "windup",
+        "active",
+        "recovery"
+      ]
     },
     {
       "id": "slash.3",
@@ -53,7 +65,13 @@
       "knockback_speed_mps": 0.0,
       "knockback_duration_sec": 0.0,
       "hit_shape": "thrust",
-      "thrust_width_m": 1.0
+      "thrust_width_m": 1.8,
+      "buffer_sec": 0.3,
+      "dodge_cancel_phases": [
+        "windup",
+        "active",
+        "recovery"
+      ]
     },
     {
       "id": "enemy.swipe",
@@ -71,7 +89,9 @@
       "knockback_speed_mps": 0.0,
       "knockback_duration_sec": 0.0,
       "hit_shape": "sector",
-      "thrust_width_m": 0.0
+      "thrust_width_m": 0.0,
+      "buffer_sec": 0.3,
+      "dodge_cancel_phases": []
     },
     {
       "id": "enemy.slam",
@@ -89,7 +109,55 @@
       "knockback_speed_mps": 0.0,
       "knockback_duration_sec": 0.0,
       "hit_shape": "sector",
-      "thrust_width_m": 0.0
+      "thrust_width_m": 0.0,
+      "buffer_sec": 0.3,
+      "dodge_cancel_phases": []
+    },
+    {
+      "id": "heavy_slash",
+      "windup_sec": 0.48,
+      "active_sec": 0.16,
+      "recovery_sec": 0.45,
+      "cooldown_sec": 1.45,
+      "radius_m": 2.8,
+      "angle_deg": 115,
+      "damage": 38,
+      "interruptible": true,
+      "commit_policy": "start",
+      "aim_policy": "lock_at_start",
+      "movement_speed_multiplier": 0.55,
+      "knockback_speed_mps": 7.0,
+      "knockback_duration_sec": 0.22,
+      "hit_shape": "sector",
+      "thrust_width_m": 0.0,
+      "buffer_sec": 0.4,
+      "dodge_cancel_phases": [
+        "windup",
+        "recovery"
+      ]
+    },
+    {
+      "id": "wave_cast",
+      "windup_sec": 0.28,
+      "active_sec": 0.1,
+      "recovery_sec": 0.3,
+      "cooldown_sec": 1.15,
+      "radius_m": 2.5,
+      "angle_deg": 160,
+      "damage": 24,
+      "interruptible": true,
+      "commit_policy": "start",
+      "aim_policy": "lock_at_start",
+      "movement_speed_multiplier": 0.7,
+      "knockback_speed_mps": 0.0,
+      "knockback_duration_sec": 0.0,
+      "hit_shape": "sector",
+      "thrust_width_m": 0.0,
+      "buffer_sec": 0.4,
+      "dodge_cancel_phases": [
+        "windup",
+        "recovery"
+      ]
     }
   ],
   "actors": [
@@ -162,6 +230,17 @@
       "health": 35,
       "move_speed_mps": 1.5,
       "stagger_sec": 0.35,
+      "attack_ids": [],
+      "decision_interval_sec": 0.1,
+      "aggro_range_m": 30,
+      "combo_reset_sec": 1
+    },
+    {
+      "id": "elite_ranger",
+      "name_key": "combat.elite_ranger",
+      "health": 240,
+      "move_speed_mps": 3.3,
+      "stagger_sec": 0.22,
       "attack_ids": [],
       "decision_interval_sec": 0.1,
       "aggro_range_m": 30,

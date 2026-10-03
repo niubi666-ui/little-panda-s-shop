@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/elemental_eruptions_v001/mist.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/tint = Color(0.2, 0.24, 0.24, 1)
+shader_parameter/highlight = Color(0.65, 0.68, 0.58, 1)
+shader_parameter/opacity = 0.18
+shader_parameter/progress = 0.0
+shader_parameter/particle_seed = 0.0
+shader_parameter/luminous = 0.1

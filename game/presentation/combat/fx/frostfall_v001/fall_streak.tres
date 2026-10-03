@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/frostfall_v001/fall_streak.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/tint = Color(0.32, 0.8, 1, 1)
+shader_parameter/energy = 3.3
+shader_parameter/intensity = 0.0
+shader_parameter/visual_time = 0.0
+shader_parameter/filament_density = 65.0
+shader_parameter/flow_speed = 30.0

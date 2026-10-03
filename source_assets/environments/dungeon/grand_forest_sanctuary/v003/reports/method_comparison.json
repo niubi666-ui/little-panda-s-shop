@@ -1,0 +1,29 @@
+{
+  "method": "Two renders per method in one independent Cycles OptiX process; second render after warmup, persistent data enabled. Limited local close-up, not GPU frame-time or Godot benchmark.",
+  "samples": 32,
+  "resolution": [
+    900,
+    562
+  ],
+  "seconds": {
+    "original": [
+      6.079470300002868,
+      3.2452038999981596
+    ],
+    "cutout": [
+      4.10454579999714,
+      3.3186883999987913
+    ],
+    "opaque_normal": [
+      4.044138000001112,
+      3.242370600000868
+    ]
+  },
+  "triangles": {
+    "original": 99368,
+    "cutout": 24842,
+    "opaque_normal": 74526
+  },
+  "leaf_count": 12421,
+  "source_geometry_note": "8-point projected silhouette retained by opaque version; ridge supplied by same baked normal map."
+}

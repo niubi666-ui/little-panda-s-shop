@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-02",
+  "source": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v002\\blender\\grand_forest_sanctuary_v002.blend",
+  "source_sha256": "5cea723f954fd8d9d3d928a5a432c005364f98966945f36cc79b00a83594c57a",
+  "leaf_count": 12421,
+  "triangles_before": 99368,
+  "triangles_after": 24842,
+  "reduction_percent": 75.0,
+  "vertices_before": 111789,
+  "vertices_after": 49684,
+  "normal_texture": "textures/fallen_oak_leaf_normal.png",
+  "opacity_texture": "textures/fallen_oak_leaf_opacity.png",
+  "texture_resolution": [
+    512,
+    512
+  ],
+  "material_slots_preserved": 5,
+  "positions_and_materials_preserved": true,
+  "other_scene_meshes_modified": false,
+  "tree_shared_geometry": {
+    "trunk_objects": 13,
+    "base_mesh_users": 13,
+    "each_trunk_triangles": 19032,
+    "unique_evaluated_mesh_pointers": 1
+  },
+  "render_seconds": {
+    "leaf_before": 10.743356466293335,
+    "leaf_after": 20.317340850830078,
+    "gameplay_after": 106.67212677001953
+  },
+  "scope": "Blender art-only optimization; no Godot changes or FPS benchmark",
+  "source_unchanged": true
+}

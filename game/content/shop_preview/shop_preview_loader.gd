@@ -15,7 +15,7 @@ func load_registry(manifest_path: String) -> Registry:
 	var manifest: Variant = _read_json(manifest_path)
 	if not _errors.is_empty():
 		return null
-	if not _object(manifest, ["content_schema_version", "content_version", "shop_preview_file", "foliage_preview_file", "combat_prototype_file", "build_prototype_file", "room_props_file", "enemy_roles_file", "encounters_file", "enemy_loot_file"], "$"):
+	if not _object(manifest, ["content_schema_version", "content_version", "shop_preview_file", "foliage_preview_file", "combat_prototype_file", "build_prototype_file", "room_props_file", "enemy_roles_file", "encounters_file", "enemy_loot_file", "run_route_file"], "$"):
 		return null
 	if manifest["content_schema_version"] is bool or not (manifest["content_schema_version"] is float or manifest["content_schema_version"] is int) or manifest["content_schema_version"] != SCHEMA_VERSION:
 		_fail("content_schema_version", "unsupported manifest schema version")

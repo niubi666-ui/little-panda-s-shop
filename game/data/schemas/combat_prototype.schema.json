@@ -12,7 +12,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 2
+      "const": 3
     },
     "abilities": {
       "type": "array",
@@ -36,7 +36,9 @@
           "knockback_speed_mps",
           "knockback_duration_sec",
           "hit_shape",
-          "thrust_width_m"
+          "thrust_width_m",
+          "buffer_sec",
+          "dodge_cancel_phases"
         ],
         "properties": {
           "id": {
@@ -113,6 +115,25 @@
             "type": "number",
             "minimum": 0,
             "maximum": 5
+          },
+          "buffer_sec": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 3
+          },
+          "dodge_cancel_phases": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 3,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "windup",
+                "active",
+                "recovery"
+              ]
+            }
           }
         }
       }

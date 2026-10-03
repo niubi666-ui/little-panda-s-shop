@@ -1,0 +1,3760 @@
+{
+  "objects": [
+    {
+      "name": "Enemy_v4_Complete_01",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_01",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_01"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_02",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_02",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_02"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_03",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_03",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_03"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_04",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_04",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_04"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_05",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_05",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_05"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_06",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_06",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_06"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_07",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_07",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_07"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_08",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_08",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_08"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_09",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_09",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_09"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_10",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_10",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_10"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_11",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_11",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_11"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_12",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_12",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_12"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_13",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_13",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_13"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_14",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_14",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_14"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_15",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_15",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_15"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_16",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_16",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_16"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_17",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_17",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_17"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_18",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_18",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_18"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_19",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_19",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_19"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_20",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_20",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_20"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_21",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_21",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_21"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_22",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_22",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_22"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_23",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_23",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_23"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_24",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_24",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_24"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_25",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_25",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_25"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_26",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_26",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_26"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_27",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_27",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_27"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_28",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_28",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_28"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_29",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_29",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_29"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_30",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_30",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_30"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_31",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_31",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_31"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_32",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_32",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_32"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_33",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_33",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_33"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_34",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_34",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_34"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_35",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_35",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_35"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_36",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_36",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_36"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_37",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_37",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_37"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_38",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_38",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_38"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_39",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_39",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.794921875,
+        0.462890625,
+        1.0594433546066284
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_39"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Complete_ReRig_v2",
+      "type": "MESH",
+      "parent": "Enemy_v4_Mixamo65",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.5468589067459106,
+        0.5763455629348755,
+        0.9670886397361755
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Mixamo65"
+        ]
+      ]
+    },
+    {
+      "name": "Enemy_v4_Mixamo65",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.3019675612449646,
+        0.5598300695419312,
+        1.0669137239456177
+      ],
+      "action": null,
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_01",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_equip_bow",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_02",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_draw_arrow",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_03",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_aim_overdraw",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_04",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_aim_recoil",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_05",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_idle_01",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_06",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.24397075176239014,
+        0.5371476411819458,
+        1.1048563718795776
+      ],
+      "action": "Longbow_standing_aim_walk_forward_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_07",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_aim_walk_back_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_08",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_aim_walk_left_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_09",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_aim_walk_right_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_10",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_walk_forward_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_11",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_walk_back_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_12",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_walk_left_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_13",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_walk_right_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_14",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_run_forward_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_15",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_run_back_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_16",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_run_left_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_17",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_run_right_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_18",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_run_forward_stop_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_19",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_dodge_forward_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_20",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_dodge_backward_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_21",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_dodge_left_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_22",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_dodge_right_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_23",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_dive_forward_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_24",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_turn_90_left",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_25",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_turn_90_right",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_26",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_idle_02_looking",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_27",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_idle_03_examine",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_28",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_unarmed_idle_01",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_29",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_block",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_30",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_react_small_from_front",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_31",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_react_small_from_headshot",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_32",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_melee_kick",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_33",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_melee_punch",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_34",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_fall_a_loop",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_35",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_fall_a_land_to_standing_idle_01",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_36",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_fall_a_land_to_run_forward_InPlace",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_37",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_death_backward_01",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_38",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_death_forward_01",
+      "modifiers": []
+    },
+    {
+      "name": "Enemy_v4_Rig_39",
+      "type": "ARMATURE",
+      "parent": null,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.339747816324234,
+        0.18247392773628235,
+        1.148756980895996
+      ],
+      "action": "Longbow_standing_disarm_bow",
+      "modifiers": []
+    },
+    {
+      "name": "Longbow_LeftHand",
+      "type": "MESH",
+      "parent": "Enemy_v4_Mixamo65",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.3126829266548157,
+        0.4077185392379761,
+        0.4085428714752197
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Mixamo65"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_01",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_01",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_01"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_02",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_02",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_02"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_03",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_03",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_03"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_04",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_04",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_04"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_05",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_05",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_05"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_06",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_06",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_06"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_07",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_07",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_07"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_08",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_08",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_08"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_09",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_09",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_09"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_10",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_10",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_10"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_11",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_11",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_11"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_12",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_12",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_12"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_13",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_13",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_13"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_14",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_14",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_14"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_15",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_15",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_15"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_16",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_16",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_16"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_17",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_17",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_17"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_18",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_18",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_18"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_19",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_19",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_19"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_20",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_20",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_20"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_21",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_21",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_21"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_22",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_22",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_22"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_23",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_23",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_23"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_24",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_24",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_24"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_25",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_25",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_25"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_26",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_26",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_26"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_27",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_27",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_27"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_28",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_28",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_28"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_29",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_29",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_29"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_30",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_30",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_30"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_31",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_31",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_31"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_32",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_32",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_32"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_33",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_33",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_33"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_34",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_34",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_34"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_35",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_35",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_35"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_36",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_36",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_36"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_37",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_37",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_37"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_38",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_38",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_38"
+        ]
+      ]
+    },
+    {
+      "name": "Longbow_LeftHand_39",
+      "type": "MESH",
+      "parent": "Enemy_v4_Rig_39",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.11910462379455566,
+        0.6441175937652588,
+        0.08284813165664673
+      ],
+      "action": null,
+      "modifiers": [
+        [
+          "ARMATURE",
+          "Enemy_v4_Rig_39"
+        ]
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "name": "Armature|mixamo.com|Layer0",
+      "range": [
+        1.0,
+        38.0
+      ],
+      "slots": [
+        "OBSlot"
+      ]
+    },
+    {
+      "name": "Longbow_fall_a_land_to_run_forward",
+      "range": [
+        1.0,
+        29.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_fall_a_land_to_run_forward_InPlace",
+      "range": [
+        1.0,
+        29.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_fall_a_land_to_standing_idle_01",
+      "range": [
+        1.0,
+        22.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_fall_a_loop",
+      "range": [
+        1.0,
+        32.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_aim_overdraw",
+      "range": [
+        1.0,
+        111.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_aim_recoil",
+      "range": [
+        1.0,
+        22.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_aim_walk_back",
+      "range": [
+        1.0,
+        45.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_aim_walk_back_InPlace",
+      "range": [
+        1.0,
+        45.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_aim_walk_forward",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_aim_walk_forward_InPlace",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_aim_walk_left",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_aim_walk_left_InPlace",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_aim_walk_right",
+      "range": [
+        1.0,
+        39.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_aim_walk_right_InPlace",
+      "range": [
+        1.0,
+        39.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_block",
+      "range": [
+        1.0,
+        59.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_death_backward_01",
+      "range": [
+        1.0,
+        91.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_death_forward_01",
+      "range": [
+        1.0,
+        96.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_disarm_bow",
+      "range": [
+        1.0,
+        34.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_dive_forward",
+      "range": [
+        1.0,
+        50.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_dive_forward_InPlace",
+      "range": [
+        1.0,
+        50.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_dodge_backward",
+      "range": [
+        1.0,
+        50.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_dodge_backward_InPlace",
+      "range": [
+        1.0,
+        50.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_dodge_forward",
+      "range": [
+        1.0,
+        31.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_dodge_forward_InPlace",
+      "range": [
+        1.0,
+        31.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_dodge_left",
+      "range": [
+        1.0,
+        30.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_dodge_left_InPlace",
+      "range": [
+        1.0,
+        30.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_dodge_right",
+      "range": [
+        1.0,
+        30.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_dodge_right_InPlace",
+      "range": [
+        1.0,
+        30.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_draw_arrow",
+      "range": [
+        1.0,
+        31.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_equip_bow",
+      "range": [
+        1.0,
+        28.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_idle_01",
+      "range": [
+        1.0,
+        154.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_idle_02_looking",
+      "range": [
+        1.0,
+        97.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_idle_03_examine",
+      "range": [
+        1.0,
+        154.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_melee_kick",
+      "range": [
+        1.0,
+        44.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_melee_punch",
+      "range": [
+        1.0,
+        31.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_react_small_from_front",
+      "range": [
+        1.0,
+        39.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_react_small_from_headshot",
+      "range": [
+        1.0,
+        25.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_run_back",
+      "range": [
+        1.0,
+        21.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_run_back_InPlace",
+      "range": [
+        1.0,
+        21.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_run_forward",
+      "range": [
+        1.0,
+        27.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_run_forward_InPlace",
+      "range": [
+        1.0,
+        27.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_run_forward_stop",
+      "range": [
+        1.0,
+        27.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_run_forward_stop_InPlace",
+      "range": [
+        1.0,
+        27.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_run_left",
+      "range": [
+        1.0,
+        21.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_run_left_InPlace",
+      "range": [
+        1.0,
+        21.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_run_right",
+      "range": [
+        1.0,
+        24.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_run_right_InPlace",
+      "range": [
+        1.0,
+        24.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_turn_90_left",
+      "range": [
+        1.0,
+        39.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_turn_90_right",
+      "range": [
+        1.0,
+        34.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_walk_back",
+      "range": [
+        1.0,
+        45.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_walk_back_InPlace",
+      "range": [
+        1.0,
+        45.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_walk_forward",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_walk_forward_InPlace",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_walk_left",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_walk_left_InPlace",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_walk_right",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_standing_walk_right_InPlace",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Longbow_unarmed_idle_01",
+      "range": [
+        1.0,
+        154.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Mixamo65_ReRig_CrouchWalk_InPlace",
+      "range": [
+        1.0,
+        38.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Mixamo65_ReRig_CrouchWalkForward",
+      "range": [
+        1.0,
+        38.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Mixamo_Standing Walk Left",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    },
+    {
+      "name": "Mixamo_Standing Walk Left_InPlace",
+      "range": [
+        1.0,
+        37.0
+      ],
+      "slots": [
+        "OBEnemy_v4_Mixamo65"
+      ]
+    }
+  ],
+  "images": [
+    {
+      "name": "a2262d30-f84a-4286-98cb-40c1c70746dd_basecolor",
+      "path": "D:\\Temp\\blender_a31156\\tripo_convert_62e3a01f-07cb-446a-9a67-c8760acbf2d7.fbm\\a2262d30-f84a-4286-98cb-40c1c70746dd_basecolor.JPEG",
+      "packed": true,
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "Body_BaseColor",
+      "path": "//work\\textures\\Body_BaseColor.jpg",
+      "packed": true,
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "Body_Metallic",
+      "path": "//work\\textures\\Body_Metallic.jpg",
+      "packed": true,
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "Body_Normal_OpenGL",
+      "path": "//work\\textures\\Body_Normal_OpenGL.png",
+      "packed": true,
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "Body_Roughness",
+      "path": "//work\\textures\\Body_Roughness.jpg",
+      "packed": true,
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "Head_BaseColor",
+      "path": "//work\\textures\\Head_BaseColor.png",
+      "packed": true,
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "Neck_BaseColor",
+      "path": "//work\\textures\\Neck_BaseColor.png",
+      "packed": true,
+      "size": [
+        1024,
+        512
+      ]
+    },
+    {
+      "name": "Render Result",
+      "path": "",
+      "packed": false,
+      "size": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Viewer Node",
+      "path": "",
+      "packed": false,
+      "size": [
+        256,
+        256
+      ]
+    }
+  ],
+  "fps": 24
+}

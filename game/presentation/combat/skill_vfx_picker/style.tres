@@ -1,0 +1,46 @@
+[gd_resource type="Resource" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/skill_vfx_picker/skill_vfx_style.gd" id="style"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/elemental_eruptions_v001/ice_eruption.tscn" id="ice"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/elemental_eruptions_v001/rock_eruption.tscn" id="rock"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/sword_waves_v001/normal_demo.tscn" id="normal_wave"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/sword_waves_v001/frost_demo.tscn" id="frost_wave"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/lightning_verdict_v001/lightning_verdict.tscn" id="lightning"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/frostfall_v001/frostfall.tscn" id="frostfall"]
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+bg_color = Color(0.035, 0.064, 0.077, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6, 0.54, 0.32, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 6
+
+[resource]
+script = ExtResource("style")
+effects = Dictionary[StringName, PackedScene]({&"ice": ExtResource("ice"), &"rock": ExtResource("rock"), &"normal_wave": ExtResource("normal_wave"), &"frost_wave": ExtResource("frost_wave"), &"lightning": ExtResource("lightning"), &"frostfall": ExtResource("frostfall")})
+name_keys = Dictionary[StringName, String]({&"ice": "training.skill_vfx.ice", &"rock": "training.skill_vfx.rock", &"normal_wave": "training.skill_vfx.normal_wave", &"frost_wave": "training.skill_vfx.frost_wave", &"lightning": "training.skill_vfx.lightning", &"frostfall": "training.skill_vfx.frostfall"})
+max_instances = 3
+forward_offset_m = 0.85
+ground_offset_m = 0.025
+panel_width = 544.0
+option_columns = 3
+bottom_margin = 164.0
+right_margin = 24.0
+center_bottom_margin = 164.0
+header_height = 26.0
+header_action_width = 26.0
+padding = 9
+row_gap = 6
+title_font_size = 16
+body_font_size = 16
+hint_font_size = 13
+button_height = 36.0
+panel_style = SubResource("panel")
+option_colors = Dictionary[StringName, Color]({&"ice": Color(0.58, 0.88, 1, 1), &"rock": Color(1, 0.76, 0.39, 1), &"normal_wave": Color(0.89, 0.95, 1, 1), &"frost_wave": Color(0.51, 0.9, 1, 1), &"lightning": Color(0.72, 0.77, 1, 1), &"frostfall": Color(0.7, 0.93, 1, 1)})

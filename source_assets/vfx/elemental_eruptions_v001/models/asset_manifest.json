@@ -1,0 +1,144 @@
+{
+  "generator": "Blender Python / deterministic geometry",
+  "unit_height": 1,
+  "pivot": "ground root",
+  "runtime_material_override": true,
+  "assets": [
+    {
+      "name": "ice_spire_01",
+      "vertices": 102,
+      "triangles": 188,
+      "up_axis": "Y",
+      "bounds_min": [
+        -0.231785,
+        0.0,
+        -0.252173
+      ],
+      "bounds_max": [
+        0.354419,
+        1.0,
+        0.249233
+      ],
+      "obj": "E:\\ShopGame\\game\\assets\\vfx\\elemental_eruptions_v001\\models\\ice_spire_01.obj"
+    },
+    {
+      "name": "ice_spire_02",
+      "vertices": 108,
+      "triangles": 200,
+      "up_axis": "Y",
+      "bounds_min": [
+        -0.336676,
+        0.0,
+        -0.202886
+      ],
+      "bounds_max": [
+        0.281812,
+        1.0,
+        0.276638
+      ],
+      "obj": "E:\\ShopGame\\game\\assets\\vfx\\elemental_eruptions_v001\\models\\ice_spire_02.obj"
+    },
+    {
+      "name": "ice_spire_03",
+      "vertices": 96,
+      "triangles": 176,
+      "up_axis": "Y",
+      "bounds_min": [
+        -0.330346,
+        0.0,
+        -0.28883
+      ],
+      "bounds_max": [
+        0.332478,
+        1.0,
+        0.2014
+      ],
+      "obj": "E:\\ShopGame\\game\\assets\\vfx\\elemental_eruptions_v001\\models\\ice_spire_03.obj"
+    },
+    {
+      "name": "rock_spire_01",
+      "vertices": 249,
+      "triangles": 486,
+      "up_axis": "Y",
+      "bounds_min": [
+        -0.346505,
+        0.0,
+        -0.187765
+      ],
+      "bounds_max": [
+        0.372176,
+        1.0,
+        0.209214
+      ],
+      "obj": "E:\\ShopGame\\game\\assets\\vfx\\elemental_eruptions_v001\\models\\rock_spire_01.obj"
+    },
+    {
+      "name": "rock_spire_02",
+      "vertices": 263,
+      "triangles": 514,
+      "up_axis": "Y",
+      "bounds_min": [
+        -0.348238,
+        0.0,
+        -0.219403
+      ],
+      "bounds_max": [
+        0.344512,
+        1.0,
+        0.235855
+      ],
+      "obj": "E:\\ShopGame\\game\\assets\\vfx\\elemental_eruptions_v001\\models\\rock_spire_02.obj"
+    },
+    {
+      "name": "rock_spire_03",
+      "vertices": 252,
+      "triangles": 492,
+      "up_axis": "Y",
+      "bounds_min": [
+        -0.27289,
+        0.0,
+        -0.238559
+      ],
+      "bounds_max": [
+        0.327852,
+        1.0,
+        0.270127
+      ],
+      "obj": "E:\\ShopGame\\game\\assets\\vfx\\elemental_eruptions_v001\\models\\rock_spire_03.obj"
+    },
+    {
+      "name": "ice_chip",
+      "vertices": 24,
+      "triangles": 44,
+      "up_axis": "Y",
+      "bounds_min": [
+        -0.392583,
+        0.0,
+        -0.248051
+      ],
+      "bounds_max": [
+        0.387417,
+        1.0,
+        0.25541
+      ],
+      "obj": "E:\\ShopGame\\game\\assets\\vfx\\elemental_eruptions_v001\\models\\ice_chip.obj"
+    },
+    {
+      "name": "rock_chip",
+      "vertices": 24,
+      "triangles": 44,
+      "up_axis": "Y",
+      "bounds_min": [
+        -0.380141,
+        0.0,
+        -0.27495
+      ],
+      "bounds_max": [
+        0.399859,
+        1.0,
+        0.247871
+      ],
+      "obj": "E:\\ShopGame\\game\\assets\\vfx\\elemental_eruptions_v001\\models\\rock_chip.obj"
+    }
+  ]
+}

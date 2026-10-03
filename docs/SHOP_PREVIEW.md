@@ -81,3 +81,5 @@ Godot命令均需 `--path E:/ShopGame/game`。图形集成验证需要Forward+�
 
 
 历史验证包含控制/动态交互注册、9件家具交互、从柜台两侧连续进入背面、滚轮/跟随边界及中英文。修改后按 [验证索引](VALIDATION.md) 选择相关店铺测试；历史截图和逐轮细节见归档。
+
+最近启动验证（2026-10-03）：补齐店铺 manifest 校验对已实现 `run_route_file` 字段的支持；`shop_preview_controls.gd` 31项通过，真实主入口在 Forward+ 下运行180帧并正常退出，输出 `Shop ready; targets=9`，无错误。本次未重跑全部场景交互或性能测试。旧 Release/PCK 仍在回收站，启动不依赖它们。

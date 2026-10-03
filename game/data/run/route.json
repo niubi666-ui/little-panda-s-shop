@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "id": "short_branch_test",
+  "content_version": "run_route.1",
+  "start_node_ids": [
+    "entry"
+  ],
+  "nodes": [
+    {
+      "id": "entry",
+      "layer": 0,
+      "column": 1,
+      "kind": "battle",
+      "depth": 1,
+      "template_id": "graybox",
+      "reward_id": "none"
+    },
+    {
+      "id": "branch_left",
+      "layer": 1,
+      "column": 0,
+      "kind": "battle",
+      "depth": 3,
+      "template_id": "graybox",
+      "reward_id": "none"
+    },
+    {
+      "id": "branch_right",
+      "layer": 1,
+      "column": 2,
+      "kind": "battle",
+      "depth": 3,
+      "template_id": "graybox",
+      "reward_id": "none"
+    },
+    {
+      "id": "junction",
+      "layer": 2,
+      "column": 1,
+      "kind": "battle",
+      "depth": 6,
+      "template_id": "graybox",
+      "reward_id": "none"
+    },
+    {
+      "id": "elite_left",
+      "layer": 3,
+      "column": 0,
+      "kind": "elite",
+      "depth": 10,
+      "template_id": "graybox",
+      "reward_id": "none"
+    },
+    {
+      "id": "elite_right",
+      "layer": 3,
+      "column": 2,
+      "kind": "elite",
+      "depth": 10,
+      "template_id": "graybox",
+      "reward_id": "none"
+    },
+    {
+      "id": "terminal",
+      "layer": 4,
+      "column": 1,
+      "kind": "terminal",
+      "depth": 15,
+      "template_id": "graybox",
+      "reward_id": "none"
+    }
+  ],
+  "edges": [
+    {
+      "from": "entry",
+      "to": "branch_left"
+    },
+    {
+      "from": "entry",
+      "to": "branch_right"
+    },
+    {
+      "from": "branch_left",
+      "to": "junction"
+    },
+    {
+      "from": "branch_right",
+      "to": "junction"
+    },
+    {
+      "from": "junction",
+      "to": "elite_left"
+    },
+    {
+      "from": "junction",
+      "to": "elite_right"
+    },
+    {
+      "from": "elite_left",
+      "to": "terminal"
+    },
+    {
+      "from": "elite_right",
+      "to": "terminal"
+    }
+  ],
+  "starter_build_preset": "left_blast_right_freeze",
+  "rewards": [
+    {
+      "id": "none",
+      "kind": "none"
+    }
+  ]
+}

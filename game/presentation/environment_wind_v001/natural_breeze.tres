@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://presentation/environment_wind_v001/breeze_profile.gd" id="1_profile"]
+
+[resource]
+resource_name = "Natural breeze - presentation sample v001"
+script = ExtResource("1_profile")
+sample_scene_path = "res://assets/environment_wind_v001/breeze_samples.glb"
+direction_xz = Vector2(0.91, 0.415)
+sway_amplitude_m = 0.07
+sway_frequency_hz = Vector2(0.115, 0.173)
+steady_push_ratio = 0.28
+gust_amplitude_m = 0.025
+gust_frequency_hz = Vector2(0.043, 0.071)
+flutter_amplitude_m = 0.004
+flutter_frequency_hz = Vector2(0.73, 1.09)
+spatial_phase_per_m = 0.55
+instance_phase_spread = 1.7
+normal_bend_reference_m = 1.0
+strength_levels = PackedFloat32Array(0.4, 1.0, 1.8)
+strength_labels = PackedStringArray("Gentle", "Natural", "Stronger")
+initial_strength_index = 1
+camera_yaw_degrees = 12.0
+camera_pitch_degrees = 19.0
+camera_fit_margin = 1.1
+camera_min_size_m = 0.8
+camera_max_size_m = 16.0
+camera_zoom_ratio = 1.13
+camera_drag_degrees_per_pixel = 0.22
+camera_focus_height_ratio = 0.46
+stage_margin_m = 1.8
+stage_depth_m = 0.07

@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "assets": [
+    {
+      "file": "ice_chip.obj",
+      "triangles": 44,
+      "closed_manifold_components": true,
+      "outward_winding": true,
+      "normals_match_winding": true,
+      "unit_y_height": true,
+      "minimum_triangle_area": 0.00036788969288,
+      "signed_volume": 0.14496980951554592
+    },
+    {
+      "file": "ice_spire_01.obj",
+      "triangles": 188,
+      "closed_manifold_components": true,
+      "outward_winding": true,
+      "normals_match_winding": true,
+      "unit_y_height": true,
+      "minimum_triangle_area": 6.188943200000063e-07,
+      "signed_volume": 0.0862515741405415
+    },
+    {
+      "file": "ice_spire_02.obj",
+      "triangles": 200,
+      "closed_manifold_components": true,
+      "outward_winding": true,
+      "normals_match_winding": true,
+      "unit_y_height": true,
+      "minimum_triangle_area": 4.801095299999963e-07,
+      "signed_volume": 0.0891533843556819
+    },
+    {
+      "file": "ice_spire_03.obj",
+      "triangles": 176,
+      "closed_manifold_components": true,
+      "outward_winding": true,
+      "normals_match_winding": true,
+      "unit_y_height": true,
+      "minimum_triangle_area": 1.1139556500000024e-06,
+      "signed_volume": 0.09166510879570142
+    },
+    {
+      "file": "rock_chip.obj",
+      "triangles": 44,
+      "closed_manifold_components": true,
+      "outward_winding": true,
+      "normals_match_winding": true,
+      "unit_y_height": true,
+      "minimum_triangle_area": 0.0004286447476200001,
+      "signed_volume": 0.15225783805926685
+    },
+    {
+      "file": "rock_spire_01.obj",
+      "triangles": 486,
+      "closed_manifold_components": true,
+      "outward_winding": true,
+      "normals_match_winding": true,
+      "unit_y_height": true,
+      "minimum_triangle_area": 2.497529173879323e-08,
+      "signed_volume": 0.10213548384815456
+    },
+    {
+      "file": "rock_spire_02.obj",
+      "triangles": 514,
+      "closed_manifold_components": true,
+      "outward_winding": true,
+      "normals_match_winding": true,
+      "unit_y_height": true,
+      "minimum_triangle_area": 1.7949320788342555e-07,
+      "signed_volume": 0.10369920196595844
+    },
+    {
+      "file": "rock_spire_03.obj",
+      "triangles": 492,
+      "closed_manifold_components": true,
+      "outward_winding": true,
+      "normals_match_winding": true,
+      "unit_y_height": true,
+      "minimum_triangle_area": 7.16504929998884e-07,
+      "signed_volume": 0.09808784692425311
+    }
+  ]
+}

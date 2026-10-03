@@ -1,0 +1,19 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/combat/enemies/ranger_style.gd" id="script"]
+[resource]
+script = ExtResource("script")
+clips = Dictionary[String, String]({"idle":"idle", "move":"move", "draw":"draw", "aim":"aim", "release":"release", "roll":"roll", "rain":"rain", "rain_release":"rain_release", "hit":"hit", "death":"death"})
+death_duration_sec = 1.4
+draw_phase_fraction = 0.3
+health_bar_height = 5.8
+health_bar_size = Vector2(2.6, 0.22)
+warning_color = Color(1, 0.18, 0.08, 0.62)
+impact_color = Color(1, 0.7, 0.15, 0.8)
+line_width = 0.07
+ground_height = 0.065
+arrow_length = 0.85
+arrow_width = 0.035
+arrow_color = Color(1, 0.52, 0.15, 1)
+rain_arrow_count = 18
+rain_height = 5.0
+rain_fall_sec = 0.25

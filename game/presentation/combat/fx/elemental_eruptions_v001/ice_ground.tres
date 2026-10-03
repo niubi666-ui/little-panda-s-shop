@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/elemental_eruptions_v001/ground.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/crack_color = Color(0.13, 0.37, 0.44, 1)
+shader_parameter/glow_color = Color(0.14, 0.76, 1.0, 1)
+shader_parameter/visual_time = 0.0
+shader_parameter/anticipation = 0.22
+shader_parameter/travel = 0.72
+shader_parameter/duration = 4.6
+shader_parameter/ice_mode = 1.0
+shader_parameter/opacity = 0.95
+shader_parameter/glow_strength = 2.2
+shader_parameter/pattern_seed = 31.0

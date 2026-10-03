@@ -1,19 +1,19 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "offer": {
     "count": 3,
     "pool_ids": [
       "power",
       "agility",
-      "wave",
-      "chain",
       "split",
       "impact_blast",
-      "contact_slow",
       "contact_freeze",
       "freeze_duration",
       "pierce",
-      "frost_blast"
+      "frost_blast",
+      "sword_wave_form",
+      "sword_heavy_form",
+      "action_power"
     ],
     "fallback_ids": [
       "power",
@@ -21,7 +21,8 @@
     ],
     "initial_offers": 1,
     "rewards_per_wave": 1,
-    "max_queued_offers": 4
+    "max_queued_offers": 4,
+    "target_weighting": "uniform"
   },
   "limits": {
     "root_effect_budget": 32,
@@ -38,7 +39,8 @@
     "damage_scale_min": 0.1,
     "damage_scale_max": 5.0,
     "move_scale_min": 0.25,
-    "move_scale_max": 2.0
+    "move_scale_max": 2.0,
+    "damage_composition": "additive_then_clamp"
   },
   "upgrades": [
     {
@@ -62,7 +64,11 @@
         {
           "bonus": 0.6
         }
-      ]
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
     },
     {
       "id": "agility",
@@ -85,7 +91,11 @@
         {
           "bonus": 0.3
         }
-      ]
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
     },
     {
       "id": "wave",
@@ -113,7 +123,13 @@
           "damage_ratio": 0.9,
           "projectile_id": "sword_wave"
         }
-      ]
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "debug_melee"
+      ],
+      "test_only": true
     },
     {
       "id": "chain",
@@ -145,7 +161,13 @@
           "jumps": 4,
           "falloff": 0.75
         }
-      ]
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "debug_melee"
+      ],
+      "test_only": true
     },
     {
       "id": "split",
@@ -155,7 +177,8 @@
       "max_rank": 2,
       "requires": [],
       "excludes": [
-        "pierce"
+        "pierce",
+        "frost_blast"
       ],
       "required_tags": [],
       "granted_tags": [],
@@ -177,7 +200,16 @@
           "trigger": "enemy_contact",
           "scope": "linear_projectile"
         }
-      ]
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "primary",
+        "special",
+        "debug_melee",
+        "debug_arrow"
+      ],
+      "test_only": false
     },
     {
       "id": "impact_blast",
@@ -208,7 +240,16 @@
           "occlusion": "world_ray",
           "sight_height_m": 0.8
         }
-      ]
+      ],
+      "scope": "action",
+      "layer": "core",
+      "action_ids": [
+        "primary",
+        "special",
+        "debug_melee",
+        "debug_arrow"
+      ],
+      "test_only": false
     },
     {
       "id": "contact_slow",
@@ -233,14 +274,21 @@
           "max_per_parent": 8,
           "max_per_root": 8
         }
-      ]
+      ],
+      "scope": "action",
+      "layer": "core",
+      "action_ids": [
+        "debug_melee",
+        "debug_arrow"
+      ],
+      "test_only": true
     },
     {
       "id": "contact_freeze",
       "name_key": "build.test.contact_freeze.name",
       "description_key": "build.test.contact_freeze.description",
       "weight": 1.0,
-      "max_rank": 1,
+      "max_rank": 2,
       "requires": [],
       "excludes": [],
       "required_tags": [],
@@ -257,8 +305,28 @@
           ],
           "max_per_parent": 8,
           "max_per_root": 8
+        },
+        {
+          "status_id": "test_freeze",
+          "trigger": "enemy_contact",
+          "allowed_origins": [
+            "direct_melee",
+            "direct_projectile",
+            "split_projectile"
+          ],
+          "max_per_parent": 12,
+          "max_per_root": 12
         }
-      ]
+      ],
+      "scope": "action",
+      "layer": "core",
+      "action_ids": [
+        "primary",
+        "special",
+        "debug_melee",
+        "debug_arrow"
+      ],
+      "test_only": false
     },
     {
       "id": "freeze_duration",
@@ -276,7 +344,16 @@
           "status_id": "test_freeze",
           "bonus": 0.5
         }
-      ]
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "primary",
+        "special",
+        "debug_melee",
+        "debug_arrow"
+      ],
+      "test_only": false
     },
     {
       "id": "pierce",
@@ -297,7 +374,16 @@
           "scope": "linear_projectile",
           "max_hits": 4
         }
-      ]
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "primary",
+        "special",
+        "debug_melee",
+        "debug_arrow"
+      ],
+      "test_only": false
     },
     {
       "id": "frost_blast",
@@ -308,7 +394,9 @@
       "requires": [
         "impact_blast"
       ],
-      "excludes": [],
+      "excludes": [
+        "split"
+      ],
       "required_tags": [],
       "granted_tags": [],
       "effect_type": "area_status",
@@ -323,7 +411,94 @@
           "include_primary": true,
           "max_targets": 6
         }
-      ]
+      ],
+      "scope": "action",
+      "layer": "synergy",
+      "action_ids": [
+        "primary",
+        "special",
+        "debug_melee",
+        "debug_arrow"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "sword_wave_form",
+      "name_key": "build.sword_wave_form.name",
+      "description_key": "build.sword_wave_form.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "form",
+      "ranks": [
+        {
+          "form_id": "sword_wave"
+        }
+      ],
+      "scope": "action",
+      "layer": "form",
+      "action_ids": [
+        "special"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "sword_heavy_form",
+      "name_key": "build.sword_heavy_form.name",
+      "description_key": "build.sword_heavy_form.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "form",
+      "ranks": [
+        {
+          "form_id": "sword_heavy"
+        }
+      ],
+      "scope": "action",
+      "layer": "form",
+      "action_ids": [
+        "special"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "action_power",
+      "name_key": "build.action_power.name",
+      "description_key": "build.action_power.description",
+      "weight": 1.0,
+      "max_rank": 3,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "damage_scale",
+      "ranks": [
+        {
+          "bonus": 0.2
+        },
+        {
+          "bonus": 0.4
+        },
+        {
+          "bonus": 0.6
+        }
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "primary",
+        "special",
+        "debug_melee",
+        "debug_arrow"
+      ],
+      "test_only": false
     }
   ],
   "projectiles": [
@@ -332,7 +507,7 @@
       "executor": "linear_contact",
       "child_id": "sword_wave",
       "speed_mps": 12.0,
-      "radius_m": 0.38,
+      "radius_m": 0.76,
       "height_m": 0.8,
       "lifetime_sec": 0.85
     },
@@ -351,7 +526,8 @@
       "id": "test_arrow",
       "projectile_id": "test_arrow",
       "damage": 12.0,
-      "cooldown_sec": 0.6
+      "cooldown_sec": 0.6,
+      "action_id": "debug_arrow"
     }
   ],
   "statuses": [
@@ -410,32 +586,152 @@
   },
   "test_presets": [
     {
-      "id": "pierce_freeze",
-      "name_key": "build.preset.pierce_freeze",
-      "upgrade_ids": [
-        "wave",
-        "pierce",
-        "contact_freeze"
+      "id": "basic_actions",
+      "name_key": "build.preset.basic_actions",
+      "selections": []
+    },
+    {
+      "id": "left_blast_right_freeze",
+      "name_key": "build.preset.left_blast_right_freeze",
+      "selections": [
+        {
+          "upgrade_id": "impact_blast",
+          "action_id": "primary",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "sword_wave_form",
+          "action_id": "special",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "contact_freeze",
+          "action_id": "special",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "pierce",
+          "action_id": "special",
+          "rank": 1
+        }
       ]
     },
     {
-      "id": "pierce_blast",
-      "name_key": "build.preset.pierce_blast",
-      "upgrade_ids": [
-        "wave",
-        "pierce",
-        "impact_blast"
+      "id": "right_frost",
+      "name_key": "build.preset.right_frost",
+      "selections": [
+        {
+          "upgrade_id": "sword_wave_form",
+          "action_id": "special",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "impact_blast",
+          "action_id": "special",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "frost_blast",
+          "action_id": "special",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "pierce",
+          "action_id": "special",
+          "rank": 1
+        }
       ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "primary",
+      "name_key": "build.action.primary",
+      "base_form_id": "sword_primary",
+      "form_ids": [
+        "sword_primary"
+      ],
+      "test_only": false
     },
     {
-      "id": "frost_blast",
-      "name_key": "build.preset.frost_blast",
-      "upgrade_ids": [
-        "wave",
-        "pierce",
-        "impact_blast",
-        "frost_blast"
-      ]
+      "id": "special",
+      "name_key": "build.action.special",
+      "base_form_id": "sword_heavy",
+      "form_ids": [
+        "sword_heavy",
+        "sword_wave"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "debug_melee",
+      "name_key": "build.action.debug_melee",
+      "base_form_id": "debug_melee",
+      "form_ids": [
+        "debug_melee"
+      ],
+      "test_only": true
+    },
+    {
+      "id": "debug_arrow",
+      "name_key": "build.action.debug_arrow",
+      "base_form_id": "debug_arrow",
+      "form_ids": [
+        "debug_arrow"
+      ],
+      "test_only": true
+    }
+  ],
+  "forms": [
+    {
+      "id": "sword_primary",
+      "name_key": "build.form.sword_primary",
+      "executor": "melee",
+      "ability_ids": [
+        "slash.1",
+        "slash.2",
+        "slash.3"
+      ],
+      "projectile_id": "",
+      "presentation_key": "sword_primary"
+    },
+    {
+      "id": "sword_heavy",
+      "name_key": "build.form.sword_heavy",
+      "executor": "melee",
+      "ability_ids": [
+        "heavy_slash"
+      ],
+      "projectile_id": "",
+      "presentation_key": "heavy_slash"
+    },
+    {
+      "id": "sword_wave",
+      "name_key": "build.form.sword_wave",
+      "executor": "projectile",
+      "ability_ids": [
+        "wave_cast"
+      ],
+      "projectile_id": "sword_wave",
+      "presentation_key": "wave_cast"
+    },
+    {
+      "id": "debug_melee",
+      "name_key": "build.form.debug_melee",
+      "executor": "melee",
+      "ability_ids": [
+        "slash.1"
+      ],
+      "projectile_id": "",
+      "presentation_key": "sword_primary"
+    },
+    {
+      "id": "debug_arrow",
+      "name_key": "build.form.debug_arrow",
+      "executor": "projectile",
+      "ability_ids": [],
+      "projectile_id": "test_arrow",
+      "presentation_key": "test_arrow"
     }
   ]
 }

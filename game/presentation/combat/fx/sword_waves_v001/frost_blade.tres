@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/sword_waves_v001/blade.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/body_color = Color(0.055, 0.3, 0.52, 1)
+shader_parameter/edge_color = Color(0.62, 0.92, 1.0, 1)
+shader_parameter/vein_color = Color(0.22, 0.72, 1.0, 1)
+shader_parameter/roughness_value = 0.16
+shader_parameter/crystal = 1.0
+shader_parameter/emission_strength = 1.2
+shader_parameter/visual_time = 0.0
+shader_parameter/exit_progress = 0.0

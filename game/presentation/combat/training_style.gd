@@ -9,6 +9,8 @@ extends Resource
 ## Authored sword-tip placement, independent of gameplay hit radius.
 @export var weapon_tip_radius_by_ability: Dictionary
 @export var attack_motions: Dictionary[String, Resource]
+## Presentation group -> ability ID -> strong motion resource key.
+@export var attack_motion_groups: Dictionary
 @export var hit_camera_shake: Resource
 @export var camera_offset: Vector3
 @export var camera_size: float

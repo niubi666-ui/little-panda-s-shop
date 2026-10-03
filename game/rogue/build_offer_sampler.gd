@@ -1,72 +1,57 @@
 extends RefCounted
-## Chooses candidates only; never mutates player ranks or commits rewards.
-
+## RNG and reward weighting only. Combat's evaluator owns all legality.
 const Catalog = preload("res://content/builds/build_catalog.gd")
 var _catalog: Catalog
-var _compatible: Callable
+var _operations: Callable
 
-
-func configure(catalog: Catalog, compatible: Callable) -> void:
-	assert(catalog != null)
+func configure(catalog: Catalog, operations: Callable) -> void:
+	assert(catalog != null and operations.is_valid())
 	_catalog = catalog
-	assert(compatible.is_valid(), "Combat compatibility policy must be injected")
-	_compatible = compatible
+	_operations = operations
 
-
-func sample(ranks: Dictionary, tags: Array, rng: RandomNumberGenerator) -> Array[String]:
+func sample(state: Dictionary, rng: RandomNumberGenerator) -> Array[Dictionary]:
 	assert(_catalog != null and rng != null)
-	var candidates: Array[String] = []
-	var eligible: Array[String] = []
 	var rules: Dictionary = _catalog.offer_rules()
+	assert(rules.target_weighting == "uniform", "Unknown authored binding weighting")
+	var bindings: Dictionary = {}
+	var eligible: Array[String] = []
+	var candidates: Array[Dictionary] = []
+	var selected: Dictionary = {}
 	for id in rules.pool_ids:
-		if is_eligible(id, ranks, tags) and float(_catalog.upgrade(id).weight) > 0.0:
+		var options: Array = _operations.call(state, str(id))
+		if not options.is_empty() and float(_catalog.upgrade(id).weight) > 0.0:
+			bindings[id] = options
 			eligible.append(id)
+	# Select upgrade identity first: two legal action bindings never double its
+	# pool weight, and can never consume two cards in the same offer.
 	while candidates.size() < int(rules.count) and not eligible.is_empty():
 		var index := _weighted_index(eligible, rng)
-		candidates.append(eligible[index])
+		var id: String = eligible[index]
+		candidates.append(_pick_binding(bindings[id], rng))
+		selected[id] = true
 		eligible.remove_at(index)
-	# Explicit fallback ordering remains deterministic. A zero-weight fallback is
-	# allowed here: weight controls the random pool, not the authored fallback list.
 	for id in rules.fallback_ids:
-		if candidates.size() >= int(rules.count):
-			break
-		if not candidates.has(id) and is_eligible(id, ranks, tags):
-			candidates.append(id)
+		if candidates.size() >= int(rules.count): break
+		if selected.has(id): continue
+		var options: Array = _operations.call(state, str(id))
+		if options.is_empty(): continue
+		candidates.append(_pick_binding(options, rng))
+		selected[id] = true
 	return candidates
 
+func is_eligible(id: String, state: Dictionary) -> bool:
+	return not _operations.call(state, id).is_empty()
 
-func is_eligible(id: String, ranks: Dictionary, tags: Array) -> bool:
-	if not _catalog.has_upgrade(id):
-		return false
-	var entry: Dictionary = _catalog.upgrade(id)
-	if _rank(ranks, id) >= int(entry.max_rank):
-		return false
-	for required in entry.requires:
-		if _rank(ranks, required) < 1:
-			return false
-	for excluded in entry.excludes:
-		if _rank(ranks, excluded) > 0:
-			return false
-	for tag in entry.required_tags:
-		if not tags.has(tag):
-			return false
-	return _compatible.call(entry, ranks)
-
+func _pick_binding(options: Array, rng: RandomNumberGenerator) -> Dictionary:
+	return options[rng.randi_range(0, options.size() - 1)].duplicate(true)
 
 func _weighted_index(ids: Array[String], rng: RandomNumberGenerator) -> int:
 	var scale := 0.0
-	for id in ids:
-		scale = maxf(scale, float(_catalog.upgrade(id).weight))
+	for id in ids: scale = maxf(scale, float(_catalog.upgrade(id).weight))
 	var total := 0.0
-	for id in ids:
-		total += float(_catalog.upgrade(id).weight) / scale
+	for id in ids: total += float(_catalog.upgrade(id).weight) / scale
 	var remaining := rng.randf() * total
 	for index in ids.size():
 		remaining -= float(_catalog.upgrade(ids[index]).weight) / scale
-		if remaining < 0.0:
-			return index
+		if remaining < 0.0: return index
 	return ids.size() - 1
-
-
-func _rank(ranks: Dictionary, id: String) -> int:
-	return int(ranks[id]) if ranks.has(id) else 0

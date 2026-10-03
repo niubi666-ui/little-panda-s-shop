@@ -1,10 +1,9 @@
 extends "res://tests/enemy_roles.gd"
 const BuildLoader = preload("res://content/builds/build_loader.gd")
 const Statuses = preload("res://combat/status/status_runtime.gd")
-const BuildResolver = preload("res://combat/builds/build_resolver.gd")
+const BuildFixture = preload("res://tests/fixtures/action_build_fixture.gd")
 const BuildRuntime = preload("res://combat/builds/build_runtime.gd")
 const Caps = preload("res://combat/builds/projectile_capabilities.gd")
-const Session = preload("res://app/session/training_build_session.gd")
 var builds
 var statuses := Statuses.new()
 var source := {"source_handle":1,"team":0,"root_id":1,"room_generation":1,"ability_id":"test"}
@@ -129,40 +128,32 @@ func check_flying_arrow() -> void:
 	check(r.projectiles.size() == 1 and r.projectiles[0].position != before, "existing enemy projectile continues after source freeze")
 	statuses.clear();r.clear();player.free();bow.free()
 func check_candidates_and_snapshot() -> void:
-	var resolver := BuildResolver.new()
-	resolver.configure(builds)
+	# Bound offer/transaction loops are covered by bound_build_session. This gate
+	# retains carrier-scoped status qualification and live in-flight snapshots.
 	var upgrade: Dictionary = builds.upgrade("freeze_duration")
-	check(not Caps.eligible(upgrade,Caps.summarize(builds,resolver.resolve({}),["test_arrow"])), "duration boost unavailable without freeze source")
-	check(Caps.eligible(upgrade,Caps.summarize(builds,resolver.resolve({"contact_freeze":1}),["test_arrow"])), "freeze source unlocks duration boost without active frozen target")
-	check(not Caps.eligible(upgrade,Caps.summarize(builds,resolver.resolve({"contact_freeze":1}),[])), "no capable source cannot unlock pure modifier")
-	check(Caps.eligible(builds.upgrade("contact_freeze"),Caps.summarize(builds,resolver.resolve({}),[],true)), "freeze grant has no circular self prerequisite")
-	var session := Session.new()
-	session.configure(builds,91823,func(_state):return OK,["test_arrow"])
-	for i in 30:
-		var offer: Dictionary = session.open_offer().offer
-		if session.snapshot().ranks.has("contact_freeze"):
-			if offer.candidates.has("freeze_duration"):
-				check(session.choose(offer.id,"freeze_duration").ok, "duration modifier commits through legal candidate")
-				break
-		else: check(not offer.candidates.has("freeze_duration"), "sampler excludes currently invalid duration card")
-		if offer.candidates.is_empty(): break
-		var choice: String = "contact_freeze" if offer.candidates.has("contact_freeze") else offer.candidates[0]
-		session.choose(offer.id,choice)
-	check(session.snapshot().ranks.has("freeze_duration"), "modifier reached without rerolling")
+	var empty: Dictionary = BuildFixture.compile(builds, {}, "primary")
+	var primary: Dictionary = BuildFixture.compile(builds, {"contact_freeze":1}, "primary")
+	check(not Caps.eligible(upgrade,Caps.summarize_plan(builds,empty.actions.primary)), "duration boost unavailable without own freeze source")
+	check(Caps.eligible(upgrade,Caps.summarize_plan(builds,primary.actions.primary)), "same-action freeze unlocks duration without active frozen target")
+	check(not Caps.eligible(upgrade,Caps.summarize_plan(builds,primary.actions.special)), "other action cannot supply freeze modifier requirement")
+	check(Caps.eligible(builds.upgrade("contact_freeze"),Caps.summarize_plan(builds,empty.actions.primary)), "freeze core has no circular self prerequisite")
 	var player = actor("player",Vector3.ZERO)
 	var target = actor("brute",Vector3(0,0,-1))
 	var build := BuildRuntime.new()
 	build.configure(builds,player,func():return [target],Callable(),["test_arrow"])
-	build.set_program(resolver.resolve({"contact_freeze":1}))
+	check(build.set_program(BuildFixture.compile(builds,{"contact_freeze":1},"debug_arrow")), "explicit debug-arrow freeze fixture compiles")
 	build.statuses.apply(player,"test_freeze",1.0,source)
 	check(not build.fire_attack("test_arrow",Vector3.FORWARD), "frozen source cannot bypass action gate with test arrow")
 	player.request_dodge()
 	check(not player._dodge_requested, "frozen source cannot buffer a dodge for thaw")
 	build.statuses.remove(player,"test_freeze")
-	build.fire_attack("test_arrow",Vector3.FORWARD)
-	build.set_program(resolver.resolve({"contact_freeze":1,"freeze_duration":1}))
+	check(build.fire_attack("test_arrow",Vector3.FORWARD), "thawed source can fire debug fixture")
+	check(build.set_program(BuildFixture.compile(builds,{"contact_freeze":1,"freeze_duration":1},"debug_arrow",2)), "later debug fixture extends future casts only")
 	build.tick(0.001);build.tick(0.1)
-	check(is_equal_approx(build.statuses.snapshot(target).test_freeze.remaining,builds.status("test_freeze").duration_sec), "in-flight status duration uses fire snapshot")
+	var target_status := build.statuses.snapshot(target)
+	check(target_status.has("test_freeze"), "in-flight debug arrow carries its own freeze")
+	if target_status.has("test_freeze"):
+		check(is_equal_approx(target_status.test_freeze.remaining,builds.status("test_freeze").duration_sec), "in-flight status duration uses fire snapshot")
 	build.clear_room()
 	check(not target.control_locked and build.statuses.snapshot(target).is_empty(), "runtime room clear resets status service")
 	player.free();target.free()
@@ -191,9 +182,7 @@ func check_merge_and_invalid() -> void:
 			"extra": invalid.statuses[0].script = "unimplemented"
 			"version": invalid.schema_version = 2
 		check(BuildLoader.new().decode(invalid) == null,"invalid status content rejected: " + field)
-	var resolver := BuildResolver.new()
-	resolver.configure(builds)
 	var only_split: Dictionary = builds.upgrade("impact_blast").duplicate(true)
 	only_split.ranks[0].allowed_origins = ["split_projectile"]
-	check(not Caps.eligible(only_split,Caps.summarize(builds,resolver.resolve({}),["test_arrow"])),"derived-only carrier absent before split")
-	check(Caps.eligible(only_split,Caps.summarize(builds,resolver.resolve({"split":1}),["test_arrow"])),"derived-only carrier appears after split grant")
+	check(not Caps.eligible(only_split,Caps.summarize_plan(builds,BuildFixture.compile(builds,{},"debug_arrow").actions.debug_arrow)),"derived-only carrier absent before split")
+	check(Caps.eligible(only_split,Caps.summarize_plan(builds,BuildFixture.compile(builds,{"split":1},"debug_arrow").actions.debug_arrow)),"derived-only carrier appears after split grant")

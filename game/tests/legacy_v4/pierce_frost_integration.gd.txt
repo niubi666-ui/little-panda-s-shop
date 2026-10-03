@@ -1,0 +1,136 @@
+extends "res://tests/mechanism_slice_integration.gd"
+## Real training UI -> session transaction -> shared runtime; no direct rank writes.
+func run() -> void:
+	create_timer(90.0).timeout.connect(func():
+		if not finished:
+			check(false,"pierce/frost integration timeout")
+			finish())
+	arena=load("res://app/mechanism_slice.tscn").instantiate()
+	root.add_child(arena)
+	current_scene=arena
+	await process_frame
+	await process_frame
+	arena.set_physics_process(false)
+	check(arena.builds.is_choosing(),"normal initial reward still opens on mechanism entry")
+	if arena.builds.is_choosing():
+		arena.builds.choice_panel.buttons.values()[0].pressed.emit()
+		await process_frame
+	var menu:MenuButton=arena.builds.status_panel.find_child("BuildTestPresets",true,false)
+	check(menu != null and menu.get_popup().item_count==3,"three configured presets available through real menu")
+	if menu==null:
+		finish()
+		return
+	for actor in arena.actors:
+		if actor != arena.player: actor.position+=Vector3(50,0,50)
+	var point:Vector3=arena.player.position
+	for offset in [Vector3.ZERO,Vector3(2,0,0),Vector3(-2,0,0),Vector3(0,0,2)]:
+		var candidate:Vector3=point+offset
+		if arena._build_wall_hit(candidate+Vector3.UP*0.8,candidate+Vector3(0,0.8,-5.0))==null and arena._build_wall_hit(candidate+Vector3(0,0.8,-1.4),candidate+Vector3(1.2,0.8,-1.4))==null:
+			point=candidate
+			break
+	arena.player.position=point
+	var first=arena._spawn(arena.catalog.actor("brute"),point+Vector3(0,0,-1.4),1)
+	var later=arena._spawn(arena.catalog.actor("brute"),point+Vector3(0,0,-4.6),1)
+	var side=arena._spawn(arena.catalog.actor("brute"),point+Vector3(1.2,0,-1.4),1)
+	for index in 3:
+		for target in [first,later,side]:
+			target.health.current=target.health.maximum
+			target.cancel()
+		var rng_before:String=arena.builds.session.snapshot().rng_state
+		menu.get_popup().id_pressed.emit(index)
+		await process_frame
+		await process_frame
+		check(arena.builds.session.snapshot().rng_state==rng_before,"UI preset does not consume reward RNG")
+		check(not arena.builds.is_choosing() and arena.builds.runtime.projectiles().is_empty(),"preset ends previous choices and projectiles")
+		var preset:Dictionary=arena.builds.catalog.test_presets()[index]
+		check(preset.upgrade_ids.all(func(id):return arena.builds.session.snapshot().ranks.has(id)),"UI selected preset commits full legal sequence")
+		arena.player.facing=Vector3.FORWARD
+		root.gui_release_focus()
+		var key:=InputEventKey.new()
+		key.physical_keycode=KEY_T
+		key.pressed=true
+		root.push_input(key,true)
+		await process_frame
+		arena.builds.step(0.001)
+		arena.builds.step(0.31)
+		check(first.health.current<first.health.maximum and later.health.current<later.health.maximum,"real arrow penetrates two spaced enemies")
+		check(first.control_locked==(index!=1),"center freezes only for direct-freeze/frost presets")
+		check(later.control_locked==(index==0),"later target outside first blast only receives direct-freeze preset")
+		check(side.control_locked==(index==2),"side target only frozen by explicit frost area payload")
+		check((side.health.current<side.health.maximum)==(index!=0),"side damage matches explosion presets")
+		check(arena.builds.runtime.diagnostics().rejected==0,"preset does not exhaust safety budget")
+		arena.builds.refresh(0.0)
+		for view in arena.views:view.refresh(0.0)
+		for locale in ["zh_CN","en"]:
+			TranslationServer.set_locale(locale)
+			arena.builds.refresh_text()
+			await process_frame
+			await process_frame
+			check(root.get_visible_rect().encloses(menu.get_global_rect()),"preset menu inside bilingual viewport")
+			check(root.get_visible_rect().encloses(arena.builds.status_panel.get_global_rect()),"build status panel inside bilingual viewport")
+			for label in arena.builds.status_panel.find_children("*","Label",true,false):
+				check(not label.text.begins_with("build.") and not label.text.contains("{"),"preset labels resolve translation keys and named parameters")
+			if DisplayServer.get_name()!="headless":
+				await RenderingServer.frame_post_draw
+				root.get_texture().get_image().save_png("E:/ShopGame/builds/"+preset.id+"_"+locale+".png")
+		if index==1: await check_frost_card()
+		if index==2:
+			var status:Dictionary=arena.builds.runtime.statuses.snapshot(first)
+			arena.builds.request_test_offer()
+			await process_frame
+			check(arena.builds.is_choosing(),"ordinary three-choice flow remains usable after preset")
+			arena.set_physics_process(true)
+			await create_timer(0.15).timeout
+			arena.set_physics_process(false)
+			check(arena.builds.runtime.statuses.snapshot(first)==status,"real three-choice pause freezes status battle clock")
+			arena.builds.choice_panel.buttons.values()[0].pressed.emit()
+			await process_frame
+	arena.builds.clear_room()
+	check(not first.control_locked and arena.builds.runtime.statuses.diagnostics().tracked_actors==0,"retry/room cleanup removes freeze and immunity records")
+	var old_runtime=arena.builds.runtime
+	var previous=arena
+	arena.hud.retry_requested.emit()
+	while current_scene==previous:
+		await process_frame
+	arena=current_scene
+	await process_frame
+	check(arena.scene_file_path=="res://app/mechanism_slice.tscn" and arena.enable_mechanism_presets,"actual retry preserves mechanism entry and preset controls")
+	check(arena.builds.session.snapshot().ranks.is_empty() and arena.builds.runtime.statuses.diagnostics().tracked_actors==0,"actual retry resets ranks and status authority")
+	check(old_runtime.diagnostics().roots==0 and old_runtime.statuses.diagnostics().tracked_actors==0,"old scene runtime and immunity records cleared during retry")
+	finish()
+
+func check_frost_card() -> void:
+	var available_ranks:=0
+	for entry in arena.builds.catalog.entries():available_ranks+=int(entry.max_rank)
+	for attempt in available_ranks:
+		arena.builds.request_test_offer()
+		await process_frame
+		await process_frame
+		var buttons:Dictionary=arena.builds.choice_panel.buttons
+		if buttons.has("frost_blast"):
+			for locale in ["zh_CN","en"]:
+				TranslationServer.set_locale(locale)
+				arena.builds.refresh_text()
+				await process_frame
+				await process_frame
+				for button in buttons.values():check(root.get_visible_rect().encloses(button.get_global_rect()),"new synergy card fits bilingual viewport")
+				for label in arena.builds.choice_panel.find_children("*","Label",true,false):
+					check(not label.text.begins_with("build.") and not label.text.contains("{"),"new synergy card resolves duration and named parameters")
+				if DisplayServer.get_name()!="headless":
+					await RenderingServer.frame_post_draw
+					root.get_texture().get_image().save_png("E:/ShopGame/builds/frost_card_"+locale+".png")
+			buttons.frost_blast.pressed.emit()
+			check(arena.builds.session.snapshot().ranks.has("frost_blast"),"real ordinary reward UI commits frost synergy")
+			return
+		if buttons.is_empty():break
+		buttons.values()[0].pressed.emit()
+		await process_frame
+	check(false,"ordinary UI eventually offers legal frost synergy")
+
+func finish() -> void:
+	if finished:return
+	finished=true
+	if is_instance_valid(arena):arena.queue_free()
+	await process_frame
+	print("PIERCE_FROST_INTEGRATION ",JSON.stringify({"failures":failures}))
+	quit(0 if failures.is_empty() else 1)

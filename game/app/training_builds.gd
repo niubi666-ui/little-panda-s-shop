@@ -19,6 +19,7 @@ var effects: EffectsView
 var mechanisms: MechanismView
 var _test_attack_ids: Array = []
 var _player
+var _combat_catalog
 var _rules: Dictionary
 var _pending := 0
 var _auto_rewards := true
@@ -26,30 +27,42 @@ var _stopped := false
 var _committed_state: Dictionary = {}
 var _test_presets_enabled := false
 
-func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, shared_theme: Theme, world: Node, auto_rewards: bool, test_attack_ids: Array = [], enable_test_presets: bool = false) -> bool:
+func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, shared_theme: Theme, world: Node, combat_catalog, auto_rewards: bool, test_attack_ids: Array = [], enable_test_presets: bool = false, effects_style: Resource = EffectsStyle, mechanism_style: Resource = MechanismStyle) -> bool:
 	var loader := Loader.new()
 	catalog = loader.load_catalog()
 	if catalog == null:
 		for error in loader.errors: push_error(error)
 		return false
+	# Validate every authored preset using the same detached session/evaluator before UI.
+	for preset in catalog.test_presets():
+		var probe := Session.new()
+		probe.configure(catalog, 0, func(_candidate): return OK)
+		var checked: Dictionary = probe.apply_test_preset(preset.id)
+		if not checked.ok:
+			push_error("Invalid build preset %s: %s" % [preset.id, checked.error_key])
+			return false
 	_test_attack_ids = test_attack_ids.duplicate()
 	_player = player
+	_combat_catalog = combat_catalog
 	_auto_rewards = auto_rewards
 	_test_presets_enabled = enable_test_presets
 	_rules = catalog.offer_rules()
-	session.configure(catalog, Time.get_ticks_usec(), _commit_training, _test_attack_ids, not player.attacks.is_empty())
+	session.configure(catalog, Time.get_ticks_usec(), _commit_training)
 	runtime.configure(catalog, player, targets, wall_query, _test_attack_ids)
 	player.runner.committed.connect(runtime.on_committed)
 	player.runner.cue_reached.connect(runtime.on_cue)
+	player.runner.finished.connect(runtime.on_finished)
 	runtime.damage_applied.connect(func(source, target, amount, origin): damage_applied.emit(source, target, amount, origin))
 	effects = EffectsView.new()
 	world.add_child(effects)
-	effects.configure(EffectsStyle)
+	effects.configure(effects_style)
 	runtime.chain_emitted.connect(effects.show_chain)
+	runtime.projectile_presented.connect(effects.on_projectile_event)
+	runtime.action_presented.connect(effects.on_action_event)
 	mechanisms = MechanismView.new()
 	world.add_child(mechanisms)
-	mechanisms.configure(MechanismStyle)
-	runtime.area_payload_emitted.connect(mechanisms.show_payload_area)
+	mechanisms.configure(mechanism_style)
+	runtime.area_presented.connect(mechanisms.show_area_fact)
 	status_panel = StatusPanel.new()
 	ui_root.add_child(status_panel)
 	status_panel.configure(catalog, shared_theme, enable_test_presets)
@@ -70,15 +83,16 @@ func _commit_training(candidate: Dictionary) -> Error:
 func _apply_program() -> void:
 	var program: Dictionary = session.program()
 	runtime.set_program(program)
-	_player.set_build_movement_multiplier(float(program["move_scale"]))
-	status_panel.update_state(session.snapshot()["ranks"])
+	_player.set_action_program(program.actions, _combat_catalog)
+	_player.set_build_movement_multiplier(float(program.global.move_scale))
+	status_panel.update_state(session.snapshot().selections, program)
 
 func apply_test_preset(id: String) -> Dictionary:
 	if not _test_presets_enabled or _stopped or is_choosing() or not _player.health.alive():
 		return {"ok": false, "error": "preset_unavailable"}
 	var result: Dictionary = session.apply_test_preset(id)
 	if not result.ok:
-		status_panel.set_notice("build.preset.error")
+		status_panel.set_notice(result.error_key)
 		return result
 	_player.clear_intents()
 	_player.runner.cancel()
@@ -116,13 +130,13 @@ func flush_offers() -> void:
 		return
 	_player.clear_intents()
 	status_panel.set_notice("")
-	choice_panel.show_offer(offer, session.snapshot()["ranks"])
+	choice_panel.show_offer(offer, session.snapshot().selections)
 
-func _choose(offer_id: String, upgrade_id: String) -> void:
+func _choose(offer_id: String, choice_id: String) -> void:
 	if _stopped: return
-	var result: Dictionary = session.choose(offer_id, upgrade_id)
+	var result: Dictionary = session.choose(offer_id, choice_id)
 	if not result["ok"]:
-		choice_panel.set_error("build.error")
+		choice_panel.set_error(result.error_key)
 		return
 	_apply_program()
 	_pending -= 1
@@ -148,6 +162,11 @@ func finish() -> void:
 	if is_instance_valid(choice_panel): choice_panel.dismiss()
 	if is_instance_valid(status_panel): status_panel.hide()
 	clear_room()
+
+func resume_training() -> void:
+	# Extra practice after victory keeps the chosen build, without another reward.
+	_stopped = false
+	_apply_program()
 
 func handle_test_input(event: InputEvent) -> bool:
 	if _test_attack_ids.is_empty() or _stopped or is_choosing(): return false

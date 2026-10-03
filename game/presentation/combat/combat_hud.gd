@@ -14,6 +14,7 @@ var message: Label
 var resume: Button
 var effect_picker
 var _top: VBoxContainer
+var _footer: VBoxContainer
 var _margin: int
 var _texts: Dictionary = {}
 func configure(shared_theme: Theme, margin: int) -> void:
@@ -30,6 +31,7 @@ func configure(shared_theme: Theme, margin: int) -> void:
 	status = _add_label(top, "")
 	message = _add_label(top, "")
 	var footer := VBoxContainer.new()
+	_footer = footer
 	add_child(footer)
 	footer.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
 	footer.position = Vector2(margin, size.y - margin)
@@ -41,6 +43,7 @@ func configure(shared_theme: Theme, margin: int) -> void:
 	footer.add_child(actions)
 	for key in ["combat.retry", "combat.return", "combat.resume"]:
 		var button := Button.new()
+		button.focus_mode = Control.FOCUS_NONE
 		actions.add_child(button)
 		_texts[button] = key
 		match key:
@@ -50,6 +53,10 @@ func configure(shared_theme: Theme, margin: int) -> void:
 				resume = button
 				button.pressed.connect(func(): resume_requested.emit())
 	refresh_text()
+func set_training_hud_visible(shown: bool) -> void:
+	# HUD visibility does not change the independently controlled training panels.
+	if _top != null: _top.visible = shown
+	if _footer != null: _footer.visible = shown
 func configure_effect_picker(palette: Resource, current_id: StringName) -> void:
 	effect_picker = EffectPicker.new()
 	add_child(effect_picker)
@@ -79,6 +86,7 @@ func configure_encounters(depth: int, max_depth: int, panel_position: Vector2) -
 	depth_selector.step = 1
 	depth_selector.value = depth
 	var reroll := Button.new()
+	reroll.focus_mode = Control.FOCUS_NONE
 	column.add_child(reroll)
 	_texts[reroll] = "encounter.reroll"
 	reroll.pressed.connect(func(): encounter_requested.emit(int(depth_selector.value)))

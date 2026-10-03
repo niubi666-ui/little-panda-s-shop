@@ -93,6 +93,12 @@ func _destroy(id: String) -> bool:
 	_routes.clear()
 	return true
 func resolve_attack() -> void: resolver.resolve(player, destructibles)
+func forget_actor(handle: int) -> void: _routes.erase(handle)
+func allows_training_spawn(world_point: Vector3, radius: float) -> bool:
+	var point := room.to_local(world_point)
+	var flat := Vector2(point.x, point.z)
+	if not surface.bounds.grow(-radius).has_point(flat): return false
+	return not _grid.is_point_solid(Planner.cell_at(_grid, flat))
 func has_clear_path(source, target) -> bool:
 	var from: Vector3 = _query_origin.call(source)
 	var to: Vector3 = target.global_position

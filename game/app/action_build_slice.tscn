@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="PackedScene" path="res://app/combat_training.tscn" id="base"]
+[node name="ActionBuildSlice" instance=ExtResource("base")]
+enable_mechanism_presets = true
+test_attack_ids = Array[String](["test_arrow"])
+
+[node name="ArrowHint" type="Label" parent="UIRoot"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -30.0
+offset_right = -24.0
+offset_bottom = -4.0
+mouse_filter = 2
+theme_type_variation = &"Muted"
+horizontal_alignment = 1
+text = "build.test.arrow_hint"

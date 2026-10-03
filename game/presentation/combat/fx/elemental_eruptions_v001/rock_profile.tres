@@ -1,0 +1,86 @@
+[gd_resource type="Resource" load_steps=15 format=3]
+[ext_resource type="Script" path="res://presentation/combat/fx/elemental_eruptions_v001/eruption_profile.gd" id="profile"]
+[ext_resource type="ArrayMesh" path="res://assets/vfx/elemental_eruptions_v001/models/rock_spire_01.obj" id="mesh1"]
+[ext_resource type="ArrayMesh" path="res://assets/vfx/elemental_eruptions_v001/models/rock_spire_02.obj" id="mesh2"]
+[ext_resource type="ArrayMesh" path="res://assets/vfx/elemental_eruptions_v001/models/rock_spire_03.obj" id="mesh3"]
+[ext_resource type="ArrayMesh" path="res://assets/vfx/elemental_eruptions_v001/models/rock_chip.obj" id="chip_mesh"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_eruptions_v001/rock_spire.tres" id="spire"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_eruptions_v001/rock_chip.tres" id="chip"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_eruptions_v001/rock_ground.tres" id="ground"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_eruptions_v001/rock_ring.tres" id="ring"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_eruptions_v001/rock_mist.tres" id="mist"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_eruptions_v001/rock_spark.tres" id="spark"]
+[sub_resource type="Curve" id="rise"]
+max_value = 1.25
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.4, 1.15), 0.0, 0.0, 0, 0, Vector2(0.68, 0.98), 0.0, 0.0, 0, 0, Vector2(0.83, 1.025), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+[sub_resource type="Curve" id="vanish"]
+max_value = 1.2
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2, 1.04), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+[sub_resource type="Curve" id="shrink"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.65, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[resource]
+script = ExtResource("profile")
+spire_meshes = Array[Mesh]([ExtResource("mesh1"), ExtResource("mesh2"), ExtResource("mesh3")])
+chip_mesh = ExtResource("chip_mesh")
+spire_material = ExtResource("spire")
+chip_material = ExtResource("chip")
+ground_material = ExtResource("ground")
+ring_material = ExtResource("ring")
+mist_material = ExtResource("mist")
+spark_material = ExtResource("spark")
+rise_curve = SubResource("rise")
+vanish_curve = SubResource("vanish")
+chip_scale_curve = SubResource("shrink")
+visual_seed = 5207
+duration_sec = 4.8
+anticipation_sec = 0.28
+travel_sec = 0.78
+rise_sec = 0.34
+hold_sec = 2.0
+sink_sec = 0.7
+length_m = 9.0
+station_count = 6
+height_range = Vector2(1.1, 2.9)
+width_range = Vector2(2.2, 2.9)
+lateral_spread = 0.45
+satellite_scale = Vector2(0.38, 0.61)
+lean_deg = Vector2(10, 28)
+crown_count = 5
+crown_radius = 1.2
+crown_height_scale = Vector2(0.58, 0.84)
+crown_width_scale = 0.7
+crown_stagger_sec = 0.018
+crown_chip_count = 44
+crown_spark_count = 35
+crown_burst_speed_scale = 1.2
+ground_width = 5.6
+ground_height = 0.025
+ring_radius = 2.6
+ring_duration = 0.65
+chip_count = 112
+chip_size = Vector2(0.14, 0.45)
+chip_speed = Vector2(0.9, 3.0)
+chip_up_speed = Vector2(3.0, 6.5)
+chip_gravity = 16.0
+chip_lifetime = Vector2(1.7, 2.9)
+chip_bounce = 0.24
+chip_drag = 0.22
+mist_count = 32
+mist_size = Vector2(1.5, 2.6)
+mist_lifetime = Vector2(1.7, 2.6)
+mist_spread = 1.0
+mist_rise = 0.9
+spark_count = 75
+spark_size = Vector2(0.07, 0.22)
+spark_speed = Vector2(1.6, 4.2)
+spark_lifetime = Vector2(0.6, 1.5)
+spark_gravity = 6.0
+light_color = Color(1.0, 0.43, 0.085, 1)
+light_energy = 2.4
+light_radius = 3.5
+light_height = 0.7
+light_pulse_sec = 0.32

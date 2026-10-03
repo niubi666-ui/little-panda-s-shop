@@ -1,0 +1,103 @@
+[gd_resource type="Resource" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/eruption_showcase/showcase_style.gd" id="style"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/lightning_verdict_v001/lightning_verdict.tscn" id="ice"]
+[ext_resource type="Theme" path="res://presentation/foliage/foliage_theme.tres" id="theme"]
+[ext_resource type="FontFile" path="res://assets/fonts/NotoSerifSC-VF.ttf" id="font"]
+[ext_resource type="Shader" path="res://presentation/combat/eruption_showcase/stone_floor.gdshader" id="floor_shader"]
+[ext_resource type="Translation" path="res://generated/locales/zh_CN.po" id="zh"]
+[ext_resource type="Translation" path="res://generated/locales/en.po" id="en"]
+
+[sub_resource type="ShaderMaterial" id="floor_mat"]
+shader = ExtResource("floor_shader")
+shader_parameter/stone_dark = Color(0.075, 0.09, 0.12, 1)
+shader_parameter/stone_light = Color(0.2, 0.22, 0.25, 1)
+shader_parameter/seam_color = Color(0.026, 0.032, 0.042, 1)
+shader_parameter/tile_size = 1.55
+shader_parameter/seam_width = 0.009
+shader_parameter/metallic_value = 0.24
+shader_parameter/roughness_value = 0.36
+shader_parameter/surface_variation = 0.22
+
+[resource]
+script = ExtResource("style")
+effects = Array[PackedScene]([ExtResource("ice")])
+effect_keys = PackedStringArray("vfx.lightning.name")
+theme = ExtResource("theme")
+font = ExtResource("font")
+translations = Array[Translation]([ExtResource("zh"), ExtResource("en")])
+initial_locale = "zh_CN"
+floor_material = SubResource("floor_mat")
+camera_position = Vector3(12.8, 9.6, 5.0)
+camera_target = Vector3(0, 2.05, -4.8)
+camera_fov = 38.0
+floor_size = Vector2(160, 160)
+floor_center = Vector3(0, -0.24, -4.0)
+platform_size = Vector3(14.0, 0.24, 19.0)
+platform_position = Vector3(0, -0.12, -4.0)
+stone_color = Color(0.09, 0.11, 0.14, 1)
+metal_color = Color(0.24, 0.2, 0.12, 1)
+edge_color = Color(0.27, 0.55, 0.66, 1)
+ice_color = Color(0.56, 0.72, 1.0, 1)
+rock_color = Color(1, 0.66, 0.24, 1)
+edge_energy = 1.4
+pillar_positions = PackedVector3Array(-7.0, 0, -12.4, 7.0, 0, -12.4, -7.0, 0, -5.5, 7.0, 0, -5.5, -7.0, 0, 2.5, 7.0, 0, 2.5)
+pillar_size = Vector3(0.66, 1.2, 0.66)
+pillar_cap_size = Vector3(0.83, 0.14, 0.83)
+pillar_band_size = Vector3(0.71, 0.06, 0.71)
+pillar_light_height = 1.35
+pillar_light_range = 4.5
+pillar_light_energy = 1.0
+key_position = Vector3(-5, 11, -5)
+key_color = Color(0.9, 0.95, 1.0, 1)
+key_energy = 3.2
+key_size = 10.0
+fill_position = Vector3(6, 7, 5)
+fill_color = Color(1.0, 0.69, 0.35, 1)
+fill_energy = 1.4
+fill_size = 7.0
+ambient_color = Color(0.3, 0.38, 0.5, 1)
+ambient_energy = 0.45
+background_color = Color(0.008, 0.012, 0.025, 1)
+glow_intensity = 0.8
+fog_density = 0.002
+fog_color = Color(0.06, 0.09, 0.15, 1)
+loop_interval = 4.8
+slow_speed = 0.35
+capture_fps = 30
+capture_frames = 150
+capture_resolution = Vector2i(1280, 720)
+ui_margin = 28
+title_size = 26
+subtitle_size = 13
+control_size = 15
+info_size = 12
+text_color = Color(0.92, 0.9, 0.82, 1)
+muted_color = Color(0.58, 0.66, 0.72, 1)
+panel_color = Color(0.014, 0.025, 0.039, 0.94)
+button_min_size = Vector2(112, 45)
+stage_line_width = 0.018
+stage_line_length = 0.46
+stage_line_positions = PackedVector3Array(-3.6, 0.012, 0, 3.6, 0.012, 0, -3.6, 0.012, -3, 3.6, 0.012, -3, -3.6, 0.012, -6, 3.6, 0.012, -6, -3.6, 0.012, -9, 3.6, 0.012, -9)
+details = {
+"solid_roughness": 0.5,
+"metal_metallic": 0.65,
+"edge_width": 0.055,
+"edge_height": 0.015,
+"edge_elevation": 0.002,
+"line_height": 0.009,
+"light_size_ratio": 0.12,
+"light_range_ratio": 3.0,
+"glow_bloom": 0.06,
+"glow_threshold": 1.3,
+"ssao_radius": 1.2,
+"ssao_intensity": 1.15,
+"shadow_offset": 2,
+"disclaimer_width": 470,
+"controls_height": 116,
+"panel_margin_x": 12,
+"panel_margin_y": 9,
+"panel_radius": 8,
+"button_separation": 8,
+"language_button_width": 66
+}

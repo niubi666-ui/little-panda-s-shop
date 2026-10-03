@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dk5fui5atw68a"
+path="res://.godot/imported/frost_crescent.obj-a874721f0806fbf639d887d1b52193ed.mesh"
+
+[deps]
+
+files=["res://.godot/imported/frost_crescent.obj-a874721f0806fbf639d887d1b52193ed.mesh"]
+
+source_file="res://assets/vfx/sword_waves_v001/models/frost_crescent.obj"
+dest_files=["res://.godot/imported/frost_crescent.obj-a874721f0806fbf639d887d1b52193ed.mesh", "res://.godot/imported/frost_crescent.obj-a874721f0806fbf639d887d1b52193ed.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

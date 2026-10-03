@@ -1,0 +1,77 @@
+[gd_resource type="Resource" load_steps=12 format=3]
+[ext_resource type="Script" path="res://presentation/combat/fx/lightning_verdict_v001/lightning_profile.gd" id="profile"]
+[ext_resource type="Material" path="res://presentation/combat/fx/lightning_verdict_v001/core.tres" id="core"]
+[ext_resource type="Material" path="res://presentation/combat/fx/lightning_verdict_v001/corona.tres" id="corona"]
+[ext_resource type="Material" path="res://presentation/combat/fx/lightning_verdict_v001/sigil.tres" id="sigil"]
+[ext_resource type="Material" path="res://presentation/combat/fx/lightning_verdict_v001/ring.tres" id="ring"]
+[ext_resource type="Material" path="res://presentation/combat/fx/lightning_verdict_v001/flash.tres" id="flash"]
+[ext_resource type="Material" path="res://presentation/combat/fx/lightning_verdict_v001/smoke.tres" id="smoke"]
+[ext_resource type="Material" path="res://presentation/combat/fx/lightning_verdict_v001/spark.tres" id="spark"]
+[ext_resource type="Material" path="res://presentation/combat/fx/lightning_verdict_v001/debris.tres" id="debris"]
+[ext_resource type="ArrayMesh" path="res://assets/vfx/elemental_eruptions_v001/models/rock_chip.obj" id="mesh"]
+[sub_resource type="Curve" id="fade"]
+_data = [Vector2(0, 0.55), 0.0, 0.0, 0, 0, Vector2(0.15, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+[resource]
+script = ExtResource("profile")
+core_material = ExtResource("core")
+corona_material = ExtResource("corona")
+sigil_material = ExtResource("sigil")
+ring_material = ExtResource("ring")
+flash_material = ExtResource("flash")
+smoke_material = ExtResource("smoke")
+spark_material = ExtResource("spark")
+debris_material = ExtResource("debris")
+debris_mesh = ExtResource("mesh")
+fade_curve = SubResource("fade")
+duration_sec = 4.2
+charge_sec = 0.48
+target = Vector3(0, 0, -4.8)
+strike_offsets = PackedVector3Array(0, 0, 0, -1.65, 0, 0.7, 1.6, 0, 0.35, 0.45, 0, -1.6)
+strike_delays = PackedFloat32Array(0.48, 0.6, 0.71, 0.82)
+strike_heights = PackedFloat32Array(6.4, 4.6, 5.0, 4.7)
+strike_widths = PackedFloat32Array(1, 0.5, 0.58, 0.52)
+pulse_times = PackedFloat32Array(0, 0.12, 0.26, 0.43)
+pulse_weights = PackedFloat32Array(1, 0.78, 0.62, 0.35)
+pulse_decay_sec = 0.085
+bolt_duration_sec = 0.82
+shape_rate = 15.0
+shape_count = 4
+bolt_segments = 24
+bolt_jitter = 0.34
+bolt_width = 0.115
+branch_count = 6
+branch_span = Vector2(0.85, 2.0)
+branch_drop = Vector2(1.0, 2.7)
+branch_width_ratio = 0.42
+corona_width_ratio = 3.5
+visual_seed = 31037
+ground_radius = 3.8
+ground_height = 0.035
+ground_arc_count = 14
+ground_arc_segments = 18
+arc_lifetime_sec = 2.3
+ring_lifetime_sec = 0.86
+ring_radius = 3.8
+flash_size = 3.7
+flash_lifetime_sec = 0.2
+spark_count = 164
+spark_size = Vector2(0.12, 0.34)
+spark_speed = Vector2(1.6, 4.6)
+spark_lifetime = Vector2(0.55, 1.55)
+spark_gravity = 3.5
+debris_count = 92
+debris_size = Vector2(0.12, 0.36)
+debris_speed = Vector2(1.0, 3.1)
+debris_lifetime = Vector2(1.4, 2.7)
+debris_gravity = 14.0
+debris_bounce = 0.26
+debris_drag = 0.23
+smoke_count = 24
+smoke_size = Vector2(1.1, 2.0)
+smoke_lifetime = Vector2(1.7, 2.7)
+smoke_spread = 1.0
+smoke_rise = 0.8
+light_color = Color(0.28, 0.43, 1, 1)
+light_energy = 4.8
+light_radius = 4.3

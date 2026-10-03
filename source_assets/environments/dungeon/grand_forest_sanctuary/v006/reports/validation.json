@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "source_hash_unchanged": true,
+    "original_objects_retained": true,
+    "original_mesh_coordinates_indices_counts_retained": true,
+    "original_shared_mesh_references_retained": true,
+    "non_light_object_transforms_retained": true,
+    "original_geometry_node_modifiers_retained": true,
+    "old_shadow_proxy_hidden": true,
+    "peripheral_forest_still_hidden": true,
+    "two_new_proxy_wind_modifiers_present": true,
+    "eevee_preview_saved": true,
+    "proxy_triangle_count_matches_build": true
+  },
+  "all_passed": true,
+  "packed_images": 35,
+  "active_lighting_proxy_triangles": 36544,
+  "changed_geometry": [],
+  "changed_layout": [],
+  "changed_mesh_references": [],
+  "changed_wind": [],
+  "missing_source_objects": [],
+  "source_sha256": "dd8713585b0f956ca09e756ca7b1ad84c608704c17c3247868ffea482f5a35e7"
+}

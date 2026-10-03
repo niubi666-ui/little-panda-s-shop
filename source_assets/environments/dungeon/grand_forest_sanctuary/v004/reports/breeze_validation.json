@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "issues": [],
+  "source_sha256_unchanged": true,
+  "original_unique_meshes_geometry_uv_materials_checked": 710,
+  "original_objects_placements_checked": 10000,
+  "lights_checked": 26,
+  "root_vertices_with_zero_weight": {
+    "FY_white_flower_shared": 1,
+    "FY_purple_flower_shared": 1,
+    "Bellflower_stems_mesh": 65
+  },
+  "crown_test": {
+    "object": "Hero_Sacred_Oak_v005__BakedCrownCluster_060",
+    "frames": [
+      1,
+      49
+    ],
+    "max_local_displacement_m": 0.09219746138264318,
+    "triangles_each_frame": 176
+  },
+  "scope": "Source geometry/UV/material slots, transforms, light settings and root anchors verified; actual Cycles preview is separate. No whole-game FPS claim."
+}

@@ -1,0 +1,63 @@
+{
+  "source": "Actual rendered scene animation, no AI-generated imagery",
+  "videos": [
+    {
+      "file": "breeze_flowers.mp4",
+      "engine": "Cycles",
+      "frames": 72,
+      "fps": 18,
+      "seconds": 4.0,
+      "resolution": [
+        960,
+        600
+      ],
+      "decoded_frames_verified": 72,
+      "different_decoded_frame_hashes": 72,
+      "bytes": 1402484
+    },
+    {
+      "file": "breeze_canopy.mp4",
+      "engine": "EEVEE",
+      "frames": 72,
+      "fps": 18,
+      "seconds": 4.0,
+      "resolution": [
+        960,
+        600
+      ],
+      "decoded_frames_verified": 72,
+      "different_decoded_frame_hashes": 72,
+      "bytes": 2134897
+    },
+    {
+      "file": "breeze_panorama.mp4",
+      "engine": "EEVEE",
+      "frames": 54,
+      "fps": 18,
+      "seconds": 3.0,
+      "resolution": [
+        960,
+        600
+      ],
+      "decoded_frames_verified": 54,
+      "different_decoded_frame_hashes": 54,
+      "bytes": 1236755
+    },
+    {
+      "file": "breeze_gpu.mp4",
+      "engine": "Godot 4.7.2 Forward+ Vulkan",
+      "frames": 240,
+      "fps": 30,
+      "seconds": 8,
+      "resolution": [
+        1280,
+        800
+      ],
+      "scope": "Three asset groups, not full-room game performance",
+      "decoded_frames_verified": 240,
+      "different_decoded_frame_hashes": 240,
+      "bytes": 1626328
+    }
+  ],
+  "local_links_verified": true
+}

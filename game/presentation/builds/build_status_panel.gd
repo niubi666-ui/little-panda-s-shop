@@ -4,7 +4,8 @@ signal test_preset_requested(id: String)
 
 const Style = preload("res://presentation/builds/build_ui_style.tres")
 var _catalog
-var _ranks: Dictionary = {}
+var _selections: Array = []
+var _program: Dictionary = {}
 var _title: Label
 var _summary: Label
 var _notice: Label
@@ -69,9 +70,13 @@ func configure(catalog, shared_theme: Theme, enable_test_presets: bool = false) 
 	refresh_text()
 
 
-func update_state(ranks: Dictionary) -> void:
-	_ranks = ranks.duplicate(true)
+func update_state(selections: Array, program: Dictionary = {}) -> void:
+	_selections = selections.duplicate(true)
+	_program = program
 	refresh_text()
+
+func has_open_popup() -> bool:
+	return _preset_menu != null and _preset_menu.get_popup().visible
 
 
 func set_notice(key: String, params: Dictionary = {}) -> void:
@@ -85,12 +90,20 @@ func refresh_text() -> void:
 		return
 	_title.text = tr("build.owned")
 	var lines: PackedStringArray = []
-	for entry in _catalog.entries():
-		var id: String = entry["id"]
-		if not _ranks.has(id) or int(_ranks[id]) <= 0:
-			continue
-		var rank_text := tr("build.rank").format({"rank": int(_ranks[id]), "max_rank": int(entry["max_rank"])})
-		lines.append(tr(entry["name_key"]) + "  " + rank_text)
+	for action_id in ["primary", "special", "global"]:
+		var action_lines: PackedStringArray = []
+		if _program.has("actions") and _program.actions.has(action_id):
+			var form: Dictionary = _catalog.form(_program.actions[action_id].form_id)
+			action_lines.append(tr("build.current_form").format({"form": tr(form.name_key)}))
+		for selection in _selections:
+			if selection.action_id != action_id: continue
+			var entry: Dictionary = _catalog.upgrade(selection.upgrade_id)
+			var rank_text := tr("build.rank").format({"rank": int(selection.rank), "max_rank": int(entry.max_rank)})
+			action_lines.append(tr("build.layer." + entry.layer) + " · " + tr(entry.name_key) + "  " + rank_text)
+		if not action_lines.is_empty():
+			lines.append(_action_label(action_id))
+			lines.append("\n".join(action_lines))
+			lines.append("")
 	_summary.text = tr("build.empty") if lines.is_empty() else "\n".join(lines)
 	var params := _notice_params.duplicate(true)
 	if params.has("name_key"):
@@ -107,6 +120,20 @@ func refresh_text() -> void:
 		for index in _presets.size(): popup.add_item(tr(_presets[index].name_key), index)
 	reset_size()
 	_fit_after_layout.call_deferred()
+
+
+func _action_label(action_id: String) -> String:
+	var label := tr("build.action." + action_id)
+	var input_id: String = {"primary": "combat_attack", "special": "combat_special"}.get(action_id, "")
+	if input_id.is_empty() or not InputMap.has_action(input_id): return label
+	var events := InputMap.action_get_events(input_id)
+	if events.is_empty(): return label
+	var event: InputEvent = events[0]
+	var key := event.as_text()
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT: key = tr("build.input.left_mouse")
+		elif event.button_index == MOUSE_BUTTON_RIGHT: key = tr("build.input.right_mouse")
+	return tr("build.action_binding").format({"action": label, "key": key})
 
 
 func _fit_after_layout() -> void:

@@ -1,0 +1,179 @@
+extends "res://tests/build_runtime.gd"
+## Concrete swept contacts, lifetime, snapshots and reentrant lifecycle regression.
+func run() -> void:
+	_builds = BuildLoader.new().load_catalog()
+	_combat = CombatLoader.new().load_catalog()
+	if _builds == null or _combat == null:
+		check(false, "catalogs load")
+		finish()
+		return
+	_resolver.configure(_builds)
+	check(line_order(1.0) == line_order(0.01), "large/small steps preserve contact order and total hit cap")
+	check_overlap_and_visited()
+	check_wall_tie_and_lifetime()
+	check_contact_effects()
+	check_reentrant_contacts()
+	check_pierce_snapshot()
+	check_wave_carrier()
+	print("PIERCE_RUNTIME ", JSON.stringify({"failures": failures}))
+	quit(0 if failures.is_empty() else 1)
+
+func arrow_runtime(player, targets: Array, ranks: Dictionary, wall: Callable = Callable(), catalog = null) -> Runtime:
+	var runtime := Runtime.new()
+	runtime.configure(_builds if catalog == null else catalog, player, func(): return targets, wall, ["test_arrow"])
+	check(runtime.set_program(_resolver.resolve(ranks)), "legal program accepted")
+	return runtime
+
+func fire(runtime: Runtime) -> void:
+	check(runtime.fire_attack("test_arrow", Vector3.FORWARD), "test arrow starts independent root")
+	runtime.tick(0.001)
+
+func line_order(step: float) -> Array:
+	var player := make_actor("player", 0)
+	var targets: Array = []
+	var all_actors: Array = [player]
+	var max_hits := int(_builds.upgrade("pierce").ranks[0].max_hits)
+	for i in max_hits + 1:
+		var enemy := make_actor("brute", 1)
+		enemy.position = Vector3(0, 0, -float(i + 1))
+		targets.append(enemy)
+		all_actors.append(enemy)
+	var runtime := arrow_runtime(player, targets, {"pierce": 1})
+	var order: Array = []
+	runtime.damage_applied.connect(func(_s,t,_d,o):
+		if o == "secondary_projectile": order.append(targets.find(t)))
+	fire(runtime)
+	for i in int(ceil(1.0 / step)): runtime.tick(step)
+	check(order.size() == max_hits, "max_hits includes first target, not extra penetrations")
+	check(targets.back().health.current == targets.back().health.maximum, "enemy beyond cap remains unharmed")
+	check(runtime.diagnostics().roots == 0, "exhausted projectile releases root")
+	cleanup(runtime, all_actors)
+	return order
+
+func check_overlap_and_visited() -> void:
+	var player := make_actor("player", 0)
+	var first := make_actor("brute", 1)
+	var second := make_actor("brute", 1)
+	first.position = Vector3.ZERO
+	second.position = Vector3.ZERO
+	var runtime := arrow_runtime(player, [second,first,second], {"pierce": 1})
+	var order: Array = []
+	runtime.damage_applied.connect(func(_s,t,_d,_o):order.append(t.handle))
+	fire(runtime)
+	runtime.tick(0.0001)
+	check(order == [first.handle, second.handle], "overlapping contacts dedup and sort by stable handle")
+	check(runtime.projectiles()[0].remaining_hits == int(_builds.upgrade("pierce").ranks[0].max_hits)-2, "each valid contact debits one hit")
+	for i in 5: runtime.tick(0.0001)
+	check(order.size() == 2, "persistent visited prevents repeated overlap on later frames")
+	var paused := runtime.projectiles()
+	runtime.tick(0.0)
+	check(paused == runtime.projectiles(), "pause does not travel or consume hits")
+	cleanup(runtime,[player,first,second])
+
+func check_wall_tie_and_lifetime() -> void:
+	var player := make_actor("player",0)
+	var before := make_actor("brute",1)
+	var at_wall := make_actor("brute",1)
+	var behind := make_actor("brute",1)
+	before.position = Vector3(0,0,-1)
+	at_wall.position = Vector3(0,0,-2)
+	behind.position = Vector3(0,0,-2.1)
+	var wall := func(from:Vector3,to:Vector3): return Vector3(0,from.y,-2) if from.z >= -2 and to.z <= -2 else null
+	var runtime := arrow_runtime(player,[behind,at_wall,before],{"pierce":1},wall)
+	fire(runtime);runtime.tick(1.0)
+	check(before.health.current < before.health.maximum and at_wall.health.current == at_wall.health.maximum and behind.health.current == behind.health.maximum,"wall wins same-plane tie and clips hurt points behind it")
+	check(runtime.projectiles().is_empty(), "wall terminates remaining penetration")
+	cleanup(runtime,[player,before,at_wall,behind])
+
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/builds/prototype.json"))
+	for p in data.projectiles:
+		if p.id == "test_arrow":
+			p.speed_mps = 10.0
+			p.radius_m = 0.1
+			p.lifetime_sec = 0.25
+	player = make_actor("player",0)
+	before = make_actor("brute",1)
+	at_wall = make_actor("brute",1)
+	behind = make_actor("brute",1)
+	before.position = Vector3(0,0,-1)
+	at_wall.position = Vector3(0,0,-2)
+	behind.position = Vector3(0,0,-3)
+	runtime = arrow_runtime(player,[before,at_wall,behind],{"pierce":1},Callable(),BuildLoader.new().decode(data))
+	fire(runtime);runtime.tick(0.2)
+	check(runtime.projectiles().size()==1 and is_equal_approx(runtime.projectiles()[0].position.z,-2.0),"multiple contacts subtract flight time once from step origin")
+	runtime.tick(10.0)
+	check(before.health.current<before.health.maximum and at_wall.health.current<at_wall.health.maximum and behind.health.current==behind.health.maximum,"large delta is clipped to remaining lifetime")
+	check(runtime.diagnostics().roots==0,"expired piercing projectile releases root")
+	cleanup(runtime,[player,before,at_wall,behind])
+
+func check_contact_effects() -> void:
+	var player := make_actor("player",0)
+	var a := make_actor("brute",1)
+	var b := make_actor("brute",1)
+	var c := make_actor("brute",1)
+	a.position=Vector3(0,0,-1);b.position=Vector3(0,0,-2);c.position=Vector3(0,0,-3)
+	a.dodge=_combat.dodge();a.dodge_left=a.dodge.duration;a.dodge_age=0.0
+	b.health.current=1.0
+	var runtime:=arrow_runtime(player,[a,b,c],{"pierce":1,"contact_freeze":1,"impact_blast":1},func(_f,_t):return null)
+	var areas:Array=[]
+	runtime.area_emitted.connect(func(p,_r):areas.append(p))
+	fire(runtime);runtime.tick(0.3)
+	check(a.health.current==a.health.maximum and a.control_locked,"zero actual damage contact consumes a hit and can freeze")
+	check(not b.health.alive() and not b.control_locked,"lethal contact is not resurrected by freeze")
+	check(c.control_locked,"freeze independently applies to later pierced target")
+	check(areas.size()==1 and areas[0].is_equal_approx(a.position),"ordinary blast triggers only on first valid contact of this projectile")
+	check(runtime.diagnostics().rejected==0,"normal piercing build stays below shared request budget")
+	cleanup(runtime,[player,a,b,c])
+
+func check_reentrant_contacts() -> void:
+	for event in ["clear", "kill_next", "add", "kill_source"]:
+		var player:=make_actor("player",0)
+		var a:=make_actor("brute",1)
+		var b:=make_actor("brute",1)
+		var c:=make_actor("brute",1)
+		var added:=make_actor("brute",1)
+		a.position=Vector3(0,0,-1);b.position=Vector3(0,0,-2);c.position=Vector3(0,0,-3);added.position=Vector3(0,0,-1.5)
+		var targets:Array=[a,b,c]
+		var runtime:=arrow_runtime(player,targets,{"pierce":1,"contact_freeze":1})
+		var ref: WeakRef = weakref(runtime)
+		runtime.damage_applied.connect(func(_s,t,_d,_o):
+			if t != a: return
+			if event == "clear":ref.get_ref().clear_room()
+			elif event == "kill_next": b.receive_hit(b.health.maximum)
+			elif event == "add":targets.append(added)
+			elif event == "kill_source":player.receive_hit(player.health.maximum)
+		)
+		fire(runtime);runtime.tick(0.3)
+		if event in ["clear","kill_source"]:
+			check(b.health.current==b.health.maximum and c.health.current==c.health.maximum,"reentrant %s stops later snapshotted contacts"%event)
+			check(runtime.diagnostics().roots==0 and runtime.diagnostics().queued==0,"reentrant %s clears root and queue"%event)
+		elif event=="kill_next":
+			check(c.health.current<c.health.maximum and runtime.projectiles()[0].remaining_hits==int(_builds.upgrade("pierce").ranks[0].max_hits)-2,"candidate killed by earlier callback does not debit hit budget")
+		else:check(added.health.current==added.health.maximum,"newly spawned target is not added to old contact snapshot")
+		cleanup(runtime,[player,a,b,c,added])
+
+func check_pierce_snapshot() -> void:
+	for initial_pierce in [true,false]:
+		var player:=make_actor("player",0)
+		var a:=make_actor("brute",1)
+		var b:=make_actor("brute",1)
+		a.position=Vector3(0,0,-1);b.position=Vector3(0,0,-2)
+		var runtime:=arrow_runtime(player,[a,b],{"pierce":1} if initial_pierce else {})
+		fire(runtime)
+		runtime.set_program(_resolver.resolve({} if initial_pierce else {"pierce":1}))
+		runtime.tick(0.3)
+		check((b.health.current<b.health.maximum)==initial_pierce,"existing projectile keeps original contact strategy")
+		check(not runtime.set_program(_resolver.resolve({"pierce":1,"split":1})),"illegal pierce/split program rejected at runtime boundary")
+		cleanup(runtime,[player,a,b])
+
+func check_wave_carrier() -> void:
+	var player := make_actor("player",0)
+	var a := make_actor("brute",1)
+	var b := make_actor("brute",1)
+	a.position=Vector3(0,0,-2);b.position=Vector3(0,0,-3)
+	var runtime := make_runtime(player,[a,b],{"wave":1,"pierce":1,"contact_freeze":1})
+	release_wave(player,runtime)
+	player.cancel()
+	runtime.tick(0.4)
+	check(a.control_locked and b.control_locked,"sword wave uses same piercing status handler as test arrow")
+	cleanup(runtime,[player,a,b])

@@ -1,0 +1,19 @@
+{
+  "method": "cutout",
+  "triangles": 24842,
+  "checks": {
+    "all_other_object_geometry_transforms_and_material_assignments_unchanged": true,
+    "leaf_triangle_count_matches": true,
+    "leaf_count_12421": true,
+    "leaf_material_assignments_preserved": true,
+    "leaf_uv_count_matches_loops": true,
+    "normal_and_opacity_images_packed": true,
+    "textures_resolve": true,
+    "no_active_bake_scene": true
+  },
+  "all_pass": true,
+  "source_sha256": "5cea723f954fd8d9d3d928a5a432c005364f98966945f36cc79b00a83594c57a",
+  "saved_scene_sha256": "f8283025e6e30093ee08f6a402c3e4419bd598f59f2da4248a85572efb4bd864",
+  "missing_images": [],
+  "scope": "Saved Blender data validation, not real-time FPS test"
+}

@@ -1,0 +1,16 @@
+{
+  "renderer": "Actual Blender Cycles OptiX frames, no generated imagery",
+  "fps": 18,
+  "samples": 24,
+  "resolution": [
+    960,
+    600
+  ],
+  "clips": {
+    "flowers": {
+      "frames": 72,
+      "camera": "Camera_Breeze_Flowers",
+      "mean_render_seconds": 9.711670729166599
+    }
+  }
+}

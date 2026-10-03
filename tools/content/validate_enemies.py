@@ -22,6 +22,14 @@ def validate_enemies(manifest):
         if p['role']=='ranged' and not(c['safe_min_m']<c['safe_max_m']<=c['fire_range_m'] and c['windup_sec']+c['recovery_sec']<c['shot_interval_sec'] and c['minimum_windup_sec']<=c['windup_sec']):raise ValueError('ranged ordering')
         if p['role']=='charger' and not(c['minimum_range_m']<c['trigger_range_m'] and c['minimum_windup_sec']<=c['windup_sec'] and c['cooldown_sec']>=c['windup_sec']+c['charge_distance_m']/c['charge_speed_mps']+c['recovery_sec']):raise ValueError('charge ordering')
         if p['role']=='support' and c['retreat_range_m']>=c['safe_max_m']:raise ValueError('support distances')
+        if p['role']=='ranger':
+            if c['roll_min_distance_m']>c['roll_distance_m']:raise ValueError('ranger roll distance order')
+            if not(c['safe_min_m']<c['safe_max_m']<=c['fire_range_m'] and c['roll_trigger_m']<c['safe_min_m'] and c['rain_min_range_m']<c['fire_range_m']):raise ValueError('ranger distances')
+            if c['rain_delay_sec']<=c['rain_windup_sec'] or c['volley_count']<2 or c['volley_angle_deg']>=180 or c['roll_cooldown_sec']<=c['roll_duration_sec']:raise ValueError('ranger attack/roll timing')
+            for ability in ['fast','volley','rain']:
+                if c[ability+'_cooldown_sec']<c[ability+'_windup_sec']+c[ability+'_recovery_sec']:raise ValueError('ranger cooldown')
+            for ability in ['fast','volley']:
+                if c[ability+'_lock_sec']>c[ability+'_windup_sec']:raise ValueError('ranger aim lock')
     seen=set();costs=[]
     for team in enc['combinations']:
         ids=team['enemy_ids']
@@ -40,3 +48,15 @@ def validate_enemies(manifest):
         previous_depth,previous_budget=band['min_depth'],band['budget']
         if not any(band['budget']*enc['minimum_budget_fraction']<=cost<=band['budget'] and count<=band['max_enemies'] for cost,count in costs):raise ValueError('empty legal encounter band')
     if enc['depth_bands'][0]['min_depth']!=1 or enc['training_depth']>enc['training_max_depth']:raise ValueError('training depth')
+    validate_training_tools(enc)
+
+
+def validate_training_tools(enc):
+    """Business constraints after the encounter schema has accepted all required fields."""
+    config = enc['training_tools']
+    if config['spawn_step_m'] > config['spawn_search_radius_m']:
+        raise ValueError('encounters.training_tools.spawn_step_m must not exceed spawn_search_radius_m')
+    if config['spawn_search_radius_m'] / config['spawn_step_m'] > 8:
+        raise ValueError('encounters.training_tools search radius/step must not exceed 8')
+    if any(config['max_alive_enemies'] < band['max_enemies'] for band in enc['depth_bands']):
+        raise ValueError('encounters.training_tools.max_alive_enemies must cover every depth_bands.max_enemies')

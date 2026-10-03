@@ -1,0 +1,6 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://presentation/combat/fx/elemental_eruptions_v001/eruption_effect.gd" id="script"]
+[ext_resource type="Resource" path="res://presentation/combat/fx/elemental_eruptions_v001/ice_profile.tres" id="profile"]
+[node name="GlacialCascade" type="Node3D"]
+script = ExtResource("script")
+profile = ExtResource("profile")

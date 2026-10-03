@@ -1,0 +1,18 @@
+{
+  "renderer": "Actual Blender Cycles OptiX frames, no generated imagery",
+  "fps": 18,
+  "samples": 24,
+  "resolution": [
+    960,
+    600
+  ],
+  "clips": {
+    "canopy": {
+      "camera": "Camera_Breeze_Canopy",
+      "mean_render_seconds": 21.683149059999778,
+      "requested_frames": 72,
+      "completed_frames": 18
+    }
+  },
+  "status": "Partial timing diagnostic; delivery uses EEVEE clip"
+}

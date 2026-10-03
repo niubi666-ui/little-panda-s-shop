@@ -118,6 +118,8 @@ def main() -> int:
         validate_builds(manifest)
         from validate_room_props import validate_room_props
         validate_room_props(manifest)
+        from validate_run import validate_run
+        validate_run(manifest)
         locale_schema = read_json(DATA / "schemas" / "shop_preview_locale.schema.json")
         locales = {}
         for locale in ("zh_CN", "en"):

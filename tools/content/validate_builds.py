@@ -44,6 +44,11 @@ def validate_builds(manifest: dict) -> None:
     data = read_json(path)
     validate(data, read_json(DATA / "schemas/build_prototype.schema.json"), "build")
     _validate_semantics(data)
+    combat = read_json(ROOT / "game" / manifest["combat_prototype_file"].removeprefix("res://"))
+    ability_ids = {a["id"] for a in combat["abilities"]}
+    for form in data["forms"]:
+        if set(form["ability_ids"]) - ability_ids:
+            raise ValueError("unknown combat ability in form " + form["id"])
     if data["status_rules"]["actor_responses"]:
         actors = read_json(ROOT / "game" / manifest["combat_prototype_file"].removeprefix("res://"))["actors"]
         if set(data["status_rules"]["actor_responses"]) - {a["id"] for a in actors}:
@@ -198,31 +203,122 @@ def _validate_semantics(data: dict) -> None:
 
     for upgrade_id in by_id:
         visit(upgrade_id)
+    _validate_actions(data, by_id)
     _validate_reachability(data, by_id)
     _validate_presets(data, by_id)
 
 
 def _validate_presets(data: dict, by_id: dict) -> None:
     ids = set()
+    actions = {a["id"]: a for a in data["actions"]}
     for preset in data["test_presets"]:
         if preset["id"] in ids:
             raise ValueError("duplicate test preset id")
         ids.add(preset["id"])
-        ranks, tags = {}, set()
-        for upgrade_id in preset["upgrade_ids"]:
-            if upgrade_id not in by_id:
-                raise ValueError("test_preset: unknown upgrade reference")
-            entry = by_id[upgrade_id]
-            if not set(entry["requires"]) <= ranks.keys():
-                raise ValueError("test_preset: prerequisite must appear before upgrade")
-            if set(entry["excludes"]) & ranks.keys():
-                raise ValueError("test_preset: mutually exclusive upgrades")
-            if not set(entry["required_tags"]) <= tags:
-                raise ValueError("test_preset: required tag missing before upgrade")
-            ranks[upgrade_id] = ranks.get(upgrade_id, 0) + 1
-            if ranks[upgrade_id] > entry["max_rank"]:
-                raise ValueError("test_preset: upgrade rank exceeds maximum")
-            tags.update(entry["granted_tags"])
+        selected, slots = {}, set()
+        for item in preset["selections"]:
+            entry = by_id.get(item["upgrade_id"])
+            target = item["action_id"]
+            if not entry or entry["test_only"]:
+                raise ValueError("preset unknown/debug upgrade")
+            if (entry["scope"] == "global" and target != "global") or (entry["scope"] == "action" and target not in entry["action_ids"]):
+                raise ValueError("preset wrong action binding")
+            if target != "global" and actions[target]["test_only"]:
+                raise ValueError("preset debug target forbidden")
+            identity = (target, entry["id"])
+            if identity in selected or not 1 <= item["rank"] <= entry["max_rank"]:
+                raise ValueError("preset duplicate binding or invalid rank")
+            selected[identity] = item
+            if entry["layer"] in ("form", "core"):
+                slot = (target, entry["layer"])
+                if slot in slots: raise ValueError("preset duplicate slot")
+                slots.add(slot)
+        for (target, id), item in selected.items():
+            entry = by_id[id]
+            if any((target, required) not in selected for required in entry["requires"]):
+                raise ValueError("preset missing bound prerequisite")
+            if any((target, excluded) in selected for excluded in entry["excludes"]):
+                raise ValueError("preset incompatible bound upgrade")
+
+        _validate_preset_capabilities(data, preset, by_id)
+
+
+def _validate_preset_capabilities(data: dict, preset: dict, by_id: dict) -> None:
+    # Static content proof, not reward evaluation or state mutation. Runtime
+    # preflights every preset through the same combat evaluator as real choices.
+    forms = {f["id"]: f for f in data["forms"]}
+    projectiles = {p["id"]: p for p in data["projectiles"]}
+    for action in data["actions"]:
+        items = [s for s in preset["selections"] if s["action_id"] == action["id"]]
+        selected = [(by_id[s["upgrade_id"]], by_id[s["upgrade_id"]]["ranks"][s["rank"]-1]) for s in items]
+        form_id = action["base_form_id"]
+        for entry, params in selected:
+            if entry["effect_type"] == "form": form_id = params["form_id"]
+        form = forms[form_id]
+        projectile = projectiles.get(form["projectile_id"])
+        origins = {"direct_projectile" if projectile else "direct_melee"}
+        types = {e["effect_type"] for e, _ in selected}
+        if "split" in types:
+            if not projectile or not projectile["child_id"]: raise ValueError("preset split needs a real child-producing carrier")
+            origins.add("split_projectile")
+            if "pierce" in types or "area_status" in types: raise ValueError("preset unsupported complete contact strategy")
+        if "pierce" in types and not projectile: raise ValueError("preset pierce needs same-action projectile")
+        tags = {tag for e, _ in selected for tag in e["granted_tags"]}
+        status_ids = set()
+        for entry, params in selected:
+            if not set(entry["required_tags"]) <= tags: raise ValueError("preset missing same-action tag")
+            if entry["effect_type"] in ("status", "explosion") and not origins.intersection(params["allowed_origins"]):
+                raise ValueError("preset impact has no compatible carrier")
+            if entry["effect_type"] == "status": status_ids.add(params["status_id"])
+            if entry["effect_type"] == "area_status":
+                source = next((p for e, p in selected if e["id"] == params["source_effect_id"]), None)
+                if not source or not origins.intersection(params["allowed_origins"], source["allowed_origins"]):
+                    raise ValueError("preset area status has no compatible same-action source")
+                status_ids.add(params["status_id"])
+        for entry, params in selected:
+            if entry["effect_type"] == "status_duration" and params["status_id"] not in status_ids:
+                raise ValueError("preset duration has no same-action status carrier")
+
+
+def _validate_actions(data: dict, by_id: dict) -> None:
+    actions = {a["id"]: a for a in data["actions"]}
+    forms = {f["id"]: f for f in data["forms"]}
+    projectiles = {p["id"]: p for p in data["projectiles"]}
+    if len(actions) != len(data["actions"]) or "global" in actions or len(forms) != len(data["forms"]):
+        raise ValueError("duplicate/reserved action or form ID")
+    for form in forms.values():
+        if form["executor"] == "projectile" and form["projectile_id"] not in projectiles:
+            raise ValueError("unknown form projectile")
+        if form["executor"] == "melee" and (form["projectile_id"] or not form["ability_ids"]):
+            raise ValueError("melee form needs abilities and no projectile")
+    for action in actions.values():
+        if action["base_form_id"] not in action["form_ids"] or set(action["form_ids"]) - forms.keys():
+            raise ValueError("invalid action form references")
+    for attack in data["test_attacks"]:
+        action = actions.get(attack["action_id"])
+        if not action or not action["test_only"] or forms[action["base_form_id"]]["projectile_id"] != attack["projectile_id"]:
+            raise ValueError("test attack needs matching isolated debug action")
+    for entry in by_id.values():
+        if entry["scope"] == "global":
+            if entry["action_ids"] or entry["layer"] != "support" or entry["effect_type"] not in ("move_scale", "damage_scale"):
+                raise ValueError("global supports only unbound numeric actor stats")
+        else:
+            if not entry["action_ids"] or entry["effect_type"] == "move_scale" or set(entry["action_ids"]) - actions.keys():
+                raise ValueError("invalid upgrade action targets")
+            if entry["test_only"] and any(not actions[id]["test_only"] for id in entry["action_ids"]):
+                raise ValueError("debug upgrade targets formal action")
+        expected = "form" if entry["effect_type"] == "form" else ("core" if entry["effect_type"] in ("status", "explosion") else ("synergy" if entry["effect_type"] == "area_status" else "support"))
+        if entry["layer"] != expected:
+            raise ValueError("effect type and layer disagree")
+        if entry["effect_type"] in ("projectile", "chain") and not entry["test_only"]:
+            raise ValueError("legacy projectile/chain restricted to fixture")
+        if entry["effect_type"] == "form":
+            for rank in entry["ranks"]:
+                if rank["form_id"] not in forms or any(rank["form_id"] not in actions[target]["form_ids"] for target in entry["action_ids"]):
+                    raise ValueError("invalid form grant target")
+    for id in data["offer"]["pool_ids"] + data["offer"]["fallback_ids"]:
+        if by_id[id]["test_only"]:
+            raise ValueError("debug upgrade in formal pool")
 
 
 def _validate_reachability(data: dict, by_id: dict) -> None:
@@ -271,6 +367,9 @@ def _validate_messages(data: dict, locales: dict) -> None:
             raise ValueError(
                 f"build: {key} expects placeholders {sorted(expected)}, got {sorted(actual)}"
             )
+    for definition in data["actions"] + data["forms"]:
+        if _translated_fields(locales, definition["name_key"]):
+            raise ValueError("action/form name cannot contain placeholders")
     for preset in data["test_presets"]:
         if _translated_fields(locales, preset["name_key"]):
             raise ValueError("test_preset.name_key must not contain placeholders")

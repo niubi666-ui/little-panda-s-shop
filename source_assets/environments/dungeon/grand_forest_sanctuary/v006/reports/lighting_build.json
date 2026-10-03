@@ -1,0 +1,120 @@
+{
+  "output": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v006\\blender\\grand_forest_sanctuary_v006_golden_canopy.blend",
+  "source": "E:/ShopGame/source_assets/environments/dungeon/grand_forest_sanctuary/v005/blender/grand_forest_sanctuary_v005_layout.blend",
+  "source_sha256": "dd8713585b0f956ca09e756ca7b1ad84c608704c17c3247868ffea482f5a35e7",
+  "profile": {
+    "source": "E:/ShopGame/source_assets/environments/dungeon/grand_forest_sanctuary/v005/blender/grand_forest_sanctuary_v005_layout.blend",
+    "sun_location": [
+      -23,
+      24,
+      25
+    ],
+    "sun_target": [
+      0,
+      -3,
+      0
+    ],
+    "sun_energy": 6.7,
+    "sun_color": [
+      1.0,
+      0.8,
+      0.43
+    ],
+    "sun_angle": 0.013,
+    "world_color": [
+      0.34,
+      0.43,
+      0.55
+    ],
+    "world_strength": 0.105,
+    "exposure": 0.2,
+    "cool_fill_energy": 380,
+    "warm_front_fill_energy": 1100,
+    "oak_rim_energy": 3600,
+    "macro_clusters": 190,
+    "macro_height_range": [
+      13,
+      22
+    ],
+    "detail_clusters": 128,
+    "detail_height_range": [
+      4.5,
+      7.0
+    ],
+    "seed": 26100363,
+    "stone_tint": [
+      0.88,
+      0.9,
+      0.78
+    ],
+    "leaf_roughness": 0.28,
+    "leaf_translucency": 0.24,
+    "leaf_specular": 0.65,
+    "plant_rim_lights": [
+      {
+        "name": "Golden_leaf_edge_west",
+        "location": [
+          -18,
+          0,
+          9
+        ],
+        "target": [
+          -11,
+          -7,
+          1
+        ],
+        "energy": 1550,
+        "size": 5
+      },
+      {
+        "name": "Golden_leaf_edge_east",
+        "location": [
+          18,
+          7,
+          10
+        ],
+        "target": [
+          12,
+          -6,
+          1
+        ],
+        "energy": 1700,
+        "size": 6
+      }
+    ],
+    "paving_roughness": 0.47,
+    "petal_color": [
+      0.66,
+      0.6,
+      0.43
+    ],
+    "render_samples": 64,
+    "preview_engine": "BLENDER_EEVEE"
+  },
+  "layout_transforms_preserved": true,
+  "material_changes": [
+    "BakedLeafCluster_Albedo_Normal_Alpha",
+    "Ivory meadow petals",
+    "Living leaf variation 0",
+    "Living leaf variation 1",
+    "Living leaf variation 2",
+    "Living leaf variation 3",
+    "Living leaf variation 4",
+    "Sanctuary_low_wall_PBR",
+    "Sanctuary_paving_PBR",
+    "Sanctuary_pier_PBR",
+    "Sanctuary_purple_flower_PBR",
+    "Sanctuary_roundel_PBR",
+    "Sanctuary_shrine_PBR",
+    "Sanctuary_statue_PBR",
+    "Sanctuary_steps_PBR",
+    "Sanctuary_white_flower_PBR"
+  ],
+  "old_lighting_proxy_triangles": 187200,
+  "new_lighting_proxy_triangles": 36544,
+  "active_proxy_reduction_percent": 80.48,
+  "macro_shadow_clusters": 185,
+  "detail_shadow_clusters": 128,
+  "original_shadow_proxy_retained_hidden": true,
+  "godot_modified": false
+}

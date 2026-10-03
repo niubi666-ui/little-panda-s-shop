@@ -38,7 +38,8 @@
               "melee",
               "ranged",
               "charger",
-              "support"
+              "support",
+              "ranger"
             ]
           },
           "budget_cost": {
@@ -263,6 +264,284 @@
           "type": "number",
           "minimum": 0,
           "maximum": 100
+        }
+      }
+    },
+    "ranger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "safe_min_m",
+        "safe_max_m",
+        "fire_range_m",
+        "turn_speed_radps",
+        "retreat_speed_multiplier",
+        "reposition_sec",
+        "reposition_pause_sec",
+        "interrupt_recovery_sec",
+        "max_repeat",
+        "arrow_radius_m",
+        "arrow_lifetime_sec",
+        "roll_trigger_m",
+        "roll_reaction_sec",
+        "roll_distance_m",
+        "roll_min_distance_m",
+        "roll_duration_sec",
+        "roll_cooldown_sec",
+        "rain_min_range_m",
+        "rain_radius_m",
+        "rain_delay_sec",
+        "rain_interval_sec",
+        "rain_pulses",
+        "volley_count",
+        "volley_angle_deg",
+        "fast_windup_sec",
+        "fast_recovery_sec",
+        "fast_cooldown_sec",
+        "fast_damage",
+        "fast_weight",
+        "volley_windup_sec",
+        "volley_recovery_sec",
+        "volley_cooldown_sec",
+        "volley_damage",
+        "volley_weight",
+        "rain_windup_sec",
+        "rain_recovery_sec",
+        "rain_cooldown_sec",
+        "rain_damage",
+        "rain_weight",
+        "fast_lock_sec",
+        "volley_lock_sec",
+        "fast_speed_mps",
+        "volley_speed_mps",
+        "arrow_height_m",
+        "arrow_spawn_forward_m"
+      ],
+      "properties": {
+        "safe_min_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "safe_max_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "fire_range_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "turn_speed_radps": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "retreat_speed_multiplier": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "reposition_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "reposition_pause_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "interrupt_recovery_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "max_repeat": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "arrow_radius_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "arrow_lifetime_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "roll_trigger_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "roll_reaction_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "roll_distance_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "roll_min_distance_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "roll_duration_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "roll_cooldown_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_min_range_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_radius_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_delay_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_interval_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_pulses": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "volley_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "volley_angle_deg": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "fast_windup_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "fast_recovery_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "fast_cooldown_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "fast_damage": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "fast_weight": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "volley_windup_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "volley_recovery_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "volley_cooldown_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "volley_damage": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "volley_weight": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_windup_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_recovery_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_cooldown_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_damage": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_weight": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "fast_lock_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "volley_lock_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "fast_speed_mps": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "volley_speed_mps": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "arrow_height_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 10
+        },
+        "arrow_spawn_forward_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 10
         }
       }
     }

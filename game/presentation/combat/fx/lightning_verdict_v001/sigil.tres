@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/lightning_verdict_v001/sigil.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/tint = Color(0.25, 0.45, 1, 1)
+shader_parameter/energy = 2.2
+shader_parameter/opacity = 0.7
+shader_parameter/visual_time = 0.0
+shader_parameter/charge_sec = 0.48
+shader_parameter/duration_sec = 4.2

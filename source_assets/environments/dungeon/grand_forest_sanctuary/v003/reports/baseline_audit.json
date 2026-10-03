@@ -1,0 +1,2034 @@
+{
+  "blender_version": "5.2.1 LTS",
+  "file": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v002\\blender\\grand_forest_sanctuary_v002.blend",
+  "scene": "Grand_Forest_Sanctuary_36x32m_v002",
+  "objects": 9999,
+  "mesh_objects": 9899,
+  "unique_meshes": 710,
+  "unique_mesh_triangles": 604320,
+  "expanded_base_triangles": 29536447,
+  "groups": {
+    "Fern": {
+      "objects": 2524,
+      "triangles": 7753728,
+      "unique_meshes": 12
+    },
+    "white_flower": {
+      "objects": 2123,
+      "triangles": 7738335,
+      "unique_meshes": 1
+    },
+    "moss_patch": {
+      "objects": 821,
+      "triangles": 3978566,
+      "unique_meshes": 1
+    },
+    "White_meadow_flower_spray": {
+      "objects": 1893,
+      "triangles": 3428854,
+      "unique_meshes": 9
+    },
+    "purple_flower": {
+      "objects": 404,
+      "triangles": 1446724,
+      "unique_meshes": 1
+    },
+    "paving": {
+      "objects": 188,
+      "triangles": 1155934,
+      "unique_meshes": 16
+    },
+    "moss_seam": {
+      "objects": 201,
+      "triangles": 970830,
+      "unique_meshes": 1
+    },
+    "pier": {
+      "objects": 67,
+      "triangles": 662295,
+      "unique_meshes": 1
+    },
+    "Other": {
+      "objects": 663,
+      "triangles": 389934,
+      "unique_meshes": 645
+    },
+    "Trees": {
+      "objects": 806,
+      "triangles": 386984,
+      "unique_meshes": 7
+    },
+    "litter": {
+      "objects": 70,
+      "triangles": 346640,
+      "unique_meshes": 1
+    },
+    "rock_flat": {
+      "objects": 31,
+      "triangles": 316324,
+      "unique_meshes": 1
+    },
+    "low_wall": {
+      "objects": 41,
+      "triangles": 260924,
+      "unique_meshes": 1
+    },
+    "rock_large": {
+      "objects": 23,
+      "triangles": 226136,
+      "unique_meshes": 1
+    },
+    "rock_medium": {
+      "objects": 21,
+      "triangles": 206703,
+      "unique_meshes": 1
+    },
+    "Small_fallen_oak_leaves": {
+      "objects": 1,
+      "triangles": 99368,
+      "unique_meshes": 1
+    },
+    "ivy": {
+      "objects": 4,
+      "triangles": 37400,
+      "unique_meshes": 1
+    },
+    "roundel": {
+      "objects": 3,
+      "triangles": 28881,
+      "unique_meshes": 1
+    },
+    "crate": {
+      "objects": 4,
+      "triangles": 24496,
+      "unique_meshes": 1
+    },
+    "flowerpot": {
+      "objects": 2,
+      "triangles": 18330,
+      "unique_meshes": 1
+    },
+    "statue": {
+      "objects": 1,
+      "triangles": 16324,
+      "unique_meshes": 1
+    },
+    "mushrooms": {
+      "objects": 1,
+      "triangles": 11339,
+      "unique_meshes": 1
+    },
+    "barrel": {
+      "objects": 4,
+      "triangles": 9860,
+      "unique_meshes": 1
+    },
+    "steps": {
+      "objects": 1,
+      "triangles": 9275,
+      "unique_meshes": 1
+    },
+    "shrine": {
+      "objects": 1,
+      "triangles": 6856,
+      "unique_meshes": 1
+    },
+    "chest": {
+      "objects": 1,
+      "triangles": 5407,
+      "unique_meshes": 1
+    }
+  },
+  "top_meshes": [
+    {
+      "mesh": "FY_white_flower_shared",
+      "triangles_each": 3645,
+      "users": 2123,
+      "example": "Flower_drift_0",
+      "triangles_expanded": 7738335
+    },
+    {
+      "mesh": "FY_moss_patch_shared",
+      "triangles_each": 4846,
+      "users": 821,
+      "example": "Garden_moss_0",
+      "triangles_expanded": 3978566
+    },
+    {
+      "mesh": "FY_purple_flower_shared",
+      "triangles_each": 3581,
+      "users": 404,
+      "example": "Flower_drift_1",
+      "triangles_expanded": 1446724
+    },
+    {
+      "mesh": "FY_paving_shared",
+      "triangles_each": 6347,
+      "users": 173,
+      "example": "Court_flagstones_3_0",
+      "triangles_expanded": 1098031
+    },
+    {
+      "mesh": "FY_moss_seam_shared",
+      "triangles_each": 4830,
+      "users": 201,
+      "example": "Flagstone_moss_0",
+      "triangles_expanded": 970830
+    },
+    {
+      "mesh": "Ivory_hanging_bells_mesh",
+      "triangles_each": 4160,
+      "users": 212,
+      "example": "White_meadow_flower_spray_0_2",
+      "triangles_expanded": 881920
+    },
+    {
+      "mesh": "Ivory_hanging_bells_mesh.002",
+      "triangles_each": 4160,
+      "users": 210,
+      "example": "White_meadow_flower_spray_8_2",
+      "triangles_expanded": 873600
+    },
+    {
+      "mesh": "Ivory_hanging_bells_mesh.001",
+      "triangles_each": 4160,
+      "users": 209,
+      "example": "White_meadow_flower_spray_4_2",
+      "triangles_expanded": 869440
+    },
+    {
+      "mesh": "Fern_module_0_PinnateLeaves_mesh",
+      "triangles_each": 3552,
+      "users": 212,
+      "example": "Fern_clump_0_1",
+      "triangles_expanded": 753024
+    },
+    {
+      "mesh": "Fern_module_1_PinnateLeaves_mesh",
+      "triangles_each": 3552,
+      "users": 211,
+      "example": "Fern_clump_2_1",
+      "triangles_expanded": 749472
+    },
+    {
+      "mesh": "Fern_module_3_PinnateLeaves_mesh",
+      "triangles_each": 3552,
+      "users": 211,
+      "example": "Fern_clump_6_1",
+      "triangles_expanded": 749472
+    },
+    {
+      "mesh": "Fern_module_4_PinnateLeaves_mesh",
+      "triangles_each": 3552,
+      "users": 210,
+      "example": "Fern_clump_8_1",
+      "triangles_expanded": 745920
+    },
+    {
+      "mesh": "Fern_module_2_PinnateLeaves_mesh",
+      "triangles_each": 3552,
+      "users": 209,
+      "example": "Fern_clump_4_1",
+      "triangles_expanded": 742368
+    },
+    {
+      "mesh": "Fern_module_5_PinnateLeaves_mesh",
+      "triangles_each": 3552,
+      "users": 209,
+      "example": "Fern_clump_10_1",
+      "triangles_expanded": 742368
+    },
+    {
+      "mesh": "FY_pier_shared",
+      "triangles_each": 9885,
+      "users": 67,
+      "example": "Boundary_0_pier_0",
+      "triangles_expanded": 662295
+    },
+    {
+      "mesh": "Fern_module_0_FrondRibs_mesh",
+      "triangles_each": 2592,
+      "users": 212,
+      "example": "Fern_clump_0_0",
+      "triangles_expanded": 549504
+    },
+    {
+      "mesh": "Fern_module_1_FrondRibs_mesh",
+      "triangles_each": 2592,
+      "users": 211,
+      "example": "Fern_clump_2_0",
+      "triangles_expanded": 546912
+    },
+    {
+      "mesh": "Fern_module_3_FrondRibs_mesh",
+      "triangles_each": 2592,
+      "users": 211,
+      "example": "Fern_clump_6_0",
+      "triangles_expanded": 546912
+    },
+    {
+      "mesh": "Fern_module_4_FrondRibs_mesh",
+      "triangles_each": 2592,
+      "users": 210,
+      "example": "Fern_clump_8_0",
+      "triangles_expanded": 544320
+    },
+    {
+      "mesh": "Fern_module_2_FrondRibs_mesh",
+      "triangles_each": 2592,
+      "users": 209,
+      "example": "Fern_clump_4_0",
+      "triangles_expanded": 541728
+    },
+    {
+      "mesh": "Fern_module_5_FrondRibs_mesh",
+      "triangles_each": 2592,
+      "users": 209,
+      "example": "Fern_clump_10_0",
+      "triangles_expanded": 541728
+    },
+    {
+      "mesh": "FY_litter_shared",
+      "triangles_each": 4952,
+      "users": 70,
+      "example": "Fallen_leaves_0",
+      "triangles_expanded": 346640
+    },
+    {
+      "mesh": "FY_rock_flat_shared",
+      "triangles_each": 10204,
+      "users": 31,
+      "example": "Mossy_limestone_0",
+      "triangles_expanded": 316324
+    },
+    {
+      "mesh": "FY_low_wall_shared",
+      "triangles_each": 6364,
+      "users": 41,
+      "example": "Boundary_0_course_0",
+      "triangles_expanded": 260924
+    },
+    {
+      "mesh": "tripo_mesh_8271e899",
+      "triangles_each": 19032,
+      "users": 13,
+      "example": "Hero_Sacred_Oak_v005__SacredOak_Trunk_Preserved",
+      "triangles_expanded": 247416
+    },
+    {
+      "mesh": "FY_rock_large_shared",
+      "triangles_each": 9832,
+      "users": 23,
+      "example": "Mossy_limestone_3",
+      "triangles_expanded": 226136
+    },
+    {
+      "mesh": "FY_rock_medium_shared",
+      "triangles_each": 9843,
+      "users": 21,
+      "example": "Mossy_limestone_8",
+      "triangles_expanded": 206703
+    },
+    {
+      "mesh": "Bellflower_stems_mesh",
+      "triangles_each": 962,
+      "users": 212,
+      "example": "White_meadow_flower_spray_0_1",
+      "triangles_expanded": 203944
+    },
+    {
+      "mesh": "Bellflower_stems_mesh.002",
+      "triangles_each": 962,
+      "users": 210,
+      "example": "White_meadow_flower_spray_8_1",
+      "triangles_expanded": 202020
+    },
+    {
+      "mesh": "Bellflower_stems_mesh.001",
+      "triangles_each": 962,
+      "users": 209,
+      "example": "White_meadow_flower_spray_4_1",
+      "triangles_expanded": 201058
+    },
+    {
+      "mesh": "LIGHTING_ONLY_overhead_leaf_shadows_mesh",
+      "triangles_each": 187200,
+      "users": 1,
+      "example": "LIGHTING_ONLY_overhead_leaf_shadows",
+      "triangles_expanded": 187200
+    },
+    {
+      "mesh": "Item2_lantern_shared_mesh",
+      "triangles_each": 9800,
+      "users": 19,
+      "example": "Bronze_votive_0",
+      "triangles_expanded": 186200
+    },
+    {
+      "mesh": "Small_fallen_oak_leaves_mesh",
+      "triangles_each": 99368,
+      "users": 1,
+      "example": "Small_fallen_oak_leaves",
+      "triangles_expanded": 99368
+    },
+    {
+      "mesh": "Bellflower_leaves_mesh",
+      "triangles_each": 312,
+      "users": 212,
+      "example": "White_meadow_flower_spray_0_0",
+      "triangles_expanded": 66144
+    },
+    {
+      "mesh": "Bellflower_leaves_mesh.002",
+      "triangles_each": 312,
+      "users": 210,
+      "example": "White_meadow_flower_spray_8_0",
+      "triangles_expanded": 65520
+    }
+  ],
+  "target_details": [
+    {
+      "name": "Forest_oak_7",
+      "type": "EMPTY",
+      "data": null,
+      "polygons": 0,
+      "triangles": 0,
+      "data_users": 0,
+      "parent": null,
+      "modifiers": [],
+      "instance_type": "NONE",
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "materials": []
+    },
+    {
+      "name": "Forest_oak_7__SacredOak_Trunk_Preserved",
+      "type": "MESH",
+      "data": "tripo_mesh_8271e899",
+      "polygons": 19032,
+      "triangles": 19032,
+      "data_users": 13,
+      "parent": "Forest_oak_7",
+      "modifiers": [],
+      "instance_type": "NONE",
+      "dimensions": [
+        10.05161190032959,
+        11.390745162963867,
+        11.0
+      ],
+      "materials": [
+        "tripo_mat_8271e899"
+      ]
+    },
+    {
+      "name": "Small_fallen_oak_leaves",
+      "type": "MESH",
+      "data": "Small_fallen_oak_leaves_mesh",
+      "polygons": 99368,
+      "triangles": 99368,
+      "data_users": 1,
+      "parent": null,
+      "modifiers": [],
+      "instance_type": "NONE",
+      "dimensions": [
+        36.16007995605469,
+        32.128421783447266,
+        0.019720222800970078
+      ],
+      "materials": [
+        "Living leaf variation 0",
+        "Living leaf variation 1",
+        "Living leaf variation 2",
+        "Living leaf variation 3",
+        "Living leaf variation 4"
+      ]
+    }
+  ],
+  "selection_statistics": {
+    "Small_fallen_oak_leaves": "Collection | Small_fallen_oak_leaves | 顶点:511,814 | 面:525,625 | 三角面:608,384 | 物体:1/10,051 | 持续时间: 00:10+10 (帧 1/250) | 内存: 435.6 MiB | 5.2.1",
+    "Forest_oak_7": "Collection | Forest_oak_7 | 顶点:511,814 | 面:525,625 | 三角面:608,384 | 物体:1/10,051 | 持续时间: 00:10+10 (帧 1/250) | 内存: 435.6 MiB | 5.2.1",
+    "Forest_oak_7__SacredOak_Trunk_Preserved": "Collection | Forest_oak_7__SacredOak_Trunk_Preserved | 顶点:511,814 | 面:525,625 | 三角面:608,384 | 物体:1/10,051 | 持续时间: 00:10+10 (帧 1/250) | 内存: 435.6 MiB | 5.2.1",
+    "Hero_Sacred_Oak_v005__SacredOak_Trunk_Preserved": "Collection | Hero_Sacred_Oak_v005__SacredOak_Trunk_Preserved | 顶点:511,814 | 面:525,625 | 三角面:608,384 | 物体:1/10,051 | 持续时间: 00:10+10 (帧 1/250) | 内存: 435.6 MiB | 5.2.1"
+  },
+  "leaf_materials": [
+    {
+      "name": "Living leaf variation 0",
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "inputs": {
+            "Base Color": [
+              0.03375000134110451,
+              0.09000000357627869,
+              0.008999999612569809,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.6600000262260437,
+            "IOR": 1.5,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.5,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          }
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          }
+        },
+        {
+          "name": "Texture Coordinate",
+          "type": "TEX_COORD",
+          "inputs": {}
+        },
+        {
+          "name": "Noise Texture",
+          "type": "TEX_NOISE",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "W": 0.0,
+            "Scale": 18.0,
+            "Detail": 4.0,
+            "Roughness": 0.699999988079071,
+            "Lacunarity": 2.0,
+            "Offset": 0.0,
+            "Gain": 1.0,
+            "Distortion": 0.0
+          }
+        },
+        {
+          "name": "Color Ramp",
+          "type": "VALTORGB",
+          "inputs": {
+            "Factor": 0.5
+          }
+        },
+        {
+          "name": "Noise Texture.001",
+          "type": "TEX_NOISE",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "W": 0.0,
+            "Scale": 324.0,
+            "Detail": 2.0,
+            "Roughness": 0.5,
+            "Lacunarity": 2.0,
+            "Offset": 0.0,
+            "Gain": 1.0,
+            "Distortion": 0.0
+          }
+        },
+        {
+          "name": "Bump",
+          "type": "BUMP",
+          "inputs": {
+            "Strength": 0.10000000149011612,
+            "Distance": 0.004999999888241291,
+            "Filter Width": 0.10000000149011612,
+            "Height": 1.0,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "Bump.001",
+          "type": "BUMP",
+          "inputs": {
+            "Strength": 0.18000000715255737,
+            "Distance": 0.007000000216066837,
+            "Filter Width": 0.10000000149011612,
+            "Height": 1.0,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "Translucent BSDF",
+          "type": "BSDF_TRANSLUCENT",
+          "inputs": {
+            "Color": [
+              0.04500000178813934,
+              0.11999999731779099,
+              0.012000000104308128,
+              1.0
+            ],
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0
+          }
+        },
+        {
+          "name": "Mix Shader",
+          "type": "MIX_SHADER",
+          "inputs": {
+            "Factor": 0.18000000715255737
+          }
+        }
+      ],
+      "links": [
+        [
+          "Texture Coordinate",
+          "Object",
+          "Noise Texture",
+          "Vector"
+        ],
+        [
+          "Noise Texture",
+          "Factor",
+          "Color Ramp",
+          "Factor"
+        ],
+        [
+          "Color Ramp",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Texture Coordinate",
+          "Object",
+          "Noise Texture.001",
+          "Vector"
+        ],
+        [
+          "Noise Texture",
+          "Factor",
+          "Bump",
+          "Height"
+        ],
+        [
+          "Noise Texture.001",
+          "Factor",
+          "Bump.001",
+          "Height"
+        ],
+        [
+          "Bump",
+          "Normal",
+          "Bump.001",
+          "Normal"
+        ],
+        [
+          "Bump.001",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Translucent BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Mix Shader",
+          "Shader",
+          "Material Output",
+          "Surface"
+        ]
+      ]
+    },
+    {
+      "name": "Living leaf variation 1",
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "inputs": {
+            "Base Color": [
+              0.06975000351667404,
+              0.1574999988079071,
+              0.016499999910593033,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.6600000262260437,
+            "IOR": 1.5,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.5,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          }
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          }
+        },
+        {
+          "name": "Texture Coordinate",
+          "type": "TEX_COORD",
+          "inputs": {}
+        },
+        {
+          "name": "Noise Texture",
+          "type": "TEX_NOISE",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "W": 0.0,
+            "Scale": 18.0,
+            "Detail": 4.0,
+            "Roughness": 0.699999988079071,
+            "Lacunarity": 2.0,
+            "Offset": 0.0,
+            "Gain": 1.0,
+            "Distortion": 0.0
+          }
+        },
+        {
+          "name": "Color Ramp",
+          "type": "VALTORGB",
+          "inputs": {
+            "Factor": 0.5
+          }
+        },
+        {
+          "name": "Noise Texture.001",
+          "type": "TEX_NOISE",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "W": 0.0,
+            "Scale": 324.0,
+            "Detail": 2.0,
+            "Roughness": 0.5,
+            "Lacunarity": 2.0,
+            "Offset": 0.0,
+            "Gain": 1.0,
+            "Distortion": 0.0
+          }
+        },
+        {
+          "name": "Bump",
+          "type": "BUMP",
+          "inputs": {
+            "Strength": 0.10000000149011612,
+            "Distance": 0.004999999888241291,
+            "Filter Width": 0.10000000149011612,
+            "Height": 1.0,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "Bump.001",
+          "type": "BUMP",
+          "inputs": {
+            "Strength": 0.18000000715255737,
+            "Distance": 0.007000000216066837,
+            "Filter Width": 0.10000000149011612,
+            "Height": 1.0,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "Translucent BSDF",
+          "type": "BSDF_TRANSLUCENT",
+          "inputs": {
+            "Color": [
+              0.09300000220537186,
+              0.20999999344348907,
+              0.02199999988079071,
+              1.0
+            ],
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0
+          }
+        },
+        {
+          "name": "Mix Shader",
+          "type": "MIX_SHADER",
+          "inputs": {
+            "Factor": 0.18000000715255737
+          }
+        }
+      ],
+      "links": [
+        [
+          "Texture Coordinate",
+          "Object",
+          "Noise Texture",
+          "Vector"
+        ],
+        [
+          "Noise Texture",
+          "Factor",
+          "Color Ramp",
+          "Factor"
+        ],
+        [
+          "Color Ramp",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Texture Coordinate",
+          "Object",
+          "Noise Texture.001",
+          "Vector"
+        ],
+        [
+          "Noise Texture",
+          "Factor",
+          "Bump",
+          "Height"
+        ],
+        [
+          "Noise Texture.001",
+          "Factor",
+          "Bump.001",
+          "Height"
+        ],
+        [
+          "Bump",
+          "Normal",
+          "Bump.001",
+          "Normal"
+        ],
+        [
+          "Bump.001",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Translucent BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Mix Shader",
+          "Shader",
+          "Material Output",
+          "Surface"
+        ]
+      ]
+    },
+    {
+      "name": "Living leaf variation 2",
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "inputs": {
+            "Base Color": [
+              0.11999999731779099,
+              0.20250000059604645,
+              0.02775000035762787,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.6600000262260437,
+            "IOR": 1.5,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.5,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          }
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          }
+        },
+        {
+          "name": "Texture Coordinate",
+          "type": "TEX_COORD",
+          "inputs": {}
+        },
+        {
+          "name": "Noise Texture",
+          "type": "TEX_NOISE",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "W": 0.0,
+            "Scale": 18.0,
+            "Detail": 4.0,
+            "Roughness": 0.699999988079071,
+            "Lacunarity": 2.0,
+            "Offset": 0.0,
+            "Gain": 1.0,
+            "Distortion": 0.0
+          }
+        },
+        {
+          "name": "Color Ramp",
+          "type": "VALTORGB",
+          "inputs": {
+            "Factor": 0.5
+          }
+        },
+        {
+          "name": "Noise Texture.001",
+          "type": "TEX_NOISE",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "W": 0.0,
+            "Scale": 324.0,
+            "Detail": 2.0,
+            "Roughness": 0.5,
+            "Lacunarity": 2.0,
+            "Offset": 0.0,
+            "Gain": 1.0,
+            "Distortion": 0.0
+          }
+        },
+        {
+          "name": "Bump",
+          "type": "BUMP",
+          "inputs": {
+            "Strength": 0.10000000149011612,
+            "Distance": 0.004999999888241291,
+            "Filter Width": 0.10000000149011612,
+            "Height": 1.0,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "Bump.001",
+          "type": "BUMP",
+          "inputs": {
+            "Strength": 0.18000000715255737,
+            "Distance": 0.007000000216066837,
+            "Filter Width": 0.10000000149011612,
+            "Height": 1.0,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "Translucent BSDF",
+          "type": "BSDF_TRANSLUCENT",
+          "inputs": {
+            "Color": [
+              0.1599999964237213,
+              0.27000001072883606,
+              0.03700000047683716,
+              1.0
+            ],
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0
+          }
+        },
+        {
+          "name": "Mix Shader",
+          "type": "MIX_SHADER",
+          "inputs": {
+            "Factor": 0.18000000715255737
+          }
+        }
+      ],
+      "links": [
+        [
+          "Texture Coordinate",
+          "Object",
+          "Noise Texture",
+          "Vector"
+        ],
+        [
+          "Noise Texture",
+          "Factor",
+          "Color Ramp",
+          "Factor"
+        ],
+        [
+          "Color Ramp",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Texture Coordinate",
+          "Object",
+          "Noise Texture.001",
+          "Vector"
+        ],
+        [
+          "Noise Texture",
+          "Factor",
+          "Bump",
+          "Height"
+        ],
+        [
+          "Noise Texture.001",
+          "Factor",
+          "Bump.001",
+          "Height"
+        ],
+        [
+          "Bump",
+          "Normal",
+          "Bump.001",
+          "Normal"
+        ],
+        [
+          "Bump.001",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Translucent BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Mix Shader",
+          "Shader",
+          "Material Output",
+          "Surface"
+        ]
+      ]
+    },
+    {
+      "name": "Living leaf variation 3",
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "inputs": {
+            "Base Color": [
+              0.04125000163912773,
+              0.1274999976158142,
+              0.017249999567866325,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.6600000262260437,
+            "IOR": 1.5,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.5,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          }
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          }
+        },
+        {
+          "name": "Texture Coordinate",
+          "type": "TEX_COORD",
+          "inputs": {}
+        },
+        {
+          "name": "Noise Texture",
+          "type": "TEX_NOISE",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "W": 0.0,
+            "Scale": 18.0,
+            "Detail": 4.0,
+            "Roughness": 0.699999988079071,
+            "Lacunarity": 2.0,
+            "Offset": 0.0,
+            "Gain": 1.0,
+            "Distortion": 0.0
+          }
+        },
+        {
+          "name": "Color Ramp",
+          "type": "VALTORGB",
+          "inputs": {
+            "Factor": 0.5
+          }
+        },
+        {
+          "name": "Noise Texture.001",
+          "type": "TEX_NOISE",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "W": 0.0,
+            "Scale": 324.0,
+            "Detail": 2.0,
+            "Roughness": 0.5,
+            "Lacunarity": 2.0,
+            "Offset": 0.0,
+            "Gain": 1.0,
+            "Distortion": 0.0
+          }
+        },
+        {
+          "name": "Bump",
+          "type": "BUMP",
+          "inputs": {
+            "Strength": 0.10000000149011612,
+            "Distance": 0.004999999888241291,
+            "Filter Width": 0.10000000149011612,
+            "Height": 1.0,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "Bump.001",
+          "type": "BUMP",
+          "inputs": {
+            "Strength": 0.18000000715255737,
+            "Distance": 0.007000000216066837,
+            "Filter Width": 0.10000000149011612,
+            "Height": 1.0,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "Translucent BSDF",
+          "type": "BSDF_TRANSLUCENT",
+          "inputs": {
+            "Color": [
+              0.054999999701976776,
+              0.17000000178813934,
+              0.023000000044703484,
+              1.0
+            ],
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0
+          }
+        },
+        {
+          "name": "Mix Shader",
+          "type": "MIX_SHADER",
+          "inputs": {
+            "Factor": 0.18000000715255737
+          }
+        }
+      ],
+      "links": [
+        [
+          "Texture Coordinate",
+          "Object",
+          "Noise Texture",
+          "Vector"
+        ],
+        [
+          "Noise Texture",
+          "Factor",
+          "Color Ramp",
+          "Factor"
+        ],
+        [
+          "Color Ramp",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Texture Coordinate",
+          "Object",
+          "Noise Texture.001",
+          "Vector"
+        ],
+        [
+          "Noise Texture",
+          "Factor",
+          "Bump",
+          "Height"
+        ],
+        [
+          "Noise Texture.001",
+          "Factor",
+          "Bump.001",
+          "Height"
+        ],
+        [
+          "Bump",
+          "Normal",
+          "Bump.001",
+          "Normal"
+        ],
+        [
+          "Bump.001",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Translucent BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Mix Shader",
+          "Shader",
+          "Material Output",
+          "Surface"
+        ]
+      ]
+    },
+    {
+      "name": "Living leaf variation 4",
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "inputs": {
+            "Base Color": [
+              0.16500000655651093,
+              0.23999999463558197,
+              0.03525000065565109,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.6600000262260437,
+            "IOR": 1.5,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.5,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          }
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          }
+        },
+        {
+          "name": "Texture Coordinate",
+          "type": "TEX_COORD",
+          "inputs": {}
+        },
+        {
+          "name": "Noise Texture",
+          "type": "TEX_NOISE",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "W": 0.0,
+            "Scale": 18.0,
+            "Detail": 4.0,
+            "Roughness": 0.699999988079071,
+            "Lacunarity": 2.0,
+            "Offset": 0.0,
+            "Gain": 1.0,
+            "Distortion": 0.0
+          }
+        },
+        {
+          "name": "Color Ramp",
+          "type": "VALTORGB",
+          "inputs": {
+            "Factor": 0.5
+          }
+        },
+        {
+          "name": "Noise Texture.001",
+          "type": "TEX_NOISE",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "W": 0.0,
+            "Scale": 324.0,
+            "Detail": 2.0,
+            "Roughness": 0.5,
+            "Lacunarity": 2.0,
+            "Offset": 0.0,
+            "Gain": 1.0,
+            "Distortion": 0.0
+          }
+        },
+        {
+          "name": "Bump",
+          "type": "BUMP",
+          "inputs": {
+            "Strength": 0.10000000149011612,
+            "Distance": 0.004999999888241291,
+            "Filter Width": 0.10000000149011612,
+            "Height": 1.0,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "Bump.001",
+          "type": "BUMP",
+          "inputs": {
+            "Strength": 0.18000000715255737,
+            "Distance": 0.007000000216066837,
+            "Filter Width": 0.10000000149011612,
+            "Height": 1.0,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "Translucent BSDF",
+          "type": "BSDF_TRANSLUCENT",
+          "inputs": {
+            "Color": [
+              0.2199999988079071,
+              0.3199999928474426,
+              0.04699999839067459,
+              1.0
+            ],
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0
+          }
+        },
+        {
+          "name": "Mix Shader",
+          "type": "MIX_SHADER",
+          "inputs": {
+            "Factor": 0.18000000715255737
+          }
+        }
+      ],
+      "links": [
+        [
+          "Texture Coordinate",
+          "Object",
+          "Noise Texture",
+          "Vector"
+        ],
+        [
+          "Noise Texture",
+          "Factor",
+          "Color Ramp",
+          "Factor"
+        ],
+        [
+          "Color Ramp",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Texture Coordinate",
+          "Object",
+          "Noise Texture.001",
+          "Vector"
+        ],
+        [
+          "Noise Texture",
+          "Factor",
+          "Bump",
+          "Height"
+        ],
+        [
+          "Noise Texture.001",
+          "Factor",
+          "Bump.001",
+          "Height"
+        ],
+        [
+          "Bump",
+          "Normal",
+          "Bump.001",
+          "Normal"
+        ],
+        [
+          "Bump.001",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Translucent BSDF",
+          "BSDF",
+          "Mix Shader",
+          "Shader"
+        ],
+        [
+          "Mix Shader",
+          "Shader",
+          "Material Output",
+          "Surface"
+        ]
+      ]
+    }
+  ],
+  "leaf_sample_vertices": [
+    [
+      -10.528339385986328,
+      -13.65667724609375,
+      0.07100000232458115
+    ],
+    [
+      -10.501955032348633,
+      -13.64990520477295,
+      0.0725034698843956
+    ],
+    [
+      -10.472228050231934,
+      -13.656814575195312,
+      0.07172774523496628
+    ],
+    [
+      -10.455422401428223,
+      -13.680305480957031,
+      0.06736672669649124
+    ],
+    [
+      -10.444196701049805,
+      -13.705756187438965,
+      0.06129683181643486
+    ],
+    [
+      -10.471875190734863,
+      -13.708513259887695,
+      0.06736672669649124
+    ],
+    [
+      -10.500596046447754,
+      -13.705450057983398,
+      0.07172774523496628
+    ],
+    [
+      -10.521245956420898,
+      -13.682976722717285,
+      0.0725034698843956
+    ],
+    [
+      -10.492486953735352,
+      -13.677589416503906,
+      0.07952909171581268
+    ],
+    [
+      3.783494234085083,
+      5.058598518371582,
+      0.07100000232458115
+    ],
+    [
+      3.7751288414001465,
+      5.044098854064941,
+      0.07192392647266388
+    ],
+    [
+      3.7593178749084473,
+      5.034012317657471,
+      0.0714472159743309
+    ],
+    [
+      3.741776466369629,
+      5.036726474761963,
+      0.0687672570347786
+    ],
+    [
+      3.725773334503174,
+      5.042734622955322,
+      0.06503713876008987
+    ],
+    [
+      3.7364583015441895,
+      5.056077480316162,
+      0.0687672570347786
+    ],
+    [
+      3.750148296356201,
+      5.067375659942627,
+      0.0714472159743309
+    ],
+    [
+      3.7688937187194824,
+      5.06678581237793,
+      0.07192392647266388
+    ],
+    [
+      3.7589001655578613,
+      5.051839351654053,
+      0.07624135166406631
+    ]
+  ],
+  "leaf_sample_polygons": [
+    {
+      "vertices": [
+        8,
+        1,
+        0
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        8,
+        2,
+        1
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        8,
+        3,
+        2
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        8,
+        4,
+        3
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        8,
+        5,
+        4
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        8,
+        6,
+        5
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        8,
+        7,
+        6
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        8,
+        0,
+        7
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        17,
+        10,
+        9
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        17,
+        11,
+        10
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        17,
+        12,
+        11
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        17,
+        13,
+        12
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        17,
+        14,
+        13
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        17,
+        15,
+        14
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        17,
+        16,
+        15
+      ],
+      "material": 3
+    },
+    {
+      "vertices": [
+        17,
+        9,
+        16
+      ],
+      "material": 3
+    }
+  ],
+  "scene_render_engine": "CYCLES",
+  "cameras": [
+    "Camera_Panorama",
+    "Camera_Gameplay",
+    "Camera_East_Gateway",
+    "Camera_North_Reverse",
+    "Camera_Shrine_Detail"
+  ],
+  "active_camera": "Camera_Panorama"
+}

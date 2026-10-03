@@ -1,0 +1,394 @@
+{
+  "validation_version": 1,
+  "timestamp_utc": "2026-10-02T16:38:39.412957+00:00",
+  "blender_version": "5.2.1 LTS",
+  "loaded_blend": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v005\\blender\\grand_forest_sanctuary_v005_layout.blend",
+  "passed": true,
+  "passed_count": 8,
+  "check_count": 8,
+  "checks": [
+    {
+      "name": "source_v004_sha_and_loaded_v005",
+      "passed": true,
+      "details": {
+        "background": true,
+        "loaded_blend": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v005\\blender\\grand_forest_sanctuary_v005_layout.blend",
+        "expected_blend": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v005\\blender\\grand_forest_sanctuary_v005_layout.blend",
+        "source": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v004\\blender\\grand_forest_sanctuary_v004_breeze.blend",
+        "source_sha256_actual": "d8662d6b8b297c2f1533922ff97eeb1fd7fd6bf63641cfbf62a0d53340dc50a0",
+        "source_sha256_build_report": "d8662d6b8b297c2f1533922ff97eeb1fd7fd6bf63641cfbf62a0d53340dc50a0",
+        "source_sha256_scene": "d8662d6b8b297c2f1533922ff97eeb1fd7fd6bf63641cfbf62a0d53340dc50a0",
+        "profile_matches_build_report": true
+      }
+    },
+    {
+      "name": "12_peripheral_tree_roots_and_all_descendants_hidden",
+      "passed": true,
+      "details": {
+        "roots": 12,
+        "descendants": 744,
+        "children_per_root": {
+          "Forest_oak_0": 62,
+          "Forest_oak_1": 62,
+          "Forest_oak_2": 62,
+          "Forest_oak_3": 62,
+          "Forest_oak_4": 62,
+          "Forest_oak_5": 62,
+          "Forest_oak_6": 62,
+          "Forest_oak_7": 62,
+          "Forest_oak_8": 62,
+          "Forest_oak_9": 62,
+          "Forest_oak_10": 62,
+          "Forest_oak_11": 62
+        },
+        "not_hidden_in_both_viewport_and_render": [],
+        "parts_without_expected_parent": []
+      }
+    },
+    {
+      "name": "old_tree_side_walls_hidden",
+      "passed": true,
+      "details": {
+        "matched_objects_per_prefix": {
+          "Boundary_3_": 7,
+          "Boundary_4_": 7,
+          "West_lower_course": 1,
+          "West_lower_pier": 2,
+          "West_upper_course": 2,
+          "West_upper_pier": 3
+        },
+        "not_hidden": []
+      }
+    },
+    {
+      "name": "double_pillar_spacing_and_rigid_transform",
+      "passed": true,
+      "details": {
+        "centres_m": [
+          [
+            17.444486618041992,
+            11.300000190734863,
+            0.029999999329447746
+          ],
+          [
+            11.555514335632324,
+            14.699999809265137,
+            0.029999999329447746
+          ]
+        ],
+        "centre_spacing_m": 6.7999992819393,
+        "expected_centre_spacing_m": 6.8,
+        "position_errors_m": [
+          0.0,
+          0.0
+        ],
+        "world_yaw_degrees": [
+          60.000001669652114,
+          60.000001669652114
+        ]
+      }
+    },
+    {
+      "name": "shrine_statue_and_steps_share_transform",
+      "passed": true,
+      "details": {
+        "expected_yaw_degrees": -12,
+        "objects": [
+          {
+            "object": "North_Guardian_Shrine",
+            "location_error_m": 0.0,
+            "world_yaw_degrees": -12.000001187704068,
+            "yaw_error_radians": 2.0729346683623362e-08
+          },
+          {
+            "object": "Shrine_recess_stone_back",
+            "location_error_m": 0.0,
+            "world_yaw_degrees": -12.000001187704068,
+            "yaw_error_radians": 2.0729346683623362e-08
+          },
+          {
+            "object": "Robed_Guardian",
+            "location_error_m": 0.0,
+            "world_yaw_degrees": -11.999999480156776,
+            "yaw_error_radians": 9.07297570407195e-09
+          },
+          {
+            "object": "Shrine_approach_steps",
+            "location_error_m": 0.0,
+            "world_yaw_degrees": -11.99999862638313,
+            "yaw_error_radians": 2.3974136897919607e-08
+          }
+        ]
+      }
+    },
+    {
+      "name": "current_protagonist_visual_scale",
+      "passed": true,
+      "details": {
+        "current_game_visual": "E:\\ShopGame\\game\\presentation\\combat\\player_visual.tscn",
+        "current_game_scale": [
+          1.20058629,
+          1.20058629,
+          1.20058629
+        ],
+        "preview_authoring_scale": 1.20058629,
+        "body_meshes": [
+          "Player_reference_RedPandaMesh"
+        ],
+        "body_world_bounds_m": [
+          [
+            0.6178098320960999,
+            1.6992524862289429
+          ],
+          [
+            -3.022148370742798,
+            -2.346834659576416
+          ],
+          [
+            0.03500000014901161,
+            1.235000491142273
+          ]
+        ],
+        "actual_height_m": 1.2000004909932613,
+        "recorded_height_m": 1.2000004518777132,
+        "original_preview_height_m": 1.2000004518777132,
+        "world_scales": {
+          "Player_reference_RedPandaMesh": [
+            1.2005864381790161,
+            1.2005864381790161,
+            1.2005863189697266
+          ]
+        },
+        "weapon_excluded_from_height_measurement": true
+      }
+    },
+    {
+      "name": "hero_transform_and_shared_source_trunk",
+      "passed": true,
+      "details": {
+        "hero_scale": [
+          1.8480000495910645,
+          1.8480000495910645,
+          1.6799999475479126
+        ],
+        "expected_hero_scale": [
+          1.8480000495910645,
+          1.8480000495910645,
+          1.6799999475479126
+        ],
+        "hero_transform_error": 2.5386430735352405e-09,
+        "trunk_mesh": "tripo_mesh_8271e899",
+        "shared_with_all_12_retained_source_instances": true,
+        "local_bounds_match_v004_inspection_error": 0.0,
+        "authored_trunk_local_transform_error": 0.0,
+        "vertex_count": 9504,
+        "polygon_count": 19032,
+        "trunk_world_bounds_m": [
+          [
+            -23.644699096679688,
+            -6.565478324890137
+          ],
+          [
+            -0.5076538920402527,
+            18.29877281188965
+          ],
+          [
+            -0.08000018447637558,
+            16.719999313354492
+          ]
+        ],
+        "actual_trunk_height_m": 16.799999497830868,
+        "scope": "Shared source mesh identity and local bounds/transforms; no source blend is opened or modified. This is not a full cross-blend vertex hash comparison."
+      }
+    },
+    {
+      "name": "root_route_centreline_height_band",
+      "passed": true,
+      "details": {
+        "method": "BVH overlap against the continuous vertical curtain along each authored route centreline.",
+        "world_height_band_m": [
+          0.15,
+          1.5
+        ],
+        "routes": [
+          {
+            "route": "west_lower_route",
+            "centreline": [
+              [
+                -7.5,
+                -0.800000011920929,
+                0.0
+              ],
+              [
+                -9.3955078125,
+                -1.4958007335662842,
+                0.0
+              ],
+              [
+                -11.35531234741211,
+                -2.1756436824798584,
+                0.0
+              ],
+              [
+                -13.447461128234863,
+                -2.7121775150299072,
+                0.0
+              ],
+              [
+                -15.48799991607666,
+                -2.947999954223633,
+                0.0
+              ],
+              [
+                -17.642581939697266,
+                -3.014343738555908,
+                0.0
+              ],
+              [
+                -19.68660545349121,
+                -2.9368436336517334,
+                0.0
+              ],
+              [
+                -21.787660598754883,
+                -2.728093385696411,
+                0.0
+              ],
+              [
+                -23.8799991607666,
+                -2.3592000007629395,
+                0.0
+              ],
+              [
+                -25.959999084472656,
+                -1.8655999898910522,
+                0.0
+              ],
+              [
+                -28.0,
+                -1.3223999738693237,
+                0.0
+              ],
+              [
+                -29.948360443115234,
+                -0.7805086374282837,
+                0.0
+              ],
+              [
+                -31.0,
+                -0.5,
+                0.0
+              ]
+            ],
+            "surface_overlap_pairs": 0,
+            "intersecting_segment_count": 0,
+            "intersecting_segments": [],
+            "clear": true
+          },
+          {
+            "route": "west_upper_route",
+            "centreline": [
+              [
+                -5.800000190734863,
+                10.5,
+                0.0
+              ],
+              [
+                -6.228850364685059,
+                12.558900833129883,
+                0.0
+              ],
+              [
+                -6.677915096282959,
+                14.738292694091797,
+                0.0
+              ],
+              [
+                -7.264297008514404,
+                16.682754516601562,
+                0.0
+              ],
+              [
+                -8.230931282043457,
+                18.424663543701172,
+                0.0
+              ],
+              [
+                -10.050018310546875,
+                19.58649253845215,
+                0.0
+              ],
+              [
+                -12.013769149780273,
+                20.084819793701172,
+                0.0
+              ],
+              [
+                -14.141797065734863,
+                20.328248977661133,
+                0.0
+              ],
+              [
+                -16.184650421142578,
+                20.45005226135254,
+                0.0
+              ],
+              [
+                -18.289066314697266,
+                20.540283203125,
+                0.0
+              ],
+              [
+                -20.304738998413086,
+                20.39630126953125,
+                0.0
+              ],
+              [
+                -22.319286346435547,
+                20.080869674682617,
+                0.0
+              ],
+              [
+                -24.415563583374023,
+                19.732681274414062,
+                0.0
+              ],
+              [
+                -26.577178955078125,
+                19.335153579711914,
+                0.0
+              ],
+              [
+                -28.67711639404297,
+                18.910398483276367,
+                0.0
+              ],
+              [
+                -30.670053482055664,
+                18.490942001342773,
+                0.0
+              ],
+              [
+                -32.75069046020508,
+                18.050691604614258,
+                0.0
+              ],
+              [
+                -33.0,
+                18.0,
+                0.0
+              ]
+            ],
+            "surface_overlap_pairs": 0,
+            "intersecting_segment_count": 0,
+            "intersecting_segments": [],
+            "clear": true
+          }
+        ],
+        "scope": "Only the hero trunk/roots surface is tested. No route width, character radius, ground support, other obstacles, collision layers or Godot navigation is certified. Open/non-manifold source geometry or a curtain fully enclosed in a solid can limit a surface-intersection test."
+      }
+    }
+  ],
+  "operation_scope": "Scene and asset files read only; only this JSON report is written. No blend save, frame change, scene edit, rendering or Godot process.",
+  "godot_navigation_certified": false
+}

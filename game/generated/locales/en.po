@@ -7,38 +7,110 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "build.action.debug_arrow"
+msgstr "Debug arrow"
+
+msgid "build.action.debug_melee"
+msgstr "Debug melee"
+
+msgid "build.action.global"
+msgstr "Global"
+
+msgid "build.action.primary"
+msgstr "Primary"
+
+msgid "build.action.special"
+msgstr "Special"
+
+msgid "build.action_binding"
+msgstr "{action} [{key}]"
+
+msgid "build.action_power.description"
+msgstr "This action gains {bonus_percent}% attack damage. It adds to global damage bonuses before the final cap."
+
+msgid "build.action_power.name"
+msgstr "Focused edge"
+
 msgid "build.choose"
 msgstr "Choose upgrade"
 
+msgid "build.current_form"
+msgstr "Form: {form}"
+
 msgid "build.empty"
-msgstr "No upgrades yet"
+msgstr "No upgrades yet. Both basic actions are ready."
 
 msgid "build.error"
 msgstr "Choice could not be saved. Your build is unchanged; try again."
 
+msgid "build.form.debug_arrow"
+msgstr "Debug arrow"
+
+msgid "build.form.debug_melee"
+msgstr "Debug melee"
+
+msgid "build.form.sword_heavy"
+msgstr "Heavy slash"
+
+msgid "build.form.sword_primary"
+msgstr "Three-hit sword combo"
+
+msgid "build.form.sword_wave"
+msgstr "Sword wave"
+
 msgid "build.frost_blast.description"
-msgstr "Compatible impact blasts freeze up to {max_targets} enemies for {duration_sec}s, including a surviving primary target. Freeze cannot refresh; thaw grants brief immunity."
+msgstr "This action’s compatible blast freezes up to {max_targets} enemies for {duration_sec}s, including a surviving direct target. Shared freeze immunity applies."
 
 msgid "build.frost_blast.name"
 msgstr "Frost Blast"
+
+msgid "build.input.left_mouse"
+msgstr "LMB"
+
+msgid "build.input.right_mouse"
+msgstr "RMB"
+
+msgid "build.layer.core"
+msgstr "Core"
+
+msgid "build.layer.form"
+msgstr "Form"
+
+msgid "build.layer.support"
+msgstr "Support"
+
+msgid "build.layer.synergy"
+msgstr "Synergy"
 
 msgid "build.next"
 msgstr "Upgrade to rank {rank}"
 
 msgid "build.no_candidates"
-msgstr "All training upgrades are at their limits."
+msgstr "No further compatible upgrades are available."
+
+msgid "build.operation.add"
+msgstr "Equip at rank {rank}"
+
+msgid "build.operation.rank"
+msgstr "Upgrade to rank {rank}"
+
+msgid "build.operation.replace"
+msgstr "Replace at rank {rank}"
 
 msgid "build.owned"
 msgstr "Current build"
 
 msgid "build.pierce.description"
-msgstr "Linear projectiles hit up to {max_hits} distinct enemies. If equipped, Impact Blast triggers only on the first contact. Excludes Split."
+msgstr "This action’s linear projectiles hit up to {max_hits} distinct enemies. An equipped blast triggers only on the first contact. Excludes Split on this action."
 
 msgid "build.pierce.name"
 msgstr "Piercing"
 
 msgid "build.preset.applied"
 msgstr "Applied: {name}"
+
+msgid "build.preset.basic_actions"
+msgstr "Basic left/right actions"
 
 msgid "build.preset.error"
 msgstr "Preset unavailable. Retry training and try again."
@@ -47,7 +119,10 @@ msgid "build.preset.frost_blast"
 msgstr "Frost Blast"
 
 msgid "build.preset.hint"
-msgstr "Presets replace the build and keep current enemies. T fires an arrow; left click attacks. Retry restores the arena and clears the build."
+msgstr "Presets replace your build but keep enemies. LMB: combo; RMB: special. Retry resets the arena and build."
+
+msgid "build.preset.left_blast_right_freeze"
+msgstr "Left blast + right piercing freeze"
 
 msgid "build.preset.pierce_blast"
 msgstr "Piercing Blast"
@@ -55,14 +130,68 @@ msgstr "Piercing Blast"
 msgid "build.preset.pierce_freeze"
 msgstr "Piercing Freeze"
 
+msgid "build.preset.right_frost"
+msgstr "Right piercing Frost Blast"
+
 msgid "build.preset.title"
-msgstr "Mechanism presets"
+msgstr "Action build presets"
 
 msgid "build.rank"
 msgstr "Rank {rank} / {max_rank}"
 
+msgid "build.reason.capability"
+msgstr "This action lacks the required carrier. Other actions and the debug arrow cannot unlock it."
+
+msgid "build.reason.dependency"
+msgstr "Replacement rejected: an existing upgrade would lose its required core or effect. Your build is unchanged."
+
+msgid "build.reason.incompatible"
+msgstr "These effects cannot coexist on the same action. Your build is unchanged."
+
+msgid "build.reason.invalid_operation"
+msgstr "This bound choice is invalid. Nothing was changed."
+
+msgid "build.reason.invalid_program"
+msgstr "The compiled action plan is invalid. Nothing was changed."
+
+msgid "build.reason.invalid_rank"
+msgstr "This upgrade rank is unavailable for the selected action."
+
+msgid "build.reason.invalid_state"
+msgstr "The build state is invalid. Nothing was changed."
+
+msgid "build.reason.slot_conflict"
+msgstr "This action already has a core or form. Use a valid replacement."
+
+msgid "build.reason.stale"
+msgstr "This choice belongs to an older build. Open a new offer."
+
+msgid "build.reason.unknown_upgrade"
+msgstr "The upgrade definition is unavailable."
+
+msgid "build.reason.wrong_action"
+msgstr "This upgrade cannot bind to that action."
+
+msgid "build.removed_effect"
+msgstr "Removed effect: {effect}"
+
+msgid "build.replaces"
+msgstr "Replaces: {name} (rank {rank})"
+
 msgid "build.subtitle"
-msgstr "Your choice lasts until this training run ends"
+msgstr "Choose one bound upgrade. Other actions keep their own build."
+
+msgid "build.sword_heavy_form.description"
+msgstr "Restores this action’s close-range heavy slash. Replaces the sword-wave form."
+
+msgid "build.sword_heavy_form.name"
+msgstr "Heavy-slash form"
+
+msgid "build.sword_wave_form.description"
+msgstr "Replaces this action’s melee slash with a sword wave. Fires even on a miss; performs no melee strike."
+
+msgid "build.sword_wave_form.name"
+msgstr "Sword-wave form"
 
 msgid "build.test.agility.description"
 msgstr "Normal movement speed increases by {bonus_percent}%. Dodge speed stays unchanged."
@@ -71,10 +200,10 @@ msgid "build.test.agility.name"
 msgstr "Test · Fleet foot"
 
 msgid "build.test.arrow_hint"
-msgstr "Projectile test: T fires an arrow. Choose Split and hit an enemy; Sword wave is not required."
+msgstr "T fires an isolated debug arrow. It does not inherit or unlock left/right action upgrades."
 
 msgid "build.test.blast.description"
-msgstr "Melee and projectiles explode on enemy contact: {radius_m} m radius, {damage_percent}% attack damage with radial falloff. Excludes the direct target and targets behind walls."
+msgstr "This action’s contacts create a {radius_m} m blast for {damage_percent}% attack damage with radial falloff. Excludes the direct target and walls. Each projectile blasts on its first contact only."
 
 msgid "build.test.blast.name"
 msgstr "Test · Impact blast"
@@ -86,7 +215,7 @@ msgid "build.test.chain.name"
 msgstr "Test · Echo chain"
 
 msgid "build.test.contact_freeze.description"
-msgstr "Direct contact freezes enemies for {duration_sec}s. Freeze cannot refresh; thaw grants brief freeze immunity."
+msgstr "This action’s direct contacts freeze enemies for {duration_sec}s, up to {max_per_root} targets per cast. Freeze cannot refresh; thaw grants brief shared immunity."
 
 msgid "build.test.contact_freeze.name"
 msgstr "Test · Contact freeze"
@@ -98,22 +227,22 @@ msgid "build.test.contact_slow.name"
 msgstr "Test · Contact slow"
 
 msgid "build.test.freeze_duration.description"
-msgstr "Future attacks carrying freeze gain {bonus_percent}% duration, bounded by the status duration cap."
+msgstr "This action’s future freeze effects gain {bonus_percent}% duration, bounded by the status duration cap. Another action’s freeze cannot satisfy its requirement."
 
 msgid "build.test.freeze_duration.name"
 msgstr "Test · Longer freeze"
 
 msgid "build.test.mechanism_hint"
-msgstr "Left menu: presets | T: arrow | Orange: blast | Cyan: frost | Blue shell: frozen"
+msgstr "LMB: combo · RMB: special · T: isolated debug arrow · Cyan: frost"
 
 msgid "build.test.power.description"
-msgstr "Attack damage increases by {bonus_percent}%. Sword waves inherit this bonus; derived damage does not multiply it again."
+msgstr "Both actions gain {bonus_percent}% attack damage. Action bonuses add before the final cap; derived damage does not multiply the bonus again."
 
 msgid "build.test.power.name"
 msgstr "Test · Sharpened blade"
 
 msgid "build.test.split.description"
-msgstr "Compatible projectiles split on enemy contact into {count} children, dealing {damage_percent}% of parent damage. Up to {max_generation} generation; excludes ancestor targets."
+msgstr "This action’s projectiles split on contact into {count} children for {damage_percent}% parent damage, up to {max_generation} generation. Excludes Pierce and Frost Blast on this action."
 
 msgid "build.test.split.name"
 msgstr "Test · Projectile split"
@@ -143,13 +272,16 @@ msgid "combat.choosing"
 msgstr "Choose a build upgrade to resume combat"
 
 msgid "combat.controls"
-msgstr "WASD Move · Mouse Aim · LMB Combo · Shift Dodge · Esc Pause · L Language"
+msgstr "WASD Move · LMB Combo · RMB Special · Shift Dodge · Esc Pause · L Language"
 
 msgid "combat.crossbow"
 msgstr "Skirmish Crossbow"
 
 msgid "combat.defeat"
 msgstr "Training failed. Retrying costs no shop items."
+
+msgid "combat.elite_ranger"
+msgstr "Elite Ranger"
 
 msgid "combat.enter"
 msgstr "F6 Combat training"
@@ -358,6 +490,132 @@ msgstr "Searched · {name}"
 msgid "room.seed"
 msgstr "Room seed: {seed}"
 
+msgid "run.error.busy"
+msgstr "The previous action is still being processed. Please wait."
+
+msgid "run.error.commit_failed"
+msgstr "This action could not be confirmed. Please try again."
+
+msgid "run.error.invalid_config"
+msgstr "The route configuration is invalid. The test cannot start."
+
+msgid "run.error.invalid_health"
+msgstr "The health state is invalid. This action cannot continue."
+
+msgid "run.error.invalid_node"
+msgstr "This route node does not exist."
+
+msgid "run.error.invalid_state"
+msgstr "This run state is invalid. Please restart."
+
+msgid "run.error.load_failed"
+msgstr "The room could not be loaded. Please try again."
+
+msgid "run.error.not_configured"
+msgstr "The route test has not been configured."
+
+msgid "run.error.plan_failed"
+msgstr "A valid room plan could not be prepared. Please try again."
+
+msgid "run.error.run_over"
+msgstr "This run is over. Please restart."
+
+msgid "run.error.stale"
+msgstr "The route state has changed. Please choose again."
+
+msgid "run.error.stale_entry"
+msgstr "The room state has changed. This request is no longer valid."
+
+msgid "run.error.stale_ticket"
+msgstr "This entry request has expired. Please choose a node again."
+
+msgid "run.error.unavailable"
+msgstr "This node is not reachable now. Choose an available node."
+
+msgid "run.error.wrong_phase"
+msgstr "This action is unavailable in the current phase."
+
+msgid "run.kind.battle"
+msgstr "Battle"
+
+msgid "run.kind.elite"
+msgstr "Elite battle"
+
+msgid "run.kind.terminal"
+msgstr "Final test fight"
+
+msgid "run.map.build_hint"
+msgstr "Test build carries between rooms. No room rewards in this slice."
+
+msgid "run.map.choose"
+msgstr "Choose a highlighted node from bottom to top. Branches rejoin. L: language."
+
+msgid "run.map.completed"
+msgstr "Final test encounter complete. You can start another run."
+
+msgid "run.map.defeated"
+msgstr "This run has ended. Restart to try again."
+
+msgid "run.map.loading"
+msgstr "Preparing the room. Please wait…"
+
+msgid "run.map.node"
+msgstr "{room} · {kind}\n{state}"
+
+msgid "run.map.progress"
+msgstr "Rooms entered: {count} · {phase}"
+
+msgid "run.map.session_hint"
+msgstr "Temporary run: leaving or restarting resets progress. No save."
+
+msgid "run.map.title"
+msgstr "Dungeon route · Prototype"
+
+msgid "run.node.available"
+msgstr "Available"
+
+msgid "run.node.completed"
+msgstr "Completed"
+
+msgid "run.node.current"
+msgstr "Current"
+
+msgid "run.node.locked"
+msgstr "Locked"
+
+msgid "run.phase.cleared"
+msgstr "Room cleared"
+
+msgid "run.phase.combat"
+msgstr "In combat"
+
+msgid "run.phase.completed"
+msgstr "Route complete"
+
+msgid "run.phase.defeated"
+msgstr "Run defeated"
+
+msgid "run.phase.map"
+msgstr "Choose a route"
+
+msgid "run.restart"
+msgstr "Restart this run"
+
+msgid "run.return_map"
+msgstr "Return to route map"
+
+msgid "run.room.controls"
+msgstr "WASD Move · LMB Attack · RMB Special · Shift Dodge · Esc Settings · L Language"
+
+msgid "run.room.health"
+msgstr "HP {hp} / {max_hp}"
+
+msgid "run.room.number"
+msgstr "ROOM {room}"
+
+msgid "run.start"
+msgstr "Start route test"
+
 msgid "settings.attack"
 msgstr "Attack"
 
@@ -537,6 +795,99 @@ msgstr "View workbench"
 
 msgid "shop.station.workbench.name"
 msgstr "Workbench"
+
+msgid "training.menu.build"
+msgstr "Build & presets"
+
+msgid "training.menu.depth"
+msgstr "Training depth"
+
+msgid "training.menu.fx"
+msgstr "Weapon effects"
+
+msgid "training.menu.hide_all"
+msgstr "Hide all panels"
+
+msgid "training.menu.hud"
+msgstr "Training HUD"
+
+msgid "training.menu.room"
+msgstr "Room info"
+
+msgid "training.menu.show_all"
+msgstr "Show all panels"
+
+msgid "training.menu.title"
+msgstr "Panels"
+
+msgid "training.skill_vfx.clear"
+msgstr "Clear VFX"
+
+msgid "training.skill_vfx.frost_wave"
+msgstr "Frost wave"
+
+msgid "training.skill_vfx.frostfall"
+msgstr "Frostfall"
+
+msgid "training.skill_vfx.hint"
+msgstr "Visual prototype · no damage"
+
+msgid "training.skill_vfx.ice"
+msgstr "Ice surge"
+
+msgid "training.skill_vfx.lightning"
+msgstr "Thunder"
+
+msgid "training.skill_vfx.normal_wave"
+msgstr "Sword wave"
+
+msgid "training.skill_vfx.replay"
+msgstr "Cast again"
+
+msgid "training.skill_vfx.rock"
+msgstr "Rock surge"
+
+msgid "training.skill_vfx.title"
+msgstr "Skill VFX showcase"
+
+msgid "training.tools.add_wave"
+msgstr "Add enemy wave"
+
+msgid "training.tools.added"
+msgstr "Added {count} enemies"
+
+msgid "training.tools.enemies_invincible"
+msgstr "Enemies invincible"
+
+msgid "training.tools.heal"
+msgstr "Restore player health"
+
+msgid "training.tools.healed"
+msgstr "Health restored."
+
+msgid "training.tools.hint"
+msgstr "Modifiers apply to this training session."
+
+msgid "training.tools.limit"
+msgstr "Enemy limit: {max}. Defeat some enemies first."
+
+msgid "training.tools.no_space"
+msgstr "Spawn area occupied. Move enemies away first."
+
+msgid "training.tools.player_invincible"
+msgstr "Player invincible"
+
+msgid "training.tools.ranger"
+msgstr "Spawn Elite Ranger"
+
+msgid "training.tools.ranger_ready"
+msgstr "Elite Ranger ready"
+
+msgid "training.tools.title"
+msgstr "Training tools"
+
+msgid "training.tools.unavailable"
+msgstr "Finish the selection or restart training first."
 
 msgid "ui.accept"
 msgstr "Accept selected order"
@@ -747,4 +1098,76 @@ msgstr "Not available yet"
 
 msgid "ui.use"
 msgstr "Use"
+
+msgid "vfx.frostfall.hint"
+msgstr "Space to replay · L to switch language"
+
+msgid "vfx.frostfall.name"
+msgstr "FROST CROWN DESCENT"
+
+msgid "vfx.frostfall.subtitle"
+msgstr "Successive falling icicles, ice fragments and cold mist · Godot real-time VFX"
+
+msgid "vfx.frostfall.title"
+msgstr "FROSTFALL STUDY"
+
+msgid "vfx.lightning.hint"
+msgstr "Space to replay · L to switch language"
+
+msgid "vfx.lightning.name"
+msgstr "Tempest Verdict"
+
+msgid "vfx.lightning.subtitle"
+msgstr "Forked lightning, ground arcs and lingering shock · Godot real-time VFX"
+
+msgid "vfx.lightning.title"
+msgstr "Trial of Thunder"
+
+msgid "vfx.showcase.hint"
+msgstr "SPACE cast · 1 / 2 change skill · L language"
+
+msgid "vfx.showcase.ice"
+msgstr "FROST CROWN"
+
+msgid "vfx.showcase.language"
+msgstr "中文"
+
+msgid "vfx.showcase.loop"
+msgstr "AUTO LOOP"
+
+msgid "vfx.showcase.pause"
+msgstr "PAUSE"
+
+msgid "vfx.showcase.play"
+msgstr "CAST AGAIN"
+
+msgid "vfx.showcase.presentation"
+msgstr "VISUAL PROTOTYPE • NO GAMEPLAY DAMAGE"
+
+msgid "vfx.showcase.resume"
+msgstr "RESUME"
+
+msgid "vfx.showcase.rock"
+msgstr "GILDED FAULT"
+
+msgid "vfx.showcase.slow"
+msgstr "SLOW 0.35×"
+
+msgid "vfx.showcase.subtitle"
+msgstr "Ice & Stone • Real-time Godot VFX"
+
+msgid "vfx.showcase.title"
+msgstr "ELEMENTAL ERUPTIONS"
+
+msgid "vfx.wave_showcase.frost"
+msgstr "WINTER CRESCENT"
+
+msgid "vfx.wave_showcase.normal"
+msgstr "SILVER CRESCENT"
+
+msgid "vfx.wave_showcase.subtitle"
+msgstr "Steel & Frost • Real-time Godot VFX"
+
+msgid "vfx.wave_showcase.title"
+msgstr "SWORD WAVE STUDIES"
 

@@ -16,6 +16,9 @@ signal damage_applied(source, target, applied_damage: float, origin: String)
 signal area_emitted(center: Vector3, radius: float)
 signal area_payload_emitted(center: Vector3, radius: float, has_status: bool)
 signal chain_emitted(points: PackedVector3Array)
+signal action_presented(fact: Dictionary)
+signal projectile_presented(fact: Dictionary)
+signal area_presented(fact: Dictionary)
 
 var _catalog
 var _attack_ids: Array = []
@@ -47,10 +50,12 @@ func configure(catalog, player, targets: Callable, wall_query: Callable, attack_
 	_limits = catalog.limits()
 	var resolver := Resolver.new()
 	resolver.configure(catalog)
-	_program = resolver.resolve({})
+	_program = resolver.resolve({"selections": [], "revision": 0})
 
 func set_program(program: Dictionary) -> bool:
-	if not Capabilities.valid_program(program, _catalog): return false
+	var evaluator := Resolver.new()
+	evaluator.configure(_catalog)
+	if not evaluator.valid_program(program): return false
 	# Copy even a caller-owned program: subsequent caller mutation cannot alter a cast.
 	_program = program.duplicate(true)
 	Resolver.freeze(_program)
@@ -60,16 +65,24 @@ func on_committed(cast_id: int, ability_id: String) -> void:
 	if not _source_alive(): return
 	if _player.runner.cast_id != cast_id or _player.runner.ability.id != ability_id: return
 	if _cast_roots.has(cast_id): return
+	var action_id: String = _player.runner.action_id
+	if not _program.actions.has(action_id): return
+	var plan: Dictionary = _program.actions[action_id]
+	if not plan.ability_ids.has(ability_id): return
+	# Actor and runtime are injected together by app. Reject a mismatched cast plan.
+	if not _player.runner.cast_context.is_empty() and _player.runner.cast_context != plan: return
 	_next_root += 1
 	_roots[_next_root] = {
 		"id": _next_root, "cast_id": cast_id, "ability_id": ability_id,
 		"room_generation": _room_generation, "source_handle": _player.handle, "team": _player.team,
-		"program": _program, "base_damage": _player.runner.ability.damage,
-		"damage": _player.runner.ability.damage * float(_program.damage_scale),
+		"action_id": action_id, "revision": _program.revision, "form_id": plan.form_id,
+		"program": plan, "base_damage": _player.runner.ability.damage,
+		"damage": _player.runner.ability.damage * float(plan.damage_scale),
 		"budget": int(_limits.root_effect_budget), "spawned": 0, "cue_seen": false,
 		"impact_counts": {}, "chain_triggers": {}, "control_attempts": {},
 	}
 	_cast_roots[cast_id] = _next_root
+	action_presented.emit(_action_fact(_roots[_next_root], "started"))
 	_reclaim_roots()
 
 func on_cue(cast_id: int, ability_id: String) -> void:
@@ -78,6 +91,10 @@ func on_cue(cast_id: int, ability_id: String) -> void:
 	if not _source_alive() or not _player.runner.busy() or _player.runner.cast_id != cast_id: return
 	context.cue_seen = true
 	var direction: Vector3 = Sweep.planar_direction(_player.runner.direction)
+	action_presented.emit(_action_fact(context, "cue"))
+	if not _context_live(context): return
+	if context.program.executor == "projectile":
+		_enqueue(context, Factory.initial(_catalog.projectile(context.program.projectile_id), _player.global_position, direction, context.damage))
 	for effect in context.program.effects:
 		if effect.type != "projectile": continue
 		var params: Dictionary = effect.params
@@ -86,10 +103,13 @@ func on_cue(cast_id: int, ability_id: String) -> void:
 func fire_attack(attack_id: String, direction: Vector3) -> bool:
 	if not _source_alive() or not _player.runner.actions_allowed or not _attack_ids.has(attack_id) or _cooldowns.has(attack_id) or direction.is_zero_approx(): return false
 	var attack: Dictionary = _catalog.test_attack(attack_id)
+	if not _program.actions.has(attack.action_id): return false
+	var plan: Dictionary = _program.actions[attack.action_id]
 	_next_root += 1
 	var context := {"id": _next_root, "cast_id": -_next_root, "ability_id": attack_id,
 		"room_generation": _room_generation, "source_handle": _player.handle, "team": _player.team,
-		"program": _program, "base_damage": attack.damage, "damage": float(attack.damage) * float(_program.damage_scale),
+		"action_id": attack.action_id, "revision": _program.revision, "form_id": plan.form_id,
+		"program": plan, "base_damage": attack.damage, "damage": float(attack.damage) * float(plan.damage_scale),
 		"budget": int(_limits.root_effect_budget), "spawned": 0, "cue_seen": true, "impact_counts": {}, "chain_triggers": {}, "control_attempts": {}}
 	_roots[_next_root] = context
 	if not _enqueue(context, Factory.initial(_catalog.projectile(attack.projectile_id), _player.global_position, Sweep.planar_direction(direction), context.damage)):
@@ -141,6 +161,9 @@ func tick(delta: float) -> void:
 	_reclaim_roots()
 
 func clear_room() -> void:
+	var ended: Array = []
+	for projectile in _projectiles.values():
+		ended.append(_projectile_fact(projectile, _roots[projectile.root_id], "terminated", "room_clear"))
 	statuses.clear()
 	_room_generation += 1
 	_roots.clear()
@@ -148,12 +171,15 @@ func clear_room() -> void:
 	_queue.clear()
 	_cooldowns.clear()
 	_projectiles.clear()
+	for fact in ended: projectile_presented.emit(fact)
 
 func projectiles() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	for id in _projectiles:
 		var projectile: Dictionary = _projectiles[id]
-		result.append({"id": id, "position": projectile.position, "direction": projectile.direction, "radius": projectile.radius, "definition_id": projectile.definition.id, "remaining_hits": projectile.remaining_hits})
+		var fact := _projectile_fact(projectile, _roots[projectile.root_id], "snapshot")
+		fact.remaining_hits = projectile.remaining_hits
+		result.append(fact)
 	Resolver.freeze(result)
 	return result
 
@@ -200,6 +226,7 @@ func _spawn(context: Dictionary, request: Dictionary) -> void:
 	projectile.id = _next_projectile
 	projectile.remaining_hits = Pierce.max_hits(projectile.definition, context.program, _limits)
 	_projectiles[_next_projectile] = projectile
+	projectile_presented.emit(_projectile_fact(projectile, context, "spawned"))
 
 func _advance_projectiles(delta: float) -> void:
 	# Fixed snapshot: child projectiles begin travelling on the following simulation step.
@@ -207,7 +234,7 @@ func _advance_projectiles(delta: float) -> void:
 		if not _projectiles.has(id): continue
 		var projectile: Dictionary = _projectiles[id]
 		if float(projectile.lifetime) <= 0.0:
-			_projectiles.erase(id)
+			_terminate_projectile(id, "expired")
 			continue
 		var context: Dictionary = _roots[projectile.root_id]
 		if not _context_live(context): return
@@ -237,6 +264,11 @@ func _advance_projectiles(delta: float) -> void:
 			projectile.remaining_hits -= 1
 			var applied: float = Damage.apply(target, float(projectile.damage), context.team)
 			if not _context_live(context): return
+			var presentation := _projectile_fact(projectile, context, "contact")
+			presentation.target_handle = victim
+			presentation.position = point
+			projectile_presented.emit(presentation)
+			if not _context_live(context): return
 			_contact(context, {"origin": "direct_projectile" if int(projectile.generation) == 0 else "split_projectile", "parent_id": "projectile:%s" % id, "target_handle": victim, "position": point, "damage": projectile.damage})
 			if not _context_live(context): return
 			if applied > 0.0:
@@ -245,12 +277,38 @@ func _advance_projectiles(delta: float) -> void:
 				if is_instance_valid(target): _schedule_chains(context, target, applied, "secondary_projectile")
 			_schedule_splits(context, projectile, victim)
 			if int(projectile.remaining_hits) <= 0:
-				_projectiles.erase(id)
+				_terminate_projectile(id, "contact_limit")
 				break
 		if not _projectiles.has(id): continue
 		projectile.position = finish
 		projectile.lifetime = lifetime_before - step
-		if wall_blocked or float(projectile.lifetime) <= 0.0: _projectiles.erase(id)
+		if wall_blocked or float(projectile.lifetime) <= 0.0: _terminate_projectile(id, "wall" if wall_blocked else "expired")
+
+func on_finished(cast_id: int, ability_id: String, reason: String) -> void:
+	var context := _context_for_cast(cast_id)
+	if context.is_empty() or context.ability_id != ability_id: return
+	action_presented.emit(_action_fact(context, reason))
+
+func _action_fact(context: Dictionary, event: String) -> Dictionary:
+	return {"event": event, "root_id": context.id, "cast_id": context.cast_id, "action_id": context.action_id,
+		"ability_id": context.ability_id, "form_id": context.form_id, "revision": context.revision,
+		"presentation_key": context.program.presentation_key, "position": _player.global_position,
+		"direction": _player.runner.direction, "executor": context.program.executor,
+		"effect_ids": context.program.effects.map(func(effect): return effect.upgrade_id)}
+
+func _projectile_fact(projectile: Dictionary, context: Dictionary, event: String, reason: String = "") -> Dictionary:
+	return {"event": event, "reason": reason, "id": projectile.id, "root_id": context.id, "cast_id": context.cast_id,
+		"action_id": context.action_id, "ability_id": context.ability_id, "form_id": context.form_id, "revision": context.revision,
+		"presentation_key": context.program.presentation_key, "definition_id": projectile.definition.id,
+		"generation": projectile.generation, "position": projectile.position, "direction": projectile.direction, "radius": projectile.radius,
+		"effect_ids": context.program.effects.map(func(effect): return effect.upgrade_id)}
+
+func _terminate_projectile(id: int, reason: String) -> void:
+	if not _projectiles.has(id): return
+	var projectile: Dictionary = _projectiles[id]
+	var fact := _projectile_fact(projectile, _roots[projectile.root_id], "terminated", reason)
+	_projectiles.erase(id)
+	projectile_presented.emit(fact)
 
 func _context_live(context: Dictionary) -> bool:
 	return context.room_generation == _room_generation and _roots.has(context.id) and (_source_alive() or bool(_limits.projectiles_survive_source_death))
@@ -321,7 +379,7 @@ func _reclaim_roots() -> void:
 func on_melee_contact(source, cast_id: int, ability_id: String, victim: int, point: Vector3, damage: float) -> void:
 	if source != _player: return
 	var context := _context_for_cast(cast_id)
-	if context.is_empty() or context.ability_id != ability_id: return
+	if context.is_empty() or context.ability_id != ability_id or context.program.executor != "melee": return
 	_contact(context, {"origin": "direct_melee", "parent_id": "melee:%s" % cast_id, "target_handle": victim, "position": point, "damage": damage})
 
 func _contact(context: Dictionary, fact: Dictionary) -> void:
@@ -337,6 +395,12 @@ func _area_step(context: Dictionary, request: Dictionary) -> void:
 	area_emitted.emit(request.position, float(request.params.radius_m))
 	if not _context_live(context): return
 	area_payload_emitted.emit(request.position, float(request.params.radius_m), request.payloads.any(func(p): return p.type == "apply_status"))
+	var presentation := _action_fact(context, "area")
+	presentation.position = request.position
+	presentation.radius = float(request.params.radius_m)
+	presentation.effect_id = request.effect_id
+	presentation.has_status = request.payloads.any(func(p): return p.type == "apply_status")
+	area_presented.emit(presentation)
 	for hit in plan.damage:
 		if not _context_live(context): return
 		var applied := Damage.apply(hit.target, hit.damage, context.team)
@@ -356,4 +420,4 @@ func _status_step(context: Dictionary, request: Dictionary) -> void:
 
 func _apply_status(context: Dictionary, target, status_id: String, duration: float) -> void:
 	if not _context_live(context) or not is_instance_valid(target) or target.team == context.team: return
-	statuses.apply(target, status_id, duration, {"source_handle": context.source_handle, "team": context.team, "root_id": context.id, "room_generation": context.room_generation, "ability_id": context.ability_id}, context.control_attempts)
+	statuses.apply(target, status_id, duration, {"source_handle": context.source_handle, "team": context.team, "root_id": context.id, "room_generation": context.room_generation, "ability_id": context.ability_id, "action_id": context.action_id, "revision": context.revision, "presentation_key": context.program.presentation_key}, context.control_attempts)

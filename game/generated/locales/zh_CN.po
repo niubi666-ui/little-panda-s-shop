@@ -7,38 +7,110 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "build.action.debug_arrow"
+msgstr "调试箭"
+
+msgid "build.action.debug_melee"
+msgstr "调试近战"
+
+msgid "build.action.global"
+msgstr "全局"
+
+msgid "build.action.primary"
+msgstr "普攻"
+
+msgid "build.action.special"
+msgstr "特殊技"
+
+msgid "build.action_binding"
+msgstr "{action}【{key}】"
+
+msgid "build.action_power.description"
+msgstr "这个动作的攻击伤害增加 {bonus_percent}%，与全局增伤相加后统一限幅。"
+
+msgid "build.action_power.name"
+msgstr "专注锋刃"
+
 msgid "build.choose"
 msgstr "选择此升级"
 
+msgid "build.current_form"
+msgstr "当前形态：{form}"
+
 msgid "build.empty"
-msgstr "暂无升级"
+msgstr "尚无升级，左右键基础动作均可使用"
 
 msgid "build.error"
 msgstr "选择未成功，当前构筑未改变，请重试。"
 
+msgid "build.form.debug_arrow"
+msgstr "调试箭"
+
+msgid "build.form.debug_melee"
+msgstr "调试近战"
+
+msgid "build.form.sword_heavy"
+msgstr "重斩"
+
+msgid "build.form.sword_primary"
+msgstr "剑三连击"
+
+msgid "build.form.sword_wave"
+msgstr "剑气"
+
 msgid "build.frost_blast.description"
-msgstr "让兼容的命中爆炸冻结范围内最多 {max_targets} 个敌人 {duration_sec} 秒，包括存活的中心目标。冻结不可续时，解冻后短暂抗冻。"
+msgstr "这个动作的兼容爆炸可冻结至多 {max_targets} 个敌人 {duration_sec} 秒，包括仍存活的直击目标；遵守共享抗冻规则。"
 
 msgid "build.frost_blast.name"
 msgstr "寒霜爆破"
+
+msgid "build.input.left_mouse"
+msgstr "左键"
+
+msgid "build.input.right_mouse"
+msgstr "右键"
+
+msgid "build.layer.core"
+msgstr "核心"
+
+msgid "build.layer.form"
+msgstr "形态"
+
+msgid "build.layer.support"
+msgstr "支持"
+
+msgid "build.layer.synergy"
+msgstr "协同"
 
 msgid "build.next"
 msgstr "升级至 {rank} 级"
 
 msgid "build.no_candidates"
-msgstr "当前训练升级已全部达到上限。"
+msgstr "当前没有可继续选择的兼容升级"
+
+msgid "build.operation.add"
+msgstr "装备为 {rank} 级"
+
+msgid "build.operation.rank"
+msgstr "升级至 {rank} 级"
+
+msgid "build.operation.replace"
+msgstr "替换为 {rank} 级"
 
 msgid "build.owned"
 msgstr "当前构筑"
 
 msgid "build.pierce.description"
-msgstr "线性投射物最多直接命中 {max_hits} 个不同敌人。若拥有命中爆炸，每弹仅首次接触触发；与分裂互斥。"
+msgstr "这个动作的直线投射物最多命中 {max_hits} 个不同敌人。若已装备爆炸，只在首次接触爆炸；与同动作分裂互斥。"
 
 msgid "build.pierce.name"
 msgstr "穿透"
 
 msgid "build.preset.applied"
 msgstr "已应用：{name}"
+
+msgid "build.preset.basic_actions"
+msgstr "基础左右键动作"
 
 msgid "build.preset.error"
 msgstr "预设暂不可用，请重新训练后再试。"
@@ -47,7 +119,10 @@ msgid "build.preset.frost_blast"
 msgstr "寒霜爆破"
 
 msgid "build.preset.hint"
-msgstr "预设替换构筑并保留当前敌人；T 发箭，左键挥刀。重新训练恢复战场并清空构筑。"
+msgstr "预设替换构筑并保留现有敌人。左键连击，右键特殊技。重新训练会重置场地与构筑。"
+
+msgid "build.preset.left_blast_right_freeze"
+msgstr "左键爆炸＋右键穿透冻结"
 
 msgid "build.preset.pierce_blast"
 msgstr "穿透普通爆炸"
@@ -55,14 +130,68 @@ msgstr "穿透普通爆炸"
 msgid "build.preset.pierce_freeze"
 msgstr "穿透冻结"
 
+msgid "build.preset.right_frost"
+msgstr "右键穿透寒霜爆破"
+
 msgid "build.preset.title"
-msgstr "机制测试预设"
+msgstr "动作构筑预设"
 
 msgid "build.rank"
 msgstr "等级 {rank} / {max_rank}"
 
+msgid "build.reason.capability"
+msgstr "该动作尚无所需载体，其它动作及调试箭不能替代前置。"
+
+msgid "build.reason.dependency"
+msgstr "无法替换：已有升级将失去所需核心或效果。原构筑保持不变。"
+
+msgid "build.reason.incompatible"
+msgstr "这些效果不能在同一个动作中共存，原构筑保持不变。"
+
+msgid "build.reason.invalid_operation"
+msgstr "该绑定操作无效，未进行修改。"
+
+msgid "build.reason.invalid_program"
+msgstr "编译后的动作计划无效，未进行修改。"
+
+msgid "build.reason.invalid_rank"
+msgstr "该动作不能获得此升级等级。"
+
+msgid "build.reason.invalid_state"
+msgstr "当前构筑状态无效，未进行修改。"
+
+msgid "build.reason.slot_conflict"
+msgstr "该动作已有核心或形态，请使用合法替换。"
+
+msgid "build.reason.stale"
+msgstr "该候选属于旧构筑，请打开新一轮选择。"
+
+msgid "build.reason.unknown_upgrade"
+msgstr "升级定义不可用。"
+
+msgid "build.reason.wrong_action"
+msgstr "该升级不能绑定这个动作。"
+
+msgid "build.removed_effect"
+msgstr "移除效果：{effect}"
+
+msgid "build.replaces"
+msgstr "替换：{name}（{rank} 级）"
+
 msgid "build.subtitle"
-msgstr "本次选择会持续到本轮训练结束"
+msgstr "选择一个绑定升级，其它动作保留各自构筑"
+
+msgid "build.sword_heavy_form.description"
+msgstr "将这个动作恢复为近身重斩，替换当前剑气形态。"
+
+msgid "build.sword_heavy_form.name"
+msgstr "重斩形态"
+
+msgid "build.sword_wave_form.description"
+msgstr "将这个动作的近身重斩替换为剑气。挥空也能发射，不产生近战命中区域。"
+
+msgid "build.sword_wave_form.name"
+msgstr "剑气形态"
 
 msgid "build.test.agility.description"
 msgstr "普通移动速度提高 {bonus_percent}%。闪避速度保持原值。"
@@ -71,10 +200,10 @@ msgid "build.test.agility.name"
 msgstr "试验 · 轻盈步伐"
 
 msgid "build.test.arrow_hint"
-msgstr "投射物测试：T 发射测试箭；无需剑气，选择分裂后对敌人测试。"
+msgstr "T 发射独立调试箭，不继承左右键升级，也不解锁正式动作前置。"
 
 msgid "build.test.blast.description"
-msgstr "近战和投射物接敌后爆炸，半径 {radius_m} 米，基于本次攻击的 {damage_percent}% 伤害向边缘衰减。墙后目标和直击目标不受此次爆炸伤害。"
+msgstr "这个动作接触敌人时造成半径 {radius_m} 米、{damage_percent}% 攻击伤害的衰减爆炸，排除直击目标与墙后目标。每枚投射物只在首次接触爆炸。"
 
 msgid "build.test.blast.name"
 msgstr "试验 · 命中爆炸"
@@ -86,7 +215,7 @@ msgid "build.test.chain.name"
 msgstr "试验 · 回响连锁"
 
 msgid "build.test.contact_freeze.description"
-msgstr "直接命中冻结敌人 {duration_sec} 秒。冻结期间不能续时，解冻后短暂抗冻。"
+msgstr "这个动作每次施放最多冻结 {max_per_root} 个直接接触的敌人，持续 {duration_sec} 秒。冻结不可刷新，解冻后获得短暂共享抗冻。"
 
 msgid "build.test.contact_freeze.name"
 msgstr "试验 · 接触冻结"
@@ -98,22 +227,22 @@ msgid "build.test.contact_slow.name"
 msgstr "试验 · 接触减速"
 
 msgid "build.test.freeze_duration.description"
-msgstr "已有冻结来源的后续攻击：冻结时长提高 {bonus_percent}%，仍受状态时长上限限制。"
+msgstr "这个动作今后携带的冻结时长增加 {bonus_percent}%，不超过状态时长上限。另一个动作的冻结不能满足前置。"
 
 msgid "build.test.freeze_duration.name"
 msgstr "试验 · 冻结延长"
 
 msgid "build.test.mechanism_hint"
-msgstr "左侧菜单切换预设 · T 发箭 · 橙圈=爆炸 · 青圈=寒霜 · 蓝罩=冻结"
+msgstr "左键连击 · 右键特殊技 · T 独立调试箭 · 青圈=寒霜"
 
 msgid "build.test.power.description"
-msgstr "本次施放的攻击伤害提高 {bonus_percent}%。剑气继承此加成，派生伤害不重复乘算。"
+msgstr "左右键动作的攻击伤害增加 {bonus_percent}%，与动作增伤相加后统一限幅，派生伤害不会重复放大。"
 
 msgid "build.test.power.name"
 msgstr "试验 · 锋刃强化"
 
 msgid "build.test.split.description"
-msgstr "适用于可分裂的投射物。接触敌人后分成 {count} 个子体，继承原投射物 {damage_percent}% 伤害；最多 {max_generation} 代，不重复命中祖先目标。"
+msgstr "这个动作的投射物接触敌人后分裂为 {count} 枚子体，造成母体 {damage_percent}% 伤害，最多 {max_generation} 代；与同动作穿透、寒霜爆破互斥。"
 
 msgid "build.test.split.name"
 msgstr "试验 · 投射物分裂"
@@ -143,13 +272,16 @@ msgid "combat.choosing"
 msgstr "选择构筑升级后继续战斗"
 
 msgid "combat.controls"
-msgstr "WASD 移动 · 鼠标瞄准 · 左键连击 · Shift 闪避 · Esc 暂停 · L 中/英"
+msgstr "WASD 移动 · 左键连击 · 右键特殊技 · Shift 闪避 · Esc 暂停 · L 中/英"
 
 msgid "combat.crossbow"
 msgstr "游击弩手"
 
 msgid "combat.defeat"
 msgstr "训练失败。重试不会损失店铺物品。"
+
+msgid "combat.elite_ranger"
+msgstr "精英游侠"
 
 msgid "combat.enter"
 msgstr "F6 战斗训练"
@@ -358,6 +490,132 @@ msgstr "已搜刮 · {name}"
 msgid "room.seed"
 msgstr "房间种子：{seed}"
 
+msgid "run.error.busy"
+msgstr "正在处理上一项操作，请稍候。"
+
+msgid "run.error.commit_failed"
+msgstr "无法确认本次操作，请重试。"
+
+msgid "run.error.invalid_config"
+msgstr "路线配置无效，无法开始测试。"
+
+msgid "run.error.invalid_health"
+msgstr "生命状态无效，无法继续当前操作。"
+
+msgid "run.error.invalid_node"
+msgstr "找不到这个路线节点。"
+
+msgid "run.error.invalid_state"
+msgstr "本次路线状态无效，请重新开始。"
+
+msgid "run.error.load_failed"
+msgstr "房间加载失败，请重试。"
+
+msgid "run.error.not_configured"
+msgstr "路线测试尚未准备完成。"
+
+msgid "run.error.plan_failed"
+msgstr "无法生成合法房间方案，请重试。"
+
+msgid "run.error.run_over"
+msgstr "本次路线已经结束，请重新开始。"
+
+msgid "run.error.stale"
+msgstr "路线状态已变化，请重新选择。"
+
+msgid "run.error.stale_entry"
+msgstr "房间状态已变化，本次请求不再有效。"
+
+msgid "run.error.stale_ticket"
+msgstr "这次进入请求已过期，请重新选择节点。"
+
+msgid "run.error.unavailable"
+msgstr "当前无法前往这个节点，请选择可前往的节点。"
+
+msgid "run.error.wrong_phase"
+msgstr "当前阶段不能执行这个操作。"
+
+msgid "run.kind.battle"
+msgstr "普通战斗"
+
+msgid "run.kind.elite"
+msgstr "精英战斗"
+
+msgid "run.kind.terminal"
+msgstr "终点测试遭遇"
+
+msgid "run.map.build_hint"
+msgstr "使用预装测试构筑，跨房间保留；本轮不发放房间奖励。"
+
+msgid "run.map.choose"
+msgstr "从下往上选择发亮节点，分叉路线会再次汇合。L 切换语言。"
+
+msgid "run.map.completed"
+msgstr "终点测试遭遇已完成，可以重新开始一条路线。"
+
+msgid "run.map.defeated"
+msgstr "本次路线结束。重新开始可再次测试。"
+
+msgid "run.map.loading"
+msgstr "正在准备房间，请稍候……"
+
+msgid "run.map.node"
+msgstr "{room} · {kind}\n{state}"
+
+msgid "run.map.progress"
+msgstr "已进入 {count} 个房间 · {phase}"
+
+msgid "run.map.session_hint"
+msgstr "临时冒险：离开或重新开始会重置，不保存进度。"
+
+msgid "run.map.title"
+msgstr "地牢路线 · 临时测试"
+
+msgid "run.node.available"
+msgstr "可前往"
+
+msgid "run.node.completed"
+msgstr "已完成"
+
+msgid "run.node.current"
+msgstr "当前所在"
+
+msgid "run.node.locked"
+msgstr "未开放"
+
+msgid "run.phase.cleared"
+msgstr "房间已清理"
+
+msgid "run.phase.combat"
+msgstr "战斗中"
+
+msgid "run.phase.completed"
+msgstr "本次路线已通关"
+
+msgid "run.phase.defeated"
+msgstr "本次冒险失败"
+
+msgid "run.phase.map"
+msgstr "选择路线"
+
+msgid "run.restart"
+msgstr "重新开始本次路线"
+
+msgid "run.return_map"
+msgstr "返回路线图"
+
+msgid "run.room.controls"
+msgstr "WASD 移动 · 左键 普攻 · 右键 特殊技 · Shift 闪避 · Esc 设置 · L 语言"
+
+msgid "run.room.health"
+msgstr "生命 {hp} / {max_hp}"
+
+msgid "run.room.number"
+msgstr "第 {room} 个房间"
+
+msgid "run.start"
+msgstr "开始路线测试"
+
 msgid "settings.attack"
 msgstr "普通攻击"
 
@@ -537,6 +795,99 @@ msgstr "查看工作台"
 
 msgid "shop.station.workbench.name"
 msgstr "工作台"
+
+msgid "training.menu.build"
+msgstr "构筑与测试预设"
+
+msgid "training.menu.depth"
+msgstr "训练深度"
+
+msgid "training.menu.fx"
+msgstr "刀光效果"
+
+msgid "training.menu.hide_all"
+msgstr "全部隐藏"
+
+msgid "training.menu.hud"
+msgstr "训练状态与操作"
+
+msgid "training.menu.room"
+msgstr "房间信息"
+
+msgid "training.menu.show_all"
+msgstr "全部显示"
+
+msgid "training.menu.title"
+msgstr "界面显示"
+
+msgid "training.skill_vfx.clear"
+msgstr "清除特效"
+
+msgid "training.skill_vfx.frost_wave"
+msgstr "寒冰剑气"
+
+msgid "training.skill_vfx.frostfall"
+msgstr "霜冠天坠"
+
+msgid "training.skill_vfx.hint"
+msgstr "视觉样片 · 不造成伤害"
+
+msgid "training.skill_vfx.ice"
+msgstr "冰晶突进"
+
+msgid "training.skill_vfx.lightning"
+msgstr "雷霆裁决"
+
+msgid "training.skill_vfx.normal_wave"
+msgstr "普通剑气"
+
+msgid "training.skill_vfx.replay"
+msgstr "再次施放"
+
+msgid "training.skill_vfx.rock"
+msgstr "岩脊冲击"
+
+msgid "training.skill_vfx.title"
+msgstr "技能特效演示"
+
+msgid "training.tools.add_wave"
+msgstr "追加一波敌人"
+
+msgid "training.tools.added"
+msgstr "追加了 {count} 名敌人"
+
+msgid "training.tools.enemies_invincible"
+msgstr "敌人无敌"
+
+msgid "training.tools.heal"
+msgstr "恢复玩家生命"
+
+msgid "training.tools.healed"
+msgstr "生命已恢复"
+
+msgid "training.tools.hint"
+msgstr "修改器仅在当前训练生效。"
+
+msgid "training.tools.limit"
+msgstr "场上敌人将超过上限 {max}，请先清理一些敌人"
+
+msgid "training.tools.no_space"
+msgstr "出生区域被占用，请先把敌人引开"
+
+msgid "training.tools.player_invincible"
+msgstr "玩家无敌"
+
+msgid "training.tools.ranger"
+msgstr "刷新精英游侠"
+
+msgid "training.tools.ranger_ready"
+msgstr "精英游侠已刷新"
+
+msgid "training.tools.title"
+msgstr "训练工具"
+
+msgid "training.tools.unavailable"
+msgstr "当前无法使用，请先完成选择或重新训练"
 
 msgid "ui.accept"
 msgstr "接取选中订单"
@@ -747,4 +1098,76 @@ msgstr "功能尚未开放"
 
 msgid "ui.use"
 msgstr "使用"
+
+msgid "vfx.frostfall.hint"
+msgstr "空格重新施放 · L 切换语言"
+
+msgid "vfx.frostfall.name"
+msgstr "霜冠天坠"
+
+msgid "vfx.frostfall.subtitle"
+msgstr "冰锥从空中逐段坠落 · 碎冰、寒雾与冰冠收尾 · Godot 实时特效"
+
+msgid "vfx.frostfall.title"
+msgstr "落冰试炼"
+
+msgid "vfx.lightning.hint"
+msgstr "空间键重新施放 · L 切换语言"
+
+msgid "vfx.lightning.name"
+msgstr "雷霆裁决"
+
+msgid "vfx.lightning.subtitle"
+msgstr "分叉落雷、地面电弧与冲击余韵 · Godot 实时特效"
+
+msgid "vfx.lightning.title"
+msgstr "雷霆试炼"
+
+msgid "vfx.showcase.hint"
+msgstr "空间键施放 · 1 / 2 切换技能 · L 切换语言"
+
+msgid "vfx.showcase.ice"
+msgstr "霜冠裂地"
+
+msgid "vfx.showcase.language"
+msgstr "EN"
+
+msgid "vfx.showcase.loop"
+msgstr "自动循环"
+
+msgid "vfx.showcase.pause"
+msgstr "暂停"
+
+msgid "vfx.showcase.play"
+msgstr "重新施放"
+
+msgid "vfx.showcase.presentation"
+msgstr "表现原型 · 不触发战斗伤害"
+
+msgid "vfx.showcase.resume"
+msgstr "继续"
+
+msgid "vfx.showcase.rock"
+msgstr "熔金岩脊"
+
+msgid "vfx.showcase.slow"
+msgstr "慢速 0.35×"
+
+msgid "vfx.showcase.subtitle"
+msgstr "冰与岩的演武场 · Godot 实时特效"
+
+msgid "vfx.showcase.title"
+msgstr "元素奇观"
+
+msgid "vfx.wave_showcase.frost"
+msgstr "凛冬剑气"
+
+msgid "vfx.wave_showcase.normal"
+msgstr "月白剑气"
+
+msgid "vfx.wave_showcase.subtitle"
+msgstr "普通剑气与寒冰剑气 · Godot 实时特效"
+
+msgid "vfx.wave_showcase.title"
+msgstr "剑气试炼"
 

@@ -19,6 +19,6 @@ static func requests(context: Dictionary, fact: Dictionary) -> Array[Dictionary]
 		var payloads: Array = []
 		for payload in params.payloads:
 			if payload.type == "damage" or payload.allowed_origins.has(fact.origin): payloads.append(payload)
-		result.append({"type": "area", "position": fact.position, "primary": fact.target_handle,
+		result.append({"type": "area", "effect_id": effect.upgrade_id, "position": fact.position, "primary": fact.target_handle,
 			"damage": float(fact.damage) * float(params.damage_ratio), "params": params, "payloads": payloads})
 	return result

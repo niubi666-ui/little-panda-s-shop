@@ -1,0 +1,339 @@
+{
+  "source": "E:\\ShopGame\\source_assets\\environments\\dungeon\\grand_forest_sanctuary\\v003\\blender\\grand_forest_sanctuary_v003_leaf_cutout.blend",
+  "source_sha256_before": "f8283025e6e30093ee08f6a402c3e4419bd598f59f2da4248a85572efb4bd864",
+  "source_sha256_after": "f8283025e6e30093ee08f6a402c3e4419bd598f59f2da4248a85572efb4bd864",
+  "output": "E:\\ShopGame\\game\\assets\\environment_wind_v001\\breeze_samples.glb",
+  "output_sha256": "193c2615e0c2a4e922610abb8c3dba34caaec77a77fccdb34ca27e281409b344",
+  "blender_version": "5.2.1 LTS",
+  "render_performed": false,
+  "groups_blender_z_up": {
+    "Fern": [
+      -2,
+      0,
+      0
+    ],
+    "Bellflower": [
+      0,
+      0,
+      0
+    ],
+    "OakCluster": [
+      2.3,
+      0,
+      1.25
+    ]
+  },
+  "groups_gltf_godot_y_up": {
+    "Fern": [
+      -2,
+      0,
+      0
+    ],
+    "Bellflower": [
+      0,
+      0,
+      0
+    ],
+    "OakCluster": [
+      2.3,
+      1.25,
+      0
+    ]
+  },
+  "objects": [
+    {
+      "source_object": "Fern_clump_0_0",
+      "source_mesh": "Fern_module_0_FrondRibs_mesh",
+      "export_object": "Fern_Fern_module_0_FrondRibs_mesh",
+      "group": "Fern",
+      "vertices": 1320,
+      "triangles": 2592,
+      "weight_min": 4.070775839558921e-05,
+      "weight_max": 0.9171942160722486,
+      "shared_extent": {
+        "z_min": 0.028335295617580414,
+        "z_max": 0.7035754919052124,
+        "radius": 0.942868093700368
+      },
+      "source_scale": [
+        0.8003209829330444,
+        0.8003209829330444,
+        0.8003209829330444
+      ],
+      "export_scale": [
+        0.8003209829330444,
+        0.8003209829330444,
+        0.8003209829330444
+      ],
+      "geometry_modified": false
+    },
+    {
+      "source_object": "Fern_clump_0_1",
+      "source_mesh": "Fern_module_0_PinnateLeaves_mesh",
+      "export_object": "Fern_Fern_module_0_PinnateLeaves_mesh",
+      "group": "Fern",
+      "vertices": 3996,
+      "triangles": 3552,
+      "weight_min": 0.09573356527061049,
+      "weight_max": 1.0,
+      "shared_extent": {
+        "z_min": 0.028335295617580414,
+        "z_max": 0.7035754919052124,
+        "radius": 0.942868093700368
+      },
+      "source_scale": [
+        0.8003209829330444,
+        0.8003209829330444,
+        0.8003209829330444
+      ],
+      "export_scale": [
+        0.8003209829330444,
+        0.8003209829330444,
+        0.8003209829330444
+      ],
+      "geometry_modified": false
+    },
+    {
+      "source_object": "White_meadow_flower_spray_0_0",
+      "source_mesh": "Bellflower_leaves_mesh",
+      "export_object": "Bellflower_Bellflower_leaves_mesh",
+      "group": "Bellflower",
+      "vertices": 351,
+      "triangles": 312,
+      "weight_min": 0.008333772020805107,
+      "weight_max": 0.17447779056972404,
+      "shared_extent": {
+        "z_min": 0.0,
+        "z_max": 0.7298386096954346,
+        "radius": 0.87537857691238
+      },
+      "source_scale": [
+        1.3069342374801636,
+        1.3069342374801636,
+        1.3069342374801636
+      ],
+      "export_scale": [
+        1.3069342374801636,
+        1.3069342374801636,
+        1.3069342374801636
+      ],
+      "geometry_modified": false
+    },
+    {
+      "source_object": "White_meadow_flower_spray_0_1",
+      "source_mesh": "Bellflower_stems_mesh",
+      "export_object": "Bellflower_Bellflower_stems_mesh",
+      "group": "Bellflower",
+      "vertices": 611,
+      "triangles": 962,
+      "weight_min": 0.0,
+      "weight_max": 1.0,
+      "shared_extent": {
+        "z_min": 0.0,
+        "z_max": 0.7298386096954346,
+        "radius": 0.87537857691238
+      },
+      "source_scale": [
+        1.3069342374801636,
+        1.3069342374801636,
+        1.3069342374801636
+      ],
+      "export_scale": [
+        1.3069342374801636,
+        1.3069342374801636,
+        1.3069342374801636
+      ],
+      "geometry_modified": false
+    },
+    {
+      "source_object": "White_meadow_flower_spray_0_2",
+      "source_mesh": "Ivory_hanging_bells_mesh",
+      "export_object": "Bellflower_Ivory_hanging_bells_mesh",
+      "group": "Bellflower",
+      "vertices": 2600,
+      "triangles": 4160,
+      "weight_min": 0.07867322601411052,
+      "weight_max": 0.9457930890626965,
+      "shared_extent": {
+        "z_min": 0.0,
+        "z_max": 0.7298386096954346,
+        "radius": 0.87537857691238
+      },
+      "source_scale": [
+        1.3069342374801636,
+        1.3069342374801636,
+        1.3069342374801636
+      ],
+      "export_scale": [
+        1.3069342374801636,
+        1.3069342374801636,
+        1.3069342374801636
+      ],
+      "geometry_modified": false
+    },
+    {
+      "source_object": "Hero_Sacred_Oak_v005__BakedCrownCluster_000",
+      "source_mesh": "BalancedModule_00",
+      "export_object": "OakCluster_BalancedModule_00",
+      "group": "OakCluster",
+      "vertices": 200,
+      "triangles": 176,
+      "weight_min": 0.32621440291404724,
+      "weight_max": 1.0,
+      "shared_extent": null,
+      "source_scale": [
+        0.9644923210144043,
+        0.9644923210144043,
+        0.9328140020370483
+      ],
+      "export_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "geometry_modified": false
+    }
+  ],
+  "materials": [
+    {
+      "source": "Living leaf variation 0",
+      "export": "Breeze_Living leaf variation 0",
+      "roughness": 0.6600000262260437,
+      "method": "representative linear color at source ColorRamp 0.5",
+      "base_color_linear": [
+        0.039461541920900345,
+        0.10523077845573425,
+        0.010523077100515366,
+        1.0
+      ],
+      "limitation": "procedural noise/bump and translucent mixing are not carried into this PBR sample"
+    },
+    {
+      "source": "Living leaf variation 1",
+      "export": "Breeze_Living leaf variation 1",
+      "roughness": 0.6600000262260437,
+      "method": "representative linear color at source ColorRamp 0.5",
+      "base_color_linear": [
+        0.08155384659767151,
+        0.18415385484695435,
+        0.019292308017611504,
+        1.0
+      ],
+      "limitation": "procedural noise/bump and translucent mixing are not carried into this PBR sample"
+    },
+    {
+      "source": "Living leaf variation 2",
+      "export": "Breeze_Living leaf variation 2",
+      "roughness": 0.6600000262260437,
+      "method": "representative linear color at source ColorRamp 0.5",
+      "base_color_linear": [
+        0.1403076946735382,
+        0.23676922917366028,
+        0.032446153461933136,
+        1.0
+      ],
+      "limitation": "procedural noise/bump and translucent mixing are not carried into this PBR sample"
+    },
+    {
+      "source": "Living leaf variation 3",
+      "export": "Breeze_Living leaf variation 3",
+      "roughness": 0.6600000262260437,
+      "method": "representative linear color at source ColorRamp 0.5",
+      "base_color_linear": [
+        0.04823077470064163,
+        0.1490769237279892,
+        0.020169232040643692,
+        1.0
+      ],
+      "limitation": "procedural noise/bump and translucent mixing are not carried into this PBR sample"
+    },
+    {
+      "source": "Living leaf variation 4",
+      "export": "Breeze_Living leaf variation 4",
+      "roughness": 0.6600000262260437,
+      "method": "representative linear color at source ColorRamp 0.5",
+      "base_color_linear": [
+        0.19292309880256653,
+        0.2806153893470764,
+        0.041215382516384125,
+        1.0
+      ],
+      "limitation": "procedural noise/bump and translucent mixing are not carried into this PBR sample"
+    },
+    {
+      "source": "Ivory meadow petals",
+      "export": "Breeze_Ivory meadow petals",
+      "roughness": 0.6399999856948853,
+      "method": "source Principled base color",
+      "base_color_linear": [
+        0.8799999952316284,
+        0.8100000023841858,
+        0.6399999856948853,
+        1.0
+      ],
+      "limitation": "procedural noise/bump and translucent mixing are not carried into this PBR sample"
+    },
+    {
+      "source": "BakedLeafCluster_Albedo_Normal_Alpha",
+      "export": "Breeze_BakedLeafCluster_Albedo_Normal_CutoutMaterial",
+      "roughness": 0.8600000143051147,
+      "method": "original UV and embedded source image; explicit PBR alpha mask",
+      "albedo_image": "cluster_albedo.png",
+      "normal_image": "cluster_normal.png",
+      "alpha_cutoff": 0.42,
+      "color_adjustment": "glTF baseColorFactor [0.94, 1, 0.97, 1]; modest relative green tint only; source gamma/value lift is not baked",
+      "source_color_adjustment_not_exact": {
+        "gamma": 0.9,
+        "value": 1.16,
+        "saturation": 1.08,
+        "rgb_multiplier": [
+          0.98,
+          1.13,
+          1.05
+        ]
+      }
+    },
+    {
+      "source": "Oak_IndividualCurvedLeaves",
+      "export": "Breeze_Oak_IndividualCurvedLeaves",
+      "roughness": 0.8700000047683716,
+      "method": "original UV and embedded source image; explicit PBR alpha mask",
+      "albedo_image": "oak_single_leaves_rgba.png",
+      "normal_image": null,
+      "alpha_cutoff": 0.42,
+      "color_adjustment": "glTF baseColorFactor [0.94, 1, 0.97, 1]; modest relative green tint only; source gamma/value lift is not baked",
+      "source_color_adjustment_not_exact": {
+        "gamma": 0.9,
+        "value": 1.16,
+        "saturation": 1.08,
+        "rgb_multiplier": [
+          0.98,
+          1.13,
+          1.05
+        ]
+      }
+    }
+  ],
+  "validation": {
+    "mesh_objects": 6,
+    "mesh_primitives": 12,
+    "all_primitives_have_position_normal_color0": true,
+    "color_r_range_in_glb": [
+      0.0,
+      1.0
+    ],
+    "root_nodes_present": true,
+    "uv_on_textured_primitives": true,
+    "embedded_images": 3,
+    "no_alpha_import_name_hint": true,
+    "source_hash_preserved": true,
+    "lights_and_cameras_absent": true
+  },
+  "consumer_contract": "Use COLOR.r only as wind weight; custom preview shader must not multiply vertex color into albedo. Default glTF material vertex-color multiplication is unsuitable for this data channel.",
+  "limits": [
+    "Independent PBR asset sample, not the complete sanctuary lighting or scene.",
+    "Procedural ground-plant color/bump/translucency is approximated by representative color.",
+    "Atlas normal map is preserved; outer folded leaf source has no normal texture and retains its geometric normals.",
+    "Leaf gamma/value/saturation chain is not reproduced exactly; modest green tint is applied as an explicit base-color factor."
+  ]
+}

@@ -3,6 +3,7 @@
 /game/.import/
 /game/.mono/
 /game/export_credentials.cfg
+/tools/local_config.json
 
 # Builds, test captures, downloaded engine templates and local Python environments.
 /builds/

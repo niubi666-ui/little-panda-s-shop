@@ -2,13 +2,14 @@ extends RefCounted
 ## Independent content boundary; never imports combat or application modules.
 
 const Catalog = preload("res://content/builds/build_catalog.gd")
-const SCHEMA_VERSION := 4
+const SCHEMA_VERSION := 5
 const MAX_ENTRIES := 512
 const MAX_RANKS := 64
 const MAX_STRING_LENGTH := 128
 const MAX_TAGS := 64
 const MAX_SAFE_INTEGER := 9007199254740991
 const EFFECT_FIELDS := {
+	"form": ["form_id"],
 	"pierce": ["trigger", "scope", "max_hits"],
 	"area_status": ["source_effect_id", "status_id", "allowed_origins", "include_primary", "max_targets"],
 	"status": ["status_id", "trigger", "allowed_origins", "max_per_parent", "max_per_root"],
@@ -39,25 +40,30 @@ func load_catalog(manifest_path: String = "res://data/manifest.json") -> Catalog
 		return null
 	var catalog := decode(data)
 	if catalog == null: return null
-	if not data.status_rules.actor_responses.is_empty():
-		if not manifest.has("combat_prototype_file"):
-			errors.append("status responses require combat manifest")
-			return null
-		var combat: Variant = _read(manifest.combat_prototype_file)
-		if not combat is Dictionary or not combat.has("actors") or not combat.actors is Array:
-			errors.append("invalid combat actor references")
-			return null
-		var ids: Array = []
-		for actor in combat.actors:
-			if actor is Dictionary and actor.has("id"): ids.append(actor.id)
-		for id in data.status_rules.actor_responses:
-			if not ids.has(id): errors.append("unknown status response actor: " + str(id))
+	if not manifest.has("combat_prototype_file"):
+		errors.append("action forms require combat manifest")
+		return null
+	var combat: Variant = _read(manifest.combat_prototype_file)
+	if not combat is Dictionary or not combat.has("actors") or not combat.actors is Array or not combat.has("abilities") or not combat.abilities is Array:
+		errors.append("invalid combat references")
+		return null
+	var ability_ids: Dictionary = {}
+	for ability in combat.abilities:
+		if ability is Dictionary and ability.has("id"): ability_ids[ability.id] = true
+	for form in data.forms:
+		for id in form.ability_ids:
+			if not ability_ids.has(id): errors.append("unknown combat ability in form " + str(form.id) + ": " + str(id))
+	var actor_ids: Dictionary = {}
+	for actor in combat.actors:
+		if actor is Dictionary and actor.has("id"): actor_ids[actor.id] = true
+	for id in data.status_rules.actor_responses:
+		if not actor_ids.has(id): errors.append("unknown status response actor: " + str(id))
 	return catalog if errors.is_empty() else null
 
 
 func decode(data: Variant) -> Catalog:
 	errors.clear()
-	if not _object(data, ["schema_version", "offer", "limits", "stats", "upgrades", "projectiles", "test_attacks", "statuses", "status_rules", "test_presets"], "build"):
+	if not _object(data, ["schema_version", "offer", "limits", "stats", "upgrades", "projectiles", "test_attacks", "statuses", "status_rules", "test_presets", "actions", "forms"], "build"):
 		return null
 	if not _integer(data.schema_version, 1, MAX_SAFE_INTEGER, "build.schema_version") or data.schema_version != SCHEMA_VERSION:
 		errors.append("build.schema_version: unsupported version")
@@ -74,6 +80,8 @@ func decode(data: Variant) -> Catalog:
 	_validate_projectiles(data)
 	if not errors.is_empty(): return null
 	_validate_statuses(data)
+	if not errors.is_empty(): return null
+	_validate_actions(data)
 	if not errors.is_empty(): return null
 	_validate_references(data)
 	if not errors.is_empty(): return null
@@ -96,8 +104,9 @@ func _read(path: String) -> Variant:
 
 func _validate_offer(value: Variant) -> void:
 	var path := "build.offer"
-	if not _object(value, ["count", "pool_ids", "fallback_ids", "initial_offers", "rewards_per_wave", "max_queued_offers"], path):
+	if not _object(value, ["count", "pool_ids", "fallback_ids", "initial_offers", "rewards_per_wave", "max_queued_offers", "target_weighting"], path):
 		return
+	if value.target_weighting != "uniform": errors.append(path + ": unsupported target weighting")
 	_integer(value.count, 1, 8, path + ".count")
 	_integer(value.initial_offers, 0, MAX_ENTRIES, path + ".initial_offers")
 	_integer(value.rewards_per_wave, 0, MAX_ENTRIES, path + ".rewards_per_wave")
@@ -126,10 +135,11 @@ func _validate_limits(value: Variant) -> void:
 
 func _validate_stats(value: Variant) -> void:
 	var path := "build.stats"
-	if not _object(value, ["damage_scale_min", "damage_scale_max", "move_scale_min", "move_scale_max"], path):
+	if not _object(value, ["damage_scale_min", "damage_scale_max", "move_scale_min", "move_scale_max", "damage_composition"], path):
 		return
 	var valid := true
-	for key in value:
+	if value.damage_composition != "additive_then_clamp": errors.append(path + ": unsupported damage composition")
+	for key in ["damage_scale_min", "damage_scale_max", "move_scale_min", "move_scale_max"]:
 		valid = _number(value[key], 0.0, 10.0, path + "." + key, true) and valid
 	if valid and (value.damage_scale_min > value.damage_scale_max or value.move_scale_min > value.move_scale_max):
 		errors.append(path + ": minimum exceeds maximum")
@@ -138,9 +148,13 @@ func _validate_stats(value: Variant) -> void:
 
 
 func _validate_upgrade(value: Variant, path: String) -> void:
-	var fields := ["id", "name_key", "description_key", "weight", "max_rank", "requires", "excludes", "required_tags", "granted_tags", "effect_type", "ranks"]
+	var fields := ["id", "name_key", "description_key", "weight", "max_rank", "requires", "excludes", "required_tags", "granted_tags", "effect_type", "ranks", "scope", "layer", "action_ids", "test_only"]
 	if not _object(value, fields, path):
 		return
+	if value.scope not in ["global", "action"]: errors.append(path + ": unsupported scope")
+	if value.layer not in ["form", "core", "support", "synergy"]: errors.append(path + ": unsupported layer")
+	if not value.test_only is bool: errors.append(path + ": test_only must be boolean")
+	_strings(value.action_ids, 16, path + ".action_ids")
 	for key in ["id", "name_key", "description_key", "effect_type"]:
 		_string(value[key], path + "." + key)
 	_number(value.weight, 0.0, 1000000000.0, path + ".weight")
@@ -177,7 +191,7 @@ func _validate_upgrade(value: Variant, path: String) -> void:
 					if rank[key] not in ["world_ray", "none"]: errors.append(rank_path + ": unsupported occlusion")
 				"sight_height_m": _number(rank[key], 0, 10, rank_path + "." + key, true)
 
-				"projectile_id", "status_id", "source_effect_id": _string(rank[key], rank_path + "." + key)
+				"projectile_id", "status_id", "source_effect_id", "form_id": _string(rank[key], rank_path + "." + key)
 				"trigger":
 					if rank[key] != "enemy_contact": errors.append(rank_path + ": unsupported trigger")
 				"scope":
@@ -395,7 +409,7 @@ func _validate_projectiles(data: Dictionary) -> void:
 		return
 	var ids: Dictionary = {}
 	for attack in data.test_attacks:
-		if not _object(attack, ["id", "projectile_id", "damage", "cooldown_sec"], "test_attack"): continue
+		if not _object(attack, ["id", "projectile_id", "damage", "cooldown_sec", "action_id"], "test_attack"): continue
 		if not _string(attack.id, "test_attack.id"): continue
 		_string(attack.projectile_id, "test_attack.projectile_id")
 		if ids.has(attack.id): errors.append("duplicate test attack")
@@ -471,29 +485,152 @@ func _validate_presets(data: Dictionary) -> void:
 		return
 	var entries: Dictionary = {}
 	for entry in data.upgrades: entries[entry.id] = entry
+	var actions: Dictionary = {}
+	for action in data.actions: actions[action.id] = action
 	var ids: Dictionary = {}
 	for preset in data.test_presets:
-		if not _object(preset, ["id", "name_key", "upgrade_ids"], "test_preset"): continue
+		if not _object(preset, ["id", "name_key", "selections"], "test_preset"): continue
 		if not _string(preset.id, "test_preset.id"): continue
 		_string(preset.name_key, "test_preset.name_key")
 		if ids.has(preset.id): errors.append("duplicate test preset id")
 		ids[preset.id] = true
-		if not preset.upgrade_ids is Array or preset.upgrade_ids.is_empty() or preset.upgrade_ids.size() > MAX_ENTRIES:
-			errors.append("test_preset.upgrade_ids: expected bounded nonempty sequence")
+		if not preset.selections is Array or preset.selections.size() > MAX_ENTRIES:
+			errors.append("test_preset.selections: expected bounded sequence")
 			continue
-		var ranks: Dictionary = {}
-		var tags: Dictionary = {}
-		for id in preset.upgrade_ids:
-			if not _string(id, "test_preset.upgrade_ids") or not entries.has(id):
-				errors.append("test_preset: unknown upgrade reference")
+		var selected: Dictionary = {}
+		var slots: Dictionary = {}
+		for selection in preset.selections:
+			if not _object(selection, ["upgrade_id", "action_id", "rank"], "test_preset.selection"): continue
+			if not _string(selection.upgrade_id, "preset.upgrade_id") or not entries.has(selection.upgrade_id):
+				errors.append("test_preset: unknown upgrade")
 				continue
-			var entry: Dictionary = entries[id]
+			var entry: Dictionary = entries[selection.upgrade_id]
+			if not _string(selection.action_id, "preset.action_id"): continue
+			if entry.test_only: errors.append("test_preset: debug upgrade forbidden")
+			if not _integer(selection.rank, 1, int(entry.max_rank), "preset.rank"): continue
+			var target: String = selection.action_id
+			if target != "global" and actions.has(target) and actions[target].test_only: errors.append("test_preset: debug action forbidden")
+			if (entry.scope == "global" and target != "global") or (entry.scope == "action" and not entry.action_ids.has(target)):
+				errors.append("test_preset: wrong action binding")
+			var identity := target + ":" + str(selection.upgrade_id)
+			if selected.has(identity): errors.append("test_preset: duplicate identity")
+			selected[identity] = true
+			if entry.layer in ["form", "core"]:
+				var slot := target + ":" + str(entry.layer)
+				if slots.has(slot): errors.append("test_preset: duplicate slot")
+				slots[slot] = true
+		for selection in preset.selections:
+			if not selection is Dictionary or not selection.has("upgrade_id") or not entries.has(selection.upgrade_id) or not selection.has("action_id"): continue
+			var entry: Dictionary = entries[selection.upgrade_id]
 			for required in entry.requires:
-				if not ranks.has(required): errors.append("test_preset: prerequisite must appear before upgrade " + id)
+				if not selected.has(str(selection.action_id) + ":" + str(required)): errors.append("test_preset: missing bound prerequisite")
 			for excluded in entry.excludes:
-				if ranks.has(excluded): errors.append("test_preset: mutually exclusive upgrades")
+				if selected.has(str(selection.action_id) + ":" + str(excluded)): errors.append("test_preset: excluded bound upgrade")
+
+		if errors.is_empty(): _validate_preset_capabilities(data, preset, entries)
+
+func _validate_preset_capabilities(data: Dictionary, preset: Dictionary, entries: Dictionary) -> void:
+	# Static content proof; app still preflights through the combat evaluator.
+	var forms: Dictionary = {}
+	var projectiles: Dictionary = {}
+	for form in data.forms: forms[form.id] = form
+	for projectile in data.projectiles: projectiles[projectile.id] = projectile
+	for action in data.actions:
+		var selected: Array = []
+		var form_id: String = action.base_form_id
+		var types: Array = []
+		var tags: Array = []
+		for item in preset.selections:
+			if item.action_id != action.id: continue
+			var entry: Dictionary = entries[item.upgrade_id]
+			var params: Dictionary = entry.ranks[int(item.rank) - 1]
+			selected.append({"entry": entry, "params": params})
+			types.append(entry.effect_type)
+			tags.append_array(entry.granted_tags)
+			if entry.effect_type == "form": form_id = params.form_id
+		var form: Dictionary = forms[form_id]
+		var projectile: Dictionary = projectiles[form.projectile_id] if projectiles.has(form.projectile_id) else {}
+		var origins: Array = ["direct_projectile" if not projectile.is_empty() else "direct_melee"]
+		if types.has("split"):
+			if projectile.is_empty() or str(projectile.child_id).is_empty(): errors.append("preset split needs same-action child-producing carrier")
+			origins.append("split_projectile")
+			if types.has("pierce") or types.has("area_status"): errors.append("preset unsupported complete contact strategy")
+		if types.has("pierce") and projectile.is_empty(): errors.append("preset pierce needs same-action projectile")
+		var status_ids: Array = []
+		for value in selected:
+			var entry: Dictionary = value.entry
+			var params: Dictionary = value.params
 			for tag in entry.required_tags:
-				if not tags.has(tag): errors.append("test_preset: required tag missing before upgrade " + id)
-			ranks[id] = int(ranks.get(id, 0)) + 1
-			if ranks[id] > entry.max_rank: errors.append("test_preset: upgrade rank exceeds maximum")
-			for tag in entry.granted_tags: tags[tag] = true
+				if not tags.has(tag): errors.append("preset missing same-action tag")
+			if entry.effect_type in ["status", "explosion"]:
+				var compatible := false
+				for origin in origins:
+					if params.allowed_origins.has(origin): compatible = true
+				if not compatible: errors.append("preset impact has no compatible carrier")
+			if entry.effect_type == "status": status_ids.append(params.status_id)
+			if entry.effect_type == "area_status":
+				var compatible := false
+				for source in selected:
+					if source.entry.id != params.source_effect_id: continue
+					for origin in origins:
+						if params.allowed_origins.has(origin) and source.params.allowed_origins.has(origin): compatible = true
+				if not compatible: errors.append("preset area status has no same-action source")
+				status_ids.append(params.status_id)
+		for value in selected:
+			if value.entry.effect_type == "status_duration" and not status_ids.has(value.params.status_id): errors.append("preset duration has no same-action status carrier")
+
+func _validate_actions(data: Dictionary) -> void:
+	if not data.actions is Array or data.actions.is_empty() or data.actions.size() > 16 or not data.forms is Array or data.forms.is_empty() or data.forms.size() > 64:
+		errors.append("build: bounded nonempty actions/forms required")
+		return
+	var forms: Dictionary = {}
+	var actions: Dictionary = {}
+	var projectiles: Dictionary = {}
+	for definition in data.projectiles: projectiles[definition.id] = true
+	for form in data.forms:
+		if not _object(form, ["id", "name_key", "executor", "ability_ids", "projectile_id", "presentation_key"], "form"): continue
+		for field in ["id", "name_key", "presentation_key"]: _string(form[field], "form." + field)
+		if not errors.is_empty(): return
+		if forms.has(form.id): errors.append("duplicate form id")
+		forms[form.id] = form
+		_strings(form.ability_ids, 16, "form.ability_ids")
+		if form.executor not in ["melee", "projectile"]: errors.append("unsupported form executor")
+		if not form.projectile_id is String: errors.append("form.projectile_id must be string")
+		elif form.executor == "projectile" and not projectiles.has(form.projectile_id): errors.append("unknown form projectile")
+		elif form.executor == "melee" and (not form.projectile_id.is_empty() or form.ability_ids.is_empty()): errors.append("melee form needs abilities and no projectile")
+	for action in data.actions:
+		if not _object(action, ["id", "name_key", "base_form_id", "form_ids", "test_only"], "action"): continue
+		for field in ["id", "name_key", "base_form_id"]: _string(action[field], "action." + field)
+		if not errors.is_empty(): return
+		if action.id == "global" or actions.has(action.id): errors.append("duplicate/reserved action id")
+		actions[action.id] = action
+		if not action.test_only is bool: errors.append("action.test_only must be boolean")
+		if not _strings(action.form_ids, 64, "action.form_ids"): continue
+		if not action.form_ids.has(action.base_form_id): errors.append("base form must be allowed")
+		for id in action.form_ids:
+			if not forms.has(id): errors.append("unknown action form")
+	if not errors.is_empty(): return
+	for attack in data.test_attacks:
+		if not attack.action_id is String or not actions.has(attack.action_id) or not actions[attack.action_id].test_only:
+			errors.append("test attack requires isolated debug action")
+		elif forms[actions[attack.action_id].base_form_id].projectile_id != attack.projectile_id: errors.append("test attack projectile disagrees with debug form")
+	for entry in data.upgrades:
+		if entry.scope == "global":
+			if not entry.action_ids.is_empty() or entry.layer != "support" or entry.effect_type not in ["damage_scale", "move_scale"]:
+				errors.append("global supports only unbound numeric actor stats")
+		else:
+			if entry.action_ids.is_empty() or entry.effect_type == "move_scale": errors.append("action scope needs targets and cannot change actor movement")
+			for id in entry.action_ids:
+				if not actions.has(id): errors.append("unknown upgrade action")
+				elif entry.test_only and not actions[id].test_only: errors.append("debug upgrade cannot target formal action")
+		var expected_layer: String = "form" if entry.effect_type == "form" else ("core" if entry.effect_type in ["status", "explosion"] else ("synergy" if entry.effect_type == "area_status" else "support"))
+		if entry.layer != expected_layer: errors.append("effect type and layer disagree")
+		if entry.effect_type in ["projectile", "chain"] and not entry.test_only: errors.append("legacy projectile/chain restricted to fixture")
+		if entry.effect_type == "form":
+			for rank in entry.ranks:
+				if not forms.has(rank.form_id): errors.append("unknown upgrade form")
+				for target in entry.action_ids:
+					if actions.has(target) and not actions[target].form_ids.has(rank.form_id): errors.append("form upgrade not allowed by target")
+	for id in data.offer.pool_ids + data.offer.fallback_ids:
+		for entry in data.upgrades:
+			if entry.id == id and entry.test_only: errors.append("debug upgrade in formal offer pool")

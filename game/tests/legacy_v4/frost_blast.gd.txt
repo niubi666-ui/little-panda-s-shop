@@ -1,0 +1,167 @@
+extends "res://tests/pierce_runtime.gd"
+const Payloads = preload("res://combat/effects/area_payloads.gd")
+const Impact = preload("res://combat/builds/impact_effects.gd")
+
+func run() -> void:
+	_builds=BuildLoader.new().load_catalog()
+	_combat=CombatLoader.new().load_catalog()
+	_resolver.configure(_builds)
+	check_explicit_payload()
+	check_independent_filters()
+	check_immunity_and_lethal()
+	check_frost_snapshot_and_budget()
+	check_area_lifecycle()
+	check_full_legal_budget()
+	print("FROST_BLAST ",JSON.stringify({"failures":failures}))
+	quit(0 if failures.is_empty() else 1)
+
+func check_explicit_payload() -> void:
+	for mode in ["normal","direct","frost"]:
+		var player:=make_actor("player",0)
+		var a:=make_actor("brute",1)
+		var b:=make_actor("brute",1)
+		var later:=make_actor("brute",1)
+		a.position=Vector3(0,0,-1);b.position=Vector3(1,0,-1);later.position=Vector3(0,0,-5)
+		var ranks:Dictionary={"pierce":1,"impact_blast":1}
+		if mode=="direct":ranks.contact_freeze=1
+		if mode=="frost":ranks.frost_blast=1
+		var runtime:=arrow_runtime(player,[a,b,later],ranks,func(_f,_t):return null)
+		var blasts:Array=[]
+		runtime.area_payload_emitted.connect(func(p,r,s):blasts.append([p,r,s]))
+		fire(runtime);runtime.tick(0.1)
+		check(a.control_locked==(mode in ["direct","frost"]),"%s primary status follows explicit grant"%mode)
+		check(b.control_locked==(mode=="frost"),"%s secondary status never inherits global on-contact freeze"%mode)
+		check(is_equal_approx(a.health.maximum-a.health.current,float(_builds.test_attack("test_arrow").damage)),"primary status inclusion does not also include primary damage")
+		check(b.health.current<b.health.maximum,"range damage remains active")
+		runtime.tick(0.3)
+		check(later.control_locked==(mode=="direct"),"later pierced contacts only carry their explicit direct effects")
+		check(blasts.size()==1 and blasts[0][2]==(mode=="frost"),"only first contact produces exactly one correctly typed area")
+		check(runtime.diagnostics().rejected==0,"ordinary composite preset does not hit guard budgets")
+		cleanup(runtime,[player,a,b,later])
+
+func request_for(ranks: Dictionary, primary, damage: float=10.0) -> Dictionary:
+	var context:Dictionary={"program":_resolver.resolve(ranks),"impact_counts":{}}
+	var fact:Dictionary={"origin":"direct_projectile","parent_id":"fixture","target_handle":primary.handle,"position":primary.position,"damage":damage}
+	return Impact.requests(context,fact)[0]
+
+func check_independent_filters() -> void:
+	var primary:=make_actor("brute",1)
+	var near:=make_actor("brute",1)
+	var blocked:=make_actor("brute",1)
+	var distant:=make_actor("brute",1)
+	var ally:=make_actor("player",0)
+	var dead:=make_actor("brute",1)
+	primary.position=Vector3.ZERO;near.position=Vector3(1,0,0);blocked.position=Vector3(-1,0,0);distant.position=Vector3(20,0,0)
+	dead.receive_hit(dead.health.maximum)
+	var targets:Array=[near,blocked,primary,near,distant,ally,dead]
+	var request:=request_for({"impact_blast":1,"frost_blast":1},primary)
+	var wall:=func(_f,t):return Vector3.ZERO if t.x<0 else null
+	var plan:=Payloads.plan(request,0,targets,wall)
+	check(plan.damage.size()==1 and plan.damage[0].handle==near.handle,"damage excludes center/ally/dead/blocked/outside and dedups")
+	check(plan.statuses.size()==2 and plan.statuses[0].handle==primary.handle,"status independently includes center using same geometry and sorting")
+	check(plan.statuses[1].handle==near.handle,"status never reaches blocked or distant targets")
+	request=request.duplicate(true)
+	request.payloads[0].max_targets=1
+	request.payloads[1].max_targets=1
+	plan=Payloads.plan(request,0,targets,wall)
+	check(plan.damage.size()==1 and plan.damage[0].handle==near.handle and plan.statuses.size()==1 and plan.statuses[0].handle==primary.handle,"independent target caps do not share primary exclusions")
+	request.payloads[0].include_primary=true
+	request.payloads[1].include_primary=false
+	plan=Payloads.plan(request,0,targets,wall)
+	check(plan.damage[0].handle==primary.handle and plan.statuses[0].handle==near.handle,"explicit inverse primary policies also work")
+	check(Payloads.plan(request,0,targets,Callable()).damage.is_empty(),"missing occlusion query rejects geometry")
+	for actor in [primary,near,blocked,distant,ally,dead]:actor.free()
+
+func check_immunity_and_lethal() -> void:
+	var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://data/builds/prototype.json"))
+	data.status_rules.actor_responses["brute"]="immune"
+	var loader := BuildLoader.new()
+	var immune=loader.decode(data)
+	check(immune != null, "immune fixture validates: " + str(loader.errors))
+	if immune == null: return
+	var player:=make_actor("player",0)
+	var primary:=make_actor("scout",1)
+	var other:=make_actor("brute",1)
+	primary.position=Vector3(0,0,-1);other.position=Vector3(1,0,-1)
+	# Actor IDs are fixture inputs, not gameplay defaults.
+	var runtime:=arrow_runtime(player,[primary,other],{"impact_blast":1,"frost_blast":1},func(_f,_t):return null,immune)
+	primary.dodge=_combat.dodge();primary.dodge_left=primary.dodge.duration;primary.dodge_age=0.0
+	fire(runtime);runtime.tick(0.1)
+	check(primary.health.current==primary.health.maximum and primary.control_locked,"zero direct damage still permits center freeze")
+	check(other.health.current<other.health.maximum and not other.control_locked,"control immune targets still take area damage")
+	cleanup(runtime,[player,primary,other])
+	for target_invulnerable in [true,false]:
+		player=make_actor("player",0);primary=make_actor("brute",1);other=make_actor("brute",1)
+		primary.position=Vector3(0,0,-1);other.position=Vector3(1,0,-1)
+		primary.health.current=1.0
+		if target_invulnerable:
+			other.dodge=_combat.dodge();other.dodge_left=other.dodge.duration;other.dodge_age=0.0
+		else:other.health.current=1.0
+		runtime=arrow_runtime(player,[primary,other],{"impact_blast":1,"frost_blast":1},func(_f,_t):return null)
+		fire(runtime);runtime.tick(0.1)
+		check(not primary.health.alive() and not primary.control_locked,"dead center never receives control")
+		check(other.control_locked==target_invulnerable,"area status survives zero damage, but never resurrects area-killed target")
+		cleanup(runtime,[player,primary,other])
+
+func check_frost_snapshot_and_budget() -> void:
+	var player:=make_actor("player",0)
+	var primary:=make_actor("brute",1)
+	var other:=make_actor("brute",1)
+	primary.position=Vector3(0,0,-1);other.position=Vector3(1,0,-1)
+	var runtime:=arrow_runtime(player,[primary,other],{"pierce":1,"impact_blast":1,"frost_blast":1,"contact_freeze":1},func(_f,_t):return null)
+	fire(runtime)
+	runtime.set_program(_resolver.resolve({"pierce":1,"impact_blast":1,"frost_blast":1,"freeze_duration":1}))
+	runtime.tick(0.1)
+	check(is_equal_approx(runtime.statuses.snapshot(other).test_freeze.remaining,float(_builds.status("test_freeze").duration_sec)),"frost payload duration is from launch snapshot")
+	var context:Dictionary=runtime._roots.values()[0]
+	check(context.control_attempts.size()==2,"direct and area requests share one root/group target dedup")
+	check(runtime.diagnostics().budgets.values()[0]==int(_builds.limits().root_effect_budget)-3,"spawn + one composite area + direct status are three requests regardless of target count")
+	runtime.clear_room()
+	fire(runtime);runtime.tick(0.1)
+	check(runtime.statuses.snapshot(other).test_freeze.remaining>float(_builds.status("test_freeze").duration_sec),"future cast receives freeze duration modifier from area carrier")
+	check(runtime.diagnostics().budgets.values()[0]==int(_builds.limits().root_effect_budget)-2,"composite area status does not secretly open per-victim roots")
+	cleanup(runtime,[player,primary,other])
+
+func check_area_lifecycle() -> void:
+	for signal_type in ["visual","damage"]:
+		var player:=make_actor("player",0)
+		var primary:=make_actor("brute",1)
+		var a:=make_actor("brute",1)
+		var b:=make_actor("brute",1)
+		primary.position=Vector3(0,0,-1);a.position=Vector3(1,0,-1);b.position=Vector3(-2,0,-1)
+		var runtime:=arrow_runtime(player,[primary,a,b],{"impact_blast":1,"frost_blast":1},func(_f,_t):return null)
+		var ref:WeakRef=weakref(runtime)
+		if signal_type=="visual":runtime.area_payload_emitted.connect(func(_p,_r,_s):ref.get_ref().clear_room())
+		else:
+			runtime.damage_applied.connect(func(_s,_t,_d,o):
+				if o=="explosion":ref.get_ref().clear_room())
+		fire(runtime);runtime.tick(0.1)
+		check(b.health.current==b.health.maximum and not a.control_locked and not primary.control_locked,"clear during %s cancels later payload effects"%signal_type)
+		check(runtime.diagnostics().roots==0 and runtime.statuses.visuals().is_empty(),"stale composite cannot resurrect root or statuses")
+		cleanup(runtime,[player,primary,a,b])
+
+func check_full_legal_budget() -> void:
+	# Eight overlapping targets stress the authored per-root caps in a legal
+	# fully ranked split build (pierce is deliberately excluded by its contract).
+	var player:=make_actor("player",0)
+	var actors:Array=[player]
+	var enemies:Array=[]
+	for i in 8:
+		var target:=make_actor("brute",1)
+		target.position=Vector3(0,0,-1)
+		enemies.append(target)
+		actors.append(target)
+	var ranks:Dictionary={}
+	for entry in _builds.entries():
+		if entry.id!="pierce":ranks[entry.id]=int(entry.max_rank)
+	var runtime:=make_runtime(player,enemies,ranks,func(_f,_t):return null)
+	var melee=preload("res://combat/effects/melee_resolver.gd").new()
+	melee.enemy_contact.connect(runtime.on_melee_contact)
+	melee.confirmed_hit.connect(runtime.on_melee_hit)
+	melee.set_damage_modifier(runtime.melee_damage)
+	start_cast(player)
+	player.runner.tick(_combat.ability("slash.1").windup)
+	melee.resolve(player,enemies)
+	for i in 8:runtime.tick(0.1)
+	check(runtime.diagnostics().rejected==0,"authored fully ranked split/status/blast build stays within root guard budget")
+	cleanup(runtime,actors)

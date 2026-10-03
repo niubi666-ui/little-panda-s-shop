@@ -11,11 +11,13 @@
     "test_attacks",
     "statuses",
     "status_rules",
-    "test_presets"
+    "test_presets",
+    "actions",
+    "forms"
   ],
   "properties": {
     "schema_version": {
-      "const": 4
+      "const": 5
     },
     "offer": {
       "type": "object",
@@ -26,7 +28,8 @@
         "fallback_ids",
         "initial_offers",
         "rewards_per_wave",
-        "max_queued_offers"
+        "max_queued_offers",
+        "target_weighting"
       ],
       "properties": {
         "count": {
@@ -70,6 +73,9 @@
           "type": "integer",
           "minimum": 1,
           "maximum": 512
+        },
+        "target_weighting": {
+          "const": "uniform"
         }
       }
     },
@@ -140,7 +146,8 @@
         "damage_scale_min",
         "damage_scale_max",
         "move_scale_min",
-        "move_scale_max"
+        "move_scale_max",
+        "damage_composition"
       ],
       "properties": {
         "damage_scale_min": {
@@ -162,6 +169,9 @@
           "type": "number",
           "exclusiveMinimum": 0,
           "maximum": 10
+        },
+        "damage_composition": {
+          "const": "additive_then_clamp"
         }
       }
     },
@@ -183,7 +193,11 @@
           "required_tags",
           "granted_tags",
           "effect_type",
-          "ranks"
+          "ranks",
+          "scope",
+          "layer",
+          "action_ids",
+          "test_only"
         ],
         "properties": {
           "id": {
@@ -269,13 +283,42 @@
               "status",
               "status_duration",
               "pierce",
-              "area_status"
+              "area_status",
+              "form"
             ]
           },
           "ranks": {
             "type": "array",
             "minItems": 1,
             "maxItems": 64
+          },
+          "scope": {
+            "enum": [
+              "global",
+              "action"
+            ]
+          },
+          "layer": {
+            "enum": [
+              "form",
+              "core",
+              "support",
+              "synergy"
+            ]
+          },
+          "action_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^\\S(?:.*\\S)?$"
+            },
+            "maxItems": 512,
+            "uniqueItems": true
+          },
+          "test_only": {
+            "type": "boolean"
           }
         },
         "oneOf": [
@@ -702,6 +745,30 @@
                 }
               }
             }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "form"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "form_id"
+                  ],
+                  "properties": {
+                    "form_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128,
+                      "pattern": "^\\S(?:.*\\S)?$"
+                    }
+                  }
+                }
+              }
+            }
           }
         ]
       }
@@ -778,7 +845,8 @@
           "id",
           "projectile_id",
           "damage",
-          "cooldown_sec"
+          "cooldown_sec",
+          "action_id"
         ],
         "properties": {
           "id": {
@@ -802,6 +870,12 @@
             "type": "number",
             "exclusiveMinimum": 0,
             "maximum": 30
+          },
+          "action_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
           }
         }
       }
@@ -1018,7 +1092,7 @@
         "required": [
           "id",
           "name_key",
-          "upgrade_ids"
+          "selections"
         ],
         "properties": {
           "id": {
@@ -1033,19 +1107,149 @@
             "maxLength": 128,
             "pattern": "^\\S(?:.*\\S)?$"
           },
-          "upgrade_ids": {
+          "selections": {
             "type": "array",
-            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "upgrade_id",
+                "action_id",
+                "rank"
+              ],
+              "properties": {
+                "upgrade_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^\\S(?:.*\\S)?$"
+                },
+                "action_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^\\S(?:.*\\S)?$"
+                },
+                "rank": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 64
+                }
+              }
+            },
             "maxItems": 512,
+            "minItems": 0
+          }
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name_key",
+          "base_form_id",
+          "form_ids",
+          "test_only"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "name_key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "base_form_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "form_ids": {
+            "type": "array",
             "items": {
               "type": "string",
               "minLength": 1,
               "maxLength": 128,
               "pattern": "^\\S(?:.*\\S)?$"
-            }
+            },
+            "maxItems": 512,
+            "uniqueItems": true
+          },
+          "test_only": {
+            "type": "boolean"
           }
         }
-      }
+      },
+      "maxItems": 16,
+      "minItems": 1
+    },
+    "forms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name_key",
+          "executor",
+          "ability_ids",
+          "projectile_id",
+          "presentation_key"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "name_key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "executor": {
+            "enum": [
+              "melee",
+              "projectile"
+            ]
+          },
+          "ability_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^\\S(?:.*\\S)?$"
+            },
+            "maxItems": 512,
+            "uniqueItems": true
+          },
+          "projectile_id": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "presentation_key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^\\S(?:.*\\S)?$"
+          }
+        }
+      },
+      "maxItems": 64,
+      "minItems": 1
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema"

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://app/run_template_library.gd" id="script"]
+[ext_resource type="Resource" path="res://presentation/rooms/run_graybox/presentation.tres" id="graybox"]
+[resource]
+script = ExtResource("script")
+rooms = Dictionary[String, Resource]({"graybox": ExtResource("graybox")})

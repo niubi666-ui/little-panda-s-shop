@@ -8,6 +8,7 @@ var _waiting := 0.0
 var _alive: Dictionary = {}
 var _cancelled := false
 var _complete := false
+var _wave_rewarded := false
 var wave_index := -1
 func _init(waves: Array, delay: float) -> void:
 	_waves = waves
@@ -23,14 +24,22 @@ func enemy_killed(handle: int) -> void:
 			cleared.emit()
 		else:
 			_waiting = _delay
-			wave_completed.emit(wave_index)
+			if not _wave_rewarded:
+				_wave_rewarded = true
+				wave_completed.emit(wave_index)
 func tick(delta: float) -> void:
 	if _cancelled or _complete or not _alive.is_empty(): return
 	_waiting -= delta
 	if _waiting <= 0.0: _next()
 func _next() -> void:
 	wave_index += 1
+	_wave_rewarded = false
 	wave_requested.emit(_waves[wave_index])
+func reopen_for_training() -> void:
+	# App only calls this after victory; original wave identity and reward stay fixed.
+	_cancelled = false
+	_complete = false
+	_waiting = _delay
 func cancel() -> void:
 	_cancelled = true
 	_alive.clear()

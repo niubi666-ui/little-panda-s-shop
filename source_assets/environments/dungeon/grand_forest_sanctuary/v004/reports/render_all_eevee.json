@@ -1,0 +1,23 @@
+{
+  "renderer": "BLENDER_EEVEE",
+  "fps": 18,
+  "samples": 32,
+  "resolution": [
+    960,
+    600
+  ],
+  "clips": {
+    "canopy": {
+      "requested_frames": 72,
+      "completed_frames": 72,
+      "camera": "Camera_Breeze_Canopy",
+      "mean_render_seconds": 8.841211819444652
+    },
+    "panorama": {
+      "requested_frames": 54,
+      "completed_frames": 54,
+      "camera": "Camera_Panorama",
+      "mean_render_seconds": 8.594457650000011
+    }
+  }
+}

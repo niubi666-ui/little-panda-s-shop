@@ -1,0 +1,6 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://presentation/combat/frostfall_showcase/showcase.gd" id="script"]
+[ext_resource type="Resource" path="res://presentation/combat/frostfall_showcase/showcase_style.tres" id="style"]
+[node name="FrostfallShowcase" type="Node3D"]
+script = ExtResource("script")
+style = ExtResource("style")

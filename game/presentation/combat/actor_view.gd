@@ -21,13 +21,12 @@ func configure(owner_actor, settings, font: Font) -> void:
 	style = settings
 	actor_style = style.actor_presentations[actor.definition.id]
 	if actor.team == 0:
-		for ability in actor.attacks:
-			assert(style.weapon_tip_radius_by_ability.has(ability.id), "Missing sword presentation radius: " + ability.id)
-			assert(style.weapon_tip_radius_by_ability[ability.id] > style.blade_size.z / 2.0, "Sword presentation radius must contain half the blade")
-			assert(style.attack_motions.has(ability.id), "Missing attack presentation motion: " + ability.id)
-			var motion: AttackMotion = style.attack_motions[ability.id]
+		for key in style.attack_motions:
+			assert(style.weapon_tip_radius_by_ability.has(key), "Missing sword presentation radius: " + key)
+			assert(style.weapon_tip_radius_by_ability[key] > style.blade_size.z / 2.0, "Sword presentation radius must contain half the blade")
+			var motion: AttackMotion = style.attack_motions[key]
 			motion.validate()
-			assert(style.weapon_tip_radius_by_ability[ability.id] - motion.extension_distance - motion.pullback_distance > style.blade_size.z / 2.0, "Sword pullback must leave its midpoint in front of the actor")
+			assert(style.weapon_tip_radius_by_ability[key] - motion.extension_distance - motion.pullback_distance > style.blade_size.z / 2.0, "Sword pullback must leave its midpoint in front of the actor")
 	visual = actor_style.visual_scene.instantiate()
 	_visual_rest_basis = visual.basis
 	add_child(visual)
@@ -68,10 +67,12 @@ func configure(owner_actor, settings, font: Font) -> void:
 		hit_feedback.configure(actor, visual, style.hit_feedback, actor_style.body_height)
 ## Build presentation adapters can swap this scene; physics never reads it.
 func set_weapon_effect(scene: PackedScene) -> void:
-	assert(scene != null)
 	if is_instance_valid(weapon_effect):
 		weapon_effect.get_parent().remove_child(weapon_effect)
 		weapon_effect.queue_free()
+	weapon_effect = null
+	# Explicitly empty Resource slots disable VFX without changing the attack.
+	if scene == null: return
 	weapon_effect = scene.instantiate()
 	assert(weapon_effect.has_method("set_active") and weapon_effect.has_method("set_time_running"))
 	blade.add_child(weapon_effect)
@@ -80,6 +81,8 @@ func set_weapon_effect(scene: PackedScene) -> void:
 	weapon_effect.set_active(false)
 func refresh(delta: float = 0.0) -> void:
 	if hit_feedback != null: hit_feedback.tick(delta)
+	var custom_animation := visual.has_method("refresh_actor")
+	if custom_animation: visual.refresh_actor(actor, delta)
 	# Death can hide the actor before the remaining VFX tails have expired.
 	# Freeze their clocks on pause even when this view takes an early return.
 	if is_instance_valid(weapon_effect): weapon_effect.set_time_running(delta > 0.0)
@@ -87,6 +90,7 @@ func refresh(delta: float = 0.0) -> void:
 		_finish_weapon_pose()
 		_pose_visual(atan2(-actor.facing.x, -actor.facing.z), Vector3.ZERO)
 	visible = actor.health.alive() or (hit_feedback != null and hit_feedback.has_tail())
+	if custom_animation and visual.has_presentation_tail(): visible = true
 	if not visible: return
 	if not actor.health.alive():
 		blade_pivot.hide()
@@ -100,22 +104,25 @@ func refresh(delta: float = 0.0) -> void:
 	var yaw := atan2(-direction.x, -direction.z)
 	_pose_visual(yaw, Vector3.ZERO)
 	blade_pivot.rotation.y = yaw
-	if animation != null:
+	if animation != null and not custom_animation:
 		animation.speed_scale = 1.0 if delta > 0.0 else 0.0
 		var action: StringName = actor_style.move_animation if actor.velocity.length_squared() > 0.0 else actor_style.idle_animation
 		if animation.has_animation(action) and animation.current_animation != action:
 			animation.play(action, style.animation_blend_sec)
 	sector.visible = actor.team != 0 and (phase == "windup" or phase == "active")
+	var trail_enabled := true
 	if actor.team == 0:
 		# Preserve the approved sword/VFX placement when gameplay reach is tuned.
 		# Gameplay never reads this presentation radius or the selected effect.
-		var ability_id: String = actor.runner.ability.id if actor.runner.busy() else actor.attacks[0].id
-		var reach: float = style.weapon_tip_radius_by_ability[ability_id]
-		var motion: AttackMotion = style.attack_motions[ability_id]
+		var key := _motion_key()
+		var reach: float = style.weapon_tip_radius_by_ability[key]
+		var motion: AttackMotion = style.attack_motions[key]
 		var pose := motion.sample_pose(phase, _phase_progress(phase))
 		blade.position = Vector3(pose.lateral_offset, style.blade_offset.y + pose.grip_height_offset, -(reach - pose.tip_retreat - style.blade_size.z / 2.0))
+		blade.rotation.x = deg_to_rad(pose.pitch_deg)
 		blade_pivot.rotation.y += deg_to_rad(pose.yaw_deg)
 		_pose_visual(yaw, pose.body_degrees)
+		trail_enabled = motion.trail_enabled
 	if actor.runner.busy():
 		var ability = actor.runner.ability
 		if actor.team != 0:
@@ -126,10 +133,18 @@ func refresh(delta: float = 0.0) -> void:
 			var tint: Color = style.warning_color if phase == "windup" else style.strike_color
 			_draw_sector(ability.radius, ability.angle, tint)
 	if is_instance_valid(weapon_effect):
-		weapon_effect.set_active(phase == "active")
+		weapon_effect.set_active(phase == "active" and trail_enabled)
 		if weapon_effect.has_method("sample_current_pose"):
 			weapon_effect.sample_current_pose()
 	blade_pivot.visible = actor.team == 0 or actor.runner.busy()
+func _motion_key() -> String:
+	if not actor.runner.busy(): return actor.attacks[0].id
+	var key: String = actor.runner.presentation_key
+	if style.attack_motion_groups.has(key):
+		assert(style.attack_motion_groups[key].has(actor.runner.ability.id), "Missing ability in sword motion group: " + key)
+		key = style.attack_motion_groups[key][actor.runner.ability.id]
+	assert(style.attack_motions.has(key), "Missing configured sword motion: " + key)
+	return key
 func _phase_progress(phase: String) -> float:
 	if phase == "idle": return 0.0
 	var ability = actor.runner.ability

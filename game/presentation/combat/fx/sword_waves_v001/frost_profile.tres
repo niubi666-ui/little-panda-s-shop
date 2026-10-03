@@ -1,0 +1,76 @@
+[gd_resource type="Resource" load_steps=13 format=3]
+[ext_resource type="Script" path="res://presentation/combat/fx/sword_waves_v001/wave_profile.gd" id="profile"]
+[ext_resource type="ArrayMesh" path="res://assets/vfx/sword_waves_v001/models/frost_crescent.obj" id="blade_mesh"]
+[ext_resource type="ArrayMesh" path="res://assets/vfx/sword_waves_v001/models/frost_shard.obj" id="shard_mesh"]
+[ext_resource type="Material" path="res://presentation/combat/fx/sword_waves_v001/frost_blade.tres" id="blade"]
+[ext_resource type="Material" path="res://presentation/combat/fx/sword_waves_v001/frost_halo.tres" id="halo"]
+[ext_resource type="Material" path="res://presentation/combat/fx/sword_waves_v001/frost_ribbon.tres" id="ribbon"]
+[ext_resource type="Material" path="res://presentation/combat/fx/sword_waves_v001/frost_shard.tres" id="shard"]
+[ext_resource type="Material" path="res://presentation/combat/fx/sword_waves_v001/frost_mist.tres" id="mist"]
+[ext_resource type="Material" path="res://presentation/combat/fx/sword_waves_v001/frost_ring.tres" id="ring"]
+[ext_resource type="Material" path="res://presentation/combat/fx/sword_waves_v001/frost_flash.tres" id="flash"]
+[sub_resource type="Curve" id="growth"]
+max_value = 1.15
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.72, 1.08), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+[sub_resource type="Curve" id="fade"]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.13, 1), 0.0, 0.0, 0, 0, Vector2(0.65, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+[resource]
+script = ExtResource("profile")
+blade_mesh = ExtResource("blade_mesh")
+shard_mesh = ExtResource("shard_mesh")
+blade_material = ExtResource("blade")
+halo_material = ExtResource("halo")
+ribbon_material = ExtResource("ribbon")
+shard_material = ExtResource("shard")
+mist_material = ExtResource("mist")
+ring_material = ExtResource("ring")
+flash_material = ExtResource("flash")
+growth_curve = SubResource("growth")
+fade_curve = SubResource("fade")
+blade_scale = Vector3(1.95, 1.5, 1.85)
+blade_tilt_deg = -12.0
+projectile_unit_scale = Vector3(0.25641026, 1.0, 0.255)
+halo_scale = Vector3(1.075, 1.8, 1.10)
+embedded_shard_count = 9
+embedded_shard_size = Vector2(0.19, 0.42)
+echo_offsets = PackedVector3Array(0, 0.02, 0.22, 0, -0.05, 0.52, 0, 0.07, 0.86)
+echo_scales = PackedVector3Array(0.97, 1, 1, 0.86, 1, 0.95, 0.7, 1, 0.9)
+echo_opacity = PackedFloat32Array(0.27, 0.16, 0.08)
+ribbon_count = 8
+ribbon_segments = 28
+ribbon_length = 3.6
+ribbon_width = 0.22
+ribbon_spread = 1.45
+ribbon_wave = 0.12
+visual_seed = 6721
+trail_count = 104
+trail_lifetime = Vector2(0.4, 0.7)
+trail_size = Vector2(0.13, 0.37)
+trail_spread = 1.6
+trail_speed = 4.8
+trail_gravity = 0.3
+mist_count = 18
+mist_size = Vector2(0.7, 1.4)
+mist_opacity = 0.38
+light_color = Color(0.22, 0.72, 1.0, 1)
+light_energy = 1.1
+light_range = 3.4
+burst_count = 88
+burst_size = Vector2(0.13, 0.45)
+burst_speed = Vector2(3.0, 8.0)
+burst_gravity = 4.0
+burst_duration = 1.08
+burst_mist_count = 18
+burst_mist_size = Vector2(0.9, 1.7)
+burst_mist_spread = 1.7
+impact_ring_radius = 2.8
+impact_flash_size = 4.6
+impact_flash_duration = 0.22
+charge_sec = 0.18
+flight_sec = 0.82
+flight_distance = 10.0
+flight_height = 1.0
+duration_sec = 3.0
+trail_exit_sec = 0.42

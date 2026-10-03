@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/lightning_verdict_v001/bolt.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/tint = Color(0.86, 0.93, 1, 1)
+shader_parameter/energy = 5.0
+shader_parameter/intensity = 0.0
+shader_parameter/visual_time = 0.0
+shader_parameter/softness = 6.0

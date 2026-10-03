@@ -1,0 +1,19 @@
+{
+  "source": "E:/ShopGame/source_assets/environments/dungeon/grand_forest_sanctuary/v003/blender/grand_forest_sanctuary_v003_leaf_cutout.blend",
+  "fps": 24,
+  "seconds": 10,
+  "wind_direction": [0.86, 0.51, 0.0],
+  "direction_buckets": 8,
+  "phase_buckets": 3,
+  "main_frequency": 0.92,
+  "secondary_frequency": 1.47,
+  "gust_frequency": 0.36,
+  "flutter_frequency": 4.2,
+  "canopy_amplitude": 0.115,
+  "fern_amplitude": 0.067,
+  "flower_amplitude": 0.058,
+  "bellflower_amplitude": 0.050,
+  "shadow_amplitude": 0.045,
+  "render_samples": 32,
+  "render_resolution": [1152, 720]
+}

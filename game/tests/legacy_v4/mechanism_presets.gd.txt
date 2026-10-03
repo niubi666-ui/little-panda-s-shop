@@ -1,0 +1,206 @@
+extends SceneTree
+## Focused capability/compiler/training transaction coverage; no actor rendering.
+const Loader = preload("res://content/builds/build_loader.gd")
+const Resolver = preload("res://combat/builds/build_resolver.gd")
+const Caps = preload("res://combat/builds/projectile_capabilities.gd")
+const Session = preload("res://app/session/training_build_session.gd")
+var failures: Array[String] = []
+var catalog
+var resolver := Resolver.new()
+var reject_commit := false
+var mutate_commit := false
+var commits := 0
+
+func _initialize() -> void: call_deferred("run")
+
+func run() -> void:
+	var loader := Loader.new()
+	catalog = loader.load_catalog()
+	check(catalog != null, "production v4 catalog: " + str(loader.errors))
+	if catalog == null:
+		finish()
+		return
+	resolver.configure(catalog)
+	check_compiler()
+	check_carriers()
+	check_presets()
+	check_normal_offers()
+	finish()
+
+func finish() -> void:
+	print("MECHANISM_PRESETS ", JSON.stringify({"failures": failures}))
+	quit(0 if failures.is_empty() else 1)
+
+func check(condition: bool, message: String) -> void:
+	if not condition: failures.append(message)
+
+func area(program: Dictionary) -> Dictionary:
+	for effect in program.effects:
+		if effect.type == "explosion": return effect.params
+	return {}
+
+func check_compiler() -> void:
+	check(resolver.resolve({"split": 1, "pierce": 1}).is_empty(), "compiler rejects competing global contact strategies")
+	check(resolver.resolve({"frost_blast": 1}).is_empty(), "synergy cannot compile without explosion")
+	for ranks in [{"pierce": 0}, {"pierce": 1.2}, {"pierce": true}, {"missing": 1}]:
+		check(resolver.resolve(ranks).is_empty(), "invalid selected ranks rejected " + str(ranks))
+	var ordinary: Dictionary = resolver.resolve({"impact_blast": 1, "contact_freeze": 1})
+	check(area(ordinary).payloads.size() == 1 and area(ordinary).payloads[0].type == "damage", "ordinary explosion never implicitly inherits direct freeze")
+	var frost: Dictionary = resolver.resolve({"impact_blast": 1, "frost_blast": 1})
+	var params := area(frost)
+	check(params.payloads.size() == 2 and params.payloads[1].type == "apply_status", "explicit synergy compiles finite payload")
+	check(not params.payloads[0].include_primary and params.payloads[1].include_primary, "damage/status have independent primary policy")
+	check(params.payloads.is_read_only() and params.payloads[1].is_read_only(), "nested execution payload is immutable")
+	var upgraded: Dictionary = resolver.resolve({"impact_blast": 1, "frost_blast": 1, "freeze_duration": 1})
+	var base_duration: float = params.payloads[1].duration_sec
+	check(area(upgraded).payloads[1].duration_sec > base_duration, "duration modifier strengthens area-carried freeze")
+	check(area(frost).payloads[1].duration_sec == base_duration, "new compilation cannot retrofit old snapshot")
+	var direct: Dictionary = resolver.resolve({"contact_freeze": 1, "freeze_duration": 1})
+	check(direct.effects[0].params.duration_sec == area(upgraded).payloads[1].duration_sec, "same duration compiler for direct and area status")
+	var forged: Dictionary = resolver.resolve({"pierce": 1}).duplicate(true)
+	forged.effects.append(resolver.resolve({"split": 1}).effects[0])
+	check(not Caps.valid_program(forged), "execution policy rejects forged split/pierce program")
+	for bad_type in ["explosion", "chain", "execute_script"]:
+		forged = frost.duplicate(true)
+		area(forged).payloads[1].type = bad_type
+		check(not Caps.valid_program(forged), "unknown/recursive payload is rejected " + bad_type)
+	forged = frost.duplicate(true)
+	area(forged).payloads.append(area(forged).payloads[1])
+	check(not Caps.valid_program(forged), "only one controlled status payload allowed")
+	forged = frost.duplicate(true)
+	area(forged).payloads[1].allowed_origins = ["explosion"]
+	check(not Caps.valid_program(forged), "payload cannot subscribe to derived explosions")
+	forged = frost.duplicate(true)
+	area(forged).payloads[1].status_id = "unknown_status"
+	check(not Caps.valid_program(forged, catalog), "unknown status cannot bypass validated grant reference")
+	forged = frost.duplicate(true)
+	area(forged).payloads[1].upgrade_id = "missing_grant"
+	check(not Caps.valid_program(forged, catalog), "unknown grant cannot bypass validated content")
+	forged = frost.duplicate(true)
+	area(forged).payloads[1].rank = 2
+	check(not Caps.valid_program(forged, catalog), "payload grant rank must exist")
+	forged = resolver.resolve({"wave": 1}).duplicate(true)
+	forged.effects[0].params.projectile_id = "unknown_projectile"
+	check(not Caps.valid_program(forged, catalog), "projectile references must match authored selected rank")
+
+func check_carriers() -> void:
+	var empty: Dictionary = resolver.resolve({})
+	var pierce: Dictionary = catalog.upgrade("pierce")
+	var split: Dictionary = catalog.upgrade("split")
+	var frost: Dictionary = catalog.upgrade("frost_blast")
+	var duration: Dictionary = catalog.upgrade("freeze_duration")
+	check(not Caps.eligible(pierce, Caps.summarize(catalog, empty, [], true)), "melee alone cannot use piercing")
+	check(Caps.eligible(pierce, Caps.summarize(catalog, empty, ["test_arrow"])), "arrow alone supports piercing without wave")
+	check(not Caps.eligible(split, Caps.summarize(catalog, resolver.resolve({"pierce": 1}), ["test_arrow"])), "candidate policy excludes split after piercing")
+	check(not Caps.eligible(pierce, Caps.summarize(catalog, resolver.resolve({"split": 1}), ["test_arrow"])), "candidate policy excludes piercing after split")
+	check(not Caps.eligible(frost, Caps.summarize(catalog, empty, ["test_arrow"], true)), "synergy needs actual explosion")
+	var blast := resolver.resolve({"impact_blast": 1})
+	check(Caps.eligible(frost, Caps.summarize(catalog, blast, ["test_arrow"])), "arrow explosion supplies compatible synergy carrier")
+	check(not Caps.eligible(frost, Caps.summarize(catalog, blast, [])), "owned explosion with no actual attack is not capability")
+	var frozen_blast := resolver.resolve({"impact_blast": 1, "frost_blast": 1})
+	var summary := Caps.summarize(catalog, frozen_blast, ["test_arrow"])
+	check(summary[0].status_ids.is_empty() and summary[0].area_effects[0].source_effect_id == "impact_blast" and summary[0].area_effects[0].status_ids == ["test_freeze"], "summary associates area-granted status with its actual source")
+	check(Caps.eligible(duration, summary), "area-carried freeze unlocks duration modifier without direct freeze card")
+	check(not Caps.eligible(duration, Caps.summarize(catalog, blast, ["test_arrow"])), "ordinary explosion cannot unlock freeze duration")
+	# An explosion on one origin and an allowed origin on a different attack are
+	# not a shared carrier. This policy also holds before future loadout binding.
+	var projectile_only: Dictionary = frost.duplicate(true)
+	projectile_only.ranks[0].allowed_origins = ["direct_projectile"]
+	var separated := [{"origin": "direct_melee", "area_effects": [{"source_effect_id": "impact_blast", "status_ids": []}]},
+		{"origin": "direct_projectile", "area_effects": [{"source_effect_id": "another_blast", "status_ids": []}]}]
+	check(not Caps.eligible(projectile_only, separated), "cannot union independent origins/effects into fake synergy")
+	separated[1].area_effects[0].source_effect_id = "impact_blast"
+	check(Caps.eligible(projectile_only, separated), "matching source on actual permitted carrier succeeds")
+	# An explicitly authored derived-only payload needs a real split child,
+	# without borrowing the direct arrow's unrelated impact capability.
+	var fixture: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/builds/prototype.json"))
+	fixture.test_presets = []
+	for entry in fixture.upgrades:
+		if entry.id == "frost_blast": entry.ranks[0].allowed_origins = ["split_projectile"]
+	var loader := Loader.new()
+	var derived_catalog = loader.decode(fixture)
+	check(derived_catalog != null, "explicit split-origin synergy definition accepted: " + str(loader.errors))
+	if derived_catalog != null:
+		var derived_resolver := Resolver.new()
+		derived_resolver.configure(derived_catalog)
+		var synergy: Dictionary = derived_catalog.upgrade("frost_blast")
+		check(not Caps.eligible(synergy, Caps.summarize(derived_catalog, derived_resolver.resolve({"impact_blast": 1}), ["test_arrow"])), "derived-only payload unavailable without actual split source")
+		check(Caps.eligible(synergy, Caps.summarize(derived_catalog, derived_resolver.resolve({"impact_blast": 1, "split": 1}), ["test_arrow"])), "actual compatible child enables explicitly authored synergy")
+		var derived_program: Dictionary = derived_resolver.resolve({"impact_blast": 1, "split": 1, "frost_blast": 1})
+		check(Caps.valid_program(derived_program, derived_catalog), "compiled split-only payload passes same execution contract")
+		var derived_summary := Caps.summarize(derived_catalog, derived_program, ["test_arrow"])
+		check(derived_summary[0].area_effects[0].status_ids.is_empty() and derived_summary[1].area_effects[0].status_ids == ["test_freeze"], "derived status stays associated only with its real child carrier")
+
+func commit(state: Dictionary) -> Error:
+	commits += 1
+	if mutate_commit:
+		state.ranks.clear()
+		state.rng_state = "0"
+	return ERR_CANT_CREATE if reject_commit else OK
+
+func make_session(catalogue = null, attack_ids: Array = ["test_arrow"], melee: bool = true):
+	var session := Session.new()
+	session.configure(catalog if catalogue == null else catalogue, 872, commit, attack_ids, melee)
+	return session
+
+func check_presets() -> void:
+	var session = make_session()
+	for preset in catalog.test_presets():
+		session.open_offer()
+		var before: Dictionary = session.snapshot()
+		var before_commits := commits
+		mutate_commit = true
+		var result: Dictionary = session.apply_test_preset(preset.id)
+		mutate_commit = false
+		check(result.ok and commits == before_commits + 1, "preset commits once after all steps " + str(preset.id))
+		var after: Dictionary = session.snapshot()
+		check(after.rng_state == before.rng_state and after.offer_sequence == before.offer_sequence, "preset preserves RNG and sequence")
+		check(after.offer.is_empty() and after.history.size() == preset.upgrade_ids.size(), "preset replaces offer/history atomically")
+		for id in preset.upgrade_ids: check(after.ranks.has(id), "adapter cannot mutate published preset " + str(id))
+		check(Caps.valid_program(session.program()), "preset uses compiled legal program")
+		check(not session.choose(before.offer.id, before.offer.candidates[0]).ok, "old offer cannot commit after preset replacement")
+	var before: Dictionary = session.snapshot()
+	var old_program: Dictionary = session.program()
+	check(not session.apply_test_preset("unknown").ok and session.snapshot() == before, "unknown preset does not mutate state")
+	reject_commit = true
+	check(not session.apply_test_preset("pierce_freeze").ok, "adapter failure reported")
+	reject_commit = false
+	check(session.snapshot() == before and session.program() == old_program, "failed preset preserves state/program/RNG")
+	var fixture: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/builds/prototype.json"))
+	fixture.test_presets = [{"id": "no_carrier", "name_key": "build.preset.frost_blast", "upgrade_ids": ["impact_blast", "frost_blast"]}]
+	var loader := Loader.new()
+	var no_carrier = loader.decode(fixture)
+	check(no_carrier != null, "valid source definitions do not imply an equipped carrier: " + str(loader.errors))
+	if no_carrier != null:
+		var unarmed = make_session(no_carrier, [], false)
+		before = unarmed.snapshot()
+		var calls := commits
+		check(not unarmed.apply_test_preset("no_carrier").ok and unarmed.snapshot() == before and calls == commits, "preset rechecks actual capability before adapter/commit")
+
+func check_normal_offers() -> void:
+	var session = make_session()
+	check(session.apply_test_preset("pierce_blast").ok, "normal selection starts from legal ordinary blast")
+	var found := false
+	for attempt in 80:
+		var opened: Dictionary = session.open_offer()
+		check(opened.ok and not opened.offer.candidates.has("split"), "normal offer enforces current contact strategy")
+		if opened.offer.candidates.has("frost_blast"):
+			check(session.choose(opened.offer.id, "frost_blast").ok, "ordinary three-choice synergy commits through same compiler")
+			found = true
+			break
+		# Replacing preset clears pending offer but keeps the already committed RNG.
+		session.apply_test_preset("pierce_blast")
+	check(found and Caps.eligible(catalog.upgrade("freeze_duration"), session.capability_summary()), "chosen synergy exposes duration modifier")
+	if found:
+		for attempt in 80:
+			var opened: Dictionary = session.open_offer()
+			if opened.offer.candidates.has("freeze_duration"):
+				var before: Dictionary = session.snapshot()
+				reject_commit = true
+				check(not session.choose(opened.offer.id, "freeze_duration").ok and session.snapshot() == before, "modifier commit failure isolates selected ranks and RNG")
+				reject_commit = false
+				check(session.choose(opened.offer.id, "freeze_duration").ok, "duration modifier commits after retry")
+				return
+			var chosen: String = opened.offer.candidates[0]
+			check(session.choose(opened.offer.id, chosen).ok, "other legal ordinary reward remains selectable")
+		check(false, "duration upgrade appears in ordinary candidates")

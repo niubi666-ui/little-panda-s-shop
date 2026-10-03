@@ -4,6 +4,7 @@ class Ability extends RefCounted:
 	var _data: Dictionary
 	func _init(data: Dictionary) -> void:
 		_data = data.duplicate(true)
+		_data.dodge_cancel_phases.make_read_only()
 		_data.make_read_only()
 	var id: String:
 		get: return _data.id
@@ -33,6 +34,10 @@ class Ability extends RefCounted:
 		get: return _data.knockback_duration_sec
 	var interruptible: bool:
 		get: return _data.interruptible
+	var buffer_sec: float:
+		get: return _data.buffer_sec
+	var dodge_cancel_phases: Array:
+		get: return _data.dodge_cancel_phases
 
 class Actor extends RefCounted:
 	var _data: Dictionary
@@ -96,6 +101,7 @@ func _init(data: Dictionary) -> void:
 	_delay = data.wave_delay_sec
 	_dodge = Dodge.new(data.dodge)
 func ability(id: String) -> Ability: return _abilities[id]
+func has_ability(id: String) -> bool: return _abilities.has(id)
 func actor(id: String) -> Actor: return _actors[id]
 func has_actor(id: String) -> bool: return _actors.has(id)
 func player() -> Actor: return actor(_player_id)

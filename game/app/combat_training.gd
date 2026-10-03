@@ -14,6 +14,9 @@ const ThemeFactory = preload("res://presentation/foliage/foliage_theme_factory.g
 const EffectPalette = preload("res://presentation/combat/effect_picker/palette.tres")
 const CameraShake = preload("res://presentation/combat/hit_camera_shake.gd")
 const TrainingBuilds = preload("res://app/training_builds.gd")
+const TrainingTools = preload("res://app/training_tools.gd")
+const TrainingSkillVfx = preload("res://app/training_skill_vfx.gd")
+const SkillVfxStyle = preload("res://presentation/combat/skill_vfx_picker/style.tres")
 const RoomPresentation = preload("res://presentation/rooms/room_presentation.gd")
 const SceneTransition = preload("res://app/scene_transition.gd")
 const TrainingRoomProps = preload("res://app/training_room_props.gd")
@@ -40,7 +43,14 @@ var _previous_taa := false
 @export var enable_mechanism_presets := false
 @export var test_hint_key := "build.test.arrow_hint"
 @export var test_attack_ids: Array[String] = []
+@export var build_effects_style: Resource = preload("res://presentation/builds/build_effects_style.tres")
+@export var mechanism_style: Resource = preload("res://presentation/builds/mechanism_style.tres")
 var builds: TrainingBuilds
+var training_tools: TrainingTools
+var _managed_ranger
+var _ranger_sequence := 0
+var _ordinary_complete := false
+var skill_vfx: TrainingSkillVfx
 var catalog: Catalog
 var player: Actor
 var actors: Array = []
@@ -133,7 +143,7 @@ func _ready() -> void:
 	enemy_presentation.configure(enemy_runtime, Style)
 	$Camera.size = room_presentation.camera_size if room_presentation != null else Style.camera_size
 	_follow_camera()
-	input_adapter = InputAdapter.new(player, $Camera)
+	input_adapter = InputAdapter.new(player, $Camera, _gameplay_ui_blocked)
 	encounter = Encounter.new(_waves, catalog.wave_delay())
 	encounter.wave_requested.connect(_spawn_wave)
 	encounter.cleared.connect(func(): _finish("victory"))
@@ -154,7 +164,7 @@ func _ready() -> void:
 	hud.resume_requested.connect(func(): paused = false)
 	builds = TrainingBuilds.new()
 	add_child(builds)
-	if not builds.configure(player, func(): return actors, _build_wall_hit, $UIRoot, shared_theme, self, build_choices_enabled, test_attack_ids, enable_mechanism_presets):
+	if not builds.configure(player, func(): return actors, _build_wall_hit, $UIRoot, shared_theme, self, catalog, build_choices_enabled, test_attack_ids, enable_mechanism_presets, build_effects_style, mechanism_style):
 		get_tree().quit(1)
 		return
 	resolver.set_damage_modifier(builds.runtime.melee_damage)
@@ -172,7 +182,31 @@ func _ready() -> void:
 	pause_menu.closed.connect(func():
 		hud.refresh_text()
 		builds.refresh_text()
+		training_tools.refresh_text()
+		skill_vfx.refresh_text()
+		skill_vfx.refresh()
+		training_tools.panel.set_blocked(builds.is_choosing())
 		if has_node("UIRoot/ArrowHint"): $UIRoot/ArrowHint.text = tr(test_hint_key))
+	training_tools = TrainingTools.new()
+	add_child(training_tools)
+	var panels := {"build": builds.status_panel, "fx": hud.effect_picker}
+	if hud.encounter_panel != null: panels["depth"] = hud.encounter_panel
+	if room_props != null: panels["room"] = room_props.hud
+	training_tools.configure(player, func(): return actors, _training_tools_available, $UIRoot, shared_theme, panels, _set_training_hud_visible)
+	training_tools.configure_reinforcements(enemy_catalog, str(encounter_plan.get("seed", "fixture")), encounter_depth if encounter_depth > 0 else int(enemy_catalog.encounters.training_depth), _enemy_spawns, _training_spawn_clear, _append_training_wave)
+	training_tools.panel.ranger_requested.connect(_refresh_ranger)
+	builds.choice_panel.visibility_changed.connect(func(): training_tools.panel.set_blocked(builds.is_choosing()))
+	training_tools.panel.set_blocked(builds.is_choosing())
+	skill_vfx = TrainingSkillVfx.new()
+	add_child(skill_vfx)
+	skill_vfx.configure(self, player, func(): return player.facing, func(): return _training_tools_available() and not _gameplay_ui_blocked(), $UIRoot, shared_theme, SkillVfxStyle)
+	$UIRoot.move_child(skill_vfx.panel, builds.choice_panel.get_index())
+	if room_props != null:
+		skill_vfx.panel.set_right_column_reserved(room_props.hud.visible)
+		room_props.hud.visibility_changed.connect(func(): skill_vfx.panel.set_right_column_reserved(room_props.hud.visible))
+	# The existing effects visibility group owns both visual rehearsal surfaces.
+	hud.effect_picker.visibility_changed.connect(func(): skill_vfx.panel.visible = hud.effect_picker.visible)
+	builds.choice_panel.visibility_changed.connect(skill_vfx.refresh)
 	print("[combat] training ready; waves=", _waves.size(), " encounter=", encounter_plan.get("seed", "fixture"))
 func _select_weapon_effect(effect_id: StringName) -> void:
 	if _leaving or (builds != null and builds.is_choosing()) or effect_id == selected_effect_id: return
@@ -194,6 +228,7 @@ func _spawn(definition: Catalog.Actor, point: Vector3, team: int) -> Actor:
 	var abilities: Array[Catalog.Ability] = []
 	for id in definition.attacks: abilities.append(catalog.ability(id))
 	actor.configure(definition, abilities, catalog.dodge() if team == 0 else null, _next_handle, team)
+	if training_tools != null: training_tools.prepare_actor(actor)
 	actor.name = "Actor_%s" % _next_handle
 	actor.position = point
 	actor.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
@@ -211,15 +246,15 @@ func _spawn(definition: Catalog.Actor, point: Vector3, team: int) -> Actor:
 	return actor
 func _spawn_wave(ids: Array) -> void:
 	if builds != null: builds.clear_room()
-	enemy_runtime.clear()
-	if enemy_presentation != null: enemy_presentation.clear()
+	enemy_runtime.remove_dead()
+	if enemy_presentation != null: enemy_presentation.remove_dead()
 	# Previous corpses are disposable presentation/runtime nodes, never rewards.
 	for index in range(actors.size() - 1, 0, -1):
 		if not actors[index].health.alive():
 			actors[index].queue_free()
 			actors.remove_at(index)
 			views.remove_at(index)
-	brains.clear()
+	brains = enemy_runtime.brains.duplicate()
 	for index in ids.size():
 		var actor := _spawn(catalog.actor(ids[index]), _enemy_spawns[index], 1)
 		encounter.register_enemy(actor.handle)
@@ -228,13 +263,144 @@ func _spawn_wave(ids: Array) -> void:
 		actor.killed.connect(func(dead):
 			enemy_loot_ready.emit(spawn_id, dead.definition.id, drops.duplicate(true))
 			encounter.enemy_killed(dead.handle))
-		var route: Callable = room_props.movement_towards if room_props != null else Callable()
-		var brain = enemy_runtime.add(actor, enemy_catalog.profile(actor.definition.id), route, _enemy_sight, _enemy_safe_motion)
-		brains.append(brain)
-		enemy_presentation.register(brain, views.back(), enemy_catalog.profile(actor.definition.id))
+		_register_enemy_brain(actor)
+	state = "fighting"
+func _register_enemy_brain(actor) -> void:
+	var route: Callable = room_props.movement_towards if room_props != null else Callable()
+	var queries := {"roll_path":_ranger_roll_path,"ground":_ranger_ground,"seed":(str(encounter_plan.get("seed", "fixture")) + ":ranger:" + str(_ranger_sequence)).sha256_text().substr(0, 15).hex_to_int()}
+	var brain = enemy_runtime.add(actor, enemy_catalog.profile(actor.definition.id), route, _enemy_sight, _enemy_safe_motion, queries)
+	brains.append(brain)
+	enemy_presentation.register(brain, views[actors.find(actor)], enemy_catalog.profile(actor.definition.id))
+
+func _ranger_ground(point: Vector3) -> bool:
+	var radius: float = Style.actor_presentations.elite_ranger.body_shape.radius
+	return room_props != null and room_props.allows_training_spawn(point, radius)
+
+func _ranger_roll_path(actor, motion: Vector3) -> bool:
+	if not _ranger_ground(actor.global_position + motion): return false
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = Style.actor_presentations[actor.definition.id].body_shape
+	query.transform.origin = _actor_query_origin(actor)
+	query.collision_mask = Actor.BodyLayer.WORLD | Actor.BodyLayer.PLAYER
+	query.motion = motion
+	var space := get_world_3d().direct_space_state
+	if not space.intersect_shape(query, 1).is_empty(): return false
+	return space.cast_motion(query)[0] >= 1.0
+
+func _refresh_ranger() -> bool:
+	if not _training_tools_available(): return false
+	var panel = training_tools.panel
+	var rules: Dictionary = enemy_catalog.encounters.training_tools
+	var alive := 0
+	for actor in actors:
+		if actor.team != player.team and actor.health.alive() and actor != _managed_ranger: alive += 1
+	if alive + 1 > int(rules.max_alive_enemies):
+		panel.set_notice("training.tools.limit", {"max":int(rules.max_alive_enemies)})
+		return false
+	var appearance: Resource = Style.actor_presentations.get("elite_ranger")
+	var ranger_scene: PackedScene = appearance.visual_scene
+	if ranger_scene == null or not ranger_scene.can_instantiate():
+		panel.set_notice("training.tools.unavailable")
+		return false
+	var visual_candidate := ranger_scene.instantiate()
+	var valid_visual: bool = visual_candidate.has_method("validate_assets") and visual_candidate.validate_assets()
+	visual_candidate.free()
+	if not valid_visual:
+		panel.set_notice("training.tools.unavailable")
+		return false
+	var positions: Array[Vector3] = []
+	var steps := int(floor(rules.spawn_search_radius_m / rules.spawn_step_m))
+	for x in range(-steps, steps + 1):
+		for z in range(-steps, steps + 1):
+			var offset := Vector3(x,0,z) * float(rules.spawn_step_m)
+			if offset.length() <= rules.spawn_search_radius_m: positions.append(offset)
+	positions.sort_custom(func(a,b): return a.length_squared() < b.length_squared())
+	var spawn_point: Variant = null
+	for offset in positions:
+		for anchor in _enemy_spawns:
+			if _training_spawn_clear(anchor + offset, "elite_ranger", []):
+				spawn_point = anchor + offset
+				break
+		if spawn_point != null: break
+	if spawn_point == null:
+		panel.set_notice("training.tools.no_space")
+		return false
+	# All admission checks precede mutation; the previous managed actor stays intact on failure.
+	var candidate := _spawn(catalog.actor("elite_ranger"), spawn_point, 1)
+	_register_enemy_brain(candidate)
+	if is_instance_valid(_managed_ranger):
+		enemy_runtime.remove_actor(_managed_ranger)
+		enemy_presentation.remove_actor(_managed_ranger)
+		if room_props != null: room_props.forget_actor(_managed_ranger.handle)
+		var index := actors.find(_managed_ranger)
+		if index >= 0:
+			actors.remove_at(index)
+			views.remove_at(index)
+		_managed_ranger.get_parent().remove_child(_managed_ranger)
+		_managed_ranger.queue_free()
+	_managed_ranger = candidate
+	_ranger_sequence += 1
+	brains = enemy_runtime.brains.duplicate()
+	candidate.killed.connect(func(dead):
+		enemy_runtime.remove_actor(dead)
+		if _ordinary_complete: _finish("victory"))
+	if state == "victory":
+		_ordinary_complete = true
+		builds.resume_training()
+	state = "fighting"
+	panel.set_notice("training.tools.ranger_ready")
+	return true
+func _training_tools_available() -> bool:
+	return not _leaving and not is_instance_valid(_transition) and not paused and not get_tree().paused and not builds.is_choosing() and player.health.alive()
+func _set_training_hud_visible(shown: bool) -> void:
+	hud.set_training_hud_visible(shown)
+	if has_node("UIRoot/ArrowHint"): $UIRoot/ArrowHint.visible = shown
+func _training_spawn_clear(point: Vector3, id: String, reserved: Array) -> bool:
+	var presentation = Style.actor_presentations[id]
+	var radius: float = presentation.body_shape.radius
+	var world_point := to_global(point)
+	if room_props != null:
+		if not room_props.allows_training_spawn(world_point, radius): return false
+	elif not _enemy_spawns.has(point):
+		# The graybox fixture has no authored navigation surface to validate offsets.
+		return false
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = presentation.body_shape
+	query.transform.origin = world_point + Vector3.UP * presentation.body_height
+	query.collision_mask = 1
+	if not get_world_3d().direct_space_state.intersect_shape(query, 1).is_empty(): return false
+	for actor in actors:
+		if not actor.health.alive(): continue
+		var separation: Vector3 = actor.global_position - world_point
+		separation.y = 0.0
+		if separation.length() <= radius + Style.actor_presentations[actor.definition.id].body_shape.radius: return false
+	for entry in reserved:
+		if point.distance_to(entry.point) <= radius + Style.actor_presentations[entry.actor_id].body_shape.radius: return false
+	return true
+func _append_training_wave(ids: Array, placements: Array) -> void:
+	# Preserve live enemies and build; retire corpses and their source-bound projectiles.
+	enemy_runtime.remove_dead()
+	enemy_presentation.remove_dead()
+	for index in range(actors.size() - 1, 0, -1):
+		if not actors[index].health.alive():
+			if room_props != null: room_props.forget_actor(actors[index].handle)
+			actors[index].queue_free()
+			actors.remove_at(index)
+			views.remove_at(index)
+	brains = enemy_runtime.brains.duplicate()
+	if state == "victory":
+		encounter.reopen_for_training()
+		builds.resume_training()
+	for index in ids.size():
+		var actor := _spawn(catalog.actor(ids[index]), placements[index].point, 1)
+		encounter.register_enemy(actor.handle)
+		# Practice additions deliberately have no loot/reward identity.
+		actor.killed.connect(func(dead): encounter.enemy_killed(dead.handle))
+		_register_enemy_brain(actor)
 	state = "fighting"
 func _physics_process(delta: float) -> void:
 	if catalog == null or _leaving: return
+	training_tools.refresh()
 	if not paused and not builds.is_choosing() and state not in ["victory", "defeat"]:
 		# Aim/movement use the stable camera, never the previous display shake.
 		$Camera.h_offset = 0.0
@@ -271,6 +437,7 @@ func _physics_process(delta: float) -> void:
 		builds.finish()
 	else:
 		builds.flush_offers()
+	skill_vfx.refresh()
 	var display_delta := 0.0 if paused or builds.is_choosing() else delta
 	for view in views: view.refresh(display_delta)
 	enemy_presentation.refresh()
@@ -341,14 +508,21 @@ func _open_pause_menu() -> void:
 	player.cancel()
 	for view in views: view.refresh(0.0)
 	builds.refresh(0.0)
+	training_tools.panel.set_blocked(true)
+	skill_vfx.set_time_running(false)
 	pause_menu.open()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if catalog == null or _leaving: return
+	if _gameplay_ui_blocked():
+		player.clear_intents()
+		return
 	if event.is_action_pressed("toggle_language"):
 		TranslationServer.set_locale("en" if TranslationServer.get_locale().begins_with("zh") else "zh_CN")
 		hud.refresh_text()
 		builds.refresh_text()
+		training_tools.refresh_text()
+		skill_vfx.refresh_text()
 		if has_node("UIRoot/ArrowHint"): $UIRoot/ArrowHint.text = tr(test_hint_key)
 	elif builds.is_choosing():
 		get_viewport().set_input_as_handled()
@@ -366,9 +540,20 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 		else:
 			input_adapter.event(event)
+func _gameplay_ui_blocked() -> bool:
+	# Explicitly supplied UI surfaces: PopupMenu is a Window, not a Control focus owner.
+	if builds != null and builds.status_panel != null:
+		if builds.status_panel.has_open_popup(): return true
+	if training_tools != null and training_tools.panel != null:
+		if training_tools.panel.has_open_popup(): return true
+	return false
 func _finish(result: String) -> void:
 	if state in ["victory", "defeat"]: return
+	if result == "victory":
+		_ordinary_complete = true
+		if is_instance_valid(_managed_ranger) and _managed_ranger.health.alive(): return
 	state = result
+	if result == "defeat" and skill_vfx != null: skill_vfx.clear()
 	encounter.cancel()
 	for actor in actors: actor.cancel()
 	enemy_runtime.clear()
@@ -378,6 +563,7 @@ func _shutdown() -> void:
 	_leaving = true
 	if room_presentation != null: get_viewport().use_taa = _previous_taa
 	if is_instance_valid(builds): builds.finish()
+	if is_instance_valid(skill_vfx): skill_vfx.clear()
 	_camera_shake.clear()
 	_apply_camera_shake(0.0)
 	encounter.cancel()
@@ -385,6 +571,7 @@ func _shutdown() -> void:
 	enemy_runtime.clear()
 func _retry() -> void:
 	if _leaving or is_instance_valid(_transition): return
+	skill_vfx.clear()
 	var preserved: Dictionary = room_props.plan if room_props != null else {}
 	var saved_encounter := encounter_plan.duplicate(true)
 	_transition = SceneTransition.begin(get_tree(), scene_file_path, shared_theme, func(next_scene):
@@ -395,15 +582,18 @@ func _new_encounter(depth: int) -> void:
 	var preserved: Dictionary = room_props.plan if room_props != null else {}
 	var next_plan := EncounterPlanner.new().generate(str(randi()), depth, _enemy_spawns.size(), enemy_catalog)
 	if next_plan.is_empty(): return
+	skill_vfx.clear()
 	_transition = SceneTransition.begin(get_tree(), scene_file_path, shared_theme, func(next_scene):
 		next_scene.initial_room_plan = preserved
 		next_scene.initial_encounter_plan = next_plan)
 func _new_layout() -> void:
 	if _leaving or is_instance_valid(_transition): return
+	skill_vfx.clear()
 	var depth := encounter_depth
 	_transition = SceneTransition.begin(get_tree(), scene_file_path, shared_theme, func(next_scene): next_scene.encounter_depth = depth)
 func _return() -> void:
 	if _leaving or is_instance_valid(_transition): return
+	skill_vfx.clear()
 	_transition = SceneTransition.begin(get_tree(), "res://app/main.tscn", shared_theme)
 func _exit_tree() -> void:
 	if encounter != null: _shutdown()

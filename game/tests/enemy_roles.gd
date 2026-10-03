@@ -71,7 +71,10 @@ func run() -> void:
 					seen[id] = true
 				check(cost <= band.budget and cost >= band.budget * enemies.encounters.minimum_budget_fraction, "bounded difficulty spend")
 				check(wave.enemy_ids.size() <= 3 and wave.drops.size() == wave.enemy_ids.size(), "spawn capacity and locked per-enemy loot")
-	check(seen.size() == enemies.profiles.size(), "all five enemy types appear")
+	var authored: Dictionary = {}
+	for combination in enemies.encounters.combinations:
+		for id in combination.enemy_ids: authored[id] = true
+	check(seen.size() == authored.size() and not seen.has("elite_ranger"), "all authored encounter enemies appear; managed ranger excluded")
 	var roles_data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/enemies/roles.json"))
 	var enc_data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/rooms/encounters.json"))
 	var loot_data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/loot/enemies.json"))

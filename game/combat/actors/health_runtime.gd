@@ -14,3 +14,7 @@ func apply(amount: float, invulnerable: bool) -> float:
 	if current <= 0.0: died.emit()
 	return effective
 func alive() -> bool: return current > 0.0
+func restore() -> bool:
+	if not alive() or current >= maximum: return false
+	current = maximum
+	return true

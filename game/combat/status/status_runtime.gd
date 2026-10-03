@@ -108,7 +108,10 @@ func visuals() -> Array:
 	for handle in _actors:
 		var target = _actors[handle].get_ref()
 		if is_instance_valid(target) and target.health.alive() and not _instances[handle].is_empty():
-			result.append({"handle": handle, "position": target.global_position, "frozen": target.control_locked})
+			var active: Array = []
+			for id in _instances[handle]:
+				active.append({"status_id": id, "source": _instances[handle][id].source})
+			result.append({"handle": handle, "position": target.global_position, "frozen": target.control_locked, "statuses": active})
 	return Catalog.freeze_copy(result)
 
 func _attach(target) -> void:

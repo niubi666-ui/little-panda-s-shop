@@ -14,10 +14,15 @@
 [ext_resource type="Resource" path="res://presentation/combat/attack_motions/slash_2.tres" id="motion_2"]
 [ext_resource type="Resource" path="res://presentation/combat/attack_motions/thrust_3.tres" id="motion_3"]
 [ext_resource type="Resource" path="res://presentation/combat/hit_camera_shake_style.tres" id="camera_hit"]
+[ext_resource type="Resource" path="res://presentation/combat/attack_motions/heavy_slash.tres" id="motion_heavy"]
+[ext_resource type="Resource" path="res://presentation/combat/attack_motions/wave_cast.tres" id="motion_wave"]
+
+[ext_resource type="Resource" path="res://presentation/combat/elite_ranger_presentation.tres" id="elite_ranger"]
 
 [resource]
 script = ExtResource("1")
 actor_presentations = {
+"elite_ranger": ExtResource("elite_ranger"),
 "crossbow": ExtResource("crossbow"),
 "charger": ExtResource("charger"),
 "banner": ExtResource("banner"),
@@ -29,8 +34,13 @@ animation_blend_sec = 0.12
 attack_motions = Dictionary[String, Resource]({
 "slash.1": ExtResource("motion_1"),
 "slash.2": ExtResource("motion_2"),
-"slash.3": ExtResource("motion_3")
+"slash.3": ExtResource("motion_3"),
+"heavy_slash": ExtResource("motion_heavy"),
+"wave_cast": ExtResource("motion_wave")
 })
+attack_motion_groups = {
+"sword_primary": {"slash.1": "slash.1", "slash.2": "slash.2", "slash.3": "slash.3"}
+}
 hit_camera_shake = ExtResource("camera_hit")
 warning_color = Color(1, 0.47, 0.1, 0.4)
 strike_color = Color(1, 0.16, 0.05, 0.8)
@@ -40,7 +50,9 @@ blade_offset = Vector3(0.4, 0.8, -0.65)
 weapon_tip_radius_by_ability = {
 "slash.1": 1.9,
 "slash.2": 1.9,
-"slash.3": 2.2
+"slash.3": 2.2,
+"heavy_slash": 2.2,
+"wave_cast": 2.1
 }
 camera_offset = Vector3(11, 17, 13)
 camera_size = 17.5

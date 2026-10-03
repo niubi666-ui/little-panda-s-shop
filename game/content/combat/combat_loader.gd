@@ -32,6 +32,10 @@ func decode(data: Variant, schema: Dictionary, path: String) -> Catalog:
 	for entry in data.abilities:
 		if abilities.has(entry.id): errors.append(path + ": duplicate ability " + entry.id)
 		abilities[entry.id] = entry
+		var cancel_phases: Dictionary = {}
+		for phase in entry.dodge_cancel_phases:
+			if cancel_phases.has(phase): errors.append(path + ": " + entry.id + " duplicate dodge cancel phase")
+			cancel_phases[phase] = true
 		if entry.hit_shape == "sector" and (entry.angle_deg <= 0.0 or entry.thrust_width_m != 0.0):
 			errors.append(path + ": " + entry.id + " sector requires positive angle and zero thrust width")
 		if entry.hit_shape == "thrust" and (entry.angle_deg != 0.0 or entry.thrust_width_m <= 0.0):
@@ -74,6 +78,7 @@ func _check(value: Variant, schema: Dictionary, path: String) -> void:
 				errors.append(path + ": expected array")
 				return
 			if value.size() < schema.minItems: errors.append(path + ": too few entries")
+			if schema.has("maxItems") and value.size() > schema.maxItems: errors.append(path + ": too many entries")
 			for i in value.size(): _check(value[i], schema.items, path + "[%s]" % i)
 		"number", "integer":
 			if not (value is float or value is int) or not is_finite(float(value)):

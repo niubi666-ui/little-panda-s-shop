@@ -15,19 +15,7 @@
 *.cmd text eol=crlf
 *.bat text eol=crlf
 
-# Keep binary art in this local repository, without an LFS server dependency.
-*.blend binary
-*.glb binary
-*.fbx binary
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.webp binary
-*.exr binary
-*.hdr binary
-*.res binary
-*.ttf binary
-*.otf binary
+# Binary source art and runtime assets are transferred through Git LFS.
 *.blend filter=lfs diff=lfs merge=lfs -text
 *.glb filter=lfs diff=lfs merge=lfs -text
 *.fbx filter=lfs diff=lfs merge=lfs -text

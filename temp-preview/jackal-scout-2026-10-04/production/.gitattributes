@@ -1,0 +1,5 @@
+# Temporary review assets are small regular Git files for direct downloads.
+*.png -filter -diff -merge -text
+*.mp4 -filter -diff -merge -text
+*.blend -filter -diff -merge -text
+*.glb -filter -diff -merge -text

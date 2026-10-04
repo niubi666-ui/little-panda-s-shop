@@ -1,0 +1,42 @@
+{
+  "file": "jackal_scout_animated.glb",
+  "bytes": 18233472,
+  "sha256": "155bebd389e1df3349ed6c00750c521351e28e5334e720cacbecb3c2b3a4ec94",
+  "triangles": 50524,
+  "meshes": 2,
+  "materials": 17,
+  "embedded_images": 17,
+  "skins": 1,
+  "joint_counts": [
+    56
+  ],
+  "skinned_mesh_nodes": 2,
+  "weighted_vertices": 33583,
+  "clips": [
+    {
+      "name": "Attack",
+      "duration_seconds": 1.5499999523162842,
+      "channels": 168,
+      "animated_nodes": 56
+    },
+    {
+      "name": "Hit",
+      "duration_seconds": 0.2800000011920929,
+      "channels": 168,
+      "animated_nodes": 56
+    },
+    {
+      "name": "Idle",
+      "duration_seconds": 3.0,
+      "channels": 168,
+      "animated_nodes": 56
+    },
+    {
+      "name": "Run",
+      "duration_seconds": 0.800000011920929,
+      "channels": 168,
+      "animated_nodes": 56
+    }
+  ],
+  "result": "PASS"
+}

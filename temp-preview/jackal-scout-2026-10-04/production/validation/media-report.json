@@ -1,0 +1,60 @@
+{
+  "source_sequence": {
+    "fps": 12,
+    "frames": 57,
+    "clips": [
+      {
+        "name": "Run",
+        "first_output_frame": 0,
+        "duration_seconds": 1.6666666666666667,
+        "original_frame_range": [
+          1.0,
+          81.0
+        ]
+      },
+      {
+        "name": "Attack",
+        "first_output_frame": 25,
+        "duration_seconds": 1.5833333333333333,
+        "original_frame_range": [
+          1.0,
+          156.0
+        ]
+      },
+      {
+        "name": "Hit",
+        "first_output_frame": 49,
+        "duration_seconds": 0.25,
+        "original_frame_range": [
+          1.0,
+          29.0
+        ]
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "file": "animation-preview.mp4",
+      "bytes": 832935,
+      "duration_seconds": 4.75,
+      "codec": "h264",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "file": "animation-preview-slow.mp4",
+      "bytes": 1102627,
+      "duration_seconds": 9.333333,
+      "codec": "h264",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "file": "animation-preview.gif",
+      "bytes": 2788754,
+      "speed": "0.5x",
+      "fps": 6,
+      "width": 448
+    }
+  ]
+}

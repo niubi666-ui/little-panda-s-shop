@@ -1,0 +1,51 @@
+{
+  "glb": "jackal_scout_animated.glb",
+  "bones": 56,
+  "mesh_objects": 2,
+  "imported_weighted_vertices": 33583,
+  "maximum_influences": 2,
+  "unnormalized_vertices": 0,
+  "images": 17,
+  "importer_display_helpers_excluded": [
+    "Icosphere"
+  ],
+  "actions": {
+    "Idle": {
+      "imported_name": "Idle_JackalScout_Rig",
+      "duration_seconds": 3.0,
+      "mesh_max_displacement_meters": {
+        "JackalScout_Character": 0.06649939669501445,
+        "JackalScout_Machete_R": 0.006833557356892508
+      },
+      "first_last_mesh_error_meters": 0.0
+    },
+    "Run": {
+      "imported_name": "Run_JackalScout_Rig",
+      "duration_seconds": 0.8,
+      "mesh_max_displacement_meters": {
+        "JackalScout_Character": 0.6496058044524352,
+        "JackalScout_Machete_R": 0.23221239141924963
+      },
+      "first_last_mesh_error_meters": 0.0
+    },
+    "Attack": {
+      "imported_name": "Attack_JackalScout_Rig",
+      "duration_seconds": 1.55,
+      "mesh_max_displacement_meters": {
+        "JackalScout_Character": 0.9726186643561904,
+        "JackalScout_Machete_R": 1.3105266359133703
+      },
+      "first_last_mesh_error_meters": 0.0
+    },
+    "Hit": {
+      "imported_name": "Hit_JackalScout_Rig",
+      "duration_seconds": 0.28,
+      "mesh_max_displacement_meters": {
+        "JackalScout_Character": 0.478956758721466,
+        "JackalScout_Machete_R": 0.16702264025683602
+      },
+      "first_last_mesh_error_meters": 0.0
+    }
+  },
+  "passed": true
+}

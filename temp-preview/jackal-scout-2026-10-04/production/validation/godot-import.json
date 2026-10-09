@@ -1,0 +1,28 @@
+{
+  "clips": [
+    {
+      "length": 1.54999995231628,
+      "name": "Attack",
+      "tracks": 38
+    },
+    {
+      "length": 0.280000001192093,
+      "name": "Hit",
+      "tracks": 38
+    },
+    {
+      "length": 3.0,
+      "name": "Idle",
+      "tracks": 38
+    },
+    {
+      "length": 0.800000011920929,
+      "name": "Run",
+      "tracks": 38
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "meshes": 2,
+  "result": "PASS",
+  "skeleton_bones": 56
+}

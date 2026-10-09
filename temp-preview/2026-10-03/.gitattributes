@@ -1,0 +1,3 @@
+# Small temporary captures use regular Git files for direct web access.
+*.png -filter -diff -merge -text
+*.mp4 -filter -diff -merge -text

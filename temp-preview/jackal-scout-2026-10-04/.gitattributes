@@ -1,0 +1,2 @@
+# Small temporary reference images use regular Git files for direct viewing.
+*.png -filter -diff -merge -text

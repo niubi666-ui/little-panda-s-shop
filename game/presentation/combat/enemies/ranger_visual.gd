@@ -6,10 +6,12 @@ var animation: AnimationPlayer
 var clock := 0.0
 var death_age := 0.0
 var selected_clip := ""
+func afterimage_source() -> Node3D:
+	return $Model
 
 func validate_assets() -> bool:
 	var player: AnimationPlayer = find_child("AnimationPlayer", true, false)
-	if player == null or style == null: return false
+	if player == null or style == null or not style.challenge_cues_valid(): return false
 	for clip in style.clips.values():
 		if not player.has_animation(clip): return false
 	return true
@@ -43,7 +45,7 @@ func refresh_actor(actor, delta: float) -> void:
 			clip = "draw"
 			progress /= style.draw_phase_fraction
 		else: progress = (progress - style.draw_phase_fraction) / (1.0 - style.draw_phase_fraction)
-	elif brain.state == "recovery":
+	elif brain.state in ["recovery", "sequence_gap"]:
 		clip = "rain_release" if brain.attack_id == "rain" else "release"
 		progress = 1.0 - brain.time_left / brain.recovery_duration
 	elif brain.state == "rolling":
@@ -58,7 +60,8 @@ func refresh_actor(actor, delta: float) -> void:
 		animation.play(name)
 	animation.seek(clampf(progress, 0.0, 1.0) * length, true)
 	$Model.rotation.y = actor.facing.signed_angle_to(brain.roll_direction, Vector3.UP) if brain.state == "rolling" else 0.0
-	visible = actor.health.alive() or has_presentation_tail()
+	# Parent ActorView owns corpse visibility; retain the final sampled death pose.
+	visible = true
 
 func has_presentation_tail() -> bool:
 	return brain != null and not brain.actor.health.alive() and death_age < style.death_duration_sec

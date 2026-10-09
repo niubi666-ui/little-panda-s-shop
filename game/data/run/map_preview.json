@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "content_version": "map-preview.1",
+  "rows": 15,
+  "columns": 7,
+  "paths": 6,
+  "max_attempts": 48,
+  "fixed_layers": [
+    {
+      "layer": 0,
+      "kind": "battle"
+    },
+    {
+      "layer": 7,
+      "kind": "treasure"
+    },
+    {
+      "layer": 14,
+      "kind": "rest"
+    }
+  ],
+  "room_types": [
+    {
+      "id": "battle",
+      "name_key": "map_preview.kind.battle",
+      "weight": 50,
+      "min_layer": 0,
+      "max_layer": 14,
+      "min_count": 1,
+      "avoid_consecutive": false
+    },
+    {
+      "id": "elite",
+      "name_key": "map_preview.kind.elite",
+      "weight": 14,
+      "min_layer": 4,
+      "max_layer": 14,
+      "min_count": 1,
+      "avoid_consecutive": true
+    },
+    {
+      "id": "event",
+      "name_key": "map_preview.kind.event",
+      "weight": 22,
+      "min_layer": 1,
+      "max_layer": 14,
+      "min_count": 1,
+      "avoid_consecutive": false
+    },
+    {
+      "id": "rest",
+      "name_key": "map_preview.kind.rest",
+      "weight": 10,
+      "min_layer": 3,
+      "max_layer": 14,
+      "min_count": 1,
+      "avoid_consecutive": true
+    },
+    {
+      "id": "treasure",
+      "name_key": "map_preview.kind.treasure",
+      "weight": 3,
+      "min_layer": 2,
+      "max_layer": 14,
+      "min_count": 1,
+      "avoid_consecutive": true
+    },
+    {
+      "id": "shop",
+      "name_key": "map_preview.kind.shop",
+      "weight": 8,
+      "min_layer": 2,
+      "max_layer": 14,
+      "min_count": 1,
+      "avoid_consecutive": true
+    }
+  ]
+}

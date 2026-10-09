@@ -184,7 +184,7 @@ func _valid_build_snapshot(build_state: Dictionary, program: Dictionary) -> bool
 	# state and its already validated program are the same immutable snapshot.
 	if not build_state.has_all(["selections", "revision"]) or not build_state.selections is Array or not _nonnegative_integer(build_state.revision): return false
 	if not program.has_all(["selections", "revision", "global", "actions"]): return false
-	if not program.actions is Dictionary or not program.actions.has_all(["primary", "special"]): return false
+	if not program.actions is Dictionary or not program.actions.has_all(["primary", "special", "skill"]): return false
 	if not program.global is Dictionary: return false
 	return program.selections == build_state.selections and program.revision == build_state.revision
 

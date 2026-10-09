@@ -38,6 +38,7 @@ var buffered_action_id: String:
 var _dodge_requested := false
 var _build_move_scale := 1.0
 var _damage_immunity := false
+var hit_reaction_immune := false
 var enemy_move_multiplier := 1.0
 var enemy_attack_multiplier := 1.0
 var aura_active := false
@@ -59,9 +60,9 @@ func _age_attack_intent(delta: float) -> void:
 	if _buffer_left <= 0.0: _clear_attack_intent()
 func set_action_program(actions: Dictionary, catalog: Catalog) -> bool:
 	# Plans are already evaluated by combat/builds; reject malformed wiring before mutation.
-	if not actions.has("primary") or not actions.has("special"): return false
+	if not actions.has_all(["primary", "special", "skill"]): return false
 	var decoded: Dictionary = {}
-	for id in ["primary", "special"]:
+	for id in ["primary", "special", "skill"]:
 		var plan: Dictionary = actions[id]
 		for key in ["action_id", "form_id", "executor", "ability_ids", "projectile_id", "presentation_key", "revision"]:
 			if not plan.has(key): return false
@@ -74,7 +75,7 @@ func set_action_program(actions: Dictionary, catalog: Catalog) -> bool:
 	_action_program = actions.duplicate(true)
 	_freeze_plan(_action_program)
 	_action_abilities = decoded
-	# A form change keeps committed casts and both cooldowns, but drops old buffered intent.
+	# A form change keeps committed casts and independent action cooldowns, but drops old buffered intent.
 	clear_intents()
 	combo_index = 0
 	combo_idle = 0.0
@@ -101,6 +102,8 @@ func configure(actor_def: Catalog.Actor, ability_defs: Array[Catalog.Ability], d
 	health.died.connect(_die)
 func request_attack() -> void:
 	request_action("primary")
+func request_skill() -> void:
+	request_action("skill")
 func request_special() -> void:
 	request_action("special")
 func request_action(id: String, input_frame: int = -1) -> void:
@@ -112,7 +115,8 @@ func request_action(id: String, input_frame: int = -1) -> void:
 	if runner.cooldown_for(id) > buffer_sec: return
 	var frame := Engine.get_process_frames() if input_frame < 0 else input_frame
 	# Same rendered frame has a stable priority even if OS event order is reversed.
-	if frame == _queued_frame and _queued_action == "special" and id == "primary": return
+	var priorities := {"primary": 0, "special": 1, "skill": 2}
+	if frame == _queued_frame and priorities.get(_queued_action, -1) > priorities.get(id, -1): return
 	_queued_action = id
 	_queued_frame = frame
 	_buffer_left = buffer_sec
@@ -177,14 +181,14 @@ func step(delta: float) -> void:
 		motor.step(movement if stagger_left <= 0.0 else Vector3.ZERO, definition.speed * move_multiplier * _build_move_scale * enemy_move_multiplier, delta)
 func receive_hit(amount: float) -> float:
 	var applied := health.apply(amount, invulnerable())
-	if applied > 0.0 and health.alive():
+	if applied > 0.0 and health.alive() and not hit_reaction_immune:
 		if not runner.busy() or runner.ability.interruptible:
 			stagger_left = definition.stagger
 			runner.cancel("hit")
 			_clear_attack_intent()
 	return applied
 func apply_knockback(direction: Vector3, speed: float, duration: float) -> void:
-	if health.alive(): motor.knockback(direction, speed, duration)
+	if health.alive() and not hit_reaction_immune: motor.knockback(direction, speed, duration)
 func cancel(reason: String = "cancelled") -> void:
 	motor.clear_impulse()
 	runner.cancel(reason)

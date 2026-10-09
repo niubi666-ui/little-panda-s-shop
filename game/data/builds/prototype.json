@@ -1,5 +1,5 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "offer": {
     "count": 3,
     "pool_ids": [
@@ -11,8 +11,6 @@
       "freeze_duration",
       "pierce",
       "frost_blast",
-      "sword_wave_form",
-      "sword_heavy_form",
       "action_power"
     ],
     "fallback_ids": [
@@ -206,6 +204,7 @@
       "action_ids": [
         "primary",
         "special",
+        "skill",
         "debug_melee",
         "debug_arrow"
       ],
@@ -246,6 +245,7 @@
       "action_ids": [
         "primary",
         "special",
+        "skill",
         "debug_melee",
         "debug_arrow"
       ],
@@ -323,6 +323,7 @@
       "action_ids": [
         "primary",
         "special",
+        "skill",
         "debug_melee",
         "debug_arrow"
       ],
@@ -350,6 +351,7 @@
       "action_ids": [
         "primary",
         "special",
+        "skill",
         "debug_melee",
         "debug_arrow"
       ],
@@ -380,6 +382,7 @@
       "action_ids": [
         "primary",
         "special",
+        "skill",
         "debug_melee",
         "debug_arrow"
       ],
@@ -417,54 +420,9 @@
       "action_ids": [
         "primary",
         "special",
+        "skill",
         "debug_melee",
         "debug_arrow"
-      ],
-      "test_only": false
-    },
-    {
-      "id": "sword_wave_form",
-      "name_key": "build.sword_wave_form.name",
-      "description_key": "build.sword_wave_form.description",
-      "weight": 1.0,
-      "max_rank": 1,
-      "requires": [],
-      "excludes": [],
-      "required_tags": [],
-      "granted_tags": [],
-      "effect_type": "form",
-      "ranks": [
-        {
-          "form_id": "sword_wave"
-        }
-      ],
-      "scope": "action",
-      "layer": "form",
-      "action_ids": [
-        "special"
-      ],
-      "test_only": false
-    },
-    {
-      "id": "sword_heavy_form",
-      "name_key": "build.sword_heavy_form.name",
-      "description_key": "build.sword_heavy_form.description",
-      "weight": 1.0,
-      "max_rank": 1,
-      "requires": [],
-      "excludes": [],
-      "required_tags": [],
-      "granted_tags": [],
-      "effect_type": "form",
-      "ranks": [
-        {
-          "form_id": "sword_heavy"
-        }
-      ],
-      "scope": "action",
-      "layer": "form",
-      "action_ids": [
-        "special"
       ],
       "test_only": false
     },
@@ -495,6 +453,7 @@
       "action_ids": [
         "primary",
         "special",
+        "skill",
         "debug_melee",
         "debug_arrow"
       ],
@@ -591,8 +550,8 @@
       "selections": []
     },
     {
-      "id": "left_blast_right_freeze",
-      "name_key": "build.preset.left_blast_right_freeze",
+      "id": "left_blast_skill_freeze",
+      "name_key": "build.preset.left_blast_skill_freeze",
       "selections": [
         {
           "upgrade_id": "impact_blast",
@@ -600,44 +559,34 @@
           "rank": 1
         },
         {
-          "upgrade_id": "sword_wave_form",
-          "action_id": "special",
-          "rank": 1
-        },
-        {
           "upgrade_id": "contact_freeze",
-          "action_id": "special",
+          "action_id": "skill",
           "rank": 1
         },
         {
           "upgrade_id": "pierce",
-          "action_id": "special",
+          "action_id": "skill",
           "rank": 1
         }
       ]
     },
     {
-      "id": "right_frost",
-      "name_key": "build.preset.right_frost",
+      "id": "skill_frost",
+      "name_key": "build.preset.skill_frost",
       "selections": [
         {
-          "upgrade_id": "sword_wave_form",
-          "action_id": "special",
-          "rank": 1
-        },
-        {
           "upgrade_id": "impact_blast",
-          "action_id": "special",
+          "action_id": "skill",
           "rank": 1
         },
         {
           "upgrade_id": "frost_blast",
-          "action_id": "special",
+          "action_id": "skill",
           "rank": 1
         },
         {
           "upgrade_id": "pierce",
-          "action_id": "special",
+          "action_id": "skill",
           "rank": 1
         }
       ]
@@ -658,7 +607,15 @@
       "name_key": "build.action.special",
       "base_form_id": "sword_heavy",
       "form_ids": [
-        "sword_heavy",
+        "sword_heavy"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "skill",
+      "name_key": "build.action.skill",
+      "base_form_id": "sword_wave",
+      "form_ids": [
         "sword_wave"
       ],
       "test_only": false

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/charged_arrow_v001/sigil.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/tint = Color(1, 0.74, 0.32, 1)
+shader_parameter/energy = 3.0
+shader_parameter/opacity = 0.0
+shader_parameter/time_value = 0.0
+shader_parameter/spin_speed = -0.7
+shader_parameter/rune_count = 12.0
+shader_parameter/radial_width = 180.0

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/combat/enemies/scout_animation_style.gd" id="script"]
+[resource]
+script = ExtResource("script")
+clips = Dictionary[String, String]({
+"idle": "scout_idle",
+"walk": "scout_walk",
+"run": "scout_run",
+"hit": "scout_hit_react",
+"death": "scout_death"
+})
+attack_clips = Array[String](["scout_attack_diagonal"])
+attack_cuts_sec = Dictionary[String, Vector2]({
+"scout_attack_diagonal": Vector2(0.5, 0.7333333)
+})
+walk_reference_speed_mps = 1.3
+run_reference_speed_mps = 2.4
+run_threshold_mps = 1.6
+movement_epsilon_mps = 0.03

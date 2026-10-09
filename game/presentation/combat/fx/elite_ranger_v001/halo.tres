@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/elite_ranger_v001/ribbon.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/tint = Color(1, 0.41, 0.07, 1)
+shader_parameter/energy = 1.5
+shader_parameter/opacity = 0.24
+shader_parameter/visual_time = 0
+shader_parameter/edge_power = 2.4
+shader_parameter/grain_frequency = 15

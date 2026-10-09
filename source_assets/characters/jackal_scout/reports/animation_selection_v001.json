@@ -1,0 +1,219 @@
+{
+  "output": "E:\\ShopGame\\source_assets\\characters\\jackal_scout\\blender\\jackal_scout_animation_review_v001.blend",
+  "rig_source": "斥候绑定骨架.fbx",
+  "bones": 65,
+  "body_vertices": 3943,
+  "body_triangles": 7827,
+  "unweighted_body_vertices": 0,
+  "packed_images": [
+    {
+      "name": "3c45d245-ba15-4cc6-8111-f840039af378_basecolor",
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "5d7c3ae1-fc8d-4f26-a780-f0699ebc252d_basecolor",
+      "size": [
+        4096,
+        4096
+      ]
+    }
+  ],
+  "playlist_frames": 640,
+  "fps": 30,
+  "selected": [
+    {
+      "id": "scout_idle",
+      "label": "待机",
+      "source": "sword and shield idle (4).fbx",
+      "frame_start": 1,
+      "frame_end": 74,
+      "fps": 30,
+      "seconds": 2.466666666666667,
+      "rest_matrix_max_error": 53.74791145324707,
+      "binding_preserved": true,
+      "transfer": "canonical_tpose_fk_retarget_baked_to_original_bind_pose",
+      "center_xy": true,
+      "loop": true,
+      "root_horizontal_span_before_m": [
+        0.0030471542850136757,
+        0.0028664320707321167
+      ],
+      "repeats_in_review": 2,
+      "review_start": 1,
+      "review_end": 147
+    },
+    {
+      "id": "scout_walk",
+      "label": "行走",
+      "source": "sword and shield walk.fbx",
+      "frame_start": 1,
+      "frame_end": 34,
+      "fps": 30,
+      "seconds": 1.1333333333333333,
+      "rest_matrix_max_error": 53.74791145324707,
+      "binding_preserved": true,
+      "transfer": "canonical_tpose_fk_retarget_baked_to_original_bind_pose",
+      "center_xy": true,
+      "loop": true,
+      "root_horizontal_span_before_m": [
+        0.029517091810703278,
+        0.9154301444068551
+      ],
+      "repeats_in_review": 3,
+      "review_start": 148,
+      "review_end": 247
+    },
+    {
+      "id": "scout_run",
+      "label": "追击跑步",
+      "source": "sword and shield run.fbx",
+      "frame_start": 1,
+      "frame_end": 22,
+      "fps": 30,
+      "seconds": 0.7333333333333333,
+      "rest_matrix_max_error": 53.74791145324707,
+      "binding_preserved": true,
+      "transfer": "canonical_tpose_fk_retarget_baked_to_original_bind_pose",
+      "center_xy": true,
+      "loop": true,
+      "root_horizontal_span_before_m": [
+        0.015925899147987366,
+        1.6083171591162682
+      ],
+      "repeats_in_review": 5,
+      "review_start": 248,
+      "review_end": 353
+    },
+    {
+      "id": "scout_attack_slash",
+      "label": "普通横斩",
+      "source": "sword and shield slash (5).fbx",
+      "frame_start": 1,
+      "frame_end": 42,
+      "fps": 30,
+      "seconds": 1.4,
+      "rest_matrix_max_error": 53.74791145324707,
+      "binding_preserved": true,
+      "transfer": "canonical_tpose_fk_retarget_baked_to_original_bind_pose",
+      "center_xy": true,
+      "loop": false,
+      "root_horizontal_span_before_m": [
+        0.09274193458259106,
+        0.26408519968390465
+      ],
+      "repeats_in_review": 2,
+      "review_start": 354,
+      "review_end": 436
+    },
+    {
+      "id": "scout_attack_diagonal",
+      "label": "备用斜斩",
+      "source": "sword and shield slash.fbx",
+      "frame_start": 1,
+      "frame_end": 46,
+      "fps": 30,
+      "seconds": 1.5333333333333334,
+      "rest_matrix_max_error": 53.74791145324707,
+      "binding_preserved": true,
+      "transfer": "canonical_tpose_fk_retarget_baked_to_original_bind_pose",
+      "center_xy": true,
+      "loop": false,
+      "root_horizontal_span_before_m": [
+        0.02538740262389183,
+        0.2744919955730438
+      ],
+      "repeats_in_review": 2,
+      "review_start": 437,
+      "review_end": 527
+    },
+    {
+      "id": "scout_hit_react",
+      "label": "受击",
+      "source": "sword and shield impact (3).fbx",
+      "frame_start": 1,
+      "frame_end": 22,
+      "fps": 30,
+      "seconds": 0.7333333333333333,
+      "rest_matrix_max_error": 53.74791145324707,
+      "binding_preserved": true,
+      "transfer": "canonical_tpose_fk_retarget_baked_to_original_bind_pose",
+      "center_xy": true,
+      "loop": false,
+      "root_horizontal_span_before_m": [
+        0.06474963016808033,
+        0.06593024544417858
+      ],
+      "repeats_in_review": 2,
+      "review_start": 528,
+      "review_end": 570
+    },
+    {
+      "id": "scout_death",
+      "label": "死亡",
+      "source": "sword and shield death.fbx",
+      "frame_start": 1,
+      "frame_end": 70,
+      "fps": 30,
+      "seconds": 2.3333333333333335,
+      "rest_matrix_max_error": 53.74791145324707,
+      "binding_preserved": true,
+      "transfer": "canonical_tpose_fk_retarget_baked_to_original_bind_pose",
+      "center_xy": false,
+      "loop": false,
+      "root_horizontal_span_before_m": [
+        0.07700078189373016,
+        0.6630819663405418
+      ],
+      "repeats_in_review": 1,
+      "review_start": 571,
+      "review_end": 640
+    }
+  ],
+  "excluded": [
+    "sheath sword 1.fbx",
+    "sheath sword 2.fbx",
+    "sword and shield 180 turn (2).fbx",
+    "sword and shield 180 turn.fbx",
+    "sword and shield attack (2).fbx",
+    "sword and shield attack (3).fbx",
+    "sword and shield attack (4).fbx",
+    "sword and shield attack.fbx",
+    "sword and shield block (2).fbx",
+    "sword and shield block idle.fbx",
+    "sword and shield block.fbx",
+    "sword and shield casting (2).fbx",
+    "sword and shield casting.fbx",
+    "sword and shield crouch block (2).fbx",
+    "sword and shield crouch block idle.fbx",
+    "sword and shield crouch block.fbx",
+    "sword and shield crouch idle.fbx",
+    "sword and shield crouch.fbx",
+    "sword and shield crouching (2).fbx",
+    "sword and shield crouching (3).fbx",
+    "sword and shield crouching.fbx",
+    "sword and shield death (2).fbx",
+    "sword and shield idle (2).fbx",
+    "sword and shield idle (3).fbx",
+    "sword and shield idle.fbx",
+    "sword and shield impact (2).fbx",
+    "sword and shield impact.fbx",
+    "sword and shield jump (2).fbx",
+    "sword and shield jump.fbx",
+    "sword and shield kick.fbx",
+    "sword and shield power up.fbx",
+    "sword and shield run (2).fbx",
+    "sword and shield slash (2).fbx",
+    "sword and shield slash (3).fbx",
+    "sword and shield slash (4).fbx",
+    "sword and shield strafe (2).fbx",
+    "sword and shield strafe (3).fbx",
+    "sword and shield strafe (4).fbx",
+    "sword and shield strafe.fbx",
+    "sword and shield turn (2).fbx",
+    "sword and shield turn.fbx",
+    "sword and shield walk (2).fbx"
+  ]
+}

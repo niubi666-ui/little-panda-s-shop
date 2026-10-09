@@ -1,0 +1,23 @@
+{
+	"fps": 30,
+	"method": "Actual Godot Forward+ frames; individually triggered skills with fixed-step rule/animation sampling",
+	"player_position": "(-5.303301, 0.0, -2.303301)",
+	"ranger_position": "(0.0, 0.0, 3.0)",
+	"skills": {
+		"fast": {
+			"frames": 58,
+			"hero_frame": 21,
+			"impact_frame": 32
+		},
+		"rain": {
+			"frames": 99,
+			"hero_frame": 49,
+			"impact_frame": 42
+		},
+		"volley": {
+			"frames": 66,
+			"hero_frame": 31,
+			"impact_frame": 41
+		}
+	}
+}

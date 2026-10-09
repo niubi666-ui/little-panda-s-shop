@@ -24,6 +24,7 @@ var _rules: Dictionary
 var _pending := 0
 var _auto_rewards := true
 var _stopped := false
+var _rewards_finished := false
 var _committed_state: Dictionary = {}
 var _test_presets_enabled := false
 
@@ -112,7 +113,7 @@ func request_test_offer() -> void:
 	flush_offers()
 
 func reward_wave(_wave_index: int) -> void:
-	if _auto_rewards: _queue(int(_rules["rewards_per_wave"]))
+	if _auto_rewards and not _rewards_finished: _queue(int(_rules["rewards_per_wave"]))
 
 func _queue(count: int) -> void:
 	if not _stopped: _pending = mini(_pending + count, int(_rules["max_queued_offers"]))
@@ -155,11 +156,16 @@ func clear_room() -> void:
 	runtime.clear_room()
 	if is_instance_valid(effects): effects.clear()
 	if is_instance_valid(mechanisms): mechanisms.clear()
+func finish_rewards() -> void:
+	# Encounter completion ends automatic offers, not the actor's combat runtime.
+	_rewards_finished = true
+	_pending = 0
+	if is_instance_valid(choice_panel): choice_panel.dismiss()
+
 func finish() -> void:
 	if _stopped: return
 	_stopped = true
-	_pending = 0
-	if is_instance_valid(choice_panel): choice_panel.dismiss()
+	finish_rewards()
 	if is_instance_valid(status_panel): status_panel.hide()
 	clear_room()
 

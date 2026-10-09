@@ -29,6 +29,7 @@ func run() -> void:
 		if not finished: check(false,"integration timeout");quit(1))
 	change_scene_to_file("res://app/main.tscn")
 	await ticks(4)
+	while current_scene == null: await process_frame
 	check(current_scene.controller != null,"actual shop boots")
 	var f6 := InputEventAction.new();f6.action="combat_training";f6.pressed=true
 	Input.parse_input_event(f6)
@@ -113,6 +114,17 @@ func run() -> void:
 		await ticks(2)
 		check(not arena._ranger_roll_path(ranger,clear_motion),"real swept body rejects a wall in roll corridor")
 		wall.free();await ticks(2)
+		var start: Vector3 = ranger.position
+		b.state="rolling";b.roll_direction=clear_motion.normalized()
+		b.roll_distance=clear_motion.length();b.roll_duration=b.config.roll_duration_sec;b.roll_left=b.roll_duration
+		while b.state == "rolling":
+			await physics_frame
+			var delta := 1.0 / float(Engine.physics_ticks_per_second)
+			b.tick(delta);ranger.step(delta)
+		var traveled: float = ranger.position.distance_to(start)
+		check(absf(traveled-clear_motion.length())<.05,"physical motor reaches selected 3-5m roll endpoint")
+		print("RANGER_ROLL_DISTANCE ",traveled)
+		ranger.position=start;b.cancel();await ticks(2)
 	arena.get_node("Camera").size=12.0
 	arena.get_node("Camera").position=ranger.position+Vector3(5,5,7)
 	arena.get_node("Camera").look_at(ranger.position+Vector3.UP*2.5)
@@ -130,6 +142,7 @@ func run() -> void:
 	ranger.set_control(1.0,true);view.refresh(.5)
 	check(animation.current_animation_position==pose_time,"frozen imported animation holds its pose")
 	ranger.set_control(1.0,false)
+	await challenge_checks(ranger, b, view)
 	# Run the real physics loop after sampled poses; no forced attack selection.
 	var natural_actions: Dictionary = {}
 	b.action_started.connect(func(id,_cast): natural_actions[id]=int(natural_actions.get(id,0))+1)
@@ -164,7 +177,18 @@ func run() -> void:
 	check(arena.state!="victory", "ordinary clear does not freeze living ranger")
 	ranger.receive_hit(ranger.health.maximum)
 	check(arena.state=="victory", "managed death permits victory after ordinary clear")
+	view.refresh(view.visual.style.death_duration_sec * .5)
+	check(view.visible and view.visual.visible and view.visual.has_presentation_tail(), "slower death still playing at midpoint")
+	await capture("death_mid")
+	view.refresh(view.visual.style.death_duration_sec)
+	check(view.visible and view.visual.visible and not view.visual.has_presentation_tail(), "corpse holds final pose after death animation")
+	await capture("corpse")
+	check(ranger.collision_layer == 0 and ranger.collision_mask == 0, "corpse cannot block player or shots")
 	check(arena._refresh_ranger() and arena.state=="fighting", "ranger can be fought after victory")
+	await process_frame
+	check(is_instance_valid(ranger) and arena.actors.has(ranger) and view.visible, "refresh retains previous dead elite")
+	arena._append_training_wave([], [])
+	check(is_instance_valid(ranger) and arena.actors.has(ranger), "additional practice wave retains elite corpse")
 	b=brain_for(arena._managed_ranger);b._start("fast");b.tick(b.windup_duration)
 	arena.training_tools.set_player_invincible(false)
 	arena.player.receive_hit(arena.player.health.maximum)
@@ -177,3 +201,57 @@ func run() -> void:
 	finished=true
 	print("RANGER_INTEGRATION ",JSON.stringify({"checks":checks,"failures":failures}))
 	quit(0 if failures.is_empty() else 1)
+
+func challenge_checks(ranger, b, view) -> void:
+	var start: Vector3 = arena.player.position
+	var selected := false
+	for point in arena._enemy_spawns:
+		if not arena._ranger_ground(point): continue
+		arena.player.position=point
+		if arena._ranger_rain_escape([{"center":point,"radius":b.config.rain_radius_m,"active":false}], b.config):
+			selected=true;break
+	check(selected,"real room admits a rain circle with full-body escape route")
+	if not selected:
+		arena.player.position=start;return
+	var point: Vector3=arena.player.position
+	var walls: Array[Node3D]=[]
+	for side in [Vector3.RIGHT,Vector3.LEFT,Vector3.FORWARD,Vector3.BACK]:
+		var wall:=StaticBody3D.new();wall.collision_layer=arena.Actor.BodyLayer.WORLD
+		var shape:=CollisionShape3D.new();var box:=BoxShape3D.new()
+		box.size=Vector3(.4,4,5) if side.x!=0 else Vector3(5,4,.4)
+		shape.shape=box;wall.add_child(shape);arena.add_child(wall)
+		wall.position=point+side*1.7+Vector3.UP*1.5;walls.append(wall)
+	await ticks(2)
+	check(not arena._ranger_rain_escape([{"center":point,"radius":b.config.rain_radius_m,"active":false}], b.config),"real physics rejects rain when walls remove every escape route")
+	for wall in walls:wall.free()
+	await ticks(2)
+	# Scripted state sampling in the actual room, never a concept render.
+	arena.enemy_runtime.projectiles.clear();arena.enemy_runtime.rains.clear()
+	b._start("rain")
+	var started:=0
+	while b.state!="recovery" and started<800:
+		b.tick(.01);arena.enemy_runtime.after_motion(.01)
+		view.refresh(.01);arena.enemy_presentation.refresh(.01)
+		if b.state=="sequence_gap":
+			for direction in [Vector3.RIGHT,Vector3.BACK,Vector3.LEFT,Vector3.FORWARD]:
+				var next: Vector3=point+direction*float(arena.enemy_runtime.rains.size())
+				if arena._ranger_ground(next):arena.player.position=next;break
+		started+=1
+	check(arena.enemy_runtime.rains.size()==3,"real room plays three bounded baitable rain circles")
+	arena.get_node("Camera").size=15.0
+	var focus: Vector3=point.lerp(ranger.position,.5)
+	arena.get_node("Camera").position=focus+Vector3(5,10,9)
+	arena.get_node("Camera").look_at(focus)
+	await ticks(3);await capture("challenge_rain")
+	arena.enemy_runtime.rains.clear();arena.enemy_presentation.refresh(.01)
+	b._start("charged");b.time_left=b.config.charged_lock_sec
+	view.refresh(.01);arena.enemy_presentation.refresh(.01)
+	await ticks(3);await capture("challenge_charge")
+	var direction: Vector3=b.locked_direction
+	arena.player.position+=Vector3.RIGHT*2.0
+	b.tick(b.time_left);arena.enemy_runtime.after_motion(.06)
+	view.refresh(.01);arena.enemy_presentation.refresh(.06)
+	check(b.state=="recovery" and b.locked_direction==direction,"actual scene charged shot honors lock and recovery")
+	await ticks(3);await capture("challenge_arrow")
+	arena.enemy_runtime.projectiles.clear();arena.enemy_runtime.rains.clear()
+	b.cancel();arena.player.position=start

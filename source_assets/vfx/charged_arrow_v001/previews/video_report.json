@@ -1,0 +1,11 @@
+{
+  "video": "E:\\ShopGame\\source_assets\\vfx\\charged_arrow_v001\\previews\\charged_arrow_godot.mp4",
+  "frames": 772,
+  "fps": 30.0,
+  "size": [
+    1280,
+    800
+  ],
+  "duration_sec": 25.72,
+  "source": "Actual Godot frames; original synthesized cues; normal and explicitly marked 0.2-time-scale segments"
+}

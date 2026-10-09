@@ -18,18 +18,24 @@ def validate_enemies(manifest):
         if p['actor_id'] not in actors or p['actor_id']==load('combat_prototype_file')['player_id'] or p['loot_table_id'] not in tables:raise ValueError('invalid enemy references')
         if (p['role']=='melee')!=bool(actors[p['actor_id']]['attack_ids']):raise ValueError('role/attack mismatch')
         c=p['config']
-        if any(v<=0 for v in c.values()):raise ValueError('enemy behavior parameters must be positive')
+        if any(v<=0 for v in c.values() if not isinstance(v, bool)):raise ValueError('enemy behavior parameters must be positive')
         if p['role']=='ranged' and not(c['safe_min_m']<c['safe_max_m']<=c['fire_range_m'] and c['windup_sec']+c['recovery_sec']<c['shot_interval_sec'] and c['minimum_windup_sec']<=c['windup_sec']):raise ValueError('ranged ordering')
         if p['role']=='charger' and not(c['minimum_range_m']<c['trigger_range_m'] and c['minimum_windup_sec']<=c['windup_sec'] and c['cooldown_sec']>=c['windup_sec']+c['charge_distance_m']/c['charge_speed_mps']+c['recovery_sec']):raise ValueError('charge ordering')
         if p['role']=='support' and c['retreat_range_m']>=c['safe_max_m']:raise ValueError('support distances')
         if p['role']=='ranger':
+            if c['charged_range_m']>c['fire_range_m'] or c['charged_rift_interval_sec']>=c['charged_rift_duration_sec'] or c['charged_range_m']/c['charged_speed_mps']>=c['charged_rift_interval_sec']:raise ValueError('ranger charged range/rift timing')
             if c['roll_min_distance_m']>c['roll_distance_m']:raise ValueError('ranger roll distance order')
             if not(c['safe_min_m']<c['safe_max_m']<=c['fire_range_m'] and c['roll_trigger_m']<c['safe_min_m'] and c['rain_min_range_m']<c['fire_range_m']):raise ValueError('ranger distances')
             if c['rain_delay_sec']<=c['rain_windup_sec'] or c['volley_count']<2 or c['volley_angle_deg']>=180 or c['roll_cooldown_sec']<=c['roll_duration_sec']:raise ValueError('ranger attack/roll timing')
-            for ability in ['fast','volley','rain']:
+            for ability in ['fast','volley','rain','charged']:
                 if c[ability+'_cooldown_sec']<c[ability+'_windup_sec']+c[ability+'_recovery_sec']:raise ValueError('ranger cooldown')
-            for ability in ['fast','volley']:
+            for ability in ['fast','volley','charged']:
                 if c[ability+'_lock_sec']>c[ability+'_windup_sec']:raise ValueError('ranger aim lock')
+            if c['rain_sequence_count']>c['rain_max_areas'] or c['rain_escape_margin_sec']>=c['rain_delay_sec']:raise ValueError('ranger rain capacity/escape timing')
+            rain_length=c['rain_sequence_count']*c['rain_windup_sec']+(c['rain_sequence_count']-1)*c['rain_gap_sec']
+            burst_length=c['burst_fast_count']*(c['fast_windup_sec']+c['burst_gap_sec'])+c['charged_windup_sec']
+            if c['rain_cooldown_sec']<rain_length+c['rain_recovery_sec'] or c['burst_cooldown_sec']<burst_length+c['burst_recovery_sec'] or c['combo_cooldown_sec']<rain_length+c['rain_gap_sec']+c['charged_windup_sec']+c['combo_recovery_sec']:raise ValueError('ranger sequence cooldown')
+            if c['charged_speed_mps']<=c['fast_speed_mps'] or c['charged_damage']<=c['fast_damage'] or c['charged_recovery_sec']<=c['fast_recovery_sec'] or c['burst_recovery_sec']<c['charged_recovery_sec'] or c['combo_recovery_sec']<c['charged_recovery_sec']:raise ValueError('ranger charged contrast/recovery')
     seen=set();costs=[]
     for team in enc['combinations']:
         ids=team['enemy_ids']

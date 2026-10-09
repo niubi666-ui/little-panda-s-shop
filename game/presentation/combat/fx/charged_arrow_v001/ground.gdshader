@@ -1,0 +1,33 @@
+shader_type spatial;
+render_mode unshaded, blend_mix, depth_draw_never, cull_disabled;
+uniform vec4 gold : source_color;
+uniform vec4 ember : source_color;
+uniform float energy;
+uniform float time_value;
+uniform float life;
+uniform float travel;
+uniform float tick_sec;
+uniform float length_m;
+uniform float half_width;
+uniform float opacity;
+uniform float scar_frequency;
+uniform float edge_glow;
+void fragment() {
+ vec2 uv=clamp(UV,vec2(0.0),vec2(1.0));
+ float x=uv.x*length_m;
+ float y=(uv.y*2.0-1.0)*half_width;
+ float envelope=1.0-smoothstep(half_width*0.86,half_width,abs(y));
+ float undulation=sin(x*scar_frequency+sin(x*scar_frequency*0.5))*half_width*0.14;
+ float spine=exp(-abs(y-undulation)*8.0/half_width);
+ float tributaries=pow(max(0.0,1.0-abs(sin(x*scar_frequency+y*scar_frequency*2.0))),14.0);
+ float wash=exp(-abs(y)*1.8/half_width);
+ float borders=exp(-abs(abs(y)-half_width*0.94)*90.0/half_width);
+ float dash=step(0.30,fract(x*2.0));
+ float pulse=pow(max(0.0,1.0-fract(time_value/tick_sec)),5.0);
+ float flecks=pow(max(0.0,sin(x*41.0+y*93.0)*sin(x*23.0-y*59.0)),12.0);
+ float front=1.0-smoothstep(travel-0.02,travel+0.01,uv.x);
+ float rim=borders*mix(0.25,1.0,dash)*edge_glow;
+ float brightness=spine+tributaries*wash*0.65+flecks*wash*0.5;
+ ALBEDO=gold.rgb*rim*energy*(1.0+pulse*0.35);
+ ALPHA=rim*envelope*front*life*opacity;
+}

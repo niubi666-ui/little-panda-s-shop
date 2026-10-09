@@ -1,0 +1,78 @@
+# GENERATED from game/data/locales; edit JSON and rerun the build tool.
+msgid ""
+msgstr ""
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "map_preview.apply"
+msgstr "按种子生成"
+
+msgid "map_preview.close"
+msgstr "关闭  M / Esc"
+
+msgid "map_preview.details"
+msgstr "选择一个房间"
+
+msgid "map_preview.end"
+msgstr "路线终点"
+
+msgid "map_preview.failed"
+msgstr "未能生成符合规则的地图，已保留上一张。"
+
+msgid "map_preview.hint"
+msgstr "M 开关地图 · 滚轮浏览 · L 切换语言"
+
+msgid "map_preview.invalid_seed"
+msgstr "请输入 1–64 个字符的种子。"
+
+msgid "map_preview.kind.battle"
+msgstr "小怪房间"
+
+msgid "map_preview.kind.elite"
+msgstr "精英怪房间"
+
+msgid "map_preview.kind.event"
+msgstr "随机事件房间"
+
+msgid "map_preview.kind.rest"
+msgstr "休息房间"
+
+msgid "map_preview.kind.shop"
+msgstr "商店房间"
+
+msgid "map_preview.kind.treasure"
+msgstr "宝箱房间"
+
+msgid "map_preview.legend"
+msgstr "房间图例"
+
+msgid "map_preview.new"
+msgstr "生成新地图"
+
+msgid "map_preview.notice"
+msgstr "地图预览 · 点击节点查看信息"
+
+msgid "map_preview.seed"
+msgstr "地图种子"
+
+msgid "map_preview.selected"
+msgstr "第 {layer} 层 · {kind}\n节点 {id}\n前路 {next} 条"
+
+msgid "map_preview.start"
+msgstr "旅程起点"
+
+msgid "map_preview.stats"
+msgstr "{nodes} 个房间 · {layers} 层"
+
+msgid "map_preview.subtitle"
+msgstr "穿过林间岔路，探索下一段旅程"
+
+msgid "map_preview.title"
+msgstr "冒险地图"
+
+msgid "map_preview.unavailable"
+msgstr "地图配置加载失败，请查看日志。"
+

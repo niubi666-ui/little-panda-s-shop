@@ -84,6 +84,7 @@ var _abilities: Dictionary = {}
 var _actors: Dictionary = {}
 var _waves: Array
 var _player_id: String
+var _player_hurt_radius: float
 var _delay: float
 var _dodge: Dodge
 func _init(data: Dictionary) -> void:
@@ -97,6 +98,7 @@ func _init(data: Dictionary) -> void:
 	for wave in _waves:
 		wave.make_read_only()
 	_waves.make_read_only()
+	_player_hurt_radius = data.player_hurt_radius_m
 	_player_id = data.player_id
 	_delay = data.wave_delay_sec
 	_dodge = Dodge.new(data.dodge)
@@ -108,3 +110,5 @@ func player() -> Actor: return actor(_player_id)
 func dodge() -> Dodge: return _dodge
 func waves() -> Array: return _waves
 func wave_delay() -> float: return _delay
+
+func player_hurt_radius() -> float: return _player_hurt_radius

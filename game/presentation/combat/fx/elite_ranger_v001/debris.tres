@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3]
+[resource]
+albedo_color = Color(0.31, 0.25, 0.16, 1)
+roughness = 0.77
+vertex_color_use_as_albedo = true
+transparency = 1

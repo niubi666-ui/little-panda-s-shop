@@ -48,7 +48,7 @@ emission_energy_multiplier = {'0.25' if ice else '1.6'}
 ''')
     values = {
         'blade_scale':'Vector3(1.95, 1.5, 1.85)' if ice else 'Vector3(1.8, 1.2, 1.7)',
-        'blade_tilt_deg':-12.0,
+        'blade_tilt_deg':0.0,
         # Adapter supplies (2r,1.6r,4.4r); normalize the solid core to local width 1.
         'projectile_unit_scale':'Vector3(0.25641026, 1.0, 0.255)' if ice else 'Vector3(0.27777778, 1.0, 0.28)',
         'halo_scale':'Vector3(1.075, 1.8, 1.10)',

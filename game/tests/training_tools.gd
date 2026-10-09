@@ -138,7 +138,7 @@ func run() -> void:
 	arena.training_tools.set_enemies_invincible(false)
 	kill_enemies()
 	check(arena.state == "victory", "normal encounter completes after all additions die")
-	arena.builds.finish()
+	arena.builds.finish_rewards()
 	var retained_build: Dictionary = arena.builds.session.snapshot()
 	var reward_count := wave_rewards
 	check(arena.training_tools.add_wave() and arena.state == "fighting", "add wave resumes training after victory")

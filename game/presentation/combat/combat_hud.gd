@@ -10,6 +10,7 @@ var depth_selector: SpinBox
 var encounter_panel: PanelContainer
 var _encounter_floor := 0.0
 var status: Label
+var skill_cooldown: Label
 var message: Label
 var resume: Button
 var effect_picker
@@ -29,6 +30,8 @@ func configure(shared_theme: Theme, margin: int) -> void:
 	top.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_add_label(top, "combat.title")
 	status = _add_label(top, "")
+	skill_cooldown = _add_label(top, "")
+	skill_cooldown.name = "SkillCooldown"
 	message = _add_label(top, "")
 	var footer := VBoxContainer.new()
 	_footer = footer
@@ -116,6 +119,7 @@ func refresh_text() -> void:
 	for node in _texts: node.text = tr(_texts[node])
 	if effect_picker != null: effect_picker.refresh_text()
 func update_state(player, encounter, wave_count: int, state: String, paused: bool) -> void:
+	skill_cooldown.text = preload("res://presentation/combat/skill_cooldown_text.gd").format_for(player)
 	status.text = tr("combat.status").format({"hp":ceili(player.health.current), "max_hp":ceili(player.health.maximum), "charges":player.charges, "max_charges":player.dodge.charges, "wave":encounter.wave_index + 1, "total":wave_count, "enemies":encounter.remaining()})
 	var key := "combat." + ("paused" if paused else state)
 	message.text = tr(key)

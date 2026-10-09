@@ -1,0 +1,27 @@
+{
+  "source": "Godot Forward+ actual training scene frames",
+  "fps": 30,
+  "skills": [
+    {
+      "id": "fast",
+      "frames": 58,
+      "duration_sec": 1.9333333333333333,
+      "video": "fast.mp4"
+    },
+    {
+      "id": "volley",
+      "frames": 66,
+      "duration_sec": 2.2,
+      "video": "volley.mp4"
+    },
+    {
+      "id": "rain",
+      "frames": 99,
+      "duration_sec": 3.3,
+      "video": "rain.mp4"
+    }
+  ],
+  "combined": "elite_ranger_skills_godot.mp4",
+  "total_frames": 223,
+  "duration_sec": 7.433333333333334
+}

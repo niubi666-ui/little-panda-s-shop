@@ -96,11 +96,11 @@ func run() -> void:
 			check(app.session.snapshot() == before and app.room != null, "cannot leave an uncleared room")
 			# Actual world special action still executes in the new room composition.
 			app.room.player.facing = Vector3.FORWARD
-			app.room.player.request_special()
+			app.room.player.request_skill()
 			app.room.player.step(0.001)
 			app.room.player.runner.tick(app.room.player.runner.ability.windup)
 			app.room.build_runtime.tick(0.001)
-			check(app.room.build_runtime.projectiles().size() == 1, "persistent right-wave program executes in each fresh room")
+			check(app.room.build_runtime.projectiles().size() == 1, "persistent Q-wave program executes in each fresh room")
 			if index == 0 and branch == 0:
 				var probe := InputProbe.new()
 				probe.camera = app.room.camera
@@ -133,11 +133,20 @@ func run() -> void:
 			var cleared: Dictionary = app.session.snapshot()
 			app._room_cleared(entered.active_entry_id, hp)
 			check(app.session.snapshot() == cleared, "duplicate clear does not publish twice")
-			check(old_runtime.diagnostics().roots == 0 and old_runtime.projectiles().is_empty(), "completion clears outstanding projectiles")
+			check(app.room.active and not app.room.stopped, "cleared room remains active until exit")
+			var launched := [0]
+			app.room.build_runtime.projectile_presented.connect(func(fact):
+				if fact.event == "spawned": launched[0] += 1)
+			for step in 120: app.room._physics_process(1.0 / 60.0)
+			app.room.player.request_skill()
+			for step in 45: app.room._physics_process(1.0 / 60.0)
+			check(launched[0] > 0, "right skill can launch after clear including terminal room")
+			check(app.session.snapshot() == cleared, "post-clear skills do not repeat room settlement")
 			if index < 4:
 				app.return_to_map()
 				await frames()
 				check(room_ref.get_ref() == null and app._slot.get_child_count() == 0, "map disposes prior actors and room instance")
+				check(old_runtime.diagnostics().roots == 0 and old_runtime.projectiles().is_empty(), "exit clears outstanding projectiles")
 				check(app.session.snapshot().build_program == build, "returning to map retains Build")
 				if index == 0 and branch == 0: await check_languages("fork")
 			else:
@@ -161,11 +170,11 @@ func clear_encounter() -> void:
 	for wave in count:
 		for enemy in app.room.actors.duplicate():
 			if enemy != app.room.player and enemy.health.alive(): enemy.receive_hit(enemy.health.maximum)
-		if not app.room.stopped:
+		if not app.room.stopped and not app.room._encounter_complete:
 			app.room.player.cancel()
 			app.room.player.runner.tick(10.0)
 			app.room.player.stagger_left = 0.0
-			app.room.player.request_special()
+			app.room.player.request_skill()
 			app.room.player.step(0.001)
 			check(app.room.player.runner.busy(), "fixture starts a windup at wave boundary")
 			app.room.encounter.tick(app.combat.wave_delay())

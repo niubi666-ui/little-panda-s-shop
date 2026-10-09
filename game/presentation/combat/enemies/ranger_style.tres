@@ -1,19 +1,38 @@
 [gd_resource type="Resource" format=3]
 [ext_resource type="Script" path="res://presentation/combat/enemies/ranger_style.gd" id="script"]
+[ext_resource type="Resource" path="res://presentation/combat/fx/elite_ranger_v001/profile.tres" id="vfx"]
+[ext_resource type="Resource" path="res://presentation/combat/fx/elite_ranger_v001/roll_afterimage.tres" id="roll_afterimage"]
+[ext_resource type="AudioStream" path="res://assets/vfx/elite_ranger_v001/charge.wav" id="charge_audio"]
+[ext_resource type="AudioStream" path="res://assets/vfx/elite_ranger_v001/lock.wav" id="lock_audio"]
 [resource]
 script = ExtResource("script")
 clips = Dictionary[String, String]({"idle":"idle", "move":"move", "draw":"draw", "aim":"aim", "release":"release", "roll":"roll", "rain":"rain", "rain_release":"rain_release", "hit":"hit", "death":"death"})
-death_duration_sec = 1.4
+death_duration_sec = 2.8
 draw_phase_fraction = 0.3
-health_bar_height = 5.8
-health_bar_size = Vector2(2.6, 0.22)
+health_bar_height = 2.9
+health_bar_size = Vector2(1.6, 0.18)
+arrow_launch_blend_distance_m = 2.0
 warning_color = Color(1, 0.18, 0.08, 0.62)
-impact_color = Color(1, 0.7, 0.15, 0.8)
+skill_vfx_profile = ExtResource("vfx")
+roll_afterimage_profile = ExtResource("roll_afterimage")
 line_width = 0.07
 ground_height = 0.065
 arrow_length = 0.85
-arrow_width = 0.035
-arrow_color = Color(1, 0.52, 0.15, 1)
+arrow_width = 0.0525
 rain_arrow_count = 18
 rain_height = 5.0
 rain_fall_sec = 0.25
+
+charged_warning_color = Color(1, 0.5, 0.08, 0.75)
+locked_warning_color = Color(1, 0.06, 0.02, 0.95)
+rain_active_color = Color(1, 0.08, 0.015, 0.95)
+rain_active_width_ratio = 2.5
+charged_trail_ratio = 1.8
+charge_glow_size = 0.9
+charge_light_energy = 2.5
+charge_light_range = 3.0
+charge_sound = ExtResource("charge_audio")
+lock_sound = ExtResource("lock_audio")
+charge_volume_db = -14.0
+charge_audio_distance = 30.0
+charge_pitch_range = Vector2(0.8, 1.3)

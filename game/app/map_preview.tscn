@@ -1,0 +1,11 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://app/map_preview.gd" id="script"]
+[ext_resource type="Resource" path="res://presentation/map_preview/map_preview_style.tres" id="style"]
+[ext_resource type="Translation" path="res://generated/locales/map_preview/zh_CN.po" id="zh"]
+[ext_resource type="Translation" path="res://generated/locales/map_preview/en.po" id="en"]
+[node name="MapPreview" type="CanvasLayer"]
+layer = 110
+script = ExtResource("script")
+manifest_path = "res://data/run/map_preview_manifest.json"
+style = ExtResource("style")
+translations = Array[Translation]([ExtResource("zh"), ExtResource("en")])

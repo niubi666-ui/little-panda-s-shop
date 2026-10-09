@@ -3,6 +3,11 @@ extends "res://rogue/rooms/authored_room.gd"
 @export var wet_paving: ShaderMaterial
 @export var water: Material
 @export var paving_casts_shadow: bool
+func rift_surfaces() -> Array:
+	var result: Array=[]
+	for visual in $Art.find_children("*","MeshInstance3D",true,false):
+		if visual.name.begins_with("Courtyard_Item2_Paving_") or visual.name.begins_with("Roundel_") or visual.name.begins_with("Peripheral_reflecting_rain_pool_") or visual.name in ["Courtyard_foundation","Continuous_forest_valley_ground"]:result.append(visual)
+	return result
 func _ready() -> void:
 	var replacements: Dictionary = {}
 	for visual in $Art.find_children("*", "MeshInstance3D", true, false):

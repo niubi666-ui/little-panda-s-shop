@@ -1,6 +1,8 @@
 [gd_scene format=3]
 [ext_resource type="Script" path="res://app/combat_training.gd" id="1"]
 [ext_resource type="Resource" path="res://presentation/rooms/forest_courtyard_v001/presentation.tres" id="room"]
+[ext_resource type="PackedScene" path="res://app/map_preview.tscn" id="map_preview"]
+
 [node name="CombatTraining" type="Node3D"]
 script = ExtResource("1")
 room_presentation = ExtResource("room")
@@ -11,3 +13,5 @@ projection = 1
 current = true
 far = 180.0
 [node name="UIRoot" type="CanvasLayer" parent="."]
+
+[node name="MapPreview" parent="." instance=ExtResource("map_preview")]

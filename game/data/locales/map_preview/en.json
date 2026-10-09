@@ -1,0 +1,28 @@
+{
+  "locale": "en",
+  "messages": {
+    "map_preview.title": "Adventure map",
+    "map_preview.subtitle": "Follow the forest paths into the unknown",
+    "map_preview.seed": "Map seed",
+    "map_preview.apply": "Generate from seed",
+    "map_preview.new": "New map",
+    "map_preview.close": "Close  M / Esc",
+    "map_preview.legend": "Room legend",
+    "map_preview.notice": "Map preview · Click a room to inspect",
+    "map_preview.hint": "M toggle map · Scroll to explore · L language",
+    "map_preview.start": "Journey begins",
+    "map_preview.end": "Route destination",
+    "map_preview.details": "Select a room",
+    "map_preview.selected": "Floor {layer} · {kind}\nNode {id}\n{next} paths ahead",
+    "map_preview.stats": "{nodes} rooms · {layers} floors",
+    "map_preview.failed": "No valid map found. The previous map has been kept.",
+    "map_preview.invalid_seed": "Enter a seed of 1–64 characters.",
+    "map_preview.unavailable": "Map configuration failed to load. See the log.",
+    "map_preview.kind.battle": "Battle",
+    "map_preview.kind.elite": "Elite",
+    "map_preview.kind.event": "Random event",
+    "map_preview.kind.rest": "Rest",
+    "map_preview.kind.treasure": "Treasure",
+    "map_preview.kind.shop": "Shop"
+  }
+}

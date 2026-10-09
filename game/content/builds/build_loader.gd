@@ -2,7 +2,7 @@ extends RefCounted
 ## Independent content boundary; never imports combat or application modules.
 
 const Catalog = preload("res://content/builds/build_catalog.gd")
-const SCHEMA_VERSION := 5
+const SCHEMA_VERSION := 6
 const MAX_ENTRIES := 512
 const MAX_RANKS := 64
 const MAX_STRING_LENGTH := 128

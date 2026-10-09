@@ -46,10 +46,11 @@ func run() -> void:
 	quit(0 if failures.is_empty() else 1)
 
 
-func _plans(wave: bool = false, revision: int = 1) -> Dictionary:
+func _plans(_wave: bool = false, revision: int = 1) -> Dictionary:
 	return {
-		"primary": {"action_id": "primary", "form_id": "sword_primary", "executor": "melee", "ability_ids": ["slash.1", "slash.2", "slash.3"], "projectile_id": "", "presentation_key": "sword_primary", "revision": revision},
-		"special": {"action_id": "special", "form_id": "sword_wave" if wave else "sword_heavy", "executor": "projectile" if wave else "melee", "ability_ids": ["wave_cast" if wave else "heavy_slash"], "projectile_id": "sword_wave" if wave else "", "presentation_key": "wave_cast" if wave else "heavy_slash", "revision": revision},
+		"primary": {"action_id":"primary", "form_id":"sword_primary", "executor":"melee", "ability_ids":["slash.1","slash.2","slash.3"], "projectile_id":"", "presentation_key":"sword_primary", "revision":revision},
+		"special": {"action_id":"special", "form_id":"sword_heavy", "executor":"melee", "ability_ids":["heavy_slash"], "projectile_id":"", "presentation_key":"heavy_slash", "revision":revision},
+		"skill": {"action_id":"skill", "form_id":"sword_wave", "executor":"projectile", "ability_ids":["wave_cast"], "projectile_id":"sword_wave", "presentation_key":"wave_cast", "revision":revision},
 	}
 
 
@@ -169,18 +170,21 @@ func check_cancellation() -> void:
 		_finished.clear()
 		actor.runner.cue_reached.connect(func(_cast, _id): _cues += 1)
 		actor.runner.finished.connect(func(_cast, _id, reason): _finished.append(reason))
-		actor.request_special()
+		actor.request_action("skill" if wave else "special")
 		actor.step(0.01)
 		actor.request_dodge()
 		actor.step(0.01)
-		check(_cues == 0 and not actor.runner.busy() and _finished == ["dodge"], "windup dodge cancels before cue")
-		check(actor.runner.cooldown_for("special") > 0, "committed cooldown never refunded")
+		if wave:
+			check(_cues == 1 and actor.runner.busy() and _finished.is_empty(), "instant wave has already released and keeps active-phase dodge policy")
+		else:
+			check(_cues == 0 and not actor.runner.busy() and _finished == ["dodge"], "windup dodge cancels before cue")
+		check(actor.runner.cooldown_for("skill" if wave else "special") > 0, "committed cooldown never refunded")
 		actor.free()
 		actor = _actor()
 		actor.set_action_program(_plans(wave), _catalog)
-		actor.request_special()
+		actor.request_action("skill" if wave else "special")
 		actor.step(0.01)
-		actor.runner.tick(actor.runner.ability.windup - actor.runner.elapsed)
+		actor.runner.tick(maxf(0.0, actor.runner.ability.windup - actor.runner.elapsed))
 		var charges := actor.charges
 		actor.request_dodge()
 		actor.step(0.001)
@@ -204,7 +208,7 @@ func check_cancellation() -> void:
 	var runner := Runner.new()
 	var runner_ref: WeakRef = weakref(runner)
 	runner.cue_reached.connect(func(_cast, _id): runner_ref.get_ref().cancel("room_changed"))
-	runner.start(_catalog.ability("wave_cast"), Vector3.FORWARD, _plans(true).special)
+	runner.start(_catalog.ability("wave_cast"), Vector3.FORWARD, _plans(true).skill)
 	runner.tick(2.0)
 	check(not runner.active_this_step and not runner.busy(), "reentrant cue cancellation cannot restore active hit")
 
@@ -214,7 +218,7 @@ func check_projectile_execution() -> void:
 	var target := _actor(false)
 	target.position = Vector3(0, 0, -1)
 	actor.set_action_program(_plans(true), _catalog)
-	actor.request_special()
+	actor.request_skill()
 	actor.step(0.01)
 	actor.runner.tick(actor.runner.ability.windup)
 	var resolver := Resolver.new()
@@ -252,7 +256,7 @@ func check_snapshots() -> void:
 	check(old_context.is_read_only() and old_context.ability_ids.is_read_only(), "cast snapshot is deeply immutable")
 	check(actor.runner.cooldown_for("special") == left, "form swap preserves special cooldown")
 	_finish(actor)
-	actor.request_special()
+	actor.request_skill()
 	actor.step(0.01)
 	check(actor.runner.form_id == "sword_wave" and actor.runner.cast_context.revision == 8, "next cast uses new form and revision")
 	var malformed := _plans()

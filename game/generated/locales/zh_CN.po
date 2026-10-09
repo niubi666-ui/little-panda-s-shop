@@ -19,8 +19,11 @@ msgstr "全局"
 msgid "build.action.primary"
 msgstr "普攻"
 
+msgid "build.action.skill"
+msgstr "剑气技能"
+
 msgid "build.action.special"
-msgstr "特殊技"
+msgstr "重击"
 
 msgid "build.action_binding"
 msgstr "{action}【{key}】"
@@ -110,7 +113,7 @@ msgid "build.preset.applied"
 msgstr "已应用：{name}"
 
 msgid "build.preset.basic_actions"
-msgstr "基础左右键动作"
+msgstr "基础三动作（零构筑）"
 
 msgid "build.preset.error"
 msgstr "预设暂不可用，请重新训练后再试。"
@@ -119,10 +122,10 @@ msgid "build.preset.frost_blast"
 msgstr "寒霜爆破"
 
 msgid "build.preset.hint"
-msgstr "预设替换构筑并保留现有敌人。左键连击，右键特殊技。重新训练会重置场地与构筑。"
+msgstr "左键普攻、右键重击、Q剑气开局同时可用；预设只改变绑定构筑。重新训练重置场景和构筑。"
 
-msgid "build.preset.left_blast_right_freeze"
-msgstr "左键爆炸＋右键穿透冻结"
+msgid "build.preset.left_blast_skill_freeze"
+msgstr "左键爆炸＋Q穿透冻结"
 
 msgid "build.preset.pierce_blast"
 msgstr "穿透普通爆炸"
@@ -130,8 +133,8 @@ msgstr "穿透普通爆炸"
 msgid "build.preset.pierce_freeze"
 msgstr "穿透冻结"
 
-msgid "build.preset.right_frost"
-msgstr "右键穿透寒霜爆破"
+msgid "build.preset.skill_frost"
+msgstr "Q穿透寒霜爆破"
 
 msgid "build.preset.title"
 msgstr "动作构筑预设"
@@ -181,18 +184,6 @@ msgstr "替换：{name}（{rank} 级）"
 msgid "build.subtitle"
 msgstr "选择一个绑定升级，其它动作保留各自构筑"
 
-msgid "build.sword_heavy_form.description"
-msgstr "将这个动作恢复为近身重斩，替换当前剑气形态。"
-
-msgid "build.sword_heavy_form.name"
-msgstr "重斩形态"
-
-msgid "build.sword_wave_form.description"
-msgstr "将这个动作的近身重斩替换为剑气。挥空也能发射，不产生近战命中区域。"
-
-msgid "build.sword_wave_form.name"
-msgstr "剑气形态"
-
 msgid "build.test.agility.description"
 msgstr "普通移动速度提高 {bonus_percent}%。闪避速度保持原值。"
 
@@ -200,7 +191,7 @@ msgid "build.test.agility.name"
 msgstr "试验 · 轻盈步伐"
 
 msgid "build.test.arrow_hint"
-msgstr "T 发射独立调试箭，不继承左右键升级，也不解锁正式动作前置。"
+msgstr "T 发射独立测试箭，不继承左键、右键或Q的构筑。"
 
 msgid "build.test.blast.description"
 msgstr "这个动作接触敌人时造成半径 {radius_m} 米、{damage_percent}% 攻击伤害的衰减爆炸，排除直击目标与墙后目标。每枚投射物只在首次接触爆炸。"
@@ -233,7 +224,7 @@ msgid "build.test.freeze_duration.name"
 msgstr "试验 · 冻结延长"
 
 msgid "build.test.mechanism_hint"
-msgstr "左键连击 · 右键特殊技 · T 独立调试箭 · 青圈=寒霜"
+msgstr "左键普攻 · 右键重击 · Q剑气 · T独立测试箭 · 蓝圈=寒霜"
 
 msgid "build.test.power.description"
 msgstr "左右键动作的攻击伤害增加 {bonus_percent}%，与动作增伤相加后统一限幅，派生伤害不会重复放大。"
@@ -272,7 +263,7 @@ msgid "combat.choosing"
 msgstr "选择构筑升级后继续战斗"
 
 msgid "combat.controls"
-msgstr "WASD 移动 · 左键连击 · 右键特殊技 · Shift 闪避 · Esc 暂停 · L 中/英"
+msgstr "WASD 移动 · 左键三连击 · 右键重击 · Q 剑气 · Shift 闪避 · Esc 暂停 · L 中/英"
 
 msgid "combat.crossbow"
 msgstr "游击弩手"
@@ -351,6 +342,15 @@ msgstr "返回店铺"
 
 msgid "combat.scout"
 msgstr "斥候 · 占位"
+
+msgid "combat.skill.cooldown"
+msgstr "{key} 剑气：{seconds} 秒"
+
+msgid "combat.skill.disabled"
+msgstr "{key} 剑气：不可用"
+
+msgid "combat.skill.ready"
+msgstr "{key} 剑气：就绪"
 
 msgid "combat.status"
 msgstr "生命 {hp}/{max_hp}  ·  闪避 {charges}/{max_charges}  ·  波次 {wave}/{total}  ·  敌人 {enemies}"
@@ -605,7 +605,7 @@ msgid "run.return_map"
 msgstr "返回路线图"
 
 msgid "run.room.controls"
-msgstr "WASD 移动 · 左键 普攻 · 右键 特殊技 · Shift 闪避 · Esc 设置 · L 语言"
+msgstr "WASD 移动 · 左键普攻 · 右键重击 · Q 剑气 · Shift 闪避 · Esc 菜单 · L 语言"
 
 msgid "run.room.health"
 msgstr "生命 {hp} / {max_hp}"

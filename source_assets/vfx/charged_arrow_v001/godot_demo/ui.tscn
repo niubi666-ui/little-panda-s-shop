@@ -1,0 +1,118 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Theme" path="res://ui_theme.tres" id="theme"]
+[node name="StudyUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("theme")
+[node name="Heading" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 26.0
+offset_right = 620.0
+offset_bottom = 142.0
+[node name="title" type="Label" parent="Heading"]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+[node name="subtitle" type="Label" parent="Heading"]
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+[node name="speed" type="Label" parent="Heading"]
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+[node name="Status" type="PanelContainer" parent="."]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -416.0
+offset_top = 26.0
+offset_right = -26.0
+offset_bottom = 211.0
+grow_horizontal = 0
+[node name="Values" type="VBoxContainer" parent="Status"]
+layout_mode = 2
+theme_override_constants/separation = 8
+[node name="phase" type="Label" parent="Status/Values"]
+layout_mode = 2
+theme_type_variation = &"PhaseLabel"
+autowrap_mode = 2
+[node name="Charge" type="ProgressBar" parent="Status/Values"]
+custom_minimum_size = Vector2(0, 9)
+layout_mode = 2
+theme_type_variation = &"ChargeBar"
+max_value = 1.0
+show_percentage = false
+[node name="health" type="Label" parent="Status/Values"]
+layout_mode = 2
+[node name="Health" type="ProgressBar" parent="Status/Values"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+show_percentage = false
+[node name="hits" type="Label" parent="Status/Values"]
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+[node name="Footer" type="PanelContainer" parent="."]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -154.0
+offset_right = -24.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+[node name="Rows" type="VBoxContainer" parent="Footer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+[node name="note" type="Label" parent="Footer/Rows"]
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+[node name="Modes" type="HBoxContainer" parent="Footer/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 8
+[node name="stand" type="Button" parent="Footer/Rows/Modes"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+[node name="walk" type="Button" parent="Footer/Rows/Modes"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+[node name="dodge" type="Button" parent="Footer/Rows/Modes"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+[node name="trail" type="Button" parent="Footer/Rows/Modes"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+[node name="manual" type="Button" parent="Footer/Rows/Modes"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+[node name="replay" type="Button" parent="Footer/Rows/Modes"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = false
+[node name="pause" type="Button" parent="Footer/Rows/Modes"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = false
+[node name="language" type="Button" parent="Footer/Rows/Modes"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = false
+[node name="Hints" type="HBoxContainer" parent="Footer/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 12
+[node name="help" type="Label" parent="Footer/Rows/Hints"]
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+[node name="Slow" type="CheckButton" parent="Footer/Rows/Hints"]
+layout_mode = 2
+focus_mode = 0

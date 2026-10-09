@@ -1,5 +1,5 @@
 extends SceneTree
-## Focused schema-v5 tests; no renderer or combat runtime required.
+## Focused schema-v6 tests; no renderer or combat runtime required.
 const Loader = preload("res://content/builds/build_loader.gd")
 var failures: Array[String] = []
 var base: Dictionary
@@ -9,17 +9,17 @@ func _initialize() -> void:
 	base = JSON.parse_string(FileAccess.get_file_as_string("res://data/builds/prototype.json"))
 	var loader := Loader.new()
 	var catalog = loader.decode(base)
-	check(catalog != null, "current v5 content accepted: " + str(loader.errors))
+	check(catalog != null, "current v6 content accepted: " + str(loader.errors))
 	if catalog == null:
 		finish()
 		return
 	check(catalog.control_group("freeze").is_read_only(), "control groups readonly")
-	check(catalog.test_presets().is_read_only() and catalog.test_preset("right_frost").selections.is_read_only(), "preset nested arrays readonly")
+	check(catalog.test_presets().is_read_only() and catalog.test_preset("skill_frost").selections.is_read_only(), "preset nested arrays readonly")
 	check(catalog.limits().max_projectile_hits == base.limits.max_projectile_hits, "hit cap comes from content")
 	var data := base.duplicate(true)
 	data.status_rules.control_groups[0].thaw_immunity_sec = 5.0
 	check(catalog.control_group("freeze").thaw_immunity_sec != 5.0, "catalog isolated from input")
-	for version in [1, 2, 3, 4, 6]:
+	for version in [1, 2, 3, 4, 5, 7]:
 		data = base.duplicate(true)
 		data.schema_version = version
 		reject(data, "unsupported schema " + str(version))
@@ -85,10 +85,10 @@ func _initialize() -> void:
 	data.test_presets[0].selections = [selected("frost_blast", "special")]
 	reject(data, "preset requires bound prerequisite")
 	data = base.duplicate(true)
-	data.test_presets[0].selections = [selected("sword_wave_form", "special"), selected("pierce", "special"), selected("split", "special")]
+	data.test_presets[0].selections = [selected("pierce", "skill"), selected("split", "skill")]
 	reject(data, "preset exclusion")
 	data = base.duplicate(true)
-	data.test_presets[0].selections = [selected("pierce", "special", 2)]
+	data.test_presets[0].selections = [selected("pierce", "skill", 2)]
 	reject(data, "preset rank cap")
 	data = base.duplicate(true)
 	data.test_presets[0].selections = [selected("missing", "special")]
@@ -142,7 +142,7 @@ func _initialize() -> void:
 	data.test_presets[0].selections = [selected("contact_freeze", "primary"), selected("freeze_duration", "special")]
 	reject(data, "preset duration cannot borrow other action freeze")
 	data = base.duplicate(true)
-	data.test_presets[0].selections = [selected("sword_wave_form", "special"), selected("impact_blast", "special"), selected("frost_blast", "special"), selected("split", "special")]
+	data.test_presets[0].selections = [selected("impact_blast", "skill"), selected("frost_blast", "skill"), selected("split", "skill")]
 	reject(data, "preset full frost split combination rejected")
 	check(catalog.actions().is_read_only() and catalog.form("sword_wave").ability_ids.is_read_only(), "actions and forms immutable")
 	finish()

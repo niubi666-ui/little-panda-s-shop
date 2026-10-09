@@ -2,11 +2,12 @@
 [ext_resource type="Script" path="res://presentation/combat/actor_presentation.gd" id="script"]
 [ext_resource type="PackedScene" path="res://presentation/combat/enemies/ranger_visual.tscn" id="visual"]
 [sub_resource type="CapsuleShape3D" id="body"]
-radius = 1.14
-height = 5.1
+radius = 0.57
+height = 2.55
 [resource]
 script = ExtResource("script")
 visual_scene = ExtResource("visual")
 body_shape = SubResource("body")
-body_height = 2.55
+body_height = 1.275
+retain_corpse = true
 visual_yaw_offset_deg = 180.0

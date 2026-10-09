@@ -1,0 +1,91 @@
+[gd_resource type="Resource" load_steps=20 format=3]
+[ext_resource type="Script" path="res://presentation/combat/fx/charged_arrow_v001/profile.gd" id="script"]
+[ext_resource type="PackedScene" path="res://assets/vfx/elite_ranger_v001/ranger_arrow.glb" id="arrow_scene"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/ribbon.tres" id="ribbon"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/ground.tres" id="ground"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/sigil.tres" id="sigil"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/flare.tres" id="flare"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/mote.tres" id="mote"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/flight_core.tres" id="flight_core"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/flight_halo.tres" id="flight_halo"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/warning.tres" id="warning_material"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/rift_wall.tres" id="rift_wall"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/rift_lip.tres" id="rift_lip"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/rift_void.tres" id="rift_void"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/rift_source.tres" id="rift_source"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/charged_arrow_v001/rift_curtain.tres" id="rift_curtain"]
+[ext_resource type="Material" path="res://presentation/combat/fx/charged_arrow_v001/body.tres" id="body"]
+[ext_resource type="AudioStream" path="res://assets/vfx/charged_arrow_v001/charge.wav" id="charge_sound"]
+[ext_resource type="AudioStream" path="res://assets/vfx/charged_arrow_v001/fire.wav" id="fire_sound"]
+[ext_resource type="AudioStream" path="res://assets/vfx/charged_arrow_v001/pulse.wav" id="pulse_sound"]
+[resource]
+script = ExtResource("script")
+arrow_scene = ExtResource("arrow_scene")
+ribbon = ExtResource("ribbon")
+ground = ExtResource("ground")
+sigil = ExtResource("sigil")
+flare = ExtResource("flare")
+mote = ExtResource("mote")
+flight_core = ExtResource("flight_core")
+flight_halo = ExtResource("flight_halo")
+warning_material = ExtResource("warning_material")
+rift_wall = ExtResource("rift_wall")
+rift_lip = ExtResource("rift_lip")
+rift_void = ExtResource("rift_void")
+rift_source = ExtResource("rift_source")
+rift_curtain = ExtResource("rift_curtain")
+body = ExtResource("body")
+charge_sound = ExtResource("charge_sound")
+fire_sound = ExtResource("fire_sound")
+pulse_sound = ExtResource("pulse_sound")
+draw_fraction = 0.3
+charge_radius_m = 1.25
+charge_turns = 1.7
+charge_orbits = 4
+charge_speed = 6.0
+charge_width_m = 0.045
+charge_particle_count = 96
+charge_particle_size_m = 0.065
+arrow_length_m = 2.15
+arrow_width_m = 0.072
+flight_tail_m = 5.2
+flight_width_m = 0.3
+flight_echo_sec = 0.32
+flight_height_m = 0.9
+launch_blend_m = 2.0
+flight_halo_ratio = 3.0
+impact_size_m = 1.6
+impact_sec = 0.3
+flight_helix_radius_m = 0.22
+flight_helix_turns = 3.0
+trail_height_m = 0.13
+trail_fade_sec = 0.9
+trail_particle_count = 192
+trail_particle_size_m = 0.047
+trail_particle_height_m = 2.2
+launch_ring_radius_m = 1.3
+launch_ring_count = 3
+launch_sec = 0.38
+light_color = Color(1, 0.71, 0.26, 1)
+charge_light_energy = 3.4
+shot_light_energy = 5.5
+light_range_m = 4.5
+flare_size_m = 3.2
+audio_volume_db = -11.0
+visual_seed = 10072026
+rift_station_count = 160
+rift_curtain_count = 2
+rift_frequency = 0.85
+rift_center_ratio = 0.18
+rift_opening_ratio = 0.57
+rift_jagged_ratio = 0.24
+rift_depth_m = 1.15
+rift_source_depth_m = 0.35
+rift_surface_height_m = 0.04
+rift_lip_width_m = 0.09
+rift_lip_height_m = 0.065
+rift_height_m = Vector2(1.9,3.5)
+rift_beam_drift_m = 0.45
+rift_rise_sec = 0.22
+rift_vertical_segments = 12
+rift_forks = PackedVector4Array(1.4,0.85,-1,0.16, 4.05,1.1,1,0.19, 6.8,0.74,-1,0.13, 9.2,1.25,1,0.2)

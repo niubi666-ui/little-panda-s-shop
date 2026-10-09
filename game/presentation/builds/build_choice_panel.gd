@@ -136,7 +136,7 @@ func _description_params(entry: Dictionary, rank: int, action_id: String) -> Dic
 
 func _action_label(action_id: String) -> String:
 	var label := tr("build.action." + action_id)
-	var input_id: String = {"primary": "combat_attack", "special": "combat_special"}.get(action_id, "")
+	var input_id: String = {"primary": "combat_attack", "special": "combat_special", "skill": "combat_skill"}.get(action_id, "")
 	if input_id.is_empty() or not InputMap.has_action(input_id): return label
 	var events := InputMap.action_get_events(input_id)
 	if events.is_empty(): return label

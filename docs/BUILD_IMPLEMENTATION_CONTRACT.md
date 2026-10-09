@@ -51,7 +51,7 @@ effect = {upgrade_id, type, rank, params}
 
 选择项/效果按稳定身份排序；同集合不同取得顺序编译结果相同。plan.damage_scale已包含global＋本动作加成，不得再乘global.damage_scale。新等级替换旧等级；area_status只编译到本动作对应explosion的有限payload：一个damage，至多一个apply_status。
 
-`CombatActor.set_action_program(actions,combat_catalog)->bool`注入解码后的正式动作计划。`request_action(id,input_frame=-1)`及`request_attack()/request_special()`提出意图。`AbilityRunner.start(ability,facing,context={})`复制冻结本次plan；`cast_context/action_id/form_id/executor/presentation_key`供规则和表现读取。冷却通过`cooldown_for(action_id)`查询；具体缓冲/取消规则见[战斗](COMBAT_PROTOTYPE.md)。
+`CombatActor.set_action_program(actions,combat_catalog)->bool`注入解码后的正式动作计划。`request_action(id,input_frame=-1)`及`request_attack()/request_special()`提出意图。`AbilityRunner.start(ability,facing,context={})`复制冻结本次plan；`cast_context/action_id/form_id/executor/presentation_key`供规则和表现读取。零前摇能力在`start`内先提交快照，再同步发布一次`cue_reached`，后续tick不重复发cue；提交回调若取消/替换施放，则不发布旧cue。冷却通过`cooldown_for(action_id)`查询；具体缓冲/取消规则见[战斗](COMBAT_PROTOTYPE.md)。
 
 `combat/builds/build_runtime.gd`：
 

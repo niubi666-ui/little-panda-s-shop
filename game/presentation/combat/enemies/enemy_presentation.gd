@@ -4,14 +4,19 @@ const FX = preload("res://presentation/combat/enemies/enemy_fx_style.tres")
 const RING_SEGMENTS := 64
 const RangerWarning = preload("res://presentation/combat/enemies/ranger_warning.gd")
 const RangerStyle = preload("res://presentation/combat/enemies/ranger_style.tres")
+const RangerEffects = preload("res://presentation/combat/fx/elite_ranger_v001/ranger_effects.gd")
+const RollAfterimage = preload("res://presentation/combat/fx/elite_ranger_v001/roll_afterimage.gd")
 var runtime
 var style
 var entries: Array = []
 var balls: Dictionary = {}
-var rain_views: Dictionary = {}
-func configure(enemy_runtime, actor_style) -> void:
+var ranger_vfx: Node3D
+func configure(enemy_runtime, actor_style, camera: Camera3D=null, surfaces: Array=[]) -> void:
 	runtime = enemy_runtime
 	style = actor_style
+	ranger_vfx = RangerEffects.new()
+	add_child(ranger_vfx)
+	ranger_vfx.configure(runtime,RangerStyle,self,camera,surfaces)
 func mesh_node(parent: Node3D) -> MeshInstance3D:
 	var node := MeshInstance3D.new()
 	parent.add_child(node)
@@ -20,9 +25,13 @@ func mesh_node(parent: Node3D) -> MeshInstance3D:
 func register(brain, view, profile: Dictionary) -> void:
 	var root := RangerWarning.new() if profile.role == "ranger" else Node3D.new()
 	add_child(root)
+	var afterimage
 	if profile.role == "ranger":
+		root.external_charged_cue=true
 		root.configure(brain, self)
 		view.visual.bind_brain(brain)
+		afterimage=RollAfterimage.new();root.add_child(afterimage)
+		afterimage.configure(view.visual.afterimage_source(),RangerStyle.roll_afterimage_profile)
 		view.hit_feedback.bar.position.y = RangerStyle.health_bar_height
 		view.hit_feedback.bar.mesh.size = RangerStyle.health_bar_size
 	var warning := mesh_node(root)
@@ -37,16 +46,17 @@ func register(brain, view, profile: Dictionary) -> void:
 	flash.emission_enabled = true
 	flash.emission = Color.WHITE
 	flash.emission_energy_multiplier = FX.white_emission
-	entries.append({"brain":brain,"view":view,"profile":profile,"root":root,"warning":warning,"aura":aura,"buff":buff,"weapon":weapon,"original":original,"flash":flash,"weapon_rest":weapon.position if weapon != null else Vector3.ZERO})
-func refresh() -> void:
+	entries.append({"brain":brain,"view":view,"profile":profile,"root":root,"warning":warning,"aura":aura,"buff":buff,"weapon":weapon,"original":original,"flash":flash,"weapon_rest":weapon.position if weapon != null else Vector3.ZERO,"afterimage":afterimage})
+func refresh(delta: float = 0.0) -> void:
 	for entry in entries:
 		var actor = entry.brain.actor
 		entry.root.visible = actor.health.alive()
+		if entry.afterimage!=null:entry.afterimage.refresh(0.0 if actor.control_locked else delta,entry.brain.state=="rolling",actor.health.alive())
 		if not actor.health.alive(): continue
 		entry.root.global_position = actor.global_position
 		entry.root.position.y += FX.ground_height
 		var role: String = entry.profile.role
-		if role == "ranger": entry.root.refresh()
+		if role == "ranger": entry.root.refresh(delta)
 		var special := role != "melee"
 		if special:
 			entry.view.blade_pivot.hide()
@@ -65,19 +75,15 @@ func refresh() -> void:
 		if actor.aura_active and entry.buff.mesh == null: entry.buff.mesh = ring(style.actor_presentations[actor.definition.id].body_shape.radius * FX.recipient_radius_scale, FX.aura_width, FX.aura_color)
 	var live: Dictionary = {}
 	for projectile in runtime.projectiles:
+		if projectile.config.get("ranger_arrow", false): continue
 		live[projectile.id] = true
 		if not balls.has(projectile.id):
 			var ball := mesh_node(self)
-			var sphere: PrimitiveMesh
-			if projectile.config.get("ranger_arrow", false):
-				sphere = BoxMesh.new()
-				sphere.size = Vector3(RangerStyle.arrow_width, RangerStyle.arrow_width, RangerStyle.arrow_length)
-			else:
-				sphere = SphereMesh.new()
-				sphere.radius = projectile.config.projectile_radius_m
-				sphere.height = sphere.radius * 2.0
+			var sphere := SphereMesh.new()
+			sphere.radius = projectile.config.projectile_radius_m
+			sphere.height = sphere.radius * 2.0
 			var material := StandardMaterial3D.new()
-			material.albedo_color = RangerStyle.arrow_color if projectile.config.get("ranger_arrow", false) else FX.projectile_color
+			material.albedo_color = FX.projectile_color
 			material.emission_enabled = true
 			material.emission = material.albedo_color
 			material.emission_energy_multiplier = FX.projectile_emission
@@ -90,45 +96,10 @@ func refresh() -> void:
 		if not live.has(id):
 			balls[id].queue_free()
 			balls.erase(id)
-	_refresh_rains()
-
-func _refresh_rains() -> void:
-	var live: Dictionary = {}
-	for rain in runtime.rains:
-		live[rain.id] = true
-		if not rain_views.has(rain.id):
-			var root := Node3D.new()
-			add_child(root)
-			var marker := mesh_node(root)
-			marker.mesh = ring(rain.config.rain_radius_m, RangerStyle.line_width, RangerStyle.warning_color)
-			var arrows: Array = []
-			for index in RangerStyle.rain_arrow_count:
-				var arrow := mesh_node(root)
-				var mesh := BoxMesh.new()
-				mesh.size = Vector3(RangerStyle.arrow_width, RangerStyle.arrow_length, RangerStyle.arrow_width)
-				mesh.material = material(RangerStyle.arrow_color)
-				arrow.mesh = mesh
-				var angle := index * PI * (3.0 - sqrt(5.0))
-				var distance := sqrt((index + 0.5) / RangerStyle.rain_arrow_count) * float(rain.config.rain_radius_m)
-				arrow.position = Vector3(cos(angle) * distance, 0, sin(angle) * distance)
-				arrows.append(arrow)
-			var launch := mesh_node(root)
-			launch.mesh = arrows[0].mesh
-			rain_views[rain.id] = {"root":root,"arrows":arrows,"launch":launch}
-		var entry: Dictionary = rain_views[rain.id]
-		entry.root.global_position = rain.center + Vector3.UP * RangerStyle.ground_height
-		entry.launch.visible = rain.pulses == 0
-		entry.launch.global_position = rain.launch + Vector3.UP * RangerStyle.rain_height * clampf(1.0 - rain.time_left / (rain.config.rain_delay_sec - rain.config.rain_windup_sec), 0.0, 1.0)
-		var t := clampf(1.0 - rain.time_left / RangerStyle.rain_fall_sec, 0.0, 1.0)
-		for arrow in entry.arrows:
-			arrow.visible = t > 0.0
-			arrow.position.y = RangerStyle.rain_height * (1.0 - t)
-	for id in rain_views.keys():
-		if not live.has(id):
-			rain_views[id].root.queue_free()
-			rain_views.erase(id)
+	ranger_vfx.refresh(delta)
 
 func remove_actor(actor) -> void:
+	ranger_vfx.remove_actor(actor.handle)
 	for i in range(entries.size() - 1, -1, -1):
 		if entries[i].brain.actor == actor:
 			entries[i].root.queue_free()
@@ -136,6 +107,7 @@ func remove_actor(actor) -> void:
 func remove_dead() -> void:
 	for index in range(entries.size() - 1, -1, -1):
 		if not entries[index].brain.actor.health.alive():
+			ranger_vfx.remove_actor(entries[index].brain.actor.handle)
 			entries[index].root.queue_free()
 			entries.remove_at(index)
 func material(color: Color) -> StandardMaterial3D:
@@ -169,5 +141,4 @@ func clear() -> void:
 	entries.clear()
 	for ball in balls.values(): ball.queue_free()
 	balls.clear()
-	for entry in rain_views.values(): entry.root.queue_free()
-	rain_views.clear()
+	if ranger_vfx != null: ranger_vfx.clear()

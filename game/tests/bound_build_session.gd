@@ -84,7 +84,7 @@ func check_sampling() -> void:
 			check(not ids.has(operation.upgrade_id), "one upgrade cannot occupy two cards")
 			ids[operation.upgrade_id] = true
 			check(resolver.evaluate(state, operation).ok, "every sampled operation passes same evaluator")
-			check(operation.upgrade_id not in ["pierce", "split", "frost_blast"], "no carrier or source means no support/synergy")
+			check(operation.upgrade_id != "frost_blast", "no explosion means no frost synergy")
 	# Give one ID one binding and the other two. Both retain equal ID weight.
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/builds/prototype.json"))
 	data.offer.pool_ids = ["power", "impact_blast"]
@@ -167,15 +167,10 @@ func check_binding_replacement() -> void:
 	check(session.snapshot() == before, "rejected replacement cannot remove/refund dependent synergy")
 	check(pick(session, "contact_freeze", "primary").is_empty(), "sampler and submit agree on blocked replacement")
 	check(pick(session, "pierce", "special").is_empty(), "debug arrow cannot grant real special carrier")
-	check(acquire(session, "sword_wave_form", "special").ok, "special wave form grants real carrier")
-	check(acquire(session, "pierce", "special").ok, "special carrier enables pierce")
-	check(pick(session, "split", "special").is_empty(), "same action pierce rejects split")
-	check(pick(session, "sword_heavy_form", "special").is_empty(), "removing carrier with dependent pierce not offered")
-	var form_session := make_session()
-	check(acquire(form_session, "sword_wave_form", "special").ok, "standalone wave form installs")
-	var restore := pick(form_session, "sword_heavy_form", "special")
-	check(not restore.is_empty() and restore.operation == "replace", "dependency-free form restore offered")
-	check(form_session.submit_operation(restore).ok and form_session.program().actions.special.form_id == "sword_heavy", "form restores through same transaction")
+	check(acquire(session, "pierce", "skill").ok, "base skill carrier enables pierce without unlock")
+	check(pick(session, "split", "skill").is_empty(), "same action pierce rejects split")
+	check(pick(session, "sword_wave_form", "special").is_empty(), "removed unlock never offered")
+	check(session.program().actions.special.form_id == "sword_heavy", "heavy stays independent")
 
 func check_presets() -> void:
 	var session := make_session()
@@ -183,7 +178,7 @@ func check_presets() -> void:
 	var before := session.snapshot()
 	var program := session.program()
 	fail_commit = true
-	check(not session.apply_test_preset("left_blast_right_freeze").ok, "preset failure reported")
+	check(not session.apply_test_preset("left_blast_skill_freeze").ok, "preset failure reported")
 	check(session.snapshot() == before and session.program() == program, "failed preset preserves pending offer/ranks/RNG/program")
 	fail_commit = false
 	for preset in catalog.test_presets():

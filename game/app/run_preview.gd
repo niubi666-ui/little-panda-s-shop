@@ -173,6 +173,7 @@ func _process(_delta: float) -> void:
 func _refresh_hud(refresh_state: bool = true) -> void:
 	if session == null or not is_instance_valid(room): return
 	if refresh_state: _hud_state = session.snapshot()
+	room_hud.update_skill_cooldown(room.player)
 	room_hud.display(_hud_state.room_count, _hud_state.active_room_plan.kind, room.player.health.current, room.player.health.maximum, _hud_state.phase)
 func refresh_text() -> void:
 	if map_view == null: return

@@ -1,0 +1,78 @@
+{
+  "project": "小熊猫的小店",
+  "asset_set": "elite_ranger_vfx_concepts_v001",
+  "date": "2026-10-06",
+  "status": "用户已确认外观；对应Godot动态特效已接入实际精灵游侠。此目录的图片仍为概念图。",
+  "generator": "内置 image_gen.imagegen；基于实际 Godot 截图的图像编辑",
+  "visual_direction": "金色实体箭头、琥珀色空气尾迹、细碎光粒与落点冲击；不预设火焰、寒冰或雷电属性",
+  "inspection": {
+    "scene": "game/app/combat_training.tscn",
+    "model": "game/assets/characters/elf_archer/elite_ranger_v001/elite_ranger.glb",
+    "definitions": "game/data/enemies/roles.json",
+    "capture_script": "builds/ranger_vfx_concept_capture.gd",
+    "capture_log": "builds/ranger_vfx_concept_capture.log",
+    "method": "独立 Godot Forward+ 进程采样已有技能状态，保存实际画面；未修改游戏技能与运行时资产",
+    "current_visual_scale": [
+      2.4,
+      2.4,
+      2.4
+    ],
+    "skill_shapes": {
+      "fast": "单支直线物理箭",
+      "volley": {
+        "count": 5,
+        "total_angle_deg": 40
+      },
+      "rain": {
+        "radius_m": 2.4,
+        "pulses": 3
+      }
+    },
+    "note": "图像生成会夸张尾迹长度和发光；图内尺寸、光照和箭矢位置不作为玩法数值来源。实际制作时仍以现有 JSON 与 Resource 为准。"
+  },
+  "images": [
+    {
+      "id": "fast",
+      "name": "单发箭",
+      "file": "01_fast_arrow.png",
+      "references": [
+        "references/fast_released_current.png"
+      ],
+      "generated_source": "C:/Users/陈旭辉/.codex/generated_images/01a0d5df-bad5-7c91-82ee-eb3b05197346/exec-306d4a61-e5cd-4ced-8a64-7fd5a425eeb9.png",
+      "prompt": "Create a premium game VFX concept mockup by editing the supplied REAL Godot combat training screenshot. This is visual design for a proposed skill effect, not a promotional illustration. Preserve the existing high isometric gameplay camera, the stone courtyard, foliage, lanterns, warm sun and cool shadows, the actual elf ranger model and her olive-brown outfit, wooden longbow, long cape, realistic adult proportions, and the small red-panda swordsman. Do not change the environment architecture or increase the character scale. Remove the floating red health bar and any old faint orange projectile markers so the image is clean. Keep the archer standing at upper center/right, shooting down-left toward the red panda, with the characters still clearly visible.\n\nSkill: SINGLE FAST ARROW. Show exactly ONE physical arrow in flight horizontally at the archer's chest/bow height, flying diagonally from upper-right toward lower-left across the open lane. Put the arrow midway along that lane in a visually clear location. It must have a long slender dark wooden shaft, visible pale fletching, a sharp faceted silver/antique-gold arrowhead and a bright but small ivory-gold leading glint. The EFFECT is beautiful and high impact: a continuous tapered golden air ribbon trailing back toward the bow, a second thin softly twisting amber filament, wispy refractive airflow, a sharp small bow-release crescent and a scattering of tiny glittering amber motes fading gradually. The main trail is about 2.5 times the arrow length, broad enough to read in the gameplay camera yet transparent enough to see stone paving behind it. Add restrained warm reflected illumination on nearby paving; bloom must be controlled and arrowhead geometry readable. Layer the bright core, wider soft halo, translucent wind, small sparks and faint lingering afterglow at different opacity levels. The motion should feel extremely fast, precise and powerful, like a premium stylized PBR fantasy action RPG.\n\nArt direction: rich material rendering and sophisticated particle layering comparable to a lavish polished ice-spike/rock-eruption game spell, but this arrow has no fixed fire, ice or lightning gameplay attribute. Antique gold and warm amber with ivory highlights, subtle earthy natural magic styling, no neon green. No giant beam, no thick laser, no explosion, no opaque yellow paint stroke, no additional arrows, no homing curve, no meteors, no damage numbers, no text, no UI, no labels, no logo or watermark. The effect is the focus without covering the caster or player. Keep the full gameplay composition and landscape aspect ratio."
+    },
+    {
+      "id": "volley",
+      "name": "五重散射箭",
+      "file": "02_five_arrow_volley.png",
+      "references": [
+        "references/volley_released_current.png",
+        "01_fast_arrow.png"
+      ],
+      "generated_source": "C:/Users/陈旭辉/.codex/generated_images/01a0d5df-bad5-7c91-82ee-eb3b05197346/exec-fbb9a845-900e-4745-a2e4-08be668f794c.png",
+      "prompt": "Create a premium game VFX concept mockup for a proposed FIVE-ARROW VOLLEY by editing reference image 1, the actual Godot game screenshot. Reference image 2 is STYLE REFERENCE ONLY for the antique-gold arrow effects, refined amber air ribbons and rich transparent trails; do not copy its single-arrow count. Preserve the actual isometric gameplay camera, stone courtyard, foliage, lanterns, warm sunlight, the elf ranger's olive-brown fitted outfit, wooden longbow and cape, realistic adult proportions, and the red-panda swordsman. Keep the environment and character scale consistent. Remove the old tiny glowing projectile bars and floating health bar.\n\nTHE MAIN REQUIREMENT: EXACTLY FIVE separate physical arrows launched simultaneously from the elf ranger's bow, five visible sharp metallic arrowheads, five slender dark wooden shafts with fletching, and five discrete tapered golden trails. The elf stands at upper center/right and shoots toward the lower-left open courtyard. The central arrow aims toward the red panda. Arrange the five arrows at equal 10-degree angular spacing in a tight total 40-degree fan on ONE horizontal combat plane at chest height. They are straight trajectories, not curved homing missiles. Keep all five in clear view separated by paving: one outer left, one inner left, one center, one inner right, one outer right, no additional projectile. Show the arrows about halfway from caster to target, with substantial tapered trails reaching back toward the bow.\n\nEach arrow has a crisp faceted silver and antique-gold broadhead, tiny bright ivory leading glint, slender shaft, feather tail, a narrow gold core and larger translucent amber wake with wispy refractive wind ribbons and sparkling motes. Around the bow there is a brief elegant curved release shimmer with a scattering of golden flecks, but it must not look like extra arrowheads. The middle arrow may be slightly brightest; the other four are equally readable. Create lavish visual layering and impressive speed with refined particles, beautifully lit polished material detail, subtle reflections on stone, and controlled bloom so every arrow remains distinct. It should look like a compelling polished stylized-PBR fantasy action RPG skill on the real gameplay camera.\n\nGolden-amber and ivory palette consistent with reference image 2, no fixed elemental attribute, no fire or ice spikes or lightning bolts, no bright green. No opaque triangular fan sheet, no wide laser beams, no extra arrows or duplicate tips, no text, no icons, no HUD, no damage numbers, no logos or watermark. The ranger and player remain visible without being covered by effects. Landscape gameplay composition."
+    },
+    {
+      "id": "rain",
+      "name": "箭雨",
+      "file": "03_arrow_rain.png",
+      "references": [
+        "references/rain_released_current.png",
+        "01_fast_arrow.png"
+      ],
+      "generated_source": "C:/Users/陈旭辉/.codex/generated_images/01a0d5df-bad5-7c91-82ee-eb3b05197346/exec-8710ca2d-0c32-452c-a14c-2f92159442ee.png",
+      "prompt": "Create a gorgeous premium action-RPG VFX concept mockup for the elf ranger's ARROW RAIN by editing reference image 1, the actual Godot game screenshot. Reference image 2 is STYLE REFERENCE ONLY for the antique-gold physical arrow design, luminous amber ribbons, controlled bloom, fine sparks, high quality material rendering and layered translucent airflow. Replace the primitive orange rain markers with a refined rich proposed effect. Remove the floating red health bar. Preserve the same high isometric gameplay camera, stone courtyard, foliage, lamps, warm sun and cool shadows, olive-brown elf ranger outfit with wooden longbow and cape, adult proportions, and small red-panda player. Do not enlarge characters or replace the environment.\n\nThe caster remains at upper center/right OUTSIDE the target area, with her bow raised toward the sky for this special skill. The locked target circle is centered around the small red-panda player at lower-left; it is the same modest 4.8-metre diameter circle shown in reference 1, not the whole courtyard. Preserve a clearly readable thin RED enemy danger boundary on the paving. Render the circle as a correct perspective ellipse in the ground plane. No horizontal volley is present.\n\nShow a lavish but readable shower of roughly EIGHTEEN physical arrows descending vertically from about five metres high INTO that single circular target zone. Vary their heights to convey a wave of falling arrows: some still high, some halfway down, some immediately before impact and a few already landed. Every arrow has an unmistakable narrow dark wooden shaft with pale feather fletching at the upper end, a crisp downward-pointing metallic broadhead with a small bright ivory-gold tip and a thin tapered amber trail above it. All arrowheads point DOWN toward paving, no upward missiles. Make the falling streaks strongly visible in the gameplay camera while still translucent, with finer curling gold airflow filaments and sparse sparkling flecks, no huge solid light pillars.\n\nThe grounded layer is spectacular and multi-stage: several localized bright tiny starburst impacts, short outward sprays of gold slivers, little chips of stone, warm translucent dust puffs, and slim expanding amber shock ripples that remain INSIDE the red target circle. Include fading sparks and faint dust from the previous wave to suggest the existing three-pulse skill, while the current wave descends above. The area feels powerful, dense and glamorous, comparable in polish and multilayer depth to an elaborate ice-spike or rock-eruption spell. Sharp physical arrow geometry, light core, soft halo, suspended motes, flying debris, thin ground shock ripples and dissolving afterglow should all have distinct sizes and opacity. Preserve intentional gaps so the target/player and terrain are readable; do not obscure the red warning edge. Beautiful reflected golden light softly illuminates nearby stone and the player without covering the character.\n\nPalette: antique gold, amber and ivory with earthy natural magic styling, consistent with reference 2. This is an arrow skill without a fixed fire/ice/lightning attribute. No blue ice spikes, no flames, no lightning bolts, no laser pillars, no beam from the caster, no floating magic portal, no giant explosion cloud, no impact or debris outside the target area, no additional circles, no text or labels, no icons or HUD, no damage numbers, no logos or watermark. Landscape gameplay composition with the existing surroundings intact."
+    }
+  ],
+  "review": {
+    "single_arrow_count": 1,
+    "volley_arrow_count": 5,
+    "rain_downward_arrows": true,
+    "enemy_rain_red_boundary_visible": true,
+    "images_are_concepts": true,
+    "game_implementation": true,
+    "approved_date": "2026-10-06",
+    "runtime_asset_folder": "game/presentation/combat/fx/elite_ranger_v001",
+    "actual_preview": "source_assets/vfx/elite_ranger_v001/previews/elite_ranger_skills_godot.mp4"
+  }
+}

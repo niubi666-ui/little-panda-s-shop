@@ -25,6 +25,7 @@ var enemies := EnemyRuntime.new()
 var encounter
 var active := false
 var stopped := false
+var _encounter_complete := false
 var geometry: Node3D
 var camera: Camera3D
 var input_adapter
@@ -68,9 +69,9 @@ func setup(ticket: Dictionary, hp: float, program: Dictionary, combat, enemy_cat
 	_melee.enemy_contact.connect(build_runtime.on_melee_contact)
 	_melee.confirmed_hit.connect(build_runtime.on_melee_hit)
 	_melee.confirmed_hit.connect(func(source, target, _cast, _ability, amount):
-		if not stopped and source == player and target.team != player.team and amount > 0.0: _shake.kick())
+		if not stopped and not _encounter_complete and source == player and target.team != player.team and amount > 0.0: _shake.kick())
 	build_runtime.damage_applied.connect(func(source, target, amount, _origin):
-		if not stopped and source == player and target.team != player.team and amount > 0.0: _shake.kick())
+		if not stopped and not _encounter_complete and source == player and target.team != player.team and amount > 0.0: _shake.kick())
 	effects = Effects.new()
 	add_child(effects)
 	effects.configure(preload("res://presentation/builds/build_effects_style.tres"))
@@ -81,7 +82,7 @@ func setup(ticket: Dictionary, hp: float, program: Dictionary, combat, enemy_cat
 	add_child(mechanisms)
 	mechanisms.configure(preload("res://presentation/builds/mechanism_style.tres"))
 	build_runtime.area_presented.connect(mechanisms.show_area_fact)
-	enemies.configure(player, Style.actor_presentations.player.body_shape.radius, _origin, _sweep)
+	enemies.configure(player, _combat.player_hurt_radius(), _origin, _sweep)
 	enemy_view = EnemyView.new()
 	add_child(enemy_view)
 	enemy_view.configure(enemies, Style)
@@ -149,6 +150,7 @@ func _spawn_wave(ids: Array) -> void:
 	enemies.clear()
 	enemy_view.clear()
 	for index in range(actors.size() - 1, 0, -1):
+		if not actors[index].health.alive() and Style.actor_presentations[actors[index].definition.id].retain_corpse: continue
 		actors[index].queue_free()
 		actors.remove_at(index)
 		views.remove_at(index)
@@ -162,7 +164,7 @@ func _spawn_wave(ids: Array) -> void:
 func _physics_process(delta: float) -> void:
 	if not active or stopped: return
 	build_runtime.statuses.tick(delta)
-	enemies.before_motion(delta)
+	if not _encounter_complete: enemies.before_motion(delta)
 	# Aim is sampled from the authored camera, before presentation-only shake.
 	camera.h_offset = 0.0
 	camera.v_offset = 0.0
@@ -170,13 +172,13 @@ func _physics_process(delta: float) -> void:
 	for actor in actors: actor.step(delta)
 	_melee.resolve(player, actors)
 	if not stopped: build_runtime.tick(delta)
-	if not stopped:
+	if not stopped and not _encounter_complete:
 		enemies.update_auras()
 		for actor in actors:
 			if actor != player: _melee.resolve(actor, actors)
 			if stopped: break
-	if not stopped: enemies.after_motion(delta)
-	if not stopped: encounter.tick(delta)
+	if not stopped and not _encounter_complete: enemies.after_motion(delta)
+	if not stopped and not _encounter_complete: encounter.tick(delta)
 	refresh(0.0 if stopped else delta)
 func refresh(delta: float) -> void:
 	for view in views: view.refresh(delta)
@@ -189,6 +191,18 @@ func refresh(delta: float) -> void:
 	camera.v_offset = offset.y
 func _finish(won: bool) -> void:
 	if stopped: return
+	if won and player.health.alive():
+		if _encounter_complete: return
+		_encounter_complete = true
+		_shake.clear()
+		encounter.cancel()
+		for actor in actors:
+			if actor != player: actor.cancel()
+		enemies.clear()
+		enemy_view.clear()
+		# Remain playable until the owner explicitly leaves/disposes this room.
+		cleared.emit(entry_id, player.health.current)
+		return
 	stopped = true
 	active = false
 	_shake.clear()
@@ -200,8 +214,7 @@ func _finish(won: bool) -> void:
 	effects.clear()
 	mechanisms.clear()
 	refresh(0.0)
-	if won and player.health.alive(): cleared.emit(entry_id, player.health.current)
-	else: defeated.emit(entry_id)
+	defeated.emit(entry_id)
 func shutdown() -> void:
 	active = false
 	stopped = true

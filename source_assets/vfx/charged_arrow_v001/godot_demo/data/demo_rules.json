@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "skill": {
+    "charge_sec": 2.4,
+    "lock_sec": 0.025,
+    "speed_mps": 160.0,
+    "range_m": 12.5,
+    "arrow_radius_m": 0.18,
+    "arrow_damage": 32.0,
+    "trail_half_width_m": 1.15,
+    "trail_duration_sec": 6.0,
+    "trail_tick_sec": 0.5,
+    "trail_damage": 6.0
+  },
+  "target": {
+    "health": 100.0,
+    "radius_m": 0.4,
+    "walk_mps": 4.5,
+    "dodge_mps": 18.0,
+    "dodge_sec": 0.28,
+    "dodge_cooldown_sec": 0.85,
+    "dodge_lead_sec": 0.02,
+    "test_walk_distance_m": 2.3,
+    "trail_entry_delay_sec": 1.0,
+    "trail_entry_distance_m": 2.2
+  },
+  "stage": {
+    "ranger_position": [-5.4, 0.0, 1.5],
+    "target_position": [2.8, 0.0, 1.5],
+    "movement_bounds": [-7.4, -5.8, 7.4, 6.4]
+  }
+}

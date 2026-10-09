@@ -7,6 +7,7 @@ var _panel: PanelContainer
 var _number: Label
 var _kind_label: Label
 var _health: Label
+var _skill_cooldown: Label
 var _phase_label: Label
 var _action: Button
 var _controls_panel: PanelContainer
@@ -44,6 +45,8 @@ func configure(shared_theme: Theme) -> void:
 	_kind_label = _label(column, Style.body_font_size, Style.text_color)
 	_health = _label(column, Style.body_font_size, Style.text_color)
 	_health.name = "RunPlayerHealth"
+	_skill_cooldown = _label(column, Style.body_font_size, Style.text_color)
+	_skill_cooldown.name = "SkillCooldown"
 	_phase_label = _label(column, Style.hint_font_size, Style.heading_color)
 	_action = Button.new()
 	_action.name = "RunRoomAction"
@@ -87,6 +90,9 @@ func display(ordinal: int, kind: String, hp: float, max_hp: float, phase: String
 func set_busy(busy: bool) -> void:
 	_busy = busy
 	if _action != null: _action.disabled = busy
+
+func update_skill_cooldown(player) -> void:
+	_skill_cooldown.text = preload("res://presentation/combat/skill_cooldown_text.gd").format_for(player)
 
 
 func refresh_text() -> void:

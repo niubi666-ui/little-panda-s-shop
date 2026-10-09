@@ -1,0 +1,78 @@
+# GENERATED from game/data/locales; edit JSON and rerun the build tool.
+msgid ""
+msgstr ""
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "map_preview.apply"
+msgstr "Generate from seed"
+
+msgid "map_preview.close"
+msgstr "Close  M / Esc"
+
+msgid "map_preview.details"
+msgstr "Select a room"
+
+msgid "map_preview.end"
+msgstr "Route destination"
+
+msgid "map_preview.failed"
+msgstr "No valid map found. The previous map has been kept."
+
+msgid "map_preview.hint"
+msgstr "M toggle map · Scroll to explore · L language"
+
+msgid "map_preview.invalid_seed"
+msgstr "Enter a seed of 1–64 characters."
+
+msgid "map_preview.kind.battle"
+msgstr "Battle"
+
+msgid "map_preview.kind.elite"
+msgstr "Elite"
+
+msgid "map_preview.kind.event"
+msgstr "Random event"
+
+msgid "map_preview.kind.rest"
+msgstr "Rest"
+
+msgid "map_preview.kind.shop"
+msgstr "Shop"
+
+msgid "map_preview.kind.treasure"
+msgstr "Treasure"
+
+msgid "map_preview.legend"
+msgstr "Room legend"
+
+msgid "map_preview.new"
+msgstr "New map"
+
+msgid "map_preview.notice"
+msgstr "Map preview · Click a room to inspect"
+
+msgid "map_preview.seed"
+msgstr "Map seed"
+
+msgid "map_preview.selected"
+msgstr "Floor {layer} · {kind}\nNode {id}\n{next} paths ahead"
+
+msgid "map_preview.start"
+msgstr "Journey begins"
+
+msgid "map_preview.stats"
+msgstr "{nodes} rooms · {layers} floors"
+
+msgid "map_preview.subtitle"
+msgstr "Follow the forest paths into the unknown"
+
+msgid "map_preview.title"
+msgstr "Adventure map"
+
+msgid "map_preview.unavailable"
+msgstr "Map configuration failed to load. See the log."
+

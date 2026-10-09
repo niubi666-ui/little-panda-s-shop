@@ -104,7 +104,7 @@
       "to": "terminal"
     }
   ],
-  "starter_build_preset": "left_blast_right_freeze",
+  "starter_build_preset": "left_blast_skill_freeze",
   "rewards": [
     {
       "id": "none",

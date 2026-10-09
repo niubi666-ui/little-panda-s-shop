@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://demo.gd" id="script"]
+[ext_resource type="Resource" path="res://fx/profile.tres" id="art"]
+[ext_resource type="PackedScene" path="res://courtyard.tscn" id="room"]
+[ext_resource type="FontFile" path="res://assets/NotoSerifSC-VF.ttf" id="font"]
+[node name="ChargedArrowStudy" type="Node3D"]
+script = ExtResource("script")
+art = ExtResource("art")
+[node name="Courtyard" parent="." instance=ExtResource("room")]
+[node name="Floating" type="Label3D" parent="."]
+font = ExtResource("font")
+font_size = 60
+pixel_size = 0.005
+outline_size = 9
+outline_modulate = Color(0.08,0.02,0.01,1)
+billboard = 1
+no_depth_test = true

@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/charged_arrow_v001/ribbon.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/tint = Color(1, 0.63, 0.20, 1)
+shader_parameter/energy = 3.0
+shader_parameter/opacity = 0.2
+shader_parameter/time_value = 0.0
+shader_parameter/flow_frequency = 28.0
+shader_parameter/flow_speed = 30.0

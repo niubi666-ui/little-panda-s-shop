@@ -1,0 +1,4 @@
+{
+  "rules_file": "res://data/run/map_preview.json",
+  "schema_file": "res://data/schemas/map_preview.schema.json"
+}

@@ -1,0 +1,5 @@
+file 'E:/ShopGame/source_assets/vfx/charged_arrow_v001/previews/stand.mp4'
+file 'E:/ShopGame/source_assets/vfx/charged_arrow_v001/previews/slow.mp4'
+file 'E:/ShopGame/source_assets/vfx/charged_arrow_v001/previews/walk.mp4'
+file 'E:/ShopGame/source_assets/vfx/charged_arrow_v001/previews/dodge.mp4'
+file 'E:/ShopGame/source_assets/vfx/charged_arrow_v001/previews/trail.mp4'

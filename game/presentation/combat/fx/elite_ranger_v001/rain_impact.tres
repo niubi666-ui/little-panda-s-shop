@@ -1,0 +1,42 @@
+[gd_resource type="Resource" load_steps=9 format=3]
+[ext_resource type="Script" path="res://presentation/combat/fx/elite_ranger_v001/ranger_burst_profile.gd" id="script"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/elite_ranger_v001/flash.tres" id="flash"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/elite_ranger_v001/ring.tres" id="ring"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elite_ranger_v001/spark.tres" id="spark"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/elite_ranger_v001/dust.tres" id="dust"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elite_ranger_v001/debris.tres" id="debris"]
+[ext_resource type="ArrayMesh" path="res://assets/vfx/elemental_eruptions_v001/models/rock_chip.obj" id="chip"]
+[resource]
+script = ExtResource("script")
+flash_material = ExtResource("flash")
+ring_material = ExtResource("ring")
+spark_material = ExtResource("spark")
+dust_material = ExtResource("dust")
+debris_material = ExtResource("debris")
+debris_mesh = ExtResource("chip")
+ground_height_m = 0.105
+flash_lift_m = 0.16
+light_color = Color(1, 0.51, 0.13, 1)
+duration_sec = 0.9
+flash_size_m = 0.95
+flash_sec = 0.22
+ring_radius_m = 0.63
+ring_sec = 0.4
+ring_ground = true
+spark_count_per_point = 10
+spark_size = Vector2(0.035, 0.12)
+spark_speed = Vector2(1.0, 3.0)
+spark_life = Vector2(0.17, 0.65)
+spark_gravity = 4
+debris_count_per_point = 4
+debris_size = Vector2(0.045, 0.11)
+debris_speed = Vector2(0.7, 1.8)
+debris_life = Vector2(0.4, 0.82)
+debris_gravity = 10
+dust_count_per_point = 1
+dust_size = Vector2(0.45, 0.9)
+dust_life = Vector2(0.6, 0.86)
+dust_rise_mps = 0.4
+light_energy = 2.6
+light_radius_m = 3.6
+light_sec = 0.22

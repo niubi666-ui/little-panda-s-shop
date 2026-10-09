@@ -1,0 +1,9 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://presentation/combat/enemies/scout_visual.gd" id="script"]
+[ext_resource type="PackedScene" path="res://assets/characters/jackal_scout/melee_scout_v001/jackal_scout.glb" id="model"]
+[ext_resource type="Resource" path="res://presentation/combat/enemies/scout_animation_style.tres" id="style"]
+[node name="JackalScoutVisual" type="Node3D"]
+script = ExtResource("script")
+style = ExtResource("style")
+[node name="Model" parent="." instance=ExtResource("model")]
+scale = Vector3(1.65, 1.65, 1.65)

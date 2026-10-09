@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-07",
+  "scope": "source_assets/vfx/charged_arrow_v001 only",
+  "sources": [
+    {
+      "copy": "elf.glb",
+      "source": "game/assets/characters/elf_archer/elite_ranger_v001/elite_ranger.glb",
+      "sha256": "85e310f0f009d3dfd81ad64520cd7ba8bda3a6eb95e44923340c13d3ad813ea2"
+    },
+    {
+      "copy": "target.glb",
+      "source": "game/assets/characters/red_panda/red_panda_v008.glb",
+      "sha256": "fe1eb69cf7505edea63940baad063341f6ca6624505fbe5b0cafce41bfa7bcec"
+    },
+    {
+      "copy": "arrow.glb",
+      "source": "game/assets/vfx/elite_ranger_v001/ranger_arrow.glb",
+      "sha256": "15c98f63cbe4ef79022135da536b84b3e1569a536e68d0c9bed87629e4e49d03"
+    },
+    {
+      "copy": "forest_courtyard.glb",
+      "source": "game/assets/environments/forest_courtyard_v001/forest_courtyard.glb",
+      "sha256": "fbf4f272984e3b1246805a41ee165900cb90e61bf786f6f8b8390bb4431e7461"
+    },
+    {
+      "copy": "NotoSerifSC-VF.ttf",
+      "source": "game/assets/fonts/NotoSerifSC-VF.ttf",
+      "sha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9"
+    }
+  ],
+  "status": "Approved VFX integrated into elite ranger charged skill; standalone demo retained",
+  "game_integration": true,
+  "video": "previews/charged_arrow_rift_v2.mp4",
+  "verification": {
+    "rules_checks": 29,
+    "visual_checks": 14,
+    "video_decoded": true,
+    "decoded_frames": 772,
+    "rules_log": "builds/charged_arrow_rift_v2_rules.log",
+    "graphical_log": "builds/charged_arrow_rift_v2_movie.log",
+    "known_exit_warning": "7 Texture RIDs leaked (unchanged)"
+  },
+  "latest_visual": "Rift revision 2: wider nonperiodic tapered opening, four rock forks, broken rim; two domain-warped rising light plumes with dark pockets; paving, foundation, terrain and water share actual cut contour.",
+  "demo_trail_half_width_m": 1.15,
+  "game_rule_source": "game/data/enemies/roles.json",
+  "game_art": "game/presentation/combat/fx/charged_arrow_v001/profile.tres",
+  "game_verification": {
+    "charged_rules": 24,
+    "ranger_sequences": 32,
+    "ranger_rules": 36,
+    "ranger_vfx": 44,
+    "ordinary_encounter_plans": 360,
+    "integration": 19
+  }
+}

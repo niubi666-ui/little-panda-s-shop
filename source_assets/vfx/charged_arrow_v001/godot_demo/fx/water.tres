@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3]
+[resource]
+resource_name = "Thin rainwater reflection"
+transparency = 1
+albedo_color = Color(0.34, 0.4, 0.38, 0.32)
+metallic = 0.45
+roughness = 0.055
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_roughness = 0.045
+cull_mode = 2

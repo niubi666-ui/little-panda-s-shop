@@ -1,0 +1,131 @@
+{
+  "type": "object",
+  "required": [
+    "schema_version",
+    "content_version",
+    "rows",
+    "columns",
+    "paths",
+    "max_attempts",
+    "fixed_layers",
+    "room_types"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1,
+      "const": 1
+    },
+    "content_version": {
+      "type": "string"
+    },
+    "rows": {
+      "type": "integer",
+      "minimum": 5,
+      "maximum": 32
+    },
+    "columns": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 12
+    },
+    "paths": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 12
+    },
+    "max_attempts": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 128
+    },
+    "fixed_layers": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "required": [
+          "layer",
+          "kind"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "layer": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 31
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "battle",
+              "elite",
+              "event",
+              "rest",
+              "treasure",
+              "shop"
+            ]
+          }
+        }
+      }
+    },
+    "room_types": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name_key",
+          "weight",
+          "min_layer",
+          "max_layer",
+          "min_count",
+          "avoid_consecutive"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "battle",
+              "elite",
+              "event",
+              "rest",
+              "treasure",
+              "shop"
+            ]
+          },
+          "name_key": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0.001,
+            "maximum": 1000
+          },
+          "min_layer": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 31
+          },
+          "max_layer": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 31
+          },
+          "min_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 64
+          },
+          "avoid_consecutive": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

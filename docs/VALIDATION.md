@@ -27,14 +27,18 @@
 |---|---|
 | 基础战斗/连段/反馈 | `combat_rules.gd`；需要实机时 `combo_feel.gd`、`combat_feedback.gd`、`combat_training.gd` |
 | 镜头/刀光接口 | `hit_camera_shake.gd`、`golden_sword_trail.gd`、`sword_reach_alignment.gd`、`combat_effect_picker.gd`；火焰专项 `fire_slash_v002.gd` |
+| 玩家受击半径/擦身箭 | `player_hurt_radius.gd`；修改半径的内容/schema检查 |
 | 敌人/预算/碰撞 | `enemy_roles.gd`、`charger_obstacles.gd`；完整流程 `enemy_training.gd` |
-| 精英游侠/动画/训练刷新 | `ranger_rules.gd`、`ranger_asset.gd`；最新导入后运行 `ranger_integration.gd`（Forward+1280×800），结果与边界见 [游侠](ELITE_RANGER.md#本次验证与边界) |
+| 豺狼近战斥候模型/骨骼动画 | `scout_presentation.gd`（headless 灰盒；图形加 `-- --forest` 验证真实庭院），行为回归 `enemy_roles.gd` |
+| 精英游侠/动画/训练刷新 | `charged_ranger.gd`、`ranger_sequences.gd`、`ranger_rules.gd`、`ranger_vfx.gd`；裂隙接入使用 `ranger_charged_integration.gd`（实际F6入口/Forward+）；改模型时用`ranger_asset.gd`；最新导入后运行 `ranger_integration.gd`（Forward+1280×800），结果与边界见 [游侠](ELITE_RANGER.md#本轮验证与边界) |
 | 训练工具/显示控制 | `training_tools_content.gd`、`training_damage_override.gd`；`training_tools.gd`支持headless与图形，覆盖真实场景工具、追加/奖励隔离、显示/模态与重试 |
 | Build候选/绑定/事务 | `bound_build_policy.gd`、`bound_build_session.gd`、`mechanism_content.gd` |
 | 动作/构筑执行/表现隔离 | `dual_actions.gd`、`action_build_runtime.gd`、`action_build_vfx.gd` |
+| 清场后施放/剑气水平外观 | `post_clear_skills.gd`（headless或Forward+；图形模式截图至builds）；`run_integration.gd`覆盖路线/终点空放及退出清理，`training_tools.gd`覆盖追加敌人与奖励隔离 |
 | 控制与真实时序 | `status_controls.gd`、`freeze_guard.gd`、`mechanism_order.gd` |
 | 双语/预设/普通选择/替换/输入/重试 | `action_build_integration.gd`，支持headless与Forward+1280×800 |
 | 房间组合/物件/搜刮 | `room_prop_rules.gd`、`room_props_integration.gd`；美术截图 `room_presets_capture.gd` |
+| 随机地图生成/预览 | `build_map_preview_content.py --check`；`map_branch_pruning.gd`、`map_generation.gd`；排版用`map_visual_layout.gd`，实机用`map_preview_ui.gd`（headless/Forward+），入口用`map_preview_hosts.gd`；范围见[地图预览](MAP_PREVIEW.md) |
 | 内存路线/跨房 | `run_session.gd`、`run_content.gd`、`run_map_ui.gd`；`run_integration.gd`支持headless/Forward+1280×800 |
 | 房间模板/加载 | `forest_room.gd`、`scene_transition.gd`；渲染对照 `forest_foliage_preview.gd` |
 | 店铺/镜头/通路 | `shop_preview_controls.gd`、`shop_scene_integration.gd`、`shop_accessibility.gd`、`shop_camera.gd` |

@@ -1,0 +1,51 @@
+[gd_resource type="Resource" load_steps=9 format=3]
+[ext_resource type="Script" path="res://presentation/map_preview/map_preview_style.gd" id="style"]
+[ext_resource type="Texture2D" path="res://presentation/map_preview/icons/battle.svg" id="battle"]
+[ext_resource type="Texture2D" path="res://presentation/map_preview/icons/elite.svg" id="elite"]
+[ext_resource type="Texture2D" path="res://presentation/map_preview/icons/event.svg" id="event"]
+[ext_resource type="Texture2D" path="res://presentation/map_preview/icons/rest.svg" id="rest"]
+[ext_resource type="Texture2D" path="res://presentation/map_preview/icons/treasure.svg" id="treasure"]
+[ext_resource type="Texture2D" path="res://presentation/map_preview/icons/shop.svg" id="shop"]
+[sub_resource type="InputEventKey" id="key"]
+physical_keycode = 77
+[resource]
+script = ExtResource("style")
+toggle_event = SubResource("key")
+background = Color(0.065, 0.115, 0.11, 1)
+paper = Color(0.88, 0.865, 0.79, 1)
+ink = Color(0.16, 0.22, 0.20, 1)
+muted = Color(0.50, 0.53, 0.46, 1)
+accent = Color(0.73, 0.42, 0.15, 1)
+line_color = Color(0.38, 0.45, 0.39, 0.62)
+node_colors = Dictionary[String, Color]({"battle": Color(0.29, 0.40, 0.34, 1), "elite": Color(0.57, 0.27, 0.24, 1), "event": Color(0.41, 0.34, 0.52, 1), "rest": Color(0.25, 0.45, 0.47, 1), "treasure": Color(0.65, 0.48, 0.19, 1), "shop": Color(0.33, 0.42, 0.59, 1)})
+icons = Dictionary[String, Texture2D]({"battle": ExtResource("battle"), "elite": ExtResource("elite"), "event": ExtResource("event"), "rest": ExtResource("rest"), "treasure": ExtResource("treasure"), "shop": ExtResource("shop")})
+margin = 24
+gap = 12
+sidebar_width = 218.0
+column_pitch = 116.0
+row_pitch = 108.0
+canvas_padding = 108.0
+node_radius = 21.0
+icon_size = 28.0
+line_width = 1.8
+title_size = 30
+body_size = 18
+small_size = 14
+node_font_size = 13
+button_height = 42.0
+layout_passes = 2
+layout_backoff_steps = 6
+neighbour_pull = 0.42
+row_sway = 25.0
+sway_frequency = 0.65
+node_jitter = Vector2(28, 17)
+max_shift_x = 72.0
+label_spacing = Vector2(105, 67)
+minimum_edge_rise = 54.0
+path_clearance = 7.0
+curve_bend = 19.0
+curve_segments = 8
+path_dash_length = 7.0
+path_dash_gap = 5.0
+marker_inset = 32.0
+marker_radius = 4.0

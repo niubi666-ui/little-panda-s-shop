@@ -1,0 +1,24 @@
+{
+  "runtime": "res://assets/characters/jackal_scout/melee_scout_v001/jackal_scout.glb",
+  "date": "2026-10-07",
+  "enemy_roles": {
+    "plans": 360,
+    "failures": []
+  },
+  "source": "jackal_scout_animation_review_v003.blend",
+  "limitations": [
+    "Existing 7 Texture RID warnings at graphical shutdown",
+    "No full performance or manual feel acceptance",
+    "No Release export"
+  ],
+  "forward_plus_forest": {
+    "room_seed": "2802110879",
+    "failures": [],
+    "gpu": "RTX 4060 Laptop",
+    "checks": 47
+  },
+  "headless": {
+    "checks": 47,
+    "failures": []
+  }
+}

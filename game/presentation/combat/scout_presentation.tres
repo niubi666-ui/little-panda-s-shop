@@ -1,7 +1,7 @@
 [gd_resource type="Resource" format=3 uid="uid://f170pwvag8r1"]
 
 [ext_resource type="Script" uid="uid://b5ee2a0jq5se6" path="res://presentation/combat/actor_presentation.gd" id="1"]
-[ext_resource type="PackedScene" path="res://presentation/combat/scout_visual.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://presentation/combat/enemies/scout_visual.tscn" id="2"]
 
 [sub_resource type="CapsuleShape3D" id="body"]
 radius = 0.4
@@ -12,3 +12,6 @@ script = ExtResource("1")
 visual_scene = ExtResource("2")
 body_shape = SubResource("body")
 body_height = 0.75
+visual_yaw_offset_deg = 180.0
+retain_corpse = true
+embedded_weapon = true

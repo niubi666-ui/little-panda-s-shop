@@ -98,6 +98,18 @@
 
 ## 后续更换模型和掉落
 
+### 近战斥候：已接入豺狼模型（2026-10-07）
+
+- 现有 `scout` 已替换为用户确认的豺狼与弯刀（Blender 评审 v003）。稳定 ID、生命、追击、攻击数值、遭遇池和掉落规则沿用现有 JSON。
+- Godot 资源：`game/assets/characters/jackal_scout/melee_scout_v001/`；源工程、Mixamo 原始文件、导出脚本与审查记录：`source_assets/characters/jackal_scout/`。运行模型仅一个骨架、身体和弯刀，65 骨骼、9,323 三角面，两个 4K 颜色贴图。静态评审地面/灯光/相机未导出。
+- `presentation/combat/scout_presentation.tres` 关联 `enemies/scout_visual.tscn`；模型缩放 1.65、正向偏移 180°，站立约 1.48 米，身体碰撞仍为原胶囊。`ActorPresentation.embedded_weapon` 表明使用模型内武器，不再生成/显示程序占位剑。
+- `enemies/scout_visual.gd` 只读取 Actor/AbilityRunner：待机、慢速行走、正常追击跑步、斜斩、受击、死亡。用户已停用低姿蹲砍的 `scout_attack_slash`，运行候选仅 `scout_attack_diagonal`；旧 clip 仍在源资产中但不会被选用。资源 `scout_animation_style.tres` 保存动画名、动作分段和步频参考速度。
+- 当前用户调参：`scout` 移速从 2.1 提至 3.15 m/s；`enemy.swipe` 半径从 1.65 提至 2.475 m；攻速为旧版150%，前摇0.5 s、active 0.1 s、后摇约0.433333 s、冷却1.1 s（时长统一除以1.5）。权威值在 `data/combat/prototype.json`；伤害和扇形角度不变。敌人内容版本为 `enemy-roles.7-scout-tempo-reach`。
+- 攻击按逻辑前摇/active/后摇分段采样动画；伤害仍由规则结算。冻结保持当前姿态，暂停不推进表现时钟，受击/死亡取消攻击表现，死亡停在最终姿态。原攻击扇形预警、血条和受击闪白保留。走跑和攻击去除水平根运动；死亡保留原倒地位移。
+- 训练场、灰盒和短路线都通过同一 `scout_presentation.tres` 使用该模型。七个动作保存在 GLB 独立 clips 中，不导入 Blender 437–527 帧的评审循环。
+
+本轮验证：`tests/scout_presentation.gd` 在 headless 灰盒和 Forward+ 实际森林场景验证资源、正向、独立实例、动作长度/根运动、分段攻击、取消、冻结、暂停、受击与死亡；日志 `builds/scout_presentation_{headless,forest}.log`。`enemy_roles.gd` 的 360 个遭遇计划与行为回归通过。实机截图归档于源资产 `previews/godot_melee_scout_v001/`。图形退出仍有既有 7 个 Texture RID 警告；完整战斗手感、密集敌人性能仍需试玩，不宣称完成性能验收。未导出 Release。
+
 - 只换各兵种 `*_presentation.tres` 的 `visual_scene`，校准 `body_shape`/`body_height`。占位模型有名为 `Weapon` 的 MeshInstance3D，用于白光与矛后收；正式骨骼模型可在表现适配器中改挂点，AI 不查找骨骼/动画。
 - 攻击由逻辑状态推进，动画只读状态。不会因为动画资源未准备好阻止战斗。
 - 掉落表已校验、按种子预滚；死亡只发出 `enemy_loot_ready(spawn_id, enemy_id, drops)` 局部事实，一次死亡只发一次。**尚无敌人物品掉到地上的模型、拾取或永久背包入账。** 后续由 app/session 消费该事实，通过候选提交处理库存及保存失败，不在敌人脚本里加钱。

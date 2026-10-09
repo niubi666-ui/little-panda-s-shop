@@ -137,10 +137,10 @@ func _ready() -> void:
 			return
 		encounter_depth = int(encounter_plan.depth)
 		_waves = encounter_plan.waves.map(func(wave): return wave.enemy_ids)
-	enemy_runtime.configure(player, Style.actor_presentations.player.body_shape.radius, _actor_query_origin, _enemy_sweep)
+	enemy_runtime.configure(player, catalog.player_hurt_radius(), _actor_query_origin, _enemy_sweep)
 	enemy_presentation = EnemyPresentation.new()
 	add_child(enemy_presentation)
-	enemy_presentation.configure(enemy_runtime, Style)
+	enemy_presentation.configure(enemy_runtime, Style, $Camera, room.rift_surfaces() if room!=null and room.has_method("rift_surfaces") else [])
 	$Camera.size = room_presentation.camera_size if room_presentation != null else Style.camera_size
 	_follow_camera()
 	input_adapter = InputAdapter.new(player, $Camera, _gameplay_ui_blocked)
@@ -248,9 +248,9 @@ func _spawn_wave(ids: Array) -> void:
 	if builds != null: builds.clear_room()
 	enemy_runtime.remove_dead()
 	if enemy_presentation != null: enemy_presentation.remove_dead()
-	# Previous corpses are disposable presentation/runtime nodes, never rewards.
+	# Ordinary corpses are disposable; retained elite corpses live until room exit.
 	for index in range(actors.size() - 1, 0, -1):
-		if not actors[index].health.alive():
+		if not actors[index].health.alive() and not Style.actor_presentations[actors[index].definition.id].retain_corpse:
 			actors[index].queue_free()
 			actors.remove_at(index)
 			views.remove_at(index)
@@ -267,7 +267,7 @@ func _spawn_wave(ids: Array) -> void:
 	state = "fighting"
 func _register_enemy_brain(actor) -> void:
 	var route: Callable = room_props.movement_towards if room_props != null else Callable()
-	var queries := {"roll_path":_ranger_roll_path,"ground":_ranger_ground,"seed":(str(encounter_plan.get("seed", "fixture")) + ":ranger:" + str(_ranger_sequence)).sha256_text().substr(0, 15).hex_to_int()}
+	var queries := {"roll_path":_ranger_roll_path,"ground":_ranger_ground,"rain_escape":_ranger_rain_escape,"seed":(str(encounter_plan.get("seed", "fixture")) + ":ranger:" + str(_ranger_sequence)).sha256_text().substr(0, 15).hex_to_int()}
 	var brain = enemy_runtime.add(actor, enemy_catalog.profile(actor.definition.id), route, _enemy_sight, _enemy_safe_motion, queries)
 	brains.append(brain)
 	enemy_presentation.register(brain, views[actors.find(actor)], enemy_catalog.profile(actor.definition.id))
@@ -275,6 +275,48 @@ func _register_enemy_brain(actor) -> void:
 func _ranger_ground(point: Vector3) -> bool:
 	var radius: float = Style.actor_presentations.elite_ranger.body_shape.radius
 	return room_props != null and room_props.allows_training_spawn(point, radius)
+
+func _ranger_rain_escape(hazards: Array, settings: Dictionary) -> bool:
+	# Conservative admission: reserve one straight, full-body route out of all circles.
+	# A rejected cast is skipped, never repositioned on top of a wall or the player.
+	if room_props == null: return false
+	var radius: float = Style.actor_presentations.player.body_shape.radius
+	var reach: float = player.definition.speed * (settings.rain_delay_sec - settings.rain_escape_margin_sec)
+	var space := get_world_3d().direct_space_state
+	for i in int(settings.rain_escape_directions):
+		var direction := Vector3.FORWARD.rotated(Vector3.UP, TAU * float(i) / settings.rain_escape_directions)
+		var distance_m := 0.0
+		for hazard in hazards:
+			var relative: Vector3 = hazard.center - player.global_position
+			relative.y = 0.0
+			var along := relative.dot(direction)
+			var across_sq := relative.length_squared() - along * along
+			var inflated: float = hazard.radius + catalog.player_hurt_radius() + settings.rain_escape_clearance_m
+			if across_sq < inflated * inflated:
+				distance_m = maxf(distance_m, along + sqrt(inflated * inflated - across_sq))
+		if distance_m > reach: continue
+		var motion := direction * distance_m
+		var point: Vector3 = player.global_position + motion
+		if not room_props.allows_training_spawn(point, radius): continue
+		var crosses_danger := false
+		for hazard in hazards:
+			if not hazard.active: continue
+			var center: Vector3 = hazard.center
+			center.y = point.y
+			var safe_radius: float = hazard.radius + catalog.player_hurt_radius()
+			# Allow exiting the circle the player already occupies, not routing through another active one.
+			if player.global_position.distance_to(center) <= safe_radius: continue
+			if Geometry3D.get_closest_point_to_segment(center, player.global_position, point).distance_to(center) <= safe_radius:
+				crosses_danger = true
+				break
+		if crosses_danger: continue
+		var query := PhysicsShapeQueryParameters3D.new()
+		query.shape = Style.actor_presentations.player.body_shape
+		query.transform.origin = _actor_query_origin(player)
+		query.collision_mask = Actor.BodyLayer.WORLD
+		query.motion = motion
+		if space.intersect_shape(query, 1).is_empty() and space.cast_motion(query)[0] >= 1.0: return true
+	return false
 
 func _ranger_roll_path(actor, motion: Vector3) -> bool:
 	if not _ranger_ground(actor.global_position + motion): return false
@@ -328,7 +370,7 @@ func _refresh_ranger() -> bool:
 	# All admission checks precede mutation; the previous managed actor stays intact on failure.
 	var candidate := _spawn(catalog.actor("elite_ranger"), spawn_point, 1)
 	_register_enemy_brain(candidate)
-	if is_instance_valid(_managed_ranger):
+	if is_instance_valid(_managed_ranger) and _managed_ranger.health.alive():
 		enemy_runtime.remove_actor(_managed_ranger)
 		enemy_presentation.remove_actor(_managed_ranger)
 		if room_props != null: room_props.forget_actor(_managed_ranger.handle)
@@ -378,11 +420,11 @@ func _training_spawn_clear(point: Vector3, id: String, reserved: Array) -> bool:
 		if point.distance_to(entry.point) <= radius + Style.actor_presentations[entry.actor_id].body_shape.radius: return false
 	return true
 func _append_training_wave(ids: Array, placements: Array) -> void:
-	# Preserve live enemies and build; retire corpses and their source-bound projectiles.
+	# Preserve live enemies, retained corpses and build; retire dead attack runtimes.
 	enemy_runtime.remove_dead()
 	enemy_presentation.remove_dead()
 	for index in range(actors.size() - 1, 0, -1):
-		if not actors[index].health.alive():
+		if not actors[index].health.alive() and not Style.actor_presentations[actors[index].definition.id].retain_corpse:
 			if room_props != null: room_props.forget_actor(actors[index].handle)
 			actors[index].queue_free()
 			actors.remove_at(index)
@@ -401,7 +443,7 @@ func _append_training_wave(ids: Array, placements: Array) -> void:
 func _physics_process(delta: float) -> void:
 	if catalog == null or _leaving: return
 	training_tools.refresh()
-	if not paused and not builds.is_choosing() and state not in ["victory", "defeat"]:
+	if not paused and not builds.is_choosing() and state != "defeat":
 		# Aim/movement use the stable camera, never the previous display shake.
 		$Camera.h_offset = 0.0
 		$Camera.v_offset = 0.0
@@ -413,7 +455,7 @@ func _physics_process(delta: float) -> void:
 		# Resolve the player's committed effects before enemy hit windows. The build
 		# queue is stepped exactly once, so control cancellation cannot double its budget.
 		resolver.resolve(player, actors)
-		if state not in ["victory", "defeat"]:
+		if state != "defeat":
 			builds.step(delta)
 			enemy_runtime.update_auras()
 		if state not in ["victory", "defeat"]:
@@ -427,20 +469,15 @@ func _physics_process(delta: float) -> void:
 		if state not in ["victory", "defeat"]:
 			encounter.tick(delta)
 			if encounter.remaining() == 0: state = "waiting"
-	# A cleared room remains explorable so the player can finish searching containers.
-	if state == "victory" and not paused and room_props != null:
-		input_adapter.update()
-		player.step(delta)
-		room_props.resolve_attack()
 	if room_props != null: room_props.refresh(not paused and not builds.is_choosing() and state != "defeat")
-	if state in ["victory", "defeat"]:
+	if state == "defeat":
 		builds.finish()
 	else:
 		builds.flush_offers()
 	skill_vfx.refresh()
 	var display_delta := 0.0 if paused or builds.is_choosing() else delta
 	for view in views: view.refresh(display_delta)
-	enemy_presentation.refresh()
+	enemy_presentation.refresh(display_delta)
 	builds.refresh(display_delta)
 	_follow_camera()
 	_apply_camera_shake(display_delta)
@@ -548,14 +585,16 @@ func _gameplay_ui_blocked() -> bool:
 		if training_tools.panel.has_open_popup(): return true
 	return false
 func _finish(result: String) -> void:
-	if state in ["victory", "defeat"]: return
+	if state == "defeat" or (state == "victory" and result == "victory"): return
 	if result == "victory":
 		_ordinary_complete = true
 		if is_instance_valid(_managed_ranger) and _managed_ranger.health.alive(): return
 	state = result
 	if result == "defeat" and skill_vfx != null: skill_vfx.clear()
 	encounter.cancel()
-	for actor in actors: actor.cancel()
+	for actor in actors:
+		if result == "defeat" or actor != player: actor.cancel()
+	if result == "victory": builds.finish_rewards()
 	enemy_runtime.clear()
 	if enemy_presentation != null: enemy_presentation.clear()
 func _shutdown() -> void:

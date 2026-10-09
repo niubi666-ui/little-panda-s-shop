@@ -83,26 +83,26 @@ func probe_time(views: Dictionary) -> float:
 
 func run_frost_trial(mode: String) -> Dictionary:
 	Probe.records.clear()
-	var selected: Array = builds.test_preset("right_frost").selections.duplicate(true)
+	var selected: Array = builds.test_preset("skill_frost").selections.duplicate(true)
 	var f := setup(selected, func(_a, _b): return null)
 	var near = actor("brute", 1, Vector3(0, 0, -1))
 	var side = actor("brute", 1, Vector3(1, 0, -1))
 	var later = actor("brute", 1, Vector3(0, 0, -5))
 	var views := attach_views(f, mode)
-	cast(f, "special")
+	cast(f, "skill")
 	refresh_views(f, views, 0.0)
 	check(f.runtime.projectiles().size() == 1, mode + ": cue launches authoritative projectile")
 	if mode == "default": check(views.effects.get_child_count() > 0, "default configured mesh visibly instantiated")
 	if mode in ["disabled", "null_slots"]: check(views.effects.get_child_count() == 0, mode + ": no projectile/action/trail nodes")
 	# Apply a stronger new program after release, before impact. No consumer may
 	# guess old shot metadata or duration from the newest selected program.
-	selected.append(select("freeze_duration", "special"))
+	selected.append(select("freeze_duration", "skill"))
 	var next := resolver.resolve({"selections": selected, "revision": 2})
 	check(f.runtime.set_program(next) and f.player.set_action_program(next.actions, combat), mode + ": new plan applied with old shot in flight")
 	step_trial(f, views, 0.1)
 	check(near.control_locked and side.control_locked and not later.control_locked, mode + ": actual old frost payload freezes its local area")
 	var status: Dictionary = f.runtime.statuses.snapshot(side).test_freeze
-	check(status.source.action_id == "special" and status.source.revision == 1, mode + ": status records original action/revision")
+	check(status.source.action_id == "skill" and status.source.revision == 1, mode + ": status records original action/revision")
 	check(is_equal_approx(status.remaining, builds.status("test_freeze").duration_sec), mode + ": new duration support cannot rewrite old cast")
 	if mode == "default": check(views.mechanisms.get_child_count() >= 3, "default area and both frozen bodies have views")
 	if mode in ["disabled", "null_slots"]: check(views.mechanisms.get_child_count() == 0, mode + ": no area/status nodes")
@@ -116,10 +116,10 @@ func run_frost_trial(mode: String) -> Dictionary:
 	if mode == "replacement":
 		for slot in ["action_started", "action_cue", "projectile", "trail", "contact", "area", "status"]:
 			check(Probe.records.any(func(record): return record.method == "configure" and record.slot == slot), "Resource hook consumed committed fact: " + slot)
-		check(Probe.records.any(func(record): return record.method == "configure" and record.slot == "status" and record.fact.statuses[0].source.action_id == "special" and record.fact.statuses[0].source.revision == 1), "status Resource receives original bound source metadata")
+		check(Probe.records.any(func(record): return record.method == "configure" and record.slot == "status" and record.fact.statuses[0].source.action_id == "skill" and record.fact.statuses[0].source.revision == 1), "status Resource receives original bound source metadata")
 		for record in Probe.records:
 			if record.method != "configure" or record.slot == "status": continue
-			check(record.fact.action_id == "special" and record.fact.revision == 1 and record.fact.presentation_key == "wave_cast", "old metadata reaches " + str(record.slot))
+			check(record.fact.action_id == "skill" and record.fact.revision == 1 and record.fact.presentation_key == "wave_cast", "old metadata reaches " + str(record.slot))
 		for owner in [views.effects, views.mechanisms]:
 			for child in owner.get_children():
 				if child.get_script() == Probe: check(not child.running, "adapter communicates paused clock")
@@ -151,10 +151,11 @@ func run_frost_trial(mode: String) -> Dictionary:
 
 func check_cancel_cleanup() -> void:
 	Probe.records.clear()
-	var f := setup([select("sword_wave_form", "special")])
+	var f := setup([])
 	var views := attach_views(f, "replacement")
-	check(f.player.runner.start(combat.ability("wave_cast"), Vector3.FORWARD, f.program.actions.special), "pre-cue cancel fixture begins")
-	check(views.effects.get_child_count() == 1, "start cue uses one replaceable action scene")
+	f.player.runner.committed.connect(func(_id,_ability): f.player.runner.cancel("control"), CONNECT_ONE_SHOT)
+	check(f.player.runner.start(combat.ability("wave_cast"), Vector3.FORWARD, f.program.actions.skill), "pre-cue cancel fixture begins")
+	check(views.effects.get_child_count() == 0, "cancelled commit retires action scene before instant cue")
 	f.player.runner.cancel("dodge")
 	step_trial(f, views, 0.0)
 	check(views.effects.get_child_count() == 0 and f.runtime.projectiles().is_empty(), "pre-cue cancellation leaves no action VFX or projectile")

@@ -1,0 +1,3 @@
+file 'E:/ShopGame/source_assets/vfx/elite_ranger_v001/previews/fast.mp4'
+file 'E:/ShopGame/source_assets/vfx/elite_ranger_v001/previews/volley.mp4'
+file 'E:/ShopGame/source_assets/vfx/elite_ranger_v001/previews/rain.mp4'

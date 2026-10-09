@@ -51,6 +51,7 @@ func load_catalog(combat) -> Catalog:
 		var c: Dictionary = p.config
 		if (p.role == "melee") != (not combat.actor(p.actor_id).attacks.is_empty()): errors.append("actor/role attack mismatch " + p.actor_id)
 		for key in c:
+			if c[key] is bool: continue
 			if c[key] <= 0.0: errors.append(p.actor_id + "." + key + " must be positive")
 		match p.role:
 			"ranged":
@@ -60,13 +61,19 @@ func load_catalog(combat) -> Catalog:
 			"support":
 				if c.retreat_range_m >= c.safe_max_m: errors.append("support distances")
 			"ranger":
+				if c.charged_range_m>c.fire_range_m or c.charged_rift_interval_sec>=c.charged_rift_duration_sec or c.charged_range_m/c.charged_speed_mps>=c.charged_rift_interval_sec: errors.append("ranger charged range/rift timing")
 				if c.roll_min_distance_m > c.roll_distance_m: errors.append("ranger roll distance order")
 				if not (c.safe_min_m < c.safe_max_m and c.safe_max_m <= c.fire_range_m and c.roll_trigger_m < c.safe_min_m and c.rain_min_range_m < c.fire_range_m): errors.append("ranger distances")
 				if c.rain_delay_sec <= c.rain_windup_sec or c.volley_count < 2 or c.volley_angle_deg >= 180.0 or c.roll_cooldown_sec <= c.roll_duration_sec: errors.append("ranger attack/roll timing")
-				for id in ["fast", "volley", "rain"]:
+				for id in ["fast", "volley", "rain", "charged"]:
 					if c[id + "_cooldown_sec"] < c[id + "_windup_sec"] + c[id + "_recovery_sec"]: errors.append("ranger cooldown " + id)
-				for id in ["fast", "volley"]:
+				for id in ["fast", "volley", "charged"]:
 					if c[id + "_lock_sec"] > c[id + "_windup_sec"]: errors.append("ranger aim lock " + id)
+				if c.rain_sequence_count > c.rain_max_areas or c.rain_escape_margin_sec >= c.rain_delay_sec: errors.append("ranger rain capacity/escape timing")
+				var rain_length: float = c.rain_sequence_count * c.rain_windup_sec + (c.rain_sequence_count - 1) * c.rain_gap_sec
+				var burst_length: float = c.burst_fast_count * (c.fast_windup_sec + c.burst_gap_sec) + c.charged_windup_sec
+				if c.rain_cooldown_sec < rain_length + c.rain_recovery_sec or c.burst_cooldown_sec < burst_length + c.burst_recovery_sec or c.combo_cooldown_sec < rain_length + c.rain_gap_sec + c.charged_windup_sec + c.combo_recovery_sec: errors.append("ranger sequence cooldown")
+				if c.charged_speed_mps <= c.fast_speed_mps or c.charged_damage <= c.fast_damage or c.charged_recovery_sec <= c.fast_recovery_sec or c.burst_recovery_sec < c.charged_recovery_sec or c.combo_recovery_sec < c.charged_recovery_sec: errors.append("ranger charged contrast/recovery")
 	var combination_ids: Dictionary = {}
 	for combination in enc.combinations:
 		if combination_ids.has(combination.id): errors.append("duplicate encounter " + combination.id)

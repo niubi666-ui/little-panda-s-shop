@@ -19,8 +19,11 @@ msgstr "Global"
 msgid "build.action.primary"
 msgstr "Primary"
 
+msgid "build.action.skill"
+msgstr "Sword Wave skill"
+
 msgid "build.action.special"
-msgstr "Special"
+msgstr "Heavy attack"
 
 msgid "build.action_binding"
 msgstr "{action} [{key}]"
@@ -110,7 +113,7 @@ msgid "build.preset.applied"
 msgstr "Applied: {name}"
 
 msgid "build.preset.basic_actions"
-msgstr "Basic left/right actions"
+msgstr "Three base actions (no upgrades)"
 
 msgid "build.preset.error"
 msgstr "Preset unavailable. Retry training and try again."
@@ -119,10 +122,10 @@ msgid "build.preset.frost_blast"
 msgstr "Frost Blast"
 
 msgid "build.preset.hint"
-msgstr "Presets replace your build but keep enemies. LMB: combo; RMB: special. Retry resets the arena and build."
+msgstr "LMB combo, RMB heavy and Q wave are available from the start. Presets change bound upgrades; retry resets the room and Build."
 
-msgid "build.preset.left_blast_right_freeze"
-msgstr "Left blast + right piercing freeze"
+msgid "build.preset.left_blast_skill_freeze"
+msgstr "LMB Blast + Q Piercing Freeze"
 
 msgid "build.preset.pierce_blast"
 msgstr "Piercing Blast"
@@ -130,8 +133,8 @@ msgstr "Piercing Blast"
 msgid "build.preset.pierce_freeze"
 msgstr "Piercing Freeze"
 
-msgid "build.preset.right_frost"
-msgstr "Right piercing Frost Blast"
+msgid "build.preset.skill_frost"
+msgstr "Q Piercing Frost Blast"
 
 msgid "build.preset.title"
 msgstr "Action build presets"
@@ -181,18 +184,6 @@ msgstr "Replaces: {name} (rank {rank})"
 msgid "build.subtitle"
 msgstr "Choose one bound upgrade. Other actions keep their own build."
 
-msgid "build.sword_heavy_form.description"
-msgstr "Restores this action’s close-range heavy slash. Replaces the sword-wave form."
-
-msgid "build.sword_heavy_form.name"
-msgstr "Heavy-slash form"
-
-msgid "build.sword_wave_form.description"
-msgstr "Replaces this action’s melee slash with a sword wave. Fires even on a miss; performs no melee strike."
-
-msgid "build.sword_wave_form.name"
-msgstr "Sword-wave form"
-
 msgid "build.test.agility.description"
 msgstr "Normal movement speed increases by {bonus_percent}%. Dodge speed stays unchanged."
 
@@ -200,7 +191,7 @@ msgid "build.test.agility.name"
 msgstr "Test · Fleet foot"
 
 msgid "build.test.arrow_hint"
-msgstr "T fires an isolated debug arrow. It does not inherit or unlock left/right action upgrades."
+msgstr "T fires an isolated test arrow; it inherits no LMB, RMB or Q upgrades."
 
 msgid "build.test.blast.description"
 msgstr "This action’s contacts create a {radius_m} m blast for {damage_percent}% attack damage with radial falloff. Excludes the direct target and walls. Each projectile blasts on its first contact only."
@@ -233,7 +224,7 @@ msgid "build.test.freeze_duration.name"
 msgstr "Test · Longer freeze"
 
 msgid "build.test.mechanism_hint"
-msgstr "LMB: combo · RMB: special · T: isolated debug arrow · Cyan: frost"
+msgstr "LMB Combo · RMB Heavy · Q Wave · T Test Arrow · Blue Ring = Frost"
 
 msgid "build.test.power.description"
 msgstr "Both actions gain {bonus_percent}% attack damage. Action bonuses add before the final cap; derived damage does not multiply the bonus again."
@@ -272,7 +263,7 @@ msgid "combat.choosing"
 msgstr "Choose a build upgrade to resume combat"
 
 msgid "combat.controls"
-msgstr "WASD Move · LMB Combo · RMB Special · Shift Dodge · Esc Pause · L Language"
+msgstr "WASD Move · LMB Combo · RMB Heavy · Q Sword Wave · Shift Dodge · Esc Pause · L Language"
 
 msgid "combat.crossbow"
 msgstr "Skirmish Crossbow"
@@ -351,6 +342,15 @@ msgstr "Return to shop"
 
 msgid "combat.scout"
 msgstr "Scout · Placeholder"
+
+msgid "combat.skill.cooldown"
+msgstr "{key} Sword Wave: {seconds}s"
+
+msgid "combat.skill.disabled"
+msgstr "{key} Sword Wave: Unavailable"
+
+msgid "combat.skill.ready"
+msgstr "{key} Sword Wave: Ready"
 
 msgid "combat.status"
 msgstr "HP {hp}/{max_hp}  ·  Dodge {charges}/{max_charges}  ·  Wave {wave}/{total}  ·  Enemies {enemies}"
@@ -605,7 +605,7 @@ msgid "run.return_map"
 msgstr "Return to route map"
 
 msgid "run.room.controls"
-msgstr "WASD Move · LMB Attack · RMB Special · Shift Dodge · Esc Settings · L Language"
+msgstr "WASD Move · LMB Combo · RMB Heavy · Q Sword Wave · Shift Dodge · Esc Menu · L Language"
 
 msgid "run.room.health"
 msgstr "HP {hp} / {max_hp}"

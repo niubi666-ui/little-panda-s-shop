@@ -1,0 +1,184 @@
+{
+	"checks": [
+		"fixed rule hazard width",
+		"0.5-second rule pulse drives shader",
+		"pause freezes visual clock",
+		"disabled VFX preserves test damage",
+		"walking test hit",
+		"dodge test safe",
+		"geometric rift depth",
+		"elevated turbulent plumes",
+		"rift fits hazard across 101 points",
+		"floor opens and restores with VFX",
+		"English buttons fit viewport",
+		"foundation and terrain cut beneath paving",
+		"all ground layers share contour texture",
+		"geometry matches 160 contour texels"
+	],
+	"fps": 30,
+	"segments": [
+		{
+			"events": [
+				{
+					"kind": "release",
+					"time": 2.4
+				},
+				{
+					"damage": 32.0,
+					"health": 68.0,
+					"kind": "arrow",
+					"time": 2.44583333333335
+				},
+				{
+					"damage": 6.0,
+					"health": 62.0,
+					"kind": "scar",
+					"time": 2.9
+				},
+				{
+					"damage": 6.0,
+					"health": 56.0,
+					"kind": "scar",
+					"time": 3.4
+				},
+				{
+					"damage": 6.0,
+					"health": 50.0,
+					"kind": "scar",
+					"time": 3.9
+				},
+				{
+					"damage": 6.0,
+					"health": 44.0,
+					"kind": "scar",
+					"time": 4.4
+				},
+				{
+					"damage": 6.0,
+					"health": 38.0,
+					"kind": "scar",
+					"time": 4.9
+				},
+				{
+					"damage": 6.0,
+					"health": 32.0,
+					"kind": "scar",
+					"time": 5.4
+				},
+				{
+					"damage": 6.0,
+					"health": 26.0,
+					"kind": "scar",
+					"time": 5.9
+				},
+				{
+					"damage": 6.0,
+					"health": 20.0,
+					"kind": "scar",
+					"time": 6.4
+				},
+				{
+					"damage": 6.0,
+					"health": 14.0,
+					"kind": "scar",
+					"time": 6.9
+				},
+				{
+					"damage": 6.0,
+					"health": 8.0,
+					"kind": "scar",
+					"time": 7.4
+				},
+				{
+					"damage": 6.0,
+					"health": 2.0,
+					"kind": "scar",
+					"time": 7.9
+				}
+			],
+			"frames": 282,
+			"id": "stand",
+			"start_simulation_time": 0.0,
+			"time_scale": 1.0
+		},
+		{
+			"events": [
+				{
+					"kind": "release",
+					"time": 2.4
+				},
+				{
+					"damage": 32.0,
+					"health": 68.0,
+					"kind": "arrow",
+					"time": 2.44416666666667
+				}
+			],
+			"frames": 108,
+			"id": "slow",
+			"start_simulation_time": 2.12,
+			"time_scale": 0.2
+		},
+		{
+			"events": [
+				{
+					"kind": "release",
+					"time": 2.4
+				},
+				{
+					"damage": 32.0,
+					"health": 68.0,
+					"kind": "arrow",
+					"time": 2.44583333333335
+				}
+			],
+			"frames": 114,
+			"id": "walk",
+			"start_simulation_time": 0.0,
+			"time_scale": 1.0
+		},
+		{
+			"events": [
+				{
+					"kind": "release",
+					"time": 2.4
+				}
+			],
+			"frames": 114,
+			"id": "dodge",
+			"start_simulation_time": 0.0,
+			"time_scale": 1.0
+		},
+		{
+			"events": [
+				{
+					"kind": "release",
+					"time": 2.4
+				},
+				{
+					"damage": 6.0,
+					"health": 94.0,
+					"kind": "scar",
+					"time": 3.9
+				},
+				{
+					"damage": 6.0,
+					"health": 88.0,
+					"kind": "scar",
+					"time": 4.4
+				},
+				{
+					"damage": 6.0,
+					"health": 82.0,
+					"kind": "scar",
+					"time": 4.9
+				}
+			],
+			"frames": 153,
+			"id": "trail",
+			"start_simulation_time": 0.0,
+			"time_scale": 1.0
+		}
+	],
+	"source": "Standalone Godot Forward+ art study, actual elf and red panda assets"
+}

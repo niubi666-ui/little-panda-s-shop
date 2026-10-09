@@ -315,7 +315,38 @@
         "fast_speed_mps",
         "volley_speed_mps",
         "arrow_height_m",
-        "arrow_spawn_forward_m"
+        "arrow_spawn_forward_m",
+        "hit_reaction_immune",
+        "roll_min_separation_gain_m",
+        "roll_path_retry_sec",
+        "charged_windup_sec",
+        "charged_recovery_sec",
+        "charged_cooldown_sec",
+        "charged_damage",
+        "charged_weight",
+        "charged_speed_mps",
+        "charged_lock_sec",
+        "rain_sequence_count",
+        "rain_max_areas",
+        "rain_gap_sec",
+        "rain_escape_margin_sec",
+        "rain_escape_clearance_m",
+        "rain_escape_directions",
+        "burst_fast_count",
+        "burst_gap_sec",
+        "burst_recovery_sec",
+        "burst_cooldown_sec",
+        "burst_weight",
+        "phase_two_health_ratio",
+        "combo_recovery_sec",
+        "combo_cooldown_sec",
+        "combo_weight",
+        "charged_range_m",
+        "charged_rift_half_width_m",
+        "charged_rift_duration_sec",
+        "charged_rift_interval_sec",
+        "charged_rift_damage",
+        "charged_rift_max_areas"
       ],
       "properties": {
         "safe_min_m": {
@@ -542,6 +573,159 @@
           "type": "number",
           "minimum": 0.001,
           "maximum": 10
+        },
+        "hit_reaction_immune": {
+          "type": "boolean"
+        },
+        "roll_min_separation_gain_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "roll_path_retry_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "charged_windup_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "charged_recovery_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "charged_cooldown_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "charged_damage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "charged_weight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "charged_speed_mps": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 300
+        },
+        "charged_lock_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_sequence_count": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 5
+        },
+        "rain_max_areas": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 5
+        },
+        "rain_gap_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_escape_margin_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_escape_clearance_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "rain_escape_directions": {
+          "type": "integer",
+          "minimum": 8,
+          "maximum": 32
+        },
+        "burst_fast_count": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 2
+        },
+        "burst_gap_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "burst_recovery_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "burst_cooldown_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "burst_weight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "phase_two_health_ratio": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 1
+        },
+        "combo_recovery_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "combo_cooldown_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "combo_weight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "charged_range_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "charged_rift_half_width_m": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "charged_rift_duration_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "charged_rift_interval_sec": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 100
+        },
+        "charged_rift_damage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "charged_rift_max_areas": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
         }
       }
     }

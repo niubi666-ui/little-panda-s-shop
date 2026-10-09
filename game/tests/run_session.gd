@@ -36,7 +36,7 @@ func run() -> void:
 		return
 	var starter := BuildSession.new()
 	starter.configure(catalog, 71, func(_candidate): return OK)
-	check(starter.apply_test_preset("left_blast_right_freeze").ok, "starter Build uses real evaluated preset")
+	check(starter.apply_test_preset("left_blast_skill_freeze").ok, "starter Build uses real evaluated preset")
 	initial_build = starter.snapshot()
 	initial_program = starter.program()
 	check_configuration()

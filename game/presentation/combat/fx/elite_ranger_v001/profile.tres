@@ -1,0 +1,48 @@
+[gd_resource type="Resource" load_steps=12 format=3]
+[ext_resource type="Script" path="res://presentation/combat/fx/elite_ranger_v001/ranger_vfx_profile.gd" id="script"]
+[ext_resource type="PackedScene" path="res://assets/vfx/elite_ranger_v001/ranger_arrow.glb" id="arrow"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/elite_ranger_v001/trail.tres" id="trail"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/elite_ranger_v001/halo.tres" id="halo"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/elite_ranger_v001/filament.tres" id="filament"]
+[ext_resource type="ShaderMaterial" path="res://presentation/combat/fx/elite_ranger_v001/tip.tres" id="tip"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elite_ranger_v001/spark.tres" id="spark"]
+[ext_resource type="Resource" path="res://presentation/combat/fx/elite_ranger_v001/launch_burst.tres" id="launch"]
+[ext_resource type="Resource" path="res://presentation/combat/fx/elite_ranger_v001/arrow_impact.tres" id="impact"]
+[ext_resource type="Resource" path="res://presentation/combat/fx/elite_ranger_v001/rain_impact.tres" id="rain"]
+[sub_resource type="Curve" id="fall"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 0.0625), 0.5, 0.5, 0, 0, Vector2(0.5, 0.25), 1.0, 1.0, 0, 0, Vector2(0.75, 0.5625), 1.5, 1.5, 0, 0, Vector2(1, 1), 2.0, 2.0, 0, 0]
+point_count = 5
+[resource]
+script = ExtResource("script")
+arrow_scene = ExtResource("arrow")
+arrow_head_width_ratio = 5.0
+trail_material = ExtResource("trail")
+halo_material = ExtResource("halo")
+filament_material = ExtResource("filament")
+tip_material = ExtResource("tip")
+trail_spark_material = ExtResource("spark")
+trail_spark_count = 24
+trail_spark_size = Vector2(0.045, 0.11)
+trail_lifetime_sec = 0.25
+trail_width_m = 0.3
+halo_width_ratio = 3.1
+filament_width_m = 0.024
+filament_amplitude_m = 0.2
+filament_frequency = 9.0
+filament_flow = 8.0
+tip_size_m = 1.1
+arrow_light_color = Color(1, 0.51, 0.14, 1)
+arrow_light_energy = 0.7
+arrow_light_radius_m = 1.7
+rain_height_ratio = Vector2(0.9, 1.12)
+rain_fall_window_ratio = Vector2(0.76, 1.15)
+rain_trail_width_ratio = 0.62
+rain_tip_size_ratio = 0.72
+rain_radius_ratio = 0.85
+rain_embed_m = 0.22
+rain_finish_sec = 0.24
+rain_fall_curve = SubResource("fall")
+visual_seed = 61483
+launch_burst = ExtResource("launch")
+arrow_impact = ExtResource("impact")
+rain_impact = ExtResource("rain")

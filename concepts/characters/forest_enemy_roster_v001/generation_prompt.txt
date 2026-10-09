@@ -1,0 +1,17 @@
+Built-in image_gen; concept exploration only, not approved production models.
+
+Use case: stylized-concept.
+Create one beautiful high resolution landscape enemy character concept comparison sheet for a premium cozy-but-dangerous woodland fantasy 3D action RPG starring a red panda shopkeeper. FOUR distinct full-body anthropomorphic animal enemy designs in four clearly separated equal-width columns, enough room for complete weapons, antlers and feet, no cropping, no overlap. Each column has a large full-body three-quarter standing combat-ready model concept and a small readable action thumbnail below it. Animal faces should be handsome/appealing, believable proportions, expressive intelligent eyes, dangerous bandit attitude, not grotesque, not goblins, not jackals, not chibi or plush toys. Match cinematic detailed stylized PBR art: individually suggested fur, realistic weathered leather, linen wrappings, matte iron, moss, gold warm rim light and soft neutral fill. Same world as ancient oak sanctuary with pale limestone, forest ivy, dark green banners and bronze leaf emblems. Plain muted warm gray parchment studio backgrounds, faint botanical dividers only, character silhouettes extremely clear for later 3D modelling.
+
+A: broad squat muscular anthropomorphic BADGER heavy melee guardian, recognizable black-white facial stripes, weathered dark leather and heavy moss-kissed iron shoulder plates, forest green waist cloth, grips a large practical two-handed stone-headed iron-banded maul. Strong barrel-shaped silhouette, sturdy boots, short neck. Action thumbnail shows a readable two-handed horizontal heavy sweep with both hands on handle.
+B: lithe anthropomorphic RED FOX crossbow skirmisher, long red ears, white muzzle and chest, copper fur, green short shoulder cape, fitted brown leather vest, belt bolt quiver, ONE compact functional wood-and-steel crossbow held with both hands, bushy single fox tail clearly visible. Action thumbnail shows aiming and firing the crossbow in a sideways retreat, no bow or gun.
+C: athletic stocky anthropomorphic WILD BOAR spear charger, dark bristly fur, modest curved tusks, leather torso armor, iron forehead guard, muted red sash, a single long iron-tipped wooden spear, digitigrade-looking but booted humanoid stance appropriate for biped rigging. Action thumbnail shows low forward charge with spear braced horizontally, clear thrust direction.
+D: tall lean anthropomorphic STAG forest banner captain, graceful branching antlers that are not giant, dark olive and warm brown travel armor, bronze leaf clasp, ONE long banner pole topped with a bronze leaf finial and a deep forest-green cloth flag with a muted gold leaf insignia; support enemy not king, no crown, no robes covering the feet. Action thumbnail shows planting and raising flag, subtle amber ring under boots indicating allies buff.
+
+Use small elegant but readable Chinese captions under the large figures exactly:
+"A 苔岩獾卫" / "重型 · 蓄力横扫"
+"B 赤狐弩手" / "远程 · 后撤射击"
+"C 野猪矛兵" / "冲锋 · 直线突刺"
+"D 鹿角旗手" / "支援 · 战旗鼓舞"
+Main title small at top: "森林敌人 · 概念方向"
+Keep the large model views dominant, action thumbnails secondary. No HUD, no item cards, no ornate UI frames, no photoreal humans, no gore, no modern equipment. This is a coherent four-character design sheet with exceptional sculpt-like volume, tasteful warm natural colors, fine material detail and game-readable silhouettes.

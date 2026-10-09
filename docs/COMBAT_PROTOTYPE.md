@@ -7,6 +7,7 @@
 店铺按 **F6** 或点击训练按钮进入 `app/combat_training.tscn`；弹窗打开时入口不可用。当前房间及美术接入见 [FOREST_COURTYARD_INTEGRATION.md](FOREST_COURTYARD_INTEGRATION.md)。
 
 - WASD 移动、鼠标瞄准；左键 `primary` 三连击，第一段左→右、第二段右→左、第三段向前刺击。右键 `special` 点击重斩，选择右键剑气形态后改为一次远程施放；Shift 闪避。按键不是构筑身份。
+- 清场后仍可移动、普通攻击和右键施放，正在起手/飞行的玩家技能不因胜利取消；遵守原冷却、死亡、受控、暂停和UI门禁。训练 `finish_rewards()` 只结束自动奖励，`finish()` 用于死亡/退出；调试选卡与预设不属于自动奖励。当前路线房间同样保持执行直到退出，正式持久关卡尚未实现。
 - 普攻三个阶段均可移动；重斩与剑气使用各自能力配置的移动倍率。起手锁定本次方向，近战区域随角色平移；剑气从逻辑cue发射，完全跳过近战区域及房间物件的近战命中路径。
 - 忙碌期间只缓存一个带动作ID的有效攻击意图，后到有效意图替换；同帧固定按闪避→special→primary仲裁。缓冲时长与空闲后的连段重置时长是两个独立配置。special实际起手才重置primary连段。
 - 左右键冷却独立，在开始承诺时扣除，取消不返还，切换形态不刷新。能力配置允许的阶段才能被闪避取消；当前重斩/剑气允许起手、恢复取消，生效阶段不允许。cue前取消不会发射剑气。
@@ -141,6 +142,7 @@ schema_version=3继续要求每项能力必填`hit_shape`与`thrust_width_m`：s
 - 训练“技能特效演示”现在提供冰晶突进、岩脊冲击、普通剑气、寒冰剑气、雷霆裁决、霜冠天坠六选项；剑气纯视觉样片按固定路径飞行并播放终点爆发，不造成伤害。独立入口为 `启动剑气特效演示.cmd` / `game/presentation/combat/sword_wave_showcase/showcase.tscn`，支持重播、慢放、暂停与中英切换。
 - 实战已有的 `sword_wave` 投射物已映射新普通剑气；只有本次施放的已提交快照包含 `contact_freeze` 时选寒冰剑气。美术不会添加冻结；带 `frost_blast` 但不带直接冻结的构筑保持普通飞行外观，沿用既有寒霜范围反馈。规则选择语义见[Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。
 - `normal_wave.tscn/frost_wave.tscn` 仅负责局部飞行外观，由 `configure_effect(fact)` 进入外部时钟模式，`sync_effect(fact,delta)` 接受推进；父适配器独占位置、朝向、半径缩放和销毁。`set_time_running(false)` 冻结全部视觉层，局部随机及材质按实例隔离。普通/寒冰弧刃各940三角面，Blender源文件在 `source_assets/vfx/sword_waves_v001/models/sword_wave_models_v001.blend`。
+- 普通/寒冰剑气主体及残影刃面保持平行地面，随发射方向只做平面转向；对应profile取消刃面倾斜，源资源生成器同步。粒子仍可上下散落，不改变攻击半径/速度/伤害。2026-10-06 `post_clear_skills.gd` 检查真实节点360方向、跨清场起手、重复空放、暂停、奖励隔离和退出清理；headless及Forward+通过，图形退出仍有已知7个Texture RID警告。路线集成343项、训练工具回归通过。
 - 演示的宽弧用于外观评审；真实投射物通过Resource中的 `projectile_unit_scale` 将主体归一到局部宽1，再接受适配器的真实 `2×radius` 宽度。稀薄尾流/柔光不是攻击几何，未修改任何伤害、半径、速度或状态JSON。
 - `normal_impact.tscn/frost_impact.tscn` 的完整命中爆发目前用于独立与训练演示；实战仍使用既有命中反馈，未改全局事件TTL。`normal_demo.tscn/frost_demo.tscn` 分别组合发射、飞行、命中及尾流消散，支持 `seek_visual(seconds)` 确定性采样。表现参数以 `.tres` 为权威，初稿生成器 `source_assets/vfx/sword_waves_v001/build_wave_resources.py` 重跑会覆盖手工调参。
 - 剑气接入时的历史验证：真实投射物绑定27项、既有 `action_build_vfx.gd` 表现隔离114项、四按钮headless及Forward+各37项通过；当时375个翻译key及PO一致。普通/直接冻结/仅寒霜爆破选型、旧弹Build快照、null关闭、半径缩放和暂停均覆盖。通过真实Viewport右键→Runner cue→Runtime→表现适配器在默认庭院截图；亮刃宽约0.746/0.748m，前尖距中心约0.358/0.360m，原规则半径0.38m未变。中英UI与既有面板/底部说明无交叠。无新增Shader或脚本错误，默认庭院退出仍有已知7个Texture RID警告；完整战斗性能未验收。
@@ -172,3 +174,15 @@ schema_version=3继续要求每项能力必填`hit_shape`与`thrust_width_m`：s
 - 已检查中英文工具面板截图`builds/training_tools_{zh_CN,en}.png`及边界；显示菜单通过PopupMenu信号验证。图形退出仍有既有7个Texture RID警告，本轮无SCRIPT ERROR。人工鼠标试玩、主观手感与性能验收尚未完成。未生成Release，未新增Git提交。
 
 按 [验证索引](VALIDATION.md) 运行战斗、反馈、连段/镜头与对应刀光测试。历史包含规则、真实移动攻击、剑尖轨迹、暂停/取消、双语/重试及美术切换隔离；旧截图/数量/逐轮日志在归档，不作为本次全量通过声明。性能未解决项见 [KNOWN_ISSUES](KNOWN_ISSUES.md)。
+
+## 玩家受击半径
+
+`game/data/combat/prototype.json` 的必填 `player_hurt_radius_m` 当前为0.30米，由严格schema校验、`CombatCatalog.player_hurt_radius()`只读暴露。训练场与短路线房间均显式注入EnemyRuntime，供敌方箭矢、箭雨边界和冲锋命中使用；移动胶囊仍是0.23米，过门、绕障、出生与翻滚物理检查不扩大。箭雨退路的危险区膨胀使用受击半径，通路的物理扫掠仍使用移动胶囊。普通近战扇形沿用现有判定，本次未改。
+
+2026-10-07验证：内容/schema/388双语key通过；`tests/player_hurt_radius.gd`9项通过，覆盖旧半径擦身未命中、新半径两侧擦身命中、范围外仍未命中、无敌与墙阻挡、两类场景入口脚本编译。未重跑完整图形场景；配置修改后重启训练。
+
+## 剑气瞬发
+
+`abilities[id=wave_cast]`的`windup_sec=0`、`cooldown_sec=1.0`（2026-10-07）；形态许可与输入仲裁仍生效，接受施放时立刻触发发射，无需等待蓄力。保留0.1秒释放/0.3秒收招表现，它们不延迟剑气生成；普通三连击和重斩时序不变。schema允许零前摇，AbilityRunner在提交快照后同步发cue；同一施放不重复发射。冷却从接受施放计，按游戏逻辑时钟推进，暂停不推进。
+
+本次内容检查、action_build_runtime、dual_actions、combat_rules、post_clear_skills 均通过；覆盖同帧发射、1秒冷却、无重复cue、同步取消、清场后空放与普通攻击回归。使用无头场景验证，未做新图形手感验收。

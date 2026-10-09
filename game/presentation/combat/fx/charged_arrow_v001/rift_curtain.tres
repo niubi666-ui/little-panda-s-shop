@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/charged_arrow_v001/rift_curtain.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/base_tint = Color(1,0.83,0.46,1)
+shader_parameter/top_tint = Color(1,0.66,0.23,1)
+shader_parameter/energy = 3.4
+shader_parameter/opacity = 0.850
+shader_parameter/life = 0.0
+shader_parameter/travel = 0.0
+shader_parameter/rise = 0.0
+shader_parameter/time_value = 0.0
+shader_parameter/tick_sec = 0.5
+shader_parameter/plume_scale = 18.0
+shader_parameter/flow_speed = 0.9
+shader_parameter/vertical_power = 1.1

@@ -1,0 +1,28 @@
+{
+  "locale": "zh_CN",
+  "messages": {
+    "map_preview.title": "冒险地图",
+    "map_preview.subtitle": "穿过林间岔路，探索下一段旅程",
+    "map_preview.seed": "地图种子",
+    "map_preview.apply": "按种子生成",
+    "map_preview.new": "生成新地图",
+    "map_preview.close": "关闭  M / Esc",
+    "map_preview.legend": "房间图例",
+    "map_preview.notice": "地图预览 · 点击节点查看信息",
+    "map_preview.hint": "M 开关地图 · 滚轮浏览 · L 切换语言",
+    "map_preview.start": "旅程起点",
+    "map_preview.end": "路线终点",
+    "map_preview.details": "选择一个房间",
+    "map_preview.selected": "第 {layer} 层 · {kind}\n节点 {id}\n前路 {next} 条",
+    "map_preview.stats": "{nodes} 个房间 · {layers} 层",
+    "map_preview.failed": "未能生成符合规则的地图，已保留上一张。",
+    "map_preview.invalid_seed": "请输入 1–64 个字符的种子。",
+    "map_preview.unavailable": "地图配置加载失败，请查看日志。",
+    "map_preview.kind.battle": "小怪房间",
+    "map_preview.kind.elite": "精英怪房间",
+    "map_preview.kind.event": "随机事件房间",
+    "map_preview.kind.rest": "休息房间",
+    "map_preview.kind.treasure": "宝箱房间",
+    "map_preview.kind.shop": "商店房间"
+  }
+}

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://app/main.gd" id="1_main"]
+
+[ext_resource type="PackedScene" path="res://app/map_preview.tscn" id="map_preview"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
@@ -10,3 +12,5 @@ script = ExtResource("1_main")
 [node name="UIRoot" type="CanvasLayer" parent="."]
 
 [node name="AudioRoot" type="Node" parent="."]
+
+[node name="MapPreview" parent="." instance=ExtResource("map_preview")]

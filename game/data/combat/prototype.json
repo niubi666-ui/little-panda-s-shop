@@ -75,11 +75,11 @@
     },
     {
       "id": "enemy.swipe",
-      "windup_sec": 0.75,
-      "active_sec": 0.15,
-      "recovery_sec": 0.65,
-      "cooldown_sec": 1.65,
-      "radius_m": 1.65,
+      "windup_sec": 0.5,
+      "active_sec": 0.1,
+      "recovery_sec": 0.43333333333333335,
+      "cooldown_sec": 1.1,
+      "radius_m": 2.475,
       "angle_deg": 85,
       "damage": 12,
       "interruptible": true,
@@ -138,10 +138,10 @@
     },
     {
       "id": "wave_cast",
-      "windup_sec": 0.28,
+      "windup_sec": 0.0,
       "active_sec": 0.1,
       "recovery_sec": 0.3,
-      "cooldown_sec": 1.15,
+      "cooldown_sec": 1.0,
       "radius_m": 2.5,
       "angle_deg": 160,
       "damage": 24,
@@ -180,7 +180,7 @@
       "id": "scout",
       "name_key": "combat.scout",
       "health": 46,
-      "move_speed_mps": 2.1,
+      "move_speed_mps": 3.15,
       "stagger_sec": 0.28,
       "attack_ids": [
         "enemy.swipe"
@@ -266,5 +266,6 @@
       "scout"
     ]
   ],
-  "wave_delay_sec": 2
+  "wave_delay_sec": 2,
+  "player_hurt_radius_m": 0.3
 }

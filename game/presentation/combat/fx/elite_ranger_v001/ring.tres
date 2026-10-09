@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://presentation/combat/fx/elite_ranger_v001/ripple.gdshader" id="shader"]
+[resource]
+shader = ExtResource("shader")
+shader_parameter/tint = Color(1, 0.56, 0.12, 0.8)
+shader_parameter/energy = 2
+shader_parameter/progress = 0
+shader_parameter/brokenness = 0.62
+shader_parameter/area_center = Vector2(0, 0)
+shader_parameter/area_radius = 0.0

@@ -42,10 +42,11 @@ func configure(owner_actor, settings, font: Font) -> void:
 	add_child(blade_pivot)
 	assert(style.weapon_visual_scene != null)
 	blade = Node3D.new()
-	var sword_visual: Node3D = style.weapon_visual_scene.instantiate()
-	# Source model has a unit-length blade along -Z; keep VFX midpoint unscaled.
-	sword_visual.scale = Vector3.ONE * style.blade_size.z
-	blade.add_child(sword_visual)
+	if not actor_style.embedded_weapon:
+		var sword_visual: Node3D = style.weapon_visual_scene.instantiate()
+		# Source model has a unit-length blade along -Z; keep VFX midpoint unscaled.
+		sword_visual.scale = Vector3.ONE * style.blade_size.z
+		blade.add_child(sword_visual)
 	blade.position = style.blade_offset
 	blade_pivot.add_child(blade)
 	if actor.team == 0: set_weapon_effect(style.weapon_effect_scene)
@@ -89,7 +90,7 @@ func refresh(delta: float = 0.0) -> void:
 	if not actor.health.alive():
 		_finish_weapon_pose()
 		_pose_visual(atan2(-actor.facing.x, -actor.facing.z), Vector3.ZERO)
-	visible = actor.health.alive() or (hit_feedback != null and hit_feedback.has_tail())
+	visible = actor.health.alive() or actor_style.retain_corpse or (hit_feedback != null and hit_feedback.has_tail())
 	if custom_animation and visual.has_presentation_tail(): visible = true
 	if not visible: return
 	if not actor.health.alive():
@@ -136,7 +137,7 @@ func refresh(delta: float = 0.0) -> void:
 		weapon_effect.set_active(phase == "active" and trail_enabled)
 		if weapon_effect.has_method("sample_current_pose"):
 			weapon_effect.sample_current_pose()
-	blade_pivot.visible = actor.team == 0 or actor.runner.busy()
+	blade_pivot.visible = not actor_style.embedded_weapon and (actor.team == 0 or actor.runner.busy())
 func _motion_key() -> String:
 	if not actor.runner.busy(): return actor.attacks[0].id
 	var key: String = actor.runner.presentation_key

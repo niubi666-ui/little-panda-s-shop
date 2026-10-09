@@ -1,4 +1,8 @@
 [gd_scene format=3]
 [ext_resource type="Script" path="res://app/run_preview.gd" id="script"]
+[ext_resource type="PackedScene" path="res://app/map_preview.tscn" id="map_preview"]
+
 [node name="RunPreview" type="Node"]
 script = ExtResource("script")
+
+[node name="MapPreview" parent="." instance=ExtResource("map_preview")]

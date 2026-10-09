@@ -6,3 +6,5 @@ extends Resource
 @export var idle_animation: StringName
 @export var move_animation: StringName
 @export var visual_yaw_offset_deg: float
+@export var retain_corpse: bool = false
+@export var embedded_weapon: bool = false

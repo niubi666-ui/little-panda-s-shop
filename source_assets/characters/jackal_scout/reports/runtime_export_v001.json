@@ -1,0 +1,96 @@
+{
+  "source": "E:\\ShopGame\\source_assets\\characters\\jackal_scout\\blender\\jackal_scout_animation_review_v003.blend",
+  "source_sha256": "b2ec03c4411c8004a65e20c4ac95522aad303aa49145f1bd09d47c82c32a2f81",
+  "clips": {
+    "scout_idle": {
+      "frame_start": 1,
+      "frame_end": 74,
+      "duration_sec": 2.433333333333333
+    },
+    "scout_walk": {
+      "frame_start": 1,
+      "frame_end": 34,
+      "duration_sec": 1.1
+    },
+    "scout_run": {
+      "frame_start": 1,
+      "frame_end": 22,
+      "duration_sec": 0.7
+    },
+    "scout_attack_slash": {
+      "frame_start": 1,
+      "frame_end": 42,
+      "duration_sec": 1.3666666666666667
+    },
+    "scout_attack_diagonal": {
+      "frame_start": 1,
+      "frame_end": 46,
+      "duration_sec": 1.5
+    },
+    "scout_hit_react": {
+      "frame_start": 1,
+      "frame_end": 22,
+      "duration_sec": 0.7
+    },
+    "scout_death": {
+      "frame_start": 1,
+      "frame_end": 70,
+      "duration_sec": 2.3
+    }
+  },
+  "meshes": {
+    "Jackal_Scout_Body": {
+      "triangles": 7827,
+      "materials": [
+        "tripo_mat_f0366a59"
+      ]
+    },
+    "Jackal_Scout_Saber": {
+      "triangles": 1496,
+      "materials": [
+        "tripo_mat_7c3f6507"
+      ]
+    }
+  },
+  "bones": 65,
+  "idle_body_bounds_blender": {
+    "min": [
+      -0.2559735178947449,
+      -0.3802296817302704,
+      -0.0012623305665329099
+    ],
+    "max": [
+      0.1313081532716751,
+      0.31224584579467773,
+      0.8973132371902466
+    ]
+  },
+  "idle_bones_world": {
+    "Head": [
+      -0.03699308633804321,
+      -0.03721259534358978,
+      0.7287464737892151
+    ],
+    "LeftShoulder": [
+      0.011320390738546848,
+      -0.05556810647249222,
+      0.6824169158935547
+    ],
+    "RightShoulder": [
+      -0.05144475772976875,
+      0.015897778794169426,
+      0.6804399490356445
+    ],
+    "LeftToeBase": [
+      0.05665832757949829,
+      -0.3334639370441437,
+      0.013779031112790108
+    ],
+    "LeftFoot": [
+      0.05969792231917381,
+      -0.2503806948661804,
+      0.07267183810472488
+    ]
+  },
+  "glb": "E:\\ShopGame\\game\\assets\\characters\\jackal_scout\\melee_scout_v001\\jackal_scout.glb"
+}

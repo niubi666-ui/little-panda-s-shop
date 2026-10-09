@@ -17,7 +17,8 @@
 | 家具摆放 | [SHOP_DECORATING](SHOP_DECORATING.md) | 接经济/保存读 [状态存档](contracts/SESSION_AND_SAVE.md) |
 | HUD/背包/委托/设置/字体 | [FOLIAGE_UI](FOLIAGE_UI.md) | 只选 [背包](INVENTORY_UI.md)、[委托](COMMISSION_BOARD_UI.md)、[设置](SETTINGS_UI.md)、[字体](UI_FONTS.md) 中相关页 |
 | 正式订单、库存、经济与存档 | [状态存档](contracts/SESSION_AND_SAVE.md) | 实现前先核对临时原型边界 |
-| 分支路线、大小奖励、房间池与Boss节奏 | [路线与房间](contracts/ROOM_GENERATION.md) | [当前短路线](RUN_PREVIEW.md)已实现；约8次大选择与完整奖励尚未实现 |
+| 分支路线、大小奖励、房间池与Boss节奏 | [路线与房间](contracts/ROOM_GENERATION.md) | [当前短路线](RUN_PREVIEW.md)已实现；重要构筑选择次数未定，完整奖励尚未实现 |
+| M键随机地图预览、生成规则和图标 | [MAP_PREVIEW](MAP_PREVIEW.md) | [路线与房间](contracts/ROOM_GENERATION.md)；点击不切房 |
 | schema、翻译、内容发布 | [内容本地化](contracts/CONTENT_AND_LOCALIZATION.md) | 对应模块的现有schema/Loader |
 | 验证 | [VALIDATION](VALIDATION.md) | 只运行受影响的脚本 |
 

@@ -62,6 +62,7 @@ func run() -> void:
 	check(arena.builds.is_choosing(), "real entry opens ordinary reward")
 	var initial: Dictionary = arena.builds.session.snapshot()
 	key(KEY_T)
+	key(KEY_Q)
 	await click_at(root.get_visible_rect().get_center(), MOUSE_BUTTON_RIGHT)
 	check(arena.builds.runtime.diagnostics().queued == 0 and arena.player.runner.cast_id == 0, "choice modal blocks arrows and special")
 	for locale in ["zh_CN", "en"]:
@@ -107,9 +108,10 @@ func run() -> void:
 		arena.player.runner.tick(10.0)
 		arena.player.facing = Vector3.FORWARD
 		root.gui_release_focus()
-		await click_at(Vector2(700, 400), MOUSE_BUTTON_RIGHT)
+		if index == 0: await click_at(Vector2(700, 400), MOUSE_BUTTON_RIGHT)
+		else: key(KEY_Q)
 		arena.player.step(0.001)
-		check(arena.player.runner.action_id == "special" and arena.player.runner.busy(), "viewport right click starts special")
+		check(arena.player.runner.action_id == ("special" if index == 0 else "skill") and arena.player.runner.busy(), "viewport right/Q input selects independent action")
 		var ability = arena.player.runner.ability
 		arena.player.runner.tick(ability.windup)
 		var prop_hp: Array = arena.room_props.props.map(func(prop): return prop.health.current if prop.health != null else -1.0)
@@ -121,8 +123,8 @@ func run() -> void:
 		arena.builds.step(0.001)
 		arena.builds.step(0.5)
 		check(first.health.current < first.health.maximum, "actual special damages first target")
-		check((later.health.current < later.health.maximum) == (index > 0), "special wave penetrates later target")
-		check(first.control_locked == (index > 0), "right core or frost area freezes first target")
+		check((later.health.current < later.health.maximum) == (index > 0), "Q wave penetrates later target")
+		check(first.control_locked == (index > 0), "Q core or frost area freezes first target")
 		check(later.control_locked == (index == 1), "later freeze belongs only to direct freeze preset")
 		check(side.control_locked == (index == 2), "side freeze belongs only to explicit frost payload")
 		arena.builds.refresh(0.0)
@@ -162,6 +164,7 @@ func run() -> void:
 	await frames()
 	check(arena.scene_file_path == "res://app/action_build_slice.tscn" and arena.enable_mechanism_presets, "retry preserves dedicated action entry")
 	check(arena.builds.session.snapshot().selections.is_empty(), "retry resets bound selections")
+	check(arena.builds.session.program().actions.skill.form_id == "sword_wave" and arena.builds.session.program().actions.special.form_id == "sword_heavy", "retry retains all base attacks without unlock")
 	check(old_runtime.diagnostics().roots == 0 and old_runtime.statuses.diagnostics().tracked_actors == 0, "retry clears old roots and statuses")
 	finish()
 func check_popup_focus(menu: MenuButton) -> void:
@@ -173,6 +176,8 @@ func check_popup_focus(menu: MenuButton) -> void:
 		arena.input_adapter.update()
 		Input.action_release("move_forward")
 		check(arena.player.movement == Vector3.ZERO, "open popup blocks polled movement without Control focus")
+		key(KEY_Q)
+		check(arena.player.buffered_action_id.is_empty(), "popup blocks Q input")
 		button.get_popup().hide()
 	await frames()
 func check_replacement_ui(menu: MenuButton) -> void:

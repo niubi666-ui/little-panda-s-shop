@@ -8,7 +8,8 @@
     "player_id",
     "dodge",
     "waves",
-    "wave_delay_sec"
+    "wave_delay_sec",
+    "player_hurt_radius_m"
   ],
   "properties": {
     "schema_version": {
@@ -47,7 +48,7 @@
           },
           "windup_sec": {
             "type": "number",
-            "minimum": 0.01,
+            "minimum": 0,
             "maximum": 10000
           },
           "active_sec": {
@@ -263,6 +264,11 @@
       "type": "number",
       "minimum": 0.01,
       "maximum": 30
+    },
+    "player_hurt_radius_m": {
+      "type": "number",
+      "minimum": 0.01,
+      "maximum": 2.0
     }
   }
 }

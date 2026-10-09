@@ -50,7 +50,13 @@ func start(definition: Catalog.Ability, facing: Vector3, context: Dictionary = {
 	_freeze(_cast_context)
 	_cooldowns[next_action] = ability.cooldown
 	_running = true
+	var expected_cast := cast_id
 	committed.emit(cast_id, ability.id)
+	# Zero-windup actions release in the accepting call, after the committed snapshot.
+	# A committed listener may cancel or replace this cast before its cue.
+	if _running and cast_id == expected_cast and actions_allowed and ability.windup == 0.0:
+		active_this_step = true
+		cue_reached.emit(cast_id, ability.id)
 	return true
 
 

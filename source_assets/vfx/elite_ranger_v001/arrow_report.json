@@ -1,0 +1,9 @@
+{
+  "blender": "5.2.1 LTS",
+  "triangles": 292,
+  "forward": "Godot -Z",
+  "unit_length": 1,
+  "unit_shaft_width": 0.2,
+  "unit_head_width": 1,
+  "runtime": "game/assets/vfx/elite_ranger_v001/ranger_arrow.glb"
+}

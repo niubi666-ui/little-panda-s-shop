@@ -1,5 +1,6 @@
-[gd_resource type="Resource" load_steps=9 format=3]
+[gd_resource type="Resource" load_steps=10 format=3]
 [ext_resource type="Script" path="res://presentation/builds/mechanism_style.gd" id="script"]
+[ext_resource type="FontFile" path="res://assets/fonts/NotoSerifSC-VF.ttf" id="conditional_font"]
 [sub_resource type="TorusMesh" id="area"]
 inner_radius = 0.965
 outer_radius = 1.0
@@ -52,3 +53,10 @@ slow_offset = Vector3(0,0.08,0)
 freeze_mesh = SubResource("freeze")
 freeze_material = SubResource("freeze_mat")
 freeze_offset = Vector3(0,1.0,0)
+
+conditional_font = ExtResource("conditional_font")
+conditional_font_size = 48
+conditional_pixel_size = 0.012
+conditional_color = Color(0.65, 0.95, 1.0, 1.0)
+conditional_offset = Vector3(0, 3.0, 0)
+conditional_lifetime = 0.8

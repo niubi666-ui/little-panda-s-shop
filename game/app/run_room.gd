@@ -66,6 +66,7 @@ func setup(ticket: Dictionary, hp: float, program: Dictionary, combat, enemy_cat
 	player.runner.cue_reached.connect(build_runtime.on_cue)
 	player.runner.finished.connect(build_runtime.on_finished)
 	_melee.set_damage_modifier(build_runtime.melee_damage)
+	_melee.set_direct_damage_executor(build_runtime.apply_melee_damage)
 	_melee.enemy_contact.connect(build_runtime.on_melee_contact)
 	_melee.confirmed_hit.connect(build_runtime.on_melee_hit)
 	_melee.confirmed_hit.connect(func(source, target, _cast, _ability, amount):
@@ -82,6 +83,7 @@ func setup(ticket: Dictionary, hp: float, program: Dictionary, combat, enemy_cat
 	add_child(mechanisms)
 	mechanisms.configure(preload("res://presentation/builds/mechanism_style.tres"))
 	build_runtime.area_presented.connect(mechanisms.show_area_fact)
+	build_runtime.conditional_damage_applied.connect(mechanisms.show_conditional_fact)
 	enemies.configure(player, _combat.player_hurt_radius(), _origin, _sweep)
 	enemy_view = EnemyView.new()
 	add_child(enemy_view)

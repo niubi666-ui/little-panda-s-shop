@@ -103,10 +103,12 @@ def _validate_semantics(data: dict) -> None:
         if response not in responses:
             raise ValueError("unknown status response")
     for entry in data["upgrades"]:
-        if entry["effect_type"] in ("status", "status_duration", "area_status"):
+        if entry["effect_type"] in ("status", "status_duration", "area_status", "conditional_damage"):
             for rank in entry["ranks"]:
                 if rank["status_id"] not in statuses:
                     raise ValueError("unknown status reference")
+                if entry["effect_type"] == "conditional_damage" and statuses[rank["status_id"]]["kind"] != "freeze":
+                    raise ValueError("conditional damage requires a freeze state")
     upgrades = data["upgrades"]
     by_id = {entry["id"]: entry for entry in upgrades}
     if len(by_id) != len(upgrades):
@@ -136,7 +138,7 @@ def _validate_semantics(data: dict) -> None:
     for entry in upgrades:
         location = f"build.upgrades.{entry['id']}"
         for rank in entry["ranks"]:
-            for selector in ("allowed_origins", "status_id", "source_effect_id"):
+            for selector in ("allowed_origins", "status_id", "source_effect_id", "provider_scope", "source_relation", "root_relation"):
                 if selector in rank and rank[selector] != entry["ranks"][0][selector]:
                     raise ValueError("effect selectors must remain stable across ranks")
         if len(entry["ranks"]) != entry["max_rank"]:
@@ -248,6 +250,7 @@ def _validate_preset_capabilities(data: dict, preset: dict, by_id: dict) -> None
     # preflights every preset through the same combat evaluator as real choices.
     forms = {f["id"]: f for f in data["forms"]}
     projectiles = {p["id"]: p for p in data["projectiles"]}
+    capabilities = {}
     for action in data["actions"]:
         items = [s for s in preset["selections"] if s["action_id"] == action["id"]]
         selected = [(by_id[s["upgrade_id"]], by_id[s["upgrade_id"]]["ranks"][s["rank"]-1]) for s in items]
@@ -275,9 +278,20 @@ def _validate_preset_capabilities(data: dict, preset: dict, by_id: dict) -> None
                 if not source or not origins.intersection(params["allowed_origins"], source["allowed_origins"]):
                     raise ValueError("preset area status has no compatible same-action source")
                 status_ids.add(params["status_id"])
+        capabilities[action["id"]] = (origins, status_ids, action["test_only"])
         for entry, params in selected:
             if entry["effect_type"] == "status_duration" and params["status_id"] not in status_ids:
                 raise ValueError("preset duration has no same-action status carrier")
+
+
+    for item in preset["selections"]:
+        entry = by_id[item["upgrade_id"]]
+        if entry["effect_type"] != "conditional_damage": continue
+        params = entry["ranks"][item["rank"] - 1]
+        if not capabilities[item["action_id"]][0].intersection(params["allowed_origins"]):
+            raise ValueError("preset conditional damage has no direct carrier")
+        if not any(not debug and ((params["provider_scope"] == "same_action") == (id == item["action_id"])) and params["status_id"] in statuses for id, (_, statuses, debug) in capabilities.items()):
+            raise ValueError("preset conditional damage has no compatible formal freeze provider")
 
 
 def _validate_actions(data: dict, by_id: dict) -> None:
@@ -308,6 +322,10 @@ def _validate_actions(data: dict, by_id: dict) -> None:
             if entry["test_only"] and any(not actions[id]["test_only"] for id in entry["action_ids"]):
                 raise ValueError("debug upgrade targets formal action")
         expected = "form" if entry["effect_type"] == "form" else ("core" if entry["effect_type"] in ("status", "explosion") else ("synergy" if entry["effect_type"] == "area_status" else "support"))
+        if entry["effect_type"] == "conditional_damage":
+            expected = "synergy" if entry["ranks"][0]["provider_scope"] == "other_formal_action" else "support"
+            if any(actions[id]["test_only"] for id in entry["action_ids"]):
+                raise ValueError("conditional damage requires formal actions")
         if entry["layer"] != expected:
             raise ValueError("effect type and layer disagree")
         if entry["effect_type"] in ("projectile", "chain") and not entry["test_only"]:

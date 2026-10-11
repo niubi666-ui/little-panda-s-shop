@@ -4,7 +4,10 @@ const Damage = preload("res://combat/effects/damage_executor.gd")
 signal enemy_contact(source, cast_id: int, ability_id: String, target_handle: int, position: Vector3, damage: float)
 signal confirmed_hit(source, target, cast_id: int, ability_id: String, applied_damage: float)
 var _damage_modifier: Callable
+var _direct_executor: Callable
 var _hit_filter: Callable
+func set_direct_damage_executor(executor: Callable) -> void:
+	_direct_executor = executor
 func set_hit_filter(filter: Callable) -> void:
 	_hit_filter = filter
 func set_damage_modifier(modifier: Callable) -> void:
@@ -24,7 +27,7 @@ func resolve(source, targets: Array) -> void:
 			var point: Vector3 = target.global_position
 			var victim: int = target.handle
 			var cast: int = source.runner.cast_id
-			var applied: float = Damage.apply(target, amount, source.team)
+			var applied: float = _direct_executor.call(source, target, amount) if _direct_executor.is_valid() else Damage.apply(target, amount, source.team)
 			enemy_contact.emit(source, cast, ability.id, victim, point, amount)
 			if applied > 0.0:
 				var direction: Vector3 = offset.normalized() if not offset.is_zero_approx() else source.runner.direction

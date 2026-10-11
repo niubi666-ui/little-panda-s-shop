@@ -31,7 +31,7 @@ static func valid_plan(program: Dictionary, catalog = null) -> bool:
 		if seen.has(effect.upgrade_id) or not effect.params is Dictionary: return false
 		if not _positive_integer(effect.rank): return false
 		seen[effect.upgrade_id] = true
-		if not effect.type in ["projectile", "chain", "split", "pierce", "explosion", "status"]: return false
+		if not effect.type in ["projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage"]: return false
 		if effect.type == "split": split = true
 		if effect.type == "pierce":
 			pierce = true
@@ -140,6 +140,8 @@ static func summarize_plan(catalog, plan: Dictionary) -> Array:
 	return Catalog.freeze_copy(result)
 
 static func eligible(entry: Dictionary, summary: Array) -> bool:
+	# A single-action summary cannot prove cross-action provider eligibility.
+	if entry.effect_type == "conditional_damage": return false
 	if entry.effect_type == "area_status":
 		var params: Dictionary = entry.ranks[0]
 		for attack in summary:
@@ -169,3 +171,20 @@ static func eligible(entry: Dictionary, summary: Array) -> bool:
 
 static func supports_impact(origin: String, params: Dictionary) -> bool:
 	return params.trigger == "enemy_contact" and origin in ["direct_melee", "direct_projectile", "split_projectile"] and params.allowed_origins.has(origin)
+
+# A provider is queried separately; its effects are never copied to the receiver.
+static func eligible_for_action(entry: Dictionary, catalog, program: Dictionary, action_id: String) -> bool:
+	var summary := summarize_plan(catalog, program.actions[action_id])
+	if entry.effect_type != "conditional_damage": return eligible(entry, summary)
+	var params: Dictionary = entry.ranks[0]
+	if catalog.action(action_id).test_only: return false
+	if not summary.any(func(a): return params.allowed_origins.has(a.origin)): return false
+	for provider in catalog.actions():
+		if provider.test_only: continue
+		if params.provider_scope == "same_action" and provider.id != action_id: continue
+		if params.provider_scope == "other_formal_action" and provider.id == action_id: continue
+		for attack in summarize_plan(catalog, program.actions[provider.id]):
+			if attack.status_ids.has(params.status_id): return true
+			for area in attack.area_effects:
+				if area.status_ids.has(params.status_id): return true
+	return false

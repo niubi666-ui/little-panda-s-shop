@@ -8,6 +8,20 @@ func configure(style: Resource) -> void:
 	_style = style
 func show_area(center: Vector3, radius: float) -> void:
 	show_payload_area(center, radius, false)
+func show_conditional_fact(fact: Dictionary) -> void:
+	if not _style.enabled: return
+	var label := Label3D.new()
+	label.name = "ConditionalDamageFeedback"
+	label.font = _style.conditional_font
+	label.font_size = _style.conditional_font_size
+	label.pixel_size = _style.conditional_pixel_size
+	label.modulate = _style.conditional_color
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	label.no_depth_test = true
+	label.text = tr("build.feedback.conditional").format({"bonus_percent": roundi(float(fact.bonus) * 100.0)})
+	add_child(label)
+	label.global_position = fact.position + _style.conditional_offset
+	_areas.append({"node": label, "remaining": _style.conditional_lifetime, "fact": fact})
 func show_payload_area(center: Vector3, radius: float, has_status: bool) -> void:
 	if not _style.enabled: return
 	var node := _mesh(_style.area_mesh, _style.frost_area_material if has_status else _style.area_material)

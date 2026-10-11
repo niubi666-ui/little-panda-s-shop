@@ -17,7 +17,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 6
+      "const": 7
     },
     "offer": {
       "type": "object",
@@ -147,7 +147,9 @@
         "damage_scale_max",
         "move_scale_min",
         "move_scale_max",
-        "damage_composition"
+        "damage_composition",
+        "conditional_bonus_max",
+        "conditional_composition"
       ],
       "properties": {
         "damage_scale_min": {
@@ -172,6 +174,14 @@
         },
         "damage_composition": {
           "const": "additive_then_clamp"
+        },
+        "conditional_bonus_max": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 2
+        },
+        "conditional_composition": {
+          "const": "additive_then_multiply_direct"
         }
       }
     },
@@ -284,7 +294,8 @@
               "status_duration",
               "pierce",
               "area_status",
-              "form"
+              "form",
+              "conditional_damage"
             ]
           },
           "ranks": {
@@ -764,6 +775,63 @@
                       "minLength": 1,
                       "maxLength": 128,
                       "pattern": "^\\S(?:.*\\S)?$"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "conditional_damage"
+              },
+              "ranks": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "status_id",
+                    "provider_scope",
+                    "allowed_origins",
+                    "source_relation",
+                    "root_relation",
+                    "bonus"
+                  ],
+                  "properties": {
+                    "status_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "provider_scope": {
+                      "enum": [
+                        "same_action",
+                        "other_formal_action"
+                      ]
+                    },
+                    "allowed_origins": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 2,
+                      "uniqueItems": true,
+                      "items": {
+                        "enum": [
+                          "direct_melee",
+                          "direct_projectile"
+                        ]
+                      }
+                    },
+                    "source_relation": {
+                      "const": "same_actor_formal"
+                    },
+                    "root_relation": {
+                      "const": "earlier_independent"
+                    },
+                    "bonus": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 2
                     }
                   }
                 }

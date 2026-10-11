@@ -41,10 +41,13 @@ msgid "build.current_form"
 msgstr "Form: {form}"
 
 msgid "build.empty"
-msgstr "No upgrades yet. Both basic actions are ready."
+msgstr "No upgrades yet. LMB, RMB and Q base actions are available."
 
 msgid "build.error"
 msgstr "Choice could not be saved. Your build is unchanged; try again."
+
+msgid "build.feedback.conditional"
+msgstr "Follow-up +{bonus_percent}%"
 
 msgid "build.form.debug_arrow"
 msgstr "Debug arrow"
@@ -91,6 +94,12 @@ msgstr "Upgrade to rank {rank}"
 msgid "build.no_candidates"
 msgstr "No further compatible upgrades are available."
 
+msgid "build.opening_strike.description"
+msgstr "LMB direct hits deal +{bonus_percent}% damage to targets frozen by your earlier independent cast. Requires another regular action to deliver freeze. Does not end or refresh freeze or amplify derived damage."
+
+msgid "build.opening_strike.name"
+msgstr "Opening Strike"
+
 msgid "build.operation.add"
 msgstr "Equip at rank {rank}"
 
@@ -117,6 +126,15 @@ msgstr "Three base actions (no upgrades)"
 
 msgid "build.preset.error"
 msgstr "Preset unavailable. Retry training and try again."
+
+msgid "build.preset.freeze_followup"
+msgstr "Freeze + Shatter Follow-up"
+
+msgid "build.preset.freeze_opening"
+msgstr "Freeze + Opening Strike"
+
+msgid "build.preset.freeze_pierce"
+msgstr "Freeze + Pierce"
 
 msgid "build.preset.frost_blast"
 msgstr "Frost Blast"
@@ -181,6 +199,12 @@ msgstr "Removed effect: {effect}"
 msgid "build.replaces"
 msgstr "Replaces: {name} (rank {rank})"
 
+msgid "build.shatter_followup.description"
+msgstr "Q direct hits deal +{bonus_percent}% damage to targets frozen by your earlier independent cast. Requires Q to deliver freeze. Does not end or refresh freeze; split and blast damage are unaffected."
+
+msgid "build.shatter_followup.name"
+msgstr "Shatter Follow-up"
+
 msgid "build.subtitle"
 msgstr "Choose one bound upgrade. Other actions keep their own build."
 
@@ -227,7 +251,7 @@ msgid "build.test.mechanism_hint"
 msgstr "LMB Combo · RMB Heavy · Q Wave · T Test Arrow · Blue Ring = Frost"
 
 msgid "build.test.power.description"
-msgstr "Both actions gain {bonus_percent}% attack damage. Action bonuses add before the final cap; derived damage does not multiply the bonus again."
+msgstr "Increase LMB, RMB and Q attack damage by {bonus_percent}%. Adds to action damage bonuses before the shared cap; derived damage is not scaled twice."
 
 msgid "build.test.power.name"
 msgstr "Test · Sharpened blade"

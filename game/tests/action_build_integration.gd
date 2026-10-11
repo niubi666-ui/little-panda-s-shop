@@ -76,7 +76,7 @@ func run() -> void:
 	await click(arena.builds.choice_panel.buttons.values()[0])
 	check(not arena.builds.is_choosing() and arena.builds.session.snapshot().selections.size() == 1, "real card pointer commits bound choice")
 	var menu: MenuButton = arena.builds.status_panel._preset_menu
-	check(menu != null and menu.get_popup().item_count == 3, "three authored presets exposed")
+	check(menu != null and menu.get_popup().item_count == arena.builds.catalog.test_presets().size(), "all authored presets exposed")
 	await check_popup_focus(menu)
 	# Place stationary test enemies on an actual clear corridor in the imported room.
 	for actor in arena.actors:
@@ -154,6 +154,7 @@ func run() -> void:
 		arena.builds.step(0.001)
 		arena.builds.step(0.5)
 		check(first.health.current < first.health.maximum and later.health.current == later.health.maximum and not first.control_locked, "T input fires isolated non-piercing plain debug arrow")
+	await check_freeze_presets(menu, first, later, side)
 	await check_replacement_ui(menu)
 	var old_runtime = arena.builds.runtime
 	var previous = arena
@@ -216,3 +217,38 @@ func finish() -> void:
 	await frames()
 	print("ACTION_BUILD_INTEGRATION ", JSON.stringify({"failures": failures}))
 	quit(0 if failures.is_empty() else 1)
+
+func freeze_step(duration: float) -> void:
+	for i in ceili(duration * 120.0):
+		arena.builds.before_motion(1.0 / 120.0)
+		arena.player.step(1.0 / 120.0)
+		arena.resolver.resolve(arena.player, arena.actors)
+		arena.builds.step(1.0 / 120.0)
+		arena.builds.refresh(1.0 / 120.0)
+func check_freeze_presets(menu: MenuButton, first, later, side) -> void:
+	later.position += Vector3(30, 0, 30); side.position += Vector3(30, 0, 30)
+	for index in range(3, arena.builds.catalog.test_presets().size()):
+		menu.get_popup().id_pressed.emit(index)
+		await frames()
+		first.health.maximum = 1000.0; first.health.current = 1000.0
+		arena.player.runner.tick(10.0)
+		arena.player.facing = Vector3.FORWARD
+		root.gui_release_focus(); key(KEY_Q); freeze_step(1.05)
+		check(first.control_locked, "new preset actual Q freezes")
+		var action: String = "primary" if index == 5 else "skill"
+		if action == "primary": await click_at(Vector2(700,400))
+		else: key(KEY_Q)
+		freeze_step(0.2)
+		var hits: int = arena.builds.runtime.diagnostics().conditional_hits
+		check(hits == (0 if index == 3 else 1), "new preset committed followup fact " + str(index))
+		for locale in ["zh_CN", "en"]:
+			language(locale); await frames()
+			labels_resolve(arena.builds.status_panel)
+			check(root.get_visible_rect().encloses(arena.builds.status_panel.get_global_rect()), "new preset status fits " + locale)
+			if hits > 0:
+				# Re-present the committed fact in each locale; this cannot affect combat.
+				arena.builds.mechanisms.clear()
+				arena.builds.mechanisms.show_conditional_fact(arena.builds.runtime.diagnostics().last_conditional)
+				check(arena.builds.mechanisms.find_children("ConditionalDamageFeedback", "Label3D", false, false).size() == 1, "visible feedback consumes fact")
+			await frames()
+			await capture("ice_" + str(index) + "_" + locale)

@@ -5,6 +5,7 @@
 
 [node name="CombatTraining" type="Node3D"]
 script = ExtResource("1")
+enable_mechanism_presets = true
 room_presentation = ExtResource("room")
 [node name="RunActors" type="Node3D" parent="."]
 [node name="RoomActors" type="Node3D" parent="."]

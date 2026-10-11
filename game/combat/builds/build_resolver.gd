@@ -47,13 +47,12 @@ func validate_state(state: Dictionary) -> Array[String]:
 	for action_id in program.actions:
 		var plan: Dictionary = program.actions[action_id]
 		if not Capabilities.valid_plan(plan, _catalog): errors.append("build.reason.incompatible")
-		var summary: Array = Capabilities.summarize_plan(_catalog, plan)
 		for selected in state.selections:
 			if selected.action_id != action_id: continue
 			var entry: Dictionary = _catalog.upgrade(selected.upgrade_id)
 			for tag in entry.required_tags:
 				if not plan.tags.has(tag): errors.append("build.reason.dependency")
-			if not Capabilities.eligible(entry, summary): errors.append("build.reason.capability")
+			if not Capabilities.eligible_for_action(entry, _catalog, program, action_id): errors.append("build.reason.capability")
 	return errors
 
 func valid_program(program: Dictionary) -> bool:
@@ -159,7 +158,7 @@ func _compile(state: Dictionary) -> Dictionary:
 				"damage_scale": damage_bonus += float(params.bonus)
 				"status_duration": durations[params.status_id] = float(durations.get(params.status_id, 0.0)) + float(params.bonus)
 				"area_status": area_grants.append({"upgrade_id": str(item.upgrade_id), "rank": int(item.rank), "params": params})
-				"projectile", "chain", "split", "pierce", "explosion", "status": plan.effects.append({"upgrade_id": str(item.upgrade_id), "type": str(entry.effect_type), "rank": int(item.rank), "params": params})
+				"projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage": plan.effects.append({"upgrade_id": str(item.upgrade_id), "type": str(entry.effect_type), "rank": int(item.rank), "params": params})
 		for effect in plan.effects:
 			if effect.type == "status": effect.params.duration_sec = _duration(effect.params.status_id, durations)
 			if effect.type != "explosion": continue

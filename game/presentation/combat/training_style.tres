@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://buv7p17b4mthq" path="res://presentation/combat/training_style.gd" id="1"]
 [ext_resource type="Resource" path="res://presentation/combat/brute_presentation.tres" id="brute"]
 [ext_resource type="Resource" path="res://presentation/combat/hit_feedback.tres" id="feedback"]
+[ext_resource type="Resource" path="res://presentation/combat/damage_number_style.tres" id="damage_numbers"]
 [ext_resource type="Resource" path="res://presentation/combat/player_presentation.tres" id="player"]
 [ext_resource type="Resource" path="res://presentation/combat/scout_presentation.tres" id="scout"]
 [ext_resource type="Resource" path="res://presentation/combat/crossbow_presentation.tres" id="crossbow"]
@@ -21,6 +22,7 @@
 
 [resource]
 script = ExtResource("1")
+damage_numbers = ExtResource("damage_numbers")
 actor_presentations = {
 "elite_ranger": ExtResource("elite_ranger"),
 "crossbow": ExtResource("crossbow"),

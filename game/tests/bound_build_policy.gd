@@ -26,7 +26,7 @@ func operation(s: Dictionary, id: String, action: String, old: Dictionary = {}, 
 func run() -> void:
 	var loader := Loader.new()
 	catalog = loader.load_catalog()
-	check(catalog != null, "catalog v6: " + str(loader.errors))
+	check(catalog != null, "catalog v7: " + str(loader.errors))
 	if catalog == null: finish(); return
 	resolver = Resolver.new()
 	resolver.configure(catalog)
@@ -44,9 +44,9 @@ func run() -> void:
 	check(duration_choices.size() == 1 and duration_choices[0].action_id == "primary", "same action carrier only")
 	var two_cores := state([selection("contact_freeze", "primary"), selection("impact_blast", "primary")])
 	check(resolver.resolve(two_cores).is_empty(), "one core per action")
-	var two_actions := state([selection("contact_freeze", "primary", 2), selection("contact_freeze", "special")])
+	var two_actions := state([selection("contact_freeze", "primary", 1), selection("contact_freeze", "special")])
 	program = resolver.resolve(two_actions)
-	check(program.actions.primary.effects[0].rank == 2 and program.actions.special.effects[0].rank == 1, "same card independent action ranks")
+	check(program.actions.primary.effects[0].rank == 1 and program.actions.special.effects[0].rank == 1, "same card independent action ranks")
 	var source := state([selection("contact_freeze", "skill"), selection("pierce", "skill"), selection("impact_blast", "primary")], 7)
 	program = resolver.resolve(source)
 	check(not program.is_empty() and program.actions.primary.effects.size() == 1 and program.actions.skill.effects.size() == 2, "left blast right pierce freeze")
@@ -109,7 +109,7 @@ func run() -> void:
 
 func check_content(loader) -> void:
 	var original: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/builds/prototype.json"))
-	for version in [1, 2, 3, 4, 5, 7]:
+	for version in [1, 2, 3, 4, 5, 6, 8]:
 		var changed: Dictionary = original.duplicate(true)
 		changed.schema_version = version
 		check(loader.decode(changed) == null, "reject unsupported schema " + str(version))

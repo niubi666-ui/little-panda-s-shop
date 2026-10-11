@@ -22,6 +22,7 @@ extends Resource
 @export var hud_margin: int
 @export var training_entry_position: Vector2
 @export var hit_feedback: Resource
+@export var damage_numbers: Resource
 @export var weapon_effect_scene: PackedScene
 @export var weapon_visual_scene: PackedScene
 @export var health_label_pixel_size: float

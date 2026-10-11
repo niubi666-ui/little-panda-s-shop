@@ -1,24 +1,24 @@
 # 三选一与构筑训练切片 · 实现契约
 
-更新：2026-10-02。当前代码为 **schema v5 按动作绑定**；v4全局rank程序不再是生产接口。玩法与入口见[Build概览](BUILD_SYSTEM.md)，爆炸/冻结/范围payload细节见[命中机制](COMBAT_MECHANISMS.md)。本页记录实际接口；测试结果以本轮交付和[验证索引](VALIDATION.md)为准。
+更新：2026-10-09。当前代码为 **schema v7 按动作绑定**；v4全局rank程序不再是生产接口。玩法与入口见[Build概览](BUILD_SYSTEM.md)，爆炸/冻结/范围payload细节见[命中机制](COMBAT_MECHANISMS.md)。本页记录实际接口；测试结果以本轮交付和[验证索引](VALIDATION.md)为准。
 
-## 内容格式 v5
+## 内容格式 v7
 
 `res://data/builds/prototype.json` 由 manifest 的 `build_prototype_file` 引用。顶层必填：`schema_version`、`offer`、`limits`、`stats`、`actions`、`forms`、`upgrades`、`projectiles`、`test_attacks`、`statuses`、`status_rules`、`test_presets`。数值唯一来源为JSON，不在文档另存数值表。
 
 | 定义 | 字段与约束 |
 |---|---|
-| actions | `id/name_key/base_form_id/form_ids/test_only`；正式 `primary/special`，隔离夹具 `debug_melee/debug_arrow`。`global`是作用域身份，不能定义为动作。 |
+| actions | `id/name_key/base_form_id/form_ids/test_only`；正式 `primary/special/skill`，隔离夹具 `debug_melee/debug_arrow`。`global`是作用域身份，不能定义为动作。 |
 | forms | `id/name_key/executor/ability_ids/projectile_id/presentation_key`；executor仅`melee/projectile`。引用Combat能力ID与Build投射物ID，伤害/时序不重复定义。 |
 | upgrades | `id/name_key/description_key/weight/max_rank/requires/excludes/required_tags/granted_tags/effect_type/ranks`，另加`scope/layer/action_ids/test_only`。scope为`action/global`；layer为`form/core/support/synergy`。 |
 | offer | `count/pool_ids/fallback_ids/initial_offers/rewards_per_wave/max_queued_offers/target_weighting`；目标绑定当前为显式`uniform`。 |
-| stats | `damage_scale_min/max/move_scale_min/max/damage_composition`；当前`additive_then_clamp`。global增伤与本动作增伤先相加再限幅；Actor移速只应用global一次。 |
+| stats | `damage_scale_min/max/move_scale_min/max/damage_composition/conditional_bonus_max/conditional_composition`；当前`additive_then_clamp`。global增伤与本动作增伤先相加再限幅；Actor移速只应用global一次。 |
 | limits | `root_effect_budget/requests_per_step/max_queue/max_projectiles/max_chain_jumps/max_split_generation/max_projectiles_per_root/max_projectile_hits/projectiles_survive_source_death`。 |
 | projectiles | `id/executor/child_id/speed_mps/radius_m/height_m/lifetime_sec`；仅`linear_contact`。child_id为空禁用分裂，否则引用有效定义。 |
 | test_attacks | `id/projectile_id/damage/cooldown_sec/action_id`；动作须为匹配投射物的test_only来源，不为正式动作授予资格。 |
 | test_presets | `id/name_key/selections`；选择项为`{upgrade_id,action_id,rank}`。按顺序逐项、逐级经过正式评估路径；基础预设允许空数组。 |
 
-当前14项定义中，旧wave/chain/contact_slow属于测试夹具，不进入正式池。正式形态改造是`form`效果，其每级仅引用`form_id`；数值支持是`damage_scale/move_scale/status_duration`；`status/explosion`占核心，`area_status`占协同，`split/pierce`是支持。global仅允许数值伤害/移速支持。完整每级效果字段由schema定义；范围/状态字段见命中机制，禁止未知字段或配置脚本。
+当前14项定义中，旧wave/chain/contact_slow属于测试夹具，不进入正式池。当前无剑气解锁/恢复重击卡；基础三动作由actions提供。保留`form`扩展能力，其每级仅引用`form_id`；数值支持是`damage_scale/move_scale/status_duration`；`status/explosion`占核心，`area_status`占协同，`conditional_damage`依据provider_scope占支持或协同，`split/pierce`是支持。global仅允许数值伤害/移速支持。完整每级效果字段由schema定义；范围/状态字段见命中机制，禁止未知字段或配置脚本。
 
 Loader拒绝不支持的schema版本、引用错误、依赖环、等级/预算错误及不对称互斥；穿透/分裂定义必须显式对称排除，但排除现在按动作生效。内容层检查预设的绑定、槽位、实际载体、来源交集和完整有限组合；`TrainingBuilds.configure`还用隔离Session逐一试提交所有预设，通过后才创建UI。内容层不导入combat。
 
@@ -28,7 +28,7 @@ Loader拒绝不支持的schema版本、引用错误、依赖环、等级/预算�
 
 ## 构筑解析与战斗 API
 
-权威Build状态：`{selections:Array[{upgrade_id,action_id,rank}], revision:int}`。绑定global时action_id明确为`global`；不能继续用单个upgrade_id作为左右键共用rank键。槽位、当前形态与能力从选择项派生，不保存第二份可变槽位状态。
+权威Build状态：`{selections:Array[{upgrade_id,action_id,rank}], revision:int}`。绑定global时action_id明确为`global`；不能继续用单个upgrade_id作为所有动作共用rank键。槽位、当前形态与能力从选择项派生，不保存第二份可变槽位状态。
 
 `combat/builds/build_resolver.gd`是唯一纯选择/编译评估器：
 
@@ -51,31 +51,31 @@ effect = {upgrade_id, type, rank, params}
 
 选择项/效果按稳定身份排序；同集合不同取得顺序编译结果相同。plan.damage_scale已包含global＋本动作加成，不得再乘global.damage_scale。新等级替换旧等级；area_status只编译到本动作对应explosion的有限payload：一个damage，至多一个apply_status。
 
-`CombatActor.set_action_program(actions,combat_catalog)->bool`注入解码后的正式动作计划。`request_action(id,input_frame=-1)`及`request_attack()/request_special()`提出意图。`AbilityRunner.start(ability,facing,context={})`复制冻结本次plan；`cast_context/action_id/form_id/executor/presentation_key`供规则和表现读取。零前摇能力在`start`内先提交快照，再同步发布一次`cue_reached`，后续tick不重复发cue；提交回调若取消/替换施放，则不发布旧cue。冷却通过`cooldown_for(action_id)`查询；具体缓冲/取消规则见[战斗](COMBAT_PROTOTYPE.md)。
+`CombatActor.set_action_program(actions,combat_catalog)->bool`注入解码后的三个正式动作计划，缺少skill的旧计划拒绝。`request_action(id,input_frame=-1)`及`request_attack()/request_special()/request_skill()`提出意图。`AbilityRunner.start(ability,facing,context={})`复制冻结本次plan；`cast_context/action_id/form_id/executor/presentation_key`供规则和表现读取。零前摇能力在`start`内先提交快照，再同步发布一次`cue_reached`，后续tick不重复发cue；提交回调若取消/替换施放，则不发布旧cue。冷却通过`cooldown_for(action_id)`查询；具体缓冲/取消规则见[战斗](COMBAT_PROTOTYPE.md)。
 
 `combat/builds/build_runtime.gd`：
 
 - `configure(catalog,player,targets:Callable,wall_query:Callable,attack_ids:Array=[])`。targets返回当前actors；wall_query返回世界交点Vector3或null。
 - `set_program(program)->bool`复用Resolver全程序验证，失败保留旧program；旧cast/子体继续使用原动作、形态、revision、效果与表现键快照。
 - `on_committed(cast_id,ability_id)`、`on_cue(cast_id,ability_id)`、`on_finished(cast_id,ability_id,reason)`接Runner局部事实。cue在投射物形态发射；该形态跳过近战及房间道具近战路径，不能用damage=0代替。
-- `fire_attack(attack_id,direction)->bool`只接受configure显式授予的调试攻击，使用其debug动作计划、独立冷却和根；不继承primary/special核心。
+- `fire_attack(attack_id,direction)->bool`只接受configure显式授予的调试攻击，使用其debug动作计划、独立冷却和根；不继承primary/special/skill核心。
 - `melee_damage(source,base_damage)`、`on_melee_contact(source,cast_id,ability_id,target_handle,position,damage)`、`on_melee_hit(source,target,cast_id,ability_id,applied_damage)`分别负责快照倍率、合法接触和有效伤害派生。
 - `tick(delta)`、`clear_room()`；`statuses`是独立StatusRuntime，app在AI前推进其时钟，Runtime不重复tick。delta≤0不推进规则。
 - `projectiles()`返回只读表现快照；`diagnostics()`含根/队列/投射物/拒绝计数与预算。
 
-直接伤害、子体和派生队列共享根预算；不重复套倍率。穿透按距离/handle稳定接触，持久visited去重，墙先截断；同距墙优先。有效但0实损的接触可触发状态/爆炸并消耗接触额度，已死候选不消耗。有限范围不重新生成通用接触，不递归爆炸/连锁。首段爆炸、冻结共享抗连控及来源限制继续遵循命中机制；两动作不能绕过同一目标的控制窗口。
+直接伤害、子体和派生队列共享根预算；不重复套倍率。穿透按距离/handle稳定接触，持久visited去重，墙先截断；同距墙优先。有效但0实损的接触可触发状态/爆炸并消耗接触额度，已死候选不消耗。有限范围不重新生成通用接触，不递归爆炸/连锁。首段爆炸、冻结共享抗连控及来源限制继续遵循命中机制；所有动作不能绕过同一目标的控制窗口。
 
 ## 投射物职责与继承
 
 `projectile_capabilities.gd`提供`supports_split/supports_pierce/supports_impact`、`valid_plan`（编译内部检查）、`valid_program(program,catalog)`（委托Resolver）。`summarize_plan(catalog,plan)`返回带`action_id/attack_id/projectile/origin/status_ids/area_effects/modifiers`的实际载体数组；`eligible(entry,summary)`用于**同一个动作**的摘要。汇总接口`summarize(catalog,program,attack_ids=[],has_melee=false)`保留动作关联，后两个旧参数不再授予能力。
 
-候选、替换、预设和提交都经过Resolver，不直接把跨动作摘要并集交给eligible。标签不能伪造真实执行器；冻结延长必须找到本动作的直接或范围冻结，寒霜必须找到本动作对应爆炸。首版同一动作（含派生载体）禁止穿透＋分裂及分裂＋寒霜；不同动作可分别拥有。
+候选、替换、预设和提交都经过Resolver。`eligible_for_action(entry,catalog,program,action_id)`分别检查受益动作与前置提供动作；普通效果委托同动作eligible，条件伤害只查询正式提供者，不合并跨动作效果。标签不能伪造真实执行器；冻结延长必须找到本动作的直接或范围冻结，寒霜必须找到本动作对应爆炸。首版同一动作（含派生载体）禁止穿透＋分裂及分裂＋寒霜；不同动作可分别拥有。
 
 `projectile_factory.gd`构造initial/child；`projectile_split.gd`生成有界请求；`projectile_pierce.gd`决定总命中额度；`projectile_contacts.gd`收集本步接触。它们不按卡名/武器名分支、不创建美术Node。子体继承根动作/Build/预算、伤害与排除集合；定义决定速度/半径/高度，寿命取父剩余与子定义上限的较小值。子体下个模拟步运动；既有旧wave/chain通过明确debug选择夹具复用同一生产编译器，不保留全局v4执行体系。
 
 ## 候选与应用提交 API
 
-`BuildOfferSampler.configure(catalog,operations:Callable)`注入Resolver.legal_operations；`sample(state,rng)->Array[Dictionary]`只负责权重与随机。先按upgrade_id无放回抽取，再在该升级的合法绑定中均匀选一个；左右均可绑定不会使该升级权重翻倍，也不会占一轮两格。fallback仍经纯评估，不足返回较少项。
+`BuildOfferSampler.configure(catalog,operations:Callable)`注入Resolver.legal_operations；`sample(state,rng)->Array[Dictionary]`只负责权重与随机。先按upgrade_id无放回抽取，再在该升级的合法绑定中均匀选一个；多个动作均可绑定不会使该升级权重翻倍，也不会占一轮两格。fallback仍经纯评估，不足返回较少项。
 
 `TrainingBuildSession.configure(catalog,seed,commit:Callable)`；公共接口：`open_offer()`、`choose(offer_id,choice_id)`、`legal_operations(upgrade_id="")`、`submit_operation(operation)`、`apply_test_preset(id)`、`snapshot()`、`program()`。
 
@@ -102,6 +102,20 @@ Runtime局部表现事实：`action_presented(fact)`、`projectile_presented(fac
 
 ## 当前验证与边界
 
-本轮测试入口：`bound_build_policy.gd`、`bound_build_session.gd`、`mechanism_content.gd`、`action_build_runtime.gd`及动作/场景集成。本文不把前轮v4通过记录当作v5验收；最终执行结果见[验证索引](VALIDATION.md)与本轮交付。归档v4脚本不再作为当前gate。
+本轮测试入口：`bound_build_policy.gd`、`bound_build_session.gd`、`mechanism_content.gd`、`action_build_runtime.gd`及动作/场景集成。本文不把前轮v4通过记录当作v7验收；最终执行结果见[验证索引](VALIDATION.md)与本轮交付。归档v4脚本不再作为当前gate。
 
 尚未接入多武器、蓄力、完整主动技能栏、经济或永久存档；独立[内存路线测试](RUN_PREVIEW.md)已接预装Build跨房保留，尚无跨房选卡奖励；当前训练选卡频率不等于正式冒险奖励节奏。不制作Release，不自动Git提交。
+
+## 条件伤害 v7
+
+`conditional_damage`每级必填 `status_id/provider_scope/allowed_origins/source_relation/root_relation/bonus`。当前仅支持freeze状态，provider_scope为same_action或other_formal_action；source_relation固定same_actor_formal，root_relation固定earlier_independent；来源仅direct_melee/direct_projectile。选择动作由action_ids限制，提供者由实际直接/范围冻结能力判定，不能靠卡名或标签授予。
+
+stats新增 `conditional_composition=additive_then_multiply_direct`、`conditional_bonus_max`（当前2）。公式为：已计算普通全局/动作倍率的直接伤害 × (1 + min(所有满足条件的bonus之和, 上限))。每个命中只求值一次。分裂/爆炸基数保持原普通伤害；旧连锁保留普通实损基数并剔除条件增量。
+
+`conditional_damage.gd.evaluate(context,target,base_damage,origin,statuses,catalog,runtime_id)`是纯命中前查询。Status source增加runtime_id，连同room_generation/source_handle/team/root_id/action_id判断同玩家、同房、更早独立根；不保存强root引用。冻结拒绝刷新时来源不变，死亡/退出清理。
+
+MeleeResolver新增`set_direct_damage_executor(callable)`，签名`(source,target,ordinary_scaled_damage)->applied_damage`。app注入`BuildRuntime.apply_melee_damage`；原damage_modifier仍计算普通倍率，enemy_contact仍携带未追击增幅的派生基数。投射物使用同一条件处理器，子体不进入直接增伤路径。
+
+已提交signal `conditional_damage_applied(fact)`携带action/root/cast/revision/position/target_handle/origin/base_damage/damage/applied_damage/bonus/effect_ids。仅正实损且满足条件时，在本步接触/状态队列处理后发布；清房会丢弃旧代数待发布事实；diagnostics增加conditional_hits/last_conditional，清房重置。MechanismView消费事实显示双语Label3D，大小/颜色/时长在mechanism_style Resource，关闭表现不影响规则。
+
+schema v7拒绝v6内容；contact_freeze只保留rank1，旧rank2状态被invalid_rank拒绝，不静默截断。无正式磁盘存档迁移。六个JSON预设全部经Session试提交；普通训练也开放预设菜单。训练及路线HUD通过skill_cooldown_text读取Q实际冷却，不维护第二份计时器。

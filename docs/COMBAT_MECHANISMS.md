@@ -1,10 +1,10 @@
 # 穿透、命中爆炸与控制状态 · 当前切片
 
-2026-10-02。已实现的机制样本，非正式职业/平衡设计。Build schema v5，14项定义（11项候选＋3项debug夹具）、3组动作预设；内容权威在 `game/data/builds/prototype.json`，公共入口见 [Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。
+2026-10-09。已实现的机制样本，非正式职业/平衡设计。Build schema v7，14项定义（11项候选＋3项debug夹具）、6组动作预设；内容权威在 `game/data/builds/prototype.json`，公共入口见 [Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。
 
 ## 试玩
 
-双击项目根 `启动双动作测试.cmd`；当前预设与操作见[Build入口](BUILD_SYSTEM.md)。右键剑气真正替换重斩；T测试箭上下文隔离，不继承正式左右键核心。预设左爆炸右穿透冻结、右寒霜穿透验证同一执行器；普通三选一也采用动作绑定。
+双击项目根 `启动双动作测试.cmd`；当前预设与操作见[Build入口](BUILD_SYSTEM.md)。左键普攻、右键重斩、Q剑气同时可用；T测试箭上下文隔离，不继承正式动作核心。六组预设包含冰冻贯穿、碎冰追击与乘隙斩；普通三选一也采用动作绑定。
 
 ## 文件与职责
 
@@ -63,7 +63,7 @@ status_rules：default_response_id、actor_responses、responses、control_group
 - 主动remove冻结使目标立即解冻，并从当前战斗时间起给予完整抗冻窗；clear/死亡/失效目标/换房彻底清理，不保留离房抗冻。
 - 根侧按目标handle＋control_group只允许一次申请；活着的目标即使免疫、已冻结或处于抗冻期也消耗本根这次机会。目标侧记录跨根抗冻，两者不以请求预算替代。减速不套冻结去重。
 - 状态使用统一推进的绝对战斗时钟，暂停不推进；大delta跨越冻结与抗冻两阶段仍按原截止时间判断。状态清空时，抗冻未结束的记录继续保留；窗口结束再解绑。
-- 实例保留定义、expires_at和只读来源值，snapshot派生remaining。目标是弱引用，来源包含source_handle/team/root_id/room_generation/ability_id/action_id/revision/presentation_key；不强持失效root。当前状态没有DOT/延迟请求，原根可正常回收；未来周期效果须另订根生命周期。
+- 实例保留定义、expires_at和只读来源值，snapshot派生remaining。目标是弱引用，来源包含runtime_id/source_handle/team/root_id/room_generation/ability_id/action_id/revision/presentation_key；不强持失效root。当前状态没有DOT/延迟请求，原根可正常回收；未来周期效果须另订根生命周期。
 
 ## 4. 控制执行接口
 
@@ -88,4 +88,10 @@ rogue抽取合法绑定操作；app/session提交再次使用同一纯评估。t
 
 ## 6. 验证与当前边界
 
-本轮v5规则、状态、动作和真实场景验证见[验证索引](VALIDATION.md#双动作切片实际验证2026-10-02)。旧v4结果属于历史，不代表其每条断言已迁移。未制作正式骨骼动作、多武器、主动AOE、DOT、Boss韧性或同动作穿透分裂混用。跨房内存Run已有独立[路线入口](RUN_PREVIEW.md)；正式磁盘存档另做。
+本轮规则、状态、动作和真实场景验证见[验证索引](VALIDATION.md)。旧v4结果属于历史，不代表其每条断言已迁移。未制作正式骨骼动作、多武器、主动AOE、DOT、Boss韧性或同动作穿透分裂混用。跨房内存Run已有独立[路线入口](RUN_PREVIEW.md)；正式磁盘存档另做。
+
+## 7. 冻结追击
+
+碎冰追击（Q支持）与乘隙斩（左键协同）使用conditional_damage处理器；前置分别为本动作/另一个正式动作的实际冻结能力。命中前读取状态，必须同玩家、同runtime/房间、更早独立根、非调试动作；当前直接伤害先修正再提交，再处理接触冻结等效果。同根首次冻结不能反过来增幅自身，也不刷新/解除冻结。普通接触派生基数不含追击增量，穿透对沿途每个目标分别求值。
+
+contact_freeze已精简为一个有效等级，冻结延长仍为独立卡。条件字段、加算上限、已提交反馈和诊断见[Build API](BUILD_IMPLEMENTATION_CONTRACT.md#条件伤害-v7)。抗冻、免疫、死亡与状态清理规则不变。

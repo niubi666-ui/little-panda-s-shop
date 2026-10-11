@@ -1,16 +1,16 @@
 # 战斗训练原型
 
-更新：2026-10-02（左右键动作与程序剑姿态）；战斗 schema_version=3，动作绑定构筑的接口见 [Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。本页区分已写入代码与本轮整合验证，验证状态见末节。训练入口已接入森林庭院，敌人模型仍为占位；简易场景保留为回归夹具。
+更新：2026-10-09（三动作与冰冻追击）；战斗 schema_version=3，动作绑定构筑的接口见 [Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。本页区分已写入代码与本轮整合验证，验证状态见末节。训练入口已接入森林庭院，敌人模型仍为占位；简易场景保留为回归夹具。
 
 ## 操作
 
 店铺按 **F6** 或点击训练按钮进入 `app/combat_training.tscn`；弹窗打开时入口不可用。当前房间及美术接入见 [FOREST_COURTYARD_INTEGRATION.md](FOREST_COURTYARD_INTEGRATION.md)。
 
-- WASD 移动、鼠标瞄准；左键 `primary` 三连击，第一段左→右、第二段右→左、第三段向前刺击。右键 `special` 点击重斩，选择右键剑气形态后改为一次远程施放；Shift 闪避。按键不是构筑身份。
-- 清场后仍可移动、普通攻击和右键施放，正在起手/飞行的玩家技能不因胜利取消；遵守原冷却、死亡、受控、暂停和UI门禁。训练 `finish_rewards()` 只结束自动奖励，`finish()` 用于死亡/退出；调试选卡与预设不属于自动奖励。当前路线房间同样保持执行直到退出，正式持久关卡尚未实现。
+- WASD 移动、鼠标瞄准；左键 `primary` 三连击，第一段左→右、第二段右→左、第三段向前刺击。右键 `special` 点击重斩，Q `skill` 开局自带瞬发剑气；Shift 闪避。按键不是构筑身份。
+- 清场后仍可移动、普通攻击、右键和Q施放，正在起手/飞行的玩家技能不因胜利取消；遵守原冷却、死亡、受控、暂停和UI门禁。训练 `finish_rewards()` 只结束自动奖励，`finish()` 用于死亡/退出；调试选卡与预设不属于自动奖励。当前路线房间同样保持执行直到退出，正式持久关卡尚未实现。
 - 普攻三个阶段均可移动；重斩与剑气使用各自能力配置的移动倍率。起手锁定本次方向，近战区域随角色平移；剑气从逻辑cue发射，完全跳过近战区域及房间物件的近战命中路径。
-- 忙碌期间只缓存一个带动作ID的有效攻击意图，后到有效意图替换；同帧固定按闪避→special→primary仲裁。缓冲时长与空闲后的连段重置时长是两个独立配置。special实际起手才重置primary连段。
-- 左右键冷却独立，在开始承诺时扣除，取消不返还，切换形态不刷新。能力配置允许的阶段才能被闪避取消；当前重斩/剑气允许起手、恢复取消，生效阶段不允许。cue前取消不会发射剑气。
+- 忙碌期间只缓存一个带动作ID的有效攻击意图，后到有效意图替换；同帧固定按闪避→skill→special→primary仲裁。缓冲时长与空闲后的连段重置时长是两个独立配置。special/skill实际起手才重置primary连段。
+- 左键、右键、Q冷却独立，在开始承诺时扣除，取消不返还，切换形态不刷新。能力配置允许的阶段才能被闪避取消；当前重斩/剑气允许起手、恢复取消，生效阶段不允许。Q零前摇在接受施放时发射；其提交回调同步取消时不发旧cue，后续取消不撤销已发剑气。
 - 文本或其它可见Control持有GUI焦点时，停止采集移动和新攻击并清空缓冲；点击空白战场的第一下只返回游戏焦点。CombatInput另接受app显式注入的UI阻塞Callable，用于没有Control焦点的PopupMenu；阻塞时同时屏蔽事件与轮询移动。菜单接线、三选一门禁已通过本轮真实场景验证。
 - 玩家实际命中扣血时，镜头轻晃约0.12秒；空挥、同段重复接触、无敌拒绝不震动。一次击中多个目标重启同一短脉冲，不累加幅度。震动暂停冻结，结束/离场归零，不影响瞄准。
 - 滚轮缩放，Esc 打开共享 v002 设置菜单并暂停，L 中英文；底部按钮可重试、返回店铺。设置菜单内屏蔽底层输入；三选一期间可进入设置并返回继续选择。见 [SETTINGS_UI.md](SETTINGS_UI.md)。
@@ -39,7 +39,7 @@
 ## 基础战斗反馈
 
 1. **移动攻击**：每个能力独立配置移动倍率；玩家三段为1，近战敌人的原型挥击为0。冲锋兵的专用位移见敌人模块。受击硬直、闪避与击退仍由角色/Motor仲裁。
-2. **交替挥砍、刺击与右键姿态**：前两段使用扇形，第三段使用前方矩形，侧面和背后不被刺击命中；范围以能力JSON为准。剑尖美术距离独立配置，数值判定不读取模型长度。`attack_motions/*.tres`控制左右方向、收剑、刺出、回收、剑身俯仰和握持高度，进度来自能力逻辑时间线。右键重斩是抬剑→劈落，剑气是后收→前伸；角色仍播放已有idle/run，没有新增骨骼攻击动画。`sword_primary`表现组按能力ID选三段姿态，special使用施放快照中的表现键。
+2. **交替挥砍、刺击与右键姿态**：前两段使用扇形，第三段使用前方矩形，侧面和背后不被刺击命中；范围以能力JSON为准。剑尖美术距离独立配置，数值判定不读取模型长度。`attack_motions/*.tres`控制左右方向、收剑、刺出、回收、剑身俯仰和握持高度，进度来自能力逻辑时间线。右键重斩是抬剑→劈落，Q剑气直接进入释放姿态；角色仍播放已有idle/run，没有新增骨骼攻击动画。`sword_primary`表现组按能力ID选三段姿态，special/skill使用施放快照中的表现键。
 3. **敌人受击**：全部模型网格白色发光、红色外轮廓，周围飞散粒子。暂时覆盖材质后恢复；各实例互不串色。致死命中仍播放反馈，碰撞与攻击则立即停止。
 4. **第二段击退**：命中并实际扣血后生效。以攻击者到目标的方向施加线性衰减冲量，重叠位置取施放方向；墙体阻挡，重复冲量替换。当前速度10米/秒、持续0.24秒，无碰撞时约1.2米；来源唯一为JSON。
 5. **敌人血条**：红色表示实时生命，被扣掉的部分显示白色，短暂停留后平滑下降。连续命中保留尚未消退的白段并重置短暂停留；死亡归零动画不影响死亡判定。暂停时表现计时也暂停。
@@ -47,10 +47,20 @@
 
 ## 数值与资源入口
 
+### 伤害跳字（2026-10-11）
+
+玩家和敌人的 `ActorView` 均接入独立 `DamageNumbers` 表现组件，监听 `HealthRuntime.damaged(amount)` 已提交扣血事实。玩家红色、敌人浅金色；显示实际扣除生命（致死时截断到剩余HP），无敌、零伤害和已死亡目标不显示。整数省略小数，非整数最多显示配置的小数位数；不推断暴击或元素类别。
+
+数字保留在受伤时的世界位置，面向镜头、向上飘动并渐隐，连续命中循环错位；每角色有数量上限。使用ActorView注入的表现时间，暂停冻结，致死跳字保留到消退，离开房间随节点清理；不消费玩法随机、不参与伤害裁定。普通训练、构筑训练及短路线共用该适配器。
+
+配置：`game/presentation/combat/damage_number_style.tres`，由 `training_style.tres.damage_numbers` 强引用。字体默认沿用项目主题，可用 `font_override` 单独替换；字号、颜色、描边、起始高度、飘动距离、寿命、淡出及同时显示上限均在此Resource调整。
+
+本次 `tests/damage_numbers.gd` 已在Forward+图形运行通过并检查截图：双方/小数、免疫、致死与过量伤害、暂停、世界锚定、连续命中数量限制、到期与离场清理。未单独进行高密度战斗性能验收。
+
 | 调整内容 | 权威文件 |
 |---|---|
 | 生命、移速、硬直、AI、连段 | `game/data/combat/prototype.json` → actors |
-| 伤害、范围、时序、独立动作冷却、攻击移动倍率、击退 | 同文件 → abilities；右键能力为`heavy_slash` / `wave_cast` |
+| 伤害、范围、时序、独立动作冷却、攻击移动倍率、击退 | 同文件 → abilities；右键为`heavy_slash`，Q为`wave_cast` |
 | 攻击意图缓冲、允许闪避取消阶段 | 同文件 → abilities.buffer_sec / dodge_cancel_phases |
 | 动作基础形式、形式能力序列、执行器及构筑绑定 | `game/data/builds/prototype.json` → actions / forms；详细字段见Build API |
 | 扇形/刺击、刺击宽度 | 同文件 → abilities.hit_shape / thrust_width_m；radius_m 对刺击表示前向长度 |
@@ -88,13 +98,13 @@ schema_version=3继续要求每项能力必填`hit_shape`与`thrust_width_m`：s
 
 | 接口 | 当前语义 |
 |---|---|
-| `CombatActor.set_action_program(actions, combat_catalog) -> bool` | 注入已校验的primary/special编译计划，复制为只读；完整准备后替换，不刷新任何动作冷却。清缓冲、重置连段，正在执行的施放继续使用旧快照 |
+| `CombatActor.set_action_program(actions, combat_catalog) -> bool` | 注入已校验的primary/special/skill编译计划，复制为只读；完整准备后替换，不刷新任何动作冷却。清缓冲、重置连段，正在执行的施放继续使用旧快照 |
 | `request_action(id, input_frame=-1)` | 接受稳定动作ID，默认以渲染帧号仲裁同帧优先级；测试可注入帧号。未知动作、死亡/控制锁定、剩余冷却长于缓冲期的意图不入队 |
-| `request_attack()` / `request_special()` / `request_dodge()` | primary、special及闪避的显式意图入口；敌人原单动作调用保留 |
+| `request_attack()` / `request_special()/request_skill()` / `request_dodge()` | primary、special及闪避的显式意图入口；敌人原单动作调用保留 |
 | `clear_intents()` / `cancel(reason)` | 前者只清攻击/闪避请求，后者额外取消Runner、清移动与击退；死亡/控制/离场调用取消路径 |
 | `CombatInput.new(player, camera, blocked: Callable = Callable())` | 注入当前app已知菜单的阻塞检查，update/event均执行；不遍历全局UI或搜节点。Control焦点门禁仍独立生效 |
 | `AbilityRunner.start(ability, facing, context={})` | 单一身体执行器；开始承诺、锁方向、记录该动作冷却，并深复制只读cast_context。敌人/旧直接Runner夹具的空上下文使用单近战动作入口 |
-| `cooldown_for(action_id)` | 查询独立动作冷却；兼容属性cooldown只表示最近一次动作的冷却，不用于左右键共同门禁 |
+| `cooldown_for(action_id)` | 查询独立动作冷却；兼容属性cooldown只表示最近一次动作的冷却，不用于三个动作共同门禁 |
 | `cast_context`及`action_id/form_id/executor/presentation_key` | 同一施放的只读身份/完整编译计划，包含revision；运行中的效果与姿态读取旧快照，不能按当前新Build猜测旧施放 |
 | `committed(cast_id, ability_id)` / `cue_reached(...)` | 原签名保留；订阅者同步读取施放上下文。取消后的cue不会恢复生效窗口 |
 | `finished(cast_id, ability_id, reason)` | 完成或取消事实；当前原因包括completed/cancelled/dodge/hit/control/death。取消不清已有冷却 |
@@ -159,7 +169,7 @@ schema_version=3继续要求每项能力必填`hit_shape`与`thrust_width_m`：s
 - 本次实际验证：Godot资源导入通过；训练headless 28项通过；Forward+ 26项通过并检查1280×800中英面板截图，覆盖指针按钮、位置朝向、3实例上限、暂停/模态、HP/Build/RNG隔离和清理。图形验收覆盖Shader、主体/碎屑/雾层及独立展示画面。录制采用固定时间采样，不表示实时帧率；正式战斗性能、手感与伤害判定尚未验收。
 - 已检查真实默认庭院的冰/岩1.2秒画面及紧凑面板，房间信息/刀光菜单/底部说明与返回按钮均无交叠，Forward+退出码0；仅有项目既有7个Texture RID退出警告。展示视频 `source_assets/vfx/elemental_eruptions_v001/previews/final/elemental_eruptions_godot.mp4` 为Godot实际渲染，1280×720、30fps、共10秒；同目录有分技能视频和时序对照图。复现用 `preview_tools/capture_eruptions.ps1`、`encode_previews.py`（相对于该源素材目录）。
 
-### 2026-10-02 左右键动作：当前验证
+### 2026-10-02 左右键动作：历史验证
 
 - 内容/PO、Combat schema3与Build v5通过；dual_actions规则测试通过，覆盖仲裁、连段、冷却、缓冲、取消、快照、姿态/空VFX、Control焦点与Popup阻塞。
 - action_build_runtime通过；action_build_vfx的114项表现隔离检查通过。实际动作快照、旧弹体、默认/关闭/替换表现、暂停取消清房有针对性验证。
@@ -183,6 +193,6 @@ schema_version=3继续要求每项能力必填`hit_shape`与`thrust_width_m`：s
 
 ## 剑气瞬发
 
-`abilities[id=wave_cast]`的`windup_sec=0`、`cooldown_sec=1.0`（2026-10-07）；形态许可与输入仲裁仍生效，接受施放时立刻触发发射，无需等待蓄力。保留0.1秒释放/0.3秒收招表现，它们不延迟剑气生成；普通三连击和重斩时序不变。schema允许零前摇，AbilityRunner在提交快照后同步发cue；同一施放不重复发射。冷却从接受施放计，按游戏逻辑时钟推进，暂停不推进。
+`abilities[id=wave_cast]`的`windup_sec=0`、`cooldown_sec=1.0`（2026-10-07）；基础动作许可与输入仲裁仍生效，接受施放时立刻触发发射，无需等待蓄力。保留0.1秒释放/0.3秒收招表现，它们不延迟剑气生成；普通三连击和重斩时序不变。schema允许零前摇，AbilityRunner在提交快照后同步发cue；同一施放不重复发射。冷却从接受施放计，按游戏逻辑时钟推进，暂停不推进。
 
 本次内容检查、action_build_runtime、dual_actions、combat_rules、post_clear_skills 均通过；覆盖同帧发射、1秒冷却、无重复cue、同步取消、清场后空放与普通攻击回归。使用无头场景验证，未做新图形手感验收。

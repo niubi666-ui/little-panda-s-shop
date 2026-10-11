@@ -64,6 +64,7 @@ func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, s
 	world.add_child(mechanisms)
 	mechanisms.configure(mechanism_style)
 	runtime.area_presented.connect(mechanisms.show_area_fact)
+	runtime.conditional_damage_applied.connect(mechanisms.show_conditional_fact)
 	status_panel = StatusPanel.new()
 	ui_root.add_child(status_panel)
 	status_panel.configure(catalog, shared_theme, enable_test_presets)

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/damage_number_style.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+font_size = 56
+pixel_size = 0.009
+outline_size = 10
+outline_color = Color(0.075, 0.035, 0.025, 0.95)
+player_color = Color(1, 0.28, 0.22, 1)
+enemy_color = Color(1, 0.9, 0.59, 1)
+height_offset = 0.5
+minimum_height = 2.1
+lifetime_sec = 0.85
+fade_start_ratio = 0.55
+rise_m = 1.15
+spread_m = 0.42
+pop_scale = 1.25
+pop_end_ratio = 0.18
+max_visible_per_actor = 12
+decimal_places = 2

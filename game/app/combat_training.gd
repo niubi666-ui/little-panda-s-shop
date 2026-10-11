@@ -168,6 +168,7 @@ func _ready() -> void:
 		get_tree().quit(1)
 		return
 	resolver.set_damage_modifier(builds.runtime.melee_damage)
+	resolver.set_direct_damage_executor(builds.runtime.apply_melee_damage)
 	hud.place_encounters_below(builds.status_panel)
 	resolver.confirmed_hit.connect(builds.runtime.on_melee_hit)
 	resolver.enemy_contact.connect(builds.runtime.on_melee_contact)

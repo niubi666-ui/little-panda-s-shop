@@ -1,5 +1,5 @@
 {
-  "schema_version": 6,
+  "schema_version": 7,
   "offer": {
     "count": 3,
     "pool_ids": [
@@ -11,7 +11,9 @@
       "freeze_duration",
       "pierce",
       "frost_blast",
-      "action_power"
+      "action_power",
+      "shatter_followup",
+      "opening_strike"
     ],
     "fallback_ids": [
       "power",
@@ -38,7 +40,9 @@
     "damage_scale_max": 5.0,
     "move_scale_min": 0.25,
     "move_scale_max": 2.0,
-    "damage_composition": "additive_then_clamp"
+    "damage_composition": "additive_then_clamp",
+    "conditional_bonus_max": 2.0,
+    "conditional_composition": "additive_then_multiply_direct"
   },
   "upgrades": [
     {
@@ -288,7 +292,7 @@
       "name_key": "build.test.contact_freeze.name",
       "description_key": "build.test.contact_freeze.description",
       "weight": 1.0,
-      "max_rank": 2,
+      "max_rank": 1,
       "requires": [],
       "excludes": [],
       "required_tags": [],
@@ -305,17 +309,6 @@
           ],
           "max_per_parent": 8,
           "max_per_root": 8
-        },
-        {
-          "status_id": "test_freeze",
-          "trigger": "enemy_contact",
-          "allowed_origins": [
-            "direct_melee",
-            "direct_projectile",
-            "split_projectile"
-          ],
-          "max_per_parent": 12,
-          "max_per_root": 12
         }
       ],
       "scope": "action",
@@ -458,6 +451,66 @@
         "debug_arrow"
       ],
       "test_only": false
+    },
+    {
+      "id": "shatter_followup",
+      "name_key": "build.shatter_followup.name",
+      "description_key": "build.shatter_followup.description",
+      "weight": 0.8,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "conditional_damage",
+      "ranks": [
+        {
+          "status_id": "test_freeze",
+          "provider_scope": "same_action",
+          "allowed_origins": [
+            "direct_projectile"
+          ],
+          "source_relation": "same_actor_formal",
+          "root_relation": "earlier_independent",
+          "bonus": 0.6
+        }
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "skill"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "opening_strike",
+      "name_key": "build.opening_strike.name",
+      "description_key": "build.opening_strike.description",
+      "weight": 0.8,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "conditional_damage",
+      "ranks": [
+        {
+          "status_id": "test_freeze",
+          "provider_scope": "other_formal_action",
+          "allowed_origins": [
+            "direct_melee"
+          ],
+          "source_relation": "same_actor_formal",
+          "root_relation": "earlier_independent",
+          "bonus": 0.5
+        }
+      ],
+      "scope": "action",
+      "layer": "synergy",
+      "action_ids": [
+        "primary"
+      ],
+      "test_only": false
     }
   ],
   "projectiles": [
@@ -587,6 +640,54 @@
         {
           "upgrade_id": "pierce",
           "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "freeze_pierce",
+      "name_key": "build.preset.freeze_pierce",
+      "selections": [
+        {
+          "upgrade_id": "contact_freeze",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "pierce",
+          "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "freeze_followup",
+      "name_key": "build.preset.freeze_followup",
+      "selections": [
+        {
+          "upgrade_id": "contact_freeze",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "shatter_followup",
+          "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "freeze_opening",
+      "name_key": "build.preset.freeze_opening",
+      "selections": [
+        {
+          "upgrade_id": "contact_freeze",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "opening_strike",
+          "action_id": "primary",
           "rank": 1
         }
       ]

@@ -1,5 +1,5 @@
 extends SceneTree
-## Focused schema-v6 tests; no renderer or combat runtime required.
+## Focused schema-v7 tests; no renderer or combat runtime required.
 const Loader = preload("res://content/builds/build_loader.gd")
 var failures: Array[String] = []
 var base: Dictionary
@@ -9,7 +9,7 @@ func _initialize() -> void:
 	base = JSON.parse_string(FileAccess.get_file_as_string("res://data/builds/prototype.json"))
 	var loader := Loader.new()
 	var catalog = loader.decode(base)
-	check(catalog != null, "current v6 content accepted: " + str(loader.errors))
+	check(catalog != null, "current v7 content accepted: " + str(loader.errors))
 	if catalog == null:
 		finish()
 		return
@@ -19,7 +19,7 @@ func _initialize() -> void:
 	var data := base.duplicate(true)
 	data.status_rules.control_groups[0].thaw_immunity_sec = 5.0
 	check(catalog.control_group("freeze").thaw_immunity_sec != 5.0, "catalog isolated from input")
-	for version in [1, 2, 3, 4, 5, 7]:
+	for version in [1, 2, 3, 4, 5, 6, 8]:
 		data = base.duplicate(true)
 		data.schema_version = version
 		reject(data, "unsupported schema " + str(version))
@@ -94,7 +94,7 @@ func _initialize() -> void:
 	data.test_presets[0].selections = [selected("missing", "special")]
 	reject(data, "preset unknown id")
 	data = base.duplicate(true)
-	data.test_presets[0].selections = [selected("contact_freeze", "primary", 2), selected("contact_freeze", "special")]
+	data.test_presets[0].selections = [selected("contact_freeze", "primary", 1), selected("contact_freeze", "special")]
 	check(loader.decode(data) != null, "preset same card independent action ranks")
 	data = base.duplicate(true)
 	var other_freeze: Dictionary = data.statuses[1].duplicate(true)

@@ -3,6 +3,7 @@ extends Node3D
 ## It only reads confirmed runtime state; it never schedules damage.
 const TESSELLATION_SEGMENTS := 32
 const HitFeedback = preload("res://presentation/combat/hit_feedback.gd")
+const DamageNumbers = preload("res://presentation/combat/damage_numbers.gd")
 const AttackMotion = preload("res://presentation/combat/attack_motion.gd")
 var actor
 var style
@@ -13,6 +14,7 @@ var sector: MeshInstance3D
 var blade_pivot: Node3D
 var label: Label3D
 var hit_feedback: HitFeedback
+var damage_numbers: DamageNumbers
 var blade: Node3D
 var weapon_effect: Node3D
 var _visual_rest_basis := Basis.IDENTITY
@@ -61,6 +63,9 @@ func configure(owner_actor, settings, font: Font) -> void:
 	label.font_size = style.health_font_size
 	label.pixel_size = style.health_label_pixel_size
 	add_child(label)
+	damage_numbers = DamageNumbers.new()
+	add_child(damage_numbers)
+	damage_numbers.configure(actor, style.damage_numbers, font, actor_style.body_height)
 	if actor.team != 0:
 		label.hide()
 		hit_feedback = HitFeedback.new()
@@ -81,6 +86,7 @@ func set_weapon_effect(scene: PackedScene) -> void:
 		weapon_effect.configure_blade(style.blade_size.z)
 	weapon_effect.set_active(false)
 func refresh(delta: float = 0.0) -> void:
+	if damage_numbers != null: damage_numbers.tick(delta)
 	if hit_feedback != null: hit_feedback.tick(delta)
 	var custom_animation := visual.has_method("refresh_actor")
 	if custom_animation: visual.refresh_actor(actor, delta)
@@ -91,6 +97,7 @@ func refresh(delta: float = 0.0) -> void:
 		_finish_weapon_pose()
 		_pose_visual(atan2(-actor.facing.x, -actor.facing.z), Vector3.ZERO)
 	visible = actor.health.alive() or actor_style.retain_corpse or (hit_feedback != null and hit_feedback.has_tail())
+	if damage_numbers != null and damage_numbers.has_tail(): visible = true
 	if custom_animation and visual.has_presentation_tail(): visible = true
 	if not visible: return
 	if not actor.health.alive():

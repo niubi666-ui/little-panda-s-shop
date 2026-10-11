@@ -26,6 +26,7 @@
 | 改动 | 优先检查 |
 |---|---|
 | 基础战斗/连段/反馈 | `combat_rules.gd`；需要实机时 `combo_feel.gd`、`combat_feedback.gd`、`combat_training.gd` |
+| 伤害跳字 | `damage_numbers.gd`；支持headless，图形模式额外输出 `builds/damage_numbers_preview.png`，覆盖双方实际扣血、免疫、致死、暂停、数量上限及清理 |
 | 镜头/刀光接口 | `hit_camera_shake.gd`、`golden_sword_trail.gd`、`sword_reach_alignment.gd`、`combat_effect_picker.gd`；火焰专项 `fire_slash_v002.gd` |
 | 玩家受击半径/擦身箭 | `player_hurt_radius.gd`；修改半径的内容/schema检查 |
 | 敌人/预算/碰撞 | `enemy_roles.gd`、`charger_obstacles.gd`；完整流程 `enemy_training.gd` |
@@ -55,7 +56,15 @@
 - 仅管理本任务启动的进程，不停用其他对话编辑器。图形测试可能移动指针/更新预览截图，运行前确认适合当前工作。
 - **用户未明确要求时不导出Release。** 文档整理只做文档链接、文件范围与一致性检查，不启动Godot或重导资产。
 
-## 双动作切片实际验证（2026-10-02）
+## 冰冻追击切片实际验证（2026-10-09）
+
+- 内容/schema/PO：396双语key，Build v7、Combat v3；新条件字段严格校验，旧v6/冻结rank2拒绝。
+- `freeze_followup.gd`：命中前状态、独立根、来源/房间/调试隔离、无自触发、继承基数、两卡共存、加算限幅、免疫/抗性、候选和失败/RNG隔离；当前351项通过。2米/6米目标使用1秒Q冷却、1.2秒普通冻结，第一发24、后续38.4，第二发不延长冻结。
+- headless本轮通过：`bound_build_policy`（72）、`bound_build_session`、`mechanism_content`（50）、`action_build_runtime`、`three_actions`、`freeze_guard`、`status_controls`、`action_build_vfx`（114）、`post_clear_skills`、`mechanism_order`、`run_session`（97，含两张新卡跨房保留）、`run_integration`（353）。
+- `action_build_integration` Forward+1280×800通过：六个预设、真实Q/左键输入、冻结追击事实、双语提示/预设界面、替换旧新说明、暂停/Popup门禁、真实重试清空；截图人工检查浅蓝追击提示。旧三个预设继续验证，普通训练菜单也已启用。
+- 原有7个Texture RID退出警告仍存在；未做完整性能、人工操作手感或正式存档验证。无Release、commit或push。输出在被忽略的`builds/ice_*.log`及`builds/action_ice_*.png`，不作为永久资源。
+
+## 双动作切片历史验证（2026-10-02）
 
 - 内容/PO检查：309双语key，Build v5与Combat v3通过；非法fixture拒绝由机制内容测试48项和绑定策略59项验证。
 - 本轮headless通过：`bound_build_policy`、`bound_build_session`、`mechanism_content`、`dual_actions`、`action_build_runtime`、`freeze_guard`、`status_controls`、`training_damage_override`、`mechanism_order`、`training_tools`。

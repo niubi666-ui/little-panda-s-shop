@@ -13,3 +13,9 @@ extends Resource
 @export var freeze_mesh: Mesh
 @export var freeze_material: Material
 @export var freeze_offset: Vector3
+@export var conditional_font: Font
+@export var conditional_font_size: int
+@export var conditional_color: Color
+@export var conditional_offset: Vector3
+@export var conditional_lifetime: float
+@export var conditional_pixel_size: float

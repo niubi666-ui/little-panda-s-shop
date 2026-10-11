@@ -8,6 +8,7 @@ const Contacts = preload("res://combat/builds/projectile_contacts.gd")
 const Capabilities = preload("res://combat/builds/projectile_capabilities.gd")
 const Statuses = preload("res://combat/status/status_runtime.gd")
 var statuses := Statuses.new()
+const Conditional = preload("res://combat/builds/conditional_damage.gd")
 const Impact = preload("res://combat/builds/impact_effects.gd")
 const Area = preload("res://combat/effects/area_payloads.gd")
 const Damage = preload("res://combat/effects/damage_executor.gd")
@@ -19,6 +20,7 @@ signal chain_emitted(points: PackedVector3Array)
 signal action_presented(fact: Dictionary)
 signal projectile_presented(fact: Dictionary)
 signal area_presented(fact: Dictionary)
+signal conditional_damage_applied(fact: Dictionary)
 
 var _catalog
 var _attack_ids: Array = []
@@ -38,6 +40,9 @@ var _next_event := 0
 var _room_generation := 0
 var _rejected := 0
 var _executed := 0
+var _conditional_hits := 0
+var _last_conditional: Dictionary = {}
+var _pending_conditionals: Array[Dictionary] = []
 
 func configure(catalog, player, targets: Callable, wall_query: Callable, attack_ids: Array = []) -> void:
 	clear_room()
@@ -128,7 +133,7 @@ func on_melee_hit(source, target, cast_id: int, ability_id: String, applied_dama
 	if source != _player or applied_damage <= 0.0 or not is_instance_valid(target): return
 	var context := _context_for_cast(cast_id)
 	if context.is_empty() or context.ability_id != ability_id: return
-	_schedule_chains(context, target, applied_damage, "direct_melee")
+	_schedule_chains(context, target, minf(applied_damage, context.damage), "direct_melee")
 
 func tick(delta: float) -> void:
 	if delta <= 0.0: return
@@ -158,6 +163,7 @@ func tick(delta: float) -> void:
 			"chain": _chain_step(context, request)
 			"area": _area_step(context, request)
 			"status": _status_step(context, request)
+	_flush_conditional_facts()
 	_reclaim_roots()
 
 func clear_room() -> void:
@@ -165,6 +171,9 @@ func clear_room() -> void:
 	for projectile in _projectiles.values():
 		ended.append(_projectile_fact(projectile, _roots[projectile.root_id], "terminated", "room_clear"))
 	statuses.clear()
+	_conditional_hits = 0
+	_last_conditional = {}
+	_pending_conditionals.clear()
 	_room_generation += 1
 	_roots.clear()
 	_cast_roots.clear()
@@ -186,7 +195,7 @@ func projectiles() -> Array[Dictionary]:
 func diagnostics() -> Dictionary:
 	var budgets: Dictionary = {}
 	for id in _roots: budgets[id] = _roots[id].budget
-	var result := {"roots": _roots.size(), "projectiles": _projectiles.size(), "queued": _queue.size(), "rejected": _rejected, "executed": _executed, "budgets": budgets, "room_generation": _room_generation}
+	var result := {"roots": _roots.size(), "projectiles": _projectiles.size(), "queued": _queue.size(), "rejected": _rejected, "executed": _executed, "budgets": budgets, "room_generation": _room_generation, "conditional_hits": _conditional_hits, "last_conditional": _last_conditional.duplicate(true)}
 	Resolver.freeze(result)
 	return result
 
@@ -262,7 +271,8 @@ func _advance_projectiles(delta: float) -> void:
 			var victim: int = target.handle
 			projectile.excluded[victim] = true
 			projectile.remaining_hits -= 1
-			var applied: float = Damage.apply(target, float(projectile.damage), context.team)
+			var origin: String = "direct_projectile" if int(projectile.generation) == 0 and context.program.executor == "projectile" else "split_projectile"
+			var applied: float = _apply_direct_damage(context, target, float(projectile.damage), origin)
 			if not _context_live(context): return
 			var presentation := _projectile_fact(projectile, context, "contact")
 			presentation.target_handle = victim
@@ -274,7 +284,7 @@ func _advance_projectiles(delta: float) -> void:
 			if applied > 0.0:
 				damage_applied.emit(_player, target, applied, "secondary_projectile")
 				if not _context_live(context): return
-				if is_instance_valid(target): _schedule_chains(context, target, applied, "secondary_projectile")
+				if is_instance_valid(target): _schedule_chains(context, target, minf(applied, projectile.damage), "secondary_projectile")
 			_schedule_splits(context, projectile, victim)
 			if int(projectile.remaining_hits) <= 0:
 				_terminate_projectile(id, "contact_limit")
@@ -420,4 +430,42 @@ func _status_step(context: Dictionary, request: Dictionary) -> void:
 
 func _apply_status(context: Dictionary, target, status_id: String, duration: float) -> void:
 	if not _context_live(context) or not is_instance_valid(target) or target.team == context.team: return
-	statuses.apply(target, status_id, duration, {"source_handle": context.source_handle, "team": context.team, "root_id": context.id, "room_generation": context.room_generation, "ability_id": context.ability_id, "action_id": context.action_id, "revision": context.revision, "presentation_key": context.program.presentation_key}, context.control_attempts)
+	statuses.apply(target, status_id, duration, {"runtime_id": get_instance_id(), "source_handle": context.source_handle, "team": context.team, "root_id": context.id, "room_generation": context.room_generation, "ability_id": context.ability_id, "action_id": context.action_id, "revision": context.revision, "presentation_key": context.program.presentation_key}, context.control_attempts)
+
+# MeleeResolver passes ordinary scaled damage. Contact/derived effects keep that base.
+func apply_melee_damage(source, target, amount: float) -> float:
+	if source != _player: return Damage.apply(target, amount, source.team)
+	var context := _context_for_cast(source.runner.cast_id)
+	if context.is_empty(): return Damage.apply(target, amount, source.team)
+	return _apply_direct_damage(context, target, amount, "direct_melee")
+
+func _apply_direct_damage(context: Dictionary, target, amount: float, origin: String) -> float:
+	var result := Conditional.evaluate(context, target, amount, origin, statuses, _catalog, get_instance_id())
+	var point: Vector3 = target.global_position
+	var handle: int = target.handle
+	var applied := Damage.apply(target, result.damage, context.team)
+	if applied > 0.0 and result.bonus > 0.0 and _context_live(context):
+		var fact := _action_fact(context, "conditional_damage")
+		fact.position = point
+		fact.target_handle = handle
+		fact.origin = origin
+		fact.bonus = result.bonus
+		fact.base_damage = amount
+		fact.damage = result.damage
+		fact.applied_damage = applied
+		fact.effect_ids = result.effect_ids
+		fact.room_generation = context.room_generation
+		Resolver.freeze(fact)
+		_pending_conditionals.append(fact)
+	return applied
+
+func _flush_conditional_facts() -> void:
+	# Publish after this step's committed contact/status work; never feed presentation
+	# back into damage. Clearing rooms from a listener invalidates remaining old facts.
+	var pending := _pending_conditionals
+	_pending_conditionals = []
+	for fact in pending:
+		if fact.room_generation != _room_generation: continue
+		_conditional_hits += 1
+		_last_conditional = fact.duplicate(true)
+		conditional_damage_applied.emit(fact)

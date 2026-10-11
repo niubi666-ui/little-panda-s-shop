@@ -130,14 +130,14 @@
     "build.choose": "Choose upgrade",
     "build.rank": "Rank {rank} / {max_rank}",
     "build.owned": "Current build",
-    "build.empty": "No upgrades yet. Both basic actions are ready.",
+    "build.empty": "No upgrades yet. LMB, RMB and Q base actions are available.",
     "build.error": "Choice could not be saved. Your build is unchanged; try again.",
     "build.test_offer": "Test: offer upgrades",
     "combat.choosing": "Choose a build upgrade to resume combat",
     "build.next": "Upgrade to rank {rank}",
     "build.no_candidates": "No further compatible upgrades are available.",
     "build.test.power.name": "Test · Sharpened blade",
-    "build.test.power.description": "Both actions gain {bonus_percent}% attack damage. Action bonuses add before the final cap; derived damage does not multiply the bonus again.",
+    "build.test.power.description": "Increase LMB, RMB and Q attack damage by {bonus_percent}%. Adds to action damage bonuses before the shared cap; derived damage is not scaled twice.",
     "build.test.agility.name": "Test · Fleet foot",
     "build.test.agility.description": "Normal movement speed increases by {bonus_percent}%. Dodge speed stays unchanged.",
     "build.test.wave.name": "Test · Sword wave",
@@ -388,6 +388,14 @@
     "build.action.skill": "Sword Wave skill",
     "combat.skill.ready": "{key} Sword Wave: Ready",
     "combat.skill.cooldown": "{key} Sword Wave: {seconds}s",
-    "combat.skill.disabled": "{key} Sword Wave: Unavailable"
+    "combat.skill.disabled": "{key} Sword Wave: Unavailable",
+    "build.shatter_followup.name": "Shatter Follow-up",
+    "build.shatter_followup.description": "Q direct hits deal +{bonus_percent}% damage to targets frozen by your earlier independent cast. Requires Q to deliver freeze. Does not end or refresh freeze; split and blast damage are unaffected.",
+    "build.opening_strike.name": "Opening Strike",
+    "build.opening_strike.description": "LMB direct hits deal +{bonus_percent}% damage to targets frozen by your earlier independent cast. Requires another regular action to deliver freeze. Does not end or refresh freeze or amplify derived damage.",
+    "build.preset.freeze_pierce": "Freeze + Pierce",
+    "build.preset.freeze_followup": "Freeze + Shatter Follow-up",
+    "build.preset.freeze_opening": "Freeze + Opening Strike",
+    "build.feedback.conditional": "Follow-up +{bonus_percent}%"
   }
 }

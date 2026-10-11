@@ -41,10 +41,13 @@ msgid "build.current_form"
 msgstr "当前形态：{form}"
 
 msgid "build.empty"
-msgstr "尚无升级，左右键基础动作均可使用"
+msgstr "尚无升级，左键、右键与 Q 基础动作均可使用"
 
 msgid "build.error"
 msgstr "选择未成功，当前构筑未改变，请重试。"
+
+msgid "build.feedback.conditional"
+msgstr "追击 +{bonus_percent}%"
 
 msgid "build.form.debug_arrow"
 msgstr "调试箭"
@@ -91,6 +94,12 @@ msgstr "升级至 {rank} 级"
 msgid "build.no_candidates"
 msgstr "当前没有可继续选择的兼容升级"
 
+msgid "build.opening_strike.description"
+msgstr "左键直接命中被你此前独立施放冻结的敌人，直接伤害 +{bonus_percent}%。需要另一个正式动作具备冻结能力；不解除或刷新冻结，派生伤害不增幅。"
+
+msgid "build.opening_strike.name"
+msgstr "乘隙斩"
+
 msgid "build.operation.add"
 msgstr "装备为 {rank} 级"
 
@@ -117,6 +126,15 @@ msgstr "基础三动作（零构筑）"
 
 msgid "build.preset.error"
 msgstr "预设暂不可用，请重新训练后再试。"
+
+msgid "build.preset.freeze_followup"
+msgstr "冰冻＋碎冰追击"
+
+msgid "build.preset.freeze_opening"
+msgstr "冰冻＋乘隙斩"
+
+msgid "build.preset.freeze_pierce"
+msgstr "冰冻＋贯穿"
 
 msgid "build.preset.frost_blast"
 msgstr "寒霜爆破"
@@ -181,6 +199,12 @@ msgstr "移除效果：{effect}"
 msgid "build.replaces"
 msgstr "替换：{name}（{rank} 级）"
 
+msgid "build.shatter_followup.description"
+msgstr "Q 直接命中被你此前独立施放冻结的敌人，直接伤害 +{bonus_percent}%。需要 Q 具备冻结能力；不解除或刷新冻结，分裂和爆炸不增伤。"
+
+msgid "build.shatter_followup.name"
+msgstr "碎冰追击"
+
 msgid "build.subtitle"
 msgstr "选择一个绑定升级，其它动作保留各自构筑"
 
@@ -227,7 +251,7 @@ msgid "build.test.mechanism_hint"
 msgstr "左键普攻 · 右键重击 · Q剑气 · T独立测试箭 · 蓝圈=寒霜"
 
 msgid "build.test.power.description"
-msgstr "左右键动作的攻击伤害增加 {bonus_percent}%，与动作增伤相加后统一限幅，派生伤害不会重复放大。"
+msgstr "左键、右键与 Q 动作的攻击伤害增加 {bonus_percent}%，与动作增伤相加后统一限幅，派生伤害不会重复放大。"
 
 msgid "build.test.power.name"
 msgstr "试验 · 锋刃强化"

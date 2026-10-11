@@ -43,6 +43,15 @@ func run() -> void:
 	check_staging_and_failure()
 	check_route_and_lifecycle()
 	check_death_priority_and_restart()
+	check(starter.apply_test_preset("freeze_followup").ok, "ice starter preset")
+	check(starter.submit_operation(starter.legal_operations("opening_strike")[0]).ok, "combined ice starter")
+	initial_build = starter.snapshot()
+	initial_program = starter.program()
+	var ice_run := fresh()
+	var entry_id := enter(ice_run, "start")
+	clear_and_map(ice_run, entry_id, 90.0)
+	enter(ice_run, "left")
+	check(ice_run.snapshot().build_state == initial_build and ice_run.snapshot().build_program == initial_program, "both new cards and their bindings survive room transition")
 	finish()
 
 func route() -> Dictionary:

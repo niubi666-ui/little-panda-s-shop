@@ -130,14 +130,14 @@
     "build.choose": "选择此升级",
     "build.rank": "等级 {rank} / {max_rank}",
     "build.owned": "当前构筑",
-    "build.empty": "尚无升级，左右键基础动作均可使用",
+    "build.empty": "尚无升级，左键、右键与 Q 基础动作均可使用",
     "build.error": "选择未成功，当前构筑未改变，请重试。",
     "build.test_offer": "测试：再抽三选一",
     "combat.choosing": "选择构筑升级后继续战斗",
     "build.next": "升级至 {rank} 级",
     "build.no_candidates": "当前没有可继续选择的兼容升级",
     "build.test.power.name": "试验 · 锋刃强化",
-    "build.test.power.description": "左右键动作的攻击伤害增加 {bonus_percent}%，与动作增伤相加后统一限幅，派生伤害不会重复放大。",
+    "build.test.power.description": "左键、右键与 Q 动作的攻击伤害增加 {bonus_percent}%，与动作增伤相加后统一限幅，派生伤害不会重复放大。",
     "build.test.agility.name": "试验 · 轻盈步伐",
     "build.test.agility.description": "普通移动速度提高 {bonus_percent}%。闪避速度保持原值。",
     "build.test.wave.name": "试验 · 挥刀剑气",
@@ -388,6 +388,14 @@
     "build.action.skill": "剑气技能",
     "combat.skill.ready": "{key} 剑气：就绪",
     "combat.skill.cooldown": "{key} 剑气：{seconds} 秒",
-    "combat.skill.disabled": "{key} 剑气：不可用"
+    "combat.skill.disabled": "{key} 剑气：不可用",
+    "build.shatter_followup.name": "碎冰追击",
+    "build.shatter_followup.description": "Q 直接命中被你此前独立施放冻结的敌人，直接伤害 +{bonus_percent}%。需要 Q 具备冻结能力；不解除或刷新冻结，分裂和爆炸不增伤。",
+    "build.opening_strike.name": "乘隙斩",
+    "build.opening_strike.description": "左键直接命中被你此前独立施放冻结的敌人，直接伤害 +{bonus_percent}%。需要另一个正式动作具备冻结能力；不解除或刷新冻结，派生伤害不增幅。",
+    "build.preset.freeze_pierce": "冰冻＋贯穿",
+    "build.preset.freeze_followup": "冰冻＋碎冰追击",
+    "build.preset.freeze_opening": "冰冻＋乘隙斩",
+    "build.feedback.conditional": "追击 +{bonus_percent}%"
   }
 }

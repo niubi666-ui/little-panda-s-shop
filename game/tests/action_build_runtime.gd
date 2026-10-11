@@ -38,6 +38,7 @@ func setup(selections: Array, wall: Callable = Callable()) -> Dictionary:
 	player.runner.finished.connect(runtime.on_finished)
 	var melee := Melee.new()
 	melee.set_damage_modifier(runtime.melee_damage)
+	melee.set_direct_damage_executor(runtime.apply_melee_damage)
 	melee.enemy_contact.connect(runtime.on_melee_contact)
 	melee.confirmed_hit.connect(runtime.on_melee_hit)
 	var state := {"selections": selections, "revision": 1}

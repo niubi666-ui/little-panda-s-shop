@@ -2,13 +2,14 @@ extends RefCounted
 ## Independent content boundary; never imports combat or application modules.
 
 const Catalog = preload("res://content/builds/build_catalog.gd")
-const SCHEMA_VERSION := 6
+const SCHEMA_VERSION := 7
 const MAX_ENTRIES := 512
 const MAX_RANKS := 64
 const MAX_STRING_LENGTH := 128
 const MAX_TAGS := 64
 const MAX_SAFE_INTEGER := 9007199254740991
 const EFFECT_FIELDS := {
+	"conditional_damage": ["status_id", "provider_scope", "allowed_origins", "source_relation", "root_relation", "bonus"],
 	"form": ["form_id"],
 	"pierce": ["trigger", "scope", "max_hits"],
 	"area_status": ["source_effect_id", "status_id", "allowed_origins", "include_primary", "max_targets"],
@@ -135,8 +136,10 @@ func _validate_limits(value: Variant) -> void:
 
 func _validate_stats(value: Variant) -> void:
 	var path := "build.stats"
-	if not _object(value, ["damage_scale_min", "damage_scale_max", "move_scale_min", "move_scale_max", "damage_composition"], path):
+	if not _object(value, ["damage_scale_min", "damage_scale_max", "move_scale_min", "move_scale_max", "damage_composition", "conditional_bonus_max", "conditional_composition"], path):
 		return
+	_number(value.conditional_bonus_max, 0.0, 2.0, path + ".conditional_bonus_max", true)
+	if value.conditional_composition != "additive_then_multiply_direct": errors.append(path + ": unsupported conditional composition")
 	var valid := true
 	if value.damage_composition != "additive_then_clamp": errors.append(path + ": unsupported damage composition")
 	for key in ["damage_scale_min", "damage_scale_max", "move_scale_min", "move_scale_max"]:
@@ -178,6 +181,12 @@ func _validate_upgrade(value: Variant, path: String) -> void:
 			continue
 		for key in rank:
 			match key:
+				"provider_scope":
+					if rank[key] not in ["same_action", "other_formal_action"]: errors.append(rank_path + ": invalid provider scope")
+				"source_relation":
+					if rank[key] != "same_actor_formal": errors.append(rank_path + ": invalid source relation")
+				"root_relation":
+					if rank[key] != "earlier_independent": errors.append(rank_path + ": invalid root relation")
 				"allowed_origins":
 					if _strings(rank[key], 3, rank_path + ".allowed_origins"):
 						if rank[key].is_empty(): errors.append(rank_path + ": empty origins")
@@ -208,6 +217,9 @@ func _validate_upgrade(value: Variant, path: String) -> void:
 				_:
 					_number(rank[key], 0.0, 10.0, rank_path + "." + key)
 
+		if value.effect_type == "conditional_damage":
+			_number(rank.bonus, 0, 2, rank_path + ".bonus", true)
+			if rank.allowed_origins is Array and rank.allowed_origins.has("split_projectile"): errors.append(rank_path + ": conditional damage only supports direct origins")
 
 func _validate_references(data: Dictionary) -> void:
 	var by_id: Dictionary = {}
@@ -238,7 +250,7 @@ func _validate_references(data: Dictionary) -> void:
 			if not available_tags.has(tag):
 				errors.append("build.upgrades." + entry.id + ": unknown required tag " + tag)
 		for rank in entry.ranks:
-			for selector in ["allowed_origins", "status_id", "source_effect_id"]:
+			for selector in ["allowed_origins", "status_id", "source_effect_id", "provider_scope", "source_relation", "root_relation"]:
 				if rank.has(selector) and rank[selector] != entry.ranks[0][selector]: errors.append("effect selectors must remain stable across ranks")
 			if entry.effect_type in ["explosion", "status"] and (rank.max_per_parent > rank.max_per_root or rank.max_per_root > data.limits.root_effect_budget): errors.append("explosion trigger limits inconsistent")
 			if entry.effect_type == "chain" and rank.jumps > data.limits.max_chain_jumps:
@@ -474,9 +486,10 @@ func _validate_statuses(data: Dictionary) -> void:
 			_string(actor_id, "actor response key")
 			if not _string(rules.actor_responses[actor_id], "actor response id") or not responses.has(rules.actor_responses[actor_id]): errors.append("unknown actor response")
 	for entry in data.upgrades:
-		if entry.effect_type not in ["status", "status_duration", "area_status"]: continue
+		if entry.effect_type not in ["status", "status_duration", "area_status", "conditional_damage"]: continue
 		for rank in entry.ranks:
 			if not definitions.has(rank.status_id): errors.append("unknown status reference")
+			elif entry.effect_type == "conditional_damage" and definitions[rank.status_id].kind != "freeze": errors.append("conditional damage requires a freeze state")
 
 
 func _validate_presets(data: Dictionary) -> void:
@@ -535,6 +548,7 @@ func _validate_preset_capabilities(data: Dictionary, preset: Dictionary, entries
 	var projectiles: Dictionary = {}
 	for form in data.forms: forms[form.id] = form
 	for projectile in data.projectiles: projectiles[projectile.id] = projectile
+	var capabilities: Dictionary = {}
 	for action in data.actions:
 		var selected: Array = []
 		var form_id: String = action.base_form_id
@@ -576,8 +590,24 @@ func _validate_preset_capabilities(data: Dictionary, preset: Dictionary, entries
 						if params.allowed_origins.has(origin) and source.params.allowed_origins.has(origin): compatible = true
 				if not compatible: errors.append("preset area status has no same-action source")
 				status_ids.append(params.status_id)
+		capabilities[action.id] = {"origins": origins, "statuses": status_ids, "test_only": action.test_only}
 		for value in selected:
 			if value.entry.effect_type == "status_duration" and not status_ids.has(value.params.status_id): errors.append("preset duration has no same-action status carrier")
+
+	for item in preset.selections:
+		var entry: Dictionary = entries[item.upgrade_id]
+		if entry.effect_type != "conditional_damage": continue
+		var params: Dictionary = entry.ranks[int(item.rank) - 1]
+		var receiver: Dictionary = capabilities[item.action_id]
+		var origin_ok := false
+		for origin in receiver.origins:
+			if params.allowed_origins.has(origin): origin_ok = true
+		var provider_ok := false
+		for id in capabilities:
+			if capabilities[id].test_only: continue
+			if (params.provider_scope == "same_action") != (id == item.action_id): continue
+			if capabilities[id].statuses.has(params.status_id): provider_ok = true
+		if not origin_ok or not provider_ok: errors.append("preset conditional damage has no compatible formal freeze provider")
 
 func _validate_actions(data: Dictionary) -> void:
 	if not data.actions is Array or data.actions.is_empty() or data.actions.size() > 16 or not data.forms is Array or data.forms.is_empty() or data.forms.size() > 64:
@@ -624,6 +654,10 @@ func _validate_actions(data: Dictionary) -> void:
 				if not actions.has(id): errors.append("unknown upgrade action")
 				elif entry.test_only and not actions[id].test_only: errors.append("debug upgrade cannot target formal action")
 		var expected_layer: String = "form" if entry.effect_type == "form" else ("core" if entry.effect_type in ["status", "explosion"] else ("synergy" if entry.effect_type == "area_status" else "support"))
+		if entry.effect_type == "conditional_damage":
+			expected_layer = "synergy" if entry.ranks[0].provider_scope == "other_formal_action" else "support"
+			for id in entry.action_ids:
+				if actions.has(id) and actions[id].test_only: errors.append("conditional damage requires formal actions")
 		if entry.layer != expected_layer: errors.append("effect type and layer disagree")
 		if entry.effect_type in ["projectile", "chain"] and not entry.test_only: errors.append("legacy projectile/chain restricted to fixture")
 		if entry.effect_type == "form":

@@ -36,6 +36,7 @@ func run() -> void:
 			finish())
 	var path := "res://app/combat_training.tscn" if OS.get_cmdline_user_args().has("--ordinary") else "res://app/mechanism_slice.tscn"
 	arena = load(path).instantiate()
+	arena.training_panels_visible = true   # 本测试验证面板开关，从全部展开开始
 	root.add_child(arena)
 	current_scene = arena
 	arena.set_physics_process(false)

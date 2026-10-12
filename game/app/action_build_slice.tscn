@@ -2,6 +2,7 @@
 [ext_resource type="PackedScene" path="res://app/combat_training.tscn" id="base"]
 [node name="ActionBuildSlice" instance=ExtResource("base")]
 enable_mechanism_presets = true
+training_panels_visible = true
 test_attack_ids = Array[String](["test_arrow"])
 
 [node name="ArrowHint" type="Label" parent="UIRoot"]

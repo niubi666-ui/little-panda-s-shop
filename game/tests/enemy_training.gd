@@ -21,9 +21,16 @@ func spawn(plan: Dictionary):
 	var arena = Host.instantiate()
 	arena.build_choices_enabled = false
 	arena.initial_encounter_plan = plan
+	# 本测试的站位断言（开场即进入射程、光环覆盖）是按森林庭院的出生点写的，固定用它。
+	arena.room_presentation = load("res://presentation/rooms/forest_courtyard_v001/presentation.tres")
+	arena.training_panels_visible = true
 	var prop_catalog = preload("res://content/rooms/room_prop_loader.gd").new().load_catalog()
-	var reserved: Array[Vector3] = [Vector3(0,0,3),Vector3(-3,0,-3),Vector3(3,0,-3),Vector3(0,0,-5)]
-	arena.initial_room_plan = preload("res://rogue/rooms/prop_planner.gd").new().generate(7, prop_catalog, preload("res://presentation/rooms/forest_courtyard_v001/placement_surface.tres"), preload("res://presentation/rooms/props/forest_props.tres"), reserved)
+	# 用训练场当前房间自己的出生点和摆放面生成方案：换房间后本测试不必跟着改。
+	var probe: Node3D = arena.room_presentation.scene.instantiate()
+	var reserved: Array[Vector3] = [probe.get_node("PlayerSpawn").position]
+	for marker in probe.get_node("EnemySpawns").get_children(): reserved.append(marker.position)
+	probe.free()
+	arena.initial_room_plan = preload("res://rogue/rooms/prop_planner.gd").new().generate(7, prop_catalog, arena.room_presentation.placement_surface, arena.room_presentation.prop_visuals, reserved)
 	root.add_child(arena)
 	current_scene = arena
 	arena.set_physics_process(false)

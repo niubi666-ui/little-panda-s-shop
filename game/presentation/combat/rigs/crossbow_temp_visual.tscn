@@ -1,0 +1,11 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://presentation/combat/rigs/rigged_actor_visual.gd" id="script"]
+[ext_resource type="PackedScene" path="res://assets/combat_v1/characters/crossbow_temp.glb" id="model"]
+[ext_resource type="Resource" path="res://presentation/combat/rigs/crossbow_temp_clips.tres" id="clips"]
+[ext_resource type="Material" path="res://presentation/shared/toon/character_material.tres" id="material"]
+[node name="CrossbowVisual" type="Node3D"]
+script = ExtResource("script")
+clip_set = ExtResource("clips")
+material = ExtResource("material")
+telegraph_glow = 1.0
+[node name="Model" parent="." instance=ExtResource("model")]

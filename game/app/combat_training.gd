@@ -25,6 +25,8 @@ const EnemyLoader = preload("res://content/enemies/enemy_loader.gd")
 const EnemyRuntime = preload("res://combat/enemies/enemy_runtime.gd")
 const EncounterPlanner = preload("res://rogue/encounters/encounter_planner.gd")
 const EnemyPresentation = preload("res://presentation/combat/enemies/enemy_presentation.gd")
+const CombatJuice = preload("res://presentation/combat/combat_juice.gd")
+var juice: CombatJuice
 signal enemy_loot_ready(spawn_id: String, enemy_id: String, drops: Array)
 var initial_encounter_plan: Dictionary = {}
 var encounter_plan: Dictionary = {}
@@ -41,6 +43,8 @@ var _player_spawn: Vector3
 var _enemy_spawns: Array[Vector3] = []
 var _previous_taa := false
 @export var build_choices_enabled := true
+## 进入时是否展开训练面板（构筑/刀光/深度/房间）。关闭后仍可从顶部“界面显示”菜单打开。
+@export var training_panels_visible := true
 @export var enable_mechanism_presets := false
 @export var test_hint_key := "build.test.arrow_hint"
 @export var test_attack_ids: Array[String] = []
@@ -152,7 +156,9 @@ func _ready() -> void:
 	enemy_runtime.configure(player, catalog.player_hurt_radius(), _actor_query_origin, _enemy_sweep)
 	# 敌人技能（箭雨、冲锋等）命中玩家同样要有受击反馈
 	enemy_runtime.confirmed_hit.connect(func(source, victim, amount):
-		if victim == player and amount > 0.0 and enhanced_feel and is_instance_valid(source): feel.player_hurt(player.global_position - source.global_position))
+		if victim == player and amount > 0.0 and enhanced_feel and is_instance_valid(source):
+			feel.player_hurt(player.global_position - source.global_position)
+			if juice != null: juice.player_hurt())
 	enemy_presentation = EnemyPresentation.new()
 	add_child(enemy_presentation)
 	enemy_presentation.configure(enemy_runtime, Style, $Camera, room.rift_surfaces() if room!=null and room.has_method("rift_surfaces") else [])
@@ -165,6 +171,10 @@ func _ready() -> void:
 	hud = HUD.new()
 	$UIRoot.add_child(hud)
 	hud.configure(shared_theme, Style.hud_margin)
+	# 纯表现的战斗反馈（生命条、受伤闪红、击杀花瓣、闪避尘土）
+	juice = CombatJuice.new()
+	add_child(juice)
+	juice.configure(player, $UIRoot, shared_theme, self)
 	if not encounter_plan.is_empty():
 		hud.configure_encounters(encounter_depth, enemy_catalog.encounters.training_max_depth, Style.encounter_panel_position)
 		hud.encounter_requested.connect(_new_encounter)
@@ -223,6 +233,9 @@ func _ready() -> void:
 	# The existing effects visibility group owns both visual rehearsal surfaces.
 	hud.effect_picker.visibility_changed.connect(func(): skill_vfx.panel.visible = hud.effect_picker.visible)
 	builds.choice_panel.visibility_changed.connect(skill_vfx.refresh)
+	if not training_panels_visible:
+		# 默认收起训练面板，画面只留战斗；顶部“界面显示”菜单可以逐个打开。
+		for id in ["build", "fx", "depth", "room"]: training_tools.set_menu_visible(id, false)
 	print("[combat] training ready; waves=", _waves.size(), " encounter=", encounter_plan.get("seed", "fixture"))
 func _select_weapon_effect(effect_id: StringName) -> void:
 	if _leaving or (builds != null and builds.is_choosing()) or effect_id == selected_effect_id: return
@@ -257,6 +270,7 @@ func _spawn(definition: Catalog.Actor, point: Vector3, team: int) -> Actor:
 	var view := View.new()
 	actor.add_child(view)
 	view.configure(actor, Style, shared_theme.default_font)
+	if team != 0: actor.killed.connect(func(dead): if juice != null: juice.enemy_killed(dead))
 	actors.append(actor)
 	views.append(view)
 	return actor
@@ -499,6 +513,7 @@ func _physics_process(frame_delta: float) -> void:
 	builds.refresh(display_delta)
 	_follow_camera(0.0 if paused or builds.is_choosing() else frame_delta)
 	_apply_camera_shake(display_delta)
+	if juice != null: juice.refresh(0.0 if paused or builds.is_choosing() else frame_delta)
 	hud.update_state(player, encounter, _waves.size(), "choosing" if builds.is_choosing() else state, paused and not builds.is_choosing())
 	if not encounter_plan.is_empty(): hud.update_encounter(encounter_plan, encounter.wave_index)
 func _enemy_sight(source, target) -> bool:
@@ -566,7 +581,9 @@ func _on_confirmed_hit(source, target, _cast_id: int, ability_id: String, applie
 		if enhanced_feel: feel.hit(ability_id, target.global_position - player.global_position, not target.health.alive())
 	elif target == player and enhanced_feel:
 		feel.player_hurt(player.global_position - source.global_position)
+		if juice != null: juice.player_hurt()
 func _apply_camera_shake(delta: float) -> void:
+	if not $Camera.is_inside_tree(): return   # 退出场景时子节点先离开树
 	var offset := _camera_shake.tick(delta)
 	if enhanced_feel:
 		feel.tick(delta)          # 与原抖动共用显示时间：暂停时冻结

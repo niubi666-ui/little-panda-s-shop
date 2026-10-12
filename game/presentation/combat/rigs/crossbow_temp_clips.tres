@@ -1,0 +1,16 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/combat/rigs/actor_clip_set.gd" id="script"]
+[resource]
+script = ExtResource("script")
+idle = &"idle"
+move = &"walk"
+move_reference_speed = 2.6
+hit = &"hit"
+death = &"death"
+dodge = &""
+states = {
+"windup": &"aim",
+"recovery": &"shoot",
+"aiming": &"aim_hold"
+}
+blend_sec = 0.14

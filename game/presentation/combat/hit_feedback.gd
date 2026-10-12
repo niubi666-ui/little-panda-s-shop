@@ -56,6 +56,7 @@ func tick(delta: float) -> void:
 	bar_material.set_shader_parameter("health_ratio", bar_state.current)
 	bar_material.set_shader_parameter("trailing_ratio", bar_state.trailing)
 	bar.visible = actor.health.alive() or bar_state.trailing > 0.0
+	if settings.bar_hide_when_full and actor.health.alive() and bar_state.current >= 0.999 and bar_state.trailing <= bar_state.current: bar.visible = false
 	visual.visible = actor.health.alive() or flash_left > 0.0
 	for i in range(_bursts.size() - 1, -1, -1):
 		if not is_instance_valid(_bursts[i]): _bursts.remove_at(i)

@@ -7,6 +7,10 @@ var clip_clock := 0.0
 var death_age := 0.0
 var _dead := false
 
+func _ready() -> void:
+	# 与临时角色统一光照模型和轮廓光，保留模型自带贴图
+	preload("res://presentation/shared/toon/toon_skin.gd").apply(self, preload("res://presentation/shared/toon/character_material.tres"), true)
+
 func validate_assets() -> bool:
 	var player: AnimationPlayer = find_child("AnimationPlayer", true, false)
 	if player == null or style == null: return false

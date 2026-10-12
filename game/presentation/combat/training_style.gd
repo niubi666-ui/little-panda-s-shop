@@ -17,6 +17,8 @@ extends Resource
 @export var camera_min_size: float
 @export var camera_max_size: float
 @export var camera_zoom_step: float
+## 是否在玩家头顶显示“当前/最大生命”文字；有屏幕生命条时关掉
+@export var player_health_label := true
 @export var health_label_height: float
 @export var health_font_size: int
 @export var hud_margin: int

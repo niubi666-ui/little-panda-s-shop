@@ -5,6 +5,9 @@ const TESSELLATION_SEGMENTS := 32
 const HitFeedback = preload("res://presentation/combat/hit_feedback.gd")
 const DamageNumbers = preload("res://presentation/combat/damage_numbers.gd")
 const AttackMotion = preload("res://presentation/combat/attack_motion.gd")
+const TelegraphShader = preload("res://presentation/combat/fx/telegraph.gdshader")
+var _sector_material: ShaderMaterial
+var _sector_shape := Vector2.ZERO
 var actor
 var style
 var actor_style
@@ -44,7 +47,7 @@ func configure(owner_actor, settings, font: Font) -> void:
 	add_child(blade_pivot)
 	assert(style.weapon_visual_scene != null)
 	blade = Node3D.new()
-	if not actor_style.embedded_weapon:
+	if not actor_style.embedded_weapon and not actor_style.virtual_blade:
 		var sword_visual: Node3D = style.weapon_visual_scene.instantiate()
 		# Source model has a unit-length blade along -Z; keep VFX midpoint unscaled.
 		sword_visual.scale = Vector3.ONE * style.blade_size.z
@@ -66,6 +69,8 @@ func configure(owner_actor, settings, font: Font) -> void:
 	damage_numbers = DamageNumbers.new()
 	add_child(damage_numbers)
 	damage_numbers.configure(actor, style.damage_numbers, font, actor_style.body_height)
+	# 玩家生命改由屏幕下方的生命条显示时，头顶文字关闭
+	if actor.team == 0 and not style.player_health_label: label.hide()
 	if actor.team != 0:
 		label.hide()
 		hit_feedback = HitFeedback.new()
@@ -129,7 +134,8 @@ func refresh(delta: float = 0.0) -> void:
 		blade.position = Vector3(pose.lateral_offset, style.blade_offset.y + pose.grip_height_offset, -(reach - pose.tip_retreat - style.blade_size.z / 2.0))
 		blade.rotation.x = deg_to_rad(pose.pitch_deg)
 		blade_pivot.rotation.y += deg_to_rad(pose.yaw_deg)
-		_pose_visual(yaw, pose.body_degrees)
+		# 自带骨骼动作的模型不再叠加程序化的身体倾斜
+		_pose_visual(yaw, Vector3.ZERO if custom_animation else pose.body_degrees)
 		trail_enabled = motion.trail_enabled
 	if actor.runner.busy():
 		var ability = actor.runner.ability
@@ -139,7 +145,9 @@ func refresh(delta: float = 0.0) -> void:
 		sector.rotation.y = yaw
 		if sector.visible:
 			var tint: Color = style.warning_color if phase == "windup" else style.strike_color
-			_draw_sector(ability.radius, ability.angle, tint)
+			# 前摇：从脚下向外填满，填满即出手；判定帧整体提亮
+			var charge: float = clampf(actor.runner.elapsed / maxf(ability.windup, 0.001), 0.0, 1.0)
+			_draw_sector(ability.radius, ability.angle, tint, charge if phase == "windup" else 1.0, 0.0 if phase == "windup" else 1.0)
 	if is_instance_valid(weapon_effect):
 		weapon_effect.set_active(phase == "active" and trail_enabled)
 		if weapon_effect.has_method("sample_current_pose"):
@@ -170,19 +178,32 @@ func _finish_weapon_pose() -> void:
 		weapon_effect.finish_at_current_pose()
 	elif is_instance_valid(weapon_effect):
 		weapon_effect.set_active(false)
-func _draw_sector(radius: float, angle: float, color: Color) -> void:
-	var mesh := ImmediateMesh.new()
-	var material := StandardMaterial3D.new()
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	material.albedo_color = color
-	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES, material)
-	for i in TESSELLATION_SEGMENTS:
-		var a := -angle / 2.0 + angle * float(i) / TESSELLATION_SEGMENTS
-		var b := -angle / 2.0 + angle * float(i + 1) / TESSELLATION_SEGMENTS
-		mesh.surface_add_vertex(Vector3.ZERO)
-		mesh.surface_add_vertex(Vector3(sin(a), 0, -cos(a)) * radius)
-		mesh.surface_add_vertex(Vector3(sin(b), 0, -cos(b)) * radius)
-	mesh.surface_end()
-	sector.mesh = mesh
+func _draw_sector(radius: float, angle: float, color: Color, fill: float = 1.0, hot: float = 0.0) -> void:
+	# 扇形网格只在形状变化时重建；颜色与填充进度走材质参数。
+	if _sector_material == null:
+		_sector_material = ShaderMaterial.new()
+		_sector_material.shader = TelegraphShader
+		sector.material_override = _sector_material
+	if not is_equal_approx(radius, _sector_shape.x) or not is_equal_approx(angle, _sector_shape.y):
+		_sector_shape = Vector2(radius, angle)
+		var mesh := ImmediateMesh.new()
+		mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
+		for i in TESSELLATION_SEGMENTS:
+			var ta := float(i) / TESSELLATION_SEGMENTS
+			var tb := float(i + 1) / TESSELLATION_SEGMENTS
+			var a := -angle / 2.0 + angle * ta
+			var b := -angle / 2.0 + angle * tb
+			# UV.x 沿弧向（两侧为边），UV.y 沿半径（0 在施放者脚下）
+			mesh.surface_set_uv(Vector2((ta + tb) / 2.0, 0.0))
+			mesh.surface_add_vertex(Vector3.ZERO)
+			mesh.surface_set_uv(Vector2(ta, 1.0))
+			mesh.surface_add_vertex(Vector3(sin(a), 0, -cos(a)) * radius)
+			mesh.surface_set_uv(Vector2(tb, 1.0))
+			mesh.surface_add_vertex(Vector3(sin(b), 0, -cos(b)) * radius)
+		mesh.surface_end()
+		sector.mesh = mesh
+	_sector_material.set_shader_parameter("color", color)
+	_sector_material.set_shader_parameter("fill", fill)
+	_sector_material.set_shader_parameter("hot", hot)
+	_sector_material.set_shader_parameter("edge_soft", 0.06)
+	_sector_material.set_shader_parameter("rim", 0.03)

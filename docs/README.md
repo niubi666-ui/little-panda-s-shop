@@ -4,6 +4,7 @@
 
 | 本次任务 | 首选文档 | 必要时补读 |
 |---|---|---|
+| 战斗画面、樱花林训练场、临时角色/敌人模型、替换模型 | [COMBAT_VISUAL_PASS](COMBAT_VISUAL_PASS.md) | 换角色、换场地、重新生成临时美术的步骤都在这页 |
 | 战斗手感、命中、模型/刀光接口 | [COMBAT_PROTOTYPE](COMBAT_PROTOTYPE.md) | 改复杂规则再读 [战斗扩展](contracts/COMBAT_AND_BUILDS.md) |
 | 敌人、深度预算、遭遇、掉落钩子 | [ENEMY_ROLES_AND_ENCOUNTERS](ENEMY_ROLES_AND_ENCOUNTERS.md) | [当前问题](KNOWN_ISSUES.md) |
 | 精英游侠、长弓动作、刷新训练实例 | [ELITE_RANGER](ELITE_RANGER.md) | 当前配置、动画导出、针对性验证和限制 |

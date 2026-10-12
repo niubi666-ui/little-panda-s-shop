@@ -108,12 +108,13 @@ func _test_queued_combo() -> void:
 		if not check(samples.has(id) and samples[id].size() >= 2, "active blade samples exist: " + id): continue
 		var first: Dictionary = samples[id][0]
 		var last: Dictionary = samples[id][-1]
+		# 2026-10-12：第一刀改为正手（右→左），第二刀反手（左→右），与骨骼动作一致。
 		if id == "slash.1":
-			check(first.side < last.side, "first slash travels from the actor's left to right")
-			check(first.screen_x < last.screen_x, "first slash projects left to right on screen")
+			check(first.side > last.side, "first slash travels from the actor's right to left")
+			check(first.screen_x > last.screen_x, "first slash projects right to left on screen")
 		elif id == "slash.2":
-			check(first.side > last.side, "second slash travels from the actor's right to left")
-			check(first.screen_x > last.screen_x, "second slash projects right to left on screen")
+			check(first.side < last.side, "second slash travels from the actor's left to right")
+			check(first.screen_x < last.screen_x, "second slash projects left to right on screen")
 		else:
 			check(last.forward > first.forward, "third strike extends forward")
 			for sample in samples[id]:

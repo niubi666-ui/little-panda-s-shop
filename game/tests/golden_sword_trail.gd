@@ -25,8 +25,9 @@ func run() -> void:
 		finish()
 		return
 	var fixture := make_fixture(catalog, 1)
-	check_complete_sweep(fixture, catalog.ability("slash.1"), true)
-	check_complete_sweep(fixture, catalog.ability("slash.2"), false)
+	# 2026-10-12：第一刀改为正手（右→左），第二刀反手（左→右）。
+	check_complete_sweep(fixture, catalog.ability("slash.1"), false)
+	check_complete_sweep(fixture, catalog.ability("slash.2"), true)
 	check_forward_thrust(fixture, catalog.ability("slash.3"))
 	check_pause_and_decay(fixture)
 	check_cancel_and_separate_strokes(fixture, catalog.ability("slash.1"))

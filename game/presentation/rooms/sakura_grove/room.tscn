@@ -1,0 +1,99 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://presentation/rooms/sakura_grove/sakura_grove_room.gd" id="script"]
+[ext_resource type="PackedScene" path="res://assets/combat_v1/arena/sakura_grove.glb" id="art"]
+[ext_resource type="Shader" path="res://presentation/shared/toon/world_toon.gdshader" id="world"]
+[ext_resource type="Shader" path="res://presentation/rooms/sakura_grove/court_floor.gdshader" id="floor"]
+[ext_resource type="Shader" path="res://presentation/rooms/sakura_grove/ground.gdshader" id="ground"]
+[ext_resource type="Shader" path="res://presentation/rooms/sakura_grove/canopy_gobo.gdshader" id="gobo"]
+[ext_resource type="Shader" path="res://presentation/rooms/sakura_grove/light_shaft.gdshader" id="shaft"]
+[ext_resource type="Shader" path="res://presentation/rooms/sakura_grove/screen_mood.gdshader" id="mood"]
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+background_color = Color(0.16, 0.2, 0.2, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7, 0.71, 0.93, 1)
+ambient_light_energy = 0.5
+reflected_light_source = 1
+tonemap_mode = 2
+tonemap_exposure = 1.0
+tonemap_white = 1.9
+ssao_enabled = true
+ssao_radius = 0.9
+ssao_intensity = 1.1
+ssao_power = 1.4
+ssao_light_affect = 0.1
+glow_enabled = true
+glow_levels/1 = 0.4
+glow_levels/2 = 0.8
+glow_levels/3 = 1.0
+glow_levels/4 = 0.7
+glow_levels/5 = 0.3
+glow_intensity = 0.62
+glow_strength = 0.9
+glow_bloom = 0.06
+glow_blend_mode = 1
+glow_hdr_threshold = 0.95
+adjustment_enabled = true
+adjustment_contrast = 1.04
+adjustment_saturation = 1.1
+
+[node name="SakuraGrove" type="Node3D"]
+script = ExtResource("script")
+world_shader = ExtResource("world")
+floor_shader = ExtResource("floor")
+ground_shader = ExtResource("ground")
+gobo_shader = ExtResource("gobo")
+shaft_shader = ExtResource("shaft")
+mood_shader = ExtResource("mood")
+
+[node name="Art" parent="." instance=ExtResource("art")]
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Sun" type="DirectionalLight3D" parent="Lights"]
+light_color = Color(1, 0.86, 0.7, 1)
+light_energy = 1.55
+light_angular_distance = 1.0
+shadow_enabled = true
+shadow_bias = 0.03
+shadow_normal_bias = 1.2
+shadow_blur = 1.0
+shadow_opacity = 0.86
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 80.0
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+position = Vector3(0, 0.12, 4.8)
+
+[node name="EnemySpawns" type="Node3D" parent="."]
+
+[node name="A" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(-5.8, 0.12, -4.4)
+
+[node name="B" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(5.8, 0.12, -4.4)
+
+[node name="C" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(0, 0.12, -6.4)
+
+[node name="D" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(-7.8, 0.12, 0.5)
+
+[node name="E" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(7.8, 0.12, 0.5)
+
+[node name="F" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(-3.6, 0.12, -6.6)
+
+[node name="G" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(3.6, 0.12, -6.6)
+
+[node name="H" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(0, 0.12, -3.2)
+
+[node name="ReservedRuntimeProps" type="Node3D" parent="."]

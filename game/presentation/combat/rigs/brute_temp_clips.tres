@@ -1,0 +1,19 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/combat/rigs/actor_clip_set.gd" id="script"]
+[resource]
+script = ExtResource("script")
+idle = &"idle"
+move = &"walk"
+move_reference_speed = 1.5
+hit = &"hit"
+death = &"death"
+dodge = &""
+attacks = {
+"enemy.slam": &"attack"
+}
+attack_fallback = Array[StringName]([&"attack"])
+attack_cuts = {
+&"attack": Vector2(1.15, 1.3333)
+}
+blend_sec = 0.16
+attack_blend_sec = 0.1

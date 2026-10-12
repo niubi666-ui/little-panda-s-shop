@@ -8,3 +8,5 @@ extends Resource
 @export var visual_yaw_offset_deg: float
 @export var retain_corpse: bool = false
 @export var embedded_weapon: bool = false
+## 模型自带武器和攻击动作，但仍保留一把不可见的虚拟剑来驱动刀光特效。
+@export var virtual_blade: bool = false

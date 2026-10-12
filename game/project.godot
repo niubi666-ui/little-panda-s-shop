@@ -105,4 +105,6 @@ toggle_language={
 [rendering]
 
 anti_aliasing/quality/msaa_3d=2
+lights_and_shadows/directional_shadow/size=4096
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
 environment/volumetric_fog/volume_size=128

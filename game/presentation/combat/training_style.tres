@@ -61,6 +61,7 @@ camera_size = 17.5
 camera_min_size = 12.0
 camera_max_size = 24.0
 camera_zoom_step = 1.0
+player_health_label = false
 health_label_height = 2.0
 health_font_size = 36
 hud_margin = 24

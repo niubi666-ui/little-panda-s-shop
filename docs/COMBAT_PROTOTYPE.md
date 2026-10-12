@@ -150,7 +150,7 @@ schema_version=3继续要求每项能力必填`hit_shape`与`thrust_width_m`：s
 ### 普通与寒冰剑气表现
 
 - 训练“技能特效演示”现在提供冰晶突进、岩脊冲击、普通剑气、寒冰剑气、雷霆裁决、霜冠天坠六选项；剑气纯视觉样片按固定路径飞行并播放终点爆发，不造成伤害。独立入口为 `启动剑气特效演示.cmd` / `game/presentation/combat/sword_wave_showcase/showcase.tscn`，支持重播、慢放、暂停与中英切换。
-- 实战已有的 `sword_wave` 投射物已映射新普通剑气；只有本次施放的已提交快照包含 `contact_freeze` 时选寒冰剑气。美术不会添加冻结；带 `frost_blast` 但不带直接冻结的构筑保持普通飞行外观，沿用既有寒霜范围反馈。规则选择语义见[Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。
+- 实战已有的 `sword_wave` 投射物已映射新普通剑气；本次已提交快照包含 `contact_freeze` 或确实满蓄力时选寒冰剑气。美术不会添加冻结；带 `frost_blast` 但不带直接冻结的构筑保持普通飞行外观，沿用既有寒霜范围反馈。规则选择语义见[Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。
 - `normal_wave.tscn/frost_wave.tscn` 仅负责局部飞行外观，由 `configure_effect(fact)` 进入外部时钟模式，`sync_effect(fact,delta)` 接受推进；父适配器独占位置、朝向、半径缩放和销毁。`set_time_running(false)` 冻结全部视觉层，局部随机及材质按实例隔离。普通/寒冰弧刃各940三角面，Blender源文件在 `source_assets/vfx/sword_waves_v001/models/sword_wave_models_v001.blend`。
 - 普通/寒冰剑气主体及残影刃面保持平行地面，随发射方向只做平面转向；对应profile取消刃面倾斜，源资源生成器同步。粒子仍可上下散落，不改变攻击半径/速度/伤害。2026-10-06 `post_clear_skills.gd` 检查真实节点360方向、跨清场起手、重复空放、暂停、奖励隔离和退出清理；headless及Forward+通过，图形退出仍有已知7个Texture RID警告。路线集成343项、训练工具回归通过。
 - 演示的宽弧用于外观评审；真实投射物通过Resource中的 `projectile_unit_scale` 将主体归一到局部宽1，再接受适配器的真实 `2×radius` 宽度。稀薄尾流/柔光不是攻击几何，未修改任何伤害、半径、速度或状态JSON。
@@ -196,3 +196,5 @@ schema_version=3继续要求每项能力必填`hit_shape`与`thrust_width_m`：s
 `abilities[id=wave_cast]`的`windup_sec=0`、`cooldown_sec=1.0`（2026-10-07）；基础动作许可与输入仲裁仍生效，接受施放时立刻触发发射，无需等待蓄力。保留0.1秒释放/0.3秒收招表现，它们不延迟剑气生成；普通三连击和重斩时序不变。schema允许零前摇，AbilityRunner在提交快照后同步发cue；同一施放不重复发射。冷却从接受施放计，按游戏逻辑时钟推进，暂停不推进。
 
 本次内容检查、action_build_runtime、dual_actions、combat_rules、post_clear_skills 均通过；覆盖同帧发射、1秒冷却、无重复cue、同步取消、清场后空放与普通攻击回归。使用无头场景验证，未做新图形手感验收。
+
+满蓄力剑气已按寒冰演示校准为约3.9米主体宽，实际命中半径同步为1.95米；满蓄力采用原演示整体比例。调参入口为Build JSON的charged_wave.ranks与build_effects_style.tres满蓄力规则。2026-10-12专项验证尺寸、3倍伤害、侧方命中、短按和无隐式冻结；图形手感待用户体验。

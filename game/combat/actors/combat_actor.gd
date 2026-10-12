@@ -8,6 +8,7 @@ signal killed(actor)
 signal control_interrupted
 var control_locked := false
 var control_move_scale := 1.0
+var control_action_scale := 1.0
 var definition: Catalog.Actor
 var health: Health
 var runner := Runner.new()
@@ -38,6 +39,39 @@ var buffered_action_id: String:
 var _dodge_requested := false
 var _build_move_scale := 1.0
 var _damage_immunity := false
+var protection_amount := 0.0
+var protection_left := 0.0
+var charging_skill := false
+var charge_elapsed := 0.0
+var _charged_intent := false
+func charge_parameters() -> Dictionary:
+	if not _action_program.has("skill"): return {}
+	for effect in _action_program.skill.effects:
+		if effect.type == "charge_projectile": return effect.params
+	return {}
+func press_skill() -> void:
+	var p := charge_parameters()
+	if p.is_empty(): request_action("skill"); return
+	if control_locked or not health.alive() or runner.busy() or runner.cooldown_for("skill") > 0.0 or dodge_left > 0.0: return
+	charging_skill = true
+	charge_elapsed = 0.0
+func release_skill() -> void:
+	if not charging_skill: return
+	var p := charge_parameters()
+	charging_skill = false
+	if p.is_empty(): return
+	request_action("skill")
+	_charged_intent = _queued_action == "skill" and charge_elapsed >= float(p.threshold_sec)
+func grant_protection(amount: float, duration: float) -> void:
+	if not health.alive(): return
+	protection_amount = amount
+	protection_left = duration
+func clear_protection() -> void:
+	protection_amount = 0.0
+	protection_left = 0.0
+func tick_protection(delta: float) -> void:
+	protection_left = maxf(0.0, protection_left - delta)
+	if protection_left <= 0.0: clear_protection()
 var hit_reaction_immune := false
 var enemy_move_multiplier := 1.0
 var enemy_attack_multiplier := 1.0
@@ -48,9 +82,12 @@ func set_build_movement_multiplier(value: float) -> void:
 	assert(is_finite(value) and value > 0.0)
 	_build_move_scale = value
 func clear_intents() -> void:
+	charging_skill = false
+	charge_elapsed = 0.0
 	_clear_attack_intent()
 	_dodge_requested = false
 func _clear_attack_intent() -> void:
+	_charged_intent = false
 	_queued_action = ""
 	_queued_frame = -1
 	_buffer_left = 0.0
@@ -118,6 +155,7 @@ func request_action(id: String, input_frame: int = -1) -> void:
 	var priorities := {"primary": 0, "special": 1, "skill": 2}
 	if frame == _queued_frame and priorities.get(_queued_action, -1) > priorities.get(id, -1): return
 	_queued_action = id
+	_charged_intent = false
 	_queued_frame = frame
 	_buffer_left = buffer_sec
 func _abilities_for(id: String) -> Array[Catalog.Ability]:
@@ -133,6 +171,8 @@ func invulnerable() -> bool:
 	return _damage_immunity or (dodge != null and dodge_left > 0.0 and dodge_age < dodge.invulnerable)
 func step(delta: float) -> void:
 	if not health.alive(): return
+	if charging_skill:
+		charge_elapsed = minf(charge_elapsed + delta, float(charge_parameters().max_charge_sec))
 	if control_locked:
 		clear_intents()
 		return
@@ -143,6 +183,7 @@ func step(delta: float) -> void:
 			charges += 1
 			recharge_left += dodge.recharge
 	if _dodge_requested and dodge != null and charges > 0 and dodge_left <= 0.0 and stagger_left <= 0.0 and runner.can_cancel_for_dodge():
+		charging_skill = false
 		runner.cancel("dodge")
 		_clear_attack_intent()
 		if charges == dodge.charges: recharge_left = dodge.recharge
@@ -166,13 +207,13 @@ func step(delta: float) -> void:
 		var definitions := _abilities_for(id)
 		var index := combo_index % definitions.size() if id == "primary" else 0
 		var context: Dictionary = _action_program[id] if _action_program.has(id) else {}
-		if runner.start(definitions[index], facing, context):
+		if runner.start(definitions[index], facing, context, _charged_intent):
 			_cast_tempo = enemy_attack_multiplier
 			combo_index = (index + 1) % definitions.size() if id == "primary" else 0
 			combo_idle = 0.0
 			_clear_attack_intent()
 	if not health.alive(): return
-	runner.tick(delta * _cast_tempo)
+	runner.tick(delta * _cast_tempo * control_action_scale)
 	_age_attack_intent(delta)
 	var move_multiplier := runner.ability.movement_multiplier if runner.busy() else 1.0
 	if not forced_velocity.is_zero_approx() and stagger_left <= 0.0:
@@ -180,8 +221,13 @@ func step(delta: float) -> void:
 	else:
 		motor.step(movement if stagger_left <= 0.0 else Vector3.ZERO, definition.speed * move_multiplier * _build_move_scale * enemy_move_multiplier, delta)
 func receive_hit(amount: float) -> float:
+	if not health.alive() or invulnerable() or amount <= 0.0: return 0.0
+	var absorbed := minf(protection_amount, amount)
+	protection_amount -= absorbed
+	amount -= absorbed
 	var applied := health.apply(amount, invulnerable())
 	if applied > 0.0 and health.alive() and not hit_reaction_immune:
+		charging_skill = false
 		if not runner.busy() or runner.ability.interruptible:
 			stagger_left = definition.stagger
 			runner.cancel("hit")
@@ -197,13 +243,15 @@ func cancel(reason: String = "cancelled") -> void:
 	forced_velocity = Vector3.ZERO
 	velocity = Vector3.ZERO
 func _die() -> void:
+	clear_protection()
 	cancel("death")
 	set_control(1.0, false)
 	collision_layer = 0
 	collision_mask = 0
 	killed.emit(self)
 
-func set_control(move_scale: float, locked: bool) -> void:
+func set_control(move_scale: float, locked: bool, action_scale: float = 1.0) -> void:
+	control_action_scale = action_scale if health.alive() else 1.0
 	var interrupt := locked and not control_locked and health.alive()
 	control_locked = locked and health.alive()
 	control_move_scale = move_scale if health.alive() else 1.0

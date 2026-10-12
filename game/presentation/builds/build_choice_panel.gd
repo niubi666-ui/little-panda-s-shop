@@ -1,6 +1,7 @@
 extends Control
 ## The application owns offers and commits. This view only requests a choice.
 signal choice_requested(offer_id: String, choice_id: String)
+signal close_requested
 
 const Style = preload("res://presentation/builds/build_ui_style.tres")
 var buttons: Dictionary = {}
@@ -15,6 +16,7 @@ var _cards: HBoxContainer
 var _error: Label
 var _error_key := ""
 var _card_text: Dictionary = {}
+var _close_button: Button
 
 
 func configure(catalog, shared_theme: Theme) -> void:
@@ -43,6 +45,9 @@ func configure(catalog, shared_theme: Theme) -> void:
 	_body.add_child(_cards)
 	_error = _label(_body, &"Muted", Style.error_color)
 	_error.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_close_button = Button.new()
+	_body.add_child(_close_button)
+	_close_button.pressed.connect(func(): close_requested.emit())
 	resized.connect(_layout)
 	_body.minimum_size_changed.connect(_layout.call_deferred)
 	dismiss()
@@ -88,6 +93,7 @@ func refresh_text() -> void:
 	if _title == null:
 		return
 	_title.text = tr("build.title")
+	_close_button.text = tr("build.reward.close")
 	_subtitle.text = tr("build.subtitle")
 	_error.text = tr(_error_key) if not _error_key.is_empty() else ""
 	_error.visible = not _error_key.is_empty()
@@ -97,6 +103,7 @@ func refresh_text() -> void:
 		var params := _description_params(entry, int(binding.rank), binding.action_id)
 		var labels: Dictionary = _card_text[id]
 		labels["name"].text = tr(entry["name_key"])
+		if binding.has("rarity_id"): labels["name"].text += " · " + tr("build.rarity." + binding.rarity_id)
 		labels["rank"].text = _action_label(binding.action_id) + " · " + tr("build.layer." + entry.layer) + "\n" + tr("build.rank").format(params)
 		labels["description"].text = tr(entry["description_key"]).format(params)
 		labels["next"].text = tr("build.operation." + binding.operation).format(params)

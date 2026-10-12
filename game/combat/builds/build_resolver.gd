@@ -124,6 +124,17 @@ func _operation(state: Dictionary, entry: Dictionary, action_id: String) -> Dict
 			result.replaced = selected.duplicate(true)
 	return result
 
+func inspect_upgrade(state: Dictionary, id: String) -> Array:
+	var results: Array = []
+	if not _catalog.has_upgrade(id): return results
+	var entry: Dictionary = _catalog.upgrade(id)
+	for action_id in (["global"] if entry.scope == "global" else entry.action_ids):
+		if action_id != "global" and _catalog.action(action_id).test_only: continue
+		var operation := _operation(state, entry, action_id)
+		var evaluated := evaluate(state, operation)
+		results.append({"operation": operation, "ok": evaluated.ok, "error_key": evaluated.error_key})
+	return Catalog.freeze_copy(results)
+
 func _compile(state: Dictionary) -> Dictionary:
 	var selected: Array = _ordered(state.selections)
 	var global_damage := 0.0
@@ -158,7 +169,7 @@ func _compile(state: Dictionary) -> Dictionary:
 				"damage_scale": damage_bonus += float(params.bonus)
 				"status_duration": durations[params.status_id] = float(durations.get(params.status_id, 0.0)) + float(params.bonus)
 				"area_status": area_grants.append({"upgrade_id": str(item.upgrade_id), "rank": int(item.rank), "params": params})
-				"projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage": plan.effects.append({"upgrade_id": str(item.upgrade_id), "type": str(entry.effect_type), "rank": int(item.rank), "params": params})
+				"projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage", "return_projectile", "charge_projectile", "consume_freeze", "projectile_path", "freeze_shield": plan.effects.append({"upgrade_id": str(item.upgrade_id), "type": str(entry.effect_type), "rank": int(item.rank), "params": params})
 		for effect in plan.effects:
 			if effect.type == "status": effect.params.duration_sec = _duration(effect.params.status_id, durations)
 			if effect.type != "explosion": continue

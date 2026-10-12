@@ -3,14 +3,17 @@ extends RefCounted
 const Catalog = preload("res://content/builds/build_catalog.gd")
 var _catalog: Catalog
 var _operations: Callable
+var _rewards: Dictionary = {}
 
-func configure(catalog: Catalog, operations: Callable) -> void:
+func configure(catalog: Catalog, operations: Callable, rewards: Dictionary = {}) -> void:
 	assert(catalog != null and operations.is_valid())
 	_catalog = catalog
 	_operations = operations
+	_rewards = rewards
 
-func sample(state: Dictionary, rng: RandomNumberGenerator) -> Array[Dictionary]:
+func sample(state: Dictionary, rng: RandomNumberGenerator, profile_id: String = "training_all") -> Array[Dictionary]:
 	assert(_catalog != null and rng != null)
+	if not _rewards.is_empty(): return _sample_profile(state, rng, profile_id)
 	var rules: Dictionary = _catalog.offer_rules()
 	assert(rules.target_weighting == "uniform", "Unknown authored binding weighting")
 	var bindings: Dictionary = {}
@@ -38,6 +41,38 @@ func sample(state: Dictionary, rng: RandomNumberGenerator) -> Array[Dictionary]:
 		candidates.append(_pick_binding(options, rng))
 		selected[id] = true
 	return candidates
+
+func _sample_profile(state: Dictionary, rng: RandomNumberGenerator, profile_id: String) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	if not _rewards.reward_profiles.has(profile_id): return result
+	var profile: Dictionary = _rewards.reward_profiles[profile_id]
+	var buckets: Dictionary = {}
+	var bindings: Dictionary = {}
+	for id in _rewards.upgrade_groups:
+		var rarity: String = _rewards.upgrade_groups[id]
+		if not profile.rarity_weights.has(rarity) or float(_catalog.upgrade(id).weight) <= 0.0: continue
+		var options: Array = _operations.call(state, id)
+		if options.is_empty(): continue
+		bindings[id] = options
+		if not buckets.has(rarity): buckets[rarity] = []
+		buckets[rarity].append(id)
+	while result.size() < int(profile.count) and not buckets.is_empty():
+		var rarities: Array = buckets.keys(); rarities.sort()
+		var total := 0.0
+		for rarity in rarities: total += float(profile.rarity_weights[rarity])
+		var roll := rng.randf() * total
+		var chosen: String = rarities.back()
+		for rarity in rarities:
+			roll -= float(profile.rarity_weights[rarity])
+			if roll < 0.0: chosen = rarity; break
+		var ids: Array[String] = []; ids.assign(buckets[chosen]); ids.sort()
+		var id: String = ids[_weighted_index(ids, rng)]
+		var option := _pick_binding(bindings[id], rng)
+		option.rarity_id = chosen
+		result.append(option)
+		buckets[chosen].erase(id)
+		if buckets[chosen].is_empty(): buckets.erase(chosen)
+	return result
 
 func is_eligible(id: String, state: Dictionary) -> bool:
 	return not _operations.call(state, id).is_empty()

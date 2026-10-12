@@ -1,6 +1,7 @@
 extends PanelContainer
 signal test_offer_requested
 signal test_preset_requested(id: String)
+signal reward_profile_requested(id: String)
 
 const Style = preload("res://presentation/builds/build_ui_style.tres")
 var _catalog
@@ -14,6 +15,18 @@ var _notice_params: Dictionary = {}
 var _test_button: Button
 var _preset_menu: MenuButton
 var _presets: Array = []
+var _reward_menu: MenuButton
+var _reward_profiles: Dictionary = {}
+var _reward_ids: Array = []
+
+func configure_reward_profiles(groups: Dictionary) -> void:
+	_reward_profiles = groups.reward_profiles
+	_reward_ids = _reward_profiles.keys()
+	_reward_menu = MenuButton.new()
+	_reward_menu.name = "RewardProfiles"
+	_test_button.get_parent().add_child(_reward_menu)
+	_reward_menu.get_popup().id_pressed.connect(func(index: int): reward_profile_requested.emit(_reward_ids[index]))
+	refresh_text()
 
 
 func configure(catalog, shared_theme: Theme, enable_test_presets: bool = false) -> void:
@@ -76,7 +89,7 @@ func update_state(selections: Array, program: Dictionary = {}) -> void:
 	refresh_text()
 
 func has_open_popup() -> bool:
-	return _preset_menu != null and _preset_menu.get_popup().visible
+	return (_preset_menu != null and _preset_menu.get_popup().visible) or (_reward_menu != null and _reward_menu.get_popup().visible)
 
 
 func set_notice(key: String, params: Dictionary = {}) -> void:
@@ -112,6 +125,10 @@ func refresh_text() -> void:
 	_notice.text = tr(_notice_key).format(params) if not _notice_key.is_empty() else ""
 	_notice.visible = not _notice_key.is_empty()
 	_test_button.text = tr("build.test_offer")
+	if _reward_menu != null:
+		_reward_menu.text = tr("build.reward.title")
+		_reward_menu.get_popup().clear()
+		for i in _reward_ids.size(): _reward_menu.get_popup().add_item(tr(_reward_profiles[_reward_ids[i]].name_key), i)
 	if _preset_menu != null:
 		_preset_menu.text = tr("build.preset.title")
 		_preset_menu.tooltip_text = tr("build.preset.hint")

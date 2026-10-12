@@ -28,7 +28,7 @@ func bind_brain(value) -> void:
 func refresh_actor(actor, delta: float) -> void:
 	if brain == null or animation == null: return
 	if actor.health.alive() and actor.control_locked: return
-	clock += delta
+	clock += delta * actor.control_action_scale if actor.health.alive() else delta
 	var clip := "idle"
 	var progress := 0.0
 	if not actor.health.alive():

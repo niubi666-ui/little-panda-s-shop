@@ -11,13 +11,15 @@ var _commit: Callable
 var _state: Dictionary = {}
 var _program: Dictionary = {}
 var _committing := false
+var _rewards: Dictionary = {}
 
-func configure(catalog: Catalog, seed: int, commit: Callable) -> void:
+func configure(catalog: Catalog, seed: int, commit: Callable, rewards: Dictionary = {}) -> void:
 	assert(catalog != null and commit.is_valid())
 	_catalog = catalog
 	_commit = commit
 	_resolver.configure(catalog)
-	_sampler.configure(catalog, _resolver.legal_operations)
+	_rewards = Catalog.freeze_copy(rewards)
+	_sampler.configure(catalog, _resolver.legal_operations, _rewards)
 	var rng := RandomNumberGenerator.new()
 	rng.seed = seed
 	_state = {"selections": [], "revision": 0, "history": [], "offer": {},
@@ -26,19 +28,20 @@ func configure(catalog: Catalog, seed: int, commit: Callable) -> void:
 	assert(not _program.is_empty(), "Validated initial action loadout must compile")
 	_committing = false
 
-func open_offer() -> Dictionary:
+func open_offer(profile_id: String = "training_all") -> Dictionary:
 	if _committing: return _result(false, "commit_in_progress")
+	if not _rewards.is_empty() and not _rewards.reward_profiles.has(profile_id): return _result(false, "unknown_reward_profile")
 	if not _state.offer.is_empty() and not _state.offer.resolved: return _result(true, "")
 	var candidate: Dictionary = _state.duplicate(true)
 	var rng := RandomNumberGenerator.new()
 	rng.state = int(candidate.rng_state)
-	var operations: Array[Dictionary] = _sampler.sample(_build_state(candidate), rng)
+	var operations: Array[Dictionary] = _sampler.sample(_build_state(candidate), rng, profile_id)
 	candidate.offer_sequence += 1
 	var offer_id := "training_build_%s" % candidate.offer_sequence
 	for index in operations.size():
 		operations[index]["choice_id"] = "%s_choice_%s" % [offer_id, index]
 	candidate.rng_state = str(rng.state)
-	candidate.offer = {"id": offer_id, "candidates": operations,
+	candidate.offer = {"id": offer_id, "candidates": operations, "profile_id": profile_id,
 		"resolved": operations.is_empty(), "base_revision": candidate.revision}
 	if not _submit(candidate, _program): return _result(false, "commit_failed")
 	return _result(true, "")
@@ -65,6 +68,9 @@ func choose(offer_id: String, choice_id: String) -> Dictionary:
 
 func legal_operations(upgrade_id: String = "") -> Array:
 	return Catalog.freeze_copy(_resolver.legal_operations(_build_state(_state), upgrade_id))
+
+func inspect_upgrade(id: String) -> Array:
+	return _resolver.inspect_upgrade(_build_state(_state), id)
 
 func submit_operation(operation: Dictionary) -> Dictionary:
 	# Explicit training/test command; no alternate ranks path. The UI sends only

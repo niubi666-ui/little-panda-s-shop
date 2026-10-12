@@ -1,0 +1,130 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://presentation/rooms/forest_ruin_v002/forest_ruin_room.gd" id="script"]
+[ext_resource type="PackedScene" path="res://assets/environments/forest_ruin_v002/forest_ruin_v002.glb" id="art"]
+[ext_resource type="Shader" path="res://presentation/rooms/forest_ruin_v002/terrain.gdshader" id="terrain"]
+[ext_resource type="Shader" path="res://presentation/rooms/forest_ruin_v002/stone.gdshader" id="stone"]
+[ext_resource type="Shader" path="res://presentation/rooms/forest_ruin_v002/foliage.gdshader" id="foliage"]
+[ext_resource type="Shader" path="res://presentation/rooms/forest_ruin_v002/water.gdshader" id="water"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest_ruin_v002/leaf_atlas.png" id="leaf"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest_ruin_v002/ground_albedo.png" id="ground"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest_ruin_v002/plaza_albedo.png" id="plaza"]
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
+sky_top_color = Color(0.42, 0.56, 0.78, 1)
+sky_horizon_color = Color(0.86, 0.84, 0.74, 1)
+ground_bottom_color = Color(0.16, 0.2, 0.11, 1)
+ground_horizon_color = Color(0.62, 0.66, 0.52, 1)
+sun_angle_max = 20.0
+sky_energy_multiplier = 1.0
+
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_mat")
+
+[sub_resource type="Environment" id="env"]
+background_mode = 2
+sky = SubResource("sky")
+ambient_light_source = 3
+ambient_light_sky_contribution = 1.0
+ambient_light_energy = 0.42
+reflected_light_source = 2
+tonemap_mode = 4
+tonemap_exposure = 0.85
+tonemap_white = 6.0
+ssao_enabled = true
+ssao_radius = 1.4
+ssao_intensity = 2.2
+ssao_power = 1.6
+ssao_light_affect = 0.15
+ssil_enabled = true
+ssil_radius = 4.0
+ssil_intensity = 0.6
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_levels/2 = 0.8
+glow_levels/3 = 0.6
+glow_levels/5 = 0.0
+glow_intensity = 0.55
+glow_strength = 0.9
+glow_bloom = 0.04
+glow_blend_mode = 1
+glow_hdr_threshold = 1.1
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.82, 0.82, 0.74, 1)
+fog_density = 0.004
+fog_sun_scatter = 0.35
+fog_depth_begin = 30.0
+fog_depth_end = 140.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+volumetric_fog_albedo = Color(1, 0.95, 0.88, 1)
+volumetric_fog_anisotropy = 0.5
+volumetric_fog_length = 80.0
+volumetric_fog_ambient_inject = 0.15
+volumetric_fog_sky_affect = 0.3
+adjustment_enabled = true
+adjustment_contrast = 1.16
+adjustment_saturation = 1.12
+
+[node name="ForestRuin" type="Node3D"]
+script = ExtResource("script")
+terrain_shader = ExtResource("terrain")
+stone_shader = ExtResource("stone")
+foliage_shader = ExtResource("foliage")
+water_shader = ExtResource("water")
+leaf_texture = ExtResource("leaf")
+ground_albedo = ExtResource("ground")
+plaza_albedo = ExtResource("plaza")
+
+[node name="Art" parent="." instance=ExtResource("art")]
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Sun" type="DirectionalLight3D" parent="Lights"]
+light_color = Color(1, 0.86, 0.68, 1)
+light_energy = 2.0
+light_angular_distance = 1.2
+light_volumetric_fog_energy = 1.2
+shadow_enabled = true
+shadow_bias = 0.04
+shadow_normal_bias = 1.0
+shadow_blur = 1.4
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.12
+directional_shadow_split_2 = 0.3
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 90.0
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+position = Vector3(0, 0.12, 5.5)
+
+[node name="EnemySpawns" type="Node3D" parent="."]
+
+[node name="A" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(-6.5, 0.12, -6.5)
+
+[node name="B" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(6.5, 0.12, -6.5)
+
+[node name="C" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(0, 0.12, -9.6)
+
+[node name="D" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(-8.0, 0.12, 0.5)
+
+[node name="E" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(8.0, 0.12, 0.5)
+
+[node name="F" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(-5, 0.12, -9.2)
+
+[node name="G" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(5, 0.12, -9.2)
+
+[node name="H" type="Marker3D" parent="EnemySpawns"]
+position = Vector3(0, 0.12, 6.8)
+
+[node name="ReservedRuntimeProps" type="Node3D" parent="."]

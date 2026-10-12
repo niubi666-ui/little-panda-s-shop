@@ -52,9 +52,11 @@ Resolver将协同编译进指定 `explosion.params.payloads`：第一个damage�
 
 ## 3. 状态定义与抗连续冻结
 
-顶层statuses：id、kind、duration_sec、max_duration_sec、move_scale、refresh、control_group。slow为refresh=`longest`、control_group为空、0<move_scale≤1；freeze为refresh=`reject_active`、move_scale=0，并引用同一有效冻结组。
+顶层statuses：id、kind、duration_sec、max_duration_sec、move_scale、refresh、control_group、linked_mark_id。mark为独立非控制标记；freeze可链接mark。slow为refresh=`longest`、control_group为空、0<move_scale≤1；freeze为refresh=`reject_active`、move_scale=0，并引用同一有效冻结组。
 
-status_rules：default_response_id、actor_responses、responses、control_groups。responses保留immune_kinds、slow_duration_scale、freeze_duration_scale；控制组本切片恰好一项 `{id,kind:freeze,thaw_immunity_sec}`，所有冻结ID共享。样本解冻抗冻窗为0.9秒。角色响应覆盖的ID在manifest加载/离线校验时核对；纯decode只检查Build内部引用。
+status_rules：default_response_id、actor_responses、responses、control_groups。responses包含immune_kinds、slow_duration_scale、freeze_duration_scale及必填整数freeze_hits_required（1–64）；控制组本切片恰好一项 `{id,kind:freeze,thaw_immunity_sec}`，所有冻结ID共享。样本解冻抗冻窗为0.9秒。角色响应覆盖的ID在manifest加载/离线校验时核对；纯decode只检查Build内部引用。
+
+精灵游侠映射 `boss_frost_slow`，首次申请成功产生有效冰冻窗口，但只减速、不硬定身。响应必填freeze_mode(hard/slow)、freeze_move_scale与freeze_action_scale(0.1–1)、thaw_immunity_scale(1–20)。窗口时长沿用freeze_duration_scale，抗冻时长为控制组时长×响应倍率。普通响应保持hard/1次；特殊elite_freeze_resistant保留3次累计。未满阈值无有效窗口；同根、活窗口、抗冻、免疫拒绝不累计；累计无衰减，死亡/clear清理。
 
 `status` rank为status_id、trigger、allowed_origins、max_per_parent、max_per_root。`status_duration` rank为status_id、bonus；时长=定义时长×(1+同状态强化之和)，夹到定义上限，再乘目标响应系数。完全免疫由immune_kinds表达；伤害无敌不自动等于控制免疫。
 
@@ -67,9 +69,9 @@ status_rules：default_response_id、actor_responses、responses、control_group
 
 ## 4. 控制执行接口
 
-`StatusRuntime.apply(target,id,duration,source,root_attempts={}) -> bool`；BuildRuntime对同根传同一个可变尝试表。`tick(delta)`、`remove(target,id)`、`clear()`、`snapshot(target)`、`control_snapshot(target)`、`diagnostics()`、`visuals()`。仅活状态产生视觉，抗冻记录不会继续显示冰罩。
+`StatusRuntime.apply(target,id,duration,source,root_attempts={}) -> bool`；BuildRuntime对同根传同一个可变尝试表。`tick(delta)`、`remove(target,id)`、`clear()`、`snapshot(target)`、`control_snapshot(target)`、`freeze_progress(target)`、`diagnostics()`、`visuals()`。freeze_progress返回只读的控制组→累计次数字典，不是活跃状态。仅硬冻结显示冰罩；有效减速窗口/寒印/抗冻分别输出可读提示，累计记录不冒充活状态。
 
-Actor.set_control统一向Motor和AbilityRunner下发许可。减速影响自愿移动/冲锋速度，不改攻击前摇、攻速或击退。冻结清空移动/强制位移/击退，取消技能与闪避，禁止新技能；不禁用Node、不用Timer恢复。
+Actor.set_control(move_scale,locked,action_scale=1)向Motor和AbilityRunner下发许可。普通slow只影响移动；Boss冰冻窗口额外缩放局部动作时间，游侠AI及动画从原进度继续。减速取最强项不相乘；已生成弹体/地面效果及状态时钟保持独立。hard模式清空位移、取消技能与闪避；slow模式不发control_interrupted、不取消技能。
 
 | 敌人路径 | 冻结规则 |
 |---|---|
@@ -78,7 +80,7 @@ Actor.set_control统一向Motor和AbilityRunner下发许可。减速影响自愿
 | 矛兵 | 停冲锋、禁止after_motion命中，解冻重新决策 |
 | 旗手 | 暂停移动和光环，解冻后重新计算范围 |
 
-冻结期间不推进该敌人的决策/动作冷却；解冻从idle重新决策，保留未消耗冷却。死亡优先，不因解冻恢复死亡者动作。状态时钟在AI前推进；玩家本步直接命中及有界派生队列在敌人命中窗口前结算，冻结可取消同帧敌人待判定攻击，每步不重复发放预算。三选一/设置暂停同时门控规则和占位表现。
+硬冻结期间不推进该敌人的决策/动作冷却；解冻从idle重新决策，保留未消耗冷却。死亡优先，不因解冻恢复死亡者动作。状态时钟在AI前推进；玩家本步直接命中及有界派生队列在敌人命中窗口前结算，冻结可取消同帧敌人待判定攻击，每步不重复发放预算。三选一/设置暂停同时门控规则和占位表现。
 
 ## 5. 能力、候选与预设
 
@@ -95,3 +97,7 @@ rogue抽取合法绑定操作；app/session提交再次使用同一纯评估。t
 碎冰追击（Q支持）与乘隙斩（左键协同）使用conditional_damage处理器；前置分别为本动作/另一个正式动作的实际冻结能力。命中前读取状态，必须同玩家、同runtime/房间、更早独立根、非调试动作；当前直接伤害先修正再提交，再处理接触冻结等效果。同根首次冻结不能反过来增幅自身，也不刷新/解除冻结。普通接触派生基数不含追击增量，穿透对沿途每个目标分别求值。
 
 contact_freeze已精简为一个有效等级，冻结延长仍为独立卡。条件字段、加算上限、已提交反馈和诊断见[Build API](BUILD_IMPLEMENTATION_CONTRACT.md#条件伤害-v7)。抗冻、免疫、死亡与状态清理规则不变。
+
+### 有效冰冻窗口事实
+
+`freeze_window_applied(target,status_id,source)`只在成功提交窗口后发出一次；寒印刷新/抗冻拒绝/累计不足不发布。snapshot中的freeze实例表示有效窗口，不代表一定硬定身；真实硬冻结读取Actor.control_locked。条件追击与消费使用前者，冰棱遗落设计仍需后者。

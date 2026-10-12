@@ -13,6 +13,7 @@ const Style = preload("res://presentation/combat/training_style.tres")
 const ThemeFactory = preload("res://presentation/foliage/foliage_theme_factory.gd")
 const EffectPalette = preload("res://presentation/combat/effect_picker/palette.tres")
 const CameraShake = preload("res://presentation/combat/hit_camera_shake.gd")
+const CombatFeel = preload("res://presentation/combat/combat_feel.gd")
 const TrainingBuilds = preload("res://app/training_builds.gd")
 const TrainingTools = preload("res://app/training_tools.gd")
 const TrainingSkillVfx = preload("res://app/training_skill_vfx.gd")
@@ -69,6 +70,11 @@ var shared_theme: Theme
 var pause_menu
 var selected_effect_id: StringName
 var _camera_shake := CameraShake.new()
+var feel := CombatFeel.new()
+## 关掉后恢复原来的硬跟随、无顿帧（回归测试用）
+@export var enhanced_feel := true
+var _camera_base := Vector3.ZERO
+var _camera_base_valid := false
 func _ready() -> void:
 	if room_presentation != null:
 		assert(room_presentation.scene != null and not room_presentation.template_id.is_empty())
@@ -117,6 +123,12 @@ func _ready() -> void:
 		$UIRoot/ArrowHint.text = tr(test_hint_key)
 	player = _spawn(catalog.player(), _player_spawn, 0)
 	player.killed.connect(func(_actor): _finish("defeat"))
+	# 出招前冲：每一击在出手瞬间向前踏一步，让攻击有“压上去”的重量感
+	if enhanced_feel:
+		player.runner.cue_reached.connect(func(_cast, ability_id):
+			var lunge: Dictionary = {"slash.1": [5.5, 0.08], "slash.2": [5.5, 0.08], "slash.3": [9.0, 0.11], "heavy_slash": [8.0, 0.12]}
+			if lunge.has(ability_id) and player.health.alive():
+				player.motor.push(player.runner.direction, lunge[ability_id][0], lunge[ability_id][1]))
 	if room_presentation != null and room_presentation.placement_surface != null:
 		room_props = TrainingRoomProps.new()
 		add_child(room_props)
@@ -138,6 +150,9 @@ func _ready() -> void:
 		encounter_depth = int(encounter_plan.depth)
 		_waves = encounter_plan.waves.map(func(wave): return wave.enemy_ids)
 	enemy_runtime.configure(player, catalog.player_hurt_radius(), _actor_query_origin, _enemy_sweep)
+	# 敌人技能（箭雨、冲锋等）命中玩家同样要有受击反馈
+	enemy_runtime.confirmed_hit.connect(func(source, victim, amount):
+		if victim == player and amount > 0.0 and enhanced_feel and is_instance_valid(source): feel.player_hurt(player.global_position - source.global_position))
 	enemy_presentation = EnemyPresentation.new()
 	add_child(enemy_presentation)
 	enemy_presentation.configure(enemy_runtime, Style, $Camera, room.rift_surfaces() if room!=null and room.has_method("rift_surfaces") else [])
@@ -441,8 +456,10 @@ func _append_training_wave(ids: Array, placements: Array) -> void:
 		actor.killed.connect(func(dead): encounter.enemy_killed(dead.handle))
 		_register_enemy_brain(actor)
 	state = "fighting"
-func _physics_process(delta: float) -> void:
+func _physics_process(frame_delta: float) -> void:
 	if catalog == null or _leaving: return
+	# 顿帧：战斗逻辑只推进被“压缩”后的时间；镜头与界面仍用真实时间
+	var delta := feel.consume_delta(frame_delta) if enhanced_feel and frame_delta > 0.0 and not paused else frame_delta
 	training_tools.refresh()
 	if not paused and not builds.is_choosing() and state != "defeat":
 		# Aim/movement use the stable camera, never the previous display shake.
@@ -480,7 +497,7 @@ func _physics_process(delta: float) -> void:
 	for view in views: view.refresh(display_delta)
 	enemy_presentation.refresh(display_delta)
 	builds.refresh(display_delta)
-	_follow_camera()
+	_follow_camera(0.0 if paused or builds.is_choosing() else frame_delta)
 	_apply_camera_shake(display_delta)
 	hud.update_state(player, encounter, _waves.size(), "choosing" if builds.is_choosing() else state, paused and not builds.is_choosing())
 	if not encounter_plan.is_empty(): hud.update_encounter(encounter_plan, encounter.wave_index)
@@ -524,7 +541,7 @@ func _build_wall_hit(from: Vector3, to: Vector3) -> Variant:
 	return hit["position"] if not hit.is_empty() else null
 func _on_build_damage(source, target, amount: float, _origin: String) -> void:
 	_on_confirmed_hit(source, target, 0, "", amount)
-func _follow_camera() -> void:
+func _follow_camera(delta: float = -1.0) -> void:
 	if room_presentation == null:
 		$Camera.position = player.position + Style.camera_offset
 		$Camera.look_at(player.position)
@@ -532,13 +549,31 @@ func _follow_camera() -> void:
 	var bounds := room_presentation.camera_follow_bounds
 	var center := Vector3(clampf(player.position.x, bounds.position.x, bounds.end.x), 0.0, clampf(player.position.z, bounds.position.y, bounds.end.y))
 	var target := center + room_presentation.camera_target_offset
-	$Camera.position = target + room_presentation.camera_offset
+	if enhanced_feel:
+		# delta < 0：立即对齐（初始化/测试）；delta == 0：暂停时保持
+		if delta < 0.0: feel.reset_follow()
+		# 前瞻只跟移动方向：若跟鼠标朝向，镜头移动会反过来改变鼠标指向，形成漂移
+		target = feel.follow(target, player.movement, maxf(delta, 0.0))
+	# 冲击位移只是显示层平移；瞄准前会先恢复到 _camera_base
+	_camera_base = target + room_presentation.camera_offset
+	_camera_base_valid = true
+	$Camera.position = _camera_base
 	$Camera.look_at(target)
-func _on_confirmed_hit(source, target, _cast_id: int, _ability_id: String, applied_damage: float) -> void:
-	if not _leaving and source == player and target.team != player.team and applied_damage > 0.0:
+func _on_confirmed_hit(source, target, _cast_id: int, ability_id: String, applied_damage: float) -> void:
+	if _leaving or applied_damage <= 0.0: return
+	if source == player and target.team != player.team:
 		_camera_shake.kick()
+		if enhanced_feel: feel.hit(ability_id, target.global_position - player.global_position, not target.health.alive())
+	elif target == player and enhanced_feel:
+		feel.player_hurt(player.global_position - source.global_position)
 func _apply_camera_shake(delta: float) -> void:
 	var offset := _camera_shake.tick(delta)
+	if enhanced_feel:
+		feel.tick(delta)          # 与原抖动共用显示时间：暂停时冻结
+		# 方向冲击投影到屏幕平面，和抖动一样走 h/v_offset：瞄准前清零即可，不改镜头位置
+		var kick := feel.world_offset()
+		var basis: Basis = $Camera.global_basis
+		offset += feel.screen_jitter() + Vector2(kick.dot(basis.x), kick.dot(basis.y))
 	$Camera.h_offset = offset.x
 	$Camera.v_offset = offset.y
 func _open_pause_menu() -> void:
@@ -605,6 +640,7 @@ func _shutdown() -> void:
 	if is_instance_valid(builds): builds.finish()
 	if is_instance_valid(skill_vfx): skill_vfx.clear()
 	_camera_shake.clear()
+	feel.clear()
 	_apply_camera_shake(0.0)
 	encounter.cancel()
 	for actor in actors: actor.cancel()
@@ -614,7 +650,9 @@ func _retry() -> void:
 	skill_vfx.clear()
 	var preserved: Dictionary = room_props.plan if room_props != null else {}
 	var saved_encounter := encounter_plan.duplicate(true)
+	var keep_room := room_presentation
 	_transition = SceneTransition.begin(get_tree(), scene_file_path, shared_theme, func(next_scene):
+		next_scene.room_presentation = keep_room
 		next_scene.initial_room_plan = preserved
 		next_scene.initial_encounter_plan = saved_encounter)
 func _new_encounter(depth: int) -> void:
@@ -623,14 +661,19 @@ func _new_encounter(depth: int) -> void:
 	var next_plan := EncounterPlanner.new().generate(str(randi()), depth, _enemy_spawns.size(), enemy_catalog)
 	if next_plan.is_empty(): return
 	skill_vfx.clear()
+	var keep_room := room_presentation
 	_transition = SceneTransition.begin(get_tree(), scene_file_path, shared_theme, func(next_scene):
+		next_scene.room_presentation = keep_room
 		next_scene.initial_room_plan = preserved
 		next_scene.initial_encounter_plan = next_plan)
 func _new_layout() -> void:
 	if _leaving or is_instance_valid(_transition): return
 	skill_vfx.clear()
 	var depth := encounter_depth
-	_transition = SceneTransition.begin(get_tree(), scene_file_path, shared_theme, func(next_scene): next_scene.encounter_depth = depth)
+	var keep_room := room_presentation
+	_transition = SceneTransition.begin(get_tree(), scene_file_path, shared_theme, func(next_scene):
+		next_scene.room_presentation = keep_room
+		next_scene.encounter_depth = depth)
 func _return() -> void:
 	if _leaving or is_instance_valid(_transition): return
 	skill_vfx.clear()

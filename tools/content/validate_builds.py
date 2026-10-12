@@ -44,6 +44,21 @@ def validate_builds(manifest: dict) -> None:
     data = read_json(path)
     validate(data, read_json(DATA / "schemas/build_prototype.schema.json"), "build")
     _validate_semantics(data)
+    reward_path = manifest.get("build_reward_groups_file")
+    if not isinstance(reward_path, str) or not reward_path.startswith("res://data/builds/") or ".." in reward_path:
+        raise ValueError("manifest: invalid build_reward_groups_file")
+    rewards = read_json(ROOT / "game" / reward_path.removeprefix("res://"))
+    validate(rewards, read_json(DATA / "schemas/build_reward_groups.schema.json"), "reward_groups")
+    if len({r["id"] for r in rewards["rarities"]}) != 4:
+        raise ValueError("duplicate rarity")
+    if set(rewards["upgrade_groups"]) != set(data["offer"]["pool_ids"] + data["offer"]["fallback_ids"]):
+        raise ValueError("reward groups must cover exactly the obtainable upgrades")
+    for locale in ("zh_CN", "en"):
+        messages = read_json(DATA / f"locales/{locale}.json")["messages"]
+        for entry in [*rewards["rarities"], *rewards["reward_profiles"].values()]:
+            if entry["name_key"] not in messages:
+                raise ValueError("missing reward translation: " + entry["name_key"])
+
     combat = read_json(ROOT / "game" / manifest["combat_prototype_file"].removeprefix("res://"))
     ability_ids = {a["id"] for a in combat["abilities"]}
     for form in data["forms"]:
@@ -89,6 +104,10 @@ def _validate_semantics(data: dict) -> None:
     for status in statuses.values():
         if status["duration_sec"] > status["max_duration_sec"] or (status["kind"] == "freeze" and status["move_scale"] != 0) or (status["kind"] == "slow" and status["move_scale"] <= 0):
             raise ValueError("invalid status duration/movement")
+    for status in statuses.values():
+        linked = status["linked_mark_id"]
+        if linked and (status["kind"] != "freeze" or linked not in statuses or statuses[linked]["kind"] != "mark"):
+            raise ValueError("invalid linked mark")
     groups = data["status_rules"]["control_groups"]
     if len(groups) != 1 or groups[0]["kind"] != "freeze":
         raise ValueError("exactly one shared freeze control group required")
@@ -326,6 +345,7 @@ def _validate_actions(data: dict, by_id: dict) -> None:
             expected = "synergy" if entry["ranks"][0]["provider_scope"] == "other_formal_action" else "support"
             if any(actions[id]["test_only"] for id in entry["action_ids"]):
                 raise ValueError("conditional damage requires formal actions")
+        if entry["effect_type"] in ("consume_freeze", "projectile_path", "freeze_shield"): expected = "synergy"
         if entry["layer"] != expected:
             raise ValueError("effect type and layer disagree")
         if entry["effect_type"] in ("projectile", "chain") and not entry["test_only"]:

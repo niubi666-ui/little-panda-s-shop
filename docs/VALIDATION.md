@@ -27,6 +27,7 @@
 |---|---|
 | 基础战斗/连段/反馈 | `combat_rules.gd`；需要实机时 `combo_feel.gd`、`combat_feedback.gd`、`combat_training.gd` |
 | 伤害跳字 | `damage_numbers.gd`；支持headless，图形模式额外输出 `builds/damage_numbers_preview.png`，覆盖双方实际扣血、免疫、致死、暂停、数量上限及清理 |
+| 精灵精英冻结累计抗性 | `elite_freeze_resistance.gd`、`freeze_guard.gd`、`freeze_followup.gd`、`mechanism_content.gd`；均支持headless，配置同时运行离线Build校验 |
 | 镜头/刀光接口 | `hit_camera_shake.gd`、`golden_sword_trail.gd`、`sword_reach_alignment.gd`、`combat_effect_picker.gd`；火焰专项 `fire_slash_v002.gd` |
 | 玩家受击半径/擦身箭 | `player_hurt_radius.gd`；修改半径的内容/schema检查 |
 | 敌人/预算/碰撞 | `enemy_roles.gd`、`charger_obstacles.gd`；完整流程 `enemy_training.gd` |
@@ -81,3 +82,15 @@
 - 离线`validate_run.py --self-test`通过7节点/8连接，拒绝35个非法fixture；主内容检查已接路线校验，最新翻译351 keys与PO一致。
 - `run_map_ui.gd`通过；真实`run_integration.gd`headless与Forward+1280×800均315项通过（含设置暂停、震动瞄准隔离和换波动作取消断言），覆盖两条完整分支、失败模板、反复点击、实际新房、HP/Build与剑气、禁止提前回图、清场/终点/死亡/重开、双语与清理。最后HUD操作提示补充后已复跑，截图已检查。
 - 没有接清场奖励，因此不把去重清场测试写成发奖/奖励恢复验收。固定路线不是随机拓扑，固定灰盒模板不是随机房间池，内存Run不支持退出恢复。
+
+## Boss冰冻窗口（2026-10-12本轮）
+
+- `boss_frost_window.gd`：24项通过，包含JSON非法响应、首次减速、不重启蓄力、局部/正常时间、连续射击、已射箭/箭雨独立、翻滚、最强减速、消费/寒印/抗冻、死亡与状态提示装配。
+- `boss_frost_builds.gd`：64项通过，近远距离Q追击、左键追击、来源校验、派生不继承、Boss冰衣/破冰、寒印和抗冻不能冒充窗口。
+- 回归通过：elite_freeze_resistance（显式特殊累计夹具）、freeze_guard、ranger_sequences（32项）、freeze_followup（351项）、mechanism_content（50项）、frost_first_batch。
+- 离线内容/schema与424条双语键检查通过，PO已生成。
+- action_build_slice训练入口headless启动至`training ready`；退出时触发combat_training._shutdown相机离树调用错误（引入版本未确定），本轮未修改该共享手感/相机代码。未进行实际图形试玩，动画/提示可读性与难度仍待用户体验；无Release或Git提交。
+
+## 满蓄力宽寒冰月牙（2026-10-12）
+
+charged_wave_scale专项、frost_first_batch回归与离线内容/双语校验通过。检查原演示整体模型比例、满蓄力事实、1.95米半径、侧方命中和3倍基础伤害、短按恢复普通弹、不隐式授予冻结。参考预览已查看；新版实战画面尚未人工试玩。

@@ -35,6 +35,12 @@ enabled = true
 projectile_scenes = Dictionary[String, PackedScene]({"sword_wave": ExtResource("normal_wave")})
 projectile_scene_rules = Array[Dictionary]([{
 "definition_id": "sword_wave",
+"required_effect_id": "charged_wave",
+"requires_charged": true,
+"size_per_radius": Vector3(2.0, 0.512820513, 2.011060835),
+"scene": ExtResource("frost_wave")
+}, {
+"definition_id": "sword_wave",
 "required_effect_id": "contact_freeze",
 "scene": ExtResource("frost_wave")
 }])

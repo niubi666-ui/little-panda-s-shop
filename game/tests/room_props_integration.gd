@@ -32,6 +32,8 @@ func run() -> void:
 	create_timer(90.0).timeout.connect(func(): push_error("Room integration timeout"); quit(1))
 	arena = HOST.instantiate()
 	arena.build_choices_enabled = false
+	# 本测试的出生点/种子针对旧庭院；训练场默认房间已换成森林遗迹，这里显式固定旧庭院
+	arena.room_presentation = load("res://presentation/rooms/forest_courtyard_v001/presentation.tres")
 	var reserved: Array[Vector3] = [Vector3(0,0,3),Vector3(-3,0,-3),Vector3(3,0,-3),Vector3(0,0,-5)]
 	arena.initial_room_plan = Planner.new().generate(270927, Loader.new().load_catalog(), Surface, Visuals, reserved)
 	root.add_child(arena)

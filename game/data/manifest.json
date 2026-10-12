@@ -9,5 +9,6 @@
   "enemy_roles_file": "res://data/enemies/roles.json",
   "encounters_file": "res://data/rooms/encounters.json",
   "enemy_loot_file": "res://data/loot/enemies.json",
-  "run_route_file": "res://data/run/route.json"
+  "run_route_file": "res://data/run/route.json",
+  "build_reward_groups_file": "res://data/builds/reward_groups.json"
 }

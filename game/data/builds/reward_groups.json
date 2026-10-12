@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "rarities": [
+    {
+      "id": "common",
+      "name_key": "build.rarity.common",
+      "order": 0
+    },
+    {
+      "id": "rare",
+      "name_key": "build.rarity.rare",
+      "order": 1
+    },
+    {
+      "id": "epic",
+      "name_key": "build.rarity.epic",
+      "order": 2
+    },
+    {
+      "id": "legendary",
+      "name_key": "build.rarity.legendary",
+      "order": 3
+    }
+  ],
+  "upgrade_groups": {
+    "power": "common",
+    "agility": "common",
+    "split": "rare",
+    "impact_blast": "rare",
+    "contact_freeze": "rare",
+    "freeze_duration": "rare",
+    "pierce": "rare",
+    "frost_blast": "epic",
+    "action_power": "common",
+    "shatter_followup": "rare",
+    "opening_strike": "epic",
+    "returning_wave": "epic",
+    "charged_wave": "epic",
+    "shatter_heavy": "epic",
+    "frost_path": "rare",
+    "ice_coat": "rare"
+  },
+  "reward_profiles": {
+    "normal_room": {
+      "name_key": "build.reward.normal_room",
+      "count": 3,
+      "rarity_weights": {
+        "common": 70,
+        "rare": 30
+      },
+      "shortage": "show_available"
+    },
+    "elite_room": {
+      "name_key": "build.reward.elite_room",
+      "count": 3,
+      "rarity_weights": {
+        "epic": 80,
+        "legendary": 20
+      },
+      "shortage": "show_available"
+    },
+    "boss_room": {
+      "name_key": "build.reward.boss_room",
+      "count": 3,
+      "rarity_weights": {
+        "legendary": 1
+      },
+      "shortage": "show_available"
+    },
+    "training_all": {
+      "name_key": "build.reward.training_all",
+      "count": 3,
+      "rarity_weights": {
+        "common": 1,
+        "rare": 1,
+        "epic": 1,
+        "legendary": 1
+      },
+      "shortage": "show_available"
+    }
+  }
+}

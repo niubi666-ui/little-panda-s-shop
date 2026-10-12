@@ -7,6 +7,8 @@ const Pierce = preload("res://combat/builds/projectile_pierce.gd")
 const Contacts = preload("res://combat/builds/projectile_contacts.gd")
 const Capabilities = preload("res://combat/builds/projectile_capabilities.gd")
 const Statuses = preload("res://combat/status/status_runtime.gd")
+const Frost = preload("res://combat/builds/frost_effects.gd")
+var frost := Frost.new()
 var statuses := Statuses.new()
 const Conditional = preload("res://combat/builds/conditional_damage.gd")
 const Impact = preload("res://combat/builds/impact_effects.gd")
@@ -87,6 +89,12 @@ func on_committed(cast_id: int, ability_id: String) -> void:
 		"impact_counts": {}, "chain_triggers": {}, "control_attempts": {},
 	}
 	_cast_roots[cast_id] = _next_root
+	var charge := Frost.params(plan, "charge_projectile")
+	if _player.runner.cast_charged and not charge.is_empty():
+		_roots[_next_root].charged = true
+		_roots[_next_root].damage *= float(charge.damage_ratio)
+		_roots[_next_root].radius_scale = charge.radius_ratio
+		_player.runner.cooldown *= float(charge.cooldown_ratio)
 	action_presented.emit(_action_fact(_roots[_next_root], "started"))
 	_reclaim_roots()
 
@@ -137,6 +145,8 @@ func on_melee_hit(source, target, cast_id: int, ability_id: String, applied_dama
 
 func tick(delta: float) -> void:
 	if delta <= 0.0: return
+	if is_instance_valid(_player): _player.tick_protection(delta)
+	frost.tick(delta, self)
 	if not _source_alive() and not bool(_limits.projectiles_survive_source_death):
 		clear_room()
 		return
@@ -167,6 +177,7 @@ func tick(delta: float) -> void:
 	_reclaim_roots()
 
 func clear_room() -> void:
+	frost.clear(_player)
 	var ended: Array = []
 	for projectile in _projectiles.values():
 		ended.append(_projectile_fact(projectile, _roots[projectile.root_id], "terminated", "room_clear"))
@@ -232,6 +243,7 @@ func _spawn(context: Dictionary, request: Dictionary) -> void:
 	context.spawned += 1
 	_next_projectile += 1
 	var projectile := request.duplicate(true)
+	if int(projectile.generation) == 0: projectile.radius *= float(context.get("radius_scale", 1.0))
 	projectile.id = _next_projectile
 	projectile.remaining_hits = Pierce.max_hits(projectile.definition, context.program, _limits)
 	_projectiles[_next_projectile] = projectile
@@ -243,13 +255,19 @@ func _advance_projectiles(delta: float) -> void:
 		if not _projectiles.has(id): continue
 		var projectile: Dictionary = _projectiles[id]
 		if float(projectile.lifetime) <= 0.0:
-			_terminate_projectile(id, "expired")
+			if not _begin_return(projectile): _terminate_projectile(id, "expired")
 			continue
 		var context: Dictionary = _roots[projectile.root_id]
 		if not _context_live(context): return
 		var lifetime_before := float(projectile.lifetime)
 		var step := minf(delta, float(projectile.lifetime))
 		var start: Vector3 = projectile.position
+		if projectile.get("returning", false):
+			var p := Frost.params(context.program, "return_projectile")
+			var toward: Vector3 = _player.global_position - start; toward.y = 0.0
+			if toward.length() <= float(p.catch_radius_m): _terminate_projectile(id, "caught"); continue
+			var angle: float = projectile.direction.signed_angle_to(toward.normalized(), Vector3.UP)
+			projectile.direction = projectile.direction.rotated(Vector3.UP, clampf(angle, -float(p.turn_radians_per_sec) * step, float(p.turn_radians_per_sec) * step))
 		var direction: Vector3 = projectile.direction
 		var distance := float(projectile.speed) * step
 		var finish: Vector3 = start + direction * distance
@@ -287,12 +305,33 @@ func _advance_projectiles(delta: float) -> void:
 				if is_instance_valid(target): _schedule_chains(context, target, minf(applied, projectile.damage), "secondary_projectile")
 			_schedule_splits(context, projectile, victim)
 			if int(projectile.remaining_hits) <= 0:
-				_terminate_projectile(id, "contact_limit")
+				frost.sample_path(context, projectile, start, projectile.position)
+				if not _begin_return(projectile): _terminate_projectile(id, "contact_limit")
 				break
 		if not _projectiles.has(id): continue
+		if projectile.get("just_returned", false):
+			projectile.just_returned = false
+			continue
+		frost.sample_path(context, projectile, start, finish)
 		projectile.position = finish
 		projectile.lifetime = lifetime_before - step
-		if wall_blocked or float(projectile.lifetime) <= 0.0: _terminate_projectile(id, "wall" if wall_blocked else "expired")
+		if wall_blocked: _terminate_projectile(id, "wall")
+		elif float(projectile.lifetime) <= 0.0:
+			if not _begin_return(projectile): _terminate_projectile(id, "expired")
+
+func _begin_return(projectile: Dictionary) -> bool:
+	var context: Dictionary = _roots[projectile.root_id]
+	var p := Frost.params(context.program, "return_projectile")
+	if p.is_empty() or projectile.get("returning", false) or int(projectile.generation) != 0 or context.budget <= 0: return false
+	context.budget -= 1
+	projectile.returning = true
+	projectile.just_returned = true
+	projectile.excluded = {}
+	projectile.direction = -projectile.direction
+	projectile.speed = p.return_speed_mps
+	projectile.lifetime = p.return_lifetime_sec
+	projectile.remaining_hits = Pierce.max_hits(projectile.definition, context.program, _limits)
+	return true
 
 func on_finished(cast_id: int, ability_id: String, reason: String) -> void:
 	var context := _context_for_cast(cast_id)
@@ -311,6 +350,7 @@ func _projectile_fact(projectile: Dictionary, context: Dictionary, event: String
 		"action_id": context.action_id, "ability_id": context.ability_id, "form_id": context.form_id, "revision": context.revision,
 		"presentation_key": context.program.presentation_key, "definition_id": projectile.definition.id,
 		"generation": projectile.generation, "position": projectile.position, "direction": projectile.direction, "radius": projectile.radius,
+		"charged": bool(context.get("charged", false)) and int(projectile.generation) == 0,
 		"effect_ids": context.program.effects.map(func(effect): return effect.upgrade_id)}
 
 func _terminate_projectile(id: int, reason: String) -> void:
@@ -377,6 +417,7 @@ func _schedule_splits(context: Dictionary, projectile: Dictionary, target_handle
 
 func _reclaim_roots() -> void:
 	var held: Dictionary = {}
+	for path in frost.paths: held[path.root_id] = true
 	if is_instance_valid(_player) and (_player.runner.busy() or _player.runner.active_this_step) and _cast_roots.has(_player.runner.cast_id):
 		held[_cast_roots[_player.runner.cast_id]] = true
 	for request in _queue: held[request.root_id] = true
@@ -430,7 +471,13 @@ func _status_step(context: Dictionary, request: Dictionary) -> void:
 
 func _apply_status(context: Dictionary, target, status_id: String, duration: float) -> void:
 	if not _context_live(context) or not is_instance_valid(target) or target.team == context.team: return
-	statuses.apply(target, status_id, duration, {"runtime_id": get_instance_id(), "source_handle": context.source_handle, "team": context.team, "root_id": context.id, "room_generation": context.room_generation, "ability_id": context.ability_id, "action_id": context.action_id, "revision": context.revision, "presentation_key": context.program.presentation_key}, context.control_attempts)
+	var source := {"runtime_id": get_instance_id(), "source_handle": context.source_handle, "team": context.team, "root_id": context.id, "room_generation": context.room_generation, "ability_id": context.ability_id, "action_id": context.action_id, "revision": context.revision, "presentation_key": context.program.presentation_key}
+	var definition: Dictionary = _catalog.status(status_id)
+	if not str(definition.linked_mark_id).is_empty():
+		var mark: Dictionary = _catalog.status(definition.linked_mark_id)
+		statuses.apply(target, mark.id, mark.duration_sec, source)
+	var applied: bool = statuses.apply(target, status_id, duration, source, context.control_attempts)
+	if applied and definition.kind == "freeze" and _context_live(context): frost.froze(context, _player)
 
 # MeleeResolver passes ordinary scaled damage. Contact/derived effects keep that base.
 func apply_melee_damage(source, target, amount: float) -> float:
@@ -441,9 +488,22 @@ func apply_melee_damage(source, target, amount: float) -> float:
 
 func _apply_direct_damage(context: Dictionary, target, amount: float, origin: String) -> float:
 	var result := Conditional.evaluate(context, target, amount, origin, statuses, _catalog, get_instance_id())
+	var shatter := Frost.params(context.program, "consume_freeze")
+	var consumes := false
+	if origin == "direct_melee" and not shatter.is_empty() and int(context.get("shatters", 0)) < int(shatter.max_targets):
+		var snapshot := statuses.snapshot(target)
+		consumes = snapshot.has(shatter.status_id) and Frost.own_earlier(snapshot[shatter.status_id], context, get_instance_id())
+		if consumes:
+			var status_source: Dictionary = snapshot[shatter.status_id].source
+			var source_action: String = status_source.get("action_id", "")
+			consumes = status_source.get("team", -1) == context.team and _catalog.has_action(source_action) and not _catalog.action(source_action).test_only
+		if consumes: result.damage += amount * float(shatter.bonus)
 	var point: Vector3 = target.global_position
 	var handle: int = target.handle
 	var applied := Damage.apply(target, result.damage, context.team)
+	if applied > 0.0 and consumes and _context_live(context):
+		context.shatters = int(context.get("shatters", 0)) + 1
+		statuses.remove(target, shatter.status_id)
 	if applied > 0.0 and result.bonus > 0.0 and _context_live(context):
 		var fact := _action_fact(context, "conditional_damage")
 		fact.position = point

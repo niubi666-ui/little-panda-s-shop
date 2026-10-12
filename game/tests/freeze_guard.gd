@@ -54,7 +54,7 @@ func check_continuous_sources() -> void:
 		check(initial == statuses.control_snapshot(a), "rejected freeze cannot move absolute deadlines")
 	statuses.tick(freeze.duration_sec / 2.0)
 	check(not a.control_locked and a.runner.actions_allowed, "natural thaw restores action window under repeated attacks")
-	check(statuses.snapshot(a).is_empty() and statuses.visuals().is_empty(), "immunity alone is not drawn as a slow status")
+	check(statuses.snapshot(a).is_empty() and statuses.visuals()[0].thaw_immune and statuses.visuals()[0].statuses.is_empty(), "immunity alone is not drawn as a slow status")
 	check(statuses.diagnostics().tracked_actors == 1, "immunity retains only weak target tracking")
 	for step in 4:
 		check(not statuses.apply(a,"another_freeze",freeze.duration_sec,different,{}), "different freeze id cannot bypass thaw immunity")

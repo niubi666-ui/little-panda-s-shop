@@ -97,6 +97,7 @@ Runtime局部表现事实：`action_presented(fact)`、`projectile_presented(fac
 - `BuildEffectsView`消费动作/投射物事件与sync快照；`build_effects_style`映射动作`presentation_key/event`、投射物/拖尾/接触/终止`definition_id`到PackedScene。显式null关闭槽位，未映射投射物使用Resource中配置的占位mesh。
 - `projectile_scene_rules` 是按顺序配置的表现变体表，每项含 `definition_id/required_effect_id/scene`，仅在首次创建该投射物ID时按已提交快照的 `effect_ids` 选择；基槽显式null优先关闭，旧弹不跟随新Build变色。当前剑气默认普通版，快照带 `contact_freeze` 时为寒冰版。`frost_blast` 是编译进范围payload的协同，不在投射物顶层effect_ids中；仅有该协同的剑气保持普通版并沿用原寒霜范围反馈。视觉选型不施加任何状态。
 - `MechanismView`及`mechanism_style`映射范围/状态表现；规则中不创建特效、不从粒子/刀刃位置推导命中。
+- 目标状态响应必填 `freeze_hits_required`（1–64）。`StatusRuntime.apply` 在同根去重及免疫校验后累计冻结申请，未满阈值返回false，不发布已冻结事实；`freeze_progress(target)`提供只读控制组计数。特殊累计响应阈值为3，普通与游侠当前响应为1；游侠freeze_mode=slow，只产生有效冰冻减速窗口，规则与清理语义见[状态机制](COMBAT_MECHANISMS.md)。候选资格仍基于真实冻结能力，目标累计抗性不改变已装备能力声明。
 - 可选表现实例接口：`configure_effect(fact)`、`sync_effect(fact,delta)`、`set_time_running(enabled)`、`finish(reason)`。暂停/生命周期由适配器调用；自定义场景须遵守该协议。
 - 剑姿态使用AttackMotion Resource，角色继续idle/run；逻辑阶段/cue决定挥砍与发射。更換Resource或关闭VFX不改变规则参数。
 
@@ -108,7 +109,7 @@ Runtime局部表现事实：`action_presented(fact)`、`projectile_presented(fac
 
 ## 条件伤害 v7
 
-`conditional_damage`每级必填 `status_id/provider_scope/allowed_origins/source_relation/root_relation/bonus`。当前仅支持freeze状态，provider_scope为same_action或other_formal_action；source_relation固定same_actor_formal，root_relation固定earlier_independent；来源仅direct_melee/direct_projectile。选择动作由action_ids限制，提供者由实际直接/范围冻结能力判定，不能靠卡名或标签授予。
+`conditional_damage`每级必填 `status_id/provider_scope/allowed_origins/source_relation/root_relation/bonus`。当前仅支持有效freeze窗口（硬冻结或Boss减速），provider_scope为same_action或other_formal_action；source_relation固定same_actor_formal，root_relation固定earlier_independent；来源仅direct_melee/direct_projectile。选择动作由action_ids限制，提供者由实际直接/范围冻结能力判定，不能靠卡名或标签授予。
 
 stats新增 `conditional_composition=additive_then_multiply_direct`、`conditional_bonus_max`（当前2）。公式为：已计算普通全局/动作倍率的直接伤害 × (1 + min(所有满足条件的bonus之和, 上限))。每个命中只求值一次。分裂/爆炸基数保持原普通伤害；旧连锁保留普通实损基数并剔除条件增量。
 
@@ -119,3 +120,7 @@ MeleeResolver新增`set_direct_damage_executor(callable)`，签名`(source,targe
 已提交signal `conditional_damage_applied(fact)`携带action/root/cast/revision/position/target_handle/origin/base_damage/damage/applied_damage/bonus/effect_ids。仅正实损且满足条件时，在本步接触/状态队列处理后发布；清房会丢弃旧代数待发布事实；diagnostics增加conditional_hits/last_conditional，清房重置。MechanismView消费事实显示双语Label3D，大小/颜色/时长在mechanism_style Resource，关闭表现不影响规则。
 
 schema v7拒绝v6内容；contact_freeze只保留rank1，旧rank2状态被invalid_rank拒绝，不静默截断。无正式磁盘存档迁移。六个JSON预设全部经Session试提交；普通训练也开放预设菜单。训练及路线HUD通过skill_cooldown_text读取Q实际冷却，不维护第二份计时器。
+
+### 满蓄力剑气表现
+
+投射物事实新增charged布尔值，来自提交根的蓄力结果，仅根投射物携带；不根据当前输入或后续Build判断。表现规则可选requires_charged和size_per_radius，按提交事实选一次；当前满蓄力优先复用frost_wave及原演示比例。半径/伤害/蓄力时长/CD仍在prototype.json的charged_wave.ranks配置。短按不使用满蓄力表现，寒冰外观不授予冻结能力。

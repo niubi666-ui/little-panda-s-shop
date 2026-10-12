@@ -20,6 +20,9 @@ func configure(style: Resource) -> void:
 		assert(rule.required_effect_id is String and not rule.required_effect_id.is_empty())
 		assert(style.projectile_scenes.has(rule.definition_id), "A projectile variant requires an explicit base scene slot.")
 		assert(rule.scene == null or rule.scene is PackedScene)
+		if rule.has("requires_charged"): assert(rule.requires_charged is bool)
+		if rule.has("size_per_radius"):
+			assert(rule.size_per_radius is Vector3 and rule.size_per_radius.x > 0.0 and rule.size_per_radius.y > 0.0 and rule.size_per_radius.z > 0.0)
 	_style = style
 
 
@@ -54,7 +57,8 @@ func sync(projectiles: Array, delta: float) -> void:
 			orientation = Basis.looking_at(direction.normalized(), Vector3.UP)
 		if visual != null:
 			visual.global_position = point + Vector3.UP * _style.projectile_height
-			visual.global_basis = orientation * Basis.from_scale(_style.projectile_size_per_radius * float(snapshot["radius"]))
+			var size_per_radius: Vector3 = _projectile_rule(snapshot).get("size_per_radius", _style.projectile_size_per_radius)
+			visual.global_basis = orientation * Basis.from_scale(size_per_radius * float(snapshot["radius"]))
 			_sync_scene(visual, snapshot, delta)
 		if _trails.has(id) and _trails[id] != null:
 			_trails[id].global_position = point
@@ -91,12 +95,17 @@ func sync(projectiles: Array, delta: float) -> void:
 func _projectile_scene(snapshot: Dictionary) -> PackedScene:
 	var base: PackedScene = _style.projectile_scenes[snapshot.definition_id]
 	if base == null: return null
+	var rule := _projectile_rule(snapshot)
+	return rule.scene if not rule.is_empty() else base
+
+func _projectile_rule(snapshot: Dictionary) -> Dictionary:
 	# This runs only when an authoritative projectile ID first enters the view.
 	# No current Build lookup: later revisions cannot replace an in-flight visual.
 	for rule in _style.projectile_scene_rules:
+		if rule.get("requires_charged", false) and not snapshot.get("charged", false): continue
 		if rule.definition_id == snapshot.definition_id and snapshot.effect_ids.has(rule.required_effect_id):
-			return rule.scene
-	return base
+			return rule
+	return {}
 
 
 func show_chain(points: PackedVector3Array) -> void:

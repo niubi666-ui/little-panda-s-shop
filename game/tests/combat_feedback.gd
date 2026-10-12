@@ -85,7 +85,9 @@ func run() -> void:
 		await physics_frame
 		enemy.step(fixed_delta)
 		arena.views[1].refresh(fixed_delta)
-	check(enemy.position.z < initial.z - .8, "knockback actually moves enemy")
+	# 线性衰减的击退位移约为 速度×时长÷2；留 20% 余量给碰撞与帧边界
+	var slash2 = arena.catalog.ability("slash.2")
+	check(enemy.position.z < initial.z - slash2.knockback_speed * slash2.knockback_duration * 0.5 * 0.8, "knockback actually moves enemy")
 	check(enemy.motor.impulse_left == 0.0, "knockback expires")
 	for mesh in feedback._overlays:
 		check(mesh.material_override == feedback._overlays[mesh][0] and mesh.material_overlay == feedback._overlays[mesh][1], "original material restored")

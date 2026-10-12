@@ -10,6 +10,9 @@ extends Resource
 @export var slow_mesh: Mesh
 @export var slow_material: Material
 @export var slow_offset: Vector3
+@export var mark_mesh: Mesh
+@export var mark_material: Material
+@export var mark_offset: Vector3
 @export var freeze_mesh: Mesh
 @export var freeze_material: Material
 @export var freeze_offset: Vector3

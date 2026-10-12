@@ -15,7 +15,12 @@ func set_damage_modifier(modifier: Callable) -> void:
 func resolve(source, targets: Array) -> void:
 	if not source.health.alive() or not source.runner.active_this_step or source.runner.executor != "melee": return
 	var ability = source.runner.ability
-	for target in targets:
+	var ordered := targets.filter(func(t): return is_instance_valid(t))
+	ordered.sort_custom(func(a, b):
+		var da: float = source.global_position.distance_squared_to(a.global_position)
+		var db: float = source.global_position.distance_squared_to(b.global_position)
+		return a.handle < b.handle if is_equal_approx(da, db) else da < db)
+	for target in ordered:
 		if target == source or target.team == source.team or not target.health.alive(): continue
 		var offset: Vector3 = target.global_position - source.global_position
 		offset.y = 0.0

@@ -1,0 +1,111 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "rarities",
+    "upgrade_groups",
+    "reward_profiles"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "rarities": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name_key",
+          "order"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "common",
+              "rare",
+              "epic",
+              "legendary"
+            ]
+          },
+          "name_key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          }
+        }
+      }
+    },
+    "upgrade_groups": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "common",
+          "rare",
+          "epic",
+          "legendary"
+        ]
+      }
+    },
+    "reward_profiles": {
+      "type": "object",
+      "required": [
+        "normal_room",
+        "elite_room",
+        "boss_room",
+        "training_all"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name_key",
+          "count",
+          "rarity_weights",
+          "shortage"
+        ],
+        "properties": {
+          "name_key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8
+          },
+          "rarity_weights": {
+            "type": "object",
+            "minProperties": 1,
+            "propertyNames": {
+              "enum": [
+                "common",
+                "rare",
+                "epic",
+                "legendary"
+              ]
+            },
+            "additionalProperties": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "shortage": {
+            "const": "show_available"
+          }
+        }
+      }
+    }
+  }
+}

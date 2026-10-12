@@ -56,6 +56,8 @@ func sync(snapshots: Array, delta: float) -> void:
 	for snapshot in snapshots:
 		seen[snapshot.handle] = true
 		var key := "freeze" if snapshot.frozen else "slow"
+		if not snapshot.frozen and snapshot.statuses.all(func(s): return s.get("kind", "slow") == "mark"): key = "mark"
+		if snapshot.statuses.is_empty(): key = "immune"
 		if _statuses.has(snapshot.handle) and _statuses[snapshot.handle].key != key:
 			_dispose(_statuses[snapshot.handle].node)
 			_statuses.erase(snapshot.handle)
@@ -67,11 +69,31 @@ func sync(snapshots: Array, delta: float) -> void:
 					created = scene.instantiate()
 					add_child(created)
 					if created.has_method("configure_effect"): created.configure_effect(snapshot.duplicate(true))
+			elif key == "immune":
+				created = Node3D.new()
+				add_child(created)
+			elif key == "mark": created = _mesh(_style.mark_mesh, _style.mark_material)
 			else: created = _mesh(_style.freeze_mesh if snapshot.frozen else _style.slow_mesh, _style.freeze_material if snapshot.frozen else _style.slow_material)
 			_statuses[snapshot.handle] = {"key": key, "node": created}
+			if created != null:
+				var label := Label3D.new()
+				label.name = "StatusText"
+				label.font = _style.conditional_font
+				label.font_size = _style.conditional_font_size
+				label.pixel_size = _style.conditional_pixel_size
+				label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+				created.add_child(label)
 		var node: Node3D = _statuses[snapshot.handle].node
 		if node != null:
 			node.global_position = snapshot.position + (_style.freeze_offset if snapshot.frozen else _style.slow_offset)
+			if key == "mark": node.global_position = snapshot.position + _style.mark_offset
+			var label: Label3D = node.get_node("StatusText")
+			label.global_position = snapshot.position + _style.mark_offset
+			var tags: PackedStringArray = []
+			if snapshot.get("marked", false): tags.append(tr("build.status.mark"))
+			if snapshot.get("freeze_window", false): tags.append(tr("build.status.hard" if snapshot.frozen else "build.status.window"))
+			if snapshot.get("thaw_immune", false): tags.append(tr("build.status.immune"))
+			label.text = " / ".join(tags)
 			if node.has_method("set_time_running"): node.set_time_running(delta > 0.0)
 			if node.has_method("sync_effect"): node.sync_effect(snapshot.duplicate(true), delta)
 	for handle in _statuses.keys():

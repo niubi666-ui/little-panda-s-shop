@@ -64,6 +64,36 @@ msgstr "剑三连击"
 msgid "build.form.sword_wave"
 msgstr "剑气"
 
+msgid "build.frost.charged_wave.description"
+msgstr "Q松键发射：按住 {threshold_sec} 秒蓄满，释放宽阔寒冰月牙，造成普通剑气 {damage_percent}% 的伤害，冷却为 {cooldown_ratio} 倍；未蓄满释放普通剑气。寒冰外观本身不附加冻结。"
+
+msgid "build.frost.charged_wave.name"
+msgstr "蓄霜"
+
+msgid "build.frost.frost_path.description"
+msgstr "具有冻结能力的剑气留下短暂减速霜径，不造成伤害。"
+
+msgid "build.frost.frost_path.name"
+msgstr "霜径"
+
+msgid "build.frost.ice_coat.description"
+msgstr "本动作成功施加有效冰冻窗口（定身或Boss减速）后获得短暂防护，吸收伤害，不叠加。"
+
+msgid "build.frost.ice_coat.name"
+msgstr "冰衣"
+
+msgid "build.frost.returning_wave.description"
+msgstr "剑气到达射程或命中后折返，可再次命中；墙体会阻挡。"
+
+msgid "build.frost.returning_wave.name"
+msgstr "回锋"
+
+msgid "build.frost.shatter_heavy.description"
+msgstr "重击消费你此前施加的有效冰冻窗口（定身或Boss减速）并增伤，随后进入抗冻；不移除寒印，每次最多一个目标。"
+
+msgid "build.frost.shatter_heavy.name"
+msgstr "破冰重击"
+
 msgid "build.frost_blast.description"
 msgstr "这个动作的兼容爆炸可冻结至多 {max_targets} 个敌人 {duration_sec} 秒，包括仍存活的直击目标；遵守共享抗冻规则。"
 
@@ -95,7 +125,7 @@ msgid "build.no_candidates"
 msgstr "当前没有可继续选择的兼容升级"
 
 msgid "build.opening_strike.description"
-msgstr "左键直接命中被你此前独立施放冻结的敌人，直接伤害 +{bonus_percent}%。需要另一个正式动作具备冻结能力；不解除或刷新冻结，派生伤害不增幅。"
+msgstr "左键直接命中处于你此前独立施放产生的有效冰冻窗口（定身或Boss减速）的敌人，直接伤害 +{bonus_percent}%。需要另一个正式动作具备冻结能力；不解除或刷新冻结，派生伤害不增幅。"
 
 msgid "build.opening_strike.name"
 msgstr "乘隙斩"
@@ -124,6 +154,9 @@ msgstr "已应用：{name}"
 msgid "build.preset.basic_actions"
 msgstr "基础三动作（零构筑）"
 
+msgid "build.preset.charged_burst"
+msgstr "蓄霜爆发"
+
 msgid "build.preset.error"
 msgstr "预设暂不可用，请重新训练后再试。"
 
@@ -139,6 +172,9 @@ msgstr "冰冻＋贯穿"
 msgid "build.preset.frost_blast"
 msgstr "寒霜爆破"
 
+msgid "build.preset.frost_control"
+msgstr "霜路控场"
+
 msgid "build.preset.hint"
 msgstr "左键普攻、右键重击、Q剑气开局同时可用；预设只改变绑定构筑。重新训练重置场景和构筑。"
 
@@ -151,6 +187,12 @@ msgstr "穿透普通爆炸"
 msgid "build.preset.pierce_freeze"
 msgstr "穿透冻结"
 
+msgid "build.preset.returning_skirmish"
+msgstr "回锋游击"
+
+msgid "build.preset.shatter_duel"
+msgstr "破冰决斗"
+
 msgid "build.preset.skill_frost"
 msgstr "Q穿透寒霜爆破"
 
@@ -159,6 +201,18 @@ msgstr "动作构筑预设"
 
 msgid "build.rank"
 msgstr "等级 {rank} / {max_rank}"
+
+msgid "build.rarity.common"
+msgstr "普通"
+
+msgid "build.rarity.epic"
+msgstr "史诗"
+
+msgid "build.rarity.legendary"
+msgstr "传说"
+
+msgid "build.rarity.rare"
+msgstr "稀有"
 
 msgid "build.reason.capability"
 msgstr "该动作尚无所需载体，其它动作及调试箭不能替代前置。"
@@ -199,11 +253,41 @@ msgstr "移除效果：{effect}"
 msgid "build.replaces"
 msgstr "替换：{name}（{rank} 级）"
 
+msgid "build.reward.boss_room"
+msgstr "模拟Boss房"
+
+msgid "build.reward.close"
+msgstr "暂时关闭（保留候选）"
+
+msgid "build.reward.elite_room"
+msgstr "模拟精英房"
+
+msgid "build.reward.normal_room"
+msgstr "模拟小怪房"
+
+msgid "build.reward.title"
+msgstr "奖励来源"
+
+msgid "build.reward.training_all"
+msgstr "训练全池"
+
 msgid "build.shatter_followup.description"
-msgstr "Q 直接命中被你此前独立施放冻结的敌人，直接伤害 +{bonus_percent}%。需要 Q 具备冻结能力；不解除或刷新冻结，分裂和爆炸不增伤。"
+msgstr "Q 直接命中处于你此前独立施放产生的有效冰冻窗口（定身或Boss减速）的敌人，直接伤害 +{bonus_percent}%。需要 Q 具备冻结能力；不解除或刷新冻结，分裂和爆炸不增伤。"
 
 msgid "build.shatter_followup.name"
 msgstr "碎冰追击"
+
+msgid "build.status.hard"
+msgstr "冻结"
+
+msgid "build.status.immune"
+msgstr "抗冻"
+
+msgid "build.status.mark"
+msgstr "寒印"
+
+msgid "build.status.window"
+msgstr "冰冻减速"
 
 msgid "build.subtitle"
 msgstr "选择一个绑定升级，其它动作保留各自构筑"

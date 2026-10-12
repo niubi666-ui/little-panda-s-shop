@@ -64,6 +64,36 @@ msgstr "Three-hit sword combo"
 msgid "build.form.sword_wave"
 msgstr "Sword wave"
 
+msgid "build.frost.charged_wave.description"
+msgstr "Release Q to fire. Hold {threshold_sec}s for a full-size frost crescent dealing {damage_percent}% normal damage with {cooldown_ratio}x cooldown; release earlier for a normal wave. Frost visuals alone do not grant freeze."
+
+msgid "build.frost.charged_wave.name"
+msgstr "Charged Frost"
+
+msgid "build.frost.frost_path.description"
+msgstr "A freeze-capable wave leaves a temporary slowing trail without damage."
+
+msgid "build.frost.frost_path.name"
+msgstr "Frost Path"
+
+msgid "build.frost.ice_coat.description"
+msgstr "Successfully applying a frost window (hard freeze or boss slow) grants a temporary, non-stacking damage shield."
+
+msgid "build.frost.ice_coat.name"
+msgstr "Ice Coat"
+
+msgid "build.frost.returning_wave.description"
+msgstr "The wave returns after reaching its range or hitting an enemy. Walls stop it."
+
+msgid "build.frost.returning_wave.name"
+msgstr "Returning Wave"
+
+msgid "build.frost.shatter_heavy.description"
+msgstr "Heavy strikes consume your earlier active frost window (hard freeze or boss slow) for bonus damage and start thaw immunity. Marks remain; once per cast."
+
+msgid "build.frost.shatter_heavy.name"
+msgstr "Shattering Heavy"
+
 msgid "build.frost_blast.description"
 msgstr "This action’s compatible blast freezes up to {max_targets} enemies for {duration_sec}s, including a surviving direct target. Shared freeze immunity applies."
 
@@ -95,7 +125,7 @@ msgid "build.no_candidates"
 msgstr "No further compatible upgrades are available."
 
 msgid "build.opening_strike.description"
-msgstr "LMB direct hits deal +{bonus_percent}% damage to targets frozen by your earlier independent cast. Requires another regular action to deliver freeze. Does not end or refresh freeze or amplify derived damage."
+msgstr "LMB direct hits deal +{bonus_percent}% damage to targets in an active frost window (hard freeze or boss slow) from your earlier independent cast. Requires another regular action to deliver freeze. Does not end or refresh freeze or amplify derived damage."
 
 msgid "build.opening_strike.name"
 msgstr "Opening Strike"
@@ -124,6 +154,9 @@ msgstr "Applied: {name}"
 msgid "build.preset.basic_actions"
 msgstr "Three base actions (no upgrades)"
 
+msgid "build.preset.charged_burst"
+msgstr "Charged burst"
+
 msgid "build.preset.error"
 msgstr "Preset unavailable. Retry training and try again."
 
@@ -139,6 +172,9 @@ msgstr "Freeze + Pierce"
 msgid "build.preset.frost_blast"
 msgstr "Frost Blast"
 
+msgid "build.preset.frost_control"
+msgstr "Frost trail control"
+
 msgid "build.preset.hint"
 msgstr "LMB combo, RMB heavy and Q wave are available from the start. Presets change bound upgrades; retry resets the room and Build."
 
@@ -151,6 +187,12 @@ msgstr "Piercing Blast"
 msgid "build.preset.pierce_freeze"
 msgstr "Piercing Freeze"
 
+msgid "build.preset.returning_skirmish"
+msgstr "Returning skirmish"
+
+msgid "build.preset.shatter_duel"
+msgstr "Shatter duel"
+
 msgid "build.preset.skill_frost"
 msgstr "Q Piercing Frost Blast"
 
@@ -159,6 +201,18 @@ msgstr "Action build presets"
 
 msgid "build.rank"
 msgstr "Rank {rank} / {max_rank}"
+
+msgid "build.rarity.common"
+msgstr "Common"
+
+msgid "build.rarity.epic"
+msgstr "Epic"
+
+msgid "build.rarity.legendary"
+msgstr "Legendary"
+
+msgid "build.rarity.rare"
+msgstr "Rare"
 
 msgid "build.reason.capability"
 msgstr "This action lacks the required carrier. Other actions and the debug arrow cannot unlock it."
@@ -199,11 +253,41 @@ msgstr "Removed effect: {effect}"
 msgid "build.replaces"
 msgstr "Replaces: {name} (rank {rank})"
 
+msgid "build.reward.boss_room"
+msgstr "Boss room reward"
+
+msgid "build.reward.close"
+msgstr "Close (keep choices)"
+
+msgid "build.reward.elite_room"
+msgstr "Elite room reward"
+
+msgid "build.reward.normal_room"
+msgstr "Normal room reward"
+
+msgid "build.reward.title"
+msgstr "Reward source"
+
+msgid "build.reward.training_all"
+msgstr "All training cards"
+
 msgid "build.shatter_followup.description"
-msgstr "Q direct hits deal +{bonus_percent}% damage to targets frozen by your earlier independent cast. Requires Q to deliver freeze. Does not end or refresh freeze; split and blast damage are unaffected."
+msgstr "Q direct hits deal +{bonus_percent}% damage to targets in an active frost window (hard freeze or boss slow) from your earlier independent cast. Requires Q to deliver freeze. Does not end or refresh freeze; split and blast damage are unaffected."
 
 msgid "build.shatter_followup.name"
 msgstr "Shatter Follow-up"
+
+msgid "build.status.hard"
+msgstr "Frozen"
+
+msgid "build.status.immune"
+msgstr "Thaw immunity"
+
+msgid "build.status.mark"
+msgstr "Frost mark"
+
+msgid "build.status.window"
+msgstr "Frost slowed"
 
 msgid "build.subtitle"
 msgstr "Choose one bound upgrade. Other actions keep their own build."

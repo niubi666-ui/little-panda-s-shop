@@ -138,7 +138,8 @@ func _test_hit_camera() -> void:
 	var shake_step: float = STYLE.hit_camera_shake.duration_seconds / 8.0
 	arena._apply_camera_shake(shake_step)
 	check(_camera_offset().length() > 0.0, "confirmed player hit produces screen-plane camera motion")
-	check(_camera_offset().length() <= STYLE.hit_camera_shake.maximum_offset_meters, "applied camera offset obeys the resource bound")
+	var bound: float = STYLE.hit_camera_shake.maximum_offset_meters + (0.6 if arena.enhanced_feel else 0.0)   # 新手感：方向冲击 ≤0.5 + 抖动
+	check(_camera_offset().length() <= bound, "applied camera offset obeys the resource bound")
 	var elapsed_before: float = arena._camera_shake._elapsed
 	arena.resolver.resolve(player, [target])
 	arena._apply_camera_shake(shake_step)
@@ -188,7 +189,11 @@ func _test_hit_camera() -> void:
 	arena.resolver.resolve(second_enemy, [player])
 	arena._apply_camera_shake(shake_step)
 	check(player.health.current < hp_before, "enemy attack really damages the player")
-	check(_camera_offset() == Vector2.ZERO, "enemy damage does not trigger player-hit camera feedback")
+	if arena.enhanced_feel:
+		# 新手感：玩家受击有独立的受击震屏
+		check(_camera_offset().length() > 0.0, "enemy damage triggers player-hurt camera feedback")
+	else:
+		check(_camera_offset() == Vector2.ZERO, "enemy damage does not trigger player-hit camera feedback")
 	arena._camera_shake.kick()
 	arena._apply_camera_shake(shake_step)
 	arena._shutdown()
@@ -198,6 +203,7 @@ func _test_hit_camera() -> void:
 func _test_stable_aim() -> void:
 	# Choose a ground position with the unshaken camera, then retain its cursor.
 	arena._camera_shake.clear()
+	arena.feel.clear()   # 新手感的方向冲击同样属于显示偏移，基准必须一起清零
 	arena._apply_camera_shake(0.0)
 	var aim_point: Vector3 = arena.player.global_position + arena.player.facing * 3.0
 	root.warp_mouse(camera.unproject_position(aim_point))

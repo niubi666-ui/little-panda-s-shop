@@ -1,6 +1,7 @@
 extends Node
 ## Training-only application coordinator. Persistence can replace the commit adapter.
 const Loader = preload("res://content/builds/build_loader.gd")
+const RewardLoader = preload("res://content/builds/reward_groups_loader.gd")
 const Session = preload("res://app/session/training_build_session.gd")
 const Runtime = preload("res://combat/builds/build_runtime.gd")
 const ChoicePanel = preload("res://presentation/builds/build_choice_panel.gd")
@@ -9,8 +10,13 @@ const EffectsView = preload("res://presentation/builds/build_effects_view.gd")
 const MechanismView = preload("res://presentation/builds/mechanism_view.gd")
 const MechanismStyle = preload("res://presentation/builds/mechanism_style.tres")
 const EffectsStyle = preload("res://presentation/builds/build_effects_style.tres")
+const FrostView = preload("res://presentation/builds/frost_runtime_view.gd")
+var frost_view: FrostView
 signal damage_applied(source, target, amount: float, origin: String)
 var catalog
+var reward_groups: Dictionary
+var _reward_profile := "training_all"
+var _offer_suspended := false
 var session := Session.new()
 var runtime := Runtime.new()
 var choice_panel: ChoicePanel
@@ -35,6 +41,11 @@ func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, s
 		for error in loader.errors: push_error(error)
 		return false
 	# Validate every authored preset using the same detached session/evaluator before UI.
+	var reward_loader := RewardLoader.new()
+	reward_groups = reward_loader.load_groups(catalog)
+	if reward_groups.is_empty():
+		for error in reward_loader.errors: push_error(error)
+		return false
 	for preset in catalog.test_presets():
 		var probe := Session.new()
 		probe.configure(catalog, 0, func(_candidate): return OK)
@@ -48,7 +59,7 @@ func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, s
 	_auto_rewards = auto_rewards
 	_test_presets_enabled = enable_test_presets
 	_rules = catalog.offer_rules()
-	session.configure(catalog, Time.get_ticks_usec(), _commit_training)
+	session.configure(catalog, Time.get_ticks_usec(), _commit_training, reward_groups)
 	runtime.configure(catalog, player, targets, wall_query, _test_attack_ids)
 	player.runner.committed.connect(runtime.on_committed)
 	player.runner.cue_reached.connect(runtime.on_cue)
@@ -63,17 +74,24 @@ func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, s
 	mechanisms = MechanismView.new()
 	world.add_child(mechanisms)
 	mechanisms.configure(mechanism_style)
+	frost_view = FrostView.new()
+	world.add_child(frost_view)
 	runtime.area_presented.connect(mechanisms.show_area_fact)
 	runtime.conditional_damage_applied.connect(mechanisms.show_conditional_fact)
 	status_panel = StatusPanel.new()
 	ui_root.add_child(status_panel)
 	status_panel.configure(catalog, shared_theme, enable_test_presets)
 	status_panel.test_offer_requested.connect(request_test_offer)
+	status_panel.configure_reward_profiles(reward_groups)
+	status_panel.reward_profile_requested.connect(request_profile_offer)
 	status_panel.test_preset_requested.connect(apply_test_preset)
 	choice_panel = ChoicePanel.new()
 	ui_root.add_child(choice_panel)
 	choice_panel.configure(catalog, shared_theme)
 	choice_panel.choice_requested.connect(_choose)
+	choice_panel.close_requested.connect(func():
+		_offer_suspended = true
+		choice_panel.dismiss())
 	_apply_program()
 	if _auto_rewards: _queue(int(_rules["initial_offers"]))
 	return true
@@ -110,8 +128,14 @@ func is_choosing() -> bool:
 
 func request_test_offer() -> void:
 	if _stopped or is_choosing(): return
-	_queue(1)
+	_offer_suspended = false
+	if _pending <= 0: _queue(1)
 	flush_offers()
+
+func request_profile_offer(profile_id: String) -> void:
+	if _stopped or is_choosing() or not reward_groups.reward_profiles.has(profile_id): return
+	_reward_profile = profile_id
+	request_test_offer()
 
 func reward_wave(_wave_index: int) -> void:
 	if _auto_rewards and not _rewards_finished: _queue(int(_rules["rewards_per_wave"]))
@@ -120,8 +144,8 @@ func _queue(count: int) -> void:
 	if not _stopped: _pending = mini(_pending + count, int(_rules["max_queued_offers"]))
 
 func flush_offers() -> void:
-	if _stopped or is_choosing() or _pending <= 0: return
-	var result: Dictionary = session.open_offer()
+	if _stopped or is_choosing() or _offer_suspended or _pending <= 0: return
+	var result: Dictionary = session.open_offer(_reward_profile)
 	if not result["ok"]:
 		status_panel.set_notice("build.error")
 		return
@@ -148,6 +172,7 @@ func _choose(offer_id: String, choice_id: String) -> void:
 func before_motion(delta: float) -> void: runtime.statuses.tick(delta)
 func step(delta: float) -> void: runtime.tick(delta)
 func refresh(delta: float) -> void:
+	if frost_view != null: frost_view.sync(runtime, _player)
 	effects.sync(runtime.projectiles(), delta)
 	mechanisms.sync(runtime.statuses.visuals(), delta)
 func refresh_text() -> void:
@@ -155,6 +180,7 @@ func refresh_text() -> void:
 	status_panel.refresh_text()
 func clear_room() -> void:
 	runtime.clear_room()
+	if is_instance_valid(frost_view): frost_view.clear()
 	if is_instance_valid(effects): effects.clear()
 	if is_instance_valid(mechanisms): mechanisms.clear()
 func finish_rewards() -> void:

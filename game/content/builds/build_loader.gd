@@ -9,6 +9,12 @@ const MAX_STRING_LENGTH := 128
 const MAX_TAGS := 64
 const MAX_SAFE_INTEGER := 9007199254740991
 const EFFECT_FIELDS := {
+	"return_projectile": ["return_speed_mps", "turn_radians_per_sec", "return_lifetime_sec", "catch_radius_m"],
+	"charge_projectile": ["threshold_sec", "max_charge_sec", "damage_ratio", "radius_ratio", "cooldown_ratio"],
+	"consume_freeze": ["status_id", "bonus", "max_targets"],
+	"projectile_path": ["status_id", "spacing_m", "radius_m", "lifetime_sec", "duration_sec", "max_targets"],
+	"freeze_shield": ["shield_amount", "duration_sec", "trigger_cooldown_sec"],
+
 	"conditional_damage": ["status_id", "provider_scope", "allowed_origins", "source_relation", "root_relation", "bonus"],
 	"form": ["form_id"],
 	"pierce": ["trigger", "scope", "max_hits"],
@@ -198,6 +204,7 @@ func _validate_upgrade(value: Variant, path: String) -> void:
 					if not rank[key] is bool: errors.append(rank_path + ": include_primary must be boolean")
 				"occlusion":
 					if rank[key] not in ["world_ray", "none"]: errors.append(rank_path + ": unsupported occlusion")
+				"shield_amount": _number(rank[key], 0, 100, rank_path + "." + key, true)
 				"sight_height_m": _number(rank[key], 0, 10, rank_path + "." + key, true)
 
 				"projectile_id", "status_id", "source_effect_id", "form_id": _string(rank[key], rank_path + "." + key)
@@ -436,11 +443,11 @@ func _validate_statuses(data: Dictionary) -> void:
 		return
 	var definitions: Dictionary = {}
 	for status in data.statuses:
-		if not _object(status, ["id", "kind", "duration_sec", "max_duration_sec", "move_scale", "refresh", "control_group"], "status"): continue
+		if not _object(status, ["id", "kind", "duration_sec", "max_duration_sec", "move_scale", "refresh", "control_group", "linked_mark_id"], "status"): continue
 		if not _string(status.id, "status.id"): continue
 		if definitions.has(status.id): errors.append("duplicate status id")
 		definitions[status.id] = status
-		if status.kind not in ["slow", "freeze"]: errors.append("unsupported status kind")
+		if status.kind not in ["slow", "freeze", "mark"]: errors.append("unsupported status kind")
 		if status.kind == "slow" and (status.refresh != "longest" or status.control_group != ""):
 			errors.append("slow requires longest refresh and no control group")
 		if status.kind == "freeze":
@@ -451,6 +458,12 @@ func _validate_statuses(data: Dictionary) -> void:
 		if valid and status.duration_sec > status.max_duration_sec: errors.append("status duration exceeds cap")
 		if _number(status.move_scale, 0, 1, "status.move_scale"):
 			if (status.kind == "slow" and status.move_scale <= 0) or (status.kind == "freeze" and status.move_scale != 0): errors.append("invalid status movement scale")
+	for status in definitions.values():
+		if status.kind == "mark" and (status.move_scale != 1.0 or status.control_group != "" or status.refresh != "longest"):
+			errors.append("mark must not control movement or actions")
+		if not status.linked_mark_id is String: errors.append("linked_mark_id must be string")
+		elif not status.linked_mark_id.is_empty():
+			if status.kind != "freeze" or not definitions.has(status.linked_mark_id) or definitions[status.linked_mark_id].kind != "mark": errors.append("freeze may only link an existing mark")
 	if not _object(data.status_rules, ["default_response_id", "actor_responses", "responses", "control_groups"], "status_rules"): return
 	var rules: Dictionary = data.status_rules
 	# This finite slice has one shared freeze group, independent of status/source ID.
@@ -470,15 +483,21 @@ func _validate_statuses(data: Dictionary) -> void:
 		return
 	var responses: Dictionary = {}
 	for response in rules.responses:
-		if not _object(response, ["id", "immune_kinds", "slow_duration_scale", "freeze_duration_scale"], "response"): continue
+		if not _object(response, ["id", "immune_kinds", "slow_duration_scale", "freeze_duration_scale", "freeze_hits_required", "mark_duration_scale", "freeze_mode", "freeze_move_scale", "freeze_action_scale", "thaw_immunity_scale"], "response"): continue
 		if not _string(response.id, "response.id"): continue
 		if responses.has(response.id): errors.append("duplicate response id")
 		responses[response.id] = response
-		if _strings(response.immune_kinds, 2, "response.immune_kinds"):
+		if _strings(response.immune_kinds, 3, "response.immune_kinds"):
 			for kind in response.immune_kinds:
-				if kind not in ["slow", "freeze"]: errors.append("unknown immune kind")
+				if kind not in ["slow", "freeze", "mark"]: errors.append("unknown immune kind")
+		_number(response.mark_duration_scale, 0, 1, "response.mark_duration_scale", true)
 		_number(response.slow_duration_scale, 0, 1, "response.slow_duration_scale", true)
 		_number(response.freeze_duration_scale, 0, 1, "response.freeze_duration_scale", true)
+		_integer(response.freeze_hits_required, 1, 64, "response.freeze_hits_required")
+		if response.freeze_mode not in ["hard", "slow"]: errors.append("invalid freeze_mode")
+		_number(response.freeze_move_scale, 0.1, 1, "response.freeze_move_scale")
+		_number(response.freeze_action_scale, 0.1, 1, "response.freeze_action_scale")
+		_number(response.thaw_immunity_scale, 1, 20, "response.thaw_immunity_scale")
 	if not _string(rules.default_response_id, "default_response_id") or not responses.has(rules.default_response_id): errors.append("missing default response")
 	if not rules.actor_responses is Dictionary or rules.actor_responses.size() > MAX_ENTRIES: errors.append("actor_responses must be bounded object")
 	else:
@@ -658,6 +677,7 @@ func _validate_actions(data: Dictionary) -> void:
 			expected_layer = "synergy" if entry.ranks[0].provider_scope == "other_formal_action" else "support"
 			for id in entry.action_ids:
 				if actions.has(id) and actions[id].test_only: errors.append("conditional damage requires formal actions")
+		if entry.effect_type in ["consume_freeze", "projectile_path", "freeze_shield"]: expected_layer = "synergy"
 		if entry.layer != expected_layer: errors.append("effect type and layer disagree")
 		if entry.effect_type in ["projectile", "chain"] and not entry.test_only: errors.append("legacy projectile/chain restricted to fixture")
 		if entry.effect_type == "form":

@@ -39,7 +39,8 @@ func event(event: InputEvent) -> void:
 		return
 	if event.is_echo(): return
 	if event.is_action_pressed("combat_dodge"): actor.request_dodge()
-	if event.is_action_pressed("combat_skill"): actor.request_action("skill")
+	if event.is_action_pressed("combat_skill"): actor.press_skill()
+	if event.is_action_released("combat_skill"): actor.release_skill()
 	if event.is_action_pressed("combat_special"): actor.request_action("special")
 	if event.is_action_pressed("combat_attack"): actor.request_action("primary")
 func _focused_ui() -> Control:

@@ -31,7 +31,7 @@ static func valid_plan(program: Dictionary, catalog = null) -> bool:
 		if seen.has(effect.upgrade_id) or not effect.params is Dictionary: return false
 		if not _positive_integer(effect.rank): return false
 		seen[effect.upgrade_id] = true
-		if not effect.type in ["projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage"]: return false
+		if not effect.type in ["projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage", "return_projectile", "charge_projectile", "consume_freeze", "projectile_path", "freeze_shield"]: return false
 		if effect.type == "split": split = true
 		if effect.type == "pierce":
 			pierce = true
@@ -137,6 +137,14 @@ static func summarize_plan(catalog, plan: Dictionary) -> Array:
 				for payload in effect.params.payloads:
 					if payload.type == "apply_status" and payload.allowed_origins.has(attack.origin): area.status_ids.append(payload.status_id)
 				attack.area_effects.append(area)
+	for attack in result:
+		for id in attack.status_ids.duplicate():
+			var linked: String = catalog.status(id).linked_mark_id
+			if not linked.is_empty() and not attack.status_ids.has(linked): attack.status_ids.append(linked)
+		for area in attack.area_effects:
+			for id in area.status_ids.duplicate():
+				var linked: String = catalog.status(id).linked_mark_id
+				if not linked.is_empty() and not area.status_ids.has(linked): area.status_ids.append(linked)
 	return Catalog.freeze_copy(result)
 
 static func eligible(entry: Dictionary, summary: Array) -> bool:
@@ -175,6 +183,18 @@ static func supports_impact(origin: String, params: Dictionary) -> bool:
 # A provider is queried separately; its effects are never copied to the receiver.
 static func eligible_for_action(entry: Dictionary, catalog, program: Dictionary, action_id: String) -> bool:
 	var summary := summarize_plan(catalog, program.actions[action_id])
+	if entry.effect_type in ["return_projectile", "charge_projectile", "projectile_path"]:
+		if program.actions[action_id].executor != "projectile": return false
+		if entry.effect_type != "projectile_path": return true
+	if entry.effect_type in ["projectile_path", "freeze_shield", "consume_freeze"]:
+		for provider in catalog.actions():
+			if provider.test_only: continue
+			if entry.effect_type != "consume_freeze" and provider.id != action_id: continue
+			for attack in summarize_plan(catalog, program.actions[provider.id]):
+				var ids: Array = attack.status_ids.duplicate()
+				for area in attack.area_effects: ids.append_array(area.status_ids)
+				if ids.any(func(id): return catalog.status(id).kind == "freeze"): return true
+		return false
 	if entry.effect_type != "conditional_damage": return eligible(entry, summary)
 	var params: Dictionary = entry.ranks[0]
 	if catalog.action(action_id).test_only: return false

@@ -32,3 +32,7 @@
 
 - VFX-001：普通/寒冰月牙取消刃面倾斜，真实节点360方向检查均平行地面，避免原倾角经非等比缩放后近乎侧对庭院镜头；主体/残影一致，玩法范围未变。
 - COMBAT-001：训练与短路线房间清场后继续执行技能，自动奖励结束与运行态停止分离；清场不再取消玩家已承诺动作。`post_clear_skills.gd`覆盖跨清场起手、再次右键空放、暂停/退出与奖励隔离；`run_integration.gd`343项及`training_tools.gd`通过。正式持久关卡仍未实现。
+
+## 训练退出相机离树调用（2026-10-12观察）
+
+headless运行action_build_slice.tscn、quit-after 2时可到training ready，但退出经_shutdown→_apply_camera_shake在combat_training.gd:575读取已离树节点global_transform，输出!is_inside_tree错误。未确定引入版本，不影响此次状态专项通过；本轮未修改共享战斗手感/相机代码，待对应模块处理。

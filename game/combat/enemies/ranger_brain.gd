@@ -45,6 +45,8 @@ func configure_queries(queries: Dictionary) -> void:
 	adjust_left = config.reposition_sec
 
 func tick(delta: float) -> void:
+	delta *= actor.control_action_scale
+	if delta <= 0.0: return
 	actor.movement = Vector3.ZERO
 	actor.forced_velocity = Vector3.ZERO
 	for id in cooldowns: cooldowns[id] = maxf(0.0, cooldowns[id] - delta)

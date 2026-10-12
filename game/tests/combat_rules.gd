@@ -32,7 +32,9 @@ func run() -> void:
 			"duplicate": invalid.abilities.append(invalid.abilities[0])
 			"fractional": invalid.dodge.charges = 1.5
 			"iframe": invalid.dodge.invulnerable_sec = 2.0
-			"knockback": invalid.abilities[0].knockback_speed_mps = 5.0
+			"knockback":
+				invalid.abilities[0].knockback_speed_mps = 5.0
+				invalid.abilities[0].knockback_duration_sec = 0.0
 			"movement": invalid.abilities[0].movement_speed_multiplier = -1.0
 			"shape": invalid.abilities[0].hit_shape = "unknown"
 			"sector_width": invalid.abilities[0].thrust_width_m = 1.0

@@ -13,7 +13,12 @@
       "frost_blast",
       "action_power",
       "shatter_followup",
-      "opening_strike"
+      "opening_strike",
+      "returning_wave",
+      "charged_wave",
+      "shatter_heavy",
+      "frost_path",
+      "ice_coat"
     ],
     "fallback_ids": [
       "power",
@@ -180,7 +185,8 @@
       "requires": [],
       "excludes": [
         "pierce",
-        "frost_blast"
+        "frost_blast",
+        "returning_wave"
       ],
       "required_tags": [],
       "granted_tags": [],
@@ -221,7 +227,9 @@
       "weight": 1.0,
       "max_rank": 1,
       "requires": [],
-      "excludes": [],
+      "excludes": [
+        "shatter_heavy"
+      ],
       "required_tags": [],
       "granted_tags": [],
       "effect_type": "explosion",
@@ -511,6 +519,141 @@
         "primary"
       ],
       "test_only": false
+    },
+    {
+      "id": "returning_wave",
+      "name_key": "build.frost.returning_wave.name",
+      "description_key": "build.frost.returning_wave.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [
+        "split"
+      ],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "return_projectile",
+      "ranks": [
+        {
+          "return_speed_mps": 9.0,
+          "turn_radians_per_sec": 6.0,
+          "return_lifetime_sec": 2.5,
+          "catch_radius_m": 0.7
+        }
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "skill"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "charged_wave",
+      "name_key": "build.frost.charged_wave.name",
+      "description_key": "build.frost.charged_wave.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "charge_projectile",
+      "ranks": [
+        {
+          "threshold_sec": 1.2,
+          "max_charge_sec": 1.2,
+          "damage_ratio": 3.0,
+          "radius_ratio": 2.5657894736842106,
+          "cooldown_ratio": 2.0
+        }
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "skill"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "shatter_heavy",
+      "name_key": "build.frost.shatter_heavy.name",
+      "description_key": "build.frost.shatter_heavy.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [
+        "impact_blast"
+      ],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "consume_freeze",
+      "ranks": [
+        {
+          "status_id": "test_freeze",
+          "bonus": 1.5,
+          "max_targets": 1
+        }
+      ],
+      "scope": "action",
+      "layer": "synergy",
+      "action_ids": [
+        "special"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "frost_path",
+      "name_key": "build.frost.frost_path.name",
+      "description_key": "build.frost.frost_path.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "projectile_path",
+      "ranks": [
+        {
+          "status_id": "test_slow",
+          "spacing_m": 0.8,
+          "radius_m": 0.7,
+          "lifetime_sec": 3.0,
+          "duration_sec": 0.2,
+          "max_targets": 32
+        }
+      ],
+      "scope": "action",
+      "layer": "synergy",
+      "action_ids": [
+        "skill"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "ice_coat",
+      "name_key": "build.frost.ice_coat.name",
+      "description_key": "build.frost.ice_coat.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "freeze_shield",
+      "ranks": [
+        {
+          "shield_amount": 20.0,
+          "duration_sec": 4.0,
+          "trigger_cooldown_sec": 3.0
+        }
+      ],
+      "scope": "action",
+      "layer": "synergy",
+      "action_ids": [
+        "skill"
+      ],
+      "test_only": false
     }
   ],
   "projectiles": [
@@ -550,7 +693,8 @@
       "max_duration_sec": 6.0,
       "move_scale": 0.55,
       "refresh": "longest",
-      "control_group": ""
+      "control_group": "",
+      "linked_mark_id": ""
     },
     {
       "id": "test_freeze",
@@ -559,18 +703,37 @@
       "max_duration_sec": 3.0,
       "move_scale": 0.0,
       "refresh": "reject_active",
-      "control_group": "freeze"
+      "control_group": "freeze",
+      "linked_mark_id": "frost_mark"
+    },
+    {
+      "id": "frost_mark",
+      "kind": "mark",
+      "duration_sec": 5.0,
+      "max_duration_sec": 5.0,
+      "move_scale": 1.0,
+      "refresh": "longest",
+      "control_group": "",
+      "linked_mark_id": ""
     }
   ],
   "status_rules": {
     "default_response_id": "normal",
-    "actor_responses": {},
+    "actor_responses": {
+      "elite_ranger": "boss_frost_slow"
+    },
     "responses": [
       {
         "id": "normal",
         "immune_kinds": [],
         "slow_duration_scale": 1.0,
-        "freeze_duration_scale": 1.0
+        "freeze_duration_scale": 1.0,
+        "freeze_hits_required": 1,
+        "mark_duration_scale": 1.0,
+        "freeze_mode": "hard",
+        "freeze_move_scale": 1.0,
+        "freeze_action_scale": 1.0,
+        "thaw_immunity_scale": 1.0
       },
       {
         "id": "immune",
@@ -579,13 +742,49 @@
           "freeze"
         ],
         "slow_duration_scale": 1.0,
-        "freeze_duration_scale": 1.0
+        "freeze_duration_scale": 1.0,
+        "freeze_hits_required": 1,
+        "mark_duration_scale": 1.0,
+        "freeze_mode": "hard",
+        "freeze_move_scale": 1.0,
+        "freeze_action_scale": 1.0,
+        "thaw_immunity_scale": 1.0
       },
       {
         "id": "resistant",
         "immune_kinds": [],
         "slow_duration_scale": 0.5,
-        "freeze_duration_scale": 0.5
+        "freeze_duration_scale": 0.5,
+        "freeze_hits_required": 1,
+        "mark_duration_scale": 1.0,
+        "freeze_mode": "hard",
+        "freeze_move_scale": 1.0,
+        "freeze_action_scale": 1.0,
+        "thaw_immunity_scale": 1.0
+      },
+      {
+        "id": "elite_freeze_resistant",
+        "immune_kinds": [],
+        "slow_duration_scale": 1.0,
+        "freeze_duration_scale": 1.0,
+        "freeze_hits_required": 3,
+        "mark_duration_scale": 1.0,
+        "freeze_mode": "hard",
+        "freeze_move_scale": 1.0,
+        "freeze_action_scale": 1.0,
+        "thaw_immunity_scale": 1.0
+      },
+      {
+        "id": "boss_frost_slow",
+        "immune_kinds": [],
+        "slow_duration_scale": 1.0,
+        "freeze_duration_scale": 1.0,
+        "freeze_hits_required": 1,
+        "mark_duration_scale": 1.0,
+        "freeze_mode": "slow",
+        "freeze_move_scale": 0.65,
+        "freeze_action_scale": 0.65,
+        "thaw_immunity_scale": 3.0
       }
     ],
     "control_groups": [
@@ -688,6 +887,90 @@
         {
           "upgrade_id": "opening_strike",
           "action_id": "primary",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "returning_skirmish",
+      "name_key": "build.preset.returning_skirmish",
+      "selections": [
+        {
+          "upgrade_id": "contact_freeze",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "returning_wave",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "pierce",
+          "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "charged_burst",
+      "name_key": "build.preset.charged_burst",
+      "selections": [
+        {
+          "upgrade_id": "contact_freeze",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "charged_wave",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "pierce",
+          "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "shatter_duel",
+      "name_key": "build.preset.shatter_duel",
+      "selections": [
+        {
+          "upgrade_id": "contact_freeze",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "shatter_heavy",
+          "action_id": "special",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "ice_coat",
+          "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "frost_control",
+      "name_key": "build.preset.frost_control",
+      "selections": [
+        {
+          "upgrade_id": "contact_freeze",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "frost_path",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "pierce",
+          "action_id": "skill",
           "rank": 1
         }
       ]

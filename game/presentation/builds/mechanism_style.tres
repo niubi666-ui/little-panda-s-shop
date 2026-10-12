@@ -39,9 +39,20 @@ shading_mode = 0
 albedo_color = Color(0.15, 0.8, 1, 0.42)
 emission_enabled = true
 emission = Color(0.08, 0.5, 0.8, 1)
+[sub_resource type="TorusMesh" id="mark"]
+inner_radius = 0.28
+outer_radius = 0.34
+rings = 24
+ring_segments = 6
+[sub_resource type="StandardMaterial3D" id="mark_mat"]
+shading_mode = 0
+albedo_color = Color(0.25, 0.8, 1, 1)
 [resource]
 script = ExtResource("script")
 enabled = true
+mark_mesh = SubResource("mark")
+mark_material = SubResource("mark_mat")
+mark_offset = Vector3(0, 2.5, 0)
 area_mesh = SubResource("area")
 area_material = SubResource("area_mat")
 frost_area_material = SubResource("frost_area_mat")

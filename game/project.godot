@@ -29,12 +29,11 @@ combat_attack={
 }
 combat_special={
 "deadzone": 0.2,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":32,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
-]
+"events": [Object(InputEventKey,"physical_keycode":82)]
 }
 combat_skill={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"physical_keycode":81)]
+"events": [Object(InputEventMouseButton,"button_index":2)]
 }
 combat_dodge={
 "deadzone": 0.2,

@@ -11,8 +11,8 @@ func check(ok: bool, message: String) -> void:
 func step(count: int) -> void:
 	for index in count: arena._physics_process(1.0 / 60.0)
 func shoot() -> void:
-	var event := InputEventKey.new()
-	event.physical_keycode = KEY_Q
+	var event := InputEventMouseButton.new()
+	event.button_index = MOUSE_BUTTON_RIGHT
 	event.pressed = true
 	arena._unhandled_input(event)
 func run() -> void:

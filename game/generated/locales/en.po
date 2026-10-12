@@ -41,7 +41,7 @@ msgid "build.current_form"
 msgstr "Form: {form}"
 
 msgid "build.empty"
-msgstr "No upgrades yet. LMB, RMB and Q base actions are available."
+msgstr "No upgrades yet. LMB, R and RMB base actions are available."
 
 msgid "build.error"
 msgstr "Choice could not be saved. Your build is unchanged; try again."
@@ -65,7 +65,7 @@ msgid "build.form.sword_wave"
 msgstr "Sword wave"
 
 msgid "build.frost.charged_wave.description"
-msgstr "Release Q to fire. Hold {threshold_sec}s for a full-size frost crescent dealing {damage_percent}% normal damage with {cooldown_ratio}x cooldown; release earlier for a normal wave. Frost visuals alone do not grant freeze."
+msgstr "Release RMB to fire. Hold {threshold_sec}s for a full-size frost crescent dealing {damage_percent}% normal damage with {cooldown_ratio}x cooldown; release earlier for a normal wave. Frost visuals alone do not grant freeze."
 
 msgid "build.frost.charged_wave.name"
 msgstr "Charged Frost"
@@ -176,10 +176,10 @@ msgid "build.preset.frost_control"
 msgstr "Frost trail control"
 
 msgid "build.preset.hint"
-msgstr "LMB combo, RMB heavy and Q wave are available from the start. Presets change bound upgrades; retry resets the room and Build."
+msgstr "LMB combo, R heavy and RMB wave are available from the start. Presets change bound upgrades; retry resets the room and Build."
 
 msgid "build.preset.left_blast_skill_freeze"
-msgstr "LMB Blast + Q Piercing Freeze"
+msgstr "LMB Blast + RMB Piercing Freeze"
 
 msgid "build.preset.pierce_blast"
 msgstr "Piercing Blast"
@@ -194,7 +194,7 @@ msgid "build.preset.shatter_duel"
 msgstr "Shatter duel"
 
 msgid "build.preset.skill_frost"
-msgstr "Q Piercing Frost Blast"
+msgstr "RMB Piercing Frost Blast"
 
 msgid "build.preset.title"
 msgstr "Action build presets"
@@ -272,7 +272,7 @@ msgid "build.reward.training_all"
 msgstr "All training cards"
 
 msgid "build.shatter_followup.description"
-msgstr "Q direct hits deal +{bonus_percent}% damage to targets in an active frost window (hard freeze or boss slow) from your earlier independent cast. Requires Q to deliver freeze. Does not end or refresh freeze; split and blast damage are unaffected."
+msgstr "RMB direct hits deal +{bonus_percent}% damage to targets in an active frost window (hard freeze or boss slow) from your earlier independent cast. Requires RMB to deliver freeze. Does not end or refresh freeze; split and blast damage are unaffected."
 
 msgid "build.shatter_followup.name"
 msgstr "Shatter Follow-up"
@@ -299,7 +299,7 @@ msgid "build.test.agility.name"
 msgstr "Test · Fleet foot"
 
 msgid "build.test.arrow_hint"
-msgstr "T fires an isolated test arrow; it inherits no LMB, RMB or Q upgrades."
+msgstr "T fires an isolated test arrow; it inherits no LMB, R or RMB upgrades."
 
 msgid "build.test.blast.description"
 msgstr "This action’s contacts create a {radius_m} m blast for {damage_percent}% attack damage with radial falloff. Excludes the direct target and walls. Each projectile blasts on its first contact only."
@@ -332,10 +332,10 @@ msgid "build.test.freeze_duration.name"
 msgstr "Test · Longer freeze"
 
 msgid "build.test.mechanism_hint"
-msgstr "LMB Combo · RMB Heavy · Q Wave · T Test Arrow · Blue Ring = Frost"
+msgstr "LMB Combo · R Heavy · RMB Wave · T Test Arrow · Blue Ring = Frost"
 
 msgid "build.test.power.description"
-msgstr "Increase LMB, RMB and Q attack damage by {bonus_percent}%. Adds to action damage bonuses before the shared cap; derived damage is not scaled twice."
+msgstr "Increase LMB, R and RMB attack damage by {bonus_percent}%. Adds to action damage bonuses before the shared cap; derived damage is not scaled twice."
 
 msgid "build.test.power.name"
 msgstr "Test · Sharpened blade"
@@ -371,7 +371,7 @@ msgid "combat.choosing"
 msgstr "Choose a build upgrade to resume combat"
 
 msgid "combat.controls"
-msgstr "WASD Move · LMB Combo · RMB Heavy · Q Sword Wave · Shift Dodge · Esc Pause · L Language"
+msgstr "WASD Move · LMB Combo · R Heavy · RMB Sword Wave · Shift Dodge · Esc Pause · L Language"
 
 msgid "combat.crossbow"
 msgstr "Skirmish Crossbow"
@@ -713,7 +713,7 @@ msgid "run.return_map"
 msgstr "Return to route map"
 
 msgid "run.room.controls"
-msgstr "WASD Move · LMB Combo · RMB Heavy · Q Sword Wave · Shift Dodge · Esc Menu · L Language"
+msgstr "WASD Move · LMB Combo · R Heavy · RMB Sword Wave · Shift Dodge · Esc Menu · L Language"
 
 msgid "run.room.health"
 msgstr "HP {hp} / {max_hp}"

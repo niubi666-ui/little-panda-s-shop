@@ -31,7 +31,7 @@
 - 左侧「训练深度」默认 **6**；「应用深度 / 新遭遇」保持本房家具布局，重抽敌人阵容。
 - 「重新训练」保留布局、遭遇阵容和预滚掉落，重置临时状态。
 - 「新随机布局」重抽房间物件与遭遇，保留所选深度。
-- 默认两波；现有三选一构筑奖励流程仍生效。灰盒回归场景继续使用原固定两波，保证旧战斗验证可重复。
+- 正常训练默认五波：前四波合法普通阵容、第五波精灵游侠Boss。每波深度偏移、血量/伤害倍率来自training_waves；保留波间三选一。灰盒固定夹具和普通遭遇规划继续使用原wave_count。
 - 顶部「训练工具」可启用玩家/敌人伤害无敌、恢复生命、追加敌人；「界面显示」管理训练面板，详见 [训练工具](COMBAT_PROTOTYPE.md#训练工具与界面显示)。
 
 建议对比：
@@ -134,3 +134,13 @@
 ![弩手与矛兵预警](previews/enemies_crossbow_charge_windup.png)
 ![飞行红球](previews/enemies_crossbow_charge_projectile.png)
 ![旗手与重型](previews/enemies_banner_heavy.png)
+
+## 五波训练递进（2026-10-13）
+
+权威配置：`game/data/rooms/encounters.json.training_waves`，数组长度就是实际训练波数。每项必填depth_offset、health_multiplier、damage_multiplier；最后一项另含boss_actor_id和boss_name_key，前面各项不得指定Boss。血量/伤害倍率逐波严格递增，深度偏移非递减；倍率作用于当前基础属性，不覆盖玩家手调的combat/roles配置。
+
+`EncounterPlanner.generate_training`锁定每波最终阵容、深度、预算、倍率和掉落。前四波调用普通合法阵容规划，末波显式Boss且不预滚掉落（仅训练测试），不把游侠加入普通随机池。validate_plan按training_progression标记复算，篡改倍率及旧版本计划拒绝；重试保留已锁计划，刷新深度/布局生成新计划。普通generate/训练工具追加与短路线保持原契约，不采用五波升级倍率。
+
+app在生成实例时设置生命，近战Ability使用scaled_damage生成独立只读副本，远程/冲锋/游侠profile复制并缩放damage及*_damage字段，再注入已有规则和表现。共享目录不变，不逐帧缩放，不改变攻速/前摇。Boss注册同一Encounter生命计数，末波全灭才胜利；已有额外手动刷新游侠的胜利等待规则继续保留。
+
+这五波是手感训练，不是正式Boss关卡或永久奖励。参数可直接改training_waves，保存后重启游戏。旧wave_count仍供普通规划/回归夹具使用，不决定正常训练波数。

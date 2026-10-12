@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "content_version": "encounters.2-training-tools",
+  "content_version": "encounters.3-training-progression",
   "generation_version": 1,
   "training_depth": 6,
   "training_max_depth": 30,
@@ -165,6 +165,35 @@
         "charger",
         "banner"
       ]
+    }
+  ],
+  "training_waves": [
+    {
+      "depth_offset": 0,
+      "health_multiplier": 1,
+      "damage_multiplier": 1
+    },
+    {
+      "depth_offset": 3,
+      "health_multiplier": 1.4,
+      "damage_multiplier": 1.12
+    },
+    {
+      "depth_offset": 6,
+      "health_multiplier": 1.9,
+      "damage_multiplier": 1.25
+    },
+    {
+      "depth_offset": 9,
+      "health_multiplier": 2.5,
+      "damage_multiplier": 1.4
+    },
+    {
+      "depth_offset": 12,
+      "health_multiplier": 3,
+      "damage_multiplier": 1.55,
+      "boss_actor_id": "elite_ranger",
+      "boss_name_key": "combat.elite_ranger"
     }
   ]
 }

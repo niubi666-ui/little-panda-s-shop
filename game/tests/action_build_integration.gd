@@ -62,7 +62,7 @@ func run() -> void:
 	check(arena.builds.is_choosing(), "real entry opens ordinary reward")
 	var initial: Dictionary = arena.builds.session.snapshot()
 	key(KEY_T)
-	key(KEY_Q)
+	await click_at(Vector2(700,400), MOUSE_BUTTON_RIGHT)
 	await click_at(root.get_visible_rect().get_center(), MOUSE_BUTTON_RIGHT)
 	check(arena.builds.runtime.diagnostics().queued == 0 and arena.player.runner.cast_id == 0, "choice modal blocks arrows and special")
 	for locale in ["zh_CN", "en"]:
@@ -108,8 +108,8 @@ func run() -> void:
 		arena.player.runner.tick(10.0)
 		arena.player.facing = Vector3.FORWARD
 		root.gui_release_focus()
-		if index == 0: await click_at(Vector2(700, 400), MOUSE_BUTTON_RIGHT)
-		else: key(KEY_Q)
+		if index == 0: key(KEY_R)
+		else: await click_at(Vector2(700,400), MOUSE_BUTTON_RIGHT)
 		arena.player.step(0.001)
 		check(arena.player.runner.action_id == ("special" if index == 0 else "skill") and arena.player.runner.busy(), "viewport right/Q input selects independent action")
 		var ability = arena.player.runner.ability
@@ -177,7 +177,7 @@ func check_popup_focus(menu: MenuButton) -> void:
 		arena.input_adapter.update()
 		Input.action_release("move_forward")
 		check(arena.player.movement == Vector3.ZERO, "open popup blocks polled movement without Control focus")
-		key(KEY_Q)
+		await click_at(Vector2(700,400), MOUSE_BUTTON_RIGHT)
 		check(arena.player.buffered_action_id.is_empty(), "popup blocks Q input")
 		button.get_popup().hide()
 	await frames()
@@ -233,11 +233,11 @@ func check_freeze_presets(menu: MenuButton, first, later, side) -> void:
 		first.health.maximum = 1000.0; first.health.current = 1000.0
 		arena.player.runner.tick(10.0)
 		arena.player.facing = Vector3.FORWARD
-		root.gui_release_focus(); key(KEY_Q); freeze_step(1.05)
+		root.gui_release_focus(); await click_at(Vector2(700,400), MOUSE_BUTTON_RIGHT); freeze_step(1.05)
 		check(first.control_locked, "new preset actual Q freezes")
 		var action: String = "primary" if index == 5 else "skill"
 		if action == "primary": await click_at(Vector2(700,400))
-		else: key(KEY_Q)
+		else: await click_at(Vector2(700,400), MOUSE_BUTTON_RIGHT)
 		freeze_step(0.2)
 		var hits: int = arena.builds.runtime.diagnostics().conditional_hits
 		check(hits == (0 if index == 3 else 1), "new preset committed followup fact " + str(index))

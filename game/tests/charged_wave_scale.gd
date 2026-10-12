@@ -4,9 +4,12 @@ func run() -> void:
 	if builds == null or combat == null: quit(1); return
 	resolver.configure(builds)
 	var f := setup([select("charged_wave","skill")])
-	f.player.press_skill(); f.player.step(float(f.player.charge_parameters().max_charge_sec))
+	var camera := Camera3D.new(); root.add_child(camera)
+	var input := preload("res://presentation/combat/combat_input.gd").new(f.player,camera)
+	var right := InputEventMouseButton.new(); right.button_index = MOUSE_BUTTON_RIGHT; right.pressed = true
+	input.event(right); f.player.step(float(f.player.charge_parameters().max_charge_sec))
 	check(f.runtime.projectiles().is_empty(), "holding does not fire")
-	f.player.release_skill(); f.player.step(.01); f.runtime.tick(.001)
+	right.pressed = false; input.event(right); f.player.step(.01); f.runtime.tick(.001)
 	var fact: Dictionary = f.runtime.projectiles()[0]
 	check(fact.charged and is_equal_approx(fact.radius,1.95), "committed full charge has authored demo width")
 	var view := preload("res://presentation/builds/build_effects_view.gd").new()
@@ -20,7 +23,7 @@ func run() -> void:
 	f.runtime.tick(.2)
 	check(is_equal_approx(1000.0-victim.health.current,combat.ability("wave_cast").damage*3.0), "wide side contact deals triple base damage")
 	check(not f.runtime.statuses.snapshot(victim).has("test_freeze"), "frost appearance grants no unselected freeze ability")
-	view.clear(); view.free(); clean(f)
+	view.clear(); view.free(); camera.free(); clean(f)
 	f = setup([select("charged_wave","skill")])
 	f.player.press_skill(); f.player.step(.1); f.player.release_skill(); f.player.step(.01); f.runtime.tick(.001)
 	fact = f.runtime.projectiles()[0]

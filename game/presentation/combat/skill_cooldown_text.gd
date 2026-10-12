@@ -3,6 +3,8 @@ extends RefCounted
 static func format_for(player) -> String:
 	var events := InputMap.action_get_events("combat_skill")
 	var binding: String = events[0].as_text() if not events.is_empty() else TranslationServer.translate("build.action.skill")
+	if not events.is_empty() and events[0] is InputEventMouseButton and events[0].button_index == MOUSE_BUTTON_RIGHT:
+		binding = TranslationServer.translate("build.input.right_mouse")
 	if not player.health.alive() or player.control_locked:
 		return TranslationServer.translate("combat.skill.disabled").format({"key":binding})
 	var remaining: float = player.runner.cooldown_for("skill")

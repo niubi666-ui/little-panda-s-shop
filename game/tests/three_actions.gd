@@ -49,14 +49,12 @@ func run() -> void:
 	var camera:=Camera3D.new();root.add_child(camera)
 	var blocked:Dictionary={"value":true}
 	var input:=InputAdapter.new(f.player,camera,func():return blocked.value)
-	var key:=InputEventKey.new();key.physical_keycode=KEY_Q;key.pressed=true
+	var key:=InputEventMouseButton.new();key.button_index=MOUSE_BUTTON_RIGHT;key.pressed=true
 	input.event(key)
 	check(f.player.buffered_action_id.is_empty(),"modal/pause gate blocks Q")
 	blocked.value=false
-	key.echo=true;input.event(key)
-	check(f.player.buffered_action_id.is_empty(),"held Q key repeat cannot queue shots")
-	key.echo=false;input.event(key);f.player.step(.001);f.runtime.tick(.001)
-	check(f.runtime.projectiles().size()==1,"physical Q fires without unlock")
+	input.event(key);f.player.step(.001);f.runtime.tick(.001)
+	check(f.runtime.projectiles().size()==1,"right mouse fires without unlock")
 	var field:=LineEdit.new();root.add_child(field);field.grab_focus();await process_frame
 	input.event(key)
 	check(f.player.buffered_action_id.is_empty(),"text focus blocks Q")
@@ -69,6 +67,13 @@ func run() -> void:
 	check(f.player.runner.cooldown_for("skill")==remaining,"zero-time pause does not advance Q cooldown")
 	f.player.runner.tick(1.0)
 	check(not CooldownText.format_for(f.player).contains("1.0"),"HUD transitions out of cooldown")
+	var heavy := InputEventKey.new(); heavy.physical_keycode = KEY_R; heavy.pressed = true
+	input.event(heavy); f.player.step(.001)
+	check(f.player.runner.action_id == "special", "R starts heavy attack")
+	f.player.runner.cancel(); f.player.clear_intents()
+	var old_key := InputEventKey.new(); old_key.physical_keycode = KEY_Q; old_key.pressed = true
+	input.event(old_key)
+	check(f.player.buffered_action_id.is_empty(), "Q no longer requests a combat action")
 	camera.free();clean(f)
 	print("THREE_ACTIONS ",JSON.stringify({"failures":failures}))
 	quit(0 if failures.is_empty() else 1)

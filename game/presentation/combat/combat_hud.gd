@@ -102,7 +102,7 @@ func place_encounters_below(panel: Control) -> void:
 func update_encounter(plan: Dictionary, wave_index: int) -> void:
 	if encounter_label == null: return
 	var wave: Dictionary = plan.waves[clampi(wave_index, 0, plan.waves.size() - 1)]
-	encounter_label.text = tr("encounter.status").format({"depth":int(plan.depth),"budget":int(plan.budget),"name":tr(wave.name_key)})
+	encounter_label.text = tr("encounter.status").format({"depth":int(wave.get("depth",plan.depth)),"budget":int(wave.get("budget",plan.budget)),"name":tr(wave.name_key)})
 func _layout_effect_picker() -> void:
 	if effect_picker == null: return
 	effect_picker.set_anchors_preset(Control.PRESET_TOP_RIGHT)

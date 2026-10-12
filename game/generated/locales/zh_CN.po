@@ -41,7 +41,7 @@ msgid "build.current_form"
 msgstr "当前形态：{form}"
 
 msgid "build.empty"
-msgstr "尚无升级，左键、右键与 Q 基础动作均可使用"
+msgstr "尚无升级，左键、R 与右键 基础动作均可使用"
 
 msgid "build.error"
 msgstr "选择未成功，当前构筑未改变，请重试。"
@@ -65,7 +65,7 @@ msgid "build.form.sword_wave"
 msgstr "剑气"
 
 msgid "build.frost.charged_wave.description"
-msgstr "Q松键发射：按住 {threshold_sec} 秒蓄满，释放宽阔寒冰月牙，造成普通剑气 {damage_percent}% 的伤害，冷却为 {cooldown_ratio} 倍；未蓄满释放普通剑气。寒冰外观本身不附加冻结。"
+msgstr "右键松键发射：按住 {threshold_sec} 秒蓄满，释放宽阔寒冰月牙，造成普通剑气 {damage_percent}% 的伤害，冷却为 {cooldown_ratio} 倍；未蓄满释放普通剑气。寒冰外观本身不附加冻结。"
 
 msgid "build.frost.charged_wave.name"
 msgstr "蓄霜"
@@ -176,10 +176,10 @@ msgid "build.preset.frost_control"
 msgstr "霜路控场"
 
 msgid "build.preset.hint"
-msgstr "左键普攻、右键重击、Q剑气开局同时可用；预设只改变绑定构筑。重新训练重置场景和构筑。"
+msgstr "左键普攻、R 重击、右键剑气开局同时可用；预设只改变绑定构筑。重新训练重置场景和构筑。"
 
 msgid "build.preset.left_blast_skill_freeze"
-msgstr "左键爆炸＋Q穿透冻结"
+msgstr "左键爆炸＋右键穿透冻结"
 
 msgid "build.preset.pierce_blast"
 msgstr "穿透普通爆炸"
@@ -194,7 +194,7 @@ msgid "build.preset.shatter_duel"
 msgstr "破冰决斗"
 
 msgid "build.preset.skill_frost"
-msgstr "Q穿透寒霜爆破"
+msgstr "右键穿透寒霜爆破"
 
 msgid "build.preset.title"
 msgstr "动作构筑预设"
@@ -272,7 +272,7 @@ msgid "build.reward.training_all"
 msgstr "训练全池"
 
 msgid "build.shatter_followup.description"
-msgstr "Q 直接命中处于你此前独立施放产生的有效冰冻窗口（定身或Boss减速）的敌人，直接伤害 +{bonus_percent}%。需要 Q 具备冻结能力；不解除或刷新冻结，分裂和爆炸不增伤。"
+msgstr "右键 直接命中处于你此前独立施放产生的有效冰冻窗口（定身或Boss减速）的敌人，直接伤害 +{bonus_percent}%。需要 右键 具备冻结能力；不解除或刷新冻结，分裂和爆炸不增伤。"
 
 msgid "build.shatter_followup.name"
 msgstr "碎冰追击"
@@ -299,7 +299,7 @@ msgid "build.test.agility.name"
 msgstr "试验 · 轻盈步伐"
 
 msgid "build.test.arrow_hint"
-msgstr "T 发射独立测试箭，不继承左键、右键或Q的构筑。"
+msgstr "T 发射独立测试箭，不继承左键、R或右键的构筑。"
 
 msgid "build.test.blast.description"
 msgstr "这个动作接触敌人时造成半径 {radius_m} 米、{damage_percent}% 攻击伤害的衰减爆炸，排除直击目标与墙后目标。每枚投射物只在首次接触爆炸。"
@@ -332,10 +332,10 @@ msgid "build.test.freeze_duration.name"
 msgstr "试验 · 冻结延长"
 
 msgid "build.test.mechanism_hint"
-msgstr "左键普攻 · 右键重击 · Q剑气 · T独立测试箭 · 蓝圈=寒霜"
+msgstr "左键普攻 · R 重击 · 右键剑气 · T独立测试箭 · 蓝圈=寒霜"
 
 msgid "build.test.power.description"
-msgstr "左键、右键与 Q 动作的攻击伤害增加 {bonus_percent}%，与动作增伤相加后统一限幅，派生伤害不会重复放大。"
+msgstr "左键、R 与右键 动作的攻击伤害增加 {bonus_percent}%，与动作增伤相加后统一限幅，派生伤害不会重复放大。"
 
 msgid "build.test.power.name"
 msgstr "试验 · 锋刃强化"
@@ -371,7 +371,7 @@ msgid "combat.choosing"
 msgstr "选择构筑升级后继续战斗"
 
 msgid "combat.controls"
-msgstr "WASD 移动 · 左键三连击 · 右键重击 · Q 剑气 · Shift 闪避 · Esc 暂停 · L 中/英"
+msgstr "WASD 移动 · 左键三连击 · R 重击 · 右键 剑气 · Shift 闪避 · Esc 暂停 · L 中/英"
 
 msgid "combat.crossbow"
 msgstr "游击弩手"
@@ -713,7 +713,7 @@ msgid "run.return_map"
 msgstr "返回路线图"
 
 msgid "run.room.controls"
-msgstr "WASD 移动 · 左键普攻 · 右键重击 · Q 剑气 · Shift 闪避 · Esc 菜单 · L 语言"
+msgstr "WASD 移动 · 左键普攻 · R 重击 · 右键 剑气 · Shift 闪避 · Esc 菜单 · L 语言"
 
 msgid "run.room.health"
 msgstr "生命 {hp} / {max_hp}"

@@ -107,6 +107,17 @@ func load_catalog(combat) -> Catalog:
 		if not eligible: errors.append("depth band has no legal encounter")
 	if enc.depth_bands[0].min_depth != 1 or enc.training_depth > enc.training_max_depth: errors.append("invalid training depth")
 	_validate_training_tools(enc)
+	var previous_hp := 0.0
+	var previous_damage := 0.0
+	var previous_offset := -1
+	for index in enc.training_waves.size():
+		var wave: Dictionary = enc.training_waves[index]
+		if wave.health_multiplier <= previous_hp or wave.damage_multiplier <= previous_damage or wave.depth_offset < previous_offset:
+			errors.append("training wave strength must increase")
+		previous_hp = wave.health_multiplier; previous_damage = wave.damage_multiplier; previous_offset = wave.depth_offset
+		if index == enc.training_waves.size() - 1:
+			if not wave.has_all(["boss_actor_id", "boss_name_key"]) or not ids.has(wave.boss_actor_id): errors.append("training final boss missing")
+		elif wave.has("boss_actor_id") or wave.has("boss_name_key"): errors.append("only final training wave may specify boss")
 	if not errors.is_empty(): return null
 	return Catalog.new(roles, enc, loot)
 

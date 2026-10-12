@@ -26,7 +26,31 @@ func validate_plan(plan: Dictionary, capacity: int, catalog) -> bool:
 	if not is_finite(float(plan.depth)) or plan.depth < 1 or plan.depth != floor(plan.depth): return false
 	if plan.version != catalog.version or plan.generation_version != catalog.encounters.generation_version: return false
 	if legal(int(plan.depth), capacity, catalog).is_empty(): return false
+	if plan.get("training_progression", false): return plan == generate_training(plan.seed, int(plan.depth), capacity, catalog)
 	return plan == generate(plan.seed, int(plan.depth), capacity, catalog)
+
+func generate_training(seed_value: String, depth: int, capacity: int, catalog) -> Dictionary:
+	var plan := generate(seed_value, depth, capacity, catalog)
+	if plan.is_empty(): return {}
+	plan.training_progression = true
+	plan.waves = []
+	for index in catalog.encounters.training_waves.size():
+		var rule: Dictionary = catalog.encounters.training_waves[index]
+		var wave_depth: int = mini(depth + int(rule.depth_offset), int(catalog.encounters.training_max_depth))
+		var wave: Dictionary
+		if rule.has("boss_actor_id"):
+			wave = {"combination_id": rule.boss_actor_id, "name_key": rule.boss_name_key,
+				"enemy_ids": [rule.boss_actor_id], "drops": [[]]}
+		else:
+			var generated := generate(seed_value + "|training-wave|" + str(index), wave_depth, capacity, catalog)
+			if generated.is_empty(): return {}
+			wave = generated.waves[0].duplicate(true)
+		wave.depth = wave_depth
+		wave.budget = band_for(wave_depth, catalog).budget
+		wave.health_multiplier = rule.health_multiplier
+		wave.damage_multiplier = rule.damage_multiplier
+		plan.waves.append(wave)
+	return plan
 func generate(seed_value: String, depth: int, capacity: int, catalog) -> Dictionary:
 	var candidates := legal(depth, capacity, catalog)
 	if candidates.is_empty():

@@ -146,7 +146,7 @@ func _ready() -> void:
 	if room_presentation != null:
 		if encounter_depth == 0: encounter_depth = int(enemy_catalog.encounters.training_depth)
 		var seed_value := str(room_props.plan.seed) if room_props != null else str(randi())
-		encounter_plan = initial_encounter_plan.duplicate(true) if not initial_encounter_plan.is_empty() else EncounterPlanner.new().generate(seed_value, encounter_depth, _enemy_spawns.size(), enemy_catalog)
+		encounter_plan = initial_encounter_plan.duplicate(true) if not initial_encounter_plan.is_empty() else EncounterPlanner.new().generate_training(seed_value, encounter_depth, _enemy_spawns.size(), enemy_catalog)
 		if not EncounterPlanner.new().validate_plan(encounter_plan, _enemy_spawns.size(), enemy_catalog):
 			push_error("Invalid or incompatible encounter plan")
 			get_tree().quit(1)
@@ -287,20 +287,32 @@ func _spawn_wave(ids: Array) -> void:
 	brains = enemy_runtime.brains.duplicate()
 	for index in ids.size():
 		var actor := _spawn(catalog.actor(ids[index]), _enemy_spawns[index], 1)
+		var wave: Dictionary = encounter_plan.waves[encounter.wave_index] if not encounter_plan.is_empty() else {}
+		if encounter_plan.get("training_progression", false):
+			actor.health.maximum *= float(wave.health_multiplier)
+			actor.health.current = actor.health.maximum
+			for ability_index in actor.attacks.size():
+				actor.attacks[ability_index] = actor.attacks[ability_index].scaled_damage(float(wave.damage_multiplier))
 		encounter.register_enemy(actor.handle)
 		var drops: Array = encounter_plan.waves[encounter.wave_index].drops[index].duplicate(true) if not encounter_plan.is_empty() else []
 		var spawn_id := "%s:%s:%s:%s" % [encounter_plan.get("seed", "fixture"), encounter_depth, encounter.wave_index, index]
 		actor.killed.connect(func(dead):
 			enemy_loot_ready.emit(spawn_id, dead.definition.id, drops.duplicate(true))
 			encounter.enemy_killed(dead.handle))
-		_register_enemy_brain(actor)
+		var profile: Dictionary = enemy_catalog.profile(actor.definition.id).duplicate(true)
+		if encounter_plan.get("training_progression", false):
+			for field in profile.config:
+				if field == "damage" or field.ends_with("_damage"):
+					profile.config[field] *= float(wave.damage_multiplier)
+		_register_enemy_brain(actor, profile)
 	state = "fighting"
-func _register_enemy_brain(actor) -> void:
+func _register_enemy_brain(actor, profile: Dictionary = {}) -> void:
+	if profile.is_empty(): profile = enemy_catalog.profile(actor.definition.id)
 	var route: Callable = room_props.movement_towards if room_props != null else Callable()
 	var queries := {"roll_path":_ranger_roll_path,"ground":_ranger_ground,"rain_escape":_ranger_rain_escape,"seed":(str(encounter_plan.get("seed", "fixture")) + ":ranger:" + str(_ranger_sequence)).sha256_text().substr(0, 15).hex_to_int()}
-	var brain = enemy_runtime.add(actor, enemy_catalog.profile(actor.definition.id), route, _enemy_sight, _enemy_safe_motion, queries)
+	var brain = enemy_runtime.add(actor, profile, route, _enemy_sight, _enemy_safe_motion, queries)
 	brains.append(brain)
-	enemy_presentation.register(brain, views[actors.find(actor)], enemy_catalog.profile(actor.definition.id))
+	enemy_presentation.register(brain, views[actors.find(actor)], profile)
 
 func _ranger_ground(point: Vector3) -> bool:
 	var radius: float = Style.actor_presentations.elite_ranger.body_shape.radius
@@ -675,7 +687,7 @@ func _retry() -> void:
 func _new_encounter(depth: int) -> void:
 	if _leaving or is_instance_valid(_transition): return
 	var preserved: Dictionary = room_props.plan if room_props != null else {}
-	var next_plan := EncounterPlanner.new().generate(str(randi()), depth, _enemy_spawns.size(), enemy_catalog)
+	var next_plan := EncounterPlanner.new().generate_training(str(randi()), depth, _enemy_spawns.size(), enemy_catalog)
 	if next_plan.is_empty(): return
 	skill_vfx.clear()
 	var keep_room := room_presentation

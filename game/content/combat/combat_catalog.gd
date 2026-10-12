@@ -2,6 +2,10 @@ extends RefCounted
 ## Values are decoded once; immutable properties expose no mutable JSON collections.
 class Ability extends RefCounted:
 	var _data: Dictionary
+	func scaled_damage(multiplier: float) -> Ability:
+		var data := _data.duplicate(true)
+		data.damage *= multiplier
+		return Ability.new(data)
 	func _init(data: Dictionary) -> void:
 		_data = data.duplicate(true)
 		_data.dodge_cancel_phases.make_read_only()

@@ -94,3 +94,11 @@
 ## 满蓄力宽寒冰月牙（2026-10-12）
 
 charged_wave_scale专项、frost_first_batch回归与离线内容/双语校验通过。检查原演示整体模型比例、满蓄力事实、1.95米半径、侧方命中和3倍基础伤害、短按恢复普通弹、不隐式授予冻结。参考预览已查看；新版实战画面尚未人工试玩。
+
+## 战斗键位调整（2026-10-12）
+
+project.godot将combat_skill绑定鼠标右键、combat_special绑定R。three_actions与charged_wave_scale自动测试通过，覆盖右键即时剑气、按住蓄力/松键发射、R重击、Q不再触发战斗动作和UI输入隔离；424条双语内容校验与PO生成通过。未进行本轮图形试玩，未提交Git。店铺R装修保持原场景内用途。
+
+## 五波训练（2026-10-13）
+
+training_five_waves.gd通过：四档训练深度生成/锁定复现/篡改拒绝，默认实场连续五波、逐波血量/近战伤害倍率、末波真实游侠及远程伤害倍率、前四波不胜利、Boss死亡才胜利、重试计划不叠加。headless过程中有四条dummy renderer material为null日志，规则断言全部通过；未做图形手感验收。离线schema/内容校验通过。不生成Release，不提交Git。

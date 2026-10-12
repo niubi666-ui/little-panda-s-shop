@@ -54,6 +54,16 @@ def validate_enemies(manifest):
         previous_depth,previous_budget=band['min_depth'],band['budget']
         if not any(band['budget']*enc['minimum_budget_fraction']<=cost<=band['budget'] and count<=band['max_enemies'] for cost,count in costs):raise ValueError('empty legal encounter band')
     if enc['depth_bands'][0]['min_depth']!=1 or enc['training_depth']>enc['training_max_depth']:raise ValueError('training depth')
+    previous = (0, 0, -1)
+    for index, wave in enumerate(enc['training_waves']):
+        if wave['health_multiplier'] <= previous[0] or wave['damage_multiplier'] <= previous[1] or wave['depth_offset'] < previous[2]:
+            raise ValueError('training wave strength must increase')
+        previous = (wave['health_multiplier'], wave['damage_multiplier'], wave['depth_offset'])
+        if index == len(enc['training_waves']) - 1:
+            if wave.get('boss_actor_id') not in profiles: raise ValueError('training final boss missing')
+            for lang in ['zh_CN','en']:
+                if wave.get('boss_name_key') not in read_json(DATA/f'locales/{lang}.json')['messages']: raise ValueError('training boss translation missing')
+        elif 'boss_actor_id' in wave or 'boss_name_key' in wave: raise ValueError('only final training wave may specify boss')
     validate_training_tools(enc)
 
 

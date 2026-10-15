@@ -40,6 +40,138 @@ msgstr "选择此升级"
 msgid "build.current_form"
 msgstr "当前形态：{form}"
 
+msgid "build.element.earth.description"
+msgstr "命中时施加 {stacks_per_hit} 层碎甲：受到伤害提高，最多 3 层；更快打破霸体。"
+
+msgid "build.element.earth.name"
+msgstr "岩土附魔"
+
+msgid "build.element.fire.description"
+msgstr "命中时施加 {stacks_per_hit} 层灼烧：持续掉血，最多 5 层。"
+
+msgid "build.element.fire.name"
+msgstr "火焰附魔"
+
+msgid "build.element.ice.description"
+msgstr "命中时施加 {stacks_per_hit} 层冰寒：减速；叠满 3 层冻结（Boss 改为强减速）。"
+
+msgid "build.element.ice.name"
+msgstr "寒冰附魔"
+
+msgid "build.element.thunder.description"
+msgstr "命中时施加感电：下一次命中它时放出电弧，伤害它和附近最多 3 个敌人。"
+
+msgid "build.element.thunder.name"
+msgstr "雷霆附魔"
+
+msgid "build.element_boost.dual_lava.description"
+msgstr "熔岩伤害提高 {damage_bonus_percent}%，范围扩大 {radius_bonus_m} 米。"
+
+msgid "build.element_boost.dual_lava.name"
+msgstr "地火"
+
+msgid "build.element_boost.dual_magnet.description"
+msgstr "磁暴伤害提高 {damage_bonus_percent}%，吸附范围扩大 {radius_bonus_m} 米。"
+
+msgid "build.element_boost.dual_magnet.name"
+msgstr "磁岩"
+
+msgid "build.element_boost.dual_overload.description"
+msgstr "过载伤害提高 {damage_bonus_percent}%，范围扩大 {radius_bonus_m} 米。"
+
+msgid "build.element_boost.dual_overload.name"
+msgstr "雷火"
+
+msgid "build.element_boost.dual_shatter.description"
+msgstr "碎冰伤害提高 {damage_bonus_percent}%，范围扩大 {radius_bonus_m} 米。"
+
+msgid "build.element_boost.dual_shatter.name"
+msgstr "冰岩"
+
+msgid "build.element_boost.dual_steam.description"
+msgstr "蒸腾伤害提高 {damage_bonus_percent}%。"
+
+msgid "build.element_boost.dual_steam.name"
+msgstr "沸腾"
+
+msgid "build.element_boost.dual_superconduct.description"
+msgstr "超导伤害提高 {damage_bonus_percent}%，范围扩大 {radius_bonus_m} 米。"
+
+msgid "build.element_boost.dual_superconduct.name"
+msgstr "冰雷"
+
+msgid "build.element_boost.earth_crush.description"
+msgstr "每层碎甲额外使敌人受到的伤害提高 {add_percent}%。"
+
+msgid "build.element_boost.earth_crush.name"
+msgstr "崩岩"
+
+msgid "build.element_boost.earth_layers.description"
+msgstr "碎甲最多可叠层数 +{add}。"
+
+msgid "build.element_boost.earth_layers.name"
+msgstr "层岩"
+
+msgid "build.element_boost.earth_quake.description"
+msgstr "土元素命中额外造成 {add_percent}% 破防值，更快打破霸体。"
+
+msgid "build.element_boost.earth_quake.name"
+msgstr "震地"
+
+msgid "build.element_boost.fire_blaze.description"
+msgstr "灼烧最多可叠层数 +{add}。"
+
+msgid "build.element_boost.fire_blaze.name"
+msgstr "烈焰"
+
+msgid "build.element_boost.fire_kindling.description"
+msgstr "灼烧每层每跳伤害 +{add}。"
+
+msgid "build.element_boost.fire_kindling.name"
+msgstr "余烬"
+
+msgid "build.element_boost.fire_linger.description"
+msgstr "灼烧持续时间 +{add} 秒。"
+
+msgid "build.element_boost.fire_linger.name"
+msgstr "久燃"
+
+msgid "build.element_boost.ice_brittle.description"
+msgstr "每层冰寒使敌人受到的伤害提高 {add_percent}%。"
+
+msgid "build.element_boost.ice_brittle.name"
+msgstr "脆冰"
+
+msgid "build.element_boost.ice_deep.description"
+msgstr "冻结所需的冰寒层数 {add}，更快冻结。"
+
+msgid "build.element_boost.ice_deep.name"
+msgstr "深寒"
+
+msgid "build.element_boost.ice_lasting.description"
+msgstr "冰寒持续时间 +{add} 秒。"
+
+msgid "build.element_boost.ice_lasting.name"
+msgstr "霜重"
+
+msgid "build.element_boost.thunder_chain.description"
+msgstr "感电放电时多电 {add} 个敌人。"
+
+msgid "build.element_boost.thunder_chain.name"
+msgstr "连环雷"
+
+msgid "build.element_boost.thunder_reach.description"
+msgstr "放电距离 +{add} 米。"
+
+msgid "build.element_boost.thunder_reach.name"
+msgstr "远雷"
+
+msgid "build.element_boost.thunder_surge.description"
+msgstr "感电放电伤害 +{add}。"
+
+msgid "build.element_boost.thunder_surge.name"
+msgstr "雷涌"
+
 msgid "build.empty"
 msgstr "尚无升级，左键、R 与右键 基础动作均可使用"
 
@@ -156,6 +288,36 @@ msgstr "基础三动作（零构筑）"
 
 msgid "build.preset.charged_burst"
 msgstr "蓄霜爆发"
+
+msgid "build.preset.elem_fire_build"
+msgstr "火流派：火普攻＋火重击＋余烬＋烈焰"
+
+msgid "build.preset.elem_lava"
+msgstr "熔岩：火剑气＋土重击"
+
+msgid "build.preset.elem_magnet"
+msgstr "磁暴：雷剑气＋土重击"
+
+msgid "build.preset.elem_overload"
+msgstr "过载：火普攻＋雷剑气"
+
+msgid "build.preset.elem_shatter"
+msgstr "碎冰：冰剑气＋土重击"
+
+msgid "build.preset.elem_steam"
+msgstr "蒸腾：火普攻＋冰剑气"
+
+msgid "build.preset.elem_steam_build"
+msgstr "蒸腾流派：火普攻＋冰剑气＋深寒＋沸腾"
+
+msgid "build.preset.elem_storm_build"
+msgstr "雷暴流派：雷剑气＋土重击＋连环雷＋磁岩"
+
+msgid "build.preset.elem_superconduct"
+msgstr "超导：雷普攻＋冰剑气"
+
+msgid "build.preset.elem_trio"
+msgstr "三元素：火普攻＋土重击＋雷剑气"
 
 msgid "build.preset.error"
 msgstr "预设暂不可用，请重新训练后再试。"
@@ -430,6 +592,9 @@ msgstr "飞散流光"
 msgid "combat.fx.title"
 msgstr "刀光测试"
 
+msgid "combat.guard_break"
+msgstr "破防！"
+
 msgid "combat.paused"
 msgstr "已暂停"
 
@@ -471,6 +636,36 @@ msgstr "训练完成！可重试或返回店铺。"
 
 msgid "combat.waiting"
 msgstr "本波已清除，下一波即将出现…"
+
+msgid "element.earth.name"
+msgstr "土"
+
+msgid "element.fire.name"
+msgstr "火"
+
+msgid "element.ice.name"
+msgstr "冰"
+
+msgid "element.reaction.lava"
+msgstr "熔岩！"
+
+msgid "element.reaction.magnet"
+msgstr "磁暴！"
+
+msgid "element.reaction.overload"
+msgstr "过载！"
+
+msgid "element.reaction.shatter"
+msgstr "碎冰！"
+
+msgid "element.reaction.steam"
+msgstr "蒸腾！"
+
+msgid "element.reaction.superconduct"
+msgstr "超导！"
+
+msgid "element.thunder.name"
+msgstr "雷"
 
 msgid "encounter.banner_brute"
 msgstr "旗手重装队"
@@ -598,6 +793,21 @@ msgstr "已搜刮 · {name}"
 msgid "room.seed"
 msgstr "房间种子：{seed}"
 
+msgid "run.button.new_run"
+msgstr "再来一局"
+
+msgid "run.button.shop"
+msgstr "回到店铺"
+
+msgid "run.defeat.body"
+msgstr "清理了 {rooms} 间房，金币 {gold}"
+
+msgid "run.defeat.title"
+msgstr "倒下了"
+
+msgid "run.enter"
+msgstr "进入冒险"
+
 msgid "run.error.busy"
 msgstr "正在处理上一项操作，请稍候。"
 
@@ -642,6 +852,21 @@ msgstr "当前无法前往这个节点，请选择可前往的节点。"
 
 msgid "run.error.wrong_phase"
 msgstr "当前阶段不能执行这个操作。"
+
+msgid "run.exit.first"
+msgstr "选择第一份祝福"
+
+msgid "run.exit.title"
+msgstr "选择下一个房间"
+
+msgid "run.info.boss"
+msgstr "第 {index}/{total} 间 · Boss · 金币 {gold}"
+
+msgid "run.info.lobby"
+msgstr "冒险开始：选择第一份祝福"
+
+msgid "run.info.room"
+msgstr "第 {index}/{total} 间 · 清场奖励：{reward} · 金币 {gold}"
 
 msgid "run.kind.battle"
 msgstr "普通战斗"
@@ -712,6 +937,39 @@ msgstr "重新开始本次路线"
 msgid "run.return_map"
 msgstr "返回路线图"
 
+msgid "run.reward.boon"
+msgstr "{element}之祝福"
+
+msgid "run.reward.boon_detail"
+msgstr "清场后三选一：该元素的附魔、被动或双元素卡"
+
+msgid "run.reward.boss"
+msgstr "Boss：精英游侠"
+
+msgid "run.reward.boss_detail"
+msgstr "打败它，完成这次冒险"
+
+msgid "run.reward.gold"
+msgstr "金币 +{amount}"
+
+msgid "run.reward.gold_detail"
+msgstr "带回店里（经济尚未接入）"
+
+msgid "run.reward.heal"
+msgstr "回血 +{amount}"
+
+msgid "run.reward.heal_detail"
+msgstr "清场后恢复生命"
+
+msgid "run.reward.none"
+msgstr "无"
+
+msgid "run.reward.upgrade"
+msgstr "强化"
+
+msgid "run.reward.upgrade_detail"
+msgstr "清场后选一张已有的卡升一级"
+
 msgid "run.room.controls"
 msgstr "WASD 移动 · 左键普攻 · R 重击 · 右键 剑气 · Shift 闪避 · Esc 菜单 · L 语言"
 
@@ -723,6 +981,12 @@ msgstr "第 {room} 个房间"
 
 msgid "run.start"
 msgstr "开始路线测试"
+
+msgid "run.victory.body"
+msgstr "清理了 {rooms} 间房，带回金币 {gold}"
+
+msgid "run.victory.title"
+msgstr "冒险完成！"
 
 msgid "settings.attack"
 msgstr "普通攻击"

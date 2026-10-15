@@ -228,6 +228,8 @@ func freeze_step(duration: float) -> void:
 func check_freeze_presets(menu: MenuButton, first, later, side) -> void:
 	later.position += Vector3(30, 0, 30); side.position += Vector3(30, 0, 30)
 	for index in range(3, arena.builds.catalog.test_presets().size()):
+		# 元素原型预设不以右键冻结为前提，由 element_reactions.gd 单独验证
+		if String(arena.builds.catalog.test_presets()[index].id).begins_with("elem_"): continue
 		menu.get_popup().id_pressed.emit(index)
 		await frames()
 		first.health.maximum = 1000.0; first.health.current = 1000.0

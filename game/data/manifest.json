@@ -10,5 +10,7 @@
   "encounters_file": "res://data/rooms/encounters.json",
   "enemy_loot_file": "res://data/loot/enemies.json",
   "run_route_file": "res://data/run/route.json",
-  "build_reward_groups_file": "res://data/builds/reward_groups.json"
+  "build_reward_groups_file": "res://data/builds/reward_groups.json",
+  "build_elements_file": "res://data/builds/elements.json",
+  "forest_run_file": "res://data/run/forest_run.json"
 }

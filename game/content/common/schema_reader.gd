@@ -38,7 +38,8 @@ func check(value: Variant, schema: Dictionary, path: String) -> void:
 			if value < schema.minimum or value > schema.maximum: errors.append(path + ": out of range")
 			if schema.type == "integer" and value != floor(value): errors.append(path + ": expected integer")
 		"string":
-			if not value is String or value.is_empty(): errors.append(path + ": expected nonempty string")
+			# 默认要求非空；schema 显式写 "minLength": 0 时允许空字符串（表示“不使用”）
+			if not value is String or (value.is_empty() and int(schema.get("minLength", 1)) > 0): errors.append(path + ": expected nonempty string")
 		"boolean":
 			if not value is bool: errors.append(path + ": expected boolean")
 		_:

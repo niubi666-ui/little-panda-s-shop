@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://presentation/builds/elements/shock_ring.gdshader" id="shader"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("shader")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/progress = 0.0
+shader_parameter/thickness = 0.2
+shader_parameter/intensity = 4.0
+shader_parameter/depth_pull = 0.9

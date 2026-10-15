@@ -18,6 +18,8 @@ var _actions: Array[Dictionary] = []
 var _actions_by_id: Dictionary = {}
 var _forms: Array[Dictionary] = []
 var _forms_by_id: Dictionary = {}
+## 元素与反应（elements.json）。只有 BuildLoader.load_catalog 会填入；单独 decode 的目录没有元素。
+var _elements: Dictionary = {}
 
 
 func _init(data: Dictionary) -> void:
@@ -60,6 +62,21 @@ func _init(data: Dictionary) -> void:
 	_test_presets.make_read_only()
 	_presets_by_id.make_read_only()
 
+
+## BuildLoader 在全部校验通过后调用一次
+func set_elements(definitions: Dictionary) -> void:
+	assert(_elements.is_empty(), "elements are set once")
+	_elements = freeze_copy(definitions)
+func has_elements() -> bool: return not _elements.is_empty()
+func element(id: String) -> Dictionary: return _elements.elements[id]
+func has_element(id: String) -> bool: return not _elements.is_empty() and _elements.elements.has(id)
+## 元素检查顺序（反应时按这个顺序找目标身上已有的元素）
+func element_order() -> Array: return _elements.order
+## 两种元素之间的反应；没有配置时返回空字典
+func reaction_between(a: String, b: String) -> Dictionary:
+	var key := a + "+" + b if a < b else b + "+" + a
+	return _elements.pairs.get(key, {})
+func element_zone_limit() -> int: return int(_elements.max_zones)
 
 func entries() -> Array[Dictionary]:
 	return _entries

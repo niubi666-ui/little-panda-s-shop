@@ -116,6 +116,10 @@ def main() -> int:
         validate_enemies(manifest)
         from validate_builds import validate_builds
         validate_builds(manifest)
+        from validate_elements import validate_elements
+        validate_elements(manifest)
+        from validate_forest_run import validate_forest_run
+        validate_forest_run(manifest)
         from validate_room_props import validate_room_props
         validate_room_props(manifest)
         from validate_run import validate_run

@@ -8,6 +8,7 @@ script = ExtResource("1")
 enable_mechanism_presets = true
 training_panels_visible = false
 enhanced_feel = true
+run_mode = false
 room_presentation = ExtResource("room")
 [node name="RunActors" type="Node3D" parent="."]
 [node name="RoomActors" type="Node3D" parent="."]

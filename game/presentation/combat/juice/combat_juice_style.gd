@@ -19,5 +19,14 @@ extends Resource
 @export var dodge_puff_height_m: float
 ## 尘土方向向上抬起的比例（0 为贴地平喷）
 @export var dodge_puff_lift: float
+@export_group("破防提示")
+## 敌人霸体被打破时头顶弹出的文字（翻译 key）、颜色、字号、出现高度、上飘距离、持续时间
+@export var break_label_key: String
+@export var break_label_color: Color
+@export var break_label_outline: Color
+@export var break_label_font_size: int
+@export var break_label_height_m: float
+@export var break_label_rise_m: float
+@export var break_label_sec: float
 @export_group("生命条")
 @export var vitals: Resource

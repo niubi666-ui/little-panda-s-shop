@@ -31,7 +31,7 @@ static func valid_plan(program: Dictionary, catalog = null) -> bool:
 		if seen.has(effect.upgrade_id) or not effect.params is Dictionary: return false
 		if not _positive_integer(effect.rank): return false
 		seen[effect.upgrade_id] = true
-		if not effect.type in ["projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage", "return_projectile", "charge_projectile", "consume_freeze", "projectile_path", "freeze_shield"]: return false
+		if not effect.type in ["projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage", "return_projectile", "charge_projectile", "consume_freeze", "projectile_path", "freeze_shield", "element"]: return false
 		if effect.type == "split": split = true
 		if effect.type == "pierce":
 			pierce = true

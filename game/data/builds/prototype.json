@@ -18,7 +18,29 @@
       "charged_wave",
       "shatter_heavy",
       "frost_path",
-      "ice_coat"
+      "ice_coat",
+      "fire_core",
+      "ice_core",
+      "thunder_core",
+      "earth_core",
+      "fire_kindling",
+      "fire_blaze",
+      "fire_linger",
+      "ice_deep",
+      "ice_lasting",
+      "ice_brittle",
+      "thunder_chain",
+      "thunder_surge",
+      "thunder_reach",
+      "earth_crush",
+      "earth_quake",
+      "earth_layers",
+      "dual_steam",
+      "dual_overload",
+      "dual_lava",
+      "dual_superconduct",
+      "dual_shatter",
+      "dual_magnet"
     ],
     "fallback_ids": [
       "power",
@@ -654,6 +676,637 @@
         "skill"
       ],
       "test_only": false
+    },
+    {
+      "id": "fire_core",
+      "name_key": "build.element.fire.name",
+      "description_key": "build.element.fire.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element",
+      "ranks": [
+        {
+          "element_id": "fire",
+          "stacks_per_hit": 1
+        },
+        {
+          "element_id": "fire",
+          "stacks_per_hit": 2
+        }
+      ],
+      "scope": "action",
+      "layer": "core",
+      "action_ids": [
+        "primary",
+        "special",
+        "skill"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "ice_core",
+      "name_key": "build.element.ice.name",
+      "description_key": "build.element.ice.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element",
+      "ranks": [
+        {
+          "element_id": "ice",
+          "stacks_per_hit": 1
+        },
+        {
+          "element_id": "ice",
+          "stacks_per_hit": 2
+        }
+      ],
+      "scope": "action",
+      "layer": "core",
+      "action_ids": [
+        "primary",
+        "special",
+        "skill"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "thunder_core",
+      "name_key": "build.element.thunder.name",
+      "description_key": "build.element.thunder.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element",
+      "ranks": [
+        {
+          "element_id": "thunder",
+          "stacks_per_hit": 1
+        },
+        {
+          "element_id": "thunder",
+          "stacks_per_hit": 1
+        }
+      ],
+      "scope": "action",
+      "layer": "core",
+      "action_ids": [
+        "primary",
+        "special",
+        "skill"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "earth_core",
+      "name_key": "build.element.earth.name",
+      "description_key": "build.element.earth.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element",
+      "ranks": [
+        {
+          "element_id": "earth",
+          "stacks_per_hit": 1
+        },
+        {
+          "element_id": "earth",
+          "stacks_per_hit": 2
+        }
+      ],
+      "scope": "action",
+      "layer": "core",
+      "action_ids": [
+        "primary",
+        "special",
+        "skill"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "fire_kindling",
+      "name_key": "build.element_boost.fire_kindling.name",
+      "description_key": "build.element_boost.fire_kindling.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "fire_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "fire",
+          "field": "damage_per_tick_per_stack",
+          "add": 1.0
+        },
+        {
+          "element_id": "fire",
+          "field": "damage_per_tick_per_stack",
+          "add": 2.0
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "fire_blaze",
+      "name_key": "build.element_boost.fire_blaze.name",
+      "description_key": "build.element_boost.fire_blaze.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "fire_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "fire",
+          "field": "max_stacks",
+          "add": 3
+        },
+        {
+          "element_id": "fire",
+          "field": "max_stacks",
+          "add": 6
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "fire_linger",
+      "name_key": "build.element_boost.fire_linger.name",
+      "description_key": "build.element_boost.fire_linger.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "fire_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "fire",
+          "field": "duration_sec",
+          "add": 3.0
+        },
+        {
+          "element_id": "fire",
+          "field": "duration_sec",
+          "add": 6.0
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "ice_deep",
+      "name_key": "build.element_boost.ice_deep.name",
+      "description_key": "build.element_boost.ice_deep.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [
+        "ice_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "ice",
+          "field": "max_stacks",
+          "add": -1
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "ice_lasting",
+      "name_key": "build.element_boost.ice_lasting.name",
+      "description_key": "build.element_boost.ice_lasting.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "ice_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "ice",
+          "field": "duration_sec",
+          "add": 3.0
+        },
+        {
+          "element_id": "ice",
+          "field": "duration_sec",
+          "add": 6.0
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "ice_brittle",
+      "name_key": "build.element_boost.ice_brittle.name",
+      "description_key": "build.element_boost.ice_brittle.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "ice_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "ice",
+          "field": "damage_taken_per_stack",
+          "add": 0.06
+        },
+        {
+          "element_id": "ice",
+          "field": "damage_taken_per_stack",
+          "add": 0.12
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "thunder_chain",
+      "name_key": "build.element_boost.thunder_chain.name",
+      "description_key": "build.element_boost.thunder_chain.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "thunder_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "thunder",
+          "field": "discharge_max_targets",
+          "add": 2
+        },
+        {
+          "element_id": "thunder",
+          "field": "discharge_max_targets",
+          "add": 4
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "thunder_surge",
+      "name_key": "build.element_boost.thunder_surge.name",
+      "description_key": "build.element_boost.thunder_surge.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "thunder_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "thunder",
+          "field": "discharge_damage",
+          "add": 10.0
+        },
+        {
+          "element_id": "thunder",
+          "field": "discharge_damage",
+          "add": 20.0
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "thunder_reach",
+      "name_key": "build.element_boost.thunder_reach.name",
+      "description_key": "build.element_boost.thunder_reach.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "thunder_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "thunder",
+          "field": "discharge_radius_m",
+          "add": 3.0
+        },
+        {
+          "element_id": "thunder",
+          "field": "discharge_radius_m",
+          "add": 6.0
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "earth_crush",
+      "name_key": "build.element_boost.earth_crush.name",
+      "description_key": "build.element_boost.earth_crush.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "earth_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "earth",
+          "field": "damage_taken_per_stack",
+          "add": 0.05
+        },
+        {
+          "element_id": "earth",
+          "field": "damage_taken_per_stack",
+          "add": 0.1
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "earth_quake",
+      "name_key": "build.element_boost.earth_quake.name",
+      "description_key": "build.element_boost.earth_quake.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "earth_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "earth",
+          "field": "poise_damage_ratio",
+          "add": 1.5
+        },
+        {
+          "element_id": "earth",
+          "field": "poise_damage_ratio",
+          "add": 3.0
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "earth_layers",
+      "name_key": "build.element_boost.earth_layers.name",
+      "description_key": "build.element_boost.earth_layers.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [
+        "earth_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "earth",
+          "field": "max_stacks",
+          "add": 2
+        },
+        {
+          "element_id": "earth",
+          "field": "max_stacks",
+          "add": 4
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "dual_steam",
+      "name_key": "build.element_boost.dual_steam.name",
+      "description_key": "build.element_boost.dual_steam.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [
+        "fire_core",
+        "ice_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "reaction_boost",
+      "ranks": [
+        {
+          "reaction_id": "steam",
+          "damage_bonus": 0.8,
+          "radius_bonus_m": 0.0
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "dual_overload",
+      "name_key": "build.element_boost.dual_overload.name",
+      "description_key": "build.element_boost.dual_overload.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [
+        "fire_core",
+        "thunder_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "reaction_boost",
+      "ranks": [
+        {
+          "reaction_id": "overload",
+          "damage_bonus": 0.6,
+          "radius_bonus_m": 1.5
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "dual_lava",
+      "name_key": "build.element_boost.dual_lava.name",
+      "description_key": "build.element_boost.dual_lava.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [
+        "fire_core",
+        "earth_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "reaction_boost",
+      "ranks": [
+        {
+          "reaction_id": "lava",
+          "damage_bonus": 0.6,
+          "radius_bonus_m": 1.2
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "dual_superconduct",
+      "name_key": "build.element_boost.dual_superconduct.name",
+      "description_key": "build.element_boost.dual_superconduct.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [
+        "ice_core",
+        "thunder_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "reaction_boost",
+      "ranks": [
+        {
+          "reaction_id": "superconduct",
+          "damage_bonus": 0.6,
+          "radius_bonus_m": 1.5
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "dual_shatter",
+      "name_key": "build.element_boost.dual_shatter.name",
+      "description_key": "build.element_boost.dual_shatter.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [
+        "ice_core",
+        "earth_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "reaction_boost",
+      "ranks": [
+        {
+          "reaction_id": "shatter",
+          "damage_bonus": 0.7,
+          "radius_bonus_m": 1.2
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "dual_magnet",
+      "name_key": "build.element_boost.dual_magnet.name",
+      "description_key": "build.element_boost.dual_magnet.description",
+      "weight": 1.0,
+      "max_rank": 1,
+      "requires": [
+        "thunder_core",
+        "earth_core"
+      ],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "effect_type": "reaction_boost",
+      "ranks": [
+        {
+          "reaction_id": "magnet",
+          "damage_bonus": 0.6,
+          "radius_bonus_m": 2.0
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
     }
   ],
   "projectiles": [
@@ -971,6 +1624,201 @@
         {
           "upgrade_id": "pierce",
           "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_steam",
+      "name_key": "build.preset.elem_steam",
+      "selections": [
+        {
+          "upgrade_id": "fire_core",
+          "action_id": "primary",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "ice_core",
+          "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_overload",
+      "name_key": "build.preset.elem_overload",
+      "selections": [
+        {
+          "upgrade_id": "fire_core",
+          "action_id": "primary",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "thunder_core",
+          "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_lava",
+      "name_key": "build.preset.elem_lava",
+      "selections": [
+        {
+          "upgrade_id": "fire_core",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "earth_core",
+          "action_id": "special",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_superconduct",
+      "name_key": "build.preset.elem_superconduct",
+      "selections": [
+        {
+          "upgrade_id": "thunder_core",
+          "action_id": "primary",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "ice_core",
+          "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_shatter",
+      "name_key": "build.preset.elem_shatter",
+      "selections": [
+        {
+          "upgrade_id": "ice_core",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "earth_core",
+          "action_id": "special",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_magnet",
+      "name_key": "build.preset.elem_magnet",
+      "selections": [
+        {
+          "upgrade_id": "thunder_core",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "earth_core",
+          "action_id": "special",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_trio",
+      "name_key": "build.preset.elem_trio",
+      "selections": [
+        {
+          "upgrade_id": "fire_core",
+          "action_id": "primary",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "earth_core",
+          "action_id": "special",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "thunder_core",
+          "action_id": "skill",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_fire_build",
+      "name_key": "build.preset.elem_fire_build",
+      "selections": [
+        {
+          "upgrade_id": "fire_core",
+          "action_id": "primary",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "fire_core",
+          "action_id": "special",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "fire_kindling",
+          "action_id": "global",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "fire_blaze",
+          "action_id": "global",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_steam_build",
+      "name_key": "build.preset.elem_steam_build",
+      "selections": [
+        {
+          "upgrade_id": "fire_core",
+          "action_id": "primary",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "ice_core",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "ice_deep",
+          "action_id": "global",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "dual_steam",
+          "action_id": "global",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_storm_build",
+      "name_key": "build.preset.elem_storm_build",
+      "selections": [
+        {
+          "upgrade_id": "thunder_core",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "earth_core",
+          "action_id": "special",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "thunder_chain",
+          "action_id": "global",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "dual_magnet",
+          "action_id": "global",
           "rank": 1
         }
       ]

@@ -13,7 +13,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 4
+      "const": 5
     },
     "abilities": {
       "type": "array",
@@ -163,6 +163,11 @@
           "health",
           "move_speed_mps",
           "stagger_sec",
+          "poise",
+          "poise_recover_sec",
+          "break_stagger_sec",
+          "break_duration_sec",
+          "break_damage_scale",
           "attack_ids",
           "decision_interval_sec",
           "aggro_range_m",
@@ -190,6 +195,31 @@
           "stagger_sec": {
             "type": "number",
             "minimum": 0,
+            "maximum": 5
+          },
+          "poise": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "poise_recover_sec": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 60
+          },
+          "break_stagger_sec": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "break_duration_sec": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 30
+          },
+          "break_damage_scale": {
+            "type": "number",
+            "minimum": 1,
             "maximum": 5
           },
           "attack_ids": {

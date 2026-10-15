@@ -27,6 +27,7 @@ func validate_plan(plan: Dictionary, capacity: int, catalog) -> bool:
 	if plan.version != catalog.version or plan.generation_version != catalog.encounters.generation_version: return false
 	if legal(int(plan.depth), capacity, catalog).is_empty(): return false
 	if plan.get("training_progression", false): return plan == generate_training(plan.seed, int(plan.depth), capacity, catalog)
+	if plan.has("run_boss"): return plan == generate_run_boss(plan.seed, int(plan.depth), capacity, catalog, str(plan.run_boss))
 	return plan == generate(plan.seed, int(plan.depth), capacity, catalog)
 
 func generate_training(seed_value: String, depth: int, capacity: int, catalog) -> Dictionary:
@@ -51,6 +52,14 @@ func generate_training(seed_value: String, depth: int, capacity: int, catalog) -
 		wave.damage_multiplier = rule.damage_multiplier
 		plan.waves.append(wave)
 	return plan
+## 一局冒险的 Boss 房：只有一波，就是 Boss 本人
+func generate_run_boss(seed_value: String, depth: int, capacity: int, catalog, boss_id: String) -> Dictionary:
+	var plan := generate(seed_value, depth, capacity, catalog)
+	if plan.is_empty() or not catalog.profiles.has(boss_id): return {}
+	plan.run_boss = boss_id
+	plan.waves = [{"combination_id": boss_id, "enemy_ids": [boss_id], "drops": [[]]}]
+	return plan
+
 func generate(seed_value: String, depth: int, capacity: int, catalog) -> Dictionary:
 	var candidates := legal(depth, capacity, catalog)
 	if candidates.is_empty():

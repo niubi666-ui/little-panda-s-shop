@@ -22,6 +22,10 @@ def validate_combat(manifest):
         if (ability["lunge_speed_mps"] == 0) != (ability["lunge_duration_sec"] == 0):
             raise ValueError(f"combat: {ability['id']} lunge speed/duration mismatch")
     for actor in data["actors"]:
+        armored = actor["poise"] > 0
+        timers = (actor["poise_recover_sec"], actor["break_stagger_sec"], actor["break_duration_sec"])
+        if armored != all(t > 0 for t in timers) or (not armored and (any(timers) or actor["break_damage_scale"] != 1)):
+            raise ValueError(f"combat: {actor['id']} poise and break fields must all be set or all be none")
         if not set(actor["attack_ids"]) <= abilities:
             raise ValueError(f"combat: {actor['id']} unknown ability")
         for lang in ("zh_CN", "en"):

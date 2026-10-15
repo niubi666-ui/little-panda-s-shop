@@ -20,6 +20,10 @@ var damage_numbers: DamageNumbers
 var blade: Node3D
 var weapon_effect: Node3D
 var _visual_rest_basis := Basis.IDENTITY
+## 敌人身上的元素染色：handle → Color（a 为强度）；由战斗场景注入，未注入时不染色
+var element_tint: Callable
+## 元素 ID → 挂在剑上的拖尾粒子（按需创建，出招时发射）
+var _element_trails: Dictionary = {}
 func configure(owner_actor, settings, font: Font) -> void:
 	actor = owner_actor
 	style = settings
@@ -152,6 +156,25 @@ func refresh(delta: float = 0.0) -> void:
 		if weapon_effect.has_method("sample_current_pose"):
 			weapon_effect.sample_current_pose()
 	blade_pivot.visible = not actor_style.embedded_weapon and (actor.team == 0 or actor.runner.busy())
+	_sync_element_trail(phase, delta)
+	if element_tint.is_valid() and visual.has_method("set_element_tint"):
+		var tint: Color = element_tint.call(actor.handle)
+		visual.set_element_tint(Color(tint, 1.0), tint.a)
+
+## 本次出招带元素时，剑身沿刀锋拖出元素粒子（只读已提交的出招计划）
+func _sync_element_trail(phase: String, delta: float) -> void:
+	if actor.team != 0: return
+	var element := ""
+	if actor.runner.busy() and phase in ["windup", "active", "recovery"]:
+		for effect in actor.runner.cast_context.get("effects", []):
+			if effect.type == "element": element = effect.params.element_id
+	if not element.is_empty() and not _element_trails.has(element) and style.element_blade_scenes.has(element):
+		var trail: CPUParticles3D = style.element_blade_scenes[element].instantiate()
+		blade.add_child(trail)
+		_element_trails[element] = trail
+	for id in _element_trails:
+		_element_trails[id].emitting = id == element
+		_element_trails[id].speed_scale = 1.0 if delta > 0.0 else 0.0
 func _motion_key() -> String:
 	if not actor.runner.busy(): return actor.attacks[0].id
 	var key: String = actor.runner.presentation_key

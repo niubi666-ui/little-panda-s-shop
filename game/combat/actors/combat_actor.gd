@@ -6,6 +6,8 @@ const Motor = preload("res://combat/actors/character_motor.gd")
 enum BodyLayer { WORLD = 1, PLAYER = 2, ENEMY = 4 }
 signal killed(actor)
 signal control_interrupted
+## 霸体被打破的一刻（表现层用来出声音和提示）
+signal poise_broken(actor)
 var control_locked := false
 var control_move_scale := 1.0
 var control_action_scale := 1.0
@@ -20,6 +22,10 @@ var team: int
 var facing := Vector3.FORWARD
 var movement := Vector3.ZERO
 var stagger_left := 0.0
+## 霸体：已累计的伤害、距上次受击的时间、破防剩余时间
+var poise_taken := 0.0
+var poise_idle := 0.0
+var break_left := 0.0
 var dodge_left := 0.0
 var dodge_age := 0.0
 var dodge_direction := Vector3.ZERO
@@ -182,6 +188,10 @@ func step(delta: float) -> void:
 		clear_intents()
 		return
 	stagger_left = maxf(0.0, stagger_left - delta)
+	if definition.poise > 0.0:
+		break_left = maxf(0.0, break_left - delta)
+		poise_idle += delta
+		if poise_idle >= definition.poise_recover_sec: poise_taken = 0.0
 	if dodge != null and charges < dodge.charges:
 		recharge_left -= delta
 		while recharge_left <= 0.0 and charges < dodge.charges:
@@ -225,21 +235,44 @@ func step(delta: float) -> void:
 		motor.step(forced_velocity.normalized(), forced_velocity.length(), delta, false)
 	else:
 		motor.step(movement if stagger_left <= 0.0 else Vector3.ZERO, definition.speed * move_multiplier * _build_move_scale * enemy_move_multiplier, delta)
+## 带霸体且未破防：受击不硬直、不被击退，伤害累计到霸体值时破防
+func armored() -> bool:
+	return definition.poise > 0.0 and break_left <= 0.0
 func receive_hit(amount: float) -> float:
 	if not health.alive() or invulnerable() or amount <= 0.0: return 0.0
+	if break_left > 0.0: amount *= definition.break_damage_scale
 	var absorbed := minf(protection_amount, amount)
 	protection_amount -= absorbed
 	amount -= absorbed
 	var applied := health.apply(amount, invulnerable())
 	if applied > 0.0 and health.alive() and not hit_reaction_immune:
-		charging_skill = false
-		if not runner.busy() or runner.ability.interruptible:
-			stagger_left = definition.stagger
-			runner.cancel("hit")
-			_clear_attack_intent()
+		if armored():
+			poise_taken += applied
+			poise_idle = 0.0
+			if poise_taken >= definition.poise: _break_poise()
+		else:
+			charging_skill = false
+			if not runner.busy() or runner.ability.interruptible:
+				stagger_left = maxf(stagger_left, definition.stagger)
+				runner.cancel("hit")
+				_clear_attack_intent()
 	return applied
+## 额外的破防值（例如土元素）：只对未破防的霸体生效
+func add_poise_damage(amount: float) -> void:
+	if not health.alive() or not armored() or amount <= 0.0: return
+	poise_taken += amount
+	poise_idle = 0.0
+	if poise_taken >= definition.poise: _break_poise()
+func _break_poise() -> void:
+	poise_taken = 0.0
+	break_left = definition.break_duration_sec
+	stagger_left = maxf(stagger_left, definition.break_stagger_sec)
+	charging_skill = false
+	runner.cancel("break")
+	_clear_attack_intent()
+	poise_broken.emit(self)
 func apply_knockback(direction: Vector3, speed: float, duration: float) -> void:
-	if health.alive() and not hit_reaction_immune: motor.knockback(direction, speed, duration)
+	if health.alive() and not hit_reaction_immune and not armored(): motor.knockback(direction, speed, duration)
 func cancel(reason: String = "cancelled") -> void:
 	motor.clear_impulse()
 	runner.cancel(reason)

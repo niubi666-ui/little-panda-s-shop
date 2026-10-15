@@ -8,10 +8,17 @@ var selected_clip := ""
 var clip_clock := 0.0
 var death_age := 0.0
 var _dead := false
+var _skin: Array[ShaderMaterial] = []
 
 func _ready() -> void:
 	# 与其他角色统一光照模型和轮廓光，保留模型自带贴图
-	preload("res://presentation/shared/toon/toon_skin.gd").apply(self, skin_material, true)
+	_skin = preload("res://presentation/shared/toon/toon_skin.gd").apply(self, skin_material, true)
+
+## 元素染色：color 为元素颜色，amount 0..1（0 为无）
+func set_element_tint(color: Color, amount: float) -> void:
+	for instance in _skin:
+		instance.set_shader_parameter("element_color", color)
+		instance.set_shader_parameter("element_amount", amount)
 
 func validate_assets() -> bool:
 	var player: AnimationPlayer = find_child("AnimationPlayer", true, false)

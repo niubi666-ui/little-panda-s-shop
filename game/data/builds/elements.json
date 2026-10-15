@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "content_version": "elements.1-prototype",
+  "_comment": "元素状态与两两反应。字段为 0 / 空字符串表示该元素/反应不使用这一项。改完重开训练场生效。",
+  "max_zones": 8,
+  "elements": [
+    {
+      "id": "fire",
+      "name_key": "element.fire.name",
+      "max_stacks": 5,
+      "duration_sec": 4.0,
+      "tick_sec": 0.5,
+      "damage_per_tick_per_stack": 1.5,
+      "slow_status_id": "",
+      "freeze_status_id": "",
+      "discharge_damage": 0.0,
+      "discharge_radius_m": 0.0,
+      "discharge_max_targets": 0,
+      "damage_taken_per_stack": 0.0,
+      "poise_damage_ratio": 0.0
+    },
+    {
+      "id": "ice",
+      "name_key": "element.ice.name",
+      "max_stacks": 3,
+      "duration_sec": 4.0,
+      "tick_sec": 0.0,
+      "damage_per_tick_per_stack": 0.0,
+      "slow_status_id": "test_slow",
+      "freeze_status_id": "test_freeze",
+      "discharge_damage": 0.0,
+      "discharge_radius_m": 0.0,
+      "discharge_max_targets": 0,
+      "damage_taken_per_stack": 0.0,
+      "poise_damage_ratio": 0.0
+    },
+    {
+      "id": "thunder",
+      "name_key": "element.thunder.name",
+      "max_stacks": 1,
+      "duration_sec": 5.0,
+      "tick_sec": 0.0,
+      "damage_per_tick_per_stack": 0.0,
+      "slow_status_id": "",
+      "freeze_status_id": "",
+      "discharge_damage": 12.0,
+      "discharge_radius_m": 5.0,
+      "discharge_max_targets": 3,
+      "damage_taken_per_stack": 0.0,
+      "poise_damage_ratio": 0.0
+    },
+    {
+      "id": "earth",
+      "name_key": "element.earth.name",
+      "max_stacks": 3,
+      "duration_sec": 5.0,
+      "tick_sec": 0.0,
+      "damage_per_tick_per_stack": 0.0,
+      "slow_status_id": "",
+      "freeze_status_id": "",
+      "discharge_damage": 0.0,
+      "discharge_radius_m": 0.0,
+      "discharge_max_targets": 0,
+      "damage_taken_per_stack": 0.08,
+      "poise_damage_ratio": 1.0
+    }
+  ],
+  "reactions": [
+    {
+      "id": "steam",
+      "name_key": "element.reaction.steam",
+      "elements": [
+        "fire",
+        "ice"
+      ],
+      "damage": 28.0,
+      "damage_per_stack": 8.0,
+      "radius_m": 0.0,
+      "area_damage": 0.0,
+      "max_targets": 0,
+      "knockback_mps": 0.0,
+      "knockback_sec": 0.0,
+      "vulnerability": 0.0,
+      "vulnerability_sec": 0.0,
+      "slow_status_id": "",
+      "zone_radius_m": 0.0,
+      "zone_sec": 0.0,
+      "zone_tick_sec": 0.0,
+      "zone_damage_per_tick": 0.0
+    },
+    {
+      "id": "overload",
+      "name_key": "element.reaction.overload",
+      "elements": [
+        "fire",
+        "thunder"
+      ],
+      "damage": 14.0,
+      "damage_per_stack": 4.0,
+      "radius_m": 3.0,
+      "area_damage": 18.0,
+      "max_targets": 6,
+      "knockback_mps": 10.0,
+      "knockback_sec": 0.18,
+      "vulnerability": 0.0,
+      "vulnerability_sec": 0.0,
+      "slow_status_id": "",
+      "zone_radius_m": 0.0,
+      "zone_sec": 0.0,
+      "zone_tick_sec": 0.0,
+      "zone_damage_per_tick": 0.0
+    },
+    {
+      "id": "lava",
+      "name_key": "element.reaction.lava",
+      "elements": [
+        "fire",
+        "earth"
+      ],
+      "damage": 8.0,
+      "damage_per_stack": 2.0,
+      "radius_m": 0.0,
+      "area_damage": 0.0,
+      "max_targets": 0,
+      "knockback_mps": 0.0,
+      "knockback_sec": 0.0,
+      "vulnerability": 0.0,
+      "vulnerability_sec": 0.0,
+      "slow_status_id": "",
+      "zone_radius_m": 2.4,
+      "zone_sec": 4.0,
+      "zone_tick_sec": 0.5,
+      "zone_damage_per_tick": 5.0
+    },
+    {
+      "id": "superconduct",
+      "name_key": "element.reaction.superconduct",
+      "elements": [
+        "ice",
+        "thunder"
+      ],
+      "damage": 10.0,
+      "damage_per_stack": 3.0,
+      "radius_m": 3.5,
+      "area_damage": 8.0,
+      "max_targets": 6,
+      "knockback_mps": 0.0,
+      "knockback_sec": 0.0,
+      "vulnerability": 0.25,
+      "vulnerability_sec": 5.0,
+      "slow_status_id": "test_slow",
+      "zone_radius_m": 0.0,
+      "zone_sec": 0.0,
+      "zone_tick_sec": 0.0,
+      "zone_damage_per_tick": 0.0
+    },
+    {
+      "id": "shatter",
+      "name_key": "element.reaction.shatter",
+      "elements": [
+        "ice",
+        "earth"
+      ],
+      "damage": 36.0,
+      "damage_per_stack": 10.0,
+      "radius_m": 2.8,
+      "area_damage": 14.0,
+      "max_targets": 5,
+      "knockback_mps": 0.0,
+      "knockback_sec": 0.0,
+      "vulnerability": 0.0,
+      "vulnerability_sec": 0.0,
+      "slow_status_id": "",
+      "zone_radius_m": 0.0,
+      "zone_sec": 0.0,
+      "zone_tick_sec": 0.0,
+      "zone_damage_per_tick": 0.0
+    },
+    {
+      "id": "magnet",
+      "name_key": "element.reaction.magnet",
+      "elements": [
+        "thunder",
+        "earth"
+      ],
+      "damage": 10.0,
+      "damage_per_stack": 3.0,
+      "radius_m": 6.0,
+      "area_damage": 6.0,
+      "max_targets": 6,
+      "knockback_mps": -11.0,
+      "knockback_sec": 0.22,
+      "vulnerability": 0.0,
+      "vulnerability_sec": 0.0,
+      "slow_status_id": "",
+      "zone_radius_m": 0.0,
+      "zone_sec": 0.0,
+      "zone_tick_sec": 0.0,
+      "zone_damage_per_tick": 0.0
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://presentation/builds/elements/lava_zone.gdshader" id="shader"]
+
+[resource]
+shader = ExtResource("shader")
+shader_parameter/hot = Color(1, 0.72, 0.25, 1)
+shader_parameter/cool = Color(0.32, 0.05, 0.02, 1)
+shader_parameter/flow_speed = 0.25
+shader_parameter/scale = 4.0
+shader_parameter/intensity = 3.0
+shader_parameter/fade = 0.0
+shader_parameter/depth_pull = 0.9

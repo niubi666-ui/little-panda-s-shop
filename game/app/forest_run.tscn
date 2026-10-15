@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://app/combat_training.tscn" id="base"]
+
+[node name="ForestRunRoom" instance=ExtResource("base")]
+build_choices_enabled = false
+enable_mechanism_presets = false
+training_panels_visible = false
+run_mode = true

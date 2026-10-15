@@ -15,7 +15,9 @@
     "encounters_file",
     "enemy_loot_file",
     "run_route_file",
-    "build_reward_groups_file"
+    "build_reward_groups_file",
+    "build_elements_file",
+    "forest_run_file"
   ],
   "properties": {
     "run_route_file": {
@@ -65,6 +67,14 @@
     "build_reward_groups_file": {
       "type": "string",
       "const": "res://data/builds/reward_groups.json"
+    },
+    "build_elements_file": {
+      "type": "string",
+      "pattern": "^res://data/builds/[a-z0-9_]+\\.json$"
+    },
+    "forest_run_file": {
+      "type": "string",
+      "pattern": "^res://data/run/[a-z0-9_]+\\.json$"
     }
   }
 }

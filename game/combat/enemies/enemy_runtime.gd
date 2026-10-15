@@ -41,6 +41,7 @@ func add(actor, profile: Dictionary, route: Callable, sight: Callable, safe_moti
 		"melee":
 			brain = Melee.new(actor, target)
 			brain.configure_navigation(route, sight)
+			brain.configure_behavior(profile.config, _engaged_melee_others)
 		"ranged":
 			brain = Crossbow.new()
 			brain.configure(actor, target, profile.config, route, sight, safe_motion)
@@ -73,6 +74,12 @@ func add(actor, profile: Dictionary, route: Callable, sight: Callable, safe_moti
 	profiles[actor.handle] = profile
 	brains.append(brain)
 	return brain
+## 近战出手名额：此刻正在出手/逼近/后撤的其他近战敌人数量
+func _engaged_melee_others(asker) -> int:
+	var count := 0
+	for brain in brains:
+		if brain != asker and brain is Melee and brain.engaged(): count += 1
+	return count
 func update_auras() -> void:
 	for recipient in brains:
 		var actor = recipient.actor

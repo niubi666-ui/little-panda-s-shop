@@ -1,0 +1,50 @@
+[gd_scene format=3]
+
+[sub_resource type="Gradient" id="Gradient_xp8t2"]
+offsets = PackedFloat32Array(0, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wsg6t"]
+gradient = SubResource("Gradient_xp8t2")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j56e2"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_wsg6t")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_gs57i"]
+material = SubResource("StandardMaterial3D_j56e2")
+size = Vector2(0.17, 0.17)
+
+[sub_resource type="Gradient" id="Gradient_kys4e"]
+offsets = PackedFloat32Array(0, 0.6, 1)
+colors = PackedColorArray(0.75, 0.58, 0.38, 1, 0.55, 0.4, 0.26, 0.8, 0.4, 0.3, 0.2, 0)
+
+[node name="StatusEarth" type="CPUParticles3D" unique_id=1237997626]
+cast_shadow = 0
+amount = 20
+lifetime = 0.9
+mesh = SubResource("QuadMesh_gs57i")
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 60.0
+gravity = Vector3(0, -4, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 0.9
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.5
+color_ramp = SubResource("Gradient_kys4e")

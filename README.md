@@ -1,6 +1,6 @@
 # 小熊猫的小店 / Little Panda's Shop
 
-Godot 4 单人动作肉鸽与店铺经营原型。当前实现状态见 [docs/HANDOFF.md](docs/HANDOFF.md)，开发先读 [AGENTS.md](AGENTS.md) 和 [PROJECT_CONTRACT.md](PROJECT_CONTRACT.md)。
+Godot 4 单人动作肉鸽与店铺经营原型。当前实现状态见 [docs/STATUS.md](docs/STATUS.md)，设计方向见 [docs/GAME_DESIGN.md](docs/GAME_DESIGN.md)，开发先读 [AGENTS.md](AGENTS.md) 和 [PROJECT_CONTRACT.md](PROJECT_CONTRACT.md)。
 
 ## 换一台 Windows 电脑运行
 
@@ -52,4 +52,4 @@ Godot 4 单人动作肉鸽与店铺经营原型。当前实现状态见 [docs/HA
 
 ## Git 约定
 
-仓库保存代码与必要美术源文件，二进制素材使用 Git LFS。提交前核对 `git status`；提交后用普通 `git push` 同时上传 Git 提交及对应 LFS 对象。没有用户新授权时，Agent 不自动提交、推送或制作 Release。详见 [版本管理](docs/LOCAL_GIT.md)。
+仓库保存代码与必要美术源文件，二进制素材使用 Git LFS。提交前核对 `git status`；提交后用普通 `git push` 同时上传 Git 提交及对应 LFS 对象。没有用户新授权时，Agent 不自动提交、推送或制作 Release。旧的版本管理说明见 [docs/archive/2026-10-15/LOCAL_GIT.md](docs/archive/2026-10-15/LOCAL_GIT.md)。

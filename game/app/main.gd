@@ -16,6 +16,7 @@ const FoliageTheme = preload("res://presentation/foliage/foliage_theme_factory.g
 const SceneTransition = preload("res://app/scene_transition.gd")
 
 var _training_button: Button
+var _run_button: Button
 var controller: Controller
 var _transition: Node
 var pause_menu
@@ -66,8 +67,18 @@ func _ready() -> void:
 	_training_button.theme = style.theme
 	$UIRoot.add_child(_training_button)
 	_training_button.pressed.connect(_enter_training)
-	controller.interaction_opened.connect(func(_instance_id, _definition_id): _training_button.hide())
-	controller.interaction_closed.connect(func(): _training_button.show())
+	_run_button = Button.new()
+	_run_button.text = tr("run.enter")
+	_run_button.position = TrainingStyle.training_entry_position + TrainingStyle.run_entry_offset
+	_run_button.theme = style.theme
+	$UIRoot.add_child(_run_button)
+	_run_button.pressed.connect(_enter_run)
+	controller.interaction_opened.connect(func(_instance_id, _definition_id):
+		_training_button.hide()
+		_run_button.hide())
+	controller.interaction_closed.connect(func():
+		_training_button.show()
+		_run_button.show())
 	controller.use_foliage_shell()
 	var foliage_ui := FoliageUI.new()
 	pause_menu = preload("res://app/pause_menu.gd").new()
@@ -109,6 +120,13 @@ func _enter_training() -> void:
 	get_viewport().set_input_as_handled()
 	_transition = SceneTransition.begin(get_tree(), "res://app/combat_training.tscn", _training_button.theme)
 
+func _enter_run() -> void:
+	if is_instance_valid(_transition): return
+	if controller.is_interaction_open() or $UIRoot/FoliageUI.is_modal_open(): return
+	get_viewport().set_input_as_handled()
+	_transition = SceneTransition.begin(get_tree(), "res://app/forest_run.tscn", _run_button.theme)
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSLATION_CHANGED and is_instance_valid(_training_button):
 		_training_button.text = tr("combat.enter")
+		if is_instance_valid(_run_button): _run_button.text = tr("run.enter")

@@ -20,6 +20,9 @@ uniform vec3 flash_color : source_color = vec3(1.0);
 uniform float flash = 0.0;                   // 0..1，受击
 uniform vec3 glow_color : source_color = vec3(1.0, 0.5, 0.2);
 uniform float glow = 0.0;                    // 0..1，出招前摇
+// 身上的元素状态（着火、冰寒、感电、碎甲）：整体染色 + 轮廓发光。由元素表现每帧写入，0 为无
+uniform vec3 element_color : source_color = vec3(1.0);
+uniform float element_amount = 0.0;
 uniform float dissolve = 0.0;                // 0..1，尸体消散（网点式，不产生透明排序问题）
 
 float screen_hash(vec2 p) {
@@ -44,4 +47,6 @@ void fragment() {
 	METALLIC = metallic * 0.45;
 	SPECULAR = 0.4;
 	EMISSION = rim_color * (edge * upward * rim_strength) + flash_color * flash * 1.6 + glow_color * glow * (0.08 + edge * 1.1);
+	ALBEDO = mix(ALBEDO, element_color, element_amount * 0.35);
+	EMISSION += element_color * element_amount * (0.18 + edge * 1.6);
 }

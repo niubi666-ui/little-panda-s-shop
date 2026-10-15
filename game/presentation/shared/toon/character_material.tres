@@ -2,3 +2,5 @@
 [ext_resource type="Shader" path="res://presentation/shared/toon/character_toon.gdshader" id="shader"]
 [resource]
 shader = ExtResource("shader")
+shader_parameter/element_color = Color(1, 1, 1, 1)
+shader_parameter/element_amount = 0.0

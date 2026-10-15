@@ -300,7 +300,10 @@
               "charge_projectile",
               "consume_freeze",
               "projectile_path",
-              "freeze_shield"
+              "freeze_shield",
+              "element",
+              "element_boost",
+              "reaction_boost"
             ]
           },
           "ranks": {
@@ -1050,6 +1053,104 @@
                     "trigger_cooldown_sec": {
                       "type": "number",
                       "exclusiveMinimum": 0,
+                      "maximum": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "element"
+              },
+              "ranks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "element_id",
+                    "stacks_per_hit"
+                  ],
+                  "properties": {
+                    "element_id": {
+                      "type": "string",
+                      "pattern": "^[a-z_]+$"
+                    },
+                    "stacks_per_hit": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 20
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "element_boost"
+              },
+              "ranks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "element_id",
+                    "field",
+                    "add"
+                  ],
+                  "properties": {
+                    "element_id": {
+                      "type": "string",
+                      "pattern": "^[a-z_]+$"
+                    },
+                    "field": {
+                      "type": "string",
+                      "pattern": "^[a-z_]+$"
+                    },
+                    "add": {
+                      "type": "number",
+                      "minimum": -20,
+                      "maximum": 100
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "reaction_boost"
+              },
+              "ranks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "reaction_id",
+                    "damage_bonus",
+                    "radius_bonus_m"
+                  ],
+                  "properties": {
+                    "reaction_id": {
+                      "type": "string",
+                      "pattern": "^[a-z_]+$"
+                    },
+                    "damage_bonus": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 10
+                    },
+                    "radius_bonus_m": {
+                      "type": "number",
+                      "minimum": 0,
                       "maximum": 10
                     }
                   }

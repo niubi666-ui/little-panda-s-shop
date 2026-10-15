@@ -64,6 +64,17 @@ class Actor extends RefCounted:
 		get: return _data.move_speed_mps
 	var stagger: float:
 		get: return _data.stagger_sec
+	## 霸体值：受到的伤害累计到这个数就破防；0 表示没有霸体（每次受击都会硬直）
+	var poise: float:
+		get: return _data.poise
+	var poise_recover_sec: float:
+		get: return _data.poise_recover_sec
+	var break_stagger_sec: float:
+		get: return _data.break_stagger_sec
+	var break_duration_sec: float:
+		get: return _data.break_duration_sec
+	var break_damage_scale: float:
+		get: return _data.break_damage_scale
 	var attacks: Array:
 		get: return _data.attack_ids
 	var decision_interval: float:

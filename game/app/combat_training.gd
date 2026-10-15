@@ -26,7 +26,10 @@ const EnemyRuntime = preload("res://combat/enemies/enemy_runtime.gd")
 const EncounterPlanner = preload("res://rogue/encounters/encounter_planner.gd")
 const EnemyPresentation = preload("res://presentation/combat/enemies/enemy_presentation.gd")
 const CombatJuice = preload("res://presentation/combat/combat_juice.gd")
+const CombatAudio = preload("res://presentation/audio/combat_audio.gd")
+const ForestRun = preload("res://app/forest_run.gd")
 var juice: CombatJuice
+var audio: CombatAudio
 signal enemy_loot_ready(spawn_id: String, enemy_id: String, drops: Array)
 var initial_encounter_plan: Dictionary = {}
 var encounter_plan: Dictionary = {}
@@ -80,6 +83,11 @@ var _camera_shake := CameraShake.new()
 var feel := CombatFeel.new()
 ## 关掉后恢复原来的硬跟随、无顿帧（回归测试用）
 @export var enhanced_feel: bool
+## 一局冒险模式：本场景当作冒险里的一个房间（见 app/forest_run.gd）
+@export var run_mode: bool
+## 冒险进度，由上一个房间换场景时传入；为空表示新开一局
+var initial_run_state: Dictionary = {}
+var forest_run
 var _zoom := 1.0
 var _camera_base := Vector3.ZERO
 var _camera_base_valid := false
@@ -136,7 +144,12 @@ func _ready() -> void:
 	if has_node("UIRoot/ArrowHint"):
 		$UIRoot/ArrowHint.theme = shared_theme
 		$UIRoot/ArrowHint.text = tr(test_hint_key)
+	# 战斗音效：只听战斗事实，先于任何角色出手建立
+	audio = CombatAudio.new()
+	add_child(audio)
+	audio.configure(Style.combat_audio)
 	player = _spawn(catalog.player(), _player_spawn, 0)
+	audio.bind_player(player)
 	player.killed.connect(func(_actor): _finish("defeat"))
 	if room_presentation != null and room_presentation.placement_surface != null:
 		room_props = TrainingRoomProps.new()
@@ -161,6 +174,7 @@ func _ready() -> void:
 	enemy_runtime.configure(player, catalog.player_hurt_radius(), _actor_query_origin, _enemy_sweep)
 	# 敌人技能（箭雨、冲锋等）命中玩家同样要有受击反馈
 	enemy_runtime.confirmed_hit.connect(func(source, victim, amount):
+		if victim == player and amount > 0.0: audio.player_hurt()
 		if victim == player and amount > 0.0 and enhanced_feel and is_instance_valid(source):
 			feel.player_hurt(player.global_position - source.global_position)
 			if juice != null: juice.player_hurt())
@@ -176,6 +190,10 @@ func _ready() -> void:
 	encounter = Encounter.new(_waves, catalog.wave_delay())
 	encounter.wave_requested.connect(_spawn_wave)
 	encounter.cleared.connect(func(): _finish("victory"))
+	encounter.wave_requested.connect(func(_ids): audio.play(&"wave_start", player.global_position))
+	encounter.cleared.connect(func(): audio.play(&"wave_clear", player.global_position))
+	enemy_runtime.projectile_spawned.connect(func(projectile): audio.play(&"crossbow_shot", projectile.position))
+	enemy_runtime.projectile_finished.connect(func(_id, point, _direction, _source, reason): if reason == "world": audio.play(&"projectile_impact", point))
 	hud = HUD.new()
 	$UIRoot.add_child(hud)
 	hud.configure(shared_theme, Style.hud_margin)
@@ -206,8 +224,21 @@ func _ready() -> void:
 	resolver.confirmed_hit.connect(builds.runtime.on_melee_hit)
 	resolver.enemy_contact.connect(builds.runtime.on_melee_contact)
 	builds.damage_applied.connect(_on_build_damage)
+	builds.runtime.statuses.freeze_window_applied.connect(func(target, _status, _source): if is_instance_valid(target): audio.play(&"freeze", target.global_position))
+	builds.runtime.conditional_damage_applied.connect(func(fact): audio.play(&"shatter", fact.position))
+	builds.runtime.element_presented.connect(audio.element_fact)
+	builds.choice_panel.choice_requested.connect(func(_offer, _choice): audio.play(&"ui_choose", player.global_position))
 	encounter.wave_completed.connect(builds.reward_wave)
-	encounter.start()
+	if run_mode:
+		forest_run = ForestRun.new()
+		forest_run.name = "ForestRun"
+		add_child(forest_run)
+		if not forest_run.configure(self, initial_run_state):
+			get_tree().quit(1)
+			return
+	# 冒险开局（还在选第一份祝福）不开打：取消遭遇，否则空场时会自动刷第一波
+	if run_mode and forest_run.is_lobby(): encounter.cancel()
+	else: encounter.start()
 	builds.flush_offers()
 	pause_menu = preload("res://app/pause_menu.gd").new()
 	add_child(pause_menu)
@@ -244,6 +275,7 @@ func _ready() -> void:
 	if not training_panels_visible:
 		# 默认收起训练面板，画面只留战斗；顶部“界面显示”菜单可以逐个打开。
 		for id in ["build", "fx", "depth", "room"]: training_tools.set_menu_visible(id, false)
+	if run_mode: training_tools.panel.hide()
 	print("[combat] training ready; waves=", _waves.size(), " encounter=", encounter_plan.get("seed", "fixture"))
 func _select_weapon_effect(effect_id: StringName) -> void:
 	if _leaving or (builds != null and builds.is_choosing()) or effect_id == selected_effect_id: return
@@ -278,7 +310,14 @@ func _spawn(definition: Catalog.Actor, point: Vector3, team: int) -> Actor:
 	var view := View.new()
 	actor.add_child(view)
 	view.configure(actor, Style, shared_theme.default_font)
-	if team != 0: actor.killed.connect(func(dead): if juice != null: juice.enemy_killed(dead))
+	if team != 0:
+		actor.killed.connect(func(dead): if juice != null: juice.enemy_killed(dead))
+		actor.killed.connect(func(dead): if audio != null: audio.enemy_killed(dead))
+		actor.poise_broken.connect(func(broken):
+			if audio != null: audio.guard_broken(broken)
+			if juice != null: juice.guard_broken(broken))
+		if audio != null: audio.bind_enemy(actor)
+		if builds != null: view.element_tint = builds.element_tint
 	actors.append(actor)
 	views.append(view)
 	return actor
@@ -534,6 +573,7 @@ func _physics_process(frame_delta: float) -> void:
 	_follow_camera(0.0 if paused or builds.is_choosing() else frame_delta)
 	_apply_camera_shake(display_delta)
 	if juice != null: juice.refresh(0.0 if paused or builds.is_choosing() else frame_delta)
+	audio.refresh(0.0 if paused or builds.is_choosing() else frame_delta, brains)
 	hud.update_state(player, encounter, _waves.size(), "choosing" if builds.is_choosing() else state, paused and not builds.is_choosing())
 	if not encounter_plan.is_empty(): hud.update_encounter(encounter_plan, encounter.wave_index)
 func _enemy_sight(source, target) -> bool:
@@ -619,9 +659,12 @@ func _follow_camera(delta: float = -1.0) -> void:
 func _on_confirmed_hit(source, target, _cast_id: int, ability_id: String, applied_damage: float) -> void:
 	if _leaving or applied_damage <= 0.0: return
 	if source == player and target.team != player.team:
+		audio.player_hit(ability_id, target)
 		_camera_shake.kick()
 		if enhanced_feel: feel.hit(ability_id, target.global_position - player.global_position, not target.health.alive())
-	elif target == player and enhanced_feel:
+	elif target == player:
+		audio.player_hurt()
+	if target == player and source != player and enhanced_feel:
 		feel.player_hurt(player.global_position - source.global_position)
 		if juice != null: juice.player_hurt()
 func _apply_camera_shake(delta: float) -> void:
@@ -690,6 +733,9 @@ func _finish(result: String) -> void:
 	for actor in actors:
 		if result == "defeat" or actor != player: actor.cancel()
 	if result == "victory": builds.finish_rewards()
+	if run_mode and forest_run != null:
+		if result == "victory": forest_run.room_cleared()
+		else: forest_run.defeated()
 	enemy_runtime.clear()
 	if enemy_presentation != null: enemy_presentation.clear()
 func _shutdown() -> void:
@@ -710,6 +756,9 @@ func _shutdown() -> void:
 	for actor in actors: actor.cancel()
 	enemy_runtime.clear()
 func _retry() -> void:
+	if run_mode and forest_run != null:
+		forest_run.new_run()
+		return
 	if _leaving or is_instance_valid(_transition): return
 	skill_vfx.clear()
 	var preserved: Dictionary = room_props.plan if room_props != null else {}

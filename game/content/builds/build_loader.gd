@@ -2,6 +2,7 @@ extends RefCounted
 ## Independent content boundary; never imports combat or application modules.
 
 const Catalog = preload("res://content/builds/build_catalog.gd")
+const ElementsLoader = preload("res://content/builds/elements_loader.gd")
 const SCHEMA_VERSION := 7
 const MAX_ENTRIES := 512
 const MAX_RANKS := 64
@@ -14,6 +15,9 @@ const EFFECT_FIELDS := {
 	"consume_freeze": ["status_id", "bonus", "max_targets"],
 	"projectile_path": ["status_id", "spacing_m", "radius_m", "lifetime_sec", "duration_sec", "max_targets"],
 	"freeze_shield": ["shield_amount", "duration_sec", "trigger_cooldown_sec"],
+	"element": ["element_id", "stacks_per_hit"],
+	"element_boost": ["element_id", "field", "add"],
+	"reaction_boost": ["reaction_id", "damage_bonus", "radius_bonus_m"],
 
 	"conditional_damage": ["status_id", "provider_scope", "allowed_origins", "source_relation", "root_relation", "bonus"],
 	"form": ["form_id"],
@@ -65,7 +69,28 @@ func load_catalog(manifest_path: String = "res://data/manifest.json") -> Catalog
 		if actor is Dictionary and actor.has("id"): actor_ids[actor.id] = true
 	for id in data.status_rules.actor_responses:
 		if not actor_ids.has(id): errors.append("unknown status response actor: " + str(id))
-	return catalog if errors.is_empty() else null
+	if not errors.is_empty(): return null
+	var statuses: Dictionary = {}
+	for status in data.statuses: statuses[status.id] = status
+	var element_loader := ElementsLoader.new()
+	var elements := element_loader.load_elements(manifest, statuses)
+	if elements.is_empty():
+		errors.append_array(element_loader.errors)
+		return null
+	for entry in data.upgrades:
+		for rank in entry.ranks:
+			match entry.effect_type:
+				"element":
+					if not elements.elements.has(rank.element_id): errors.append("build.upgrades." + entry.id + ": unknown element " + str(rank.element_id))
+					elif int(rank.stacks_per_hit) > int(elements.elements[rank.element_id].max_stacks): errors.append("build.upgrades." + entry.id + ": stacks_per_hit exceeds element max_stacks")
+				"element_boost":
+					if not elements.elements.has(rank.element_id): errors.append("build.upgrades." + entry.id + ": unknown element " + str(rank.element_id))
+					elif not ElementsLoader.BOOSTABLE.has(rank.field): errors.append("build.upgrades." + entry.id + ": element field cannot be boosted: " + str(rank.field))
+				"reaction_boost":
+					if not elements.reactions.any(func(r): return r.id == rank.reaction_id): errors.append("build.upgrades." + entry.id + ": unknown reaction " + str(rank.reaction_id))
+	if not errors.is_empty(): return null
+	catalog.set_elements(elements)
+	return catalog
 
 
 func decode(data: Variant) -> Catalog:
@@ -207,7 +232,9 @@ func _validate_upgrade(value: Variant, path: String) -> void:
 				"shield_amount": _number(rank[key], 0, 100, rank_path + "." + key, true)
 				"sight_height_m": _number(rank[key], 0, 10, rank_path + "." + key, true)
 
-				"projectile_id", "status_id", "source_effect_id", "form_id": _string(rank[key], rank_path + "." + key)
+				"projectile_id", "status_id", "source_effect_id", "form_id", "element_id", "field", "reaction_id": _string(rank[key], rank_path + "." + key)
+				"add": _number(rank[key], -20, 100, rank_path + ".add")
+				"stacks_per_hit": _integer(rank[key], 1, 20, rank_path + "." + key)
 				"trigger":
 					if rank[key] != "enemy_contact": errors.append(rank_path + ": unsupported trigger")
 				"scope":
@@ -257,7 +284,7 @@ func _validate_references(data: Dictionary) -> void:
 			if not available_tags.has(tag):
 				errors.append("build.upgrades." + entry.id + ": unknown required tag " + tag)
 		for rank in entry.ranks:
-			for selector in ["allowed_origins", "status_id", "source_effect_id", "provider_scope", "source_relation", "root_relation"]:
+			for selector in ["allowed_origins", "status_id", "source_effect_id", "provider_scope", "source_relation", "root_relation", "element_id", "field", "reaction_id"]:
 				if rank.has(selector) and rank[selector] != entry.ranks[0][selector]: errors.append("effect selectors must remain stable across ranks")
 			if entry.effect_type in ["explosion", "status"] and (rank.max_per_parent > rank.max_per_root or rank.max_per_root > data.limits.root_effect_budget): errors.append("explosion trigger limits inconsistent")
 			if entry.effect_type == "chain" and rank.jumps > data.limits.max_chain_jumps:
@@ -555,7 +582,15 @@ func _validate_presets(data: Dictionary) -> void:
 			if not selection is Dictionary or not selection.has("upgrade_id") or not entries.has(selection.upgrade_id) or not selection.has("action_id"): continue
 			var entry: Dictionary = entries[selection.upgrade_id]
 			for required in entry.requires:
-				if not selected.has(str(selection.action_id) + ":" + str(required)): errors.append("test_preset: missing bound prerequisite")
+				var satisfied: bool
+				if entries.has(required) and entries[required].scope == "global":
+					satisfied = selected.has("global:" + str(required))
+				elif str(selection.action_id) == "global":
+					# 全局卡要求动作卡：任意动作上有即可（元素被动、双元素卡）
+					satisfied = selected.keys().any(func(key): return String(key).ends_with(":" + str(required)))
+				else:
+					satisfied = selected.has(str(selection.action_id) + ":" + str(required))
+				if not satisfied: errors.append("test_preset: missing bound prerequisite")
 			for excluded in entry.excludes:
 				if selected.has(str(selection.action_id) + ":" + str(excluded)): errors.append("test_preset: excluded bound upgrade")
 
@@ -665,14 +700,14 @@ func _validate_actions(data: Dictionary) -> void:
 		elif forms[actions[attack.action_id].base_form_id].projectile_id != attack.projectile_id: errors.append("test attack projectile disagrees with debug form")
 	for entry in data.upgrades:
 		if entry.scope == "global":
-			if not entry.action_ids.is_empty() or entry.layer != "support" or entry.effect_type not in ["damage_scale", "move_scale"]:
+			if not entry.action_ids.is_empty() or entry.layer != "support" or entry.effect_type not in ["damage_scale", "move_scale", "element_boost", "reaction_boost"]:
 				errors.append("global supports only unbound numeric actor stats")
 		else:
 			if entry.action_ids.is_empty() or entry.effect_type == "move_scale": errors.append("action scope needs targets and cannot change actor movement")
 			for id in entry.action_ids:
 				if not actions.has(id): errors.append("unknown upgrade action")
 				elif entry.test_only and not actions[id].test_only: errors.append("debug upgrade cannot target formal action")
-		var expected_layer: String = "form" if entry.effect_type == "form" else ("core" if entry.effect_type in ["status", "explosion"] else ("synergy" if entry.effect_type == "area_status" else "support"))
+		var expected_layer: String = "form" if entry.effect_type == "form" else ("core" if entry.effect_type in ["status", "explosion", "element"] else ("synergy" if entry.effect_type == "area_status" else "support"))
 		if entry.effect_type == "conditional_damage":
 			expected_layer = "synergy" if entry.ranks[0].provider_scope == "other_formal_action" else "support"
 			for id in entry.action_ids:

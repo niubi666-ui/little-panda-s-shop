@@ -256,8 +256,16 @@ def _validate_presets(data: dict, by_id: dict) -> None:
                 slots.add(slot)
         for (target, id), item in selected.items():
             entry = by_id[id]
-            if any((target, required) not in selected for required in entry["requires"]):
-                raise ValueError("preset missing bound prerequisite")
+            for required in entry["requires"]:
+                if by_id[required]["scope"] == "global":
+                    ok = ("global", required) in selected
+                elif target == "global":
+                    # 全局卡要求动作卡：任意动作上有即可（元素被动、双元素卡）
+                    ok = any(key[1] == required for key in selected)
+                else:
+                    ok = (target, required) in selected
+                if not ok:
+                    raise ValueError("preset missing bound prerequisite")
             if any((target, excluded) in selected for excluded in entry["excludes"]):
                 raise ValueError("preset incompatible bound upgrade")
 
@@ -333,14 +341,14 @@ def _validate_actions(data: dict, by_id: dict) -> None:
             raise ValueError("test attack needs matching isolated debug action")
     for entry in by_id.values():
         if entry["scope"] == "global":
-            if entry["action_ids"] or entry["layer"] != "support" or entry["effect_type"] not in ("move_scale", "damage_scale"):
+            if entry["action_ids"] or entry["layer"] != "support" or entry["effect_type"] not in ("move_scale", "damage_scale", "element_boost", "reaction_boost"):
                 raise ValueError("global supports only unbound numeric actor stats")
         else:
             if not entry["action_ids"] or entry["effect_type"] == "move_scale" or set(entry["action_ids"]) - actions.keys():
                 raise ValueError("invalid upgrade action targets")
             if entry["test_only"] and any(not actions[id]["test_only"] for id in entry["action_ids"]):
                 raise ValueError("debug upgrade targets formal action")
-        expected = "form" if entry["effect_type"] == "form" else ("core" if entry["effect_type"] in ("status", "explosion") else ("synergy" if entry["effect_type"] == "area_status" else "support"))
+        expected = "form" if entry["effect_type"] == "form" else ("core" if entry["effect_type"] in ("status", "explosion", "element") else ("synergy" if entry["effect_type"] == "area_status" else "support"))
         if entry["effect_type"] == "conditional_damage":
             expected = "synergy" if entry["ranks"][0]["provider_scope"] == "other_formal_action" else "support"
             if any(actions[id]["test_only"] for id in entry["action_ids"]):
@@ -425,6 +433,8 @@ def _validate_messages(data: dict, locales: dict) -> None:
                 ("bonus", "bonus_percent"),
                 ("damage_ratio", "damage_percent"),
                 ("falloff", "falloff_percent"),
+                ("add", "add_percent"),
+                ("damage_bonus", "damage_bonus_percent"),
             ):
                 if parameter in rank:
                     supplied.add(derived)

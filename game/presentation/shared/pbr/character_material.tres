@@ -3,3 +3,5 @@
 [resource]
 shader = ExtResource("shader")
 shader_parameter/vertex_color_gain = 0.7
+shader_parameter/element_color = Color(1, 1, 1, 1)
+shader_parameter/element_amount = 0.0

@@ -28,14 +28,14 @@ func configure(catalog: Catalog, seed: int, commit: Callable, rewards: Dictionar
 	assert(not _program.is_empty(), "Validated initial action loadout must compile")
 	_committing = false
 
-func open_offer(profile_id: String = "training_all") -> Dictionary:
+func open_offer(profile_id: String = "training_all", filter: Dictionary = {}) -> Dictionary:
 	if _committing: return _result(false, "commit_in_progress")
 	if not _rewards.is_empty() and not _rewards.reward_profiles.has(profile_id): return _result(false, "unknown_reward_profile")
 	if not _state.offer.is_empty() and not _state.offer.resolved: return _result(true, "")
 	var candidate: Dictionary = _state.duplicate(true)
 	var rng := RandomNumberGenerator.new()
 	rng.state = int(candidate.rng_state)
-	var operations: Array[Dictionary] = _sampler.sample(_build_state(candidate), rng, profile_id)
+	var operations: Array[Dictionary] = _sampler.sample(_build_state(candidate), rng, profile_id, filter)
 	candidate.offer_sequence += 1
 	var offer_id := "training_build_%s" % candidate.offer_sequence
 	for index in operations.size():
@@ -88,28 +88,50 @@ func apply_test_preset(id: String) -> Dictionary:
 	if _committing: return _result(false, "commit_in_progress")
 	var preset: Dictionary = _catalog.test_preset(id)
 	if preset.is_empty(): return _result(false, "unknown_preset", "build.reason.invalid_operation")
+	return _apply_selection_list(preset.selections, id)
+
+## 按选择列表重建构筑（一局冒险换房间时带上之前的构筑）；每一项都重新走评估，非法则整体失败
+func restore_selections(selections: Array) -> Dictionary:
+	if _committing: return _result(false, "commit_in_progress")
+	return _apply_selection_list(selections, "restore")
+
+func _apply_selection_list(selections: Array, id: String) -> Dictionary:
 	var candidate: Dictionary = _state.duplicate(true)
 	candidate.selections = []
 	candidate.revision += 1
 	candidate.history = []
 	candidate.offer = {}
 	var candidate_program: Dictionary = _resolver.resolve(_build_state(candidate))
-	for selection in preset.selections:
-		for target_rank in range(1, int(selection.rank) + 1):
-			var operation: Dictionary = {}
-			for option in _resolver.legal_operations(_build_state(candidate), selection.upgrade_id):
-				if option.action_id == selection.action_id and int(option.rank) == target_rank:
-					operation = option
-					break
-			if operation.is_empty(): return _result(false, "ineligible_preset", "build.reason.dependency")
-			var evaluated: Dictionary = _resolver.evaluate(_build_state(candidate), operation)
-			if not evaluated.ok: return _result(false, "ineligible_preset", evaluated.error_key)
-			candidate = _apply_evaluation(candidate, evaluated)
-			candidate_program = evaluated.program
-			candidate.history.append({"preset_id": id, "operation": operation,
-				"change": evaluated.change})
+	# 预设按作者写的顺序逐项授予；恢复（restore）时列表来自已编译的构筑、按名字排序，
+	# 前置可能排在后面，所以多轮尝试：每轮放入此刻合法的项，直到全部放入或不再有进展。
+	var remaining: Array = selections.duplicate(true)
+	var strict := id != "restore"
+	while not remaining.is_empty():
+		var deferred: Array = []
+		for selection in remaining:
+			var first: Dictionary = _find_operation(candidate, selection, 1)
+			if first.is_empty():
+				if strict: return _result(false, "ineligible_preset", "build.reason.dependency")
+				deferred.append(selection)
+				continue
+			for target_rank in range(1, int(selection.rank) + 1):
+				var operation: Dictionary = first if target_rank == 1 else _find_operation(candidate, selection, target_rank)
+				if operation.is_empty(): return _result(false, "ineligible_preset", "build.reason.dependency")
+				var evaluated: Dictionary = _resolver.evaluate(_build_state(candidate), operation)
+				if not evaluated.ok: return _result(false, "ineligible_preset", evaluated.error_key)
+				candidate = _apply_evaluation(candidate, evaluated)
+				candidate_program = evaluated.program
+				candidate.history.append({"preset_id": id, "operation": operation,
+					"change": evaluated.change})
+		if deferred.size() == remaining.size(): return _result(false, "ineligible_preset", "build.reason.dependency")
+		remaining = deferred
 	if not _submit(candidate, candidate_program): return _result(false, "commit_failed")
 	return _result(true, "")
+
+func _find_operation(candidate: Dictionary, selection: Dictionary, target_rank: int) -> Dictionary:
+	for option in _resolver.legal_operations(_build_state(candidate), selection.upgrade_id):
+		if option.action_id == selection.action_id and int(option.rank) == target_rank: return option
+	return {}
 
 func snapshot() -> Dictionary: return Catalog.freeze_copy(_state)
 func program() -> Dictionary: return _program

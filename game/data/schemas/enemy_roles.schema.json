@@ -60,8 +60,46 @@
     "melee": {
       "type": "object",
       "additionalProperties": false,
-      "required": [],
-      "properties": {}
+      "required": [
+        "engage_distance_m",
+        "strafe_speed_multiplier",
+        "strafe_flip_sec",
+        "retreat_sec",
+        "retreat_speed_multiplier",
+        "attack_slots"
+      ],
+      "properties": {
+        "engage_distance_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "strafe_speed_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "strafe_flip_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "retreat_sec": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "retreat_speed_multiplier": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "attack_slots": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        }
+      }
     },
     "ranged": {
       "type": "object",

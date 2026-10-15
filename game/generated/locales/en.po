@@ -40,6 +40,138 @@ msgstr "Choose upgrade"
 msgid "build.current_form"
 msgstr "Form: {form}"
 
+msgid "build.element.earth.description"
+msgstr "Hits apply {stacks_per_hit} Fracture stack(s): increases damage taken, up to 3 stacks; breaks armor faster."
+
+msgid "build.element.earth.name"
+msgstr "Earth Infusion"
+
+msgid "build.element.fire.description"
+msgstr "Hits apply {stacks_per_hit} Burn stack(s): damage over time, up to 5 stacks."
+
+msgid "build.element.fire.name"
+msgstr "Fire Infusion"
+
+msgid "build.element.ice.description"
+msgstr "Hits apply {stacks_per_hit} Chill stack(s): slows; at 3 stacks the enemy freezes (bosses are heavily slowed)."
+
+msgid "build.element.ice.name"
+msgstr "Ice Infusion"
+
+msgid "build.element.thunder.description"
+msgstr "Hits apply Shock: the next hit on it releases an arc that damages it and up to 3 nearby enemies."
+
+msgid "build.element.thunder.name"
+msgstr "Thunder Infusion"
+
+msgid "build.element_boost.dual_lava.description"
+msgstr "Lava deals {damage_bonus_percent}% more damage; radius +{radius_bonus_m}m."
+
+msgid "build.element_boost.dual_lava.name"
+msgstr "Magma"
+
+msgid "build.element_boost.dual_magnet.description"
+msgstr "Magnet deals {damage_bonus_percent}% more damage; pull radius +{radius_bonus_m}m."
+
+msgid "build.element_boost.dual_magnet.name"
+msgstr "Lodestone"
+
+msgid "build.element_boost.dual_overload.description"
+msgstr "Overload deals {damage_bonus_percent}% more damage; radius +{radius_bonus_m}m."
+
+msgid "build.element_boost.dual_overload.name"
+msgstr "Thunderfire"
+
+msgid "build.element_boost.dual_shatter.description"
+msgstr "Shatter deals {damage_bonus_percent}% more damage; radius +{radius_bonus_m}m."
+
+msgid "build.element_boost.dual_shatter.name"
+msgstr "Glacier"
+
+msgid "build.element_boost.dual_steam.description"
+msgstr "Steam deals {damage_bonus_percent}% more damage."
+
+msgid "build.element_boost.dual_steam.name"
+msgstr "Boiling"
+
+msgid "build.element_boost.dual_superconduct.description"
+msgstr "Superconduct deals {damage_bonus_percent}% more damage; radius +{radius_bonus_m}m."
+
+msgid "build.element_boost.dual_superconduct.name"
+msgstr "Frostbolt"
+
+msgid "build.element_boost.earth_crush.description"
+msgstr "Each Fracture stack adds {add_percent}% more damage taken."
+
+msgid "build.element_boost.earth_crush.name"
+msgstr "Crushing"
+
+msgid "build.element_boost.earth_layers.description"
+msgstr "Fracture can stack {add} more times."
+
+msgid "build.element_boost.earth_layers.name"
+msgstr "Strata"
+
+msgid "build.element_boost.earth_quake.description"
+msgstr "Earth hits deal {add_percent}% extra armor-break damage."
+
+msgid "build.element_boost.earth_quake.name"
+msgstr "Quake"
+
+msgid "build.element_boost.fire_blaze.description"
+msgstr "Burn can stack {add} more times."
+
+msgid "build.element_boost.fire_blaze.name"
+msgstr "Blaze"
+
+msgid "build.element_boost.fire_kindling.description"
+msgstr "Burn deals +{add} damage per stack per tick."
+
+msgid "build.element_boost.fire_kindling.name"
+msgstr "Embers"
+
+msgid "build.element_boost.fire_linger.description"
+msgstr "Burn lasts {add}s longer."
+
+msgid "build.element_boost.fire_linger.name"
+msgstr "Lingering Flame"
+
+msgid "build.element_boost.ice_brittle.description"
+msgstr "Each Chill stack makes the enemy take {add_percent}% more damage."
+
+msgid "build.element_boost.ice_brittle.name"
+msgstr "Brittle"
+
+msgid "build.element_boost.ice_deep.description"
+msgstr "Freezing needs {add} Chill stack(s): enemies freeze sooner."
+
+msgid "build.element_boost.ice_deep.name"
+msgstr "Deep Cold"
+
+msgid "build.element_boost.ice_lasting.description"
+msgstr "Chill lasts {add}s longer."
+
+msgid "build.element_boost.ice_lasting.name"
+msgstr "Heavy Frost"
+
+msgid "build.element_boost.thunder_chain.description"
+msgstr "Shock discharges arc to {add} more enemies."
+
+msgid "build.element_boost.thunder_chain.name"
+msgstr "Chain Thunder"
+
+msgid "build.element_boost.thunder_reach.description"
+msgstr "Discharges reach {add}m farther."
+
+msgid "build.element_boost.thunder_reach.name"
+msgstr "Far Reach"
+
+msgid "build.element_boost.thunder_surge.description"
+msgstr "Shock discharges deal +{add} damage."
+
+msgid "build.element_boost.thunder_surge.name"
+msgstr "Surge"
+
 msgid "build.empty"
 msgstr "No upgrades yet. LMB, R and RMB base actions are available."
 
@@ -156,6 +288,36 @@ msgstr "Three base actions (no upgrades)"
 
 msgid "build.preset.charged_burst"
 msgstr "Charged burst"
+
+msgid "build.preset.elem_fire_build"
+msgstr "Fire build: fire attack + fire heavy + Embers + Blaze"
+
+msgid "build.preset.elem_lava"
+msgstr "Lava: fire wave + earth heavy"
+
+msgid "build.preset.elem_magnet"
+msgstr "Magnet: thunder wave + earth heavy"
+
+msgid "build.preset.elem_overload"
+msgstr "Overload: fire attack + thunder wave"
+
+msgid "build.preset.elem_shatter"
+msgstr "Shatter: ice wave + earth heavy"
+
+msgid "build.preset.elem_steam"
+msgstr "Steam: fire attack + ice wave"
+
+msgid "build.preset.elem_steam_build"
+msgstr "Steam build: fire attack + ice wave + Deep Cold + Boiling"
+
+msgid "build.preset.elem_storm_build"
+msgstr "Storm build: thunder wave + earth heavy + Chain Thunder + Lodestone"
+
+msgid "build.preset.elem_superconduct"
+msgstr "Superconduct: thunder attack + ice wave"
+
+msgid "build.preset.elem_trio"
+msgstr "Trio: fire attack + earth heavy + thunder wave"
 
 msgid "build.preset.error"
 msgstr "Preset unavailable. Retry training and try again."
@@ -430,6 +592,9 @@ msgstr "Flying streaks"
 msgid "combat.fx.title"
 msgstr "Sword trail test"
 
+msgid "combat.guard_break"
+msgstr "Break!"
+
 msgid "combat.paused"
 msgstr "Paused"
 
@@ -471,6 +636,36 @@ msgstr "Training complete! Retry or return to the shop."
 
 msgid "combat.waiting"
 msgstr "Wave cleared. Reinforcements approaching…"
+
+msgid "element.earth.name"
+msgstr "Earth"
+
+msgid "element.fire.name"
+msgstr "Fire"
+
+msgid "element.ice.name"
+msgstr "Ice"
+
+msgid "element.reaction.lava"
+msgstr "Lava!"
+
+msgid "element.reaction.magnet"
+msgstr "Magnet!"
+
+msgid "element.reaction.overload"
+msgstr "Overload!"
+
+msgid "element.reaction.shatter"
+msgstr "Shatter!"
+
+msgid "element.reaction.steam"
+msgstr "Steam!"
+
+msgid "element.reaction.superconduct"
+msgstr "Superconduct!"
+
+msgid "element.thunder.name"
+msgstr "Thunder"
 
 msgid "encounter.banner_brute"
 msgstr "Banner Brute"
@@ -598,6 +793,21 @@ msgstr "Searched · {name}"
 msgid "room.seed"
 msgstr "Room seed: {seed}"
 
+msgid "run.button.new_run"
+msgstr "New run"
+
+msgid "run.button.shop"
+msgstr "Back to shop"
+
+msgid "run.defeat.body"
+msgstr "Cleared {rooms} rooms, {gold} gold"
+
+msgid "run.defeat.title"
+msgstr "You fell"
+
+msgid "run.enter"
+msgstr "Enter Adventure"
+
 msgid "run.error.busy"
 msgstr "The previous action is still being processed. Please wait."
 
@@ -642,6 +852,21 @@ msgstr "This node is not reachable now. Choose an available node."
 
 msgid "run.error.wrong_phase"
 msgstr "This action is unavailable in the current phase."
+
+msgid "run.exit.first"
+msgstr "Choose your first blessing"
+
+msgid "run.exit.title"
+msgstr "Choose the next room"
+
+msgid "run.info.boss"
+msgstr "Room {index}/{total} · Boss · Gold {gold}"
+
+msgid "run.info.lobby"
+msgstr "Adventure begins: choose your first blessing"
+
+msgid "run.info.room"
+msgstr "Room {index}/{total} · Clear reward: {reward} · Gold {gold}"
 
 msgid "run.kind.battle"
 msgstr "Battle"
@@ -712,6 +937,39 @@ msgstr "Restart this run"
 msgid "run.return_map"
 msgstr "Return to route map"
 
+msgid "run.reward.boon"
+msgstr "Blessing of {element}"
+
+msgid "run.reward.boon_detail"
+msgstr "Pick 1 of 3 after clearing: an infusion, passive or dual card of this element"
+
+msgid "run.reward.boss"
+msgstr "Boss: Elite Ranger"
+
+msgid "run.reward.boss_detail"
+msgstr "Defeat it to finish the adventure"
+
+msgid "run.reward.gold"
+msgstr "Gold +{amount}"
+
+msgid "run.reward.gold_detail"
+msgstr "Bring it home (economy not connected yet)"
+
+msgid "run.reward.heal"
+msgstr "Heal +{amount}"
+
+msgid "run.reward.heal_detail"
+msgstr "Restore health after clearing"
+
+msgid "run.reward.none"
+msgstr "None"
+
+msgid "run.reward.upgrade"
+msgstr "Upgrade"
+
+msgid "run.reward.upgrade_detail"
+msgstr "Rank up one of your cards after clearing"
+
 msgid "run.room.controls"
 msgstr "WASD Move · LMB Combo · R Heavy · RMB Sword Wave · Shift Dodge · Esc Menu · L Language"
 
@@ -723,6 +981,12 @@ msgstr "ROOM {room}"
 
 msgid "run.start"
 msgstr "Start route test"
+
+msgid "run.victory.body"
+msgstr "Cleared {rooms} rooms, bringing home {gold} gold"
+
+msgid "run.victory.title"
+msgstr "Adventure complete!"
 
 msgid "settings.attack"
 msgstr "Attack"

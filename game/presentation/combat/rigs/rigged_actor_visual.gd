@@ -1,7 +1,7 @@
 extends Node3D
 ## 通用骨骼角色表现适配器：只读取已确认的战斗状态，按进度采样动作，不参与任何判定。
 ## 主角和所有临时敌人共用；换模型只需要换 Model 子节点和 clip_set 资源。
-## 约定见 docs/COMBAT_VISUAL_PASS.md。
+## 约定见 docs/ART_PIPELINE.md 的“怎么替换一个角色”。
 const ClipSet = preload("res://presentation/combat/rigs/actor_clip_set.gd")
 const ToonSkin = preload("res://presentation/shared/toon/toon_skin.gd")
 const Feedback = preload("res://presentation/combat/rigs/rig_feedback.gd")
@@ -238,6 +238,12 @@ func _tick_feedback(delta: float) -> void:
 		model.position = _model_rest + _shake_direction * (sin(_shake_left * feedback.hit_shake_speed) * feedback.hit_shake_m * falloff)
 	else:
 		model.position = _model_rest
+
+## 元素染色：color 为元素颜色，amount 0..1（0 为无）
+func set_element_tint(color: Color, amount: float) -> void:
+	for instance in _materials:
+		instance.set_shader_parameter("element_color", color)
+		instance.set_shader_parameter("element_amount", amount)
 
 func has_presentation_tail() -> bool:
 	return _dead and animation != null and _has(clip_set.death) and _death_age < _length(clip_set.death) + feedback.corpse_hold_sec + feedback.corpse_fade_sec

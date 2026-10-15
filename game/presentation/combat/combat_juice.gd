@@ -14,6 +14,8 @@ var _overlay: ColorRect
 var _hurt := 0.0
 var _clock := 0.0
 var _was_dodging := false
+var _labels: Array = []   # [Label3D, 已存在时间]
+var _font: Font
 
 func configure(player_actor, ui: CanvasLayer, theme: Theme, world: Node3D, settings: JuiceStyle) -> void:
 	assert(settings != null and settings.vignette_material != null and settings.kill_burst != null and settings.dodge_puff != null and settings.vitals != null, "combat juice style incomplete")
@@ -34,6 +36,7 @@ func configure(player_actor, ui: CanvasLayer, theme: Theme, world: Node3D, setti
 	ui.add_child(vitals)
 	ui.move_child(vitals, 1)
 	vitals.configure(player, theme, style.vitals)
+	_font = theme.default_font if theme != null else null
 
 func player_hurt() -> void:
 	_hurt = 1.0
@@ -59,6 +62,41 @@ func refresh(real_delta: float) -> void:
 	for child in get_children():
 		if child is CPUParticles3D: child.speed_scale = 1.0 if real_delta > 0.0 else 0.0
 	vitals.refresh(real_delta)
+	_tick_labels(real_delta)
+
+## 敌人霸体被打破：头顶弹出提示文字
+func guard_broken(actor) -> void:
+	if not is_instance_valid(actor) or _world == null: return
+	var label := Label3D.new()
+	label.text = tr(style.break_label_key)
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	label.no_depth_test = true
+	label.fixed_size = false
+	label.pixel_size = 0.01
+	label.font_size = style.break_label_font_size
+	label.outline_size = maxi(style.break_label_font_size / 6, 1)
+	label.modulate = style.break_label_color
+	label.outline_modulate = style.break_label_outline
+	if _font != null: label.font = _font
+	add_child(label)
+	label.global_position = actor.global_position + Vector3.UP * style.break_label_height_m
+	_labels.append([label, 0.0, label.global_position])
+
+func _tick_labels(real_delta: float) -> void:
+	for index in range(_labels.size() - 1, -1, -1):
+		var entry: Array = _labels[index]
+		entry[1] += real_delta
+		var t: float = entry[1] / style.break_label_sec
+		if t >= 1.0:
+			entry[0].queue_free()
+			_labels.remove_at(index)
+			continue
+		# 先弹大再回落，随后上飘淡出
+		var pop := 1.0 + 0.35 * maxf(0.0, 1.0 - t * 6.0)
+		entry[0].scale = Vector3.ONE * pop
+		entry[0].global_position = entry[2] + Vector3.UP * style.break_label_rise_m * t
+		entry[0].modulate.a = 1.0 - smoothstep(0.6, 1.0, t)
+		entry[0].outline_modulate.a = entry[0].modulate.a
 
 func set_vitals_visible(shown: bool) -> void:
 	vitals.visible = shown

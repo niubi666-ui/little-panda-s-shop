@@ -38,8 +38,12 @@ func validate_state(state: Dictionary) -> Array[String]:
 	for selected in state.selections:
 		var entry: Dictionary = _catalog.upgrade(selected.upgrade_id)
 		for required in entry.requires:
-			var target: String = "global" if _catalog.upgrade(required).scope == "global" else selected.action_id
-			if not bound.has(target + ":" + str(required)): errors.append("build.reason.dependency")
+			if _catalog.upgrade(required).scope == "global":
+				if not bound.has("global:" + str(required)): errors.append("build.reason.dependency")
+			elif selected.action_id == "global":
+				# 全局卡要求某张动作卡：任意一个动作上有就算满足（例如元素被动要求该元素的核心卡）
+				if not bound.keys().any(func(key): return String(key).ends_with(":" + str(required))): errors.append("build.reason.dependency")
+			elif not bound.has(str(selected.action_id) + ":" + str(required)): errors.append("build.reason.dependency")
 		for excluded in entry.excludes:
 			if bound.has(str(selected.action_id) + ":" + str(excluded)): errors.append("build.reason.incompatible")
 	if not errors.is_empty(): return errors
@@ -139,14 +143,26 @@ func _compile(state: Dictionary) -> Dictionary:
 	var selected: Array = _ordered(state.selections)
 	var global_damage := 0.0
 	var global_move := 0.0
+	## 元素强化：元素 ID → {字段: 累加值}；反应强化：反应 ID → {damage_bonus, radius_bonus_m}
+	var element_boosts: Dictionary = {}
+	var reaction_boosts: Dictionary = {}
 	for item in selected:
 		if item.action_id != "global": continue
 		var definition: Dictionary = _catalog.upgrade(item.upgrade_id)
 		var params: Dictionary = definition.ranks[int(item.rank) - 1]
 		if definition.effect_type == "damage_scale": global_damage += float(params.bonus)
 		if definition.effect_type == "move_scale": global_move += float(params.bonus)
+		if definition.effect_type == "element_boost":
+			var fields: Dictionary = element_boosts.get(params.element_id, {})
+			fields[params.field] = float(fields.get(params.field, 0.0)) + float(params.add)
+			element_boosts[params.element_id] = fields
+		if definition.effect_type == "reaction_boost":
+			var boost: Dictionary = reaction_boosts.get(params.reaction_id, {"damage_bonus": 0.0, "radius_bonus_m": 0.0})
+			boost.damage_bonus = float(boost.damage_bonus) + float(params.damage_bonus)
+			boost.radius_bonus_m = float(boost.radius_bonus_m) + float(params.radius_bonus_m)
+			reaction_boosts[params.reaction_id] = boost
 	var limits: Dictionary = _catalog.stat_limits()
-	var global_stats := {"damage_scale": clampf(1.0 + global_damage, limits.damage_scale_min, limits.damage_scale_max), "move_scale": clampf(1.0 + global_move, limits.move_scale_min, limits.move_scale_max)}
+	var global_stats := {"damage_scale": clampf(1.0 + global_damage, limits.damage_scale_min, limits.damage_scale_max), "move_scale": clampf(1.0 + global_move, limits.move_scale_min, limits.move_scale_max), "element_boosts": element_boosts, "reaction_boosts": reaction_boosts}
 	var program := {"revision": int(state.revision), "selections": selected, "global": global_stats, "actions": {}}
 	for action in _catalog.actions():
 		var form_id: String = action.base_form_id
@@ -169,7 +185,7 @@ func _compile(state: Dictionary) -> Dictionary:
 				"damage_scale": damage_bonus += float(params.bonus)
 				"status_duration": durations[params.status_id] = float(durations.get(params.status_id, 0.0)) + float(params.bonus)
 				"area_status": area_grants.append({"upgrade_id": str(item.upgrade_id), "rank": int(item.rank), "params": params})
-				"projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage", "return_projectile", "charge_projectile", "consume_freeze", "projectile_path", "freeze_shield": plan.effects.append({"upgrade_id": str(item.upgrade_id), "type": str(entry.effect_type), "rank": int(item.rank), "params": params})
+				"projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage", "return_projectile", "charge_projectile", "consume_freeze", "projectile_path", "freeze_shield", "element": plan.effects.append({"upgrade_id": str(item.upgrade_id), "type": str(entry.effect_type), "rank": int(item.rank), "params": params})
 		for effect in plan.effects:
 			if effect.type == "status": effect.params.duration_sec = _duration(effect.params.status_id, durations)
 			if effect.type != "explosion": continue

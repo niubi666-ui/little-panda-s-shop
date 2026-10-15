@@ -11,11 +11,18 @@ const MechanismView = preload("res://presentation/builds/mechanism_view.gd")
 const MechanismStyle = preload("res://presentation/builds/mechanism_style.tres")
 const EffectsStyle = preload("res://presentation/builds/build_effects_style.tres")
 const FrostView = preload("res://presentation/builds/frost_runtime_view.gd")
+const ElementView = preload("res://presentation/builds/element_view.gd")
+const ElementStyle = preload("res://presentation/builds/element_style.tres")
 var frost_view: FrostView
 signal damage_applied(source, target, amount: float, origin: String)
 var catalog
 var reward_groups: Dictionary
 var _reward_profile := "training_all"
+## 一局冒险里当前这次奖励的过滤条件（见 request_filtered_offer）
+var _filter: Dictionary = {}
+var _filtered_active := false
+## 一次过滤奖励结束（chosen：是否真的选了一张）
+signal offer_finished(chosen: bool)
 var _offer_suspended := false
 var session := Session.new()
 var runtime := Runtime.new()
@@ -23,6 +30,7 @@ var choice_panel: ChoicePanel
 var status_panel: StatusPanel
 var effects: EffectsView
 var mechanisms: MechanismView
+var elements: ElementView
 var _test_attack_ids: Array = []
 var _player
 var _combat_catalog
@@ -78,6 +86,10 @@ func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, s
 	world.add_child(frost_view)
 	runtime.area_presented.connect(mechanisms.show_area_fact)
 	runtime.conditional_damage_applied.connect(mechanisms.show_conditional_fact)
+	elements = ElementView.new()
+	world.add_child(elements)
+	elements.configure(ElementStyle, shared_theme.default_font if shared_theme != null else null, catalog)
+	runtime.element_presented.connect(elements.on_fact)
 	status_panel = StatusPanel.new()
 	ui_root.add_child(status_panel)
 	status_panel.configure(catalog, shared_theme, enable_test_presets)
@@ -91,7 +103,8 @@ func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, s
 	choice_panel.choice_requested.connect(_choose)
 	choice_panel.close_requested.connect(func():
 		_offer_suspended = true
-		choice_panel.dismiss())
+		choice_panel.dismiss()
+		_end_filtered(false))
 	_apply_program()
 	if _auto_rewards: _queue(int(_rules["initial_offers"]))
 	return true
@@ -132,6 +145,23 @@ func request_test_offer() -> void:
 	if _pending <= 0: _queue(1)
 	flush_offers()
 
+## 一局冒险的房间奖励：按过滤条件出一次三选一；选完、关掉或没有可选卡时发出 offer_finished
+func request_filtered_offer(profile_id: String, filter: Dictionary) -> void:
+	if _stopped or is_choosing() or not reward_groups.reward_profiles.has(profile_id):
+		offer_finished.emit(false)
+		return
+	_reward_profile = profile_id
+	_filter = filter
+	_filtered_active = true
+	_offer_suspended = false
+	_pending = 1
+	flush_offers()
+
+func restore_selections(selections: Array) -> bool:
+	var result: Dictionary = session.restore_selections(selections)
+	if result.ok: _apply_program()
+	return result.ok
+
 func request_profile_offer(profile_id: String) -> void:
 	if _stopped or is_choosing() or not reward_groups.reward_profiles.has(profile_id): return
 	_reward_profile = profile_id
@@ -145,14 +175,16 @@ func _queue(count: int) -> void:
 
 func flush_offers() -> void:
 	if _stopped or is_choosing() or _offer_suspended or _pending <= 0: return
-	var result: Dictionary = session.open_offer(_reward_profile)
+	var result: Dictionary = session.open_offer(_reward_profile, _filter)
 	if not result["ok"]:
 		status_panel.set_notice("build.error")
+		_end_filtered(false)
 		return
 	var offer: Dictionary = result["offer"]
 	if offer["resolved"] or offer["candidates"].is_empty():
 		_pending = 0
 		status_panel.set_notice("build.no_candidates")
+		_end_filtered(false)
 		return
 	_player.clear_intents()
 	status_panel.set_notice("")
@@ -167,7 +199,17 @@ func _choose(offer_id: String, choice_id: String) -> void:
 	_apply_program()
 	_pending -= 1
 	choice_panel.dismiss()
+	if _filtered_active:
+		_end_filtered(true)
+		return
 	flush_offers()
+
+func _end_filtered(chosen: bool) -> void:
+	if not _filtered_active: return
+	_filtered_active = false
+	_filter = {}
+	_pending = 0
+	offer_finished.emit(chosen)
 
 func before_motion(delta: float) -> void: runtime.statuses.tick(delta)
 func step(delta: float) -> void: runtime.tick(delta)
@@ -175,6 +217,16 @@ func refresh(delta: float) -> void:
 	if frost_view != null: frost_view.sync(runtime, _player)
 	effects.sync(runtime.projectiles(), delta)
 	mechanisms.sync(runtime.statuses.visuals(), delta)
+	elements.sync(runtime.elements.snapshot(), delta)
+## 敌人身上元素的染色（给 ActorView）：取第一个元素的颜色，层数越多越浓
+func element_tint(handle: int) -> Color:
+	var stacks: Dictionary = runtime.elements.stacks_on(handle)
+	for id in stacks:
+		var amount: float = ElementStyle.tint_base + ElementStyle.tint_per_stack * (int(stacks[id]) - 1)
+		var color: Color = ElementStyle.element_colors.get(id, Color.WHITE)
+		return Color(color, minf(amount, 1.0))
+	return Color(1, 1, 1, 0)
+
 func refresh_text() -> void:
 	choice_panel.refresh_text()
 	status_panel.refresh_text()
@@ -183,6 +235,7 @@ func clear_room() -> void:
 	if is_instance_valid(frost_view): frost_view.clear()
 	if is_instance_valid(effects): effects.clear()
 	if is_instance_valid(mechanisms): mechanisms.clear()
+	if is_instance_valid(elements): elements.clear()
 func finish_rewards() -> void:
 	# Encounter completion ends automatic offers, not the actor's combat runtime.
 	_rewards_finished = true

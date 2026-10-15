@@ -8,7 +8,9 @@ const Contacts = preload("res://combat/builds/projectile_contacts.gd")
 const Capabilities = preload("res://combat/builds/projectile_capabilities.gd")
 const Statuses = preload("res://combat/status/status_runtime.gd")
 const Frost = preload("res://combat/builds/frost_effects.gd")
+const Elements = preload("res://combat/builds/element_effects.gd")
 var frost := Frost.new()
+var elements := Elements.new()
 var statuses := Statuses.new()
 const Conditional = preload("res://combat/builds/conditional_damage.gd")
 const Impact = preload("res://combat/builds/impact_effects.gd")
@@ -23,6 +25,8 @@ signal action_presented(fact: Dictionary)
 signal projectile_presented(fact: Dictionary)
 signal area_presented(fact: Dictionary)
 signal conditional_damage_applied(fact: Dictionary)
+## 元素事实（挂状态、放电、反应、区域结束、清除），供表现层使用
+signal element_presented(fact: Dictionary)
 
 var _catalog
 var _attack_ids: Array = []
@@ -147,6 +151,7 @@ func tick(delta: float) -> void:
 	if delta <= 0.0: return
 	if is_instance_valid(_player): _player.tick_protection(delta)
 	frost.tick(delta, self)
+	elements.tick(delta, self)
 	if not _source_alive() and not bool(_limits.projectiles_survive_source_death):
 		clear_room()
 		return
@@ -178,6 +183,7 @@ func tick(delta: float) -> void:
 
 func clear_room() -> void:
 	frost.clear(_player)
+	elements.clear()
 	var ended: Array = []
 	for projectile in _projectiles.values():
 		ended.append(_projectile_fact(projectile, _roots[projectile.root_id], "terminated", "room_clear"))
@@ -500,7 +506,9 @@ func _apply_direct_damage(context: Dictionary, target, amount: float, origin: St
 		if consumes: result.damage += amount * float(shatter.bonus)
 	var point: Vector3 = target.global_position
 	var handle: int = target.handle
+	result.damage *= elements.incoming_scale(self, target)
 	var applied := Damage.apply(target, result.damage, context.team)
+	if applied > 0.0 and _context_live(context): elements.on_direct_hit(self, context, target, applied)
 	if applied > 0.0 and consumes and _context_live(context):
 		context.shatters = int(context.get("shatters", 0)) + 1
 		statuses.remove(target, shatter.status_id)

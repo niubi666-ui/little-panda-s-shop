@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "content_version": "forest_run.1",
+  "_comment": "一局冒险（原型）：普通房 room_count 间后进 Boss 房。每间清场后发放进门时选定的奖励，再选下一间的出口。",
+  "start_preset": "basic_actions",
+  "room_count": 6,
+  "start_depth": 2,
+  "depth_per_room": 2,
+  "boss_actor_id": "elite_ranger",
+  "boss_depth": 14,
+  "exit_count_min": 2,
+  "exit_count_max": 3,
+  "first_exit_count": 3,
+  "rewards": [
+    {
+      "kind": "boon",
+      "weight": 60
+    },
+    {
+      "kind": "upgrade",
+      "weight": 15
+    },
+    {
+      "kind": "heal",
+      "weight": 15
+    },
+    {
+      "kind": "gold",
+      "weight": 10
+    }
+  ],
+  "boon_elements": [
+    "fire",
+    "ice",
+    "thunder",
+    "earth"
+  ],
+  "boon_profile": "training_all",
+  "upgrade_profile": "training_all",
+  "heal_amount": 30,
+  "gold_amount": 25,
+  "clear_gold": 10,
+  "victory_gold": 50
+}

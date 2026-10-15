@@ -1,0 +1,75 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://presentation/builds/element_style.gd" id="style"]
+[ext_resource type="PackedScene" path="res://presentation/builds/elements/status_fire.tscn" id="status_fire"]
+[ext_resource type="PackedScene" path="res://presentation/builds/elements/status_ice.tscn" id="status_ice"]
+[ext_resource type="PackedScene" path="res://presentation/builds/elements/status_thunder.tscn" id="status_thunder"]
+[ext_resource type="PackedScene" path="res://presentation/builds/elements/status_earth.tscn" id="status_earth"]
+[ext_resource type="PackedScene" path="res://presentation/builds/elements/apply_burst.tscn" id="apply_burst"]
+[ext_resource type="PackedScene" path="res://presentation/builds/elements/reaction_burst.tscn" id="reaction_burst"]
+[ext_resource type="PackedScene" path="res://presentation/builds/elements/reaction_smoke.tscn" id="reaction_smoke"]
+[ext_resource type="PackedScene" path="res://presentation/builds/elements/pull_burst.tscn" id="pull_burst"]
+[ext_resource type="PackedScene" path="res://presentation/builds/elements/zone_embers.tscn" id="zone_embers"]
+[ext_resource type="Material" path="res://presentation/builds/elements/shock_ring.tres" id="ring"]
+[ext_resource type="Material" path="res://presentation/builds/elements/lava_zone.tres" id="lava"]
+[ext_resource type="Material" path="res://presentation/builds/elements/status_ring.tres" id="under_ring"]
+
+[resource]
+script = ExtResource("style")
+element_colors = {
+"fire": Color(1, 0.48, 0.12, 1),
+"ice": Color(0.55, 0.85, 1, 1),
+"thunder": Color(0.68, 0.6, 1, 1),
+"earth": Color(0.85, 0.62, 0.32, 1)
+}
+status_scenes = {
+"fire": ExtResource("status_fire"),
+"ice": ExtResource("status_ice"),
+"thunder": ExtResource("status_thunder"),
+"earth": ExtResource("status_earth")
+}
+status_height_m = 0.9
+status_scale_per_stack = 0.12
+apply_burst = ExtResource("apply_burst")
+apply_flash_energy = 2.5
+apply_flash_range_m = 3.0
+tint_base = 0.45
+tint_per_stack = 0.1
+badge_height_m = 0.25
+badge_toward_camera_m = 1.15
+badge_font_size = 72
+badge_outline = Color(0.05, 0.03, 0.05, 1)
+under_ring_material = ExtResource("under_ring")
+under_ring_radius_m = 1.0
+reaction_colors = {
+"steam": Color(1, 0.82, 0.7, 1),
+"overload": Color(1, 0.4, 0.75, 1),
+"lava": Color(1, 0.42, 0.08, 1),
+"superconduct": Color(0.45, 0.75, 1, 1),
+"shatter": Color(0.7, 0.93, 1, 1),
+"magnet": Color(0.8, 0.6, 1, 1)
+}
+reaction_burst = ExtResource("reaction_burst")
+smoke_reactions = PackedStringArray("steam", "lava", "shatter")
+reaction_smoke = ExtResource("reaction_smoke")
+pull_burst = ExtResource("pull_burst")
+burst_height_m = 0.9
+ring_material = ExtResource("ring")
+ring_sec = 0.55
+ring_min_radius_m = 1.4
+flash_energy = 6.0
+flash_range_m = 6.0
+flash_sec = 0.25
+label_font_size = 80
+label_outline = Color(0.08, 0.04, 0.06, 1)
+label_height_m = 2.3
+label_rise_m = 0.8
+label_sec = 1.0
+zone_material = ExtResource("lava")
+zone_embers = ExtResource("zone_embers")
+zone_fade_sec = 0.4
+arc_width_m = 0.07
+arc_segment_m = 0.35
+arc_jitter_m = 0.18
+arc_sec = 0.2
+arc_height_m = 1.0

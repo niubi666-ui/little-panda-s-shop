@@ -49,6 +49,10 @@ func decode(data: Variant, schema: Dictionary, path: String) -> Catalog:
 		actors[entry.id] = entry
 		for id in entry.attack_ids:
 			if not abilities.has(id): errors.append(path + ": " + entry.id + " missing attack " + id)
+		# 霸体：poise 为 0 表示没有霸体，此时破防参数必须是“无”（0 秒、1 倍）
+		var armored: bool = entry.poise > 0.0
+		if armored != (entry.poise_recover_sec > 0.0 and entry.break_stagger_sec > 0.0 and entry.break_duration_sec > 0.0) or (not armored and (entry.poise_recover_sec != 0.0 or entry.break_stagger_sec != 0.0 or entry.break_duration_sec != 0.0 or entry.break_damage_scale != 1.0)):
+			errors.append(path + ": " + entry.id + " poise and break fields must all be set (poise > 0) or all be none")
 	if not actors.has(data.player_id): errors.append(path + ": unknown player_id")
 	for wave in data.waves:
 		for id in wave:

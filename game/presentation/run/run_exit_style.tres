@@ -1,0 +1,28 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://presentation/run/run_exit_style.gd" id="style"]
+[ext_resource type="Resource" path="res://presentation/builds/element_style.tres" id="elements"]
+
+[resource]
+script = ExtResource("style")
+dim_color = Color(0.02, 0.04, 0.03, 0.62)
+card_size = Vector2(260, 190)
+card_gap = 24.0
+card_radius = 14
+card_border = 3
+card_back = Color(0.06, 0.1, 0.08, 0.95)
+title_font_size = 40
+card_title_font_size = 32
+card_detail_font_size = 20
+text_color = Color(1, 0.97, 0.88, 1)
+detail_color = Color(0.85, 0.88, 0.82, 1)
+reward_colors = {
+"upgrade": Color(1, 0.84, 0.35, 1),
+"heal": Color(0.45, 0.92, 0.55, 1),
+"gold": Color(1, 0.75, 0.2, 1),
+"boss": Color(0.95, 0.3, 0.35, 1)
+}
+element_style = ExtResource("elements")
+info_font_size = 24
+info_top_margin = 14.0
+info_color = Color(1, 0.96, 0.85, 1)

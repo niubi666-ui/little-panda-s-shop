@@ -134,9 +134,11 @@ func _description_params(entry: Dictionary, rank: int, action_id: String) -> Dic
 	params.max_rank = int(entry.max_rank)
 	for key in ["jumps", "count", "max_generation", "max_hits", "max_targets", "max_per_root", "max_per_parent"]:
 		if params.has(key): params[key] = int(params[key])
-	for pair in [["bonus", "bonus_percent"], ["damage_ratio", "damage_percent"], ["falloff", "falloff_percent"]]:
+	for key in ["stacks_per_hit"]:
+		if params.has(key): params[key] = int(params[key])
+	for pair in [["bonus", "bonus_percent"], ["damage_ratio", "damage_percent"], ["falloff", "falloff_percent"], ["add", "add_percent"], ["damage_bonus", "damage_bonus_percent"]]:
 		if params.has(pair[0]): params[pair[1]] = _display_decimal(float(params[pair[0]]) * 100.0)
-	for key in ["radius_m", "speed_mps", "lifetime_sec", "spread_deg"]:
+	for key in ["radius_m", "speed_mps", "lifetime_sec", "spread_deg", "add", "radius_bonus_m"]:
 		if params.has(key): params[key] = _display_decimal(float(params[key]))
 	return params
 

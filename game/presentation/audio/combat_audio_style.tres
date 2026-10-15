@@ -1,0 +1,381 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://presentation/audio/combat_audio_style.gd" id="style"]
+[ext_resource type="Script" path="res://presentation/audio/audio_cue.gd" id="cue"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/armor_hit.wav" id="armor_hit"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/guard_break.wav" id="guard_break"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/charge_impact.wav" id="charge_impact"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/crossbow_shot.wav" id="crossbow_shot"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/dodge.wav" id="dodge"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/enemy_windup.wav" id="enemy_windup"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/freeze.wav" id="freeze"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/heavy_swing.wav" id="heavy_swing"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/heavy_windup.wav" id="heavy_windup"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/hit_heavy.wav" id="hit_heavy"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/hit_light_1.wav" id="hit_light_1"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/hit_light_2.wav" id="hit_light_2"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/hit_light_3.wav" id="hit_light_3"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/kill.wav" id="kill"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt.wav" id="player_hurt"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/projectile_impact.wav" id="projectile_impact"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/shatter.wav" id="shatter"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/swing_1.wav" id="swing_1"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/swing_2.wav" id="swing_2"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/swing_3.wav" id="swing_3"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/thrust.wav" id="thrust"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/ui_choose.wav" id="ui_choose"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/wave_cast.wav" id="wave_cast"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/wave_clear.wav" id="wave_clear"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/wave_start.wav" id="wave_start"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/ignite.wav" id="ignite"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/lava.wav" id="lava"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/magnet.wav" id="magnet"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/overload.wav" id="overload"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/rock.wav" id="rock"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/steam.wav" id="steam"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/superconduct.wav" id="superconduct"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/zap.wav" id="zap"]
+
+[sub_resource type="Resource" id="swing_light"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("swing_1"), ExtResource("swing_2"), ExtResource("swing_3")])
+volume_db = -6.0
+pitch_min = 0.95
+pitch_max = 1.06
+min_interval_sec = 0.03
+
+[sub_resource type="Resource" id="thrust"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("thrust")])
+volume_db = -5.0
+pitch_min = 0.97
+pitch_max = 1.03
+min_interval_sec = 0.03
+
+[sub_resource type="Resource" id="heavy_swing"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("heavy_swing")])
+volume_db = -4.0
+pitch_min = 0.95
+pitch_max = 1.02
+min_interval_sec = 0.05
+
+[sub_resource type="Resource" id="wave_cast"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("wave_cast")])
+volume_db = -6.0
+pitch_min = 0.96
+pitch_max = 1.04
+min_interval_sec = 0.05
+
+[sub_resource type="Resource" id="hit_light"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("hit_light_1"), ExtResource("hit_light_2"), ExtResource("hit_light_3")])
+volume_db = -3.0
+pitch_min = 0.92
+pitch_max = 1.08
+min_interval_sec = 0.03
+
+[sub_resource type="Resource" id="hit_heavy"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("hit_heavy")])
+volume_db = -2.0
+pitch_min = 0.95
+pitch_max = 1.03
+min_interval_sec = 0.04
+
+[sub_resource type="Resource" id="kill"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("kill")])
+volume_db = -3.0
+pitch_min = 0.96
+pitch_max = 1.06
+min_interval_sec = 0.05
+
+[sub_resource type="Resource" id="player_hurt"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("player_hurt")])
+volume_db = -1.0
+pitch_min = 0.97
+pitch_max = 1.03
+min_interval_sec = 0.1
+
+[sub_resource type="Resource" id="dodge"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("dodge")])
+volume_db = -9.0
+pitch_min = 0.94
+pitch_max = 1.08
+min_interval_sec = 0.05
+
+[sub_resource type="Resource" id="freeze"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("freeze")])
+volume_db = -7.0
+pitch_min = 0.97
+pitch_max = 1.05
+min_interval_sec = 0.08
+
+[sub_resource type="Resource" id="shatter"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("shatter")])
+volume_db = -4.0
+pitch_min = 0.95
+pitch_max = 1.05
+min_interval_sec = 0.06
+
+[sub_resource type="Resource" id="enemy_windup"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("enemy_windup")])
+volume_db = -10.0
+pitch_min = 0.95
+pitch_max = 1.05
+min_interval_sec = 0.12
+
+[sub_resource type="Resource" id="heavy_windup"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("heavy_windup")])
+volume_db = -7.0
+pitch_min = 0.97
+pitch_max = 1.03
+min_interval_sec = 0.2
+
+[sub_resource type="Resource" id="enemy_swipe"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("swing_1"), ExtResource("swing_2"), ExtResource("swing_3")])
+volume_db = -10.0
+pitch_min = 0.78
+pitch_max = 0.88
+min_interval_sec = 0.05
+
+[sub_resource type="Resource" id="enemy_slam"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("charge_impact")])
+volume_db = -4.0
+pitch_min = 0.9
+pitch_max = 0.98
+min_interval_sec = 0.1
+
+[sub_resource type="Resource" id="crossbow_shot"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("crossbow_shot")])
+volume_db = -7.0
+pitch_min = 0.95
+pitch_max = 1.05
+min_interval_sec = 0.06
+
+[sub_resource type="Resource" id="projectile_impact"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("projectile_impact")])
+volume_db = -11.0
+pitch_min = 0.9
+pitch_max = 1.1
+min_interval_sec = 0.05
+
+[sub_resource type="Resource" id="wave_start"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("wave_start")])
+volume_db = -8.0
+pitch_min = 1.0
+pitch_max = 1.0
+min_interval_sec = 0.5
+
+[sub_resource type="Resource" id="wave_clear"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("wave_clear")])
+volume_db = -7.0
+pitch_min = 1.0
+pitch_max = 1.0
+min_interval_sec = 1.0
+
+[sub_resource type="Resource" id="ui_choose"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("ui_choose")])
+volume_db = -8.0
+pitch_min = 1.0
+pitch_max = 1.0
+min_interval_sec = 0.2
+
+[sub_resource type="Resource" id="armor_hit"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("armor_hit")])
+volume_db = -5.0
+pitch_min = 0.94
+pitch_max = 1.06
+min_interval_sec = 0.05
+
+[sub_resource type="Resource" id="guard_break"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("guard_break")])
+volume_db = -1.0
+pitch_min = 0.97
+pitch_max = 1.03
+min_interval_sec = 0.2
+
+[sub_resource type="Resource" id="el_fire"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("ignite")])
+volume_db = -9.0
+pitch_min = 0.95
+pitch_max = 1.08
+min_interval_sec = 0.12
+
+[sub_resource type="Resource" id="el_ice"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("freeze")])
+volume_db = -13.0
+pitch_min = 1.05
+pitch_max = 1.15
+min_interval_sec = 0.12
+
+[sub_resource type="Resource" id="el_thunder"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("zap")])
+volume_db = -10.0
+pitch_min = 0.92
+pitch_max = 1.1
+min_interval_sec = 0.1
+
+[sub_resource type="Resource" id="el_earth"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("rock")])
+volume_db = -8.0
+pitch_min = 0.92
+pitch_max = 1.08
+min_interval_sec = 0.1
+
+[sub_resource type="Resource" id="discharge"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("zap")])
+volume_db = -5.0
+pitch_min = 0.85
+pitch_max = 0.95
+min_interval_sec = 0.08
+
+[sub_resource type="Resource" id="rx_steam"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("steam")])
+volume_db = -3.0
+pitch_min = 0.97
+pitch_max = 1.03
+min_interval_sec = 0.1
+
+[sub_resource type="Resource" id="rx_overload"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("overload")])
+volume_db = -2.0
+pitch_min = 0.97
+pitch_max = 1.03
+min_interval_sec = 0.1
+
+[sub_resource type="Resource" id="rx_lava"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("lava")])
+volume_db = -3.0
+pitch_min = 0.97
+pitch_max = 1.03
+min_interval_sec = 0.1
+
+[sub_resource type="Resource" id="rx_superconduct"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("superconduct")])
+volume_db = -3.0
+pitch_min = 0.97
+pitch_max = 1.03
+min_interval_sec = 0.1
+
+[sub_resource type="Resource" id="rx_shatter"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("shatter")])
+volume_db = -2.0
+pitch_min = 0.95
+pitch_max = 1.02
+min_interval_sec = 0.1
+
+[sub_resource type="Resource" id="rx_magnet"]
+script = ExtResource("cue")
+streams = Array[AudioStream]([ExtResource("magnet")])
+volume_db = -3.0
+pitch_min = 0.97
+pitch_max = 1.03
+min_interval_sec = 0.1
+
+[resource]
+script = ExtResource("style")
+cues = {
+&"swing_light": SubResource("swing_light"),
+&"thrust": SubResource("thrust"),
+&"heavy_swing": SubResource("heavy_swing"),
+&"wave_cast": SubResource("wave_cast"),
+&"hit_light": SubResource("hit_light"),
+&"hit_heavy": SubResource("hit_heavy"),
+&"kill": SubResource("kill"),
+&"player_hurt": SubResource("player_hurt"),
+&"dodge": SubResource("dodge"),
+&"freeze": SubResource("freeze"),
+&"shatter": SubResource("shatter"),
+&"enemy_windup": SubResource("enemy_windup"),
+&"heavy_windup": SubResource("heavy_windup"),
+&"enemy_swipe": SubResource("enemy_swipe"),
+&"enemy_slam": SubResource("enemy_slam"),
+&"crossbow_shot": SubResource("crossbow_shot"),
+&"projectile_impact": SubResource("projectile_impact"),
+&"wave_start": SubResource("wave_start"),
+&"wave_clear": SubResource("wave_clear"),
+&"ui_choose": SubResource("ui_choose"),
+&"armor_hit": SubResource("armor_hit"),
+&"guard_break": SubResource("guard_break"),
+&"el_fire": SubResource("el_fire"),
+&"el_ice": SubResource("el_ice"),
+&"el_thunder": SubResource("el_thunder"),
+&"el_earth": SubResource("el_earth"),
+&"discharge": SubResource("discharge"),
+&"rx_steam": SubResource("rx_steam"),
+&"rx_overload": SubResource("rx_overload"),
+&"rx_lava": SubResource("rx_lava"),
+&"rx_superconduct": SubResource("rx_superconduct"),
+&"rx_shatter": SubResource("rx_shatter"),
+&"rx_magnet": SubResource("rx_magnet")
+}
+swing_cues = {
+"slash.1": &"swing_light",
+"slash.2": &"swing_light",
+"slash.3": &"thrust",
+"heavy_slash": &"heavy_swing",
+"wave_cast": &"wave_cast",
+"enemy.swipe": &"enemy_swipe",
+"enemy.slam": &"enemy_slam"
+}
+default_swing_cue = &"swing_light"
+hit_cues = {
+"slash.3": &"hit_heavy",
+"heavy_slash": &"hit_heavy"
+}
+default_hit_cue = &"hit_light"
+armor_hit_cue = &"armor_hit"
+guard_break_cue = &"guard_break"
+element_cues = {
+"fire": &"el_fire",
+"ice": &"el_ice",
+"thunder": &"el_thunder",
+"earth": &"el_earth"
+}
+discharge_cue = &"discharge"
+reaction_cues = {
+"steam": &"rx_steam",
+"overload": &"rx_overload",
+"lava": &"rx_lava",
+"superconduct": &"rx_superconduct",
+"shatter": &"rx_shatter",
+"magnet": &"rx_magnet"
+}
+windup_cues = {
+"scout": &"enemy_windup",
+"crossbow": &"enemy_windup",
+"elite_ranger": &"enemy_windup",
+"brute": &"heavy_windup",
+"charger": &"heavy_windup"
+}
+voices = 24
+panning_strength = 0.6
+bus = &"Master"

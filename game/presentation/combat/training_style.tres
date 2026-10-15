@@ -19,6 +19,9 @@
 [ext_resource type="Resource" path="res://presentation/combat/attack_motions/wave_cast.tres" id="motion_wave"]
 
 [ext_resource type="Resource" path="res://presentation/combat/elite_ranger_presentation.tres" id="elite_ranger"]
+[ext_resource type="Resource" path="res://presentation/combat/feel/combat_feel_style.tres" id="combat_feel"]
+[ext_resource type="Resource" path="res://presentation/combat/juice/combat_juice_style.tres" id="combat_juice"]
+[ext_resource type="Material" path="res://presentation/combat/fx/telegraph_sector.tres" id="sector_material"]
 
 [resource]
 script = ExtResource("1")
@@ -71,3 +74,6 @@ weapon_effect_scene = ExtResource("slash_fx")
 weapon_visual_scene = ExtResource("sword")
 health_label_pixel_size = 0.009
 encounter_panel_position = Vector2(24, 340)
+combat_feel = ExtResource("combat_feel")
+combat_juice = ExtResource("combat_juice")
+sector_material = ExtResource("sector_material")

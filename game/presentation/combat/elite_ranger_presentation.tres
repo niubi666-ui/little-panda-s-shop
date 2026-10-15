@@ -11,3 +11,5 @@ body_shape = SubResource("body")
 body_height = 1.275
 retain_corpse = true
 visual_yaw_offset_deg = 180.0
+embedded_weapon = false
+virtual_blade = false

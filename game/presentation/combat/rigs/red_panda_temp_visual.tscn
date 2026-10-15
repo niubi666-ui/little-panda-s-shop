@@ -3,12 +3,13 @@
 [ext_resource type="PackedScene" path="res://assets/combat_v1/characters/red_panda_temp.glb" id="model"]
 [ext_resource type="Resource" path="res://presentation/combat/rigs/red_panda_temp_clips.tres" id="clips"]
 [ext_resource type="Material" path="res://presentation/shared/toon/character_material.tres" id="material"]
+[ext_resource type="Resource" path="res://presentation/combat/rigs/rig_feedback_player.tres" id="feedback"]
 [node name="RedPandaVisual" type="Node3D"]
 script = ExtResource("script")
 clip_set = ExtResource("clips")
 material = ExtResource("material")
-face_movement = true
-own_flash_sec = 0.18
-keep_corpse = true
+feedback = ExtResource("feedback")
+keep_textures = false
+tint = Color(1, 1, 1, 1)
 [node name="Model" parent="." instance=ExtResource("model")]
 transform = Transform3D(1.18, 0, 0, 0, 1.18, 0, 0, 0, 1.18, 0, 0, 0)

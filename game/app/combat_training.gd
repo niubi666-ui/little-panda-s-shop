@@ -42,9 +42,12 @@ var room: Node3D
 var _player_spawn: Vector3
 var _enemy_spawns: Array[Vector3] = []
 var _previous_taa := false
+var _previous_scaling_mode := Viewport.SCALING_3D_MODE_BILINEAR
+var _previous_scaling_scale := 1.0
+var _previous_msaa := Viewport.MSAA_DISABLED
 @export var build_choices_enabled := true
 ## 进入时是否展开训练面板（构筑/刀光/深度/房间）。关闭后仍可从顶部“界面显示”菜单打开。
-@export var training_panels_visible := true
+@export var training_panels_visible: bool
 @export var enable_mechanism_presets := false
 @export var test_hint_key := "build.test.arrow_hint"
 @export var test_attack_ids: Array[String] = []
@@ -76,7 +79,8 @@ var selected_effect_id: StringName
 var _camera_shake := CameraShake.new()
 var feel := CombatFeel.new()
 ## 关掉后恢复原来的硬跟随、无顿帧（回归测试用）
-@export var enhanced_feel := true
+@export var enhanced_feel: bool
+var _zoom := 1.0
 var _camera_base := Vector3.ZERO
 var _camera_base_valid := false
 func _ready() -> void:
@@ -85,6 +89,12 @@ func _ready() -> void:
 		assert(room_presentation.camera_min_size > 0.0 and room_presentation.camera_size >= room_presentation.camera_min_size and room_presentation.camera_max_size >= room_presentation.camera_size)
 		_previous_taa = get_viewport().use_taa
 		get_viewport().use_taa = room_presentation.temporal_antialiasing
+		_previous_scaling_mode = get_viewport().scaling_3d_mode
+		_previous_scaling_scale = get_viewport().scaling_3d_scale
+		_previous_msaa = get_viewport().msaa_3d
+		if room_presentation.render_height_limit > 0 or room_presentation.render_scaling_mode == Viewport.SCALING_3D_MODE_FSR2:
+			get_window().size_changed.connect(_apply_render_scale)
+			_apply_render_scale()
 		room = room_presentation.scene.instantiate()
 		add_child(room)
 		_player_spawn = to_local(room.player_spawn())
@@ -94,6 +104,7 @@ func _ready() -> void:
 		_player_spawn = $PlayerSpawn.position
 		for marker in $EnemySpawns.get_children(): _enemy_spawns.append(marker.position)
 	_camera_shake.configure(Style.hit_camera_shake)
+	feel.configure(Style.combat_feel)
 	resolver.confirmed_hit.connect(_on_confirmed_hit)
 	var loader := Loader.new()
 	catalog = loader.load_catalog()
@@ -127,12 +138,6 @@ func _ready() -> void:
 		$UIRoot/ArrowHint.text = tr(test_hint_key)
 	player = _spawn(catalog.player(), _player_spawn, 0)
 	player.killed.connect(func(_actor): _finish("defeat"))
-	# 出招前冲：每一击在出手瞬间向前踏一步，让攻击有“压上去”的重量感
-	if enhanced_feel:
-		player.runner.cue_reached.connect(func(_cast, ability_id):
-			var lunge: Dictionary = {"slash.1": [5.5, 0.08], "slash.2": [5.5, 0.08], "slash.3": [9.0, 0.11], "heavy_slash": [8.0, 0.12]}
-			if lunge.has(ability_id) and player.health.alive():
-				player.motor.push(player.runner.direction, lunge[ability_id][0], lunge[ability_id][1]))
 	if room_presentation != null and room_presentation.placement_surface != null:
 		room_props = TrainingRoomProps.new()
 		add_child(room_props)
@@ -162,7 +167,10 @@ func _ready() -> void:
 	enemy_presentation = EnemyPresentation.new()
 	add_child(enemy_presentation)
 	enemy_presentation.configure(enemy_runtime, Style, $Camera, room.rift_surfaces() if room!=null and room.has_method("rift_surfaces") else [])
-	$Camera.size = room_presentation.camera_size if room_presentation != null else Style.camera_size
+	if _perspective():
+		$Camera.projection = Camera3D.PROJECTION_PERSPECTIVE
+		$Camera.fov = room_presentation.camera_fov
+	_set_zoom(room_presentation.camera_size if room_presentation != null else Style.camera_size)
 	_follow_camera()
 	input_adapter = InputAdapter.new(player, $Camera, _gameplay_ui_blocked)
 	encounter = Encounter.new(_waves, catalog.wave_delay())
@@ -174,7 +182,7 @@ func _ready() -> void:
 	# 纯表现的战斗反馈（生命条、受伤闪红、击杀花瓣、闪避尘土）
 	juice = CombatJuice.new()
 	add_child(juice)
-	juice.configure(player, $UIRoot, shared_theme, self)
+	juice.configure(player, $UIRoot, shared_theme, self, Style.combat_juice)
 	if not encounter_plan.is_empty():
 		hud.configure_encounters(encounter_depth, enemy_catalog.encounters.training_max_depth, Style.encounter_panel_position)
 		hud.encounter_requested.connect(_new_encounter)
@@ -568,6 +576,27 @@ func _build_wall_hit(from: Vector3, to: Vector3) -> Variant:
 	return hit["position"] if not hit.is_empty() else null
 func _on_build_damage(source, target, amount: float, _origin: String) -> void:
 	_on_confirmed_hit(source, target, 0, "", amount)
+## 透视镜头：房间表现配置里给了视角（camera_fov > 0）。此时“缩放”改的是镜头距离。
+## 画面重的房间限制三维画面的内部渲染高度：窗口比它高时按比例降分辨率渲染，再锐化放大到窗口。
+func _apply_render_scale() -> void:
+	var viewport := get_viewport()
+	var limit: int = room_presentation.render_height_limit
+	var scale := 1.0 if limit <= 0 else clampf(float(limit) / maxf(float(get_window().size.y), 1.0), room_presentation.render_min_scale, 1.0)
+	var mode: int = room_presentation.render_scaling_mode
+	if mode == Viewport.SCALING_3D_MODE_FSR2:
+		# FSR2 自带时域抗锯齿，不与 MSAA 叠用
+		viewport.msaa_3d = Viewport.MSAA_DISABLED
+	elif scale >= 1.0:
+		mode = Viewport.SCALING_3D_MODE_BILINEAR
+	viewport.scaling_3d_mode = mode
+	viewport.scaling_3d_scale = scale
+func _perspective() -> bool:
+	return room_presentation != null and room_presentation.camera_fov > 0.0
+func _current_zoom() -> float:
+	return _zoom if _perspective() else $Camera.size
+func _set_zoom(value: float) -> void:
+	_zoom = value
+	if not _perspective(): $Camera.size = value
 func _follow_camera(delta: float = -1.0) -> void:
 	if room_presentation == null:
 		$Camera.position = player.position + Style.camera_offset
@@ -582,7 +611,8 @@ func _follow_camera(delta: float = -1.0) -> void:
 		# 前瞻只跟移动方向：若跟鼠标朝向，镜头移动会反过来改变鼠标指向，形成漂移
 		target = feel.follow(target, player.movement, maxf(delta, 0.0))
 	# 冲击位移只是显示层平移；瞄准前会先恢复到 _camera_base
-	_camera_base = target + room_presentation.camera_offset
+	var distance_scale: float = _zoom / room_presentation.camera_size if _perspective() else 1.0
+	_camera_base = target + room_presentation.camera_offset * distance_scale
 	_camera_base_valid = true
 	$Camera.position = _camera_base
 	$Camera.look_at(target)
@@ -633,10 +663,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("camera_zoom_in"):
 		var camera_style = room_presentation if room_presentation != null else Style
-		$Camera.size = maxf(camera_style.camera_min_size, $Camera.size - camera_style.camera_zoom_step)
+		_set_zoom(maxf(camera_style.camera_min_size, _current_zoom() - camera_style.camera_zoom_step))
 	elif event.is_action_pressed("camera_zoom_out"):
 		var camera_style = room_presentation if room_presentation != null else Style
-		$Camera.size = minf(camera_style.camera_max_size, $Camera.size + camera_style.camera_zoom_step)
+		_set_zoom(minf(camera_style.camera_max_size, _current_zoom() + camera_style.camera_zoom_step))
 	elif not paused and state != "defeat":
 		if state == "fighting" and builds.handle_test_input(event):
 			get_viewport().set_input_as_handled()
@@ -665,7 +695,12 @@ func _finish(result: String) -> void:
 func _shutdown() -> void:
 	if _leaving: return
 	_leaving = true
-	if room_presentation != null: get_viewport().use_taa = _previous_taa
+	if room_presentation != null:
+		get_viewport().use_taa = _previous_taa
+		if get_window().size_changed.is_connected(_apply_render_scale): get_window().size_changed.disconnect(_apply_render_scale)
+		get_viewport().scaling_3d_mode = _previous_scaling_mode
+		get_viewport().scaling_3d_scale = _previous_scaling_scale
+		get_viewport().msaa_3d = _previous_msaa
 	if is_instance_valid(builds): builds.finish()
 	if is_instance_valid(skill_vfx): skill_vfx.clear()
 	_camera_shake.clear()

@@ -13,7 +13,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 3
+      "const": 4
     },
     "abilities": {
       "type": "array",
@@ -36,6 +36,8 @@
           "movement_speed_multiplier",
           "knockback_speed_mps",
           "knockback_duration_sec",
+          "lunge_speed_mps",
+          "lunge_duration_sec",
           "hit_shape",
           "thrust_width_m",
           "buffer_sec",
@@ -104,6 +106,16 @@
             "type": "number",
             "minimum": 0,
             "maximum": 3
+          },
+          "lunge_speed_mps": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 40
+          },
+          "lunge_duration_sec": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
           },
           "hit_shape": {
             "type": "string",

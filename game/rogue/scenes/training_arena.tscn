@@ -32,6 +32,8 @@ glow_intensity = 0.45
 glow_bloom = 0.08
 [node name="CombatTraining" type="Node3D"]
 script = ExtResource("1")
+training_panels_visible = true
+enhanced_feel = true
 [node name="Environment" type="WorldEnvironment" parent="."]
 environment = SubResource("environment")
 [node name="Sun" type="DirectionalLight3D" parent="."]

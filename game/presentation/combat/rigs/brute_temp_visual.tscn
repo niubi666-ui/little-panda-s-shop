@@ -3,9 +3,12 @@
 [ext_resource type="PackedScene" path="res://assets/combat_v1/characters/brute_temp.glb" id="model"]
 [ext_resource type="Resource" path="res://presentation/combat/rigs/brute_temp_clips.tres" id="clips"]
 [ext_resource type="Material" path="res://presentation/shared/toon/character_material.tres" id="material"]
+[ext_resource type="Resource" path="res://presentation/combat/rigs/rig_feedback_heavy.tres" id="feedback"]
 [node name="BruteVisual" type="Node3D"]
 script = ExtResource("script")
 clip_set = ExtResource("clips")
 material = ExtResource("material")
-telegraph_glow = 1.2
+feedback = ExtResource("feedback")
+keep_textures = false
+tint = Color(1, 1, 1, 1)
 [node name="Model" parent="." instance=ExtResource("model")]

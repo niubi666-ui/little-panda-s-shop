@@ -1,0 +1,21 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/juice/combat_juice_style.gd" id="script"]
+[ext_resource type="Material" path="res://presentation/combat/fx/hurt_vignette.tres" id="vignette"]
+[ext_resource type="PackedScene" path="res://presentation/combat/juice/kill_petals.tscn" id="kill"]
+[ext_resource type="PackedScene" path="res://presentation/combat/juice/dodge_puff.tscn" id="puff"]
+[ext_resource type="Resource" path="res://presentation/combat/juice/vitals_hud_style.tres" id="vitals"]
+
+[resource]
+script = ExtResource("script")
+vignette_material = ExtResource("vignette")
+hurt_fade_sec = 0.45
+low_pulse_speed = 5.0
+low_pulse_floor = 0.55
+low_vignette_weight = 0.5
+kill_burst = ExtResource("kill")
+kill_burst_height_m = 0.9
+dodge_puff = ExtResource("puff")
+dodge_puff_height_m = 0.12
+dodge_puff_lift = 0.35
+vitals = ExtResource("vitals")

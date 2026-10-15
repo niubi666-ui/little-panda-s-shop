@@ -1,17 +1,6 @@
 # 已知问题与诊断边界
 
-更新：2026-10-06。只列未解决项；修复后记录证据并移出当前问题，不通过“未复现”关闭问题。
-
-## PERF-001：深度混合字符应用后持续低帧（未解决，优先）
-
-- 用户复现：训练深度输入 `10ww` / `12a` → 点击“应用” → 加载结束后整场战斗持续低帧；再次应用 `10` / `15` 等纯数字后恢复。不是仅加载瞬间卡顿。
-- 当前 `combat_hud.gd` 使用 SpinBox；按钮读取 `int(depth_selector.value)`，调用 `combat_training._new_encounter`。后者每次重抽遭遇并重建整个战斗场景，保留物件计划。输入字符本身未传给新场景。
-- 当前Godot 4.7.2独立探针中 `10ww`/`12a` 被解析成10/12，解析不足1ms，没有解析错误刷屏。不能把它描述为已证实的非法表达式死循环。
-- 第一轮只测切换耗时且停用战斗物理，不能排除持续低帧。补测启用战斗物理、1600×1000独立Forward+窗口、固定房间/遭遇、每次4秒：`10`约110–112 FPS、`10ww`约111–112、`12a`约112、`12`约111；未复现。节点数/输入移动值/TAA未出现对应累积异常。
-- 补测由临时脚本模拟焦点/按钮请求，未完整覆盖手动打字、输入法、编辑器嵌入窗口与较长战斗。同用户房间种子2727791342的不同阵容样本也未复现；阵容变化伴随物理耗时差异，不能据此认定根因。
-- 重应用同时重置场景并重抽阵容，恢复不能单独证明“删字母”或“修复了内存泄漏”。尚不能与早先第三次重开偶发低帧归为同一原因。
-- 下一步：在实际低帧场景保持运行时采集CPU/GPU帧耗时、物理/脚本热点、节点/资源/内存、遭遇种子与阵容、输入焦点/按键状态；再与纯数字恢复后的同条件数据比较。不要继续只用加载日志代替持续战斗分析。
-- 诊断脚本/日志在本机临时目录 `D:/Temp/shop_depth_{input,transition,live,seed}_*`，不作为持久测试依赖，可能被清理。该轮仅分析，未改项目代码或模型。
+更新：2026-10-15。只列未解决项；修复后记录证据并移出当前问题，不通过“未复现”关闭问题。
 
 ## RES-001：图形退出资源警告
 
@@ -23,9 +12,16 @@
 - 家具通行采用保守平面网格；新增交互家具专用使用面的净空尚未逐件建模，见 [装修](SHOP_DECORATING.md)。
 - 正式磁盘存档、经营与随机模板池是未实现范围，见 [交接](HANDOFF.md)，不要当成已完成后的bug。
 
+## TEST-002：测试脚本落后于当前训练流程（2026-10-15 图形模式实测）
+
+- `training_tools.gd`：“normal encounter completes after all additions die”“post-victory practice gives no extra progression reward”失败。训练场已改为五波（第五波 Boss），测试仍按两波写，杀完第二波就期待胜利。需按五波流程更新测试，规则本身未见问题。
+- `golden_sword_trail.gd`：“third attack has its configured narrow width”失败，测试期望刺击宽度 1.0，`combat/prototype.json` 中 `slash.3` 的 `thrust_width_m` 为 1.8。
+- `combat_feedback.gd`：“death body and bar finish without delaying rules”失败，与主角/敌人保留尸体、消散时长的表现改动有关，尚未核对断言是否应更新。
+- 图形模式运行 `enemy_training.gd`、`combo_feel.gd`、`training_tools.gd` 时引擎报 “Parameter "material" is null”（`material_casts_shadows` / `material_is_animated`），测试本身通过，来源未定位。
+
 ## 已修复范围（2026-10-02）
 
-- INPUT-001：Control焦点与已知Popup已有显式移动/攻击门禁，dual_actions及真实场景测试通过；没有证据说明这曾导致PERF-001。
+- INPUT-001：Control焦点与已知Popup已有显式移动/攻击门禁，dual_actions及真实场景测试通过。
 - 旧TEST-001全局Build图形脚本已归档并替换为v5入口。新场景指针选卡、右键、语言、预设/替换与重试通过headless和Forward+；这不等于旧全局脚本每条断言原样通过。人工编辑器嵌入窗口/输入法仍未完整验收。
 
 ## 已修复范围（2026-10-06）
@@ -33,6 +29,6 @@
 - VFX-001：普通/寒冰月牙取消刃面倾斜，真实节点360方向检查均平行地面，避免原倾角经非等比缩放后近乎侧对庭院镜头；主体/残影一致，玩法范围未变。
 - COMBAT-001：训练与短路线房间清场后继续执行技能，自动奖励结束与运行态停止分离；清场不再取消玩家已承诺动作。`post_clear_skills.gd`覆盖跨清场起手、再次右键空放、暂停/退出与奖励隔离；`run_integration.gd`343项及`training_tools.gd`通过。正式持久关卡仍未实现。
 
-## 训练退出相机离树调用（2026-10-12观察）
+## 训练退出相机离树调用：已有修复代码，待运行回归确认
 
-headless运行action_build_slice.tscn、quit-after 2时可到training ready，但退出经_shutdown→_apply_camera_shake在combat_training.gd:575读取已离树节点global_transform，输出!is_inside_tree错误。未确定引入版本，不影响此次状态专项通过；本轮未修改共享战斗手感/相机代码，待对应模块处理。
+`combat_training.gd` 的 `_apply_camera_shake` 已添加 `Camera.is_inside_tree()` 门禁，战斗视觉文档记录了修复。此前退出时的离树报错保留为回归关注项；本轮仅静态核对，未运行Godot确认修复覆盖范围。

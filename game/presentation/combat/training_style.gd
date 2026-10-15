@@ -18,7 +18,7 @@ extends Resource
 @export var camera_max_size: float
 @export var camera_zoom_step: float
 ## 是否在玩家头顶显示“当前/最大生命”文字；有屏幕生命条时关掉
-@export var player_health_label := true
+@export var player_health_label: bool
 @export var health_label_height: float
 @export var health_font_size: int
 @export var hud_margin: int
@@ -29,3 +29,9 @@ extends Resource
 @export var weapon_visual_scene: PackedScene
 @export var health_label_pixel_size: float
 @export var encounter_panel_position: Vector2
+## 打击感：顿帧、镜头冲击、跟随（feel/combat_feel_style.gd）
+@export var combat_feel: Resource
+## 生命条、受伤闪红、击杀花瓣、闪避尘土（combat_juice_style.gd）
+@export var combat_juice: Resource
+## 玩家攻击扇形预警的材质模板（fx/telegraph.gdshader）；每个角色复制一份
+@export var sector_material: ShaderMaterial

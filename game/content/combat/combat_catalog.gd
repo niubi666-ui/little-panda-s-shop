@@ -36,6 +36,11 @@ class Ability extends RefCounted:
 		get: return _data.knockback_speed_mps
 	var knockback_duration: float:
 		get: return _data.knockback_duration_sec
+	## 出手瞬间沿出招方向的前冲（0 表示没有）
+	var lunge_speed: float:
+		get: return _data.lunge_speed_mps
+	var lunge_duration: float:
+		get: return _data.lunge_duration_sec
 	var interruptible: bool:
 		get: return _data.interruptible
 	var buffer_sec: float:

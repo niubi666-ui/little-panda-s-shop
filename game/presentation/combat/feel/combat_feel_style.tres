@@ -1,0 +1,52 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/feel/combat_feel_style.gd" id="style"]
+[ext_resource type="Script" path="res://presentation/combat/feel/hit_feel.gd" id="hit"]
+
+[sub_resource type="Resource" id="light"]
+script = ExtResource("hit")
+hitstop_sec = 0.045
+kick_m = 0.14
+jitter_m = 0.03
+
+[sub_resource type="Resource" id="finisher"]
+script = ExtResource("hit")
+hitstop_sec = 0.085
+kick_m = 0.32
+jitter_m = 0.06
+
+[sub_resource type="Resource" id="heavy"]
+script = ExtResource("hit")
+hitstop_sec = 0.11
+kick_m = 0.32
+jitter_m = 0.06
+
+[sub_resource type="Resource" id="kill"]
+script = ExtResource("hit")
+hitstop_sec = 0.13
+kick_m = 0.32
+jitter_m = 0.06
+
+[sub_resource type="Resource" id="hurt"]
+script = ExtResource("hit")
+hitstop_sec = 0.07
+kick_m = 0.22
+jitter_m = 0.08
+
+[resource]
+script = ExtResource("style")
+default_hit = SubResource("light")
+ability_hits = {
+"slash.3": SubResource("finisher"),
+"heavy_slash": SubResource("heavy")
+}
+kill_hit = SubResource("kill")
+player_hurt = SubResource("hurt")
+hitstop_time_scale = 0.06
+kick_limit_m = 0.5
+kick_duration_sec = 0.15
+jitter_duration_sec = 0.12
+jitter_frequency_hz = Vector2(31, 37)
+follow_sharpness = 7.5
+look_ahead_m = 2.2
+look_ahead_sharpness = 4.0

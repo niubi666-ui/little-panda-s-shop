@@ -7,6 +7,8 @@ var state := "idle"
 var locked_direction := Vector3.FORWARD
 var time_left := 0.0
 var windup_duration := 0.0
+## 本次收招的总时长（进入 recovery 时记录），表现层按它算动作进度
+var recovery_duration := 0.0
 var cooldown := 0.0
 var route: Callable
 var clear_path: Callable

@@ -61,4 +61,5 @@ func after_motion(target_radius: float) -> void:
 func _recover() -> void:
 	state = "recovery"
 	time_left = config.recovery_sec
+	recovery_duration = time_left
 	actor.forced_velocity = Vector3.ZERO

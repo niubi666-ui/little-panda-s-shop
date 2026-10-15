@@ -15,7 +15,6 @@ var roll_cooldown := 0.0
 var threat_age := 0.0
 var adjust_left := 0.0
 var decision_left := 0.0
-var recovery_duration := 0.0
 var last_attack := ""
 var locked_distance := 0.0
 var repeat_count := 0

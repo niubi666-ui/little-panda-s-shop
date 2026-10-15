@@ -26,3 +26,8 @@ attack_cuts = {
 }
 blend_sec = 0.12
 attack_blend_sec = 0.04
+move_min_speed = 0.15
+move_rate_min = 0.5
+move_rate_max = 1.8
+states = {}
+react_blend_sec = 0.03

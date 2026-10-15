@@ -17,3 +17,7 @@ camera_max_size = 24.0
 camera_zoom_step = 1.0
 camera_follow_bounds = Rect2(-1.6, -1.2, 3.2, 2.4)
 temporal_antialiasing = true
+camera_fov = 0.0
+render_height_limit = 0
+render_min_scale = 0.5
+render_scaling_mode = 1

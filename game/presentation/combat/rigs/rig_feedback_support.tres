@@ -1,0 +1,19 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/rigs/rig_feedback.gd" id="script"]
+
+[resource]
+script = ExtResource("script")
+face_movement = false
+turn_sharpness = 22.0
+face_min_speed = 0.3
+own_flash_sec = 0.0
+flash_color = Color(1, 0.35, 0.3, 1)
+hit_shake_m = 0.07
+hit_shake_sec = 0.16
+hit_shake_speed = 95.0
+corpse_hold_sec = 0.4
+corpse_fade_sec = 0.45
+keep_corpse = false
+telegraph_glow = 0.0
+telegraph_color = Color(1, 0.45, 0.15, 1)

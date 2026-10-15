@@ -1,10 +1,10 @@
 # 穿透、命中爆炸与控制状态 · 当前切片
 
-2026-10-09。已实现的机制样本，非正式职业/平衡设计。Build schema v7，14项定义（11项候选＋3项debug夹具）、6组动作预设；内容权威在 `game/data/builds/prototype.json`，公共入口见 [Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。
+2026-10-13。已实现的机制样本，非正式职业/平衡设计。Build schema v7，19项定义（16项候选池条目＋3项debug夹具）、10组动作预设；内容权威在 `game/data/builds/prototype.json`，公共入口见 [Build API](BUILD_IMPLEMENTATION_CONTRACT.md)。
 
 ## 试玩
 
-双击项目根 `启动双动作测试.cmd`；当前预设与操作见[Build入口](BUILD_SYSTEM.md)。左键普攻、R键重斩、右键剑气同时可用；T测试箭上下文隔离，不继承正式动作核心。六组预设包含冰冻贯穿、碎冰追击与乘隙斩；普通三选一也采用动作绑定。
+双击项目根 `启动双动作测试.cmd`；当前预设与操作见[Build入口](BUILD_SYSTEM.md)。左键普攻、R键重斩、右键剑气同时可用；T测试箭上下文隔离，不继承正式动作核心。测试预设包含冰冻贯穿、碎冰追击与乘隙斩；普通三选一也采用动作绑定。
 
 ## 文件与职责
 

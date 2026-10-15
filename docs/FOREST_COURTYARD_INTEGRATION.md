@@ -1,23 +1,23 @@
 # 森林庭院 · 第一个战斗房间接入
 
-2026-09-27。当前用于测试的房间模板为 `forest_courtyard.v001`。**它不是正式冒险的固定第一关；现已接入同模板内的种子随机物件，随机房间池仍未启用，详见 [随机物件原型](ROOM_PROPS_PROTOTYPE.md)。**
+2026-10-13 整理。本页维护保留的庭院模板，当前训练默认场景见[交接](HANDOFF.md)。庭院模板为 `forest_courtyard.v001`。**它不是正式冒险的固定第一关；现已接入同模板内的种子随机物件，随机房间池仍未启用，详见 [随机物件原型](ROOM_PROPS_PROTOTYPE.md)。**
 
 当前运行GLB为树冠/外围优化版，主体建筑保持；后台加载见 [植被与加载](FOREST_FOLIAGE_OPTIMIZATION.md)。旧导出/早期采样不作为当前版本性能结论。
 
 ## 试玩入口
 
-- 店铺按F6或点击训练按钮，进入 `game/app/combat_training.tscn`。
-- 开场三选一后正常移动、普攻、闪避；两波遭遇、Build、重试与回店沿用既有流程。
+- 需要测试此庭院时，将战斗宿主的 `room_presentation` 指向下表的庭院Resource；店铺F6使用宿主当前所选房间。
+- 开场三选一后正常移动、普攻、闪避；波次数量由宿主与遭遇配置决定，Build、重试与回店沿用训练流程。
 - 滚轮缩放；镜头在庭院附近有限跟随，避免走到边缘时画面只剩场景外部。
 - 当前测试范围为主庭院；栏杆、神龛、供奉花盆有简化碰撞，前后出口临时封闭。林间道路和外围树林是背景，不是已经完成的房间切换区域。
 
 ## 可替换的房间边界
 
-`combat_training.gd` 通过导出的 `room_presentation` 接受房间Resource，战斗代码不包含森林庭院ID或模型路径。当前宿主场景指定该Resource；未来选择器根据RoomPlan提供其他模板Resource，并沿用同一战斗宿主。
+`combat_training.gd` 通过导出的 `room_presentation` 接受房间Resource，战斗代码不包含森林庭院ID或模型路径。宿主场景通过此属性选择Resource；未来选择器根据RoomPlan提供其他模板Resource，并沿用同一战斗宿主。
 
 | 文件 | 职责 |
 |---|---|
-| `game/app/combat_training.tscn` | 可玩的战斗宿主，当前指向庭院表现资源 |
+| `game/app/combat_training.tscn` | 可玩的战斗宿主，可切换到庭院表现资源 |
 | `game/presentation/rooms/room_presentation.gd` | 房间场景引用、稳定模板ID、镜头范围与抗锯齿配置 |
 | `game/presentation/rooms/forest_courtyard_v001/presentation.tres` | 该模板的表现配置 |
 | `game/presentation/rooms/forest_courtyard_v001/room.tscn` | 模型实例、光照、环境、碰撞、出生点和ReservedRuntimeProps运行时物件容器 |

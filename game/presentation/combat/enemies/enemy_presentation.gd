@@ -2,7 +2,6 @@ extends Node3D
 ## Reads role state only; visuals cannot schedule damage or modify AI decisions.
 const FX = preload("res://presentation/combat/enemies/enemy_fx_style.tres")
 const RING_SEGMENTS := 64
-const Telegraph = preload("res://presentation/combat/fx/telegraph.gdshader")
 const RangerWarning = preload("res://presentation/combat/enemies/ranger_warning.gd")
 const RangerStyle = preload("res://presentation/combat/enemies/ranger_style.tres")
 const RangerEffects = preload("res://presentation/combat/fx/elite_ranger_v001/ranger_effects.gd")
@@ -40,9 +39,13 @@ func register(brain, view, profile: Dictionary) -> void:
 		view.visual.bind_brain(brain)
 	var warning := mesh_node(root)
 	# 每个敌人一份预警材质：前摇进度驱动“填满即出手”
-	var warning_material := material(FX.charge_color if profile.role == "charger" else FX.line_color)
-	if profile.role == "ranged": warning.mesh = strip(profile.config.fire_range_m, FX.line_width * 3.0, FX.line_color, warning_material)
-	elif profile.role == "charger": warning.mesh = strip(profile.config.charge_distance_m, profile.config.hit_radius_m * 2.0, FX.charge_color, warning_material)
+	var warning_material: ShaderMaterial = null
+	if profile.role == "ranged":
+		warning_material = material(FX.ranged_lane_material, FX.line_color)
+		warning.mesh = strip(profile.config.fire_range_m, FX.line_width, warning_material)
+	elif profile.role == "charger":
+		warning_material = material(FX.charge_lane_material, FX.charge_color)
+		warning.mesh = strip(profile.config.charge_distance_m, profile.config.hit_radius_m * 2.0, warning_material)
 	var aura := mesh_node(root)
 	var buff := mesh_node(root)
 	var weapon: MeshInstance3D = view.visual.find_child("Weapon", true, false)
@@ -71,7 +74,7 @@ func refresh(delta: float = 0.0) -> void:
 		entry.warning.visible = warning and role != "ranger"
 		if warning:
 			entry.warning.rotation.y = atan2(-entry.brain.locked_direction.x, -entry.brain.locked_direction.z)
-			if role != "ranger" and entry.brain.windup_duration > 0.0:
+			if entry.warning_material != null and entry.brain.windup_duration > 0.0:
 				entry.warning_material.set_shader_parameter("fill", 1.0 - clampf(entry.brain.time_left / entry.brain.windup_duration, 0.0, 1.0))
 		if entry.weapon != null:
 			entry.weapon.material_override = entry.flash if warning else entry.original
@@ -118,20 +121,14 @@ func remove_dead() -> void:
 			ranger_vfx.remove_actor(entries[index].brain.actor.handle)
 			entries[index].root.queue_free()
 			entries.remove_at(index)
-## 预警材质：柔边 + 描边 + 可填充进度（见 fx/telegraph.gdshader）。
-func material(color: Color) -> ShaderMaterial:
-	var mat := ShaderMaterial.new()
-	mat.shader = Telegraph
+## 预警材质：复制 FX 里配置的模板（柔边 + 描边 + 可填充进度，见 fx/telegraph.gdshader），再填颜色。
+func material(template: ShaderMaterial, color: Color) -> ShaderMaterial:
+	var mat: ShaderMaterial = template.duplicate()
 	mat.set_shader_parameter("color", color)
 	return mat
-## UV.x 横向 0..1，UV.y 沿长度 0..1；细线（弩箭路径）用更软的边。
-func strip(length: float, width: float, color: Color, mat: ShaderMaterial = null) -> ImmediateMesh:
+## UV.x 横向 0..1，UV.y 沿长度 0..1。
+func strip(length: float, width: float, mat: ShaderMaterial) -> ImmediateMesh:
 	var mesh := ImmediateMesh.new()
-	if mat == null:
-		mat = material(color)
-		mat.set_shader_parameter("base_alpha", 0.75)
-	mat.set_shader_parameter("edge_soft", 0.3 if width < 0.3 else 0.12)
-	mat.set_shader_parameter("rim", 0.0 if width < 0.3 else 0.04)
 	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES, mat)
 	var a := Vector3(-width / 2.0, 0, 0)
 	var b := Vector3(width / 2.0, 0, 0)
@@ -145,13 +142,9 @@ func strip(length: float, width: float, color: Color, mat: ShaderMaterial = null
 	return mesh
 func ring(radius: float, width: float, color: Color) -> ImmediateMesh:
 	var mesh := ImmediateMesh.new()
-	var mat := material(color)
-	mat.set_shader_parameter("edge_soft", 0.45)
-	mat.set_shader_parameter("rim", 0.0)
-	mat.set_shader_parameter("base_alpha", 0.85)
-	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES, mat)
+	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES, material(FX.ring_material, color))
 	# 细环画宽一些再靠柔边收窄，远看不会碎成锯齿
-	var band := maxf(width * 2.4, 0.12)
+	var band := maxf(width * FX.ring_band_scale, FX.ring_min_band_m)
 	for i in RING_SEGMENTS:
 		var a := Vector3(cos(TAU * i / RING_SEGMENTS), 0, sin(TAU * i / RING_SEGMENTS))
 		var b := Vector3(cos(TAU * (i + 1) / RING_SEGMENTS), 0, sin(TAU * (i + 1) / RING_SEGMENTS))

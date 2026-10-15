@@ -1,86 +1,221 @@
-# 战斗视觉与手感（2026-10-12）
+# 战斗视觉与手感
 
-这一轮只动表现层：场地、光影、角色与敌人的临时模型和动作、预警、受击反馈、战斗生命条。
-战斗规则和数值没有改。所有新美术都是**临时占位**，按下面的约定可以逐个替换。
+更新：2026-10-15（手感、反馈、预警的参数全部移入配置文件，见“手感与反馈的参数在哪”）。
+
+战斗训练场现在是**写实风格的童话森林**，镜头是**透视镜头**，主角和敌人都换成了**带贴图的写实模型**。
+只动了表现层，战斗规则和数值没有改。所有美术仍是可替换的占位，替换方法见下文。
+
+早先的低模玩具风格和樱花林训练场已经放弃：樱花林的场景、模型和生成脚本已删除；
+玩具角色不再出现在游戏里，但它们的 `.blend` 仍保留，因为**全套战斗动作是在它们身上做的**，写实模型的动作由此移植而来。
 
 ## 现在是什么样
 
 | 部分 | 内容 | 入口 |
 |---|---|---|
-| 训练场 | 樱花林石坪：逆光、斑驳树影、光柱、落花、石灯 | `game/presentation/rooms/sakura_grove/` |
-| 主角 | 临时低模小熊猫，剑在手上，11 段动作 | `game/presentation/combat/rigs/red_panda_temp_visual.tscn` |
-| 敌人 | 弩手、重装、冲锋兵、旗手四个临时模型；豺狼斥候和精灵游侠沿用原模型 | `game/presentation/combat/rigs/*_temp_visual.tscn` |
-| 着色 | 角色与场景共用一套两段式光照，角色带轮廓光 | `game/presentation/shared/toon/` |
+| 场地 | 童话森林空地（第二版）：花树环绕、草甸花丛、斑驳树影、光柱薄雾、溪水木桥、遗迹石柱。| `game/presentation/rooms/fairy_forest_v2/` |
+| 镜头 | 透视，俯角约 33°，滚轮缩放改变的是镜头距离 | `fairy_forest_v2/presentation.tres` |
+| 主角 | 写实小熊猫（v008 模型）+ 长剑，11 段动作 | `game/presentation/combat/rigs/red_panda_real_visual.tscn` |
+| 敌人 | 弩手、重装、冲锋兵、旗手：豺狼身体 + 各自的动作与道具；斥候和精灵游侠沿用原模型 | `game/presentation/combat/rigs/*_real_visual.tscn` |
+| 角色着色 | 标准 PBR，保留贴图，外加受击闪白、前摇泛光、尸体消散、淡轮廓光 | `game/presentation/shared/pbr/` |
 | 预警 | 柔边地面提示，随前摇从脚下向外填满，填满即出手 | `game/presentation/combat/fx/telegraph.gdshader` |
-| 反馈 | 底部生命条、受伤屏幕闪红、击杀花瓣、闪避尘土、受击抖动、倒地后消散 | `game/presentation/combat/combat_juice.gd` |
+| 反馈 | 底部生命条、受伤屏幕闪红、击杀花瓣、闪避尘土、受击抖动、倒地后消散 | `game/presentation/combat/juice/` |
 
-镜头比之前近：正交视野高度从 19 米降到 10 米（滚轮 8–17）。
 训练面板默认收起，从顶部“界面显示”菜单打开；`combat_training.tscn` 的 `training_panels_visible` 可改回默认展开。
+
+## 场地：从 Blender 到 Godot
+
+当前训练场是**第二版童话森林**（`fairy_forest_v2`）。第一版的场景、导出物和 Blender 文件已于 2026-10-14 删除（用户确认第二版满意）。
+
+| | 位置 |
+|---|---|
+| Godot 场景 | `game/presentation/rooms/fairy_forest_v2/` |
+| 导出物 | `game/assets/fairy_forest_v2/` |
+| Blender 脚本 | `build_game_arena_v2.py`（在 `build_game_arena.py` 的空地布局上加草甸和花丛；后者是它的基础，不能删） |
+| Blender 文件 | `fairy_arena_game_v2.blend` |
+
+**场上道具（木箱、矮墙、宝箱）暂时不摆**：按要求先把画面做好，`placement_surface.tres` 只留了一个放在场外（z = −40）的摆放点，
+所以随机道具一个也放不进来（日志里是 `props=0 omitted=3`），玩法代码没有改。要恢复，把摆放点换回第一版用过的这五个
+（位置是房间坐标，朝向是弧度）：
+
+| id | position | yaw_options |
+|---|---|---|
+| west | (-6.6, 0, -1.3) | π/2, 3π/2 |
+| east | (6.6, 0, -0.9) | π/2, 3π/2 |
+| southwest | (-5.2, 0, 4.0) | 0, π |
+| southeast | (5.2, 0, 4.0) | 0, π |
+| interior | (0, 0, -5.0) | 0, π |
+
+道具模型还是旧的卡通风格，恢复前最好先换成写实模型。
+
+### 第二版是怎么对齐 Blender 画面的
+
+做法是“同一个场地、同一个机位，Cycles 和 Godot 各拍一张，逐张对比”，而不是凭感觉调：
+
+1. `render_game_views.py` 用 Cycles 渲染 `fairy_arena_game_v2.blend`，机位和游戏镜头完全相同
+   （`game` 默认镜头、`far` 拉远、`ruin` 遗迹、`bridge` 小桥、`hero` 低机位美图、`top` 正上方）。输出 `builds/lookdev/<机位>_cycles.png`。
+2. `game/tests/fairy_lookdev_capture.gd` 在 Godot 里用同样的机位拍 `builds/lookdev/<机位>_godot.png`（隐藏界面、角色，冻结战斗）。
+3. 两边对比亮度分布、颜色和局部区域，再改 Godot 的参数。最终五个机位的平均颜色和亮度分布差别都在几个百分点以内。
+
+`render_game_views_debug.py` 可以只开太阳、只开光束灯或只开天光渲染，用来逐项核对光影；
+`fairy_lookdev_capture.gd` 后面可以跟临时开关（不改文件），例如 `fol:grass.001:direct_root=0.4`、`env.volumetric_fog_density=0.01`、`nodes:tree_*:visible=false`，脚本开头有说明。
+
+光照单位已经和 Blender 校准过（`game/tests/lookdev_calibration*.gd` 与 Cycles 渲染同一块灰卡）：
+
+- 太阳：Godot `light_energy` = Blender 瓦数 ÷ π；颜色按 sRGB 填（Godot 会自己转线性）。
+- 点光、聚光：Godot `light_energy` = Blender 瓦数 ÷ 38.6，衰减用平方反比（`attenuation = 2`）。
+- 色调映射：Godot 的 AgX、对比度 1.5、曝光 1.19，等于 Blender 的 “AgX - Medium High Contrast” 加曝光 0.25。
+
+### 第二版改了什么（和已删除的第一版比）
+
+- **天光和雾**：天空用 Blender 的世界颜色；去掉了第一版那层灰白的距离雾和光晕（这是画面“不清透”的主要原因）；
+  阴影里的补光用偏暖的环境色（模拟林间草地的反光），不再是一片蓝灰。
+- **草和花**：草甸按 Blender 样板间的方式重新铺（成丛的高草 + 单色花丛），导出时修正了草叶贴图透明区域的底色
+  （原来远看会变成银灰色）。植被着色器照着 Blender 材质做：正面漫反射、背面透光（逆光下草叶发亮）、草丛内部互相遮挡阳光、
+  树冠内部挡天光；每种材质的参数对应 Blender 节点（`room.tscn` 的 `foliage_grades`）。草丛会投影。
+- **水**：透过水面看到水底，按菲涅耳混入倒影；倒影在画面里追踪（岸上的石头、草、树都能映出来），追不到的部分用林间暗色、天光和逆光薄雾代替。
+- **抗锯齿**：改用 FSR2（自带时域抗锯齿，草叶边缘比 MSAA 稳定得多），并在 1080p 时以约 0.77 倍分辨率渲染再放大。
+- **预警**：地上的草有半米高，会把地面预警挡住；预警着色器现在提前做深度测试（`telegraph.gdshader` 的 `depth_pull`），所有房间生效。
+
+### 要调的东西在哪
+
+脚本 `fairy_forest_room.gd` 里不带画面参数的默认值，都在下面这些文件里：
+
+| 想调什么 | 改哪里 |
+|---|---|
+| 天光、雾、环境补光、色调、太阳颜色和强度、阴影 | `room.tscn` 里的 `Environment`、`Lights/Sun` |
+| 太阳方向、光束灯、石灯、风的摆幅、树冠遮挡、每种植被的着色参数 | `room.tscn` 根节点的属性（`foliage_grades` 按材质名列出） |
+| 植被的共用参数（镂空阈值、根部压暗、风向风速） | `foliage_material.tres` |
+| 地面：苔藓和泥土的比例、明暗、湿痕、水下焦散 | `ground_material.tres` |
+| 水：透色、清澈度、波纹、倒影、浮沫 | `water_material.tres` |
+| 画面四角压暗、光尘 | `room.tscn` 的 `Vignette/Shade`、`Motes` |
+| 渲染分辨率与抗锯齿 | `presentation.tres` 的 `render_height_limit`、`render_scaling_mode` |
+
+地面小径和溪床是着色器按公式画的（`terrain.gdshader`），公式与 `build_game_arena.py` 里的 `path_x` / `stream_y` 相同，**改了一边要同步另一边**。
+
+### 重新导出第二版
+
+```powershell
+& 'E:\blender\blender.exe' --background source_assets/lookdev_forest_v1/fairy_forest_opt.blend --python source_assets/lookdev_forest_v1/build_game_arena_v2.py -- E:\ShopGame\game\assets\fairy_forest_v2
+& 'E:\blender\blender.exe' --background source_assets/lookdev_forest_v1/fairy_arena_game_v2.blend --python source_assets/lookdev_forest_v1/render_game_views.py -- E:\ShopGame\builds\lookdev
+```
+
+第一条重建场地并导出（约 6 分钟），第二条重新渲染对照图（约 5 分钟）。
+
+注意：
+
+- 改了 `library.glb` 后要重新导入：`godot --headless --path game --import`。如果导入失败过一次，Godot 会记住失败、不再重试，这时先删掉 `library.glb.import` 再导入。
+  重新导出前最好把 `game/assets/fairy_forest_v2/` 里 `library_` 开头的旧贴图删掉，否则改名的贴图会留下垃圾文件。
+- 这个 Godot 版本读不了只含 WebP 贴图的 glTF，导出脚本因此用 PNG/JPEG。
+
+### 性能
+
+RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304×1440）约 70 帧。
+三维画面最高按 830 像素高渲染（`render_height_limit`），再由 FSR2 放大到窗口，所以全屏和 1080p 差不多快；界面文字始终按窗口分辨率画。
+
+- 最贵的是**阳光阴影**（整片森林和草丛画进四级阴影图）和**草地本身**（层层叠叠的镂空草叶）。
+- 草丛投影约占 8 帧，但去掉后草地明显变平，所以保留。
+- 还想更快：`presentation.tres` 的 `render_height_limit` 调低（每降 100 约 +5 帧，画面变软），
+  或把 `Lights/Sun` 的 `directional_shadow_mode` 降到 2 级（约 +4 帧，近处树影变糊）。
+- 显卡更好时可以把 `render_height_limit` 调高（例如 1100），画面更锐利。
+- 实时全局光照（SDFGI）试过：画面发灰，没有开。
+
+## 透视镜头
+
+`room_presentation.gd` 新增 `camera_fov`。为 0 时是原来的正交镜头；大于 0 时为透视镜头，此时
+`camera_size` 及其上下限不再是视野高度，而是缩放档位：镜头距离 = `camera_offset` 的长度 × 当前档位 ÷ `camera_size`。
+其它房间没有设置 `camera_fov`，仍是正交镜头，不受影响。
+
+## 手感与反馈的参数在哪
+
+代码里不再写这些数值，全部在下面的配置里；改完重开训练场即可生效。
+
+| 想调什么 | 改哪里 |
+|---|---|
+| 出招前冲（会真实移动角色，属于玩法） | `game/data/combat/prototype.json` 每个技能的 `lunge_speed_mps`、`lunge_duration_sec` |
+| 顿帧、镜头冲击、屏幕抖动（按技能 ID 分别配，没列出的用默认）、镜头跟随与前瞻 | `presentation/combat/feel/combat_feel_style.tres` |
+| 受伤闪红、低血量脉动、击杀爆点和闪避尘土的位置 | `presentation/combat/juice/combat_juice_style.tres` |
+| 击杀爆点、闪避尘土的粒子外观（数量、速度、颜色、大小） | `presentation/combat/juice/kill_petals.tscn`、`dodge_puff.tscn`（在编辑器里直接调） |
+| 屏幕闪红的颜色和范围 | `presentation/combat/fx/hurt_vignette.tres` |
+| 底部生命条：尺寸、颜色、掉血残影、闪避格、技能格 | `presentation/combat/juice/vitals_hud_style.tres`（技能格旁的键位文字按当前按键设置生成） |
+| 玩家攻击扇形预警的外观 | `presentation/combat/fx/telegraph_sector.tres` |
+| 敌人预警（弩手射线、冲锋通道、游侠箭道、光环圆环）的外观 | `presentation/combat/fx/telegraph_*.tres`；宽度、颜色在 `enemies/enemy_fx_style.tres` |
+| 角色转身速度、受击闪白和抖动、尸体停留与消散、前摇泛光 | `presentation/combat/rigs/rig_feedback_*.tres`（主角、远程、重型、支援四份，同类角色共用） |
+| 动作过渡时长、走跑动画的速度换算 | 各角色的 `rigs/*_clips.tres` |
+
+前四类都由 `presentation/combat/training_style.tres` 引用（`combat_feel`、`combat_juice`、`sector_material`）。
 
 ## 怎么替换一个角色
 
 每个角色由三样东西组成，互不耦合：
 
 1. **模型场景**（`*_visual.tscn`）：根节点挂 `rigs/rigged_actor_visual.gd`，子节点必须叫 `Model`，里面是带 `AnimationPlayer` 的模型。
+   根节点的 `feedback` 指向一份 `rig_feedback_*.tres`（转身、受击、尸体、前摇泛光），`keep_textures`、`tint` 都要显式填写。
 2. **动作映射**（`*_clips.tres`，脚本 `rigs/actor_clip_set.gd`）：把“待机/移动/受击/死亡/闪避/各技能”对应到模型里的动作名。
 3. **表现配置**（`presentation/combat/*_presentation.tres`）：指向模型场景，并给出碰撞体。战斗逻辑只读碰撞体，不读模型。
 
-换模型的步骤：
+### 新模型自带全套动作
 
-1. 把新模型导入，复制一份现有的 `*_visual.tscn`，把 `Model` 换成新模型。
+1. 导入模型，复制一份现有的 `*_real_visual.tscn`，把 `Model` 换成新模型，调好缩放。
 2. 复制对应的 `*_clips.tres`，把动作名改成新模型里的名字。
-3. 在 `*_presentation.tres` 里把 `visual_scene` 指向新场景。模型朝向不对就改 `visual_yaw_offset_deg`。
+3. 在 `*_presentation.tres` 里把 `visual_scene` 指向新场景。朝向不对就改 `visual_yaw_offset_deg`。
+
+### 新模型只有骨骼，没有战斗动作
+
+用 `source_assets/realistic_chars_v1/` 的移植脚本，把现有动作搬到新骨架上：
+
+```powershell
+& 'E:\blender\blender.exe' --background --python source_assets/realistic_chars_v1/build_panda.py -- E:\ShopGame\game\assets\combat_real\red_panda_real.glb E:\ShopGame\source_assets\realistic_chars_v1\blend\red_panda_real.blend
+& 'E:\blender\blender.exe' --background --python source_assets/realistic_chars_v1/build_enemies.py -- E:\ShopGame\game\assets\combat_real E:\ShopGame\source_assets\realistic_chars_v1\blend
+```
+
+换模型时改脚本开头的 `MODEL`（模型路径）和 `MAPPING`（玩具骨骼名 → 新模型骨骼名）即可。
+原理写在 `retarget.py` 开头：两个角色都朝同一方向站好，把“每根骨头相对静止姿势转了多少”原样搬过去；
+四肢先做一次固定修正，抵消两个模型静止姿势的差别（一个垂手、一个平举）。
+动作名不变，所以 Godot 这边的 `*_clips.tres` 不用改。
 
 几条约定：
 
 - **缺动作不会报错**，会退回待机。可以先接模型，后补动作。
 - **攻击动作分三段**。`attack_cuts` 里每个动作有两个时间点（前摇结束、判定结束，单位是动画文件里的秒）。游戏把自己的前摇/判定/收招时长分别映射到这三段，所以调数值不用重做动画。
+  `attacks`、`attack_fallback` 里出现的每个动作都必须配切点，缺了会在资源校验时报出动作名，不会悄悄用默认值。
+- **`*_clips.tres` 的每个字段都要写**（不用的动作写空名 `&""`、空字典 `{}`）；脚本里没有默认值。
 - **敌人按 AI 状态选动作**：`states` 里写“状态名 → 动作名”。`windup`、`recovery` 按进度播放，其余循环。
-- **贴图模型**（比如 AI 生成的）把 `keep_textures` 打开，保留原贴图，只统一光照和轮廓光。
-- **主角的刀光**仍由一把不可见的“虚拟剑”驱动（`player_presentation.tres` 的 `virtual_blade`），所以原有的十几种刀光不受模型影响。
+- **带贴图的模型**把 `keep_textures` 打开。`tint` 可以给整个模型染色：四种敌人共用一个豺狼身体，靠染色、体型和手里的道具区分。
+- **主角的刀光**仍由一把不可见的“虚拟剑”驱动（`player_presentation.tres` 的 `virtual_blade`），所以十几种刀光不受模型影响。
 
 ## 怎么替换场地
 
 房间由 `presentation/rooms/<名字>/presentation.tres` 描述（场景、镜头、可摆放区域）。
 `app/combat_training.tscn` 的 `room_presentation` 指向哪个，训练场就用哪个。旧的森林遗迹和森林庭院都还在，改回去只需改这一处引用。
 
-樱花林的可调项都在 `sakura_grove_room.gd` 的导出属性里：太阳方向、树影在场地中央/边缘的覆盖率、光柱数量与强度、落花数量、石灯亮度。
+## 截图与测速工具
 
-## 重新生成临时美术
+画面对照（与 Blender 同机位）见上文“第二版是怎么对齐 Blender 画面的”。下面是日常截图：
 
-源文件是 Blender 脚本，放在 `source_assets/combat_visual_v1/blender/`，用 Blender 5.2 后台运行：
+`game/tests/visual_pass_capture.gd`，图形模式运行（不能加 `--headless`），输出在 `builds/visual_pass/`：
 
 ```powershell
-& 'E:\blender\blender.exe' --background --factory-startup --python source_assets/combat_visual_v1/blender/build_sakura_grove.py -- game/assets/combat_v1/arena/sakura_grove.glb
-& 'E:\blender\blender.exe' --background --factory-startup --python source_assets/combat_visual_v1/blender/build_panda.py -- game/assets/combat_v1/characters/red_panda_temp.glb
-& 'E:\blender\blender.exe' --background --factory-startup --python source_assets/combat_visual_v1/blender/build_enemies.py -- game/assets/combat_v1/characters
+godot --path game --script res://tests/visual_pass_capture.gd -- overview   # 几个站位的全景
+godot --path game --script res://tests/visual_pass_capture.gd -- combat     # 一套连招的逐帧序列
+godot --path game --script res://tests/visual_pass_capture.gd -- lineup     # 各兵种站成一排
+godot --path game --script res://tests/visual_pass_capture.gd -- perf       # 1080p 帧率与绘制量
 ```
 
-- 加 `--report` 会逐帧打印武器朝向，调动作时用来核对。
-- `build_enemies.py` 可加 `--only=brute` 只生成一个。
-- 姿势写法（角度的正负含义）见 `sg_char.py` 开头的注释。
-- 对应的 `.blend` 在 `source_assets/combat_visual_v1/blend/`，可以直接打开手调。
-
-生成后运行一次 `godot --headless --path game --import` 让引擎重新导入。
-
-## 截图工具
-
-- `game/tests/visual_pass_capture.gd`：进入训练场截图。模式 `overview` / `combat` / `lineup`。
-- `game/tests/visual_pass_poses.gd`：把某个模型的动作按帧排成一张图，用来检查姿势。
-
-两者都要用图形模式运行（不能加 `--headless`），输出在 `builds/visual_pass/`。
+`perf` 后面可以跟试验开关，例如 `env.ssil_enabled=false`、`sun.shadow_enabled=false`、`vp.msaa_3d=0`。
 
 ## 这一轮顺带改的旧内容
 
-- 前两段普攻的挥砍方向互换：第一刀改为正手（右→左），第二刀反手。只改了 `attack_motions/slash_1.tres` 和 `slash_2.tres` 的表现数据。
+- 前两段普攻的挥砍方向互换：第一刀改为正手（右→左），第二刀反手（`attack_motions/slash_1.tres`、`slash_2.tres`）。
 - 敌人血条变细，满血时不显示（`hit_feedback.tres` 的 `bar_hide_when_full`）。
 - 玩家头顶的“当前/最大生命”文字关闭（`training_style.tres` 的 `player_health_label`）。
-- 项目设置里把方向光阴影调到 4096 并提高了柔化质量。
+- 项目设置：方向光阴影 4096、柔化质量提高；MSAA 从 4 倍降到 2 倍。
 - 修了退出战斗场景时的一条报错（镜头已离开场景树时仍读取其变换）。
 
 ## 还没做的
 
-- 临时模型是脚本拼出来的几何体，没有蒙皮和表情，只求读得清、动得对。
-- 主角的出招前冲距离仍写在 `combat_training.gd` 里，没有挪进数据。
-- 豺狼斥候只统一了光照，造型仍是原来的写实风格；精灵游侠完全没动（套统一材质后贴图发白，已撤回）。两者和临时角色并排会有差别。
+- 第二版场地暂时不摆随机道具；道具（木箱、矮墙、宝箱）还是旧的卡通模型，恢复前应先换成写实模型。
+- 风是程序摆动，只看过静态截图；草和花在动态下的观感还需要在游戏里确认。
+- 敌人的道具（弩、锤、长枪、旗）是从玩具模型上拿过来的色块模型，不是写实贴图。
+- 移植来的动作只保证方向和节奏对，手指不会握住武器，手腕偶尔有扭转。
+- 四种敌人和斥候是同一个身体，只靠染色、体型和道具区分。
 - 店铺场景没有动。

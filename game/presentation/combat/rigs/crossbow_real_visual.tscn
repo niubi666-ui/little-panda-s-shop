@@ -1,0 +1,15 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://presentation/combat/rigs/rigged_actor_visual.gd" id="script"]
+[ext_resource type="PackedScene" path="res://assets/combat_real/crossbow_real.glb" id="model"]
+[ext_resource type="Resource" path="res://presentation/combat/rigs/crossbow_temp_clips.tres" id="clips"]
+[ext_resource type="Material" path="res://presentation/shared/pbr/character_material.tres" id="material"]
+[ext_resource type="Resource" path="res://presentation/combat/rigs/rig_feedback_ranged.tres" id="feedback"]
+[node name="CrossbowVisual" type="Node3D"]
+script = ExtResource("script")
+clip_set = ExtResource("clips")
+material = ExtResource("material")
+feedback = ExtResource("feedback")
+keep_textures = true
+tint = Color(0.72, 0.86, 0.8, 1)
+[node name="Model" parent="." instance=ExtResource("model")]
+transform = Transform3D(1.85, 0, 0, 0, 1.85, 0, 0, 0, 1.85, 0, 0, 0)

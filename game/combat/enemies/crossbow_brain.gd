@@ -8,6 +8,7 @@ func tick(delta: float) -> void:
 			shot_requested.emit(actor, locked_direction, config)
 			state = "recovery"
 			time_left = config.recovery_sec
+			recovery_duration = time_left
 		return
 	if state == "recovery":
 		time_left -= delta

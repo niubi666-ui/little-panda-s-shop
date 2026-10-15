@@ -42,6 +42,8 @@ func decode(data: Variant, schema: Dictionary, path: String) -> Catalog:
 			errors.append(path + ": " + entry.id + " thrust requires zero angle and positive width")
 		if (entry.knockback_speed_mps == 0.0) != (entry.knockback_duration_sec == 0.0):
 			errors.append(path + ": " + entry.id + " knockback speed/duration must both be zero or positive")
+		if (entry.lunge_speed_mps == 0.0) != (entry.lunge_duration_sec == 0.0):
+			errors.append(path + ": " + entry.id + " lunge speed/duration must both be zero or positive")
 	for entry in data.actors:
 		if actors.has(entry.id): errors.append(path + ": duplicate actor " + entry.id)
 		actors[entry.id] = entry

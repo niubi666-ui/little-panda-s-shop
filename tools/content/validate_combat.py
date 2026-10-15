@@ -19,6 +19,8 @@ def validate_combat(manifest):
             raise ValueError(f"combat: {ability['id']} thrust requires zero angle and positive width")
         if (ability["knockback_speed_mps"] == 0) != (ability["knockback_duration_sec"] == 0):
             raise ValueError(f"combat: {ability['id']} knockback speed/duration mismatch")
+        if (ability["lunge_speed_mps"] == 0) != (ability["lunge_duration_sec"] == 0):
+            raise ValueError(f"combat: {ability['id']} lunge speed/duration mismatch")
     for actor in data["actors"]:
         if not set(actor["attack_ids"]) <= abilities:
             raise ValueError(f"combat: {actor['id']} unknown ability")

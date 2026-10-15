@@ -1,5 +1,6 @@
 extends Node3D
 const Style = preload("res://presentation/combat/enemies/ranger_style.tres")
+const FX = preload("res://presentation/combat/enemies/enemy_fx_style.tres")
 var brain
 var geometry
 var lines: Array[MeshInstance3D] = []
@@ -19,8 +20,8 @@ func configure(value, factory) -> void:
 	for attack in ["fast", "volley", "charged"]:
 		var length: float=brain.config.charged_range_m if attack=="charged" else brain.config[attack+"_speed_mps"]*brain.config.arrow_lifetime_sec
 		var color: Color = Style.charged_warning_color if attack == "charged" else Style.warning_color
-		strips[attack] = geometry.strip(length, brain.config.arrow_radius_m * 2.0, color)
-		strips[attack + "_locked"] = geometry.strip(length, brain.config.arrow_radius_m * 2.0, Style.locked_warning_color if attack == "charged" else color)
+		strips[attack] = geometry.strip(length, brain.config.arrow_radius_m * 2.0, geometry.material(FX.arrow_lane_material, color))
+		strips[attack + "_locked"] = geometry.strip(length, brain.config.arrow_radius_m * 2.0, geometry.material(FX.arrow_lane_material, Style.locked_warning_color if attack == "charged" else color))
 	for i in int(brain.config.volley_count): lines.append(geometry.mesh_node(self))
 	ring = geometry.mesh_node(self)
 	ring.mesh = geometry.ring(brain.config.rain_radius_m, Style.line_width, Style.warning_color)

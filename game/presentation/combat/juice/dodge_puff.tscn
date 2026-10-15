@@ -1,0 +1,58 @@
+[gd_scene format=3]
+
+[sub_resource type="Gradient" id="Gradient_j2odb"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eum0x"]
+gradient = SubResource("Gradient_j2odb")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3h4hs"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_eum0x")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xjvu1"]
+material = SubResource("StandardMaterial3D_3h4hs")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_c4vo4"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(1, 1.4), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_isi6a"]
+colors = PackedColorArray(1, 0.95, 0.9, 0.55, 1, 0.95, 0.9, 0)
+
+[node name="DodgePuff" type="CPUParticles3D" unique_id=225564568]
+cast_shadow = 0
+emitting = false
+amount = 9
+lifetime = 0.38
+one_shot = true
+explosiveness = 0.95
+mesh = SubResource("QuadMesh_xjvu1")
+emission_shape = 1
+emission_sphere_radius = 0.18
+direction = Vector3(0, 1, 0)
+spread = 55.0
+gravity = Vector3(0, 0.6, 0)
+initial_velocity_min = 1.2
+initial_velocity_max = 3.0
+damping_min = 4.0
+damping_max = 6.0
+scale_amount_min = 0.8
+scale_amount_max = 1.6
+scale_amount_curve = SubResource("Curve_c4vo4")
+color_ramp = SubResource("Gradient_isi6a")

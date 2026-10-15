@@ -1,0 +1,57 @@
+[gd_resource type="ShaderMaterial" format=3]
+[ext_resource type="Shader" path="res://presentation/rooms/fairy_forest_v2/water.gdshader" id="shader"]
+
+[sub_resource type="FastNoiseLite" id="ripple_noise"]
+frequency = 0.035
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="ripple_tex"]
+width = 256
+height = 256
+seamless = true
+as_normal_map = true
+bump_strength = 5.0
+noise = SubResource("ripple_noise")
+
+[sub_resource type="FastNoiseLite" id="foam_noise"]
+frequency = 0.05
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="foam_tex"]
+width = 256
+height = 256
+seamless = true
+noise = SubResource("foam_noise")
+
+[resource]
+shader = ExtResource("shader")
+shader_parameter/ripple = SubResource("ripple_tex")
+shader_parameter/foam_noise = SubResource("foam_tex")
+shader_parameter/transmit_tint = Color(0.82, 0.9, 0.92, 1)
+shader_parameter/clarity_m = 3.0
+shader_parameter/murk = Color(0.02, 0.05, 0.04, 1)
+shader_parameter/flow = Vector2(0.3, 0.02)
+shader_parameter/ripple_scale = Vector2(2.8, 1.0)
+shader_parameter/ripple_strength = 0.35
+shader_parameter/reflection_ripple = 0.4
+shader_parameter/refraction = 0.025
+shader_parameter/ior = 1.33
+shader_parameter/roughness = 0.04
+shader_parameter/reflection_steps = 40
+shader_parameter/reflection_step_m = 0.2
+shader_parameter/reflection_step_growth = 1.12
+shader_parameter/reflection_thickness_m = 0.6
+shader_parameter/offscreen_blur = 3.0
+shader_parameter/canopy_colour = Color(0.2, 0.24, 0.16, 1)
+shader_parameter/sky_colour = Color(0.44, 0.6, 0.67, 1)
+shader_parameter/sky_low = 0.35
+shader_parameter/sky_high = 0.85
+shader_parameter/haze_colour = Color(1, 0.86, 0.66, 1)
+shader_parameter/haze_strength = 1.2
+shader_parameter/haze_power = 6.0
+shader_parameter/screen_fallback = 0.5
+shader_parameter/foam_colour = Color(0.85, 0.88, 0.84, 1)
+shader_parameter/foam_width = 0.12
+shader_parameter/foam_amount = 0.06
+shader_parameter/shore_fade = 0.03
+shader_parameter/debug_view = 0

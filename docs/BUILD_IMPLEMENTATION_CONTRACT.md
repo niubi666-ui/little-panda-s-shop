@@ -1,6 +1,6 @@
 # 三选一与构筑训练切片 · 实现契约
 
-更新：2026-10-09。当前代码为 **schema v7 按动作绑定**；v4全局rank程序不再是生产接口。玩法与入口见[Build概览](BUILD_SYSTEM.md)，爆炸/冻结/范围payload细节见[命中机制](COMBAT_MECHANISMS.md)。本页记录实际接口；测试结果以本轮交付和[验证索引](VALIDATION.md)为准。
+更新：2026-10-15。当前代码为 **schema v7 按动作绑定**；v4全局rank程序不再是生产接口。玩法与入口见[Build概览](BUILD_SYSTEM.md)，爆炸/冻结/范围payload细节见[命中机制](COMBAT_MECHANISMS.md)。本页记录实际接口；测试结果以本轮交付和[验证索引](VALIDATION.md)为准。
 
 ## 内容格式 v7
 
@@ -18,7 +18,7 @@
 | test_attacks | `id/projectile_id/damage/cooldown_sec/action_id`；动作须为匹配投射物的test_only来源，不为正式动作授予资格。 |
 | test_presets | `id/name_key/selections`；选择项为`{upgrade_id,action_id,rank}`。按顺序逐项、逐级经过正式评估路径；基础预设允许空数组。 |
 
-当前14项定义中，旧wave/chain/contact_slow属于测试夹具，不进入正式池。当前无剑气解锁/恢复重击卡；基础三动作由actions提供。保留`form`扩展能力，其每级仅引用`form_id`；数值支持是`damage_scale/move_scale/status_duration`；`status/explosion`占核心，`area_status`占协同，`conditional_damage`依据provider_scope占支持或协同，`split/pierce`是支持。global仅允许数值伤害/移速支持。完整每级效果字段由schema定义；范围/状态字段见命中机制，禁止未知字段或配置脚本。
+当前19项定义中，旧wave/chain/contact_slow属于测试夹具，不进入正式池。当前无剑气解锁/恢复重击卡；基础三动作由actions提供。保留`form`扩展能力，其每级仅引用`form_id`；数值支持是`damage_scale/move_scale/status_duration`；`status/explosion`占核心，`area_status`占协同，`conditional_damage`依据provider_scope占支持或协同，`split/pierce`是支持。global仅允许数值伤害/移速支持。完整每级效果字段由schema定义；范围/状态字段见命中机制，禁止未知字段或配置脚本。
 
 Loader拒绝不支持的schema版本、引用错误、依赖环、等级/预算错误及不对称互斥；穿透/分裂定义必须显式对称排除，但排除现在按动作生效。内容层检查预设的绑定、槽位、实际载体、来源交集和完整有限组合；`TrainingBuilds.configure`还用隔离Session逐一试提交所有预设，通过后才创建UI。内容层不导入combat。
 
@@ -75,11 +75,11 @@ effect = {upgrade_id, type, rank, params}
 
 ## 候选与应用提交 API
 
-`BuildOfferSampler.configure(catalog,operations:Callable)`注入Resolver.legal_operations；`sample(state,rng)->Array[Dictionary]`只负责权重与随机。先按upgrade_id无放回抽取，再在该升级的合法绑定中均匀选一个；多个动作均可绑定不会使该升级权重翻倍，也不会占一轮两格。fallback仍经纯评估，不足返回较少项。
+`BuildOfferSampler.configure(catalog,operations:Callable,rewards:Dictionary={})`注入Resolver.legal_operations与已校验品质配置；`sample(state,rng,profile_id="training_all")->Array[Dictionary]`只负责权重与随机。实际训练注入rewards，先过滤合法操作，再按来源允许的品质权重选品质、按upgrade_id权重无放回选升级，最后均匀选合法动作绑定；候选携带rarity_id。多个动作均可绑定不会使升级权重翻倍，也不会占一轮两格。候选不足返回实际数量，不跨品质补位。未注入rewards的兼容测试路径使用原offer.pool_ids/fallback_ids规则，不能用于绕过正式训练来源限制。
 
-`TrainingBuildSession.configure(catalog,seed,commit:Callable)`；公共接口：`open_offer()`、`choose(offer_id,choice_id)`、`legal_operations(upgrade_id="")`、`submit_operation(operation)`、`apply_test_preset(id)`、`snapshot()`、`program()`。
+`TrainingBuildSession.configure(catalog,seed,commit:Callable,rewards:Dictionary={})`；公共接口：`open_offer(profile_id="training_all")`、`choose(offer_id,choice_id)`、`legal_operations(upgrade_id="")`、`submit_operation(operation)`、`apply_test_preset(id)`、`snapshot()`、`program()`。实际训练由TrainingBuilds注入品质配置，未知profile拒绝；已有未解决offer保持原锁定来源。
 
-- session状态为selections、revision、history、offer、offer_sequence、rng_state（十进制字符串）。offer含id/candidates/resolved/base_revision；每个candidate是锁定操作加choice_id。
+- session状态为selections、revision、history、offer、offer_sequence、rng_state（十进制字符串）。offer含id/candidates/profile_id/resolved/base_revision；每个candidate是锁定操作加choice_id，品质采样路径另含rarity_id。
 - UI只提交offer/choice令牌，不提供可更改的动作或等级。已有待选offer直接重用；语言切换不重新抽取。
 - choose再次评估锁定操作；`commit(candidate:Dictionary)->Error`收到隔离副本，成功后才发布state/program。错误/重复/过期提交不改变状态或RNG。
 - submit_operation是显式训练/测试命令，仍用同一评估和提交路径；正常UI不直接调用它。
@@ -99,13 +99,13 @@ Runtime局部表现事实：`action_presented(fact)`、`projectile_presented(fac
 - `MechanismView`及`mechanism_style`映射范围/状态表现；规则中不创建特效、不从粒子/刀刃位置推导命中。
 - 目标状态响应必填 `freeze_hits_required`（1–64）。`StatusRuntime.apply` 在同根去重及免疫校验后累计冻结申请，未满阈值返回false，不发布已冻结事实；`freeze_progress(target)`提供只读控制组计数。特殊累计响应阈值为3，普通与游侠当前响应为1；游侠freeze_mode=slow，只产生有效冰冻减速窗口，规则与清理语义见[状态机制](COMBAT_MECHANISMS.md)。候选资格仍基于真实冻结能力，目标累计抗性不改变已装备能力声明。
 - 可选表现实例接口：`configure_effect(fact)`、`sync_effect(fact,delta)`、`set_time_running(enabled)`、`finish(reason)`。暂停/生命周期由适配器调用；自定义场景须遵守该协议。
-- 剑姿态使用AttackMotion Resource，角色继续idle/run；逻辑阶段/cue决定挥砍与发射。更換Resource或关闭VFX不改变规则参数。
+- 剑姿态使用AttackMotion Resource；临时角色动作使用rigs下的模型与动作映射，逻辑阶段/cue决定挥砍与发射。更換Resource或关闭VFX不改变规则参数。
 
 ## 当前验证与边界
 
 本轮测试入口：`bound_build_policy.gd`、`bound_build_session.gd`、`mechanism_content.gd`、`action_build_runtime.gd`及动作/场景集成。本文不把前轮v4通过记录当作v7验收；最终执行结果见[验证索引](VALIDATION.md)与本轮交付。归档v4脚本不再作为当前gate。
 
-尚未接入多武器、蓄力、完整主动技能栏、经济或永久存档；独立[内存路线测试](RUN_PREVIEW.md)已接预装Build跨房保留，尚无跨房选卡奖励；当前训练选卡频率不等于正式冒险奖励节奏。不制作Release，不自动Git提交。
+尚未接入多武器、完整主动技能栏、经济或永久存档；独立[内存路线测试](RUN_PREVIEW.md)已接预装Build跨房保留，尚无跨房选卡奖励；当前训练选卡频率不等于正式冒险奖励节奏。不制作Release，不自动Git提交。
 
 ## 条件伤害 v7
 
@@ -119,8 +119,15 @@ MeleeResolver新增`set_direct_damage_executor(callable)`，签名`(source,targe
 
 已提交signal `conditional_damage_applied(fact)`携带action/root/cast/revision/position/target_handle/origin/base_damage/damage/applied_damage/bonus/effect_ids。仅正实损且满足条件时，在本步接触/状态队列处理后发布；清房会丢弃旧代数待发布事实；diagnostics增加conditional_hits/last_conditional，清房重置。MechanismView消费事实显示双语Label3D，大小/颜色/时长在mechanism_style Resource，关闭表现不影响规则。
 
-schema v7拒绝v6内容；contact_freeze只保留rank1，旧rank2状态被invalid_rank拒绝，不静默截断。无正式磁盘存档迁移。六个JSON预设全部经Session试提交；普通训练也开放预设菜单。训练及路线HUD通过skill_cooldown_text读取Q实际冷却，不维护第二份计时器。
+schema v7拒绝v6内容；contact_freeze只保留rank1，旧rank2状态被invalid_rank拒绝，不静默截断。无正式磁盘存档迁移。十个JSON预设全部经Session试提交；普通训练也开放预设菜单。训练及路线HUD通过skill_cooldown_text读取skill实际冷却（右键），不维护第二份计时器。
 
 ### 满蓄力剑气表现
 
 投射物事实新增charged布尔值，来自提交根的蓄力结果，仅根投射物携带；不根据当前输入或后续Build判断。表现规则可选requires_charged和size_per_radius，按提交事实选一次；当前满蓄力优先复用frost_wave及原演示比例。半径/伤害/蓄力时长/CD仍在prototype.json的charged_wave.ranks配置。短按不使用满蓄力表现，寒冰外观不授予冻结能力。
+
+## 首批扩展与品质接口入口
+
+- 五项执行内容：`returning_wave / charged_wave / shatter_heavy / frost_path / ice_coat`；定义与每级参数在 Build JSON，严格字段以 `game/data/schemas/build_prototype.schema.json` 为准。其余扩展仍是计划，不据此声明支持任意效果。
+- `content/builds/reward_groups_loader.gd`：`load_groups(catalog, manifest_path="res://data/manifest.json")->Dictionary`，`decode_groups(data,catalog)->Dictionary`；校验品质、升级和奖励来源引用。
+- `app/training_builds.gd` 在configure时加载品质定义、注入Session，并调用面板 `configure_reward_profiles`；`request_profile_offer(profile_id)`检查来源有效性/选择状态后请求候选，Session的 `open_offer(profile_id)`使用所选来源。
+- 训练品质入口已接入；完整Build目录浏览器尚未接入。五项行为与局限见[Build概览](BUILD_SYSTEM.md)，专项脚本见[验证索引](VALIDATION.md)。

@@ -1,6 +1,8 @@
 extends Node3D
 ## One-way adapter: reads confirmed actor state and manually samples skeletal clips.
 @export var style: Resource
+## 统一的角色光照材质（shared/toon 或 shared/pbr 的 character_material.tres）；保留模型自带贴图
+@export var skin_material: ShaderMaterial
 var animation: AnimationPlayer
 var selected_clip := ""
 var clip_clock := 0.0
@@ -8,8 +10,8 @@ var death_age := 0.0
 var _dead := false
 
 func _ready() -> void:
-	# 与临时角色统一光照模型和轮廓光，保留模型自带贴图
-	preload("res://presentation/shared/toon/toon_skin.gd").apply(self, preload("res://presentation/shared/toon/character_material.tres"), true)
+	# 与其他角色统一光照模型和轮廓光，保留模型自带贴图
+	preload("res://presentation/shared/toon/toon_skin.gd").apply(self, skin_material, true)
 
 func validate_assets() -> bool:
 	var player: AnimationPlayer = find_child("AnimationPlayer", true, false)

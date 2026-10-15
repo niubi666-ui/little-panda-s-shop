@@ -14,3 +14,12 @@ states = {
 "aiming": &"aim_hold"
 }
 blend_sec = 0.14
+move_min_speed = 0.15
+move_rate_min = 0.5
+move_rate_max = 1.8
+charge = &""
+attacks = {}
+attack_fallback = Array[StringName]([])
+attack_cuts = {}
+attack_blend_sec = 0.04
+react_blend_sec = 0.03

@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+[sub_resource type="Gradient" id="Gradient_ag3ds"]
+offsets = PackedFloat32Array(0, 0.72, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uvwgf"]
+gradient = SubResource("Gradient_ag3ds")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlv14"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_uvwgf")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_lxhus"]
+material = SubResource("StandardMaterial3D_nlv14")
+size = Vector2(0.16, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_8ptkx"]
+offsets = PackedFloat32Array(0, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_nlori"]
+colors = PackedColorArray(0.96, 0.52, 0.7, 1, 1, 0.86, 0.9, 1)
+
+[node name="KillPetals" type="CPUParticles3D" unique_id=1776843653]
+cast_shadow = 0
+emitting = false
+amount = 28
+lifetime = 1.1
+one_shot = true
+explosiveness = 0.95
+mesh = SubResource("QuadMesh_lxhus")
+emission_shape = 1
+emission_sphere_radius = 0.35
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0.4, -4.5, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 5.5
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+damping_min = 2.5
+damping_max = 4.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.7
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_8ptkx")
+color_initial_ramp = SubResource("Gradient_nlori")

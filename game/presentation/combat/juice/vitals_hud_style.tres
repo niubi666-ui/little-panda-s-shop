@@ -1,0 +1,47 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/juice/vitals_hud_style.gd" id="script"]
+
+[resource]
+script = ExtResource("script")
+bar_size = Vector2(320, 18)
+bottom_margin = 54.0
+frame_padding = 4.0
+frame_radius = 9
+frame_border = 2
+bar_radius = 5
+shadow_offset = Vector2(0, 3)
+shadow_color = Color(0, 0, 0, 0.35)
+min_fill_px = 6.0
+highlight_inset = Vector2(3, 2)
+highlight_height = 4.0
+highlight_color = Color(1, 1, 1, 0.22)
+health_color = Color(0.42, 0.86, 0.6, 1)
+low_color = Color(0.95, 0.32, 0.3, 1)
+trail_color = Color(1, 0.93, 0.8, 0.85)
+frame_color = Color(0.82, 0.68, 0.38, 1)
+back_color = Color(0.05, 0.1, 0.08, 0.82)
+low_health_ratio = 0.3
+low_pulse_speed = 9.0
+low_pulse_whiten = 0.25
+damage_flash_whiten = 0.7
+damage_flash_decay = 4.0
+trail_delay_sec = 0.35
+trail_speed = 0.6
+font_size = 15
+outline_size = 4
+outline_color = Color(0.03, 0.06, 0.05, 0.9)
+text_color = Color(1, 0.98, 0.92, 1)
+text_baseline_inset = 4.0
+row_gap = 9.0
+pip_size = Vector2(34, 7)
+pip_gap = 6.0
+pip_radius = 3
+pip_color = Color(0.98, 0.82, 0.42, 1)
+pip_charging_alpha = 0.45
+skill_size = Vector2(64, 7)
+skill_color = Color(0.55, 0.85, 1, 1)
+skill_charging_alpha = 0.45
+skill_label_font_size = 14
+skill_label_color = Color(0.8, 0.93, 1, 1)
+skill_label_gap = 6.0

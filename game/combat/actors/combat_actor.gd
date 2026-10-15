@@ -136,7 +136,12 @@ func configure(actor_def: Catalog.Actor, ability_defs: Array[Catalog.Ability], d
 	health = Health.new(definition.health)
 	motor = Motor.new(self)
 	if dodge != null: charges = dodge.charges
+	runner.cue_reached.connect(_on_cue_reached)
 	health.died.connect(_die)
+## 出手瞬间的前冲由技能配置决定（lunge_speed_mps / lunge_duration_sec），速度为 0 时不推。
+func _on_cue_reached(_cast_id: int, _ability_id: String) -> void:
+	if health.alive() and runner.ability.lunge_speed > 0.0:
+		motor.push(runner.direction, runner.ability.lunge_speed, runner.ability.lunge_duration)
 func request_attack() -> void:
 	request_action("primary")
 func request_skill() -> void:

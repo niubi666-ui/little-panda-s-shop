@@ -5,7 +5,6 @@ const TESSELLATION_SEGMENTS := 32
 const HitFeedback = preload("res://presentation/combat/hit_feedback.gd")
 const DamageNumbers = preload("res://presentation/combat/damage_numbers.gd")
 const AttackMotion = preload("res://presentation/combat/attack_motion.gd")
-const TelegraphShader = preload("res://presentation/combat/fx/telegraph.gdshader")
 var _sector_material: ShaderMaterial
 var _sector_shape := Vector2.ZERO
 var actor
@@ -179,10 +178,9 @@ func _finish_weapon_pose() -> void:
 	elif is_instance_valid(weapon_effect):
 		weapon_effect.set_active(false)
 func _draw_sector(radius: float, angle: float, color: Color, fill: float = 1.0, hot: float = 0.0) -> void:
-	# 扇形网格只在形状变化时重建；颜色与填充进度走材质参数。
+	# 扇形网格只在形状变化时重建；颜色与填充进度走材质参数。外观来自 training_style 的 sector_material。
 	if _sector_material == null:
-		_sector_material = ShaderMaterial.new()
-		_sector_material.shader = TelegraphShader
+		_sector_material = style.sector_material.duplicate()
 		sector.material_override = _sector_material
 	if not is_equal_approx(radius, _sector_shape.x) or not is_equal_approx(angle, _sector_shape.y):
 		_sector_shape = Vector2(radius, angle)
@@ -205,5 +203,3 @@ func _draw_sector(radius: float, angle: float, color: Color, fill: float = 1.0, 
 	_sector_material.set_shader_parameter("color", color)
 	_sector_material.set_shader_parameter("fill", fill)
 	_sector_material.set_shader_parameter("hot", hot)
-	_sector_material.set_shader_parameter("edge_soft", 0.06)
-	_sector_material.set_shader_parameter("rim", 0.03)

@@ -36,7 +36,6 @@ func run() -> void:
 		["elem_overload", ["primary", "skill"], "overload"],
 		["elem_lava", ["skill", "special"], "lava"],
 		["elem_superconduct", ["primary", "skill"], "superconduct"],
-		["elem_shatter", ["skill", "special"], "shatter"],
 		["elem_magnet", ["skill", "special"], "magnet"],
 	]
 	for case in cases:
@@ -46,6 +45,8 @@ func run() -> void:
 	await _discharge_case()
 	await _earth_case()
 	await _boost_cases()
+	await _frozen_shatter_case()
+	await _mastery_cases()
 	print("ELEMENT_REACTIONS ", JSON.stringify({"failures": failures, "facts": facts.size()}))
 	quit(0 if failures.is_empty() else 1)
 
@@ -162,3 +163,42 @@ func _boost_cases() -> void:
 	var stacks: Dictionary = arena.builds.runtime.elements.stacks_on(dummy.handle)
 	check(int(stacks.get("fire", 0)) > 5, "Blaze lets burn stack past 5 (got %s)" % stacks)
 	dummy.receive_hit(dummy.health.current + 1.0)
+
+## 冰寒叠满变成冻结后，土命中冻住的敌人仍触发碎冰，并消耗冻结
+func _frozen_shatter_case() -> void:
+	if not _apply("elem_shatter"): return
+	_recenter()
+	var dummy = await _dummy()
+	facts.clear()
+	for i in 3: await _attack(dummy, "skill")
+	var statuses = arena.builds.runtime.statuses
+	if not check(statuses.snapshot(dummy).has("test_freeze"), "three ice waves freeze before the earth hit"): return
+	facts.clear()
+	await _attack(dummy, "special")
+	check(facts.any(func(f): return f.event == "reaction" and f.reaction_id == "shatter"), "earth on a frozen enemy triggers shatter")
+	check(not statuses.snapshot(dummy).has("test_freeze"), "shatter consumes the freeze")
+	dummy.receive_hit(dummy.health.current + 1.0)
+
+## 同元素专精：冰冻住的瞬间冰爆、火叠满时焚爆；波及旁边的敌人并扩散元素
+func _mastery_cases() -> void:
+	for case in [["elem_ice_mastery", "skill", 3, "ice"], ["elem_fire_mastery", "primary", 6, "fire"]]:
+		if not _apply(case[0]): continue
+		_recenter()
+		var dummy = await _dummy()
+		var second = arena._spawn(arena.catalog.actor("scout"), dummy.global_position + Vector3(1.4, 0, -0.4), 1)
+		arena._register_enemy_brain(second)
+		second.health.maximum = 5000.0
+		second.health.current = 5000.0
+		facts.clear()
+		for i in int(case[2]):
+			if facts.any(func(f): return f.event == "mastery"): break
+			second.global_position = player.global_position + Vector3(1.4, 0, -2.2)
+			await _attack(dummy, case[1])
+		check(facts.any(func(f): return f.event == "mastery" and f.element == case[3]), "%s mastery bursts" % case[3])
+		check(second.health.current < 5000.0, "%s mastery hits a nearby enemy" % case[3])
+		dummy.receive_hit(dummy.health.current + 1.0)
+		second.receive_hit(second.health.current + 1.0)
+
+## 前面的用例出招前冲会把玩家推到场地边上：拉回中间
+func _recenter() -> void:
+	player.global_position = Vector3(0, player.global_position.y, 0)

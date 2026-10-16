@@ -55,6 +55,9 @@ msgstr "生成新地图"
 msgid "map_preview.notice"
 msgstr "地图预览 · 点击节点查看信息"
 
+msgid "map_preview.run_subtitle"
+msgstr "本局路线 · 红圈是你所在的房间，黄圈是下一步能去的房间"
+
 msgid "map_preview.seed"
 msgstr "地图种子"
 

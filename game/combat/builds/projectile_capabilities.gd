@@ -125,10 +125,15 @@ static func summarize_plan(catalog, plan: Dictionary) -> Array:
 			if effect.type == "split" and supports_split(attack.projectile, effect.params): result.append({"attack_id": str(attack.attack_id) + "/split/" + str(effect.upgrade_id), "action_id": plan.action_id, "projectile": catalog.projectile(attack.projectile.child_id), "origin": "split_projectile"})
 	for attack in result:
 		attack.status_ids = []
+		# Potential windows include elemental buildup; they are not immediate status payloads.
+		attack.freeze_window_ids = []
 		attack.area_effects = []
 		attack.modifiers = []
 		for effect in plan.effects:
 			if effect.type == "status" and supports_impact(attack.origin, effect.params): attack.status_ids.append(effect.params.status_id)
+			if effect.type == "element" and catalog.has_elements():
+				var freeze_id: String = catalog.element(effect.params.element_id).freeze_status_id
+				if not freeze_id.is_empty() and not attack.freeze_window_ids.has(freeze_id): attack.freeze_window_ids.append(freeze_id)
 			if effect.type in ["pierce", "split"] and not attack.projectile.is_empty():
 				var supported := supports_pierce(attack.projectile, effect.params) if effect.type == "pierce" else supports_split(attack.projectile, effect.params)
 				if supported: attack.modifiers.append(effect.type)
@@ -138,6 +143,10 @@ static func summarize_plan(catalog, plan: Dictionary) -> Array:
 					if payload.type == "apply_status" and payload.allowed_origins.has(attack.origin): area.status_ids.append(payload.status_id)
 				attack.area_effects.append(area)
 	for attack in result:
+		var provided: Array = attack.status_ids.duplicate()
+		for area in attack.area_effects: provided.append_array(area.status_ids)
+		for id in provided:
+			if catalog.status(id).kind == "freeze" and not attack.freeze_window_ids.has(id): attack.freeze_window_ids.append(id)
 		for id in attack.status_ids.duplicate():
 			var linked: String = catalog.status(id).linked_mark_id
 			if not linked.is_empty() and not attack.status_ids.has(linked): attack.status_ids.append(linked)
@@ -191,9 +200,7 @@ static func eligible_for_action(entry: Dictionary, catalog, program: Dictionary,
 			if provider.test_only: continue
 			if entry.effect_type != "consume_freeze" and provider.id != action_id: continue
 			for attack in summarize_plan(catalog, program.actions[provider.id]):
-				var ids: Array = attack.status_ids.duplicate()
-				for area in attack.area_effects: ids.append_array(area.status_ids)
-				if ids.any(func(id): return catalog.status(id).kind == "freeze"): return true
+				if not attack.freeze_window_ids.is_empty(): return true
 		return false
 	if entry.effect_type != "conditional_damage": return eligible(entry, summary)
 	var params: Dictionary = entry.ranks[0]
@@ -204,7 +211,5 @@ static func eligible_for_action(entry: Dictionary, catalog, program: Dictionary,
 		if params.provider_scope == "same_action" and provider.id != action_id: continue
 		if params.provider_scope == "other_formal_action" and provider.id == action_id: continue
 		for attack in summarize_plan(catalog, program.actions[provider.id]):
-			if attack.status_ids.has(params.status_id): return true
-			for area in attack.area_effects:
-				if area.status_ids.has(params.status_id): return true
+			if attack.freeze_window_ids.has(params.status_id): return true
 	return false

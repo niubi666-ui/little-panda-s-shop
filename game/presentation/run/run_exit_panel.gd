@@ -40,7 +40,7 @@ func set_info(text: String) -> void:
 func is_open() -> bool:
 	return is_instance_valid(_overlay)
 
-## options：[{kind, element, title, detail}]
+## options：[{kind, title, detail, disabled（可选）}]
 func show_exits(title: String, options: Array) -> void:
 	_open_overlay()
 	var column := _column(title)
@@ -76,7 +76,10 @@ func show_result(title: String, body: String) -> void:
 		row.add_child(button)
 
 func close() -> void:
-	if is_instance_valid(_overlay): _overlay.queue_free()
+	# 立刻摘下旧面板，避免同一帧里旧按钮还能被点到
+	if is_instance_valid(_overlay):
+		remove_child(_overlay)
+		_overlay.queue_free()
 	_overlay = null
 
 func _open_overlay() -> void:
@@ -135,6 +138,9 @@ func _card(option: Dictionary, index: int) -> Button:
 		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		layout.add_child(label)
 	button.pressed.connect(func(): exit_chosen.emit(index))
+	if option.get("disabled", false):
+		button.disabled = true
+		button.modulate = style.disabled_tint
 	return button
 
 func _color(option: Dictionary) -> Color:

@@ -10,12 +10,18 @@ var _layout_plan: Dictionary = {}
 var _layout_extent := Vector2.ZERO
 var selected := ""
 var hovered := ""
+## 一局冒险的进度：{current, visited, reachable}；地图预览模式为空
+var progress: Dictionary = {}
 
 func configure(value: Resource) -> void:
 	style = value
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	resized.connect(_layout)
 	mouse_exited.connect(func(): hovered = ""; queue_redraw())
+
+func set_progress(value: Dictionary) -> void:
+	progress = value
+	queue_redraw()
 
 func show_plan(value: Dictionary) -> void:
 	plan = value
@@ -65,8 +71,10 @@ func _draw() -> void:
 		var padding: float = (custom_minimum_size.y - (int(plan.rows) - 1) * style.row_pitch) / 2.0
 		var y: float = padding + (int(plan.rows) - 1 - layer) * style.row_pitch
 		draw_string(font, Vector2(style.gap, y), "%02d" % (layer + 1), HORIZONTAL_ALIGNMENT_LEFT, -1, style.small_size, style.muted)
+	var walked: Array = progress.get("visited", [])
 	for path in visual_layout.paths:
-		_draw_path(path.points, selected in [path.from, path.to] or hovered in [path.from, path.to])
+		var travelled: bool = walked.has(path.from) and walked.has(path.to)
+		_draw_path(path.points, travelled or selected in [path.from, path.to] or hovered in [path.from, path.to])
 	for node in plan.nodes:
 		var point: Vector2 = positions[node.id]
 		if node.id == selected or node.id == hovered:
@@ -74,6 +82,12 @@ func _draw() -> void:
 		draw_circle(point, style.node_radius, style.node_colors[node.kind], true, -1, true)
 		var icon_extent: Vector2 = Vector2.ONE * style.icon_size
 		draw_texture_rect(style.icons[node.kind], Rect2(point - icon_extent / 2.0, icon_extent), false)
+		if walked.has(node.id) and node.id != progress.get("current", ""):
+			draw_circle(point, style.node_radius, style.visited_dim, true, -1, true)
+		if node.id == progress.get("current", ""):
+			draw_circle(point, style.node_radius + style.progress_ring_width * 1.5, style.current_color, false, style.progress_ring_width, true)
+		elif progress.get("reachable", []).has(node.id):
+			draw_circle(point, style.node_radius + style.progress_ring_width * 1.5, style.reachable_color, false, style.progress_ring_width, true)
 		var caption := tr("map_preview.kind." + node.kind)
 		var caption_size := font.get_string_size(caption, HORIZONTAL_ALIGNMENT_LEFT, -1, style.node_font_size)
 		var caption_origin: Vector2 = point + Vector2(-caption_size.x / 2.0, style.node_radius)

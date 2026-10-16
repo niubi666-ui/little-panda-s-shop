@@ -38,10 +38,13 @@ func tick(delta: float, runtime) -> void:
 		path.remaining -= delta
 		if path.remaining <= 0.0 or not runtime._roots.has(path.root_id): paths.remove_at(i); continue
 		var context: Dictionary = runtime._roots[path.root_id]
+		var affected := 0
 		for target in runtime._valid_targets(context):
+			if affected >= int(path.params.max_targets): break
 			var offset: Vector3 = target.global_position - path.position; offset.y = 0.0
 			if offset.length_squared() <= float(path.params.radius_m) * float(path.params.radius_m):
 				runtime._apply_status(context, target, path.params.status_id, path.params.duration_sec)
+				affected += 1
 
 func clear(player) -> void:
 	paths.clear()

@@ -49,8 +49,11 @@ def validate_enemies(manifest):
             if team['name_key'] not in read_json(DATA/f'locales/{lang}.json')['messages']:raise ValueError('encounter translation')
         costs.append((sum(profiles[i]['budget_cost'] for i in ids),len(ids)))
     previous_depth=0;previous_budget=0
+    previous_boss_health=0;previous_boss_damage=0
     for band in enc['depth_bands']:
         if band['min_depth']<=previous_depth or band['budget']<previous_budget:raise ValueError('depth/budget must ascend')
+        if band['boss_health_multiplier']<previous_boss_health or band['boss_damage_multiplier']<previous_boss_damage:raise ValueError('depth band boss strength must not decrease')
+        previous_boss_health,previous_boss_damage=band['boss_health_multiplier'],band['boss_damage_multiplier']
         previous_depth,previous_budget=band['min_depth'],band['budget']
         if not any(band['budget']*enc['minimum_budget_fraction']<=cost<=band['budget'] and count<=band['max_enemies'] for cost,count in costs):raise ValueError('empty legal encounter band')
     if enc['depth_bands'][0]['min_depth']!=1 or enc['training_depth']>enc['training_max_depth']:raise ValueError('training depth')

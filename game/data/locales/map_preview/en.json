@@ -3,6 +3,7 @@
   "messages": {
     "map_preview.title": "Adventure map",
     "map_preview.subtitle": "Follow the forest paths into the unknown",
+    "map_preview.run_subtitle": "This run's route · red ring: you are here, yellow: where you can go next",
     "map_preview.seed": "Map seed",
     "map_preview.apply": "Generate from seed",
     "map_preview.new": "New map",

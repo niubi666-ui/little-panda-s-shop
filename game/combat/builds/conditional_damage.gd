@@ -16,6 +16,8 @@ static func evaluate(context: Dictionary, target, base_damage: float, origin: St
 		if source.runtime_id != runtime_id or source.room_generation != context.room_generation: continue
 		if source.source_handle != context.source_handle or source.team != context.team: continue
 		if not catalog.has_action(source.action_id) or catalog.action(source.action_id).test_only: continue
+		if params.provider_scope == "same_action" and source.action_id != context.action_id: continue
+		if params.provider_scope == "other_formal_action" and source.action_id == context.action_id: continue
 		if int(source.root_id) >= int(context.id): continue
 		result.bonus += float(params.bonus)
 		result.effect_ids.append(effect.upgrade_id)

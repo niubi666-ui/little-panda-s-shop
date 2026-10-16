@@ -15,7 +15,9 @@ const EFFECT_FIELDS := {
 	"consume_freeze": ["status_id", "bonus", "max_targets"],
 	"projectile_path": ["status_id", "spacing_m", "radius_m", "lifetime_sec", "duration_sec", "max_targets"],
 	"freeze_shield": ["shield_amount", "duration_sec", "trigger_cooldown_sec"],
-	"element": ["element_id", "stacks_per_hit"],
+	"element": ["element_id", "stacks_per_hit", "damage_bonus"],
+	"element_mastery": ["element_id", "trigger", "damage", "damage_per_stack", "radius_m", "max_targets", "spread_stacks", "consume"],
+	"reach_scale": ["bonus"],
 	"element_boost": ["element_id", "field", "add"],
 	"reaction_boost": ["reaction_id", "damage_bonus", "radius_bonus_m"],
 
@@ -83,11 +85,13 @@ func load_catalog(manifest_path: String = "res://data/manifest.json") -> Catalog
 				"element":
 					if not elements.elements.has(rank.element_id): errors.append("build.upgrades." + entry.id + ": unknown element " + str(rank.element_id))
 					elif int(rank.stacks_per_hit) > int(elements.elements[rank.element_id].max_stacks): errors.append("build.upgrades." + entry.id + ": stacks_per_hit exceeds element max_stacks")
-				"element_boost":
+				"element_boost", "element_mastery":
 					if not elements.elements.has(rank.element_id): errors.append("build.upgrades." + entry.id + ": unknown element " + str(rank.element_id))
-					elif not ElementsLoader.BOOSTABLE.has(rank.field): errors.append("build.upgrades." + entry.id + ": element field cannot be boosted: " + str(rank.field))
+					elif entry.effect_type == "element_boost" and not ElementsLoader.BOOSTABLE.has(rank.field): errors.append("build.upgrades." + entry.id + ": element field cannot be boosted: " + str(rank.field))
 				"reaction_boost":
 					if not elements.reactions.any(func(r): return r.id == rank.reaction_id): errors.append("build.upgrades." + entry.id + ": unknown reaction " + str(rank.reaction_id))
+		if not str(entry.required_element).is_empty() and not elements.elements.has(entry.required_element):
+			errors.append("build.upgrades." + entry.id + ": unknown required_element " + str(entry.required_element))
 	if not errors.is_empty(): return null
 	catalog.set_elements(elements)
 	return catalog
@@ -182,9 +186,13 @@ func _validate_stats(value: Variant) -> void:
 
 
 func _validate_upgrade(value: Variant, path: String) -> void:
-	var fields := ["id", "name_key", "description_key", "weight", "max_rank", "requires", "excludes", "required_tags", "granted_tags", "effect_type", "ranks", "scope", "layer", "action_ids", "test_only"]
+	var fields := ["id", "name_key", "description_key", "weight", "max_rank", "requires", "excludes", "required_tags", "granted_tags", "required_element", "required_element_actions", "effect_type", "ranks", "scope", "layer", "action_ids", "test_only"]
 	if not _object(value, fields, path):
 		return
+	# 元素条件：至少 required_element_actions 个按键带 required_element（同元素专精要求 2）
+	if not value.required_element is String: errors.append(path + ".required_element: expected string")
+	elif _integer(value.required_element_actions, 0, 3, path + ".required_element_actions") and value.required_element.is_empty() != (int(value.required_element_actions) == 0):
+		errors.append(path + ": required_element and required_element_actions must be set together")
 	if value.scope not in ["global", "action"]: errors.append(path + ": unsupported scope")
 	if value.layer not in ["form", "core", "support", "synergy"]: errors.append(path + ": unsupported layer")
 	if not value.test_only is bool: errors.append(path + ": test_only must be boolean")
@@ -224,7 +232,7 @@ func _validate_upgrade(value: Variant, path: String) -> void:
 						for origin in rank[key]:
 							if origin not in ["direct_melee", "direct_projectile", "split_projectile"]: errors.append(rank_path + ": forbidden origin")
 				"max_per_parent", "max_per_root": _integer(rank[key], 1, 32, rank_path + "." + key)
-				"max_targets": _integer(rank[key], 1, 64, rank_path + "." + key)
+				"max_targets": _integer(rank[key], 0 if value.effect_type == "element_mastery" else 1, 64, rank_path + "." + key)
 				"include_primary":
 					if not rank[key] is bool: errors.append(rank_path + ": include_primary must be boolean")
 				"occlusion":
@@ -236,14 +244,20 @@ func _validate_upgrade(value: Variant, path: String) -> void:
 				"add": _number(rank[key], -20, 100, rank_path + ".add")
 				"stacks_per_hit": _integer(rank[key], 1, 20, rank_path + "." + key)
 				"trigger":
-					if rank[key] != "enemy_contact": errors.append(rank_path + ": unsupported trigger")
+					if value.effect_type == "element_mastery":
+						if rank[key] not in ["full_stacks", "discharge"]: errors.append(rank_path + ": unsupported mastery trigger")
+					elif rank[key] != "enemy_contact": errors.append(rank_path + ": unsupported trigger")
+				"damage", "damage_per_stack": _number(rank[key], 0.0, 1000.0, rank_path + "." + key)
+				"spread_stacks": _integer(rank[key], 0, 20, rank_path + "." + key)
+				"consume":
+					if not rank[key] is bool: errors.append(rank_path + ": consume must be boolean")
 				"scope":
 					if rank[key] != "linear_projectile": errors.append(rank_path + ": unsupported scope")
 				"bonus": _number(rank[key], 0, 3 if value.effect_type == "status_duration" else 10, rank_path + ".bonus")
 				"count", "jumps", "max_generation", "max_hits":
 					_integer(rank[key], 1, 32, rank_path + "." + key)
 				"radius_m":
-					_number(rank[key], 0.0, 10.0, rank_path + "." + key, true)
+					_number(rank[key], 0.0, 20.0 if value.effect_type == "element_mastery" else 10.0, rank_path + "." + key, value.effect_type != "element_mastery")
 				"falloff", "edge_ratio":
 					_number(rank[key], 0.0, 1.0, rank_path + "." + key)
 				"spread_deg":
@@ -593,6 +607,13 @@ func _validate_presets(data: Dictionary) -> void:
 				if not satisfied: errors.append("test_preset: missing bound prerequisite")
 			for excluded in entry.excludes:
 				if selected.has(str(selection.action_id) + ":" + str(excluded)): errors.append("test_preset: excluded bound upgrade")
+			if int(entry.required_element_actions) > 0:
+				var carriers := 0
+				for other in preset.selections:
+					if not other is Dictionary or not entries.has(other.get("upgrade_id", "")): continue
+					var owned: Dictionary = entries[other.upgrade_id]
+					if owned.effect_type == "element" and owned.ranks[int(other.rank) - 1].element_id == entry.required_element: carriers += 1
+				if carriers < int(entry.required_element_actions): errors.append("test_preset: missing element requirement")
 
 		if errors.is_empty(): _validate_preset_capabilities(data, preset, entries)
 
@@ -700,14 +721,16 @@ func _validate_actions(data: Dictionary) -> void:
 		elif forms[actions[attack.action_id].base_form_id].projectile_id != attack.projectile_id: errors.append("test attack projectile disagrees with debug form")
 	for entry in data.upgrades:
 		if entry.scope == "global":
-			if not entry.action_ids.is_empty() or entry.layer != "support" or entry.effect_type not in ["damage_scale", "move_scale", "element_boost", "reaction_boost"]:
+			if not entry.action_ids.is_empty() or entry.layer != "support" or entry.effect_type not in ["damage_scale", "move_scale", "element_boost", "reaction_boost", "element_mastery"]:
 				errors.append("global supports only unbound numeric actor stats")
+		elif entry.effect_type == "element_mastery":
+			errors.append("element mastery must be global")
 		else:
 			if entry.action_ids.is_empty() or entry.effect_type == "move_scale": errors.append("action scope needs targets and cannot change actor movement")
 			for id in entry.action_ids:
 				if not actions.has(id): errors.append("unknown upgrade action")
 				elif entry.test_only and not actions[id].test_only: errors.append("debug upgrade cannot target formal action")
-		var expected_layer: String = "form" if entry.effect_type == "form" else ("core" if entry.effect_type in ["status", "explosion", "element"] else ("synergy" if entry.effect_type == "area_status" else "support"))
+		var expected_layer: String = "form" if entry.effect_type == "form" else ("core" if entry.effect_type in ["status", "element"] else ("synergy" if entry.effect_type == "area_status" else "support"))
 		if entry.effect_type == "conditional_damage":
 			expected_layer = "synergy" if entry.ranks[0].provider_scope == "other_formal_action" else "support"
 			for id in entry.action_ids:

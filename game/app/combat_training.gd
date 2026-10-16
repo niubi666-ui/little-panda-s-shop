@@ -335,7 +335,7 @@ func _spawn_wave(ids: Array) -> void:
 	for index in ids.size():
 		var actor := _spawn(catalog.actor(ids[index]), _enemy_spawns[index], 1)
 		var wave: Dictionary = encounter_plan.waves[encounter.wave_index] if not encounter_plan.is_empty() else {}
-		if encounter_plan.get("training_progression", false):
+		if encounter_plan.get("training_progression", false) or encounter_plan.has("run_boss"):
 			actor.health.maximum *= float(wave.health_multiplier)
 			actor.health.current = actor.health.maximum
 			for ability_index in actor.attacks.size():
@@ -347,7 +347,7 @@ func _spawn_wave(ids: Array) -> void:
 			enemy_loot_ready.emit(spawn_id, dead.definition.id, drops.duplicate(true))
 			encounter.enemy_killed(dead.handle))
 		var profile: Dictionary = enemy_catalog.profile(actor.definition.id).duplicate(true)
-		if encounter_plan.get("training_progression", false):
+		if encounter_plan.get("training_progression", false) or encounter_plan.has("run_boss"):
 			for field in profile.config:
 				if field == "damage" or field.ends_with("_damage"):
 					profile.config[field] *= float(wave.damage_multiplier)

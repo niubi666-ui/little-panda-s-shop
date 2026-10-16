@@ -34,6 +34,12 @@ msgstr "This action gains {bonus_percent}% attack damage. It adds to global dama
 msgid "build.action_power.name"
 msgstr "Focused edge"
 
+msgid "build.awakening.subtitle"
+msgstr "Infuse an action that has no element yet; it shapes this run"
+
+msgid "build.awakening.title"
+msgstr "Elemental Awakening"
+
 msgid "build.choose"
 msgstr "Choose upgrade"
 
@@ -83,7 +89,7 @@ msgid "build.element_boost.dual_overload.name"
 msgstr "Thunderfire"
 
 msgid "build.element_boost.dual_shatter.description"
-msgstr "Shatter deals {damage_bonus_percent}% more damage; radius +{radius_bonus_m}m."
+msgstr "Freeze first, then hit with earth to shatter (a boss frost slow window also counts). Shatter deals {damage_bonus_percent}% more damage; radius +{radius_bonus_m}m."
 
 msgid "build.element_boost.dual_shatter.name"
 msgstr "Glacier"
@@ -203,13 +209,13 @@ msgid "build.frost.charged_wave.name"
 msgstr "Charged Frost"
 
 msgid "build.frost.frost_path.description"
-msgstr "A freeze-capable wave leaves a temporary slowing trail without damage."
+msgstr "Requires RMB freeze capability, such as ice attunement. Waves leave a trail lasting {lifetime_sec}s with radius {radius_m}m. The trail only slows; it cannot freeze. Split children do not create trails."
 
 msgid "build.frost.frost_path.name"
 msgstr "Frost Path"
 
 msgid "build.frost.ice_coat.description"
-msgstr "Successfully applying a frost window (hard freeze or boss slow) grants a temporary, non-stacking damage shield."
+msgstr "Requires RMB freeze capability, such as ice attunement. Successfully opening a freeze or boss frost slow window with RMB grants {shield_amount} shield for {duration_sec}s, with a {trigger_cooldown_sec}s trigger cooldown. Chill buildup and resisted freeze attempts do not grant protection."
 
 msgid "build.frost.ice_coat.name"
 msgstr "Ice Coat"
@@ -250,6 +256,54 @@ msgstr "Support"
 msgid "build.layer.synergy"
 msgstr "Synergy"
 
+msgid "build.mastery.earth_burst.description"
+msgstr "Needs two Earth actions. Full Sunder splits the ground: {damage} damage (+{damage_per_stack} per stack) to {max_targets} foes within {radius_m} m, applying {spread_stacks} Sunder."
+
+msgid "build.mastery.earth_burst.name"
+msgstr "Earthsplit (Earth Mastery)"
+
+msgid "build.mastery.earth_weight.description"
+msgstr "Needs two Earth actions. Each Sunder stack adds +{add_percent}% damage taken."
+
+msgid "build.mastery.earth_weight.name"
+msgstr "Mountain Resonance (Earth Mastery)"
+
+msgid "build.mastery.fire_burst.description"
+msgstr "Needs two Fire actions. Full Burn detonates: {damage} damage (+{damage_per_stack} per stack), hitting {max_targets} foes within {radius_m} m and applying {spread_stacks} Burn."
+
+msgid "build.mastery.fire_burst.name"
+msgstr "Conflagration (Fire Mastery)"
+
+msgid "build.mastery.fire_heat.description"
+msgstr "Needs two Fire actions. Burn damage per stack per tick +{add}."
+
+msgid "build.mastery.fire_heat.name"
+msgstr "Fire Resonance (Fire Mastery)"
+
+msgid "build.mastery.ice_burst.description"
+msgstr "Needs two Ice actions. Freezing a foe bursts shards: {damage} damage (+{damage_per_stack} per stack) to {max_targets} foes within {radius_m} m, applying {spread_stacks} Chill."
+
+msgid "build.mastery.ice_burst.name"
+msgstr "Ice Burst (Ice Mastery)"
+
+msgid "build.mastery.ice_cold.description"
+msgstr "Needs two Ice actions. Each Chill stack adds +{add_percent}% damage taken."
+
+msgid "build.mastery.ice_cold.name"
+msgstr "Deep Cold (Ice Mastery)"
+
+msgid "build.mastery.thunder_burst.description"
+msgstr "Needs two Thunder actions. Discharges arc to {max_targets} foes within {radius_m} m: {damage} damage and Shock, chaining onward."
+
+msgid "build.mastery.thunder_burst.name"
+msgstr "Thunder Surge (Thunder Mastery)"
+
+msgid "build.mastery.thunder_storm.description"
+msgstr "Needs two Thunder actions. Discharge damage +{add}."
+
+msgid "build.mastery.thunder_storm.name"
+msgstr "Storm Resonance (Thunder Mastery)"
+
 msgid "build.next"
 msgstr "Upgrade to rank {rank}"
 
@@ -257,7 +311,7 @@ msgid "build.no_candidates"
 msgstr "No further compatible upgrades are available."
 
 msgid "build.opening_strike.description"
-msgstr "LMB direct hits deal +{bonus_percent}% damage to targets in an active frost window (hard freeze or boss slow) from your earlier independent cast. Requires another regular action to deliver freeze. Does not end or refresh freeze or amplify derived damage."
+msgstr "LMB direct hits deal +{bonus_percent}% damage during a frost window (freeze or boss frost slow) established by your earlier independent cast of another formal action. LMB-created windows do not count. Does not consume freeze or boost blasts."
 
 msgid "build.opening_strike.name"
 msgstr "Opening Strike"
@@ -291,6 +345,12 @@ msgstr "Charged burst"
 
 msgid "build.preset.elem_fire_build"
 msgstr "Fire build: fire attack + fire heavy + Embers + Blaze"
+
+msgid "build.preset.elem_fire_mastery"
+msgstr "Fire mastery: Fire primary + Fire heavy + Conflagration"
+
+msgid "build.preset.elem_ice_mastery"
+msgstr "Ice mastery: Ice primary + Ice wave + Ice Burst"
 
 msgid "build.preset.elem_lava"
 msgstr "Lava: fire wave + earth heavy"
@@ -364,6 +424,9 @@ msgstr "Action build presets"
 msgid "build.rank"
 msgstr "Rank {rank} / {max_rank}"
 
+msgid "build.rarity.awakening"
+msgstr "Awakening"
+
 msgid "build.rarity.common"
 msgstr "Common"
 
@@ -375,6 +438,18 @@ msgstr "Legendary"
 
 msgid "build.rarity.rare"
 msgstr "Rare"
+
+msgid "build.reach.primary.description"
+msgstr "Primary attack reach +{bonus_percent}%."
+
+msgid "build.reach.primary.name"
+msgstr "Long Blade"
+
+msgid "build.reach.special.description"
+msgstr "Heavy attack reach +{bonus_percent}%."
+
+msgid "build.reach.special.name"
+msgstr "Wide Sweep"
 
 msgid "build.reason.capability"
 msgstr "This action lacks the required carrier. Other actions and the debug arrow cannot unlock it."
@@ -415,11 +490,11 @@ msgstr "Removed effect: {effect}"
 msgid "build.replaces"
 msgstr "Replaces: {name} (rank {rank})"
 
+msgid "build.reward.area_boss"
+msgstr "Area boss reward"
+
 msgid "build.reward.boss_room"
 msgstr "Boss room reward"
-
-msgid "build.reward.close"
-msgstr "Close (keep choices)"
 
 msgid "build.reward.elite_room"
 msgstr "Elite room reward"
@@ -434,7 +509,7 @@ msgid "build.reward.training_all"
 msgstr "All training cards"
 
 msgid "build.shatter_followup.description"
-msgstr "RMB direct hits deal +{bonus_percent}% damage to targets in an active frost window (hard freeze or boss slow) from your earlier independent cast. Requires RMB to deliver freeze. Does not end or refresh freeze; split and blast damage are unaffected."
+msgstr "RMB waves deal +{bonus_percent}% direct damage during a frost window (freeze or boss frost slow) from your earlier independent RMB cast. The same cast and its return cannot follow themselves. Does not consume or refresh freeze; split and blast damage are unaffected. Requires RMB freeze capability, such as ice attunement."
 
 msgid "build.shatter_followup.name"
 msgstr "Shatter Follow-up"
@@ -519,6 +594,18 @@ msgstr "Test: offer upgrades"
 
 msgid "build.title"
 msgstr "Choose a build upgrade"
+
+msgid "build.training.grant_hint"
+msgstr "Training only: grant one eligible card without replacing a core. Adventure still uses normal rewards."
+
+msgid "build.training.grant_item"
+msgstr "{action} · {name} · Rank {rank}"
+
+msgid "build.training.grant_title"
+msgstr "Grant one card (training)"
+
+msgid "build.training.granted"
+msgstr "Training granted: {name}"
 
 msgid "combat.banner"
 msgstr "Warlord Banner"
@@ -645,6 +732,18 @@ msgstr "Fire"
 
 msgid "element.ice.name"
 msgstr "Ice"
+
+msgid "element.mastery.earth"
+msgstr "Earthsplit"
+
+msgid "element.mastery.fire"
+msgstr "Conflagration"
+
+msgid "element.mastery.ice"
+msgstr "Ice Burst"
+
+msgid "element.mastery.thunder"
+msgstr "Thunder Surge"
 
 msgid "element.reaction.lava"
 msgstr "Lava!"
@@ -793,6 +892,18 @@ msgstr "Searched · {name}"
 msgid "room.seed"
 msgstr "Room seed: {seed}"
 
+msgid "run.area.forest_1"
+msgstr "Fairy Forest · Edge"
+
+msgid "run.area.forest_2"
+msgstr "Fairy Forest · Depths"
+
+msgid "run.area.forest_3"
+msgstr "Fairy Forest · Elder Grove"
+
+msgid "run.button.leave"
+msgstr "Leave"
+
 msgid "run.button.new_run"
 msgstr "New run"
 
@@ -800,7 +911,7 @@ msgid "run.button.shop"
 msgstr "Back to shop"
 
 msgid "run.defeat.body"
-msgstr "Cleared {rooms} rooms, {gold} gold"
+msgstr "Fell in area {area} with {gold} gold"
 
 msgid "run.defeat.title"
 msgstr "You fell"
@@ -853,20 +964,95 @@ msgstr "This node is not reachable now. Choose an available node."
 msgid "run.error.wrong_phase"
 msgstr "This action is unavailable in the current phase."
 
-msgid "run.exit.first"
-msgstr "Choose your first blessing"
+msgid "run.event.awakening"
+msgstr "Ancient Altar"
+
+msgid "run.event.awakening_detail"
+msgstr "Touch the altar: Elemental Awakening (rare)"
+
+msgid "run.event.blood_card"
+msgstr "Thorned Vines"
+
+msgid "run.event.blood_card_detail"
+msgstr "Lose {cost} health for a pick of 3 high-rarity cards"
+
+msgid "run.event.card"
+msgstr "Lost Traveller"
+
+msgid "run.event.card_detail"
+msgstr "Show the way; pick 1 of 3 build cards"
+
+msgid "run.event.gold"
+msgstr "Buried Purse"
+
+msgid "run.event.gold_detail"
+msgstr "Gold +{gold}"
+
+msgid "run.event.heal"
+msgstr "Clear Spring"
+
+msgid "run.event.heal_detail"
+msgstr "Take a sip: heal +{heal}"
+
+msgid "run.event.leave_detail"
+msgstr "Do nothing and move on"
+
+msgid "run.event.title"
+msgstr "Forest Event"
+
+msgid "run.exit.area_start"
+msgstr "{area}: choose the first room (M for map)"
+
+msgid "run.exit.battle_detail"
+msgstr "On clear: pick 1 of 3 build cards"
+
+msgid "run.exit.boss_detail"
+msgstr "Defeat it to move on; rewards high-rarity cards"
+
+msgid "run.exit.boss_detail_awakening"
+msgstr "Defeat it to move on; rewards your second Elemental Awakening"
+
+msgid "run.exit.boss_detail_final"
+msgstr "Defeat it to finish the adventure"
+
+msgid "run.exit.elite_detail"
+msgstr "Tougher foes; on clear: pick 1 of 3 high-rarity cards"
+
+msgid "run.exit.event_detail"
+msgstr "Random event: gold, healing, cards, even an awakening"
+
+msgid "run.exit.rest_detail"
+msgstr "Heal, or rank up a card you own"
+
+msgid "run.exit.shop_detail"
+msgstr "Spend gold on cards, upgrades or healing"
+
+msgid "run.exit.side.left"
+msgstr " · left"
+
+msgid "run.exit.side.middle"
+msgstr " · middle"
+
+msgid "run.exit.side.right"
+msgstr " · right"
 
 msgid "run.exit.title"
-msgstr "Choose the next room"
+msgstr "Choose the next room (M for map)"
 
-msgid "run.info.boss"
-msgstr "Room {index}/{total} · Boss · Gold {gold}"
+msgid "run.exit.treasure_detail"
+msgstr "Rank up a card; rarely an Elemental Awakening"
 
-msgid "run.info.lobby"
-msgstr "Adventure begins: choose your first blessing"
+msgid "run.info.bar"
+msgstr "{area} · {layer} · {room} · Gold {gold} · Awakenings {awakenings}"
 
-msgid "run.info.room"
-msgstr "Room {index}/{total} · Clear reward: {reward} · Gold {gold}"
+msgid "run.info.boss_layer"
+msgstr "Boss"
+
+msgid "run.info.entrance"
+msgstr "entrance"
+
+msgid "run.info.layer"
+msgstr "floor {index}/{rows}"
 
 msgid "run.kind.battle"
 msgstr "Battle"
@@ -876,6 +1062,9 @@ msgstr "Elite battle"
 
 msgid "run.kind.terminal"
 msgstr "Final test fight"
+
+msgid "run.map.area_title"
+msgstr "{area} (area {index}/{total})"
 
 msgid "run.map.build_hint"
 msgstr "Test build carries between rooms. No room rewards in this slice."
@@ -931,23 +1120,14 @@ msgstr "Run defeated"
 msgid "run.phase.map"
 msgstr "Choose a route"
 
+msgid "run.rest.title"
+msgstr "Rest by the fire"
+
 msgid "run.restart"
 msgstr "Restart this run"
 
 msgid "run.return_map"
 msgstr "Return to route map"
-
-msgid "run.reward.boon"
-msgstr "Blessing of {element}"
-
-msgid "run.reward.boon_detail"
-msgstr "Pick 1 of 3 after clearing: an infusion, passive or dual card of this element"
-
-msgid "run.reward.boss"
-msgstr "Boss: Elite Ranger"
-
-msgid "run.reward.boss_detail"
-msgstr "Defeat it to finish the adventure"
 
 msgid "run.reward.gold"
 msgstr "Gold +{amount}"
@@ -959,19 +1139,28 @@ msgid "run.reward.heal"
 msgstr "Heal +{amount}"
 
 msgid "run.reward.heal_detail"
-msgstr "Restore health after clearing"
-
-msgid "run.reward.none"
-msgstr "None"
+msgstr "Restore health"
 
 msgid "run.reward.upgrade"
 msgstr "Upgrade"
 
 msgid "run.reward.upgrade_detail"
-msgstr "Rank up one of your cards after clearing"
+msgstr "Rank up a card you own"
+
+msgid "run.room.battle"
+msgstr "Battle"
+
+msgid "run.room.boss"
+msgstr "Area Boss"
 
 msgid "run.room.controls"
 msgstr "WASD Move · LMB Combo · R Heavy · RMB Sword Wave · Shift Dodge · Esc Menu · L Language"
+
+msgid "run.room.elite"
+msgstr "Elite"
+
+msgid "run.room.event"
+msgstr "Event"
 
 msgid "run.room.health"
 msgstr "HP {hp} / {max_hp}"
@@ -979,11 +1168,56 @@ msgstr "HP {hp} / {max_hp}"
 msgid "run.room.number"
 msgstr "ROOM {room}"
 
+msgid "run.room.rest"
+msgstr "Rest"
+
+msgid "run.room.shop"
+msgstr "Shop"
+
+msgid "run.room.start"
+msgstr "Departure"
+
+msgid "run.room.treasure"
+msgstr "Treasure"
+
+msgid "run.shop.card"
+msgstr "Build card ({price} gold)"
+
+msgid "run.shop.card_detail"
+msgstr "Pick 1 of 3 build cards"
+
+msgid "run.shop.heal"
+msgstr "Herbs ({price} gold)"
+
+msgid "run.shop.heal_detail"
+msgstr "Heal +{amount}"
+
+msgid "run.shop.leave_detail"
+msgstr "Leave the shop"
+
+msgid "run.shop.title"
+msgstr "Forest Merchant · You have {gold} gold"
+
+msgid "run.shop.upgrade"
+msgstr "Upgrade ({price} gold)"
+
+msgid "run.shop.upgrade_detail"
+msgstr "Rank up a card you own"
+
 msgid "run.start"
 msgstr "Start route test"
 
+msgid "run.treasure.awakening"
+msgstr "Elemental Awakening!"
+
+msgid "run.treasure.awakening_detail"
+msgstr "Rare: infuse an action that has no element yet"
+
+msgid "run.treasure.title"
+msgstr "Treasure"
+
 msgid "run.victory.body"
-msgstr "Cleared {rooms} rooms, bringing home {gold} gold"
+msgstr "Crossed {areas} areas, bringing home {gold} gold"
 
 msgid "run.victory.title"
 msgstr "Adventure complete!"

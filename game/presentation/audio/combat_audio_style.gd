@@ -18,6 +18,8 @@ const Cue = preload("res://presentation/audio/audio_cue.gd")
 @export var element_cues: Dictionary
 @export var discharge_cue: StringName
 @export var reaction_cues: Dictionary
+## 同元素专精爆发（暂时借用过载的声音）
+@export var mastery_cue: StringName
 ## 敌人前摇提示：角色 ID → 事件名；没列出的不出声
 @export var windup_cues: Dictionary
 @export_group("播放")

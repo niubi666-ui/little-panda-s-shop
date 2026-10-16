@@ -369,6 +369,7 @@ reaction_cues = {
 "shatter": &"rx_shatter",
 "magnet": &"rx_magnet"
 }
+mastery_cue = &"rx_overload"
 windup_cues = {
 "scout": &"enemy_windup",
 "crossbow": &"enemy_windup",

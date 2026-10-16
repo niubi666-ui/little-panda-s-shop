@@ -17,6 +17,10 @@ UI_PARAMETERS = {
     "build.preset.hint": set(),
     "build.preset.applied": {"name"},
     "build.preset.error": set(),
+    "build.training.grant_title": set(),
+    "build.training.grant_hint": set(),
+    "build.training.grant_item": {"action", "name", "rank"},
+    "build.training.granted": {"name"},
     "build.subtitle": set(),
     "build.choose": set(),
     "build.rank": {"rank", "max_rank"},
@@ -170,6 +174,11 @@ def _validate_semantics(data: dict) -> None:
                     raise ValueError(f"{location}: exclusion must be symmetric with {referenced}")
         if set(entry["requires"]) & set(entry["excludes"]):
             raise ValueError(f"{location}: required upgrade is excluded")
+        # 元素条件：至少 N 个按键带该元素（同元素专精 N=2）；两项必须同时设置或同时为空
+        if (entry["required_element"] == "") != (entry["required_element_actions"] == 0):
+            raise ValueError(f"{location}: required_element and required_element_actions must be set together")
+        if entry["required_element"] and entry["required_element"] not in _element_ids():
+            raise ValueError(f"{location}: unknown required_element")
         unknown_tags = set(entry["required_tags"]) - available_tags
         if unknown_tags:
             raise ValueError(f"{location}: unknown required tags {sorted(unknown_tags)}")
@@ -229,6 +238,10 @@ def _validate_semantics(data: dict) -> None:
     _validate_presets(data, by_id)
 
 
+def _element_ids() -> set:
+    return {e["id"] for e in read_json(DATA / "builds/elements.json")["elements"]}
+
+
 def _validate_presets(data: dict, by_id: dict) -> None:
     ids = set()
     actions = {a["id"]: a for a in data["actions"]}
@@ -268,6 +281,12 @@ def _validate_presets(data: dict, by_id: dict) -> None:
                     raise ValueError("preset missing bound prerequisite")
             if any((target, excluded) in selected for excluded in entry["excludes"]):
                 raise ValueError("preset incompatible bound upgrade")
+            if entry["required_element_actions"]:
+                carriers = sum(1 for (_, other), item in selected.items()
+                               if by_id[other]["effect_type"] == "element"
+                               and by_id[other]["ranks"][item["rank"] - 1]["element_id"] == entry["required_element"])
+                if carriers < entry["required_element_actions"]:
+                    raise ValueError("preset missing element requirement")
 
         _validate_preset_capabilities(data, preset, by_id)
 
@@ -341,14 +360,16 @@ def _validate_actions(data: dict, by_id: dict) -> None:
             raise ValueError("test attack needs matching isolated debug action")
     for entry in by_id.values():
         if entry["scope"] == "global":
-            if entry["action_ids"] or entry["layer"] != "support" or entry["effect_type"] not in ("move_scale", "damage_scale", "element_boost", "reaction_boost"):
+            if entry["action_ids"] or entry["layer"] != "support" or entry["effect_type"] not in ("move_scale", "damage_scale", "element_boost", "reaction_boost", "element_mastery"):
                 raise ValueError("global supports only unbound numeric actor stats")
+        elif entry["effect_type"] == "element_mastery":
+            raise ValueError("element mastery must be global")
         else:
             if not entry["action_ids"] or entry["effect_type"] == "move_scale" or set(entry["action_ids"]) - actions.keys():
                 raise ValueError("invalid upgrade action targets")
             if entry["test_only"] and any(not actions[id]["test_only"] for id in entry["action_ids"]):
                 raise ValueError("debug upgrade targets formal action")
-        expected = "form" if entry["effect_type"] == "form" else ("core" if entry["effect_type"] in ("status", "explosion", "element") else ("synergy" if entry["effect_type"] == "area_status" else "support"))
+        expected = "form" if entry["effect_type"] == "form" else ("core" if entry["effect_type"] in ("status", "element") else ("synergy" if entry["effect_type"] == "area_status" else "support"))
         if entry["effect_type"] == "conditional_damage":
             expected = "synergy" if entry["ranks"][0]["provider_scope"] == "other_formal_action" else "support"
             if any(actions[id]["test_only"] for id in entry["action_ids"]):

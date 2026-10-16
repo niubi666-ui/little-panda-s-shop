@@ -8,20 +8,27 @@ def validate_forest_run(manifest: dict) -> None:
         raise ValueError("manifest: invalid or missing forest_run_file")
     data = read_json(ROOT / "game" / source.removeprefix("res://"))
     validate(data, read_json(DATA / "schemas/forest_run.schema.json"), "forest_run")
+    validate(data["map"], read_json(DATA / "schemas/map_preview.schema.json"), "forest_run.map")
     builds = read_json(ROOT / "game" / manifest["build_prototype_file"].removeprefix("res://"))
-    elements = read_json(ROOT / "game" / manifest["build_elements_file"].removeprefix("res://"))
     groups = read_json(ROOT / "game" / manifest["build_reward_groups_file"].removeprefix("res://"))
     roles = read_json(ROOT / "game" / manifest["enemy_roles_file"].removeprefix("res://"))
     if data["start_preset"] not in {p["id"] for p in builds["test_presets"]}:
         raise ValueError("forest_run: unknown start_preset")
-    if not set(data["boon_elements"]) <= {e["id"] for e in elements["elements"]}:
-        raise ValueError("forest_run: unknown boon element")
-    for key in ("boon_profile", "upgrade_profile"):
-        if data[key] not in groups["reward_profiles"]:
-            raise ValueError(f"forest_run: unknown {key}")
-    if data["boss_actor_id"] not in {p["actor_id"] for p in roles["profiles"]}:
-        raise ValueError("forest_run: unknown boss_actor_id")
-    if data["exit_count_min"] > data["exit_count_max"]:
-        raise ValueError("forest_run: exit_count_min exceeds exit_count_max")
-    if len({r["kind"] for r in data["rewards"]}) != len(data["rewards"]) or sum(r["weight"] for r in data["rewards"]) <= 0:
-        raise ValueError("forest_run: rewards need unique kinds and a positive total weight")
+    profiles = [data[k] for k in ("battle_profile", "elite_profile", "boss_profile", "upgrade_profile")]
+    profiles += [data["event"]["card_profile"], data["event"]["blood_card_profile"], data["shop"]["card_profile"]]
+    for profile in profiles:
+        if profile not in groups["reward_profiles"]:
+            raise ValueError(f"forest_run: unknown reward profile {profile}")
+    actors = {p["actor_id"] for p in roles["profiles"]}
+    for area in data["areas"]:
+        if area["boss_actor_id"] not in actors:
+            raise ValueError("forest_run: unknown boss_actor_id")
+    if data["awakening_after_area"] >= len(data["areas"]):
+        raise ValueError("forest_run: awakening_after_area outside areas")
+    outcomes = data["event"]["outcomes"]
+    if len({o["kind"] for o in outcomes}) != len(outcomes) or sum(o["weight"] for o in outcomes) <= 0:
+        raise ValueError("forest_run: event outcomes need unique kinds and a positive total weight")
+    rows = data["map"]["rows"]
+    for kind in data["map"]["room_types"]:
+        if kind["max_layer"] >= rows or kind["min_layer"] > kind["max_layer"]:
+            raise ValueError("forest_run.map: room type layers outside rows")

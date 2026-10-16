@@ -41,8 +41,9 @@ func check_policy() -> void:
 	check(resolver.legal_operations(state([select("contact_freeze", "debug_arrow")]), "opening_strike").is_empty(), "debug cannot provide prerequisite")
 	var all_cards := state([select("contact_freeze", "skill"), select("shatter_followup", "skill"), select("opening_strike", "primary"), select("pierce", "skill")])
 	check(not resolver.resolve(all_cards).is_empty(), "two cards coexist with pierce")
-	check(resolver.legal_operations(all_cards, "impact_blast").all(func(o): return o.action_id != "skill"), "replacement rejects loss of final provider")
-	check(resolver.legal_operations(q, "impact_blast").any(func(o): return o.action_id == "skill" and o.operation == "replace" and o.replaced.upgrade_id == "contact_freeze"), "plain freeze replacement explicitly removes core")
+	check(resolver.legal_operations(all_cards, "fire_core").all(func(o): return o.action_id != "skill"), "replacement rejects loss of final provider")
+	check(resolver.legal_operations(q, "fire_core").any(func(o): return o.action_id == "skill" and o.operation == "replace" and o.replaced.upgrade_id == "contact_freeze"), "plain freeze replacement explicitly removes core")
+	check(resolver.legal_operations(all_cards, "impact_blast").any(func(o): return o.action_id == "skill" and o.operation == "add"), "blast support coexists with freeze core")
 	var area := state([select("impact_blast", "skill"), select("frost_blast", "skill")])
 	check(not resolver.legal_operations(area, "shatter_followup").is_empty() and not resolver.legal_operations(area, "opening_strike").is_empty(), "real area freeze supplies both cards")
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/builds/prototype.json"))
@@ -136,15 +137,16 @@ func check_melee_and_derived() -> void:
 	var explosion: Dictionary = builds.upgrade("impact_blast").ranks[0]
 	check(1000.0 - side.health.current <= base * float(explosion.damage_ratio), "blast never inherits followup multiplier")
 	f.player.runner.cancel(); before = victim.health.current
+	var break_scale: float = victim.definition.break_damage_scale if victim.break_left > 0.0 else 1.0
 	cast(f, "special")
-	check(is_equal_approx(before - victim.health.current, combat.ability("heavy_slash").damage), "right gets neither card bonus")
+	check(is_equal_approx(before - victim.health.current, combat.ability("heavy_slash").damage * break_scale), "heavy gets neither card bonus (existing armor break still applies)")
 	clean(f)
 	# Area freeze provider and Q followup: its blast must still use unmodified Q damage.
 	f = setup([select("contact_freeze", "primary"), select("impact_blast", "skill"), select("frost_blast", "skill"), select("shatter_followup", "skill")], func(_a, _b): return null)
 	victim = tough(Vector3.FORWARD); side = tough(Vector3(2.3, 0, -1))
 	cast(f, "primary"); f.player.runner.cancel(); before = victim.health.current
 	cast(f, "skill"); f.runtime.tick(0.12)
-	check(is_equal_approx(before - victim.health.current, 38.4), "Q can follow earlier player melee freeze")
+	check(is_equal_approx(before - victim.health.current, 24.0), "same-action wave followup cannot borrow earlier melee freeze")
 	check(1000.0 - side.health.current <= 24.0 * float(explosion.damage_ratio), "Q blast base excludes conditional damage")
 	clean(f)
 func check_provenance() -> void:

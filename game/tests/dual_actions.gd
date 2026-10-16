@@ -48,9 +48,9 @@ func run() -> void:
 
 func _plans(_wave: bool = false, revision: int = 1) -> Dictionary:
 	return {
-		"primary": {"action_id":"primary", "form_id":"sword_primary", "executor":"melee", "ability_ids":["slash.1","slash.2","slash.3"], "projectile_id":"", "presentation_key":"sword_primary", "revision":revision},
-		"special": {"action_id":"special", "form_id":"sword_heavy", "executor":"melee", "ability_ids":["heavy_slash"], "projectile_id":"", "presentation_key":"heavy_slash", "revision":revision},
-		"skill": {"action_id":"skill", "form_id":"sword_wave", "executor":"projectile", "ability_ids":["wave_cast"], "projectile_id":"sword_wave", "presentation_key":"wave_cast", "revision":revision},
+		"primary": {"action_id":"primary", "form_id":"sword_primary", "executor":"melee", "ability_ids":["slash.1","slash.2","slash.3"], "projectile_id":"", "presentation_key":"sword_primary", "revision":revision, "reach_scale":1.0},
+		"special": {"action_id":"special", "form_id":"sword_heavy", "executor":"melee", "ability_ids":["heavy_slash"], "projectile_id":"", "presentation_key":"heavy_slash", "revision":revision, "reach_scale":1.0},
+		"skill": {"action_id":"skill", "form_id":"sword_wave", "executor":"projectile", "ability_ids":["wave_cast"], "projectile_id":"sword_wave", "presentation_key":"wave_cast", "revision":revision, "reach_scale":1.0},
 	}
 
 

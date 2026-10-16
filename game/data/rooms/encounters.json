@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "content_version": "encounters.3-training-progression",
+  "content_version": "encounters.4-adventure-boss-scaling",
   "generation_version": 1,
   "training_depth": 6,
   "training_max_depth": 30,
@@ -26,27 +26,37 @@
     {
       "min_depth": 1,
       "budget": 3,
-      "max_enemies": 3
+      "max_enemies": 3,
+      "boss_health_multiplier": 1.0,
+      "boss_damage_multiplier": 1.0
     },
     {
       "min_depth": 3,
       "budget": 4,
-      "max_enemies": 3
+      "max_enemies": 3,
+      "boss_health_multiplier": 1.0,
+      "boss_damage_multiplier": 1.0
     },
     {
       "min_depth": 6,
       "budget": 5,
-      "max_enemies": 3
+      "max_enemies": 3,
+      "boss_health_multiplier": 1.0,
+      "boss_damage_multiplier": 1.0
     },
     {
       "min_depth": 10,
       "budget": 6,
-      "max_enemies": 3
+      "max_enemies": 3,
+      "boss_health_multiplier": 1.6,
+      "boss_damage_multiplier": 1.2
     },
     {
       "min_depth": 15,
       "budget": 7,
-      "max_enemies": 3
+      "max_enemies": 3,
+      "boss_health_multiplier": 2.4,
+      "boss_damage_multiplier": 1.45
     }
   ],
   "combinations": [

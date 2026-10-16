@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "elements.1-prototype",
+  "content_version": "elements.2-freeze-gated-shatter",
   "_comment": "元素状态与两两反应。字段为 0 / 空字符串表示该元素/反应不使用这一项。改完重开训练场生效。",
   "max_zones": 8,
   "elements": [
@@ -86,7 +86,9 @@
       "zone_radius_m": 0.0,
       "zone_sec": 0.0,
       "zone_tick_sec": 0.0,
-      "zone_damage_per_tick": 0.0
+      "zone_damage_per_tick": 0.0,
+      "required_status_id": "",
+      "trigger_element_id": ""
     },
     {
       "id": "overload",
@@ -108,7 +110,9 @@
       "zone_radius_m": 0.0,
       "zone_sec": 0.0,
       "zone_tick_sec": 0.0,
-      "zone_damage_per_tick": 0.0
+      "zone_damage_per_tick": 0.0,
+      "required_status_id": "",
+      "trigger_element_id": ""
     },
     {
       "id": "lava",
@@ -130,7 +134,9 @@
       "zone_radius_m": 2.4,
       "zone_sec": 4.0,
       "zone_tick_sec": 0.5,
-      "zone_damage_per_tick": 5.0
+      "zone_damage_per_tick": 5.0,
+      "required_status_id": "",
+      "trigger_element_id": ""
     },
     {
       "id": "superconduct",
@@ -152,7 +158,9 @@
       "zone_radius_m": 0.0,
       "zone_sec": 0.0,
       "zone_tick_sec": 0.0,
-      "zone_damage_per_tick": 0.0
+      "zone_damage_per_tick": 0.0,
+      "required_status_id": "",
+      "trigger_element_id": ""
     },
     {
       "id": "shatter",
@@ -174,7 +182,9 @@
       "zone_radius_m": 0.0,
       "zone_sec": 0.0,
       "zone_tick_sec": 0.0,
-      "zone_damage_per_tick": 0.0
+      "zone_damage_per_tick": 0.0,
+      "required_status_id": "test_freeze",
+      "trigger_element_id": "earth"
     },
     {
       "id": "magnet",
@@ -196,7 +206,9 @@
       "zone_radius_m": 0.0,
       "zone_sec": 0.0,
       "zone_tick_sec": 0.0,
-      "zone_damage_per_tick": 0.0
+      "zone_damage_per_tick": 0.0,
+      "required_status_id": "",
+      "trigger_element_id": ""
     }
   ]
 }

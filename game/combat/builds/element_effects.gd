@@ -2,7 +2,9 @@ extends RefCounted
 ## 元素状态与反应（原型）。由 BuildRuntime 持有并驱动，数值全部来自 data/builds/elements.json。
 ##
 ## - 动作的执行计划里带一个 `element` 效果（核心层，每个动作只能有一个元素），该动作的直接命中就带这个元素。
-## - 命中时：目标身上若已有另一种元素 → 触发两者的反应，消耗旧状态，不再挂新元素；
+## - 命中时：目标身上若已有另一种元素且满足反应前置 → 触发反应，消耗旧状态，不再挂新元素；
+##   冰寒叠满变成冻结后，冻结也算“身上有冰”：被其他元素命中会消耗冻结、按满层反应；
+##   碎冰还要求土命中有效冻结窗口，普通冰附着和反向命中不满足；
 ##   否则挂上 / 叠加本元素状态。感电在被任意直接命中时放电（雷元素再次命中会放电后重新挂上）。
 ## - 元素造成的伤害（灼烧、放电、反应、熔岩）不再触发元素，也不进入构筑的派生链，避免互相喂触发。
 const Damage = preload("res://combat/effects/damage_executor.gd")
@@ -51,15 +53,33 @@ func on_direct_hit(runtime, context: Dictionary, target, applied: float) -> void
 	if hit_id.is_empty(): return
 	var poise_ratio := param(runtime, hit_id, "poise_damage_ratio")
 	if poise_ratio > 0.0: target.add_poise_damage(applied * poise_ratio)
+	# 有效冻结窗口优先于普通附着，防止冻结后再次附冰绕过窗口消费。
+	# Boss 的 freeze_mode=slow 仍有同一有效冻结状态；普通减速/寒印/抗冻期没有。
+	for other in catalog.element_order():
+		var freeze_id := str(catalog.element(other).freeze_status_id)
+		if other == hit_id or freeze_id.is_empty() or not runtime.statuses.snapshot(target).has(freeze_id): continue
+		var frozen_reaction: Dictionary = catalog.reaction_between(hit_id, other)
+		if frozen_reaction.is_empty(): continue
+		if not _trigger_matches(frozen_reaction, hit_id): continue
+		if not str(frozen_reaction.required_status_id).is_empty() and frozen_reaction.required_status_id != freeze_id: continue
+		runtime.statuses.remove(target, freeze_id)
+		state.elements.erase(other)
+		_react(runtime, context, target, frozen_reaction, max_stacks(runtime, other), hit_id, other)
+		return
 	for other in catalog.element_order():
 		if other == hit_id or not state.elements.has(other): continue
 		var reaction: Dictionary = catalog.reaction_between(hit_id, other)
-		if reaction.is_empty(): continue
+		if reaction.is_empty() or not _trigger_matches(reaction, hit_id): continue
+		# 有状态前置的反应只能通过上面的有效窗口路径触发。
+		if not str(reaction.required_status_id).is_empty(): continue
 		var stacks := int(state.elements[other].stacks)
 		state.elements.erase(other)
 		_react(runtime, context, target, reaction, stacks, hit_id, other)
 		return
 	_apply(runtime, context, target, state, hit_id, int(hit.stacks_per_hit))
+
+func _trigger_matches(reaction: Dictionary, hit_id: String) -> bool:
+	return str(reaction.trigger_element_id).is_empty() or reaction.trigger_element_id == hit_id
 
 func _state(target) -> Dictionary:
 	if not _states.has(target.handle):
@@ -71,11 +91,19 @@ func _shocked_id(runtime, state: Dictionary) -> String:
 		if param(runtime, id, "discharge_damage") > 0.0: return id
 	return ""
 
-func _apply(runtime, context: Dictionary, target, state: Dictionary, id: String, stacks: int) -> void:
+## spreading：专精扩散出来的层数，不再触发专精，避免连锁无限递归
+func _apply(runtime, context: Dictionary, target, state: Dictionary, id: String, stacks: int, spreading := false) -> void:
 	var element: Dictionary = runtime._catalog.element(id)
 	var duration := param(runtime, id, "duration_sec")
 	var current: Dictionary = state.elements.get(id, {"stacks": 0, "remaining": 0.0, "tick_left": float(element.tick_sec)})
+	var before := int(current.stacks)
 	current.stacks = mini(int(current.stacks) + stacks, max_stacks(runtime, id))
+	if not spreading and before < max_stacks(runtime, id) and int(current.stacks) >= max_stacks(runtime, id):
+		var consumed := _mastery(runtime, context, target, id, "full_stacks", int(current.stacks))
+		if not target.health.alive(): return
+		if consumed:
+			state.elements.erase(id)
+			return
 	current.remaining = duration
 	state.elements[id] = current
 	if not str(element.slow_status_id).is_empty():
@@ -97,6 +125,29 @@ func _discharge(runtime, context: Dictionary, target, id: String) -> void:
 		points.append(origin)
 		_damage(runtime, other, damage)
 	runtime.element_presented.emit({"event": "discharge", "element": id, "handle": target.handle, "position": origin, "points": points})
+	_mastery(runtime, context, target, id, "discharge", 1)
+
+## 同元素专精（两个按键带同一元素才可能拿到）：叠满 / 放电时对周围爆发，并把元素扩散给被波及的敌人
+## 返回 true 表示专精要求消耗目标身上的这个元素
+func _mastery(runtime, context: Dictionary, target, id: String, trigger: String, stacks: int) -> bool:
+	var consumed := false
+	var masteries: Array = runtime._program.get("global", {}).get("element_masteries", {}).get(id, [])
+	for params in masteries:
+		if params.trigger != trigger or not is_instance_valid(target): continue
+		var center: Vector3 = target.global_position
+		var damage := float(params.damage) + float(params.damage_per_stack) * stacks
+		var victims: Array = [target] if trigger == "full_stacks" else []
+		victims.append_array(_nearest(runtime, center, float(params.radius_m), int(params.max_targets), target))
+		var points := PackedVector3Array()
+		for victim in victims:
+			_damage(runtime, victim, damage)
+			if victim != target: points.append(victim.global_position)
+			if int(params.spread_stacks) > 0 and is_instance_valid(victim) and victim.health.alive() and victim != target:
+				_apply(runtime, context, victim, _state(victim), id, int(params.spread_stacks), true)
+		consumed = consumed or bool(params.consume)
+		runtime.element_presented.emit({"event": "mastery", "element": id, "trigger": trigger, "handle": target.handle,
+			"position": center, "radius": float(params.radius_m), "points": points})
+	return consumed
 
 func _react(runtime, context: Dictionary, target, reaction: Dictionary, stacks: int, hit_id: String, other_id: String) -> void:
 	var center: Vector3 = target.global_position

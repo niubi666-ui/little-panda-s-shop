@@ -1,44 +1,170 @@
 {
-  "schema_version": 1,
-  "content_version": "forest_run.1",
-  "_comment": "一局冒险（原型）：普通房 room_count 间后进 Boss 房。每间清场后发放进门时选定的奖励，再选下一间的出口。",
+  "schema_version": 2,
+  "content_version": "forest_run.2",
+  "_comment": "一局冒险（原型）：areas 依次进行；每区一张杀戮尖塔式地图（map，与 M 键地图同一套规则格式），走到最后一层后进区域 Boss。房型决定奖励；元素只从元素觉醒获得（开局一次、awakening_after_area 的 Boss 后一次，宝箱/事件稀有）。",
   "start_preset": "basic_actions",
-  "room_count": 6,
-  "start_depth": 2,
-  "depth_per_room": 2,
-  "boss_actor_id": "elite_ranger",
-  "boss_depth": 14,
-  "exit_count_min": 2,
-  "exit_count_max": 3,
-  "first_exit_count": 3,
-  "rewards": [
+  "areas": [
     {
-      "kind": "boon",
-      "weight": 60
+      "id": "forest_1",
+      "name_key": "run.area.forest_1",
+      "start_depth": 2,
+      "depth_per_layer": 1,
+      "elite_depth_bonus": 3,
+      "boss_actor_id": "elite_ranger",
+      "boss_depth": 9
     },
     {
-      "kind": "upgrade",
-      "weight": 15
+      "id": "forest_2",
+      "name_key": "run.area.forest_2",
+      "start_depth": 6,
+      "depth_per_layer": 1,
+      "elite_depth_bonus": 3,
+      "boss_actor_id": "elite_ranger",
+      "boss_depth": 13
     },
     {
-      "kind": "heal",
-      "weight": 15
-    },
-    {
-      "kind": "gold",
-      "weight": 10
+      "id": "forest_3",
+      "name_key": "run.area.forest_3",
+      "start_depth": 10,
+      "depth_per_layer": 1,
+      "elite_depth_bonus": 3,
+      "boss_actor_id": "elite_ranger",
+      "boss_depth": 18
     }
   ],
-  "boon_elements": [
-    "fire",
-    "ice",
-    "thunder",
-    "earth"
-  ],
-  "boon_profile": "training_all",
+  "map": {
+    "schema_version": 1,
+    "content_version": "forest_run_map.1",
+    "rows": 7,
+    "columns": 5,
+    "paths": 4,
+    "max_attempts": 64,
+    "fixed_layers": [
+      {
+        "layer": 0,
+        "kind": "battle"
+      },
+      {
+        "layer": 6,
+        "kind": "rest"
+      }
+    ],
+    "room_types": [
+      {
+        "id": "battle",
+        "name_key": "map_preview.kind.battle",
+        "weight": 55,
+        "min_layer": 0,
+        "max_layer": 6,
+        "min_count": 1,
+        "avoid_consecutive": false
+      },
+      {
+        "id": "elite",
+        "name_key": "map_preview.kind.elite",
+        "weight": 14,
+        "min_layer": 2,
+        "max_layer": 5,
+        "min_count": 1,
+        "avoid_consecutive": true
+      },
+      {
+        "id": "event",
+        "name_key": "map_preview.kind.event",
+        "weight": 20,
+        "min_layer": 1,
+        "max_layer": 5,
+        "min_count": 1,
+        "avoid_consecutive": true
+      },
+      {
+        "id": "rest",
+        "name_key": "map_preview.kind.rest",
+        "weight": 8,
+        "min_layer": 2,
+        "max_layer": 6,
+        "min_count": 1,
+        "avoid_consecutive": true
+      },
+      {
+        "id": "treasure",
+        "name_key": "map_preview.kind.treasure",
+        "weight": 4,
+        "min_layer": 1,
+        "max_layer": 5,
+        "min_count": 1,
+        "avoid_consecutive": true
+      },
+      {
+        "id": "shop",
+        "name_key": "map_preview.kind.shop",
+        "weight": 8,
+        "min_layer": 1,
+        "max_layer": 5,
+        "min_count": 1,
+        "avoid_consecutive": true
+      }
+    ]
+  },
+  "awakening_after_area": 0,
+  "awakening": {
+    "count": 3,
+    "guarantee_same": true,
+    "guarantee_new": true
+  },
+  "card_weighting": {
+    "owned_element_scale": 3.0,
+    "elemental_action_scale": 2.0,
+    "max_per_action": 2
+  },
+  "battle_profile": "normal_room",
+  "elite_profile": "elite_room",
+  "boss_profile": "area_boss",
   "upgrade_profile": "training_all",
-  "heal_amount": 30,
-  "gold_amount": 25,
-  "clear_gold": 10,
-  "victory_gold": 50
+  "clear_gold": {
+    "battle": 10,
+    "elite": 25,
+    "boss": 50
+  },
+  "treasure": {
+    "awakening_chance": 0.3,
+    "gold": 30
+  },
+  "rest_heal": 40,
+  "event": {
+    "outcomes": [
+      {
+        "kind": "awakening",
+        "weight": 15
+      },
+      {
+        "kind": "card",
+        "weight": 30
+      },
+      {
+        "kind": "gold",
+        "weight": 20
+      },
+      {
+        "kind": "heal",
+        "weight": 15
+      },
+      {
+        "kind": "blood_card",
+        "weight": 20
+      }
+    ],
+    "gold": 35,
+    "heal": 25,
+    "blood_cost": 20,
+    "card_profile": "normal_room",
+    "blood_card_profile": "elite_room"
+  },
+  "shop": {
+    "card_price": 60,
+    "upgrade_price": 45,
+    "heal_price": 30,
+    "heal_amount": 35,
+    "card_profile": "normal_room"
+  }
 }

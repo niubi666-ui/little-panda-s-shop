@@ -46,6 +46,8 @@ func validate_state(state: Dictionary) -> Array[String]:
 			elif not bound.has(str(selected.action_id) + ":" + str(required)): errors.append("build.reason.dependency")
 		for excluded in entry.excludes:
 			if bound.has(str(selected.action_id) + ":" + str(excluded)): errors.append("build.reason.incompatible")
+		if int(entry.required_element_actions) > 0 and element_actions(state.selections, entry.required_element) < int(entry.required_element_actions):
+			errors.append("build.reason.dependency")
 	if not errors.is_empty(): return errors
 	var program := _compile(state)
 	for action_id in program.actions:
@@ -58,6 +60,14 @@ func validate_state(state: Dictionary) -> Array[String]:
 				if not plan.tags.has(tag): errors.append("build.reason.dependency")
 			if not Capabilities.eligible_for_action(entry, _catalog, program, action_id): errors.append("build.reason.capability")
 	return errors
+
+## 带某个元素的按键数（元素核心卡的个数）
+func element_actions(selections: Array, element_id: String) -> int:
+	var count := 0
+	for selected in selections:
+		var entry: Dictionary = _catalog.upgrade(selected.upgrade_id)
+		if entry.effect_type == "element" and entry.ranks[int(selected.rank) - 1].element_id == element_id: count += 1
+	return count
 
 func valid_program(program: Dictionary) -> bool:
 	if not program.has_all(["revision", "selections", "global", "actions"]) or program.size() != 4: return false
@@ -146,6 +156,8 @@ func _compile(state: Dictionary) -> Dictionary:
 	## 元素强化：元素 ID → {字段: 累加值}；反应强化：反应 ID → {damage_bonus, radius_bonus_m}
 	var element_boosts: Dictionary = {}
 	var reaction_boosts: Dictionary = {}
+	## 同元素专精：元素 ID → [专精参数]
+	var element_masteries: Dictionary = {}
 	for item in selected:
 		if item.action_id != "global": continue
 		var definition: Dictionary = _catalog.upgrade(item.upgrade_id)
@@ -161,8 +173,11 @@ func _compile(state: Dictionary) -> Dictionary:
 			boost.damage_bonus = float(boost.damage_bonus) + float(params.damage_bonus)
 			boost.radius_bonus_m = float(boost.radius_bonus_m) + float(params.radius_bonus_m)
 			reaction_boosts[params.reaction_id] = boost
+		if definition.effect_type == "element_mastery":
+			if not element_masteries.has(params.element_id): element_masteries[params.element_id] = []
+			element_masteries[params.element_id].append(params.duplicate(true))
 	var limits: Dictionary = _catalog.stat_limits()
-	var global_stats := {"damage_scale": clampf(1.0 + global_damage, limits.damage_scale_min, limits.damage_scale_max), "move_scale": clampf(1.0 + global_move, limits.move_scale_min, limits.move_scale_max), "element_boosts": element_boosts, "reaction_boosts": reaction_boosts}
+	var global_stats := {"damage_scale": clampf(1.0 + global_damage, limits.damage_scale_min, limits.damage_scale_max), "move_scale": clampf(1.0 + global_move, limits.move_scale_min, limits.move_scale_max), "element_boosts": element_boosts, "reaction_boosts": reaction_boosts, "element_masteries": element_masteries}
 	var program := {"revision": int(state.revision), "selections": selected, "global": global_stats, "actions": {}}
 	for action in _catalog.actions():
 		var form_id: String = action.base_form_id
@@ -171,7 +186,7 @@ func _compile(state: Dictionary) -> Dictionary:
 			var entry: Dictionary = _catalog.upgrade(item.upgrade_id)
 			if entry.effect_type == "form": form_id = entry.ranks[int(item.rank) - 1].form_id
 		var form: Dictionary = _catalog.form(form_id)
-		var plan := {"revision": int(state.revision), "action_id": str(action.id), "form_id": form_id, "executor": str(form.executor), "ability_ids": form.ability_ids.duplicate(), "projectile_id": str(form.projectile_id), "presentation_key": str(form.presentation_key), "damage_scale": 1.0, "move_scale": global_stats.move_scale, "tags": [], "effects": []}
+		var plan := {"revision": int(state.revision), "action_id": str(action.id), "form_id": form_id, "executor": str(form.executor), "ability_ids": form.ability_ids.duplicate(), "projectile_id": str(form.projectile_id), "presentation_key": str(form.presentation_key), "damage_scale": 1.0, "reach_scale": 1.0, "move_scale": global_stats.move_scale, "tags": [], "effects": []}
 		var damage_bonus := global_damage
 		var durations: Dictionary = {}
 		var area_grants: Array = []
@@ -183,10 +198,12 @@ func _compile(state: Dictionary) -> Dictionary:
 				if not plan.tags.has(tag): plan.tags.append(tag)
 			match str(entry.effect_type):
 				"damage_scale": damage_bonus += float(params.bonus)
+				"reach_scale": plan.reach_scale = float(plan.reach_scale) + float(params.bonus)
 				"status_duration": durations[params.status_id] = float(durations.get(params.status_id, 0.0)) + float(params.bonus)
 				"area_status": area_grants.append({"upgrade_id": str(item.upgrade_id), "rank": int(item.rank), "params": params})
 				"projectile", "chain", "split", "pierce", "explosion", "status", "conditional_damage", "return_projectile", "charge_projectile", "consume_freeze", "projectile_path", "freeze_shield", "element": plan.effects.append({"upgrade_id": str(item.upgrade_id), "type": str(entry.effect_type), "rank": int(item.rank), "params": params})
 		for effect in plan.effects:
+			if effect.type == "element": damage_bonus += float(effect.params.damage_bonus)
 			if effect.type == "status": effect.params.duration_sec = _duration(effect.params.status_id, durations)
 			if effect.type != "explosion": continue
 			var params: Dictionary = effect.params

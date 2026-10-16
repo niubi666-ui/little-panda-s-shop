@@ -34,6 +34,12 @@ msgstr "这个动作的攻击伤害增加 {bonus_percent}%，与全局增伤相�
 msgid "build.action_power.name"
 msgstr "专注锋刃"
 
+msgid "build.awakening.subtitle"
+msgstr "为一个还没有元素的按键注入元素，决定这一局的打法"
+
+msgid "build.awakening.title"
+msgstr "元素觉醒"
+
 msgid "build.choose"
 msgstr "选择此升级"
 
@@ -83,7 +89,7 @@ msgid "build.element_boost.dual_overload.name"
 msgstr "雷火"
 
 msgid "build.element_boost.dual_shatter.description"
-msgstr "碎冰伤害提高 {damage_bonus_percent}%，范围扩大 {radius_bonus_m} 米。"
+msgstr "先冻结，再用土攻击触发碎冰（Boss 的冰冻减速窗口也算）。碎冰伤害提高 {damage_bonus_percent}%，范围扩大 {radius_bonus_m} 米。"
 
 msgid "build.element_boost.dual_shatter.name"
 msgstr "冰岩"
@@ -203,13 +209,13 @@ msgid "build.frost.charged_wave.name"
 msgstr "蓄霜"
 
 msgid "build.frost.frost_path.description"
-msgstr "具有冻结能力的剑气留下短暂减速霜径，不造成伤害。"
+msgstr "需要右键具备冻结能力（如冰附魔）。剑气沿途留下持续 {lifetime_sec} 秒、半径 {radius_m} 米的霜径，只减速，不冻结；分裂子体不铺路。"
 
 msgid "build.frost.frost_path.name"
 msgstr "霜径"
 
 msgid "build.frost.ice_coat.description"
-msgstr "本动作成功施加有效冰冻窗口（定身或Boss减速）后获得短暂防护，吸收伤害，不叠加。"
+msgstr "需要右键具备冻结能力（如冰附魔）。右键实际建立冻结或 Boss 冰冻减速窗口时，获得 {shield_amount} 点护盾，持续 {duration_sec} 秒，触发间隔 {trigger_cooldown_sec} 秒。只挂冰寒或抗冻失败不触发。"
 
 msgid "build.frost.ice_coat.name"
 msgstr "冰衣"
@@ -250,6 +256,54 @@ msgstr "支持"
 msgid "build.layer.synergy"
 msgstr "协同"
 
+msgid "build.mastery.earth_burst.description"
+msgstr "需要两个按键带土。碎甲叠满时地面崩裂：{damage} 伤害（每层再 +{damage_per_stack}），波及 {radius_m} 米内 {max_targets} 个敌人并挂 {spread_stacks} 层碎甲。"
+
+msgid "build.mastery.earth_burst.name"
+msgstr "地裂（土专精）"
+
+msgid "build.mastery.earth_weight.description"
+msgstr "需要两个按键带土。碎甲每层易伤再 +{add_percent}%。"
+
+msgid "build.mastery.earth_weight.name"
+msgstr "山岳共鸣（土专精）"
+
+msgid "build.mastery.fire_burst.description"
+msgstr "需要两个按键带火。灼烧叠满时引爆：{damage} 伤害（每层再 +{damage_per_stack}），波及 {radius_m} 米内 {max_targets} 个敌人并给它们挂 {spread_stacks} 层灼烧。"
+
+msgid "build.mastery.fire_burst.name"
+msgstr "焚爆（火专精）"
+
+msgid "build.mastery.fire_heat.description"
+msgstr "需要两个按键带火。灼烧每层每跳伤害 +{add}。"
+
+msgid "build.mastery.fire_heat.name"
+msgstr "烈焰共鸣（火专精）"
+
+msgid "build.mastery.ice_burst.description"
+msgstr "需要两个按键带冰。敌人被冻住的瞬间迸出冰片：{damage} 伤害（每层再 +{damage_per_stack}），波及 {radius_m} 米内 {max_targets} 个敌人并挂 {spread_stacks} 层冰寒。"
+
+msgid "build.mastery.ice_burst.name"
+msgstr "冰爆（冰专精）"
+
+msgid "build.mastery.ice_cold.description"
+msgstr "需要两个按键带冰。冰寒每层让敌人受到的伤害再 +{add_percent}%。"
+
+msgid "build.mastery.ice_cold.name"
+msgstr "极寒共鸣（冰专精）"
+
+msgid "build.mastery.thunder_burst.description"
+msgstr "需要两个按键带雷。放电时向 {radius_m} 米内 {max_targets} 个敌人传导：{damage} 伤害并挂上感电，形成连锁。"
+
+msgid "build.mastery.thunder_burst.name"
+msgstr "雷涌（雷专精）"
+
+msgid "build.mastery.thunder_storm.description"
+msgstr "需要两个按键带雷。放电伤害 +{add}。"
+
+msgid "build.mastery.thunder_storm.name"
+msgstr "雷暴共鸣（雷专精）"
+
 msgid "build.next"
 msgstr "升级至 {rank} 级"
 
@@ -257,7 +311,7 @@ msgid "build.no_candidates"
 msgstr "当前没有可继续选择的兼容升级"
 
 msgid "build.opening_strike.description"
-msgstr "左键直接命中处于你此前独立施放产生的有效冰冻窗口（定身或Boss减速）的敌人，直接伤害 +{bonus_percent}%。需要另一个正式动作具备冻结能力；不解除或刷新冻结，派生伤害不增幅。"
+msgstr "左键命中由你另一正式动作此前独立施放建立的有效冻结窗口（冻结或 Boss 冰冻减速），直接伤害 +{bonus_percent}%。左键自己建立的窗口不算，不消费冻结；爆炸不增伤。"
 
 msgid "build.opening_strike.name"
 msgstr "乘隙斩"
@@ -291,6 +345,12 @@ msgstr "蓄霜爆发"
 
 msgid "build.preset.elem_fire_build"
 msgstr "火流派：火普攻＋火重击＋余烬＋烈焰"
+
+msgid "build.preset.elem_fire_mastery"
+msgstr "火专精：火普攻＋火重击＋焚爆"
+
+msgid "build.preset.elem_ice_mastery"
+msgstr "冰专精：冰普攻＋冰剑气＋冰爆"
 
 msgid "build.preset.elem_lava"
 msgstr "熔岩：火剑气＋土重击"
@@ -364,6 +424,9 @@ msgstr "动作构筑预设"
 msgid "build.rank"
 msgstr "等级 {rank} / {max_rank}"
 
+msgid "build.rarity.awakening"
+msgstr "元素觉醒"
+
 msgid "build.rarity.common"
 msgstr "普通"
 
@@ -375,6 +438,18 @@ msgstr "传说"
 
 msgid "build.rarity.rare"
 msgstr "稀有"
+
+msgid "build.reach.primary.description"
+msgstr "左键攻击范围 +{bonus_percent}%。"
+
+msgid "build.reach.primary.name"
+msgstr "长刃"
+
+msgid "build.reach.special.description"
+msgstr "R 键重击范围 +{bonus_percent}%。"
+
+msgid "build.reach.special.name"
+msgstr "横扫千军"
 
 msgid "build.reason.capability"
 msgstr "该动作尚无所需载体，其它动作及调试箭不能替代前置。"
@@ -415,11 +490,11 @@ msgstr "移除效果：{effect}"
 msgid "build.replaces"
 msgstr "替换：{name}（{rank} 级）"
 
+msgid "build.reward.area_boss"
+msgstr "区域 Boss 奖励"
+
 msgid "build.reward.boss_room"
 msgstr "模拟Boss房"
-
-msgid "build.reward.close"
-msgstr "暂时关闭（保留候选）"
 
 msgid "build.reward.elite_room"
 msgstr "模拟精英房"
@@ -434,7 +509,7 @@ msgid "build.reward.training_all"
 msgstr "训练全池"
 
 msgid "build.shatter_followup.description"
-msgstr "右键 直接命中处于你此前独立施放产生的有效冰冻窗口（定身或Boss减速）的敌人，直接伤害 +{bonus_percent}%。需要 右键 具备冻结能力；不解除或刷新冻结，分裂和爆炸不增伤。"
+msgstr "右键剑气对你此前右键独立施放建立的有效冻结窗口（冻结或 Boss 冰冻减速）直接增伤 {bonus_percent}%。同次施放及其回程不自触发；不消费或刷新冻结，分裂与爆炸不增伤。需要右键具备冻结能力（如冰附魔）。"
 
 msgid "build.shatter_followup.name"
 msgstr "碎冰追击"
@@ -519,6 +594,18 @@ msgstr "测试：再抽三选一"
 
 msgid "build.title"
 msgstr "选择一个构筑升级"
+
+msgid "build.training.grant_hint"
+msgstr "仅训练使用：按真实前置领取一张卡，不替换已有核心。正常冒险仍需三选一。"
+
+msgid "build.training.grant_item"
+msgstr "{action} · {name} · 等级 {rank}"
+
+msgid "build.training.grant_title"
+msgstr "逐张领取（训练）"
+
+msgid "build.training.granted"
+msgstr "训练已领取：{name}"
 
 msgid "combat.banner"
 msgstr "督军旗手"
@@ -645,6 +732,18 @@ msgstr "火"
 
 msgid "element.ice.name"
 msgstr "冰"
+
+msgid "element.mastery.earth"
+msgstr "地裂"
+
+msgid "element.mastery.fire"
+msgstr "焚爆"
+
+msgid "element.mastery.ice"
+msgstr "冰爆"
+
+msgid "element.mastery.thunder"
+msgstr "雷涌"
 
 msgid "element.reaction.lava"
 msgstr "熔岩！"
@@ -793,6 +892,18 @@ msgstr "已搜刮 · {name}"
 msgid "room.seed"
 msgstr "房间种子：{seed}"
 
+msgid "run.area.forest_1"
+msgstr "童话森林·外围"
+
+msgid "run.area.forest_2"
+msgstr "童话森林·深处"
+
+msgid "run.area.forest_3"
+msgstr "童话森林·古树"
+
+msgid "run.button.leave"
+msgstr "离开"
+
 msgid "run.button.new_run"
 msgstr "再来一局"
 
@@ -800,7 +911,7 @@ msgid "run.button.shop"
 msgstr "回到店铺"
 
 msgid "run.defeat.body"
-msgstr "清理了 {rooms} 间房，金币 {gold}"
+msgstr "倒在第 {area} 区，金币 {gold}"
 
 msgid "run.defeat.title"
 msgstr "倒下了"
@@ -853,20 +964,95 @@ msgstr "当前无法前往这个节点，请选择可前往的节点。"
 msgid "run.error.wrong_phase"
 msgstr "当前阶段不能执行这个操作。"
 
-msgid "run.exit.first"
-msgstr "选择第一份祝福"
+msgid "run.event.awakening"
+msgstr "古老的祭坛"
+
+msgid "run.event.awakening_detail"
+msgstr "触碰祭坛：元素觉醒（稀有）"
+
+msgid "run.event.blood_card"
+msgstr "带刺的藤蔓"
+
+msgid "run.event.blood_card_detail"
+msgstr "失去 {cost} 生命，换取高品质构筑卡三选一"
+
+msgid "run.event.card"
+msgstr "迷路的旅人"
+
+msgid "run.event.card_detail"
+msgstr "帮他指路，换来构筑卡三选一"
+
+msgid "run.event.gold"
+msgstr "埋在树下的钱袋"
+
+msgid "run.event.gold_detail"
+msgstr "金币 +{gold}"
+
+msgid "run.event.heal"
+msgstr "清澈的泉水"
+
+msgid "run.event.heal_detail"
+msgstr "喝一口：回血 +{heal}"
+
+msgid "run.event.leave_detail"
+msgstr "什么也不做，继续前进"
+
+msgid "run.event.title"
+msgstr "林间事件"
+
+msgid "run.exit.area_start"
+msgstr "{area}：选择第一个房间（M 查看地图）"
+
+msgid "run.exit.battle_detail"
+msgstr "清场后：构筑卡三选一"
+
+msgid "run.exit.boss_detail"
+msgstr "打败它进入下一区；奖励高品质构筑卡"
+
+msgid "run.exit.boss_detail_awakening"
+msgstr "打败它进入下一区；奖励第二次元素觉醒"
+
+msgid "run.exit.boss_detail_final"
+msgstr "打败它完成这次冒险"
+
+msgid "run.exit.elite_detail"
+msgstr "敌人更强；清场后：高品质构筑卡三选一"
+
+msgid "run.exit.event_detail"
+msgstr "随机事件：可能是金币、回血、卡，甚至元素觉醒"
+
+msgid "run.exit.rest_detail"
+msgstr "回血，或强化一张已有的卡"
+
+msgid "run.exit.shop_detail"
+msgstr "用金币买卡、强化或回血"
+
+msgid "run.exit.side.left"
+msgstr " · 左路"
+
+msgid "run.exit.side.middle"
+msgstr " · 中路"
+
+msgid "run.exit.side.right"
+msgstr " · 右路"
 
 msgid "run.exit.title"
-msgstr "选择下一个房间"
+msgstr "选择下一个房间（M 查看地图）"
 
-msgid "run.info.boss"
-msgstr "第 {index}/{total} 间 · Boss · 金币 {gold}"
+msgid "run.exit.treasure_detail"
+msgstr "强化一张已有的卡；稀有时开出元素觉醒"
 
-msgid "run.info.lobby"
-msgstr "冒险开始：选择第一份祝福"
+msgid "run.info.bar"
+msgstr "{area} · {layer} · {room} · 金币 {gold} · 元素觉醒 {awakenings}"
 
-msgid "run.info.room"
-msgstr "第 {index}/{total} 间 · 清场奖励：{reward} · 金币 {gold}"
+msgid "run.info.boss_layer"
+msgstr "Boss"
+
+msgid "run.info.entrance"
+msgstr "入口"
+
+msgid "run.info.layer"
+msgstr "第 {index}/{rows} 层"
 
 msgid "run.kind.battle"
 msgstr "普通战斗"
@@ -876,6 +1062,9 @@ msgstr "精英战斗"
 
 msgid "run.kind.terminal"
 msgstr "终点测试遭遇"
+
+msgid "run.map.area_title"
+msgstr "{area}（第 {index}/{total} 区）"
 
 msgid "run.map.build_hint"
 msgstr "使用预装测试构筑，跨房间保留；本轮不发放房间奖励。"
@@ -931,23 +1120,14 @@ msgstr "本次冒险失败"
 msgid "run.phase.map"
 msgstr "选择路线"
 
+msgid "run.rest.title"
+msgstr "篝火旁休息"
+
 msgid "run.restart"
 msgstr "重新开始本次路线"
 
 msgid "run.return_map"
 msgstr "返回路线图"
-
-msgid "run.reward.boon"
-msgstr "{element}之祝福"
-
-msgid "run.reward.boon_detail"
-msgstr "清场后三选一：该元素的附魔、被动或双元素卡"
-
-msgid "run.reward.boss"
-msgstr "Boss：精英游侠"
-
-msgid "run.reward.boss_detail"
-msgstr "打败它，完成这次冒险"
 
 msgid "run.reward.gold"
 msgstr "金币 +{amount}"
@@ -959,19 +1139,28 @@ msgid "run.reward.heal"
 msgstr "回血 +{amount}"
 
 msgid "run.reward.heal_detail"
-msgstr "清场后恢复生命"
-
-msgid "run.reward.none"
-msgstr "无"
+msgstr "恢复生命"
 
 msgid "run.reward.upgrade"
 msgstr "强化"
 
 msgid "run.reward.upgrade_detail"
-msgstr "清场后选一张已有的卡升一级"
+msgstr "选一张已有的卡升一级"
+
+msgid "run.room.battle"
+msgstr "战斗"
+
+msgid "run.room.boss"
+msgstr "区域 Boss"
 
 msgid "run.room.controls"
 msgstr "WASD 移动 · 左键普攻 · R 重击 · 右键 剑气 · Shift 闪避 · Esc 菜单 · L 语言"
+
+msgid "run.room.elite"
+msgstr "精英"
+
+msgid "run.room.event"
+msgstr "事件"
 
 msgid "run.room.health"
 msgstr "生命 {hp} / {max_hp}"
@@ -979,11 +1168,56 @@ msgstr "生命 {hp} / {max_hp}"
 msgid "run.room.number"
 msgstr "第 {room} 个房间"
 
+msgid "run.room.rest"
+msgstr "休息"
+
+msgid "run.room.shop"
+msgstr "商店"
+
+msgid "run.room.start"
+msgstr "出发"
+
+msgid "run.room.treasure"
+msgstr "宝箱"
+
+msgid "run.shop.card"
+msgstr "构筑卡（{price} 金币）"
+
+msgid "run.shop.card_detail"
+msgstr "构筑卡三选一"
+
+msgid "run.shop.heal"
+msgstr "药草（{price} 金币）"
+
+msgid "run.shop.heal_detail"
+msgstr "回血 +{amount}"
+
+msgid "run.shop.leave_detail"
+msgstr "离开商店"
+
+msgid "run.shop.title"
+msgstr "林间商人 · 你有 {gold} 金币"
+
+msgid "run.shop.upgrade"
+msgstr "强化（{price} 金币）"
+
+msgid "run.shop.upgrade_detail"
+msgstr "选一张已有的卡升一级"
+
 msgid "run.start"
 msgstr "开始路线测试"
 
+msgid "run.treasure.awakening"
+msgstr "元素觉醒！"
+
+msgid "run.treasure.awakening_detail"
+msgstr "稀有：为一个还没有元素的按键注入元素"
+
+msgid "run.treasure.title"
+msgstr "宝箱"
+
 msgid "run.victory.body"
-msgstr "清理了 {rooms} 间房，带回金币 {gold}"
+msgstr "穿过了 {areas} 个区域，带回金币 {gold}"
 
 msgid "run.victory.title"
 msgstr "冒险完成！"

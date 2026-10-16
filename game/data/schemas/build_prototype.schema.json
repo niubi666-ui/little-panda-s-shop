@@ -202,6 +202,8 @@
           "excludes",
           "required_tags",
           "granted_tags",
+          "required_element",
+          "required_element_actions",
           "effect_type",
           "ranks",
           "scope",
@@ -303,7 +305,9 @@
               "freeze_shield",
               "element",
               "element_boost",
-              "reaction_boost"
+              "reaction_boost",
+              "element_mastery",
+              "reach_scale"
             ]
           },
           "ranks": {
@@ -338,6 +342,17 @@
           },
           "test_only": {
             "type": "boolean"
+          },
+          "required_element": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 64,
+            "pattern": "^[a-z_]*$"
+          },
+          "required_element_actions": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
           }
         },
         "oneOf": [
@@ -1072,7 +1087,8 @@
                   "additionalProperties": false,
                   "required": [
                     "element_id",
-                    "stacks_per_hit"
+                    "stacks_per_hit",
+                    "damage_bonus"
                   ],
                   "properties": {
                     "element_id": {
@@ -1083,6 +1099,11 @@
                       "type": "integer",
                       "minimum": 1,
                       "maximum": 20
+                    },
+                    "damage_bonus": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 10
                     }
                   }
                 }
@@ -1152,6 +1173,94 @@
                       "type": "number",
                       "minimum": 0,
                       "maximum": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "element_mastery"
+              },
+              "ranks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "element_id",
+                    "trigger",
+                    "damage",
+                    "damage_per_stack",
+                    "radius_m",
+                    "max_targets",
+                    "spread_stacks",
+                    "consume"
+                  ],
+                  "properties": {
+                    "element_id": {
+                      "type": "string",
+                      "pattern": "^[a-z_]+$"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "full_stacks",
+                        "discharge"
+                      ]
+                    },
+                    "damage": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "damage_per_stack": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "radius_m": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 20
+                    },
+                    "max_targets": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 32
+                    },
+                    "spread_stacks": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 20
+                    },
+                    "consume": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "effect_type": {
+                "const": "reach_scale"
+              },
+              "ranks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "bonus"
+                  ],
+                  "properties": {
+                    "bonus": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 3
                     }
                   }
                 }

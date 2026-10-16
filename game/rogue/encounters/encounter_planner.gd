@@ -56,8 +56,11 @@ func generate_training(seed_value: String, depth: int, capacity: int, catalog) -
 func generate_run_boss(seed_value: String, depth: int, capacity: int, catalog, boss_id: String) -> Dictionary:
 	var plan := generate(seed_value, depth, capacity, catalog)
 	if plan.is_empty() or not catalog.profiles.has(boss_id): return {}
+	var band := band_for(depth, catalog)
 	plan.run_boss = boss_id
-	plan.waves = [{"combination_id": boss_id, "enemy_ids": [boss_id], "drops": [[]]}]
+	plan.waves = [{"combination_id": boss_id, "name_key": catalog.actor_name_key(boss_id),
+		"enemy_ids": [boss_id], "drops": [[]], "depth": depth, "budget": band.budget,
+		"health_multiplier": band.boss_health_multiplier, "damage_multiplier": band.boss_damage_multiplier}]
 	return plan
 
 func generate(seed_value: String, depth: int, capacity: int, catalog) -> Dictionary:

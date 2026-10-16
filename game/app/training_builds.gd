@@ -23,7 +23,6 @@ var _filter: Dictionary = {}
 var _filtered_active := false
 ## 一次过滤奖励结束（chosen：是否真的选了一张）
 signal offer_finished(chosen: bool)
-var _offer_suspended := false
 var session := Session.new()
 var runtime := Runtime.new()
 var choice_panel: ChoicePanel
@@ -97,14 +96,11 @@ func configure(player, targets: Callable, wall_query: Callable, ui_root: Node, s
 	status_panel.configure_reward_profiles(reward_groups)
 	status_panel.reward_profile_requested.connect(request_profile_offer)
 	status_panel.test_preset_requested.connect(apply_test_preset)
+	status_panel.training_upgrade_requested.connect(grant_training_upgrade)
 	choice_panel = ChoicePanel.new()
 	ui_root.add_child(choice_panel)
 	choice_panel.configure(catalog, shared_theme)
 	choice_panel.choice_requested.connect(_choose)
-	choice_panel.close_requested.connect(func():
-		_offer_suspended = true
-		choice_panel.dismiss()
-		_end_filtered(false))
 	_apply_program()
 	if _auto_rewards: _queue(int(_rules["initial_offers"]))
 	return true
@@ -119,6 +115,25 @@ func _apply_program() -> void:
 	_player.set_action_program(program.actions, _combat_catalog)
 	_player.set_build_movement_multiplier(float(program.global.move_scale))
 	status_panel.update_state(session.snapshot().selections, program)
+	if _test_presets_enabled:
+		status_panel.update_training_options(session.legal_operations().filter(func(op): return op.operation != "replace" and float(catalog.upgrade(op.upgrade_id).weight) > 0.0))
+
+## Explicit training grant, never used by adventure rewards. Re-evaluate the selected identity.
+func grant_training_upgrade(upgrade_id: String, action_id: String) -> Dictionary:
+	if not _test_presets_enabled or _stopped or is_choosing() or not _player.health.alive():
+		return {"ok": false, "error": "training_grant_unavailable"}
+	if not catalog.has_upgrade(upgrade_id) or float(catalog.upgrade(upgrade_id).weight) <= 0.0:
+		return {"ok": false, "error": "training_grant_unavailable"}
+	for op in session.legal_operations(upgrade_id):
+		if op.action_id != action_id or op.operation == "replace": continue
+		var result: Dictionary = session.submit_operation(op)
+		if result.ok:
+			_player.clear_intents()
+			_player.runner.cancel()
+			_apply_program()
+			status_panel.set_notice("build.training.granted", {"name_key": catalog.upgrade(upgrade_id).name_key})
+		return result
+	return {"ok": false, "error": "training_grant_unavailable"}
 
 func apply_test_preset(id: String) -> Dictionary:
 	if not _test_presets_enabled or _stopped or is_choosing() or not _player.health.alive():
@@ -141,11 +156,10 @@ func is_choosing() -> bool:
 
 func request_test_offer() -> void:
 	if _stopped or is_choosing(): return
-	_offer_suspended = false
 	if _pending <= 0: _queue(1)
 	flush_offers()
 
-## 一局冒险的房间奖励：按过滤条件出一次三选一；选完、关掉或没有可选卡时发出 offer_finished
+## 一局冒险的房间奖励：选完或没有可选卡时发出 offer_finished；候选不可暂时关闭。
 func request_filtered_offer(profile_id: String, filter: Dictionary) -> void:
 	if _stopped or is_choosing() or not reward_groups.reward_profiles.has(profile_id):
 		offer_finished.emit(false)
@@ -153,7 +167,6 @@ func request_filtered_offer(profile_id: String, filter: Dictionary) -> void:
 	_reward_profile = profile_id
 	_filter = filter
 	_filtered_active = true
-	_offer_suspended = false
 	_pending = 1
 	flush_offers()
 
@@ -174,7 +187,7 @@ func _queue(count: int) -> void:
 	if not _stopped: _pending = mini(_pending + count, int(_rules["max_queued_offers"]))
 
 func flush_offers() -> void:
-	if _stopped or is_choosing() or _offer_suspended or _pending <= 0: return
+	if _stopped or is_choosing() or _pending <= 0: return
 	var result: Dictionary = session.open_offer(_reward_profile, _filter)
 	if not result["ok"]:
 		status_panel.set_notice("build.error")
@@ -188,7 +201,9 @@ func flush_offers() -> void:
 		return
 	_player.clear_intents()
 	status_panel.set_notice("")
-	choice_panel.show_offer(offer, session.snapshot().selections)
+	var awakening := String(_filter.get("mode", "")) == "awakening"
+	choice_panel.show_offer(offer, session.snapshot().selections,
+		["build.awakening.title", "build.awakening.subtitle"] if awakening else ["build.title", "build.subtitle"])
 
 func _choose(offer_id: String, choice_id: String) -> void:
 	if _stopped: return

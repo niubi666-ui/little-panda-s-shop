@@ -40,8 +40,8 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 | 卡牌品质分组、各类房间的奖励品质权重 | `builds/reward_groups.json` |
 | 元素状态（层数、持续、灼烧伤害、感电放电、碎甲易伤）与六种反应（伤害、范围、推拉、易伤、减速、熔岩区域） | `builds/elements.json`（字段为 0 / 空字符串表示不用） |
 | 敌人角色参数（近战兵的出手名额、绕圈与后撤；弩手射程、冲锋速度、游侠招式……） | `enemies/roles.json` |
-| 遭遇阵容、深度预算、训练五波递进 | `rooms/encounters.json` |
-| 一局冒险：房间数、深度增长、Boss、出口数量、奖励权重、回血/金币数额、祝福用哪个品质来源 | `run/forest_run.json` |
+| 遭遇阵容、深度预算、冒险 Boss 生命/伤害倍率、训练五波递进 | `rooms/encounters.json` |
+| 一局冒险：区域（深度、Boss）、每区地图规则（`map`，与 M 键地图同格式）、元素觉醒（选项数、第二次保证）、选卡相关度权重、各房型奖励与金币、宝箱/事件/休息/商店数值 | `run/forest_run.json` |
 | 房间随机道具组合与掉落 | `rooms/props_prototype.json`、`loot/enemies.json` |
 | 路线与地图生成规则 | `run/route.json`、`run/map_preview.json` |
 | 店铺、装修目录 | `shop/*.json`、`shop/decorating/catalog.json` |
@@ -78,7 +78,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 
 - `CharacterMotor` 是唯一写移动的地方（自主移动、击退、出招前冲、闪避）。
 - 构筑：`BuildResolver` 把选卡编译成每个动作的执行计划（program）；`BuildRuntime` 按计划执行投射物、爆炸、状态、条件增伤；`TrainingBuildSession` 负责三选一、预设和提交；`BuildOfferSampler` 按品质与权重抽候选。
-- 接续构筑设计见 [构筑成长](BUILD_PROGRESSION.md)：元素/形态独立、能力前置、单元素与双元素机制、来源与成长供给是待补目标，不是以上接口已完整支持的能力。`projectile_capabilities.gd` 的旧状态摘要、新冰核心与旧卡需要一起适配。
+- 接续构筑设计见 [构筑成长](BUILD_PROGRESSION.md)。`projectile_capabilities.gd` 已把新冰核心接到四张基础冰协同；其它旧卡和后期机制仍按范围逐步适配，不代表完整成长设计已实现。
 - 状态：`StatusRuntime`（冰冻/减速/寒印/抗冻、同根去重、控制组）。
 - 敌人：`EnemyRuntime` 管理各角色 AI（`*_brain.gd`）、敌方投射物和箭雨；近战敌人走同一套 AbilityRunner。近战 AI 在 `combat/ai/melee_brain.gd`：出手名额由 `EnemyRuntime._engaged_melee_others` 统计（逼近、出手、后撤都占名额）。
 - 霸体：`CombatActor.armored()`、`receive_hit` 累计伤害到 `poise` 时 `_break_poise()`，发出 `poise_broken` 信号；破防期间受伤乘 `break_damage_scale`，恢复前受击正常硬直。`poise` 为 0 的角色行为与以前相同。
@@ -86,24 +86,41 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 
 ### 元素系统
 
-- 卡：`builds/prototype.json` 里 `effect_type: "element"` 的核心卡（`fire_core` 等），参数 `element_id`、`stacks_per_hit`；核心层，所以每个动作只能有一个元素，新的替换旧的。
+- 卡：`builds/prototype.json` 里 `effect_type: "element"` 的核心卡（`fire_core` 等），参数 `element_id`、`stacks_per_hit`、`damage_bonus`（该动作伤害加成，二级用）；核心层，每个动作只能有一个元素。Resolver 仍支持替换，但冒险里元素只从“元素觉醒”拿（抽卡器只出空按键），平时三选一不出元素核心。
+- 元素条件：每张卡有 `required_element` + `required_element_actions`（都为空/0 表示无），要求至少 N 个按键带该元素；Resolver、两个 Loader/校验器、预设检查都认。同元素专精卡用 N=2。
+- 攻击范围卡：`effect_type: "reach_scale"`（动作卡，`bonus`），编译到动作计划的 `reach_scale`，`MeleeResolver` 乘到近战半径上；`impact_blast` 现在是支援层，不再和元素抢核心槽。
 - 定义：`builds/elements.json`，由 `content/builds/elements_loader.gd` 校验，经 `BuildLoader.load_catalog` 挂到 BuildCatalog（`element()`、`reaction_between()`）。
 - 执行：`combat/builds/element_effects.gd`，由 `BuildRuntime._apply_direct_damage` 在每次直接命中后调用；命中前乘 `incoming_scale`（碎甲、超导易伤）。元素造成的伤害不再触发元素，也不走 `damage_applied`（不会触发顿帧和命中音效）。
 - 冰寒叠满时调用现有冻结状态（`test_freeze`），所以 Boss 仍按自身响应改为减速窗口。
-- 事实信号 `BuildRuntime.element_presented`（applied / discharge / reaction / zone_ended / cleared）→ `presentation/builds/element_view.gd` 和 `CombatAudio.element_fact`。
+- 能力摘要新增 `freeze_window_ids`：汇总真实状态/范围负载的冻结及元素叠层可产生的冻结，供条件追击、霜径、冰衣等查询；`status_ids` 仍只表示直接状态负载，不把叠层伪装成即时冻结，也不误开放尚未适配的旧 `freeze_duration`。冻结成功与来源仍由 `StatusRuntime` 判断，候选与提交共用 Resolver。
+- `conditional_damage.provider_scope` 同时限制候选与实际命中的来源：`same_action` 要求较早独立的同动作施放，`other_formal_action` 要求另一正式动作。来源还须匹配 runtime、房间代数、玩家和阵营；分裂/爆炸不能获得追击增伤。同一投射物回程沿用原 root，不会自触发。
+- `frost_effects.gd` 复用路径与护盾执行器：路径仅主投射物铺设，受根预算、`max_targets`（现有字段，同时约束路径段总数与每段每步目标数）、时限限制；只施加普通减速。冰衣只在 `_apply_status` 实际成功建立冻结窗口时触发，受盾量/时限/冷却约束。暂停不推进，切房和死亡清理。
+- 冰协同的相关度由 `BuildOfferSampler.upgrade_elements()` 通过真实元素的 `freeze_status_id` 与卡的状态/窗口要求推导，不靠卡名或装饰标签。四卡恢复 weight=1，品质沿用 `reward_groups.json`（追击/霜径/冰衣 rare，乘隙斩 epic）；原有两同元素专精门槛不变。
+- 冻结中的敌人被其他元素命中：消耗冻结，按冰的满层触发反应（例如土 → 碎冰）。
+- 反应的 `required_status_id` / `trigger_element_id` 显式声明前置窗口和触发元素，空字符串表示无此限制；Loader 与离线校验器检查引用和元素关系。碎冰配置为 `test_freeze` + `earth`，只能走有效冻结窗口路径，不能用普通冰附着触发。窗口优先于附着消费，同时清掉残余冰寒，避免一次冻结重复结算。
+- 同元素专精：`effect_type: "element_mastery"`（全局卡；`trigger` 为 `full_stacks` 叠满时 / `discharge` 放电时，对周围造成伤害并扩散 `spread_stacks` 层，`consume` 决定是否清掉目标身上的该元素），编译到 `program.global.element_masteries`。扩散出的层数不再触发专精。
+- 事实信号 `BuildRuntime.element_presented`（applied / discharge / reaction / mastery / zone_ended / cleared）→ `presentation/builds/element_view.gd` 和 `CombatAudio.element_fact`。
 - 被动卡：`effect_type: "element_boost"`（全局卡，`element_id` + `field` + `add`，给元素的某个数值加值，可改的字段见 `elements_loader.gd` 的 `BOOSTABLE`）；双元素卡：`"reaction_boost"`（`reaction_id` + `damage_bonus` + `radius_bonus_m`）。两者编译到 `program.global.element_boosts / reaction_boosts`，`element_effects.gd` 用 `param()` 取“基础值 + 加值”。全局卡要求动作卡时，任意动作上有即满足。
-- 当前 `element_boost` / `reaction_boost` 是数值增量接口，不能直接表达新区域、余波、下一次施放消费等机制。`param()` 读取当前program；状态/区域快照和派生来源权限仍需按构筑设计补齐，见 [STATUS](STATUS.md)。
+- 当前 `element_boost` / `reaction_boost` 是数值增量接口，不能直接表达新区域、余波、下一次施放消费等机制。全局强化读取当前program，已存在的灼烧等会受后续选卡影响，用户确认保留此行为。派生来源与触发权限仍需补齐，不能以此为由把全局强化自动改成施放快照。
 - 扩充配置可复用已有状态与反应效果；全新机制须实现对应执行器，同步schema、Loader、能力检查及规则事实。元素定义/卡在 `elements.json`、`prototype.json`；表现入口是 `element_style.tres`、`training_style.tres` 与音效配置。粒子场景可用 `tools/vfx/make_element_fx.gd` 重新生成。
 
 ### 一局冒险（原型）
 
 - 场景 `app/forest_run.tscn`：就是战斗训练场开了 `run_mode`；流程在 `app/forest_run.gd`，界面在 `presentation/run/run_exit_panel.gd`。
-- 换房间 = 重新载入同一场景，进度放在 `initial_run_state`（种子、第几间、生命、构筑选择、金币、待发奖励）里带过去；下一间的遭遇在离开时就规划好（`initial_encounter_plan`），Boss 房用 `EncounterPlanner.generate_run_boss`。
+- 地图：每区用 `rogue/run/map_preview_generator.gd`（与 M 键预览同一个生成器）按 `forest_run.json` 的 `map` 规则生成，种子 `局种子:area:区号`；出口 = 当前节点在地图上的后继（区域入口为第 0 层），走完最后一层进区域 Boss。`app/map_preview.gd` 的 `show_run(plan, progress)` 让 M 键显示本局路线（红圈当前、黄圈可去、走过的变暗）。
+- 换房间 = 重新载入同一场景，进度放在 `initial_run_state`（种子、区号、当前节点、走过的节点、房型、生命、构筑选择、金币、觉醒次数）里带过去；战斗房的遭遇在离开时就规划好（`initial_encounter_plan`），Boss 用 `EncounterPlanner.generate_run_boss`。宝箱、休息、事件、商店也会换场景，但不开打（`is_lobby()`），进门后弹面板。
+- Boss 波次含角色翻译 `name_key`（经 `EnemyCatalog.actor_name_key()` 从 CombatCatalog 取得）、深度、预算和强化倍率。倍率来自 `encounters.json.depth_bands[].boss_health_multiplier/boss_damage_multiplier`，随深度不递减；生成计划后由 `validate_plan` 重建核验。`combat_training._spawn_wave` 克隆基础生命/近战技能/远程角色参数后乘一次倍率，训练仍用独立的 `training_waves` 配置。
 - 构筑跨房间：`TrainingBuildSession.restore_selections()` 按选择列表重建（多轮尝试，顺序无关），每项仍走 Resolver 评估。
-- 奖励：`TrainingBuilds.request_filtered_offer(profile, filter)`，filter 支持 `element`（只出该元素相关的卡）、`per_binding`（同一张卡挂不同按键算不同选项）、`operation: "rank"`（只出升级）；结束时发 `offer_finished`。
-- 当前元素过滤仅识别元素核心、元素被动和反应强化，通用贯穿/回旋等没有实际入口；新增武技改造奖励时应复用候选与提交路径，勿伪造元素标签。按已有构筑偏好和成长用途调整候选是待实现设计，不能跳过合法性、品质或前置。
-- 测试：图形 `tests/forest_run_flow.gd`（开局→第 1 间→领奖→出口→第 2 间→倒下→再来一局）。
-- 测试：`tests/element_reactions.gd`（规则），`tests/element_capture.gd`（截图）。
+- 奖励：`TrainingBuilds.request_filtered_offer(profile, filter)`，选择提交成功或没有合法候选时发 `offer_finished`。界面不再提供暂时关闭，未选完不会转到房间出口/商店；`BuildChoicePanel` 只发 `choice_requested`。filter（实现在 `rogue/build_offer_sampler.gd`）：
+  - `mode: "awakening"`：元素觉醒，候选 = 元素核心在空按键上的新增操作，尽量元素、按键都不重复；`guarantee_same/new` 保证已有元素时至少一个同元素、一个新元素。
+  - `mode: "card"`：平时三选一，按品质组抽，只要新增操作、不含元素核心；和已有元素相关的卡乘 `owned_element_scale`，挂在带元素按键上的卡乘 `elemental_action_scale`；同一按键最多 `max_per_action` 张（全局卡不计）。
+  - `operation: "rank"`：只出升级；`element` / `per_binding`：旧的按元素过滤（训练用）。
+- 权重为 0 的卡不进抽取，但仍是合法构筑（旧冰卡留给训练预设）。
+- 测试：图形 `tests/forest_run_flow.gd`（觉醒→地图出口→战斗选卡→第一区 Boss 第二次觉醒→第二区→宝箱/休息/事件/商店→倒下→再来一局）；无头 `tests/build_awakening.gd`（冰+冰、火+土两条路线从空构筑拿到底，不出替换）；截图 `tests/run_capture.gd`。
+- 回归：`tests/adventure_rewards_and_bosses.gd`（不可关闭的觉醒、商店连续买卡/升级隔离、三区实际 Boss 生命/所有伤害参数和 HUD）；`tests/shatter_window.gd`（未冻/已冻/Boss 窗口/过期/反向顺序/重复消费，以及全局强化实时生效）。两者均可无头运行。
+- 冰协同：`tests/ice_synergy.gd` 验证单核心前置、四卡与贯穿/回旋/蓄力兼容、实际剑气命中、同根/异动作、Boss、抗冻失败、暂停和生命周期；`tests/ice_synergy_rewards.gd` 用固定选卡流种子 13 通过真实候选令牌取得四卡，随后验证训练 UI、冒险禁用直接授予及跨房重建。奖励测试没有用 `submit_operation` 补缺卡。测试序列为觉醒后按“普通、普通、精英”重复发卡，是奖励接口验证，不宣称该种子对应一条实际地图路线。
+- 训练逐卡入口：`BuildStatusPanel.training_upgrade_requested(upgrade_id, action_id)` → `TrainingBuilds.grant_training_upgrade()`，重新查询合法操作后走 `Session.submit_operation()`；仅开启训练预设时可用，不允许替换或领取权重为 0 的旧卡。界面和命令都有训练门禁。此入口只供测试，不作为正常获取的验证证据。本次沿用现有 JSON 字段与 schema，没有新增玩法字段。
+- 测试：`tests/element_reactions.gd`（六反应与专精），`tests/element_capture.gd`（截图）。
 
 ## 测试
 
@@ -116,9 +133,9 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 | 战斗基础、连段、反馈 | `combat_rules`；图形 `combo_feel`、`combat_feedback` |
 | 敌人、遭遇 | `enemy_roles`、`charger_obstacles`；图形 `enemy_training` |
 | 游侠 | `ranger_rules`、`ranger_sequences`、`charged_ranger` |
-| 构筑 | `bound_build_policy`、`bound_build_session`、`mechanism_content`、`dual_actions`、`frost_first_batch` |
-| 元素 | 图形 `element_reactions`；截图 `element_capture` |
-| 一局冒险 | 图形 `forest_run_flow` |
+| 构筑 | `bound_build_policy`、`bound_build_session`、`mechanism_content`、`dual_actions`、`frost_first_batch`；冰协同 `ice_synergy`、`ice_synergy_rewards`、`freeze_followup`、`boss_frost_builds` |
+| 元素 | `shatter_window`、`element_reactions`；截图 `element_capture` |
+| 一局冒险 | `adventure_rewards_and_bosses`、`forest_run_flow`、`build_awakening`；截图 `run_capture` |
 | 状态与冰冻 | `status_controls`、`freeze_guard`、`boss_frost_window` |
 | 训练工具、五波 | `training_tools`、`training_five_waves` |
 | 路线、地图 | `run_session`、`run_integration`、`map_generation` |

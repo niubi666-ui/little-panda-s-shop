@@ -140,7 +140,9 @@
           "zone_radius_m",
           "zone_sec",
           "zone_tick_sec",
-          "zone_damage_per_tick"
+          "zone_damage_per_tick",
+          "required_status_id",
+          "trigger_element_id"
         ],
         "properties": {
           "id": {
@@ -229,6 +231,16 @@
             "type": "number",
             "minimum": 0,
             "maximum": 1000
+          },
+          "required_status_id": {
+            "type": "string",
+            "minLength": 0,
+            "pattern": "^[a-z_]*$"
+          },
+          "trigger_element_id": {
+            "type": "string",
+            "minLength": 0,
+            "pattern": "^[a-z_]*$"
           }
         }
       }

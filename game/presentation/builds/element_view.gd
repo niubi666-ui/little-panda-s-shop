@@ -31,7 +31,16 @@ func on_fact(fact: Dictionary) -> void:
 			_burst(style.apply_burst, at, _element_color(fact.element))
 			_flash(at, _element_color(fact.element), style.apply_flash_energy, style.apply_flash_range_m)
 		"discharge": _arcs(fact.points, _element_color(fact.element))
-		"reaction": _reaction(fact)
+		"reaction": _reaction(fact, style.reaction_colors.get(fact.reaction_id, Color.WHITE))
+		"mastery":
+			# 同元素专精爆发：沿用反应的冲击波/闪光/名字，颜色取元素色；放电专精再画电弧
+			var color := _element_color(fact.element)
+			if fact.points.size() > 0:
+				var arcs := PackedVector3Array()
+				for point in fact.points: arcs.append_array([fact.position, point])
+				_arcs(arcs, color)
+			_reaction({"reaction_id": "", "position": fact.position, "radius": fact.radius, "pull": false, "zone_id": -1,
+				"name_key": "element.mastery." + String(fact.element)}, color)
 		"zone_ended": _end_zone(int(fact.zone_id))
 		"cleared": _drop_aura(int(fact.handle))
 
@@ -144,8 +153,7 @@ func _burst(scene: PackedScene, at: Vector3, color: Color) -> CPUParticles3D:
 	node.restart()
 	return node
 
-func _reaction(fact: Dictionary) -> void:
-	var color: Color = style.reaction_colors.get(fact.reaction_id, Color.WHITE)
+func _reaction(fact: Dictionary, color: Color) -> void:
 	var center: Vector3 = fact.position
 	_burst(style.reaction_burst, center + Vector3.UP * style.burst_height_m, color)
 	if style.smoke_reactions.has(fact.reaction_id):

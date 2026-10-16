@@ -2,6 +2,7 @@ extends PanelContainer
 signal test_offer_requested
 signal test_preset_requested(id: String)
 signal reward_profile_requested(id: String)
+signal training_upgrade_requested(upgrade_id: String, action_id: String)
 
 const Style = preload("res://presentation/builds/build_ui_style.tres")
 var _catalog
@@ -18,6 +19,8 @@ var _presets: Array = []
 var _reward_menu: MenuButton
 var _reward_profiles: Dictionary = {}
 var _reward_ids: Array = []
+var _grant_menu: MenuButton
+var _grant_options: Array = []
 
 func configure_reward_profiles(groups: Dictionary) -> void:
 	_reward_profiles = groups.reward_profiles
@@ -80,8 +83,30 @@ func configure(catalog, shared_theme: Theme, enable_test_presets: bool = false) 
 		_preset_menu.get_popup().id_pressed.connect(func(index: int):
 			if index >= 0 and index < _presets.size(): test_preset_requested.emit(_presets[index].id))
 		stack.add_child(_preset_menu)
+		_grant_menu = MenuButton.new()
+		_grant_menu.name = "TrainingSingleUpgrade"
+		_grant_menu.custom_minimum_size.y = Style.status_button_height
+		_grant_menu.get_popup().id_pressed.connect(func(index: int):
+			if index >= 0 and index < _grant_options.size():
+				training_upgrade_requested.emit(_grant_options[index].upgrade_id, _grant_options[index].action_id))
+		stack.add_child(_grant_menu)
 	refresh_text()
 
+func update_training_options(options: Array) -> void:
+	_grant_options = options.duplicate(true)
+	_refresh_grants()
+
+func _refresh_grants() -> void:
+	if _grant_menu == null: return
+	_grant_menu.text = tr("build.training.grant_title")
+	_grant_menu.tooltip_text = tr("build.training.grant_hint")
+	var popup := _grant_menu.get_popup()
+	popup.clear()
+	for index in _grant_options.size():
+		var op: Dictionary = _grant_options[index]
+		var entry: Dictionary = _catalog.upgrade(op.upgrade_id)
+		popup.add_item(tr("build.training.grant_item").format({"action": _action_label(op.action_id), "name": tr(entry.name_key), "rank": int(op.rank)}), index)
+	_grant_menu.disabled = _grant_options.is_empty()
 
 func update_state(selections: Array, program: Dictionary = {}) -> void:
 	_selections = selections.duplicate(true)
@@ -89,7 +114,7 @@ func update_state(selections: Array, program: Dictionary = {}) -> void:
 	refresh_text()
 
 func has_open_popup() -> bool:
-	return (_preset_menu != null and _preset_menu.get_popup().visible) or (_reward_menu != null and _reward_menu.get_popup().visible)
+	return (_preset_menu != null and _preset_menu.get_popup().visible) or (_reward_menu != null and _reward_menu.get_popup().visible) or (_grant_menu != null and _grant_menu.get_popup().visible)
 
 
 func set_notice(key: String, params: Dictionary = {}) -> void:
@@ -135,6 +160,7 @@ func refresh_text() -> void:
 		var popup := _preset_menu.get_popup()
 		popup.clear()
 		for index in _presets.size(): popup.add_item(tr(_presets[index].name_key), index)
+	_refresh_grants()
 	reset_size()
 	_fit_after_layout.call_deferred()
 

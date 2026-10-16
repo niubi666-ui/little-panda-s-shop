@@ -94,8 +94,14 @@ func load_catalog(combat) -> Catalog:
 		if counts.get("support", 0) == combination.enemy_ids.size(): errors.append("support-only encounter " + combination.id)
 	var previous_depth := 0
 	var previous_budget := 0
+	var previous_boss_health := 0.0
+	var previous_boss_damage := 0.0
 	for band in enc.depth_bands:
 		if band.min_depth <= previous_depth or band.budget < previous_budget: errors.append("depth bands must ascend")
+		if band.boss_health_multiplier < previous_boss_health or band.boss_damage_multiplier < previous_boss_damage:
+			errors.append("depth band boss strength must not decrease")
+		previous_boss_health = band.boss_health_multiplier
+		previous_boss_damage = band.boss_damage_multiplier
 		previous_depth = band.min_depth
 		previous_budget = band.budget
 		var eligible := false
@@ -119,7 +125,7 @@ func load_catalog(combat) -> Catalog:
 			if not wave.has_all(["boss_actor_id", "boss_name_key"]) or not ids.has(wave.boss_actor_id): errors.append("training final boss missing")
 		elif wave.has("boss_actor_id") or wave.has("boss_name_key"): errors.append("only final training wave may specify boss")
 	if not errors.is_empty(): return null
-	return Catalog.new(roles, enc, loot)
+	return Catalog.new(roles, enc, loot, combat)
 
 func _validate_training_tools(enc: Dictionary) -> void:
 	# Called only after schema validation. Never replace invalid training config with defaults.

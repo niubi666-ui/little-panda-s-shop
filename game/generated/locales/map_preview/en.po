@@ -55,6 +55,9 @@ msgstr "New map"
 msgid "map_preview.notice"
 msgstr "Map preview · Click a room to inspect"
 
+msgid "map_preview.run_subtitle"
+msgstr "This run's route · red ring: you are here, yellow: where you can go next"
+
 msgid "map_preview.seed"
 msgstr "Map seed"
 

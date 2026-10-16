@@ -1,7 +1,6 @@
 extends Control
 ## The application owns offers and commits. This view only requests a choice.
 signal choice_requested(offer_id: String, choice_id: String)
-signal close_requested
 
 const Style = preload("res://presentation/builds/build_ui_style.tres")
 var buttons: Dictionary = {}
@@ -11,12 +10,12 @@ var _selections: Array = []
 var _bindings: Dictionary = {}
 var _body: VBoxContainer
 var _title: Label
+var _heading: Array = ["build.title", "build.subtitle"]
 var _subtitle: Label
 var _cards: HBoxContainer
 var _error: Label
 var _error_key := ""
 var _card_text: Dictionary = {}
-var _close_button: Button
 
 
 func configure(catalog, shared_theme: Theme) -> void:
@@ -45,17 +44,16 @@ func configure(catalog, shared_theme: Theme) -> void:
 	_body.add_child(_cards)
 	_error = _label(_body, &"Muted", Style.error_color)
 	_error.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_close_button = Button.new()
-	_body.add_child(_close_button)
-	_close_button.pressed.connect(func(): close_requested.emit())
 	resized.connect(_layout)
 	_body.minimum_size_changed.connect(_layout.call_deferred)
 	dismiss()
 	refresh_text()
 
 
-func show_offer(offer: Dictionary, selections: Array) -> void:
-	assert(_catalog != null)
+## heading：[标题键, 副标题键]（元素觉醒用不同的标题）
+func show_offer(offer: Dictionary, selections: Array, heading: Array = ["build.title", "build.subtitle"]) -> void:
+	assert(_catalog != null and heading.size() == 2)
+	_heading = heading.duplicate()
 	assert(offer.has("id") and offer.has("candidates") and offer.has("resolved"))
 	assert(not bool(offer["resolved"]))
 	_offer = offer.duplicate(true)
@@ -92,9 +90,8 @@ func set_error(key: String) -> void:
 func refresh_text() -> void:
 	if _title == null:
 		return
-	_title.text = tr("build.title")
-	_close_button.text = tr("build.reward.close")
-	_subtitle.text = tr("build.subtitle")
+	_title.text = tr(_heading[0])
+	_subtitle.text = tr(_heading[1])
 	_error.text = tr(_error_key) if not _error_key.is_empty() else ""
 	_error.visible = not _error_key.is_empty()
 	for id in _card_text:
@@ -134,11 +131,11 @@ func _description_params(entry: Dictionary, rank: int, action_id: String) -> Dic
 	params.max_rank = int(entry.max_rank)
 	for key in ["jumps", "count", "max_generation", "max_hits", "max_targets", "max_per_root", "max_per_parent"]:
 		if params.has(key): params[key] = int(params[key])
-	for key in ["stacks_per_hit"]:
+	for key in ["stacks_per_hit", "spread_stacks"]:
 		if params.has(key): params[key] = int(params[key])
 	for pair in [["bonus", "bonus_percent"], ["damage_ratio", "damage_percent"], ["falloff", "falloff_percent"], ["add", "add_percent"], ["damage_bonus", "damage_bonus_percent"]]:
 		if params.has(pair[0]): params[pair[1]] = _display_decimal(float(params[pair[0]]) * 100.0)
-	for key in ["radius_m", "speed_mps", "lifetime_sec", "spread_deg", "add", "radius_bonus_m"]:
+	for key in ["radius_m", "speed_mps", "lifetime_sec", "spread_deg", "add", "radius_bonus_m", "damage", "damage_per_stack"]:
 		if params.has(key): params[key] = _display_decimal(float(params[key]))
 	return params
 

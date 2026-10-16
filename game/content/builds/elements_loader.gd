@@ -45,6 +45,13 @@ func load_elements(manifest: Dictionary, statuses: Dictionary) -> Dictionary:
 		var a: String = reaction.elements[0]
 		var b: String = reaction.elements[1]
 		if a == b or not elements.has(a) or not elements.has(b): errors.append(where + " needs two different known elements")
+		var required: String = reaction.required_status_id
+		var trigger: String = reaction.trigger_element_id
+		if not trigger.is_empty() and not reaction.elements.has(trigger): errors.append(where + ".trigger_element_id must belong to this reaction")
+		if not required.is_empty():
+			if not statuses.has(required) or statuses[required].kind != "freeze": errors.append(where + ".required_status_id must name a freeze status")
+			var providers: Array = reaction.elements.filter(func(id): return elements.has(id) and elements[id].freeze_status_id == required and id != trigger)
+			if trigger.is_empty() or providers.is_empty(): errors.append(where + " requires a trigger and a different freeze provider")
 		var key := pair_key(a, b)
 		if pairs.has(key): errors.append(where + " duplicates the reaction for " + key)
 		pairs[key] = reaction

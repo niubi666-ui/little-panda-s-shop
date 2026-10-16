@@ -42,7 +42,7 @@ func run() -> void:
 	var frozen_primary := state([selection("contact_freeze", "primary")])
 	var duration_choices: Array = resolver.legal_operations(frozen_primary, "freeze_duration")
 	check(duration_choices.size() == 1 and duration_choices[0].action_id == "primary", "same action carrier only")
-	var two_cores := state([selection("contact_freeze", "primary"), selection("impact_blast", "primary")])
+	var two_cores := state([selection("contact_freeze", "primary"), selection("fire_core", "primary")])
 	check(resolver.resolve(two_cores).is_empty(), "one core per action")
 	var two_actions := state([selection("contact_freeze", "primary", 1), selection("contact_freeze", "special")])
 	program = resolver.resolve(two_actions)
@@ -75,9 +75,9 @@ func run() -> void:
 	bad_frost.selections.erase(selection("pierce", "skill"))
 	check(resolver.resolve(bad_frost).is_empty(), "split frost rejected without pierce")
 	var simple := state([selection("contact_freeze", "special")], 9)
-	var replace := operation(simple, "impact_blast", "special", simple.selections[0])
+	var replace := operation(simple, "fire_core", "special", simple.selections[0])
 	var result: Dictionary = resolver.evaluate(simple, replace)
-	check(result.ok and result.state.revision == 10 and result.state.selections == [selection("impact_blast", "special")], "core replacement legal without dependents")
+	check(result.ok and result.state.revision == 10 and result.state.selections == [selection("fire_core", "special")], "core replacement legal without dependents")
 	check(simple.selections == [selection("contact_freeze", "special")] and simple.revision == 9, "pure evaluator leaves source unchanged")
 	var dependency := state([selection("contact_freeze", "special"), selection("freeze_duration", "special")], 9)
 	result = resolver.evaluate(dependency, replace)
@@ -127,7 +127,7 @@ func check_content(loader) -> void:
 	changed.offer.pool_ids.append("chain")
 	check(loader.decode(changed) == null, "no fixture upgrade in formal pool")
 	changed = original.duplicate(true)
-	changed.test_presets[0].selections = [selection("impact_blast", "primary"), selection("contact_freeze", "primary")]
+	changed.test_presets[0].selections = [selection("fire_core", "primary"), selection("contact_freeze", "primary")]
 	check(loader.decode(changed) == null, "preset duplicate core rejected")
 
 func finish() -> void:

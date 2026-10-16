@@ -15,6 +15,7 @@ extends Resource
 ## 奖励类型 → 卡片主色；元素祝福的颜色取元素颜色（element_style.tres）
 @export var reward_colors: Dictionary
 @export var element_style: Resource
+@export var disabled_tint: Color
 @export_group("房间信息条")
 @export var info_font_size: int
 @export var info_top_margin: float

@@ -4,6 +4,8 @@ const Catalog = preload("res://content/builds/build_catalog.gd")
 var _catalog: Catalog
 var _operations: Callable
 var _rewards: Dictionary = {}
+## 本次抽取里每张卡的相关度倍率（只在 card 模式下有值）
+var _scales: Dictionary = {}
 
 func configure(catalog: Catalog, operations: Callable, rewards: Dictionary = {}) -> void:
 	assert(catalog != null and operations.is_valid())
@@ -11,9 +13,13 @@ func configure(catalog: Catalog, operations: Callable, rewards: Dictionary = {})
 	_operations = operations
 	_rewards = rewards
 
-## filter（可选）：{"element": 元素 ID} 只出与该元素相关的卡；{"operation": "rank"} 只出升级已有卡的选项
+## filter（可选）：
+## - {"mode": "awakening", "count", "guarantee_same", "guarantee_new"}：元素觉醒，只出“元素 × 空按键”，永不替换
+## - {"mode": "card", "owned_element_scale", "elemental_action_scale", "max_per_action"}：平时三选一，全卡池按相关度加权，不含元素核心、不含升级
+## - {"operation": "rank"}：只出升级已有卡；{"element": 元素 ID}：只出与该元素相关的卡（训练用）
 func sample(state: Dictionary, rng: RandomNumberGenerator, profile_id: String = "training_all", filter: Dictionary = {}) -> Array[Dictionary]:
 	assert(_catalog != null and rng != null)
+	if String(filter.get("mode", "")) == "awakening": return _sample_awakening(state, rng, filter)
 	if not _rewards.is_empty(): return _sample_profile(state, rng, profile_id, filter)
 	var rules: Dictionary = _catalog.offer_rules()
 	assert(rules.target_weighting == "uniform", "Unknown authored binding weighting")
@@ -43,19 +49,86 @@ func sample(state: Dictionary, rng: RandomNumberGenerator, profile_id: String = 
 		selected[id] = true
 	return candidates
 
-## 一张卡涉及的元素：元素核心/元素强化看 element_id，反应强化看反应的两种元素；其他卡不属于任何元素
+## 元素关联从真实元素/状态定义取得；普通武技不伪造元素归属。
 func upgrade_elements(entry: Dictionary) -> Array:
 	match String(entry.effect_type):
-		"element", "element_boost": return [entry.ranks[0].element_id]
+		"element", "element_boost", "element_mastery": return [entry.ranks[0].element_id]
 		"reaction_boost":
 			if not _catalog.has_elements(): return []
 			for element_id in _catalog.element_order():
 				for other in _catalog.element_order():
 					var reaction: Dictionary = _catalog.reaction_between(element_id, other)
 					if not reaction.is_empty() and reaction.id == entry.ranks[0].reaction_id: return reaction.elements
-	return []
+	var result: Array = []
+	if not _catalog.has_elements(): return result
+	for element_id in _catalog.element_order():
+		var freeze_id: String = _catalog.element(element_id).freeze_status_id
+		if freeze_id.is_empty(): continue
+		if entry.effect_type in ["projectile_path", "freeze_shield"] or (entry.effect_type in ["conditional_damage", "consume_freeze"] and entry.ranks[0].status_id == freeze_id):
+			result.append(element_id)
+	return result
+
+## 每个按键当前带的元素（动作 ID → 元素 ID）
+func action_elements(state: Dictionary) -> Dictionary:
+	var result: Dictionary = {}
+	for selected in state.selections:
+		var entry: Dictionary = _catalog.upgrade(selected.upgrade_id)
+		if entry.effect_type == "element": result[selected.action_id] = entry.ranks[int(selected.rank) - 1].element_id
+	return result
+
+## 元素觉醒：候选 = 所有元素核心在“还没有元素的按键”上的新增操作；尽量元素、按键都不重复。
+## guarantee_same / guarantee_new：已有元素时，至少一个与已有元素相同、至少一个是新元素（能满足才满足）。
+func _sample_awakening(state: Dictionary, rng: RandomNumberGenerator, filter: Dictionary) -> Array[Dictionary]:
+	var owned: Array = action_elements(state).values()
+	var pool: Array = []
+	for entry in _catalog.entries():
+		if entry.effect_type != "element" or float(entry.weight) <= 0.0: continue
+		for option in _operations.call(state, entry.id):
+			if option.operation == "add" and option.replaced.is_empty():
+				pool.append({"option": option, "element": entry.ranks[0].element_id})
+	pool.sort_custom(func(a, b): return "%s|%s" % [a.option.upgrade_id, a.option.action_id] < "%s|%s" % [b.option.upgrade_id, b.option.action_id])
+	for index in range(pool.size() - 1, 0, -1):
+		var other := rng.randi_range(0, index)
+		var held = pool[index]
+		pool[index] = pool[other]
+		pool[other] = held
+	var picked: Array = []
+	var take := func(test: Callable) -> void:
+		for candidate in pool:
+			if picked.size() >= int(filter.count) or picked.has(candidate): continue
+			if test.call(candidate):
+				picked.append(candidate)
+				return
+	if not owned.is_empty():
+		if filter.guarantee_same: take.call(func(c): return owned.has(c.element))
+		if filter.guarantee_new: take.call(func(c): return not owned.has(c.element))
+	while picked.size() < int(filter.count):
+		var before := picked.size()
+		var elements: Array = picked.map(func(c): return c.element)
+		var actions: Array = picked.map(func(c): return c.option.action_id)
+		take.call(func(c): return not elements.has(c.element) and not actions.has(c.option.action_id))
+		if picked.size() == before: take.call(func(c): return not elements.has(c.element))
+		if picked.size() == before: take.call(func(c): return true)
+		if picked.size() == before: break
+	var result: Array[Dictionary] = []
+	for candidate in picked:
+		var option: Dictionary = candidate.option.duplicate(true)
+		option.rarity_id = "awakening"
+		result.append(option)
+	return result
+
+## 平时三选一的相关度：和已有元素相关的卡、挂在带元素按键上的卡权重更高
+func _relevance(id: String, options: Array, elements: Dictionary, filter: Dictionary) -> float:
+	var entry: Dictionary = _catalog.upgrade(id)
+	if upgrade_elements(entry).any(func(id): return elements.values().has(id)) or not str(entry.required_element).is_empty():
+		return float(filter.owned_element_scale)
+	if options.any(func(option): return elements.has(option.action_id)): return float(filter.elemental_action_scale)
+	return 1.0
 
 func _passes(id: String, options: Array, filter: Dictionary) -> Array:
+	if String(filter.get("mode", "")) == "card":
+		if _catalog.upgrade(id).effect_type == "element": return []
+		return options.filter(func(option): return option.operation == "add")
 	if filter.has("element") and not upgrade_elements(_catalog.upgrade(id)).has(filter.element): return []
 	if filter.has("operation"): return options.filter(func(option): return option.operation == filter.operation)
 	return options
@@ -66,6 +139,9 @@ func _sample_profile(state: Dictionary, rng: RandomNumberGenerator, profile_id: 
 	var profile: Dictionary = _rewards.reward_profiles[profile_id]
 	var buckets: Dictionary = {}
 	var bindings: Dictionary = {}
+	var card_mode := String(filter.get("mode", "")) == "card"
+	var elements := action_elements(state) if card_mode else {}
+	_scales.clear()
 	for id in _rewards.upgrade_groups:
 		var rarity: String = _rewards.upgrade_groups[id]
 		if not profile.rarity_weights.has(rarity) or float(_catalog.upgrade(id).weight) <= 0.0: continue
@@ -81,6 +157,8 @@ func _sample_profile(state: Dictionary, rng: RandomNumberGenerator, profile_id: 
 		else:
 			bindings[id] = options
 			buckets[rarity].append(id)
+			if card_mode: _scales[id] = _relevance(id, options, elements, filter)
+	var per_action: Dictionary = {}
 	while result.size() < int(profile.count) and not buckets.is_empty():
 		var rarities: Array = buckets.keys(); rarities.sort()
 		var total := 0.0
@@ -92,11 +170,18 @@ func _sample_profile(state: Dictionary, rng: RandomNumberGenerator, profile_id: 
 			if roll < 0.0: chosen = rarity; break
 		var ids: Array[String] = []; ids.assign(buckets[chosen]); ids.sort()
 		var id: String = ids[_weighted_index(ids, rng)]
-		var option := _pick_binding(bindings[id], rng)
-		option.rarity_id = chosen
-		result.append(option)
 		buckets[chosen].erase(id)
 		if buckets[chosen].is_empty(): buckets.erase(chosen)
+		var choices: Array = bindings[id]
+		if card_mode:
+			# 同一次三选一里同一个按键最多 max_per_action 张
+			choices = choices.filter(func(option): return option.action_id == "global" or int(per_action.get(option.action_id, 0)) < int(filter.max_per_action))
+			if choices.is_empty(): continue
+		var option := _pick_binding(choices, rng)
+		per_action[option.action_id] = int(per_action.get(option.action_id, 0)) + 1
+		option.rarity_id = chosen
+		result.append(option)
+	_scales.clear()
 	return result
 
 func is_eligible(id: String, state: Dictionary) -> bool:
@@ -104,7 +189,7 @@ func is_eligible(id: String, state: Dictionary) -> bool:
 
 ## 键可能带着“|动作”后缀（per_binding 模式），权重按卡本身算
 func _weight(key: String) -> float:
-	return float(_catalog.upgrade(key.get_slice("|", 0)).weight)
+	return float(_catalog.upgrade(key.get_slice("|", 0)).weight) * float(_scales.get(key, 1.0))
 
 func _pick_binding(options: Array, rng: RandomNumberGenerator) -> Dictionary:
 	return options[rng.randi_range(0, options.size() - 1)].duplicate(true)

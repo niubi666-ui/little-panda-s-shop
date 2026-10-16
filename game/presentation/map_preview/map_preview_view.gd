@@ -17,6 +17,7 @@ var _labels: Dictionary = {}
 var _plan: Dictionary = {}
 var _selected := ""
 var _error_key := ""
+var _run_title := ""
 
 func configure(shared_theme: Theme, value: Resource) -> void:
 	style = value
@@ -121,6 +122,13 @@ func _button(parent: Node, key: String) -> Button:
 	_labels[key] = button
 	return button
 
+## 一局冒险：显示本局路线（不能换种子、不能新建），标出当前位置和下一步能去的节点
+func set_run_progress(progress: Dictionary) -> void:
+	_run_title = String(progress.get("title", ""))
+	seed_edit.get_parent().visible = false
+	graph.set_progress(progress)
+	refresh_text()
+
 func show_plan(plan: Dictionary) -> void:
 	_plan = plan
 	_selected = ""
@@ -145,6 +153,9 @@ func _inspect(id: String) -> void:
 func refresh_text() -> void:
 	if details == null: return
 	for key in _labels: _labels[key].text = tr("map_preview." + key)
+	if not _run_title.is_empty():
+		_labels["title"].text = _run_title
+		_labels["subtitle"].text = tr("map_preview.run_subtitle")
 	notice.text = tr(_error_key) if not _error_key.is_empty() else tr("map_preview.notice")
 	details.text = tr("map_preview.details")
 	if not _plan.is_empty():

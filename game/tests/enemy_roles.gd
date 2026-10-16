@@ -79,7 +79,7 @@ func run() -> void:
 	var enc_data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/rooms/encounters.json"))
 	var loot_data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/loot/enemies.json"))
 	loot_data.content_version = "changed-test-loot"
-	var changed = preload("res://content/enemies/enemy_catalog.gd").new(roles_data,enc_data,loot_data)
+	var changed = preload("res://content/enemies/enemy_catalog.gd").new(roles_data,enc_data,loot_data,combat)
 	var before_loot_change: Dictionary = Planner.new().generate("42",6,3,enemies)
 	var after_loot_change: Dictionary = Planner.new().generate("42",6,3,changed)
 	check(before_loot_change.waves.map(func(w):return w.enemy_ids) == after_loot_change.waves.map(func(w):return w.enemy_ids), "loot stream changes cannot reroll encounter teams")

@@ -76,6 +76,7 @@ func element_fact(fact: Dictionary) -> void:
 		"applied": if style.element_cues.has(fact.element): play(style.element_cues[fact.element], fact.position)
 		"discharge": play(style.discharge_cue, fact.position)
 		"reaction": if style.reaction_cues.has(fact.reaction_id): play(style.reaction_cues[fact.reaction_id], fact.position)
+		"mastery": play(style.mastery_cue, fact.position)
 
 func guard_broken(actor) -> void:
 	if is_instance_valid(actor): play(style.guard_break_cue, actor.global_position)

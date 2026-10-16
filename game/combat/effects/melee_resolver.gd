@@ -25,7 +25,7 @@ func resolve(source, targets: Array) -> void:
 		var offset: Vector3 = target.global_position - source.global_position
 		offset.y = 0.0
 		# Actor center is the authoritative hurt point in this flat-ground slice.
-		if not _contains(ability, source.runner.direction, offset): continue
+		if not _contains(ability, source.runner.direction, offset, source.reach_scale()): continue
 		if _hit_filter.is_valid() and not _hit_filter.call(source, target): continue
 		if source.runner.claim_target(target.handle):
 			var amount: float = _damage_modifier.call(source, ability.damage) if _damage_modifier.is_valid() else ability.damage
@@ -39,13 +39,13 @@ func resolve(source, targets: Array) -> void:
 				target.apply_knockback(direction, ability.knockback_speed, ability.knockback_duration)
 				confirmed_hit.emit(source, target, source.runner.cast_id, ability.id, applied)
 
-func _contains(ability, direction: Vector3, offset: Vector3) -> bool:
+func _contains(ability, direction: Vector3, offset: Vector3, reach: float) -> bool:
 	match ability.hit_shape:
 		"sector":
-			return offset.length() <= ability.radius and (offset.is_zero_approx() or direction.dot(offset.normalized()) >= cos(ability.angle / 2.0))
+			return offset.length() <= ability.radius * reach and (offset.is_zero_approx() or direction.dot(offset.normalized()) >= cos(ability.angle / 2.0))
 		"thrust":
 			var forward_distance: float = direction.dot(offset)
 			var side_distance: float = absf(direction.cross(Vector3.UP).dot(offset))
-			return forward_distance >= 0.0 and forward_distance <= ability.radius and side_distance <= ability.thrust_width / 2.0
+			return forward_distance >= 0.0 and forward_distance <= ability.radius * reach and side_distance <= ability.thrust_width / 2.0
 	assert(false, "Unsupported validated melee shape: " + ability.hit_shape)
 	return false

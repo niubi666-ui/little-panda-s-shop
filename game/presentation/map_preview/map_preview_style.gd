@@ -38,3 +38,9 @@ extends Resource
 @export var path_dash_gap: float
 @export var marker_inset: float
 @export var marker_radius: float
+@export_group("冒险进度")
+## 走过的节点变暗；当前所在节点的外圈；下一步能去的节点的外圈
+@export var visited_dim: Color
+@export var current_color: Color
+@export var reachable_color: Color
+@export var progress_ring_width: float

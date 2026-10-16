@@ -27,6 +27,14 @@ def validate_elements(manifest: dict) -> None:
         a, b = r["elements"]
         if a == b or a not in elements or b not in elements:
             raise ValueError(f"elements: reaction {r['id']} needs two different known elements")
+        required, trigger = r['required_status_id'], r['trigger_element_id']
+        if trigger and trigger not in r['elements']:
+            raise ValueError(f"elements: reaction {r['id']} trigger must belong to reaction")
+        if required:
+            if required not in statuses or statuses[required]['kind'] != 'freeze':
+                raise ValueError(f"elements: reaction {r['id']} requires a freeze status")
+            if not trigger or not any(elements[e]['freeze_status_id'] == required and e != trigger for e in r['elements']):
+                raise ValueError(f"elements: reaction {r['id']} requires a trigger and a different freeze provider")
         key = tuple(sorted((a, b)))
         if key in pairs:
             raise ValueError(f"elements: duplicate reaction for {key}")

@@ -154,18 +154,19 @@ func check_binding_replacement() -> void:
 	check(acquire(session, "contact_freeze", "primary").ok, "primary freeze installs")
 	check(acquire(session, "contact_freeze", "special").ok, "same core independently installs special")
 	check(rank_for(session, "contact_freeze", "primary") == 1 and rank_for(session, "contact_freeze", "special") == 1, "same ID retains action identity")
-	var replace := pick(session, "impact_blast", "primary")
+	# 2026-10-16：impact_blast 改为支援层，核心层只有元素与旧冻结核心；用火元素核心验证替换语义
+	var replace := pick(session, "fire_core", "primary")
 	check(not replace.is_empty() and replace.operation == "replace" and replace.replaced.upgrade_id == "contact_freeze", "core replacement locks old identity and rank")
 	check(session.submit_operation(replace).ok, "unrequired core replacement succeeds")
 	check(rank_for(session, "contact_freeze", "primary") == 0 and rank_for(session, "contact_freeze", "special") == 1, "replacement affects only target action")
-	check(acquire(session, "frost_blast", "primary").ok, "primary explosion synergy installs")
-	var blocked := {"upgrade_id": "contact_freeze", "action_id": "primary", "operation": "replace", "rank": 1,
-		"replaced": {"upgrade_id": "impact_blast", "action_id": "primary", "rank": 1}, "base_revision": session.snapshot().revision}
+	check(acquire(session, "freeze_duration", "special").ok, "special freeze duration installs")
+	var blocked := {"upgrade_id": "fire_core", "action_id": "special", "operation": "replace", "rank": 1,
+		"replaced": {"upgrade_id": "contact_freeze", "action_id": "special", "rank": 1}, "base_revision": session.snapshot().revision}
 	var before := session.snapshot()
 	var rejection := session.submit_operation(blocked)
 	check(not rejection.ok and not rejection.error_key.is_empty(), "dependent core replacement rejected with localized reason")
 	check(session.snapshot() == before, "rejected replacement cannot remove/refund dependent synergy")
-	check(pick(session, "contact_freeze", "primary").is_empty(), "sampler and submit agree on blocked replacement")
+	check(pick(session, "fire_core", "special").is_empty(), "sampler and submit agree on blocked replacement")
 	check(pick(session, "pierce", "special").is_empty(), "debug arrow cannot grant real special carrier")
 	check(acquire(session, "pierce", "skill").ok, "base skill carrier enables pierce without unlock")
 	check(pick(session, "split", "skill").is_empty(), "same action pierce rejects split")

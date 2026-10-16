@@ -17,6 +17,9 @@ var _previous_focus: WeakRef
 var _seed_rng := RandomNumberGenerator.new()
 var _generator := Generator.new()
 var _initialized := false
+## 一局冒险的路线与进度（forest_run 设置）；为空时是普通的随机地图预览
+var _run_plan: Dictionary = {}
+var _run_progress: Dictionary = {}
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -42,11 +45,24 @@ func _initialize_view() -> void:
 	view.close_requested.connect(close)
 	view.new_map_requested.connect(new_map)
 	view.seed_requested.connect(generate_seed)
+	if not _run_plan.is_empty():
+		_apply_run()
+		return
 	if rules.is_empty():
 		view.show_error("map_preview.unavailable")
 		view.new_button.disabled = true
 		view.apply_button.disabled = true
 	else: new_map()
+
+func show_run(plan: Dictionary, progress: Dictionary) -> void:
+	_run_plan = plan
+	_run_progress = progress
+	if _initialized: _apply_run()
+
+func _apply_run() -> void:
+	plan = _run_plan
+	if view.graph.plan != _run_plan: view.show_plan(_run_plan)
+	view.set_run_progress(_run_progress)
 
 func open() -> void:
 	if opened or get_tree().paused: return

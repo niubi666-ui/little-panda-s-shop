@@ -40,7 +40,17 @@
       "dual_lava",
       "dual_superconduct",
       "dual_shatter",
-      "dual_magnet"
+      "dual_magnet",
+      "fire_mastery_burst",
+      "fire_mastery_heat",
+      "ice_mastery_burst",
+      "ice_mastery_cold",
+      "thunder_mastery_burst",
+      "thunder_mastery_storm",
+      "earth_mastery_burst",
+      "earth_mastery_weight",
+      "primary_reach",
+      "special_reach"
     ],
     "fallback_ids": [
       "power",
@@ -82,6 +92,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "damage_scale",
       "ranks": [
         {
@@ -109,6 +121,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "move_scale",
       "ranks": [
         {
@@ -138,6 +152,8 @@
       "granted_tags": [
         "projectile"
       ],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "projectile",
       "ranks": [
         {
@@ -170,6 +186,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "chain",
       "ranks": [
         {
@@ -212,6 +230,8 @@
       ],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "split",
       "ranks": [
         {
@@ -254,6 +274,8 @@
       ],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "explosion",
       "ranks": [
         {
@@ -275,7 +297,7 @@
         }
       ],
       "scope": "action",
-      "layer": "core",
+      "layer": "support",
       "action_ids": [
         "primary",
         "special",
@@ -295,6 +317,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "status",
       "ranks": [
         {
@@ -321,12 +345,14 @@
       "id": "contact_freeze",
       "name_key": "build.test.contact_freeze.name",
       "description_key": "build.test.contact_freeze.description",
-      "weight": 1.0,
+      "weight": 0.0,
       "max_rank": 1,
       "requires": [],
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "status",
       "ranks": [
         {
@@ -356,12 +382,14 @@
       "id": "freeze_duration",
       "name_key": "build.test.freeze_duration.name",
       "description_key": "build.test.freeze_duration.description",
-      "weight": 1.0,
+      "weight": 0.0,
       "max_rank": 1,
       "requires": [],
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "status_duration",
       "ranks": [
         {
@@ -392,6 +420,8 @@
       ],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "pierce",
       "ranks": [
         {
@@ -415,7 +445,7 @@
       "id": "frost_blast",
       "name_key": "build.frost_blast.name",
       "description_key": "build.frost_blast.description",
-      "weight": 1.0,
+      "weight": 0.0,
       "max_rank": 1,
       "requires": [
         "impact_blast"
@@ -425,6 +455,8 @@
       ],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "area_status",
       "ranks": [
         {
@@ -459,6 +491,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "damage_scale",
       "ranks": [
         {
@@ -486,12 +520,14 @@
       "id": "shatter_followup",
       "name_key": "build.shatter_followup.name",
       "description_key": "build.shatter_followup.description",
-      "weight": 0.8,
+      "weight": 1.0,
       "max_rank": 1,
       "requires": [],
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "conditional_damage",
       "ranks": [
         {
@@ -516,12 +552,14 @@
       "id": "opening_strike",
       "name_key": "build.opening_strike.name",
       "description_key": "build.opening_strike.description",
-      "weight": 0.8,
+      "weight": 1.0,
       "max_rank": 1,
       "requires": [],
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "conditional_damage",
       "ranks": [
         {
@@ -554,6 +592,8 @@
       ],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "return_projectile",
       "ranks": [
         {
@@ -580,6 +620,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "charge_projectile",
       "ranks": [
         {
@@ -601,7 +643,7 @@
       "id": "shatter_heavy",
       "name_key": "build.frost.shatter_heavy.name",
       "description_key": "build.frost.shatter_heavy.description",
-      "weight": 1.0,
+      "weight": 0.0,
       "max_rank": 1,
       "requires": [],
       "excludes": [
@@ -609,6 +651,8 @@
       ],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "consume_freeze",
       "ranks": [
         {
@@ -634,6 +678,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "projectile_path",
       "ranks": [
         {
@@ -662,6 +708,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "freeze_shield",
       "ranks": [
         {
@@ -687,15 +735,19 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element",
       "ranks": [
         {
           "element_id": "fire",
-          "stacks_per_hit": 1
+          "stacks_per_hit": 1,
+          "damage_bonus": 0.0
         },
         {
           "element_id": "fire",
-          "stacks_per_hit": 2
+          "stacks_per_hit": 2,
+          "damage_bonus": 0.15
         }
       ],
       "scope": "action",
@@ -717,15 +769,19 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element",
       "ranks": [
         {
           "element_id": "ice",
-          "stacks_per_hit": 1
+          "stacks_per_hit": 1,
+          "damage_bonus": 0.0
         },
         {
           "element_id": "ice",
-          "stacks_per_hit": 2
+          "stacks_per_hit": 2,
+          "damage_bonus": 0.15
         }
       ],
       "scope": "action",
@@ -747,15 +803,19 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element",
       "ranks": [
         {
           "element_id": "thunder",
-          "stacks_per_hit": 1
+          "stacks_per_hit": 1,
+          "damage_bonus": 0.0
         },
         {
           "element_id": "thunder",
-          "stacks_per_hit": 1
+          "stacks_per_hit": 1,
+          "damage_bonus": 0.15
         }
       ],
       "scope": "action",
@@ -777,15 +837,19 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element",
       "ranks": [
         {
           "element_id": "earth",
-          "stacks_per_hit": 1
+          "stacks_per_hit": 1,
+          "damage_bonus": 0.0
         },
         {
           "element_id": "earth",
-          "stacks_per_hit": 2
+          "stacks_per_hit": 2,
+          "damage_bonus": 0.15
         }
       ],
       "scope": "action",
@@ -809,6 +873,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -839,6 +905,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -869,6 +937,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -899,6 +969,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -924,6 +996,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -954,6 +1028,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -984,6 +1060,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -1014,6 +1092,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -1044,6 +1124,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -1074,6 +1156,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -1104,6 +1188,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -1134,6 +1220,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "element_boost",
       "ranks": [
         {
@@ -1165,6 +1253,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "reaction_boost",
       "ranks": [
         {
@@ -1191,6 +1281,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "reaction_boost",
       "ranks": [
         {
@@ -1217,6 +1309,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "reaction_boost",
       "ranks": [
         {
@@ -1243,6 +1337,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "reaction_boost",
       "ranks": [
         {
@@ -1269,6 +1365,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "reaction_boost",
       "ranks": [
         {
@@ -1295,6 +1393,8 @@
       "excludes": [],
       "required_tags": [],
       "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
       "effect_type": "reaction_boost",
       "ranks": [
         {
@@ -1306,6 +1406,342 @@
       "scope": "global",
       "layer": "support",
       "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "fire_mastery_burst",
+      "name_key": "build.mastery.fire_burst.name",
+      "description_key": "build.mastery.fire_burst.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "required_element": "fire",
+      "required_element_actions": 2,
+      "effect_type": "element_mastery",
+      "ranks": [
+        {
+          "element_id": "fire",
+          "trigger": "full_stacks",
+          "damage": 24.0,
+          "damage_per_stack": 4.0,
+          "radius_m": 3.0,
+          "max_targets": 6,
+          "spread_stacks": 1,
+          "consume": true
+        },
+        {
+          "element_id": "fire",
+          "trigger": "full_stacks",
+          "damage": 36.0,
+          "damage_per_stack": 6.0,
+          "radius_m": 3.6,
+          "max_targets": 8,
+          "spread_stacks": 2,
+          "consume": true
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "fire_mastery_heat",
+      "name_key": "build.mastery.fire_heat.name",
+      "description_key": "build.mastery.fire_heat.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "required_element": "fire",
+      "required_element_actions": 2,
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "fire",
+          "field": "damage_per_tick_per_stack",
+          "add": 1.5
+        },
+        {
+          "element_id": "fire",
+          "field": "damage_per_tick_per_stack",
+          "add": 3.0
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "ice_mastery_burst",
+      "name_key": "build.mastery.ice_burst.name",
+      "description_key": "build.mastery.ice_burst.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "required_element": "ice",
+      "required_element_actions": 2,
+      "effect_type": "element_mastery",
+      "ranks": [
+        {
+          "element_id": "ice",
+          "trigger": "full_stacks",
+          "damage": 18.0,
+          "damage_per_stack": 4.0,
+          "radius_m": 3.0,
+          "max_targets": 6,
+          "spread_stacks": 1,
+          "consume": false
+        },
+        {
+          "element_id": "ice",
+          "trigger": "full_stacks",
+          "damage": 28.0,
+          "damage_per_stack": 6.0,
+          "radius_m": 3.6,
+          "max_targets": 8,
+          "spread_stacks": 2,
+          "consume": false
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "ice_mastery_cold",
+      "name_key": "build.mastery.ice_cold.name",
+      "description_key": "build.mastery.ice_cold.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "required_element": "ice",
+      "required_element_actions": 2,
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "ice",
+          "field": "damage_taken_per_stack",
+          "add": 0.1
+        },
+        {
+          "element_id": "ice",
+          "field": "damage_taken_per_stack",
+          "add": 0.18
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "thunder_mastery_burst",
+      "name_key": "build.mastery.thunder_burst.name",
+      "description_key": "build.mastery.thunder_burst.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "required_element": "thunder",
+      "required_element_actions": 2,
+      "effect_type": "element_mastery",
+      "ranks": [
+        {
+          "element_id": "thunder",
+          "trigger": "discharge",
+          "damage": 6.0,
+          "damage_per_stack": 0.0,
+          "radius_m": 4.5,
+          "max_targets": 3,
+          "spread_stacks": 1,
+          "consume": false
+        },
+        {
+          "element_id": "thunder",
+          "trigger": "discharge",
+          "damage": 10.0,
+          "damage_per_stack": 0.0,
+          "radius_m": 5.5,
+          "max_targets": 5,
+          "spread_stacks": 1,
+          "consume": false
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "thunder_mastery_storm",
+      "name_key": "build.mastery.thunder_storm.name",
+      "description_key": "build.mastery.thunder_storm.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "required_element": "thunder",
+      "required_element_actions": 2,
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "thunder",
+          "field": "discharge_damage",
+          "add": 8.0
+        },
+        {
+          "element_id": "thunder",
+          "field": "discharge_damage",
+          "add": 16.0
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "earth_mastery_burst",
+      "name_key": "build.mastery.earth_burst.name",
+      "description_key": "build.mastery.earth_burst.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "required_element": "earth",
+      "required_element_actions": 2,
+      "effect_type": "element_mastery",
+      "ranks": [
+        {
+          "element_id": "earth",
+          "trigger": "full_stacks",
+          "damage": 20.0,
+          "damage_per_stack": 5.0,
+          "radius_m": 2.8,
+          "max_targets": 6,
+          "spread_stacks": 1,
+          "consume": true
+        },
+        {
+          "element_id": "earth",
+          "trigger": "full_stacks",
+          "damage": 30.0,
+          "damage_per_stack": 7.0,
+          "radius_m": 3.4,
+          "max_targets": 8,
+          "spread_stacks": 2,
+          "consume": true
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "earth_mastery_weight",
+      "name_key": "build.mastery.earth_weight.name",
+      "description_key": "build.mastery.earth_weight.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "required_element": "earth",
+      "required_element_actions": 2,
+      "effect_type": "element_boost",
+      "ranks": [
+        {
+          "element_id": "earth",
+          "field": "damage_taken_per_stack",
+          "add": 0.04
+        },
+        {
+          "element_id": "earth",
+          "field": "damage_taken_per_stack",
+          "add": 0.08
+        }
+      ],
+      "scope": "global",
+      "layer": "support",
+      "action_ids": [],
+      "test_only": false
+    },
+    {
+      "id": "primary_reach",
+      "name_key": "build.reach.primary.name",
+      "description_key": "build.reach.primary.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
+      "effect_type": "reach_scale",
+      "ranks": [
+        {
+          "bonus": 0.25
+        },
+        {
+          "bonus": 0.45
+        }
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "primary"
+      ],
+      "test_only": false
+    },
+    {
+      "id": "special_reach",
+      "name_key": "build.reach.special.name",
+      "description_key": "build.reach.special.description",
+      "weight": 1.0,
+      "max_rank": 2,
+      "requires": [],
+      "excludes": [],
+      "required_tags": [],
+      "granted_tags": [],
+      "required_element": "",
+      "required_element_actions": 0,
+      "effect_type": "reach_scale",
+      "ranks": [
+        {
+          "bonus": 0.3
+        },
+        {
+          "bonus": 0.55
+        }
+      ],
+      "scope": "action",
+      "layer": "support",
+      "action_ids": [
+        "special"
+      ],
       "test_only": false
     }
   ],
@@ -1818,6 +2254,48 @@
         },
         {
           "upgrade_id": "dual_magnet",
+          "action_id": "global",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_ice_mastery",
+      "name_key": "build.preset.elem_ice_mastery",
+      "selections": [
+        {
+          "upgrade_id": "ice_core",
+          "action_id": "primary",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "ice_core",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "ice_mastery_burst",
+          "action_id": "global",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "elem_fire_mastery",
+      "name_key": "build.preset.elem_fire_mastery",
+      "selections": [
+        {
+          "upgrade_id": "fire_core",
+          "action_id": "primary",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "fire_core",
+          "action_id": "special",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "fire_mastery_burst",
           "action_id": "global",
           "rank": 1
         }

@@ -7,26 +7,24 @@
     "content_version",
     "_comment",
     "start_preset",
-    "room_count",
-    "start_depth",
-    "depth_per_room",
-    "boss_actor_id",
-    "boss_depth",
-    "exit_count_min",
-    "exit_count_max",
-    "first_exit_count",
-    "rewards",
-    "boon_elements",
-    "boon_profile",
+    "areas",
+    "map",
+    "awakening_after_area",
+    "awakening",
+    "card_weighting",
+    "battle_profile",
+    "elite_profile",
+    "boss_profile",
     "upgrade_profile",
-    "heal_amount",
-    "gold_amount",
     "clear_gold",
-    "victory_gold"
+    "treasure",
+    "rest_heal",
+    "event",
+    "shop"
   ],
   "properties": {
     "schema_version": {
-      "const": 1
+      "const": 2
     },
     "content_version": {
       "type": "string",
@@ -38,48 +36,9 @@
     },
     "start_preset": {
       "type": "string",
-      "pattern": "^[a-z_]+$"
+      "pattern": "^[a-z_0-9]+$"
     },
-    "room_count": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 30
-    },
-    "start_depth": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 30
-    },
-    "depth_per_room": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 10
-    },
-    "boss_actor_id": {
-      "type": "string",
-      "pattern": "^[a-z_]+$"
-    },
-    "boss_depth": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 30
-    },
-    "exit_count_min": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 4
-    },
-    "exit_count_max": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 4
-    },
-    "first_exit_count": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 4
-    },
-    "rewards": {
+    "areas": {
       "type": "array",
       "minItems": 1,
       "maxItems": 8,
@@ -87,62 +46,273 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "kind",
-          "weight"
+          "id",
+          "name_key",
+          "start_depth",
+          "depth_per_layer",
+          "elite_depth_bonus",
+          "boss_actor_id",
+          "boss_depth"
         ],
         "properties": {
-          "kind": {
-            "enum": [
-              "boon",
-              "upgrade",
-              "heal",
-              "gold"
-            ]
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z_0-9]+$"
           },
-          "weight": {
-            "type": "number",
+          "name_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "start_depth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+          },
+          "depth_per_layer": {
+            "type": "integer",
             "minimum": 0,
-            "maximum": 1000
+            "maximum": 10
+          },
+          "elite_depth_bonus": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "boss_actor_id": {
+            "type": "string",
+            "pattern": "^[a-z_0-9]+$"
+          },
+          "boss_depth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
           }
         }
       }
     },
-    "boon_elements": {
-      "type": "array",
-      "minItems": 1,
-      "maxItems": 16,
-      "items": {
-        "type": "string",
-        "pattern": "^[a-z_]+$"
+    "map": {},
+    "awakening_after_area": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 7
+    },
+    "awakening": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "guarantee_same",
+        "guarantee_new"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "guarantee_same": {
+          "type": "boolean"
+        },
+        "guarantee_new": {
+          "type": "boolean"
+        }
       }
     },
-    "boon_profile": {
+    "card_weighting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owned_element_scale",
+        "elemental_action_scale",
+        "max_per_action"
+      ],
+      "properties": {
+        "owned_element_scale": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "elemental_action_scale": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "max_per_action": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        }
+      }
+    },
+    "battle_profile": {
       "type": "string",
-      "pattern": "^[a-z_]+$"
+      "pattern": "^[a-z_0-9]+$"
+    },
+    "elite_profile": {
+      "type": "string",
+      "pattern": "^[a-z_0-9]+$"
+    },
+    "boss_profile": {
+      "type": "string",
+      "pattern": "^[a-z_0-9]+$"
     },
     "upgrade_profile": {
       "type": "string",
-      "pattern": "^[a-z_]+$"
+      "pattern": "^[a-z_0-9]+$"
     },
-    "heal_amount": {
+    "clear_gold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "battle",
+        "elite",
+        "boss"
+      ],
+      "properties": {
+        "battle": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "elite": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "boss": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    },
+    "treasure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "awakening_chance",
+        "gold"
+      ],
+      "properties": {
+        "awakening_chance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "gold": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    },
+    "rest_heal": {
       "type": "integer",
       "minimum": 0,
       "maximum": 1000
     },
-    "gold_amount": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100000
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcomes",
+        "gold",
+        "heal",
+        "blood_cost",
+        "card_profile",
+        "blood_card_profile"
+      ],
+      "properties": {
+        "outcomes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "weight"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "awakening",
+                  "card",
+                  "gold",
+                  "heal",
+                  "blood_card"
+                ]
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000
+              }
+            }
+          }
+        },
+        "gold": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "heal": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "blood_cost": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "card_profile": {
+          "type": "string",
+          "pattern": "^[a-z_0-9]+$"
+        },
+        "blood_card_profile": {
+          "type": "string",
+          "pattern": "^[a-z_0-9]+$"
+        }
+      }
     },
-    "clear_gold": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100000
-    },
-    "victory_gold": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100000
+    "shop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_price",
+        "upgrade_price",
+        "heal_price",
+        "heal_amount",
+        "card_profile"
+      ],
+      "properties": {
+        "card_price": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "upgrade_price": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "heal_price": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "heal_amount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "card_profile": {
+          "type": "string",
+          "pattern": "^[a-z_0-9]+$"
+        }
+      }
     }
   }
 }

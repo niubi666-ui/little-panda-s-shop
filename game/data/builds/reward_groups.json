@@ -27,18 +27,10 @@
     "agility": "common",
     "split": "rare",
     "impact_blast": "rare",
-    "contact_freeze": "rare",
-    "freeze_duration": "rare",
     "pierce": "rare",
-    "frost_blast": "epic",
     "action_power": "common",
-    "shatter_followup": "rare",
-    "opening_strike": "epic",
     "returning_wave": "epic",
     "charged_wave": "epic",
-    "shatter_heavy": "epic",
-    "frost_path": "rare",
-    "ice_coat": "rare",
     "fire_core": "common",
     "ice_core": "common",
     "thunder_core": "common",
@@ -60,7 +52,25 @@
     "dual_lava": "epic",
     "dual_superconduct": "epic",
     "dual_shatter": "epic",
-    "dual_magnet": "epic"
+    "dual_magnet": "epic",
+    "fire_mastery_burst": "epic",
+    "ice_mastery_burst": "epic",
+    "thunder_mastery_burst": "epic",
+    "earth_mastery_burst": "epic",
+    "fire_mastery_heat": "rare",
+    "ice_mastery_cold": "rare",
+    "thunder_mastery_storm": "rare",
+    "earth_mastery_weight": "rare",
+    "primary_reach": "common",
+    "special_reach": "common",
+    "contact_freeze": "rare",
+    "freeze_duration": "rare",
+    "frost_blast": "epic",
+    "shatter_followup": "rare",
+    "opening_strike": "epic",
+    "shatter_heavy": "epic",
+    "frost_path": "rare",
+    "ice_coat": "rare"
   },
   "reward_profiles": {
     "normal_room": {
@@ -76,8 +86,8 @@
       "name_key": "build.reward.elite_room",
       "count": 3,
       "rarity_weights": {
-        "epic": 80,
-        "legendary": 20
+        "rare": 40,
+        "epic": 60
       },
       "shortage": "show_available"
     },
@@ -97,6 +107,15 @@
         "rare": 1,
         "epic": 1,
         "legendary": 1
+      },
+      "shortage": "show_available"
+    },
+    "area_boss": {
+      "name_key": "build.reward.area_boss",
+      "count": 3,
+      "rarity_weights": {
+        "epic": 70,
+        "legendary": 30
       },
       "shortage": "show_available"
     }

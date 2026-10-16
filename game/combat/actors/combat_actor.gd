@@ -107,7 +107,7 @@ func set_action_program(actions: Dictionary, catalog: Catalog) -> bool:
 	var decoded: Dictionary = {}
 	for id in ["primary", "special", "skill"]:
 		var plan: Dictionary = actions[id]
-		for key in ["action_id", "form_id", "executor", "ability_ids", "projectile_id", "presentation_key", "revision"]:
+		for key in ["action_id", "form_id", "executor", "ability_ids", "projectile_id", "presentation_key", "revision", "reach_scale"]:
 			if not plan.has(key): return false
 		if plan.action_id != id or plan.ability_ids.is_empty() or plan.executor not in ["melee", "projectile"]: return false
 		var definitions: Array[Catalog.Ability] = []
@@ -123,6 +123,10 @@ func set_action_program(actions: Dictionary, catalog: Catalog) -> bool:
 	combo_index = 0
 	combo_idle = 0.0
 	return true
+## 当前出招的攻击范围倍率（构筑卡“长刃/横扫千军”）；敌人没有动作构筑，为 1
+func reach_scale() -> float:
+	if not _action_program.has(runner.action_id): return 1.0
+	return float(_action_program[runner.action_id].reach_scale)
 func _freeze_plan(value: Variant) -> void:
 	if value is Dictionary:
 		for child in value.values(): _freeze_plan(child)

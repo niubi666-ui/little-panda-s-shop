@@ -3,6 +3,7 @@
   "messages": {
     "map_preview.title": "冒险地图",
     "map_preview.subtitle": "穿过林间岔路，探索下一段旅程",
+    "map_preview.run_subtitle": "本局路线 · 红圈是你所在的房间，黄圈是下一步能去的房间",
     "map_preview.seed": "地图种子",
     "map_preview.apply": "按种子生成",
     "map_preview.new": "生成新地图",

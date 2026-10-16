@@ -12,7 +12,7 @@
 
 | 部分 | 内容 | 入口 |
 |---|---|---|
-| 场地 | 童话森林空地（第二版）：花树环绕、草甸花丛、斑驳树影、光柱薄雾、溪水木桥、遗迹石柱。| `game/presentation/rooms/fairy_forest_v2/` |
+| 场地 | 童话森林空地（第二版）：花树环绕、草甸花丛、斑驳树影、光柱薄雾、溪水木桥、遗迹石柱 | `game/presentation/rooms/fairy_forest_v2/` |
 | 镜头 | 透视，俯角约 33°，滚轮缩放改变的是镜头距离 | `fairy_forest_v2/presentation.tres` |
 | 主角 | 写实小熊猫（v008 模型）+ 长剑，11 段动作 | `game/presentation/combat/rigs/red_panda_real_visual.tscn` |
 | 敌人 | 弩手、重装、冲锋兵、旗手：豺狼身体 + 各自的动作与道具；斥候和精灵游侠沿用原模型 | `game/presentation/combat/rigs/*_real_visual.tscn` |
@@ -24,28 +24,13 @@
 
 ## 场地：从 Blender 到 Godot
 
-当前训练场是**第二版童话森林**（`fairy_forest_v2`）。第一版的场景、导出物和 Blender 文件已于 2026-10-14 删除（用户确认第二版满意）。
+当前训练场是**第二版童话森林**（`game/presentation/rooms/fairy_forest_v2/`，导出物 `game/assets/fairy_forest_v2/`，
+Blender 文件 `fairy_arena_game_v2.blend`，脚本 `build_game_arena_v2.py`；后者依赖 `build_game_arena.py`，不能删）。第一版已于 2026-10-14 删除。
+2026-10-16 试过第三版（舞台灯光、晨光、低角度逆光三种光影），用户都不满意，已删除，恢复第二版。
 
-| | 位置 |
-|---|---|
-| Godot 场景 | `game/presentation/rooms/fairy_forest_v2/` |
-| 导出物 | `game/assets/fairy_forest_v2/` |
-| Blender 脚本 | `build_game_arena_v2.py`（在 `build_game_arena.py` 的空地布局上加草甸和花丛；后者是它的基础，不能删） |
-| Blender 文件 | `fairy_arena_game_v2.blend` |
-
-**场上道具（木箱、矮墙、宝箱）暂时不摆**：按要求先把画面做好，`placement_surface.tres` 只留了一个放在场外（z = −40）的摆放点，
-所以随机道具一个也放不进来（日志里是 `props=0 omitted=3`），玩法代码没有改。要恢复，把摆放点换回第一版用过的这五个
-（位置是房间坐标，朝向是弧度）：
-
-| id | position | yaw_options |
-|---|---|---|
-| west | (-6.6, 0, -1.3) | π/2, 3π/2 |
-| east | (6.6, 0, -0.9) | π/2, 3π/2 |
-| southwest | (-5.2, 0, 4.0) | 0, π |
-| southeast | (5.2, 0, 4.0) | 0, π |
-| interior | (0, 0, -5.0) | 0, π |
-
-道具模型还是旧的卡通风格，恢复前最好先换成写实模型。
+**场上道具（木箱、矮墙、宝箱）暂时不摆**：`placement_surface.tres` 只留了一个放在场外（z = −40）的摆放点。要恢复，把摆放点换回这五个
+（房间坐标，朝向是弧度）：west (-6.6, 0, -1.3) π/2,3π/2；east (6.6, 0, -0.9) π/2,3π/2；southwest (-5.2, 0, 4.0) 0,π；
+southeast (5.2, 0, 4.0) 0,π；interior (0, 0, -5.0) 0,π。道具模型还是旧的卡通风格，恢复前最好先换成写实模型。
 
 ### 第二版是怎么对齐 Blender 画面的
 

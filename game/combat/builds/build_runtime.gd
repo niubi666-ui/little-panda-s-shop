@@ -79,7 +79,8 @@ func on_committed(cast_id: int, ability_id: String) -> void:
 	var action_id: String = _player.runner.action_id
 	if not _program.actions.has(action_id): return
 	var plan: Dictionary = _program.actions[action_id]
-	if not plan.ability_ids.has(ability_id): return
+	# The dodge-configured slash is a primary variant, with the same immutable build plan.
+	if not plan.ability_ids.has(ability_id) and not (action_id == "primary" and plan.executor == "melee" and _player.is_roll_attack_cast()): return
 	# Actor and runtime are injected together by app. Reject a mismatched cast plan.
 	if not _player.runner.cast_context.is_empty() and _player.runner.cast_context != plan: return
 	_next_root += 1

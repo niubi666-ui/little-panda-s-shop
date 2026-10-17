@@ -38,3 +38,11 @@ def validate_combat(manifest):
             raise ValueError("combat: unknown enemy in wave")
     if data["dodge"]["invulnerable_sec"] > data["dodge"]["duration_sec"]:
         raise ValueError("combat: invulnerability exceeds dodge duration")
+    if data["dodge"]["movement_duration_sec"] > data["dodge"]["duration_sec"]:
+        raise ValueError("combat: movement exceeds dodge duration")
+    dodge = data["dodge"]
+    if dodge["attack_id"] not in abilities:
+        raise ValueError("combat: unknown roll attack")
+    attack = next(a for a in data["abilities"] if a["id"] == dodge["attack_id"])
+    if dodge["attack_duration_sec"] > attack["active_sec"] or attack["lunge_speed_mps"] != 0 or attack["movement_speed_multiplier"] != 0:
+        raise ValueError("combat: roll attack must cover dash and disable additive movement/lunge")

@@ -1,0 +1,377 @@
+{
+  "clips": [
+    {
+      "clip": "idle",
+      "source_action": "Nodachi_00_Combat_Idle",
+      "source_blend": "review_v001/blender/nodachi_animation_review_attack01_and_05.blend",
+      "seconds": 10.0,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        601
+      ]
+    },
+    {
+      "clip": "attack_1",
+      "source_action": "Nodachi_01_Combo_Attack_01_01",
+      "source_blend": "review_v001/blender/nodachi_animation_review_attack01_and_05.blend",
+      "seconds": 1.8333333333333333,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        111
+      ]
+    },
+    {
+      "clip": "attack_2",
+      "source_action": "Nodachi_02_Combo_Attack_01_02",
+      "source_blend": "review_v001/blender/nodachi_animation_review_attack01_and_05.blend",
+      "seconds": 1.5,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        91
+      ]
+    },
+    {
+      "clip": "attack_3",
+      "source_action": "Nodachi_03_Combo_Attack_01_03",
+      "source_blend": "review_v001/blender/nodachi_animation_review_attack01_and_05.blend",
+      "seconds": 1.5,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        91
+      ]
+    },
+    {
+      "clip": "heavy",
+      "source_action": "Nodachi_Combo_Attack_05_01",
+      "source_blend": "review_v001/blender/nodachi_animation_review_attack01_and_05.blend",
+      "seconds": 2.4166666666666665,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        146
+      ]
+    },
+    {
+      "clip": "cast",
+      "source_action": "Nodachi_04_Combo_Attack_01_04",
+      "source_blend": "review_v001/blender/nodachi_animation_review_attack01_and_05.blend",
+      "seconds": 1.75,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        106
+      ]
+    },
+    {
+      "clip": "walk_forward",
+      "source_action": "Nodachi_Walk_Combat_Loop_F_0",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 1.05,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        64
+      ]
+    },
+    {
+      "clip": "walk_forward_right",
+      "source_action": "Nodachi_Walk_Combat_Loop_F_R_45",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 1.05,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        64
+      ]
+    },
+    {
+      "clip": "walk_right",
+      "source_action": "Nodachi_Walk_Combat_Loop_F_R_90",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 1.05,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        64
+      ]
+    },
+    {
+      "clip": "walk_back_right",
+      "source_action": "Nodachi_Walk_Combat_Loop_B_R_45",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 1.05,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        64
+      ]
+    },
+    {
+      "clip": "walk_back",
+      "source_action": "Nodachi_Walk_Combat_Loop_B_180",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 1.05,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        64
+      ]
+    },
+    {
+      "clip": "walk_back_left",
+      "source_action": "Nodachi_Walk_Combat_Loop_B_L_45",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 1.05,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        64
+      ]
+    },
+    {
+      "clip": "walk_left",
+      "source_action": "Nodachi_Walk_Combat_Loop_F_L_90",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 1.05,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        64
+      ]
+    },
+    {
+      "clip": "walk_forward_left",
+      "source_action": "Nodachi_Walk_Combat_Loop_F_L_45",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 1.05,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        64
+      ]
+    },
+    {
+      "clip": "run_forward",
+      "source_action": "Nodachi_Run_Combat_Loop_F_0",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 0.6666666666666666,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        41
+      ]
+    },
+    {
+      "clip": "run_forward_right",
+      "source_action": "Nodachi_Run_Combat_Loop_F_R_45",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 0.6666666666666666,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        41
+      ]
+    },
+    {
+      "clip": "run_right",
+      "source_action": "Nodachi_Run_Combat_Loop_F_R_90",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 0.6666666666666666,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        41
+      ]
+    },
+    {
+      "clip": "run_back_right",
+      "source_action": "Nodachi_Run_Combat_Loop_B_R_45",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 0.6666666666666666,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        41
+      ]
+    },
+    {
+      "clip": "run_back",
+      "source_action": "Nodachi_Run_Combat_Loop_B_180",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 0.6666666666666666,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        41
+      ]
+    },
+    {
+      "clip": "run_back_left",
+      "source_action": "Nodachi_Run_Combat_Loop_B_L_45",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 0.6666666666666666,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        41
+      ]
+    },
+    {
+      "clip": "run_left",
+      "source_action": "Nodachi_Run_Combat_Loop_F_L_90",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 0.6666666666666666,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        41
+      ]
+    },
+    {
+      "clip": "run_forward_left",
+      "source_action": "Nodachi_Run_Combat_Loop_F_L_45",
+      "source_blend": "review_v001/blender/nodachi_character_animation_library.blend",
+      "seconds": 0.6666666666666666,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        41
+      ]
+    },
+    {
+      "clip": "roll_forward",
+      "source_action": "roll_forward",
+      "source_blend": "roll_8dir_v001/blender/nodachi_roll_8dir.blend",
+      "seconds": 1.1666666666666667,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        71
+      ]
+    },
+    {
+      "clip": "roll_forward_right",
+      "source_action": "roll_forward_right",
+      "source_blend": "roll_8dir_v001/blender/nodachi_roll_8dir.blend",
+      "seconds": 1.1666666666666667,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        71
+      ]
+    },
+    {
+      "clip": "roll_right",
+      "source_action": "roll_right",
+      "source_blend": "roll_8dir_v001/blender/nodachi_roll_8dir.blend",
+      "seconds": 1.1666666666666667,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        71
+      ]
+    },
+    {
+      "clip": "roll_back_right",
+      "source_action": "roll_back_right",
+      "source_blend": "roll_8dir_v001/blender/nodachi_roll_8dir.blend",
+      "seconds": 1.1666666666666667,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        71
+      ]
+    },
+    {
+      "clip": "roll_back",
+      "source_action": "roll_back",
+      "source_blend": "roll_8dir_v001/blender/nodachi_roll_8dir.blend",
+      "seconds": 1.1666666666666667,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        71
+      ]
+    },
+    {
+      "clip": "roll_back_left",
+      "source_action": "roll_back_left",
+      "source_blend": "roll_8dir_v001/blender/nodachi_roll_8dir.blend",
+      "seconds": 1.1666666666666667,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        71
+      ]
+    },
+    {
+      "clip": "roll_left",
+      "source_action": "roll_left",
+      "source_blend": "roll_8dir_v001/blender/nodachi_roll_8dir.blend",
+      "seconds": 1.1666666666666667,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        71
+      ]
+    },
+    {
+      "clip": "roll_forward_left",
+      "source_action": "roll_forward_left",
+      "source_blend": "roll_8dir_v001/blender/nodachi_roll_8dir.blend",
+      "seconds": 1.1666666666666667,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        71
+      ]
+    },
+    {
+      "clip": "hit",
+      "source_asset": "/Game/Nodachi/Animations/Sequence/08_Hit/02_Hit_Combat/AS_Hit_Combat_F_Seq",
+      "seconds": 0.8333333333333334,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        51
+      ]
+    },
+    {
+      "clip": "death",
+      "source_asset": "/Game/Nodachi/Animations/Sequence/08_Hit/02_Hit_Combat/AS_Hit_Combat_Death_Seq",
+      "seconds": 3.0,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        181
+      ]
+    },
+    {
+      "clip": "charge",
+      "source_asset": "/Game/Nodachi/Animations/Sequence/08_Hit/14_Block/AS_Block_Loop_Seq",
+      "seconds": 10.0,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        601
+      ]
+    },
+    {
+      "clip": "roll_slash",
+      "source_asset": "/Game/Nodachi/Animations/Sequence/02_Attack/17_Parry_Counter_Attack/AS_Parry_Counter_L_Seq",
+      "seconds": 1.8333333333333333,
+      "root_xy_in_place": true,
+      "frames": [
+        1,
+        111
+      ]
+    }
+  ],
+  "bone_count": 89,
+  "mesh_vertices": 53089,
+  "glb": "E:\\ShopGame\\game\\assets\\characters\\ue_manny_nodachi\\manny_nodachi.glb"
+}

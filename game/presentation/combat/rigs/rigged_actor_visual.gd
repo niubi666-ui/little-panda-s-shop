@@ -101,7 +101,7 @@ func refresh_actor(actor, delta: float) -> void:
 		time = (1.0 - clampf(actor.stagger_left / maxf(actor.definition.stagger, 0.001), 0.0, 1.0)) * _length(clip)
 		blend = clip_set.react_blend_sec
 	elif actor.dodge_left > 0.0 and actor.dodge != null and _has(clip_set.dodge):
-		clip = clip_set.dodge
+		clip = _dodge_clip(actor)
 		time = clampf(actor.dodge_age / actor.dodge.duration, 0.0, 1.0) * _length(clip)
 		blend = clip_set.react_blend_sec
 	elif actor.runner.busy():
@@ -124,7 +124,7 @@ func refresh_actor(actor, delta: float) -> void:
 				"recovery":
 					var progress := clampf((elapsed - ability.windup - ability.active) / maxf(ability.recovery, 0.001), 0.0, 1.0)
 					var settle := clampf((progress - shape.w) / maxf(1.0 - shape.w, 0.001), 0.0, 1.0)
-					time = lerpf(cuts.y, _length(clip), smoothstep(0.0, 1.0, settle))
+					time = lerpf(cuts.y, _length(clip), _recovery_weight(settle))
 		blend = clip_set.attack_blend_sec
 	elif actor.charging_skill and _has(clip_set.charge):
 		clip = clip_set.charge
@@ -143,8 +143,8 @@ func refresh_actor(actor, delta: float) -> void:
 		looping = true
 		var speed: float = Vector2(actor.velocity.x, actor.velocity.z).length()
 		if speed > clip_set.move_min_speed and _has(clip_set.move):
-			clip = clip_set.move
-			rate = clampf(speed / maxf(clip_set.move_reference_speed, 0.01), clip_set.move_rate_min, clip_set.move_rate_max)
+			clip = _move_clip(actor)
+			rate = _move_rate(speed, clip)
 	if not _has(clip): clip = clip_set.idle
 	if not _has(clip): return
 	_sample(clip, time, looping, rate, blend, delta)
@@ -176,10 +176,10 @@ func _brain_clip(actor) -> StringName:
 func _sample(clip: StringName, time: float, looping: bool, rate: float, blend: float, delta: float) -> void:
 	if clip != _clip:
 		_snapshot()
-		_blend_total = blend
-		_blend_left = blend if not _clip.is_empty() else 0.0
+		_blend_total = _transition_duration(_clip, clip, blend)
+		_blend_left = _blend_total if not _clip.is_empty() else 0.0
+		_clock = _switch_clock(_clip, clip)
 		_clip = clip
-		_clock = 0.0
 		animation.play(clip)
 	if looping:
 		_clock += delta * rate
@@ -187,12 +187,32 @@ func _sample(clip: StringName, time: float, looping: bool, rate: float, blend: f
 	animation.seek(time, true)
 	if _blend_left > 0.0 and skeleton != null:
 		_blend_left = maxf(0.0, _blend_left - delta)
-		var weight := 1.0 - _blend_left / _blend_total
-		weight = weight * weight * (3.0 - 2.0 * weight)
 		for bone in skeleton.get_bone_count():
+			var weight := _transition_weight(bone, _blend_total - _blend_left, _blend_total)
 			skeleton.set_bone_pose_position(bone, _from_position[bone].lerp(skeleton.get_bone_pose_position(bone), weight))
 			skeleton.set_bone_pose_rotation(bone, _from_rotation[bone].slerp(skeleton.get_bone_pose_rotation(bone), weight))
 			skeleton.set_bone_pose_scale(bone, _from_scale[bone].lerp(skeleton.get_bone_pose_scale(bone), weight))
+
+func _transition_duration(_previous: StringName, _next: StringName, duration: float) -> float:
+	return duration
+
+func _transition_weight(_bone: int, elapsed: float, duration: float) -> float:
+	return smoothstep(0.0, 1.0, clampf(elapsed / duration, 0.0, 1.0))
+
+func _move_clip(_actor) -> StringName:
+	return clip_set.move
+
+func _move_rate(speed: float, _selected_clip: StringName) -> float:
+	return clampf(speed / maxf(clip_set.move_reference_speed, 0.01), clip_set.move_rate_min, clip_set.move_rate_max)
+
+func _dodge_clip(_actor) -> StringName:
+	return clip_set.dodge
+
+func _switch_clock(_previous: StringName, _next: StringName) -> float:
+	return 0.0
+
+func _recovery_weight(progress: float) -> float:
+	return smoothstep(0.0, 1.0, progress)
 
 func _snapshot() -> void:
 	if skeleton == null: return

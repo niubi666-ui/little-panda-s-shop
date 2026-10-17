@@ -1,6 +1,6 @@
 # 画面管线
 
-更新：2026-10-15。场景从 Blender 到 Godot、怎么换角色、画面参数在哪。手感与音效参数的位置见 [技术说明](TECH.md)。
+更新：2026-10-17。场景从 Blender 到 Godot、怎么换角色、画面参数在哪。手感与音效参数的位置见 [技术说明](TECH.md)。
 
 战斗训练场现在是**写实风格的童话森林**，镜头是**透视镜头**，主角和敌人都换成了**带贴图的写实模型**。
 只动了表现层，战斗规则和数值没有改。所有美术仍是可替换的占位，替换方法见下文。
@@ -14,7 +14,7 @@
 |---|---|---|
 | 场地 | 童话森林空地（第二版）：花树环绕、草甸花丛、斑驳树影、光柱薄雾、溪水木桥、遗迹石柱 | `game/presentation/rooms/fairy_forest_v2/` |
 | 镜头 | 透视，俯角约 33°，滚轮缩放改变的是镜头距离 | `fairy_forest_v2/presentation.tres` |
-| 主角 | 写实小熊猫（v008 模型）+ 长剑，11 段动作 | `game/presentation/combat/rigs/red_panda_real_visual.tscn` |
+| 战斗主角 | UE Manny + Nodachi 太刀，34 段原生动作 | `game/presentation/combat/rigs/nodachi_visual.tscn` |
 | 敌人 | 弩手、重装、冲锋兵、旗手：豺狼身体 + 各自的动作与道具；斥候和精灵游侠沿用原模型 | `game/presentation/combat/rigs/*_real_visual.tscn` |
 | 角色着色 | 标准 PBR，保留贴图，外加受击闪白、前摇泛光、尸体消散、淡轮廓光 | `game/presentation/shared/pbr/` |
 | 预警 | 柔边地面提示，随前摇从脚下向外填满，填满即出手 | `game/presentation/combat/fx/telegraph.gdshader` |
@@ -123,15 +123,21 @@ RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304
 2. **动作映射**（`*_clips.tres`，脚本 `rigs/actor_clip_set.gd`）：把“待机/移动/受击/死亡/闪避/各技能”对应到模型里的动作名。
 3. **表现配置**（`presentation/combat/*_presentation.tres`）：指向模型场景，并给出碰撞体。战斗逻辑只读碰撞体，不读模型。
 
-### 人形主角（Quaternius 通用骨骼）
+### 当前战斗主角（UE Manny + Nodachi）
 
-素材在 `source_assets/quaternius/`（UAL1/UAL2 动作库、通用人形角色，均 CC0）。`build_hero.py` 用后台 Blender 生成 `game/assets/combat_real/hero_katana.glb`：导入角色和两个动作库，把“出刀 + 收招”在 NLA 里合成一个动作，生成太刀挂到 `hand_r`，打印每个攻击动作的手速曲线供定切点（切点填在 `rigs/hero_clips.tres`）。同一套骨骼的新角色可以直接复用这些动作。
+用户确认使用 Blender 预览的人形和太刀。运行资源为 `game/assets/characters/ue_manny_nodachi/manny_nodachi.glb`；场景与映射为 `rigs/nodachi_visual.tscn`、`rigs/nodachi_clips.tres`。原生 89 骨骼，34 段动作：待机、八方向走路/跑步/翻滚、三连击、Attack05 重击、剑气挥斩、受击、倒地、持刀蓄力、翻滚冲斩。
 
-待机和攻击动作由 `katana_moves.py` 设计：刀是一个控制器（握把中心 + 刀尖方向 + 刃口方向），双手 IK 握刀柄、双脚 IK 踩地，按关键姿势插值（挥砍段线性、走中间关键帧定的弧线），再烘焙成骨骼动画。改动作就改 `MOVES` 里的姿势和帧号；帧号（30 帧/秒）换算成秒后要同步到 `game/data/combat/prototype.json` 对应技能的前摇/判定/收招，并更新 `rigs/hero_clips.tres` 的切点。检查用 `game/tests/hero_moves_capture.gd`。
+源文件归档在 `source_assets/characters/ue_manny_nodachi/`：`blender/manny_nodachi_game.blend`、`scripts/build_runtime.py`、`reports/runtime_export.json`。导出脚本读取先前的 `source_assets/animations/nodachi/` 审阅库，保留预览人形/太刀/骨骼原生姿势，去除 armature 对象的 XY 位移；游戏控制器负责移动和碰撞。GLB 以 60 FPS 导入，保留 8 骨骼影响。
 
-```
-& 'E:lenderlender.exe' --background --factory-startup --python source_assets/quaternius/build_hero.py
-```
+`nodachi_actor_visual.gd` 扩展通用表现适配器：移动相对瞄准方向选择八方向；翻滚锁定起始朝向与动作；换移动方向保留步态相位。`WeaponFX_Base/Tip` 提供实际刀身端点，刀光/元素从当前骨骼直接取变换，避免 BoneAttachment 节点更新晚一帧。其余角色仍走通用配置。
+
+攻击切点在 `nodachi_clips.tres`，规则时长在 `combat/prototype.json`（schema 7）；第三刀改为与下劈对应的 100 度扇形。翻滚 0.7 秒，前 0.35 秒移动、后半起身，距离约 3.4 米，无敌保留 0.2 秒。受击/倒地来自同包；蓄力暂用持刀格挡循环。
+
+翻滚冲斩源为 `/Game/Nodachi/Animations/Sequence/02_Attack/17_Parry_Counter_Attack/AS_Parry_Counter_L_Seq`，归档 `fbx/roll_slash.fbx` 与 `roll_slash.json`，已合入 GLB 和集成 Blender。`nodachi_clips.tres` 的 `roll_attack_*` 配置过渡：下肢/骨盆 0.17 秒、spine_01 子树 0.13 秒、朝向 0.16 秒。先在前摇中接到源动画首姿势，挥砍采样源 0–0.266667 秒，原生刀骨跟随手臂。UE 的运行时混合节点不会随 FBX 导出，这些过渡由 Godot 采样器完成。
+
+旧 Quaternius 主角生成模型/贴图、映射、脚本、Blender 文件已删除；通用下载库保留但不再用于主角。替换前恢复点为 **b878540**。店铺小熊猫与敌人资源继续保留。
+
+检查入口：`tests/nodachi_player.gd`（图形/无头均可）、`tests/combat_rules.gd`；截图与报告在 `builds/nodachi_review/`；翻滚冲斩规则 `tests/roll_slash.gd`、图形 `tests/roll_slash_visual.gd`，截图 `builds/roll_slash_review/`。
 
 ### 新模型自带全套动作
 
@@ -163,7 +169,7 @@ RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304
 - **`*_clips.tres` 的每个字段都要写**（不用的动作写空名 `&""`、空字典 `{}`）；脚本里没有默认值。
 - **敌人按 AI 状态选动作**：`states` 里写“状态名 → 动作名”。`windup`、`recovery` 按进度播放，其余循环。
 - **带贴图的模型**把 `keep_textures` 打开。`tint` 可以给整个模型染色：四种敌人共用一个豺狼身体，靠染色、体型和手里的道具区分。
-- **主角的刀光**仍由一把不可见的“虚拟剑”驱动（`player_presentation.tres` 的 `virtual_blade`），所以十几种刀光不受模型影响。
+- **当前主角的刀光**跟随 Nodachi 实际刀骨骼和刀刃端点；`virtual_blade` 只是不再生成额外的可见武器。旧角色仍支持配置的虚拟剑轨迹。
 
 ## 怎么替换场地
 

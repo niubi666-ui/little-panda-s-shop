@@ -39,7 +39,7 @@ func configure(owner_actor, settings, font: Font) -> void:
 	_visual_rest_basis = visual.basis
 	add_child(visual)
 	animation = visual.find_child("AnimationPlayer", true, false)
-	if animation != null:
+	if animation != null and not visual.has_method("refresh_actor"):
 		for library_name in animation.get_animation_library_list():
 			var library: AnimationLibrary = animation.get_animation_library(library_name).duplicate(true)
 			for animation_name in library.get_animation_list():
@@ -91,7 +91,7 @@ func set_weapon_effect(scene: PackedScene) -> void:
 	assert(weapon_effect.has_method("set_active") and weapon_effect.has_method("set_time_running"))
 	blade.add_child(weapon_effect)
 	if weapon_effect.has_method("configure_blade"):
-		weapon_effect.configure_blade(style.blade_size.z)
+		weapon_effect.configure_blade(visual.weapon_fx_length() if visual.has_method("weapon_fx_length") else style.blade_size.z)
 	weapon_effect.set_active(false)
 func refresh(delta: float = 0.0) -> void:
 	if damage_numbers != null: damage_numbers.tick(delta)
@@ -151,6 +151,9 @@ func refresh(delta: float = 0.0) -> void:
 			# 前摇：从脚下向外填满，填满即出手；判定帧整体提亮
 			var charge: float = clampf(actor.runner.elapsed / maxf(ability.windup, 0.001), 0.0, 1.0)
 			_draw_sector(ability.radius, ability.angle, tint, charge if phase == "windup" else 1.0, 0.0 if phase == "windup" else 1.0)
+	# 原生带刀骨架提供真实刀刃的世界坐标；旧角色仍使用配置的虚拟剑轨迹。
+	if visual.has_method("weapon_fx_transform"):
+		blade.global_transform = visual.weapon_fx_transform()
 	if is_instance_valid(weapon_effect):
 		weapon_effect.set_active(phase == "active" and trail_enabled)
 		if weapon_effect.has_method("sample_current_pose"):

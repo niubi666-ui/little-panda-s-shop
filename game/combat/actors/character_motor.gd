@@ -26,6 +26,19 @@ func clear_impulse() -> void:
 	impulse_left = 0.0
 	_push = Vector3.ZERO
 	push_left = 0.0
+
+func travel(displacement: Vector3, delta: float) -> void:
+	# Distance-driven committed dash: use a swept body collision, never teleport or slide.
+	blocked = false
+	if delta <= 0.0: return
+	if control_locked:
+		body.velocity = Vector3.ZERO
+		return
+	clear_impulse()
+	var before := body.global_position
+	blocked = body.move_and_collide(displacement) != null if not displacement.is_zero_approx() else false
+	body.velocity = (body.global_position - before) / delta
+
 func step(direction: Vector3, speed: float, delta: float, slide: bool = true) -> void:
 	blocked = false
 	if control_locked:

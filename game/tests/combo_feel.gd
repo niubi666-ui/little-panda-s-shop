@@ -5,7 +5,7 @@ extends SceneTree
 const ARENA = preload("res://rogue/scenes/training_arena.tscn")
 const STYLE = preload("res://presentation/combat/training_style.tres")
 const STEP := 1.0 / 120.0
-const OUTPUT_DIRECTORY := "E:/ShopGame/docs/previews"
+const OUTPUT_DIRECTORY := "E:/ShopGame/builds/nodachi_review"
 const FRAME_LIMIT := 1200
 var failures: Array[String] = []
 var captures: Array[String] = []
@@ -108,18 +108,18 @@ func _test_queued_combo() -> void:
 		if not check(samples.has(id) and samples[id].size() >= 2, "active blade samples exist: " + id): continue
 		var first: Dictionary = samples[id][0]
 		var last: Dictionary = samples[id][-1]
-		# 2026-10-12：第一刀改为正手（右→左），第二刀反手（左→右），与骨骼动作一致。
+		# Nodachi Attack01 原生顺序：第一刀左→右、第二刀右→左、第三刀下劈。
 		if id == "slash.1":
-			check(first.side > last.side, "first slash travels from the actor's right to left")
-			check(first.screen_x > last.screen_x, "first slash projects right to left on screen")
+			check(first.side < last.side, "first native slash travels from the actor's left to right")
+			check(first.screen_x < last.screen_x, "first native slash projects left to right on screen")
 		elif id == "slash.2":
-			check(first.side < last.side, "second slash travels from the actor's left to right")
-			check(first.screen_x < last.screen_x, "second slash projects left to right on screen")
+			check(first.side > last.side, "second native slash travels from the actor's right to left")
+			check(first.screen_x > last.screen_x, "second native slash projects right to left on screen")
 		else:
-			check(last.forward > first.forward, "third strike extends forward")
-			for sample in samples[id]:
-				check(is_equal_approx(sample.side, first.side), "third strike retains its lateral axis without sweeping")
-			check(player.attacks[2].hit_shape == "thrust", "third strike uses the actual narrow thrust hit shape")
+			var heights: Array = []
+			for sample in samples[id]: heights.append(sample.world_tip[1])
+			check(heights.max() - heights.min() > 0.3, "native third strike has a downward blade arc")
+			check(player.attacks[2].hit_shape == "sector", "native downward slash uses a forward sector")
 	check(screenshots.size() == 3, "captured all three real combo stages")
 
 
@@ -242,7 +242,9 @@ func _refresh(delta: float) -> void:
 func _blade_sample() -> Dictionary:
 	var player = arena.player
 	var blade: Node3D = arena.views[0].blade
-	var tip: Vector3 = blade.to_global(Vector3(0.0, 0.0, -STYLE.blade_size.z / 2.0))
+	var visual: Node3D = arena.views[0].visual
+	var length: float = visual.weapon_fx_length() if visual.has_method("weapon_fx_length") else STYLE.blade_size.z
+	var tip: Vector3 = blade.to_global(Vector3(0.0, 0.0, -length / 2.0))
 	var relative: Vector3 = tip - player.global_position
 	var direction: Vector3 = player.runner.direction
 	var screen: Vector2 = camera.unproject_position(tip)
@@ -252,6 +254,7 @@ func _blade_sample() -> Dictionary:
 
 
 func _capture(stage: String) -> void:
+	if DisplayServer.get_name() == "headless": return
 	var effect: Node3D = arena.views[0].weapon_effect
 	effect.set_time_running(false)
 	await process_frame

@@ -89,19 +89,29 @@ class Actor extends RefCounted:
 
 class Dodge extends RefCounted:
 	var _data: Dictionary
-	func _init(data: Dictionary) -> void:
+	var _attack: Ability
+	var attack: Ability:
+		get: return _attack
+	func _init(data: Dictionary, attack_definition: Ability) -> void:
 		_data = data.duplicate(true)
 		_data.make_read_only()
+		_attack = attack_definition
 	var charges: int:
 		get: return int(_data.charges)
 	var duration: float:
 		get: return _data.duration_sec
+	var movement_duration: float:
+		get: return _data.movement_duration_sec
 	var invulnerable: float:
 		get: return _data.invulnerable_sec
 	var recharge: float:
 		get: return _data.recharge_sec
 	var speed: float:
 		get: return _data.speed_mps
+	var attack_distance: float:
+		get: return _data.attack_distance_m
+	var attack_duration: float:
+		get: return _data.attack_duration_sec
 
 var _abilities: Dictionary = {}
 var _actors: Dictionary = {}
@@ -124,7 +134,7 @@ func _init(data: Dictionary) -> void:
 	_player_hurt_radius = data.player_hurt_radius_m
 	_player_id = data.player_id
 	_delay = data.wave_delay_sec
-	_dodge = Dodge.new(data.dodge)
+	_dodge = Dodge.new(data.dodge, ability(data.dodge.attack_id))
 func ability(id: String) -> Ability: return _abilities[id]
 func has_ability(id: String) -> bool: return _abilities.has(id)
 func actor(id: String) -> Actor: return _actors[id]

@@ -43,6 +43,10 @@ var _attack_queued: bool:
 var buffered_action_id: String:
 	get: return _queued_action
 var _dodge_requested := false
+var _roll_attack_queued := false
+var _roll_attack_cast := -1
+var _roll_attack_blocked := false
+var melee_sweep_from := Vector3.ZERO
 var _build_move_scale := 1.0
 var _damage_immunity := false
 var protection_amount := 0.0
@@ -93,6 +97,7 @@ func clear_intents() -> void:
 	_clear_attack_intent()
 	_dodge_requested = false
 func _clear_attack_intent() -> void:
+	_roll_attack_queued = false
 	_charged_intent = false
 	_queued_action = ""
 	_queued_frame = -1
@@ -163,13 +168,15 @@ func request_action(id: String, input_frame: int = -1) -> void:
 	var definitions := _abilities_for(id)
 	if definitions.is_empty(): return
 	var index := combo_index % definitions.size() if id == "primary" else 0
-	var buffer_sec: float = definitions[index].buffer_sec
-	if runner.cooldown_for(id) > buffer_sec: return
+	var roll_attack := id == "primary" and dodge != null and dodge_left > 0.0
+	var buffer_sec: float = dodge.attack.buffer_sec if roll_attack else definitions[index].buffer_sec
+	if not roll_attack and runner.cooldown_for(id) > buffer_sec: return
 	var frame := Engine.get_process_frames() if input_frame < 0 else input_frame
 	# Same rendered frame has a stable priority even if OS event order is reversed.
 	var priorities := {"primary": 0, "special": 1, "skill": 2}
 	if frame == _queued_frame and priorities.get(_queued_action, -1) > priorities.get(id, -1): return
 	_queued_action = id
+	_roll_attack_queued = roll_attack
 	_charged_intent = false
 	_queued_frame = frame
 	_buffer_left = buffer_sec
@@ -184,8 +191,32 @@ func set_damage_immunity(enabled: bool) -> void:
 	_damage_immunity = enabled
 func invulnerable() -> bool:
 	return _damage_immunity or (dodge != null and dodge_left > 0.0 and dodge_age < dodge.invulnerable)
+
+func is_roll_attack_cast() -> bool:
+	return dodge != null and runner.cast_id == _roll_attack_cast and runner.ability == dodge.attack and runner.action_id == "primary"
+
+func _start_roll_attack() -> void:
+	if not _roll_attack_queued or _queued_action != "primary" or dodge_left <= 0.0 or stagger_left > 0.0: return
+	var context: Dictionary = _action_program["primary"] if _action_program.has("primary") else {}
+	# Preserve the exact primary build snapshot; only the animation/ability changes.
+	if not context.is_empty() and context.executor != "melee": return
+	runner.cancel("roll_attack")
+	_roll_attack_cast = runner.cast_id + 1
+	_roll_attack_blocked = false
+	if runner.start(dodge.attack, facing, context, false, true):
+		dodge_left = 0.0
+		dodge_age = 0.0
+		motor.clear_impulse()
+		_cast_tempo = enemy_attack_multiplier
+		combo_index = 0
+		combo_idle = 0.0
+		_clear_attack_intent()
+	else:
+		_roll_attack_cast = -1
+
 func step(delta: float) -> void:
-	if not health.alive(): return
+	if not health.alive() or delta <= 0.0: return
+	melee_sweep_from = global_position
 	if charging_skill:
 		charge_elapsed = minf(charge_elapsed + delta, float(charge_parameters().max_charge_sec))
 	if control_locked:
@@ -211,10 +242,13 @@ func step(delta: float) -> void:
 		dodge_age = 0.0
 		dodge_direction = movement.normalized() if not movement.is_zero_approx() else facing
 	_dodge_requested = false
+	_start_roll_attack()
 	if dodge_left > 0.0:
+		# 位移与起身分段；跨越分段的一帧按剩余运动时间积分，避免帧率改变距离。
+		var moving_delta := clampf(dodge.movement_duration - dodge_age, 0.0, delta)
 		dodge_left = maxf(0.0, dodge_left - delta)
 		dodge_age += delta
-		motor.step(dodge_direction, dodge.speed, delta)
+		motor.step(dodge_direction, dodge.speed * moving_delta / delta if delta > 0.0 else 0.0, delta)
 		runner.tick(delta)
 		_age_attack_intent(delta)
 		return
@@ -233,8 +267,17 @@ func step(delta: float) -> void:
 			combo_idle = 0.0
 			_clear_attack_intent()
 	if not health.alive(): return
+	var before := runner.elapsed
 	runner.tick(delta * _cast_tempo * control_action_scale)
 	_age_attack_intent(delta)
+	if is_roll_attack_cast() and (runner.busy() or runner.active_this_step):
+		# Integrate distance over the actual timeline interval, including partial boundary frames.
+		var start := clampf((before - runner.ability.windup) / dodge.attack_duration, 0.0, 1.0)
+		var end := clampf((runner.elapsed - runner.ability.windup) / dodge.attack_duration, 0.0, 1.0)
+		var distance := dodge.attack_distance * (smoothstep(0.0, 1.0, end) - smoothstep(0.0, 1.0, start))
+		motor.travel(Vector3.ZERO if _roll_attack_blocked else runner.direction * distance, delta)
+		_roll_attack_blocked = _roll_attack_blocked or motor.blocked
+		return
 	var move_multiplier := runner.ability.movement_multiplier if runner.busy() else 1.0
 	if not forced_velocity.is_zero_approx() and stagger_left <= 0.0:
 		motor.step(forced_velocity.normalized(), forced_velocity.length(), delta, false)

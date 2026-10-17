@@ -1,0 +1,20 @@
+[
+  {
+    "name": "hit",
+    "source": "/Game/Nodachi/Animations/Sequence/08_Hit/02_Hit_Combat/AS_Hit_Combat_F_Seq",
+    "seconds": 0.8333333134651184,
+    "file": "E:\\ShopGame\\source_assets\\characters\\ue_manny_nodachi\\fbx\\hit.fbx"
+  },
+  {
+    "name": "death",
+    "source": "/Game/Nodachi/Animations/Sequence/08_Hit/02_Hit_Combat/AS_Hit_Combat_Death_Seq",
+    "seconds": 3.0,
+    "file": "E:\\ShopGame\\source_assets\\characters\\ue_manny_nodachi\\fbx\\death.fbx"
+  },
+  {
+    "name": "charge",
+    "source": "/Game/Nodachi/Animations/Sequence/08_Hit/14_Block/AS_Block_Loop_Seq",
+    "seconds": 10.0,
+    "file": "E:\\ShopGame\\source_assets\\characters\\ue_manny_nodachi\\fbx\\charge.fbx"
+  }
+]

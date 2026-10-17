@@ -1,0 +1,34 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/combat/rigs/nodachi_clip_set.gd" id="script"]
+[resource]
+script = ExtResource("script")
+idle = &"idle"
+move = &"run_forward"
+move_reference_speed = 6.2
+move_min_speed = 0.15
+move_rate_min = 0.5
+move_rate_max = 1.8
+hit = &"hit"
+death = &"death"
+dodge = &"roll_forward"
+charge = &"charge"
+attacks = {"slash.1": &"attack_1", "slash.2": &"attack_2", "slash.3": &"attack_3", "heavy_slash": &"heavy", "wave_cast": &"cast", "roll_slash": &"roll_slash"}
+attack_fallback = Array[StringName]([])
+attack_cuts = {&"attack_1": Vector2(0.3, 0.466667), &"attack_2": Vector2(0.2, 0.35), &"attack_3": Vector2(0.116667, 0.283333), &"heavy": Vector2(0.3, 0.483333), &"cast": Vector2(0.166667, 0.333333), &"roll_slash": Vector2(0, 0.266667)}
+attack_shapes = {&"attack_1": Vector4(1, 1, 1, 0), &"attack_2": Vector4(1, 1, 1, 0), &"attack_3": Vector4(1, 1, 1, 0), &"heavy": Vector4(1, 1, 1, 0), &"cast": Vector4(1, 1, 1, 0), &"roll_slash": Vector4(1, 1, 1, 0)}
+states = {}
+blend_sec = 0.14
+attack_blend_sec = 0.06
+react_blend_sec = 0.045
+run_directions = Array[StringName]([&"run_forward", &"run_forward_right", &"run_right", &"run_back_right", &"run_back", &"run_back_left", &"run_left", &"run_forward_left"])
+walk_directions = Array[StringName]([&"walk_forward", &"walk_forward_right", &"walk_right", &"walk_back_right", &"walk_back", &"walk_back_left", &"walk_left", &"walk_forward_left"])
+roll_directions = Array[StringName]([&"roll_forward", &"roll_forward_right", &"roll_right", &"roll_back_right", &"roll_back", &"roll_back_left", &"roll_left", &"roll_forward_left"])
+walk_below_speed = 3.0
+walk_reference_speed = 2.5
+roll_attack_clip = &"roll_slash"
+roll_attack_lower_blend_sec = 0.17
+roll_attack_upper_blend_sec = 0.13
+roll_attack_turn_sec = 0.16
+upper_body_root = &"spine_01"
+weapon_base_path = NodePath("Model/Nodachi_Manny_Rig/Skeleton3D/Nodachi_Weapon_R/Nodachi_Sword_SourceSocket/WeaponFX_Base")
+weapon_tip_path = NodePath("Model/Nodachi_Manny_Rig/Skeleton3D/Nodachi_Weapon_R/Nodachi_Sword_SourceSocket/WeaponFX_Tip")

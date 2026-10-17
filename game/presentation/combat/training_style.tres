@@ -50,7 +50,7 @@ attack_motions = Dictionary[String, Resource]({
 "wave_cast": ExtResource("motion_wave")
 })
 attack_motion_groups = {
-"sword_primary": {"slash.1": "slash.1", "slash.2": "slash.2", "slash.3": "slash.3"}
+"sword_primary": {"slash.1": "slash.1", "slash.2": "slash.2", "slash.3": "slash.3", "roll_slash": "slash.1"}
 }
 hit_camera_shake = ExtResource("camera_hit")
 warning_color = Color(1, 0.47, 0.1, 0.4)

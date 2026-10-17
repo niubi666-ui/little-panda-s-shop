@@ -13,7 +13,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 5
+      "const": 7
     },
     "abilities": {
       "type": "array",
@@ -266,7 +266,11 @@
         "duration_sec",
         "invulnerable_sec",
         "recharge_sec",
-        "speed_mps"
+        "speed_mps",
+        "movement_duration_sec",
+        "attack_id",
+        "attack_distance_m",
+        "attack_duration_sec"
       ],
       "properties": {
         "charges": {
@@ -293,6 +297,25 @@
           "type": "number",
           "minimum": 0.1,
           "maximum": 40
+        },
+        "movement_duration_sec": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 3
+        },
+        "attack_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attack_distance_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "attack_duration_sec": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 3
         }
       }
     },

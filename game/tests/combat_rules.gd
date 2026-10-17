@@ -38,8 +38,14 @@ func run() -> void:
 			"movement": invalid.abilities[0].movement_speed_multiplier = -1.0
 			"shape": invalid.abilities[0].hit_shape = "unknown"
 			"sector_width": invalid.abilities[0].thrust_width_m = 1.0
-			"thrust_width": invalid.abilities[2].thrust_width_m = 0.0
-			"thrust_angle": invalid.abilities[2].angle_deg = 160.0
+			"thrust_width":
+				invalid.abilities[2].hit_shape = "thrust"
+				invalid.abilities[2].angle_deg = 0.0
+				invalid.abilities[2].thrust_width_m = 0.0
+			"thrust_angle":
+				invalid.abilities[2].hit_shape = "thrust"
+				invalid.abilities[2].thrust_width_m = 1.8
+				invalid.abilities[2].angle_deg = 160.0
 			"old_version": invalid.schema_version = 1
 		var validator := Loader.new()
 		check(validator.decode(invalid, schema, "test." + defect) == null and not validator.errors.is_empty(), "reject " + defect)
@@ -140,16 +146,16 @@ func run() -> void:
 func check_player_attack_sectors(catalog) -> void:
 	var resolver := Resolver.new()
 	# Exercise each real ability at a translated origin and non-cardinal facing.
-	# The requested 160-degree sector means 80 degrees on each side of its aim.
+	# Test just inside/outside each configured half-angle, including the native downward third slash.
 	for ability_id in catalog.player().attacks:
 		var ability: Catalog.Ability = catalog.ability(ability_id)
 		if ability.hit_shape != "sector": continue
-		check(is_equal_approx(rad_to_deg(ability.angle), 160.0), ability_id + " uses the requested 160-degree sector")
+		var half_angle := rad_to_deg(ability.angle) / 2.0
 		var source := make_actor(catalog, "player", 0, 100)
 		source.position = Vector3(3.0, 0.0, 4.0)
 		var facing := Vector3.FORWARD.rotated(Vector3.UP, 0.37)
 		var targets: Array = []
-		for angle_deg in [-79.0, 79.0, -81.0, 81.0]:
+		for angle_deg in [1.0-half_angle, half_angle-1.0, -half_angle-1.0, half_angle+1.0]:
 			var target := make_actor(catalog, "brute", 1, 101 + targets.size())
 			target.position = source.position + facing.rotated(Vector3.UP, deg_to_rad(angle_deg)) * ability.radius * 0.75
 			targets.append(target)
@@ -163,13 +169,17 @@ func check_player_attack_sectors(catalog) -> void:
 		for index in targets.size():
 			var target: Actor = targets[index]
 			var expected_damage := ability.damage if index < 2 else 0.0
-			var label: String = ["-79 degrees hits once", "+79 degrees hits once", "-81 degrees misses", "+81 degrees misses", "outside radius misses"][index]
+			var label: String = ["inside left hits once", "inside right hits once", "outside left misses", "outside right misses", "outside radius misses"][index]
 			check(is_equal_approx(target.health.current, target.health.maximum - expected_damage), ability_id + " " + label)
 		for target in targets: target.free()
 		source.free()
 func check_thrust_shape(catalog) -> void:
-	var ability: Catalog.Ability = catalog.ability("slash.3")
-	check(ability.hit_shape == "thrust" and ability.angle == 0.0, "third combo is a thrust, not a sweep")
+	# The resolver still supports thrusts although the current Nodachi third attack is a downward slash.
+	var data: Dictionary = catalog.ability("slash.3")._data.duplicate(true)
+	data.hit_shape = "thrust"
+	data.angle_deg = 0.0
+	data.thrust_width_m = 1.8
+	var ability := Catalog.Ability.new(data)
 	var source := make_actor(catalog, "player", 0, 200)
 	source.position = Vector3(3, 0, -4)
 	var facing := Vector3.FORWARD.rotated(Vector3.UP, 0.37)

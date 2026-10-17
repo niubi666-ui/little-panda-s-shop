@@ -1,6 +1,6 @@
 # 技术说明
 
-更新：2026-10-15。只写“东西在哪、怎么连、怎么测”。各系统更细的历史接口说明在 `docs/archive/2026-10-15/`（例如 `BUILD_IMPLEMENTATION_CONTRACT.md`、`COMBAT_MECHANISMS.md`、`ELITE_RANGER.md`），代码本身是最终依据。
+更新：2026-10-17。只写“东西在哪、怎么连、怎么测”。各系统更细的历史接口说明在 `docs/archive/2026-10-15/`（例如 `BUILD_IMPLEMENTATION_CONTRACT.md`、`COMBAT_MECHANISMS.md`、`ELITE_RANGER.md`），代码本身是最终依据。
 
 ## 目录
 
@@ -35,7 +35,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 
 | 想调什么 | 文件 |
 |---|---|
-| 玩家/敌人生命、移速、硬直、霸体与破防；技能前摇/判定/收招、冷却、伤害、范围、击退、出招前冲；闪避；受击半径 | `combat/prototype.json`（schema 5） |
+| 玩家/敌人生命、移速、硬直、霸体与破防；技能前摇/判定/收招、冷却、伤害、范围、击退、出招前冲；闪避；受击半径 | `combat/prototype.json`（schema 7；闪避 `movement_duration_sec` 为位移段，`duration_sec` 含起身；`dodge.attack_id/attack_distance_m/attack_duration_sec` 控制翻滚冲斩，默认 6 米） |
 | 构筑卡、动作、形态、投射物、状态（冰冻/寒印/减速）、抗性、训练预设、预算上限 | `builds/prototype.json` |
 | 卡牌品质分组、各类房间的奖励品质权重 | `builds/reward_groups.json` |
 | 元素状态（层数、持续、灼烧伤害、感电放电、碎甲易伤）与六种反应（伤害、范围、推拉、易伤、减速、熔岩区域） | `builds/elements.json`（字段为 0 / 空字符串表示不用） |
@@ -53,7 +53,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 |---|---|
 | 战斗表现总表（各角色表现、剑姿态、镜头、刀光、以下各项的引用） | `combat/training_style.tres` |
 | 角色模型、碰撞体、朝向 | `combat/*_presentation.tres` → `combat/rigs/*_visual.tscn` |
-| 动作名映射、攻击动作切点、过渡 | `combat/rigs/*_clips.tres` |
+| 动作名映射、攻击动作切点、过渡 | `combat/rigs/*_clips.tres`；主角为 `nodachi_clips.tres`，另含八方向列表、步行速度和刀刃端点路径 |
 | 转身、受击闪白/抖动、尸体消散、前摇泛光 | `combat/rigs/rig_feedback_*.tres` |
 | 顿帧、镜头冲击、镜头跟随 | `combat/feel/combat_feel_style.tres` |
 | 受伤闪红、击杀/闪避粒子、底部生命条 | `combat/juice/`（`combat_juice_style.tres`、`vitals_hud_style.tres`、粒子 `.tscn`） |
@@ -76,7 +76,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
   → 已提交的事实信号 → 表现层（ActorView、CombatJuice、CombatFeel、CombatAudio、特效视图）
 ```
 
-- `CharacterMotor` 是唯一写移动的地方（自主移动、击退、出招前冲、闪避）。
+- `CharacterMotor` 是唯一写移动的地方（自主移动、击退、出招前冲、闪避）。翻滚冲斩由 `CombatActor` 取消翻滚、锁定瞄准方向并提交 `roll_slash`，沿用完整 primary plan；`BuildRuntime.on_committed` 仅接受 Dodge 配置且确已提交的变体。前次左键冷却被本次冷却替换，翻滚消耗不退还。位移按时间段积分，经 `Motor.travel` 连续碰撞，撞障碍即停；`MeleeResolver` 沿实际位移路径补充判定，仍由每次施放的目标集合去重。
 - 构筑：`BuildResolver` 把选卡编译成每个动作的执行计划（program）；`BuildRuntime` 按计划执行投射物、爆炸、状态、条件增伤；`TrainingBuildSession` 负责三选一、预设和提交；`BuildOfferSampler` 按品质与权重抽候选。
 - 接续构筑设计见 [构筑成长](BUILD_PROGRESSION.md)。`projectile_capabilities.gd` 已把新冰核心接到四张基础冰协同；其它旧卡和后期机制仍按范围逐步适配，不代表完整成长设计已实现。
 - 状态：`StatusRuntime`（冰冻/减速/寒印/抗冻、同根去重、控制组）。
@@ -130,7 +130,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 
 | 改了什么 | 跑什么 |
 |---|---|
-| 战斗基础、连段、反馈 | `combat_rules`；图形 `combo_feel`、`combat_feedback` |
+| 战斗基础、连段、反馈 | `combat_rules`、`roll_slash`（6 米/碰撞/元素/增伤/范围/取消）、`roll_slash_visual`（八方向 × 三种翻滚时机、分骨骼混合）；主角 `nodachi_player`（图形/无头）、`combo_feel`（已适配 Nodachi 的真实刀刃和下劈第三刀） |
 | 敌人、遭遇 | `enemy_roles`、`charger_obstacles`；图形 `enemy_training` |
 | 游侠 | `ranger_rules`、`ranger_sequences`、`charged_ranger` |
 | 构筑 | `bound_build_policy`、`bound_build_session`、`mechanism_content`、`dual_actions`、`frost_first_batch`；冰协同 `ice_synergy`、`ice_synergy_rewards`、`freeze_followup`、`boss_frost_builds` |

@@ -60,6 +60,14 @@ func decode(data: Variant, schema: Dictionary, path: String) -> Catalog:
 			if not actors.has(id) or id == data.player_id: errors.append(path + ": invalid enemy " + id)
 	if data.dodge.invulnerable_sec > data.dodge.duration_sec:
 		errors.append(path + ": dodge.invulnerable_sec exceeds duration_sec")
+	if data.dodge.movement_duration_sec > data.dodge.duration_sec:
+		errors.append(path + ": dodge.movement_duration_sec exceeds duration_sec")
+	if not abilities.has(data.dodge.attack_id):
+		errors.append(path + ": dodge.attack_id is unknown")
+	else:
+		var attack: Dictionary = abilities[data.dodge.attack_id]
+		if data.dodge.attack_duration_sec > attack.active_sec or attack.lunge_speed_mps != 0.0 or attack.movement_speed_multiplier != 0.0:
+			errors.append(path + ": roll attack must cover dash with active time and disable additive movement/lunge")
 	if not errors.is_empty(): return null
 	return Catalog.new(data)
 ## Deliberately implements only the schema keywords used by this slice; build-time

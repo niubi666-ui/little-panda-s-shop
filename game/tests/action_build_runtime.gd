@@ -176,7 +176,7 @@ func check_cancel_reentry() -> void:
 	f.player.runner.cancel("dodge")
 	f.player.runner.tick(2.0)
 	f.runtime.tick(0.1)
-	check(f.runtime.projectiles().size() == 1, "instant wave already released before later dodge cancellation")
+	check(f.runtime.projectiles().is_empty(), "cancelling native wave windup prevents release")
 	clean(f)
 	f = setup([])
 	f.player.runner.committed.connect(func(_id,_ability):f.player.runner.cancel("control"), CONNECT_ONE_SHOT)
@@ -195,10 +195,13 @@ func check_cancel_reentry() -> void:
 
 func check_instant_wave() -> void:
 	var f := setup([])
-	var ability = combat.ability("wave_cast")
+	# Keep zero-windup runner coverage with an explicit fixture; the native cast now has windup.
+	var fixture: Dictionary = combat.ability("wave_cast")._data.duplicate(true)
+	fixture.windup_sec = 0.0
+	var ability = Catalog.Ability.new(fixture)
 	var facts: Array = []
 	f.runtime.action_presented.connect(func(fact): facts.append(fact.event))
-	check(ability.windup == 0.0 and ability.cooldown == 1.0, "wave has zero windup and one second cooldown")
+	check(ability.windup == 0.0 and ability.cooldown == 1.0, "fixture has zero windup and one second cooldown")
 	f.player.runner.start(ability, Vector3.FORWARD, f.program.actions.skill)
 	check(facts == ["started", "cue"], "wave cue fires synchronously after committed snapshot without ticking")
 	f.runtime.tick(.001)

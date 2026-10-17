@@ -1,11 +1,11 @@
 {
-  "schema_version": 5,
+  "schema_version": 7,
   "abilities": [
     {
       "id": "slash.1",
-      "windup_sec": 0.2,
-      "active_sec": 0.1,
-      "recovery_sec": 0.3667,
+      "windup_sec": 0.3,
+      "active_sec": 0.166667,
+      "recovery_sec": 0.55,
       "cooldown_sec": 0.42,
       "radius_m": 2.5,
       "angle_deg": 160,
@@ -21,7 +21,7 @@
       "hit_shape": "sector",
       "thrust_width_m": 0.0,
       "buffer_sec": 0.35,
-      "chain_cancel_sec": 0.12,
+      "chain_cancel_sec": 0.1,
       "dodge_cancel_phases": [
         "windup",
         "active",
@@ -30,9 +30,9 @@
     },
     {
       "id": "slash.2",
-      "windup_sec": 0.1667,
-      "active_sec": 0.1,
-      "recovery_sec": 0.3667,
+      "windup_sec": 0.2,
+      "active_sec": 0.15,
+      "recovery_sec": 0.5,
       "cooldown_sec": 0.39,
       "radius_m": 2.5,
       "angle_deg": 160,
@@ -48,7 +48,7 @@
       "hit_shape": "sector",
       "thrust_width_m": 0.0,
       "buffer_sec": 0.35,
-      "chain_cancel_sec": 0.12,
+      "chain_cancel_sec": 0.1,
       "dodge_cancel_phases": [
         "windup",
         "active",
@@ -57,12 +57,12 @@
     },
     {
       "id": "slash.3",
-      "windup_sec": 0.3,
-      "active_sec": 0.1,
-      "recovery_sec": 0.5667,
+      "windup_sec": 0.116667,
+      "active_sec": 0.166666,
+      "recovery_sec": 0.55,
       "cooldown_sec": 0.7,
       "radius_m": 2.8,
-      "angle_deg": 0,
+      "angle_deg": 100,
       "damage": 30,
       "interruptible": true,
       "commit_policy": "start",
@@ -72,10 +72,10 @@
       "knockback_duration_sec": 0.2,
       "lunge_speed_mps": 9.0,
       "lunge_duration_sec": 0.11,
-      "hit_shape": "thrust",
-      "thrust_width_m": 1.8,
+      "hit_shape": "sector",
+      "thrust_width_m": 0.0,
       "buffer_sec": 0.35,
-      "chain_cancel_sec": 0.3,
+      "chain_cancel_sec": 0.2,
       "dodge_cancel_phases": [
         "windup",
         "active",
@@ -130,9 +130,9 @@
     },
     {
       "id": "heavy_slash",
-      "windup_sec": 0.4667,
-      "active_sec": 0.1333,
-      "recovery_sec": 0.4667,
+      "windup_sec": 0.3,
+      "active_sec": 0.183333,
+      "recovery_sec": 0.7,
       "cooldown_sec": 1.2,
       "radius_m": 2.8,
       "angle_deg": 115,
@@ -156,9 +156,9 @@
     },
     {
       "id": "wave_cast",
-      "windup_sec": 0.0,
-      "active_sec": 0.1,
-      "recovery_sec": 0.22,
+      "windup_sec": 0.166667,
+      "active_sec": 0.166666,
+      "recovery_sec": 0.45,
       "cooldown_sec": 1.0,
       "radius_m": 2.5,
       "angle_deg": 160,
@@ -177,6 +177,31 @@
       "chain_cancel_sec": 0.22,
       "dodge_cancel_phases": [
         "windup",
+        "recovery"
+      ]
+    },
+    {
+      "id": "roll_slash",
+      "windup_sec": 0.18,
+      "active_sec": 0.24,
+      "recovery_sec": 0.5,
+      "cooldown_sec": 0.65,
+      "radius_m": 2.5,
+      "angle_deg": 160,
+      "damage": 16,
+      "interruptible": true,
+      "commit_policy": "start",
+      "aim_policy": "lock_at_start",
+      "movement_speed_multiplier": 0.0,
+      "knockback_speed_mps": 4.0,
+      "knockback_duration_sec": 0.1,
+      "lunge_speed_mps": 0.0,
+      "lunge_duration_sec": 0.0,
+      "hit_shape": "sector",
+      "thrust_width_m": 0.0,
+      "buffer_sec": 0.35,
+      "chain_cancel_sec": 0.2,
+      "dodge_cancel_phases": [
         "recovery"
       ]
     }
@@ -306,10 +331,14 @@
   "player_id": "player",
   "dodge": {
     "charges": 2,
-    "duration_sec": 0.2,
+    "duration_sec": 0.7,
     "invulnerable_sec": 0.2,
     "recharge_sec": 1.2,
-    "speed_mps": 17
+    "speed_mps": 9.714285714285715,
+    "movement_duration_sec": 0.35,
+    "attack_id": "roll_slash",
+    "attack_distance_m": 6.0,
+    "attack_duration_sec": 0.24
   },
   "waves": [
     [

@@ -35,9 +35,10 @@ func cooldown_for(id: String) -> float:
 	return float(_cooldowns.get(id, 0.0))
 
 
-func start(definition: Catalog.Ability, facing: Vector3, context: Dictionary = {}, charged: bool = false) -> bool:
+func start(definition: Catalog.Ability, facing: Vector3, context: Dictionary = {}, charged: bool = false, replace_cooldown: bool = false) -> bool:
 	var next_action: String = str(context.action_id) if not context.is_empty() else "primary"
-	if not actions_allowed or _running or cooldown_for(next_action) > 0.0: return false
+	# Only the actor's roll-cancel transition replaces a remaining primary cooldown.
+	if not actions_allowed or _running or (not replace_cooldown and cooldown_for(next_action) > 0.0): return false
 	ability = definition
 	cast_charged = charged
 	cast_id += 1

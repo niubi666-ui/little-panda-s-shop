@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://chg4gaqp0r4uk"
-path="res://.godot/imported/hero_katana.glb-f083d2d8bbce9fa159ea68ba3ff1bc95.scn"
+uid="uid://bfmwke635kqy3"
+path="res://.godot/imported/manny_nodachi.glb-807971304f0854f19ecb913966f0d161.scn"
 
 [deps]
 
-source_file="res://assets/combat_real/hero_katana.glb"
-dest_files=["res://.godot/imported/hero_katana.glb-f083d2d8bbce9fa159ea68ba3ff1bc95.scn"]
+source_file="res://assets/characters/ue_manny_nodachi/manny_nodachi.glb"
+dest_files=["res://.godot/imported/manny_nodachi.glb-807971304f0854f19ecb913966f0d161.scn"]
 
 [params]
 
@@ -31,7 +31,7 @@ meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
-animation/fps=30
+animation/fps=60
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false

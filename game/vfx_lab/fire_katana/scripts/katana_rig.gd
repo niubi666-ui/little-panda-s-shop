@@ -17,6 +17,8 @@ signal move_finished
 @export var trail_substeps := 10
 @export var idle_bob := 0.035
 @export var heat_cooling := 0.6
+## 附魔武器平时也一直在烧，热度不低于这个值
+@export var heat_floor := 0.6
 
 var _clock := 0.0
 var _heat := 0.0
@@ -40,6 +42,10 @@ func _ready() -> void:
 	_cur_basis = idle[0]
 	_cur_pos = idle[1]
 	_apply()
+
+
+func heat() -> float:
+	return _heat
 
 
 func is_busy() -> bool:
@@ -113,7 +119,7 @@ func _process(delta: float) -> void:
 
 
 func _cool(delta: float) -> void:
-	_heat *= exp(-delta / heat_cooling)
+	_heat = maxf(heat_floor, _heat * exp(-delta / heat_cooling))
 
 
 func _step(delta: float) -> void:

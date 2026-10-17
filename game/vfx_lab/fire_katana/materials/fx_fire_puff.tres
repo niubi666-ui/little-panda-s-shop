@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/fire_katana/shaders/vfx_fire_puff.gdshader" id="1_mia1v"]
+[ext_resource type="Texture2D" path="res://vfx_lab/fire_katana/generated/textures/fire_puffs.png" id="2_vupei"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_mia1v")
+shader_parameter/atlas_h = 4
+shader_parameter/atlas_v = 4
+shader_parameter/tex = ExtResource("2_vupei")
+shader_parameter/emission_young = null
+shader_parameter/emission_old = null
+shader_parameter/vein_boost = null
+shader_parameter/opacity = null

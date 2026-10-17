@@ -46,6 +46,9 @@ var _dodge_requested := false
 var _roll_attack_queued := false
 var _roll_attack_cast := -1
 var _roll_attack_blocked := false
+var roll_attack_start_age := 0.0
+var roll_attack_link_duration := 0.0
+var _roll_attack_carry_speed := 0.0
 var melee_sweep_from := Vector3.ZERO
 var _build_move_scale := 1.0
 var _damage_immunity := false
@@ -193,7 +196,23 @@ func invulnerable() -> bool:
 	return _damage_immunity or (dodge != null and dodge_left > 0.0 and dodge_age < dodge.invulnerable)
 
 func is_roll_attack_cast() -> bool:
-	return dodge != null and runner.cast_id == _roll_attack_cast and runner.ability == dodge.attack and runner.action_id == "primary"
+	return dodge != null and runner.cast_id == _roll_attack_cast and runner.ability != null and runner.ability.id == dodge.attack.id and runner.action_id == "primary"
+
+func roll_attack_finishing_roll() -> bool:
+	return is_roll_attack_cast() and runner.busy() and runner.elapsed < roll_attack_link_duration
+
+func roll_attack_roll_age() -> float:
+	return roll_attack_start_age + minf(runner.elapsed, roll_attack_link_duration) * dodge.attack_roll_playback_speed
+
+func _roll_attack_distance_at(elapsed: float) -> float:
+	var windup := runner.ability.windup
+	var carry := _roll_attack_carry_speed * windup
+	if elapsed <= windup: return _roll_attack_carry_speed * maxf(0.0, elapsed)
+	var t := clampf((elapsed - windup) / dodge.attack_duration, 0.0, 1.0)
+	var remaining := dodge.attack_distance - carry
+	# Hermite: keep the carry velocity at the join, accelerate into the cut, settle to zero.
+	var tangent := _roll_attack_carry_speed * dodge.attack_duration
+	return carry + remaining * (3.0*t*t - 2.0*t*t*t) + tangent * (t*t*t - 2.0*t*t + t)
 
 func _start_roll_attack() -> void:
 	if not _roll_attack_queued or _queued_action != "primary" or dodge_left <= 0.0 or stagger_left > 0.0: return
@@ -203,7 +222,11 @@ func _start_roll_attack() -> void:
 	runner.cancel("roll_attack")
 	_roll_attack_cast = runner.cast_id + 1
 	_roll_attack_blocked = false
-	if runner.start(dodge.attack, facing, context, false, true):
+	roll_attack_start_age = dodge_age
+	roll_attack_link_duration = maxf(0.0, dodge.duration * dodge.attack_roll_exit_fraction - dodge_age) / dodge.attack_roll_playback_speed
+	var attack := dodge.attack.with_windup(roll_attack_link_duration + dodge.attack.windup)
+	_roll_attack_carry_speed = minf(dodge.attack_carry_speed, dodge.attack_distance * dodge.attack_carry_distance_ratio / attack.windup)
+	if runner.start(attack, facing, context, false, true):
 		dodge_left = 0.0
 		dodge_age = 0.0
 		motor.clear_impulse()
@@ -244,11 +267,15 @@ func step(delta: float) -> void:
 	_dodge_requested = false
 	_start_roll_attack()
 	if dodge_left > 0.0:
-		# 位移与起身分段；跨越分段的一帧按剩余运动时间积分，避免帧率改变距离。
+		# 强制翻滚位移结束即交还移动；起身姿势和冲斩窗口继续，不再锁方向键。
 		var moving_delta := clampf(dodge.movement_duration - dodge_age, 0.0, delta)
+		var travel := dodge_direction * dodge.speed * moving_delta
+		if stagger_left <= 0.0:
+			var free_velocity := forced_velocity if not forced_velocity.is_zero_approx() else movement * definition.speed * _build_move_scale * enemy_move_multiplier
+			travel += free_velocity * (delta - moving_delta)
 		dodge_left = maxf(0.0, dodge_left - delta)
 		dodge_age += delta
-		motor.step(dodge_direction, dodge.speed * moving_delta / delta if delta > 0.0 else 0.0, delta)
+		motor.step(travel.normalized(), travel.length() / delta, delta, forced_velocity.is_zero_approx())
 		runner.tick(delta)
 		_age_attack_intent(delta)
 		return
@@ -272,9 +299,7 @@ func step(delta: float) -> void:
 	_age_attack_intent(delta)
 	if is_roll_attack_cast() and (runner.busy() or runner.active_this_step):
 		# Integrate distance over the actual timeline interval, including partial boundary frames.
-		var start := clampf((before - runner.ability.windup) / dodge.attack_duration, 0.0, 1.0)
-		var end := clampf((runner.elapsed - runner.ability.windup) / dodge.attack_duration, 0.0, 1.0)
-		var distance := dodge.attack_distance * (smoothstep(0.0, 1.0, end) - smoothstep(0.0, 1.0, start))
+		var distance := _roll_attack_distance_at(runner.elapsed) - _roll_attack_distance_at(before)
 		motor.travel(Vector3.ZERO if _roll_attack_blocked else runner.direction * distance, delta)
 		_roll_attack_blocked = _roll_attack_blocked or motor.blocked
 		return

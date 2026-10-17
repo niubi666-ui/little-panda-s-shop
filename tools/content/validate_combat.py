@@ -44,5 +44,9 @@ def validate_combat(manifest):
     if dodge["attack_id"] not in abilities:
         raise ValueError("combat: unknown roll attack")
     attack = next(a for a in data["abilities"] if a["id"] == dodge["attack_id"])
+    if attack["windup_sec"] <= 0:
+        raise ValueError("combat: roll attack requires positive landing-to-cut windup")
+    if dodge["attack_carry_speed_mps"] * dodge["attack_duration_sec"] > 3 * dodge["attack_distance_m"] * (1 - dodge["attack_carry_distance_ratio"]):
+        raise ValueError("combat: roll attack carry speed exceeds monotone dash limit")
     if dodge["attack_duration_sec"] > attack["active_sec"] or attack["lunge_speed_mps"] != 0 or attack["movement_speed_multiplier"] != 0:
         raise ValueError("combat: roll attack must cover dash and disable additive movement/lunge")

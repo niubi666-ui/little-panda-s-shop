@@ -151,6 +151,13 @@ func on_projectile_event(fact: Dictionary) -> void:
 
 func on_action_event(fact: Dictionary) -> void:
 	if not _style.enabled: return
+	if fact.event == "element_hit":
+		if _style.element_impact_scenes.has(fact.element):
+			var at: Dictionary = fact.duplicate(true)
+			at.ground_position = fact.position
+			at.position += Vector3.UP * _style.element_impact_height
+			_show_event(_style.element_impact_scenes[fact.element], at)
+		return
 	var key: String = fact.presentation_key + "/" + fact.event
 	if _style.action_scenes.has(key): _show_event(_style.action_scenes[key], fact)
 	if not fact.event in ["started", "cue"]:
@@ -170,7 +177,7 @@ func _show_event(scene: PackedScene, fact: Dictionary) -> void:
 	var node := _instantiate(scene, fact)
 	if node == null: return
 	node.global_position = fact.position
-	_events.append({"node": node, "fact": fact.duplicate(true), "remaining": _style.event_lifetime_sec})
+	_events.append({"node": node, "fact": fact.duplicate(true), "remaining": node.effect_lifetime() if node.has_method("effect_lifetime") else _style.event_lifetime_sec})
 
 func _sync_scene(node: Node3D, fact: Dictionary, delta: float) -> void:
 	if node.has_method("set_time_running"): node.set_time_running(delta > 0.0)

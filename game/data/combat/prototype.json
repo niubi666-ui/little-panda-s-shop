@@ -1,5 +1,5 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "abilities": [
     {
       "id": "slash.1",
@@ -182,9 +182,9 @@
     },
     {
       "id": "roll_slash",
-      "windup_sec": 0.18,
+      "windup_sec": 0.06,
       "active_sec": 0.24,
-      "recovery_sec": 0.5,
+      "recovery_sec": 0.0,
       "cooldown_sec": 0.65,
       "radius_m": 2.5,
       "angle_deg": 160,
@@ -200,7 +200,7 @@
       "hit_shape": "sector",
       "thrust_width_m": 0.0,
       "buffer_sec": 0.35,
-      "chain_cancel_sec": 0.2,
+      "chain_cancel_sec": 0.0,
       "dodge_cancel_phases": [
         "recovery"
       ]
@@ -338,7 +338,11 @@
     "movement_duration_sec": 0.35,
     "attack_id": "roll_slash",
     "attack_distance_m": 6.0,
-    "attack_duration_sec": 0.24
+    "attack_duration_sec": 0.24,
+    "attack_roll_exit_fraction": 0.83,
+    "attack_roll_playback_speed": 3.0,
+    "attack_carry_speed_mps": 9.714285714285715,
+    "attack_carry_distance_ratio": 0.4
   },
   "waves": [
     [

@@ -2,6 +2,10 @@ extends RefCounted
 ## Values are decoded once; immutable properties expose no mutable JSON collections.
 class Ability extends RefCounted:
 	var _data: Dictionary
+	func with_windup(seconds: float) -> Ability:
+		var data := _data.duplicate(true)
+		data.windup_sec = seconds
+		return Ability.new(data)
 	func scaled_damage(multiplier: float) -> Ability:
 		var data := _data.duplicate(true)
 		data.damage *= multiplier
@@ -112,6 +116,14 @@ class Dodge extends RefCounted:
 		get: return _data.attack_distance_m
 	var attack_duration: float:
 		get: return _data.attack_duration_sec
+	var attack_roll_exit_fraction: float:
+		get: return _data.attack_roll_exit_fraction
+	var attack_roll_playback_speed: float:
+		get: return _data.attack_roll_playback_speed
+	var attack_carry_speed: float:
+		get: return _data.attack_carry_speed_mps
+	var attack_carry_distance_ratio: float:
+		get: return _data.attack_carry_distance_ratio
 
 var _abilities: Dictionary = {}
 var _actors: Dictionary = {}

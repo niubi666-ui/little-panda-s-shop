@@ -25,6 +25,9 @@ func _init() -> void:
 	var scorch := _scorch(512, 256)
 	_save(scorch[0], "scorch_albedo.png")
 	_save(scorch[1], "scorch_emission.png")
+	_save(_flame_flipbook(1024), "flame_flipbook.png")
+	_save(_fire_puffs(1024), "fire_puffs.png")
+	_save_blade_points(768)
 	var mesh := KatanaMesh.build()
 	var err := ResourceSaver.save(mesh, OUT + "katana_mesh.res")
 	print("katana mesh saved: ", err == OK, " surfaces=", mesh.get_surface_count())
@@ -115,6 +118,97 @@ func _flame_atlas(s: int) -> Image:
 					var v := clampf(_flame_cell(x, y, seed), 0.0, 1.0)
 					img.set_pixel(cx * cell + px, cy * cell + py, Color(v, v, v, v))
 	return img
+
+
+## 4x4 序列帧：一团火从“刚窜起”到“火舌拉长、变细、熄灭”，粒子按寿命播一遍（武器元素光效那集的做法）。
+## 噪声随帧往上滚，火舌在动；后半段整体收窄上移。
+func _flame_flipbook(s: int) -> Image:
+	var img := Image.create(s, s, false, Image.FORMAT_RGBA8)
+	var cell := s / 4
+	for f in 16:
+		var t := f / 15.0
+		var ox := (f % 4) * cell
+		var oy := (f / 4) * cell
+		for py in cell:
+			for px in cell:
+				var x := (px + 0.5) / cell * 2.0 - 1.0
+				var y := 1.0 - (py + 0.5) / cell * 2.0
+				var v := _flipbook_flame(x, y, t)
+				img.set_pixel(ox + px, oy + py, Color(v, v, v, v))
+	return img
+
+
+func _flipbook_flame(x: float, y: float, t: float) -> float:
+	var grow := smoothstep(0.0, 0.18, t)            # 开头迅速窜起
+	var shrink := 1.0 - 0.55 * smoothstep(0.35, 1.0, t)
+	var lift := 0.35 * t
+	var wx := x + 0.3 * (_n(x * 2.0, y * 2.0 - t * 2.6) - 0.5)
+	var wy := y + 0.25 * (_n(x * 2.0 + 30.0, y * 2.0 - t * 2.6 + 30.0) - 0.5) - lift
+	var dy := wy + 0.45
+	var width := 0.5 * shrink * grow
+	var rr := 0.0
+	if dy > 0.0:
+		rr = width * pow(maxf(0.0, 1.0 - dy / (1.3 * (0.7 + 0.3 * grow))), 1.1)
+	else:
+		rr = width * sqrt(maxf(0.0, 1.0 - pow(dy / 0.4, 2.0)))
+	if rr <= 0.001:
+		return 0.0
+	var v := smoothstep(rr, rr * 0.2, absf(wx))
+	var tongues := _n(x * 4.5, y * 2.5 - t * 4.0)
+	v *= smoothstep(0.0, 0.3, tongues + 0.6 - maxf(dy, 0.0) * (0.5 + 0.6 * t))
+	v *= 1.0 - smoothstep(0.75, 1.0, t)               # 最后几帧熄灭
+	v = pow(v, 0.85) * (0.85 + 0.15 * _n(x * 3.0, y * 3.0 - t * 3.0))
+	return v * smoothstep(1.0, 0.85, maxf(absf(x), absf(y)))
+
+
+## 4x4 图集：16 团带“火丝”的火团（动态火焰那集用在线生成器做的“爆炸”贴图的程序化版本）。
+## 软边团块 × 扭曲的山脊噪声（细丝状的亮纹）。单张看是一团烟火，几百张叠起来、按寿命上色才成火焰。
+func _fire_puffs(s: int) -> Image:
+	var ridged := FastNoiseLite.new()
+	ridged.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
+	ridged.fractal_type = FastNoiseLite.FRACTAL_RIDGED
+	ridged.fractal_octaves = 5
+	ridged.frequency = 1.0
+	ridged.domain_warp_enabled = true
+	ridged.domain_warp_amplitude = 0.6
+	ridged.domain_warp_frequency = 1.2
+	var img := Image.create(s, s, false, Image.FORMAT_RGBA8)
+	var cell := s / 4
+	for c in 16:
+		var off := Vector2(c * 37.1, c * 19.7)
+		var ox := (c % 4) * cell
+		var oy := (c / 4) * cell
+		for py in cell:
+			for px in cell:
+				var x := (px + 0.5) / cell * 2.0 - 1.0
+				var y := 1.0 - (py + 0.5) / cell * 2.0
+				var r := sqrt(x * x + y * y) / 0.92
+				var warp := 0.35 * (_n(x * 1.6 + off.x, y * 1.6 + off.y) - 0.5)
+				var blob := smoothstep(1.0, 0.15, r + warp)
+				var detail := ridged.get_noise_2d(x * 2.6 + off.x, y * 2.6 + off.y) * 0.5 + 0.5
+				var veins := pow(clampf(detail, 0.0, 1.0), 2.4)
+				var v := pow(blob, 1.2) * (0.1 + 1.1 * veins)
+				v *= smoothstep(0.05, 0.45, blob + (detail - 0.55) * 0.7)
+				v *= smoothstep(1.0, 0.9, maxf(absf(x), absf(y)))
+				v = clampf(v, 0.0, 1.0)
+				img.set_pixel(ox + px, oy + py, Color(v, v, v, v))
+	return img
+
+
+## 刀身表面的发射点（偏刃口一侧），火焰和火星从刀形上冒出来，而不是从一个方盒子里。
+func _save_blade_points(count: int) -> void:
+	var img := Image.create(count, 1, false, Image.FORMAT_RGBF)
+	for i in count:
+		var t := sqrt(_rng.randf()) * 0.97 + 0.03     # 越靠刀尖越密一点
+		var s := KatanaMesh.blade_section(t)
+		var pts: Array = s["pts"]
+		var side := 1 if _rng.randf() < 0.5 else 5     # 左右两个镐筋
+		var k := pow(_rng.randf(), 0.6)                # 偏向刃口
+		var p: Vector2 = pts[side].lerp(pts[0], k)
+		img.set_pixel(i, 0, Color(p.x, s["y"], p.y))
+	var tex := ImageTexture.create_from_image(img)
+	ResourceSaver.save(tex, OUT + "blade_points.res")
+	print("blade points saved")
 
 
 func _crescent(w: int, h: int) -> Image:

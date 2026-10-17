@@ -1,0 +1,131 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://vfx_lab/elemental_enchants/scripts/thunder_enchant.gd" id="1_65e5s"]
+[ext_resource type="Script" path="res://vfx_lab/elemental_enchants/scripts/lightning_strands.gd" id="2_ktvow"]
+[ext_resource type="Material" path="res://vfx_lab/elemental_enchants/generated/bolt_glow.tres" id="3_tuk43"]
+[ext_resource type="Material" path="res://vfx_lab/elemental_enchants/generated/bolt_core.tres" id="4_uiy58"]
+[ext_resource type="Material" path="res://vfx_lab/elemental_enchants/generated/thunder_aura.tres" id="5_e7tde"]
+[ext_resource type="Material" path="res://vfx_lab/elemental_enchants/generated/thunder_spark.tres" id="6_som00"]
+
+[sub_resource type="Gradient" id="Gradient_7r70w"]
+offsets = PackedFloat32Array(0, 0.2, 1)
+colors = PackedColorArray(0.3, 0.45, 1, 0, 0.35, 0.5, 1, 0.45, 0.45, 0.25, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wpi25"]
+gradient = SubResource("Gradient_7r70w")
+
+[sub_resource type="Curve" id="Curve_wa801"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xspbb"]
+curve = SubResource("Curve_wa801")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_208tu"]
+lifetime_randomness = 0.35
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 0.02
+initial_velocity_max = 0.1
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 0.3, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_xspbb")
+color_ramp = SubResource("GradientTexture1D_wpi25")
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_wkgbw"]
+size = Vector2(0.16, 0.16)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d6kv2"]
+lifetime_randomness = 0.35
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 0.02
+initial_velocity_max = 0.1
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 0.3, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_xspbb")
+color_ramp = SubResource("GradientTexture1D_wpi25")
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_bd7v3"]
+size = Vector2(0.18, 0.18)
+
+[sub_resource type="Gradient" id="Gradient_q4ehr"]
+offsets = PackedFloat32Array(0, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.6, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6xsm2"]
+gradient = SubResource("Gradient_q4ehr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jyn6d"]
+lifetime_randomness = 0.5
+spread = 180.0
+initial_velocity_min = 1.5
+initial_velocity_max = 4.0
+gravity = Vector3(0, -3, 0)
+damping_min = 2.0
+damping_max = 3.0
+color_ramp = SubResource("GradientTexture1D_6xsm2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kett0"]
+size = Vector2(0.007, 0.04)
+
+[node name="ThunderEnchant" type="Node3D" unique_id=1064044770 node_paths=PackedStringArray("strands", "aura", "trail_aura", "sparks", "light", "fill_reference")]
+script = ExtResource("1_65e5s")
+strands = NodePath("Strands")
+aura = NodePath("Aura")
+trail_aura = NodePath("TrailAura")
+sparks = NodePath("Sparks")
+light = NodePath("ThunderLight")
+fill_reference = NodePath("TrailAura")
+
+[node name="Strands" type="Node3D" parent="." unique_id=1071678557]
+script = ExtResource("2_ktvow")
+glow_material = ExtResource("3_tuk43")
+core_material = ExtResource("4_uiy58")
+
+[node name="Aura" type="GPUParticles3D" parent="." unique_id=1368178645]
+material_override = ExtResource("5_e7tde")
+cast_shadow = 0
+emitting = false
+amount = 90
+lifetime = 0.5
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("ParticleProcessMaterial_208tu")
+draw_pass_1 = SubResource("QuadMesh_wkgbw")
+
+[node name="TrailAura" type="GPUParticles3D" parent="." unique_id=1128307906]
+material_override = ExtResource("5_e7tde")
+cast_shadow = 0
+emitting = false
+amount = 900
+lifetime = 0.35
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("ParticleProcessMaterial_d6kv2")
+draw_pass_1 = SubResource("QuadMesh_bd7v3")
+
+[node name="Sparks" type="GPUParticles3D" parent="." unique_id=620328368]
+material_override = ExtResource("6_som00")
+cast_shadow = 0
+emitting = false
+amount = 50
+lifetime = 0.18
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_jyn6d")
+draw_pass_1 = SubResource("QuadMesh_kett0")
+
+[node name="ThunderLight" type="OmniLight3D" parent="." unique_id=1893872330]
+light_color = Color(0.55, 0.65, 1, 1)
+light_energy = 0.0
+omni_range = 2.5

@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://presentation/combat/fx/elemental_enchants_v001/shaders/glint.gdshader" id="1_h43s0"]
+[ext_resource type="Texture2D" path="res://presentation/combat/fx/elemental_enchants_v001/shared/generated/textures/soft_dot.png" id="2_j8es1"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_h43s0")
+shader_parameter/tex = ExtResource("2_j8es1")
+shader_parameter/tint = Color(0.7, 0.82, 1, 1)
+shader_parameter/emission = 7.0
+shader_parameter/twinkle = null
+shader_parameter/twinkle_speed = null
+shader_parameter/billboard = false

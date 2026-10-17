@@ -1,6 +1,23 @@
 [gd_resource type="ShaderMaterial" format=3]
 
+[ext_resource type="Shader" path="res://vfx_lab/fire_katana/shaders/katana_fire_overlay.gdshader" id="1_nypn4"]
 [ext_resource type="Shader" path="res://vfx_lab/fire_katana/shaders/katana_blade.gdshader" id="1_vpthh"]
+[ext_resource type="Texture2D" path="res://vfx_lab/fire_katana/materials/noise_fire.tres" id="2_dv5cy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7s185"]
+render_priority = 1
+shader = ExtResource("1_nypn4")
+shader_parameter/heat = null
+shader_parameter/noise_tex = ExtResource("2_dv5cy")
+shader_parameter/flow_a = null
+shader_parameter/flow_b = null
+shader_parameter/scale_a = null
+shader_parameter/scale_b = null
+shader_parameter/col_dark = null
+shader_parameter/col_mid = null
+shader_parameter/col_hot = null
+shader_parameter/emission = null
+shader_parameter/push = null
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_vs5r1"]
 frequency = 0.03
@@ -15,6 +32,7 @@ bump_strength = 4.0
 
 [resource]
 render_priority = 0
+next_pass = SubResource("ShaderMaterial_7s185")
 shader = ExtResource("1_vpthh")
 shader_parameter/steel_color = null
 shader_parameter/hamon_color = null
@@ -26,5 +44,5 @@ shader_parameter/heat = null
 shader_parameter/heat_dark = null
 shader_parameter/heat_mid = null
 shader_parameter/heat_hot = null
-shader_parameter/heat_emission = null
+shader_parameter/heat_emission = 2.2
 shader_parameter/crawl_speed = null

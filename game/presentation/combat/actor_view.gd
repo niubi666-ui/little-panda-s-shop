@@ -24,6 +24,9 @@ var _visual_rest_basis := Basis.IDENTITY
 var element_tint: Callable
 ## 元素 ID → 挂在剑上的拖尾粒子（按需创建，出招时发射）
 var _element_trails: Dictionary = {}
+## 剑上常驻的元素附魔（构筑里第一个元素，见 weapon_enchant_rule.gd）
+var weapon_enchant: Node3D
+var _enchant_element := ""
 func configure(owner_actor, settings, font: Font) -> void:
 	actor = owner_actor
 	style = settings
@@ -93,6 +96,22 @@ func set_weapon_effect(scene: PackedScene) -> void:
 	if weapon_effect.has_method("configure_blade"):
 		weapon_effect.configure_blade(visual.weapon_fx_length() if visual.has_method("weapon_fx_length") else style.blade_size.z)
 	weapon_effect.set_active(false)
+## 换剑上的常驻附魔；没有配置附魔场景的元素（或空字符串）就不挂。只换表现，不影响出招。
+func set_weapon_enchant(element_id: String) -> void:
+	if element_id == _enchant_element: return
+	if is_instance_valid(weapon_enchant):
+		weapon_enchant.get_parent().remove_child(weapon_enchant)
+		weapon_enchant.queue_free()
+	weapon_enchant = null
+	_enchant_element = element_id
+	var enchants = style.get("element_weapon_enchants")
+	if element_id.is_empty() or enchants == null or not enchants.has(element_id): return
+	weapon_enchant = enchants[element_id].instantiate()
+	assert(weapon_enchant.has_method("configure_blade") and weapon_enchant.has_method("tick"))
+	blade.add_child(weapon_enchant)
+	weapon_enchant.configure_blade(visual.weapon_fx_length() if visual.has_method("weapon_fx_length") else style.blade_size.z)
+	if weapon_enchant.has_method("set_weapon_surface") and visual.has_method("weapon_fx_surface"):
+		weapon_enchant.set_weapon_surface(visual.weapon_fx_surface())
 func refresh(delta: float = 0.0) -> void:
 	if damage_numbers != null: damage_numbers.tick(delta)
 	if hit_feedback != null: hit_feedback.tick(delta)
@@ -102,6 +121,7 @@ func refresh(delta: float = 0.0) -> void:
 	# Freeze their clocks on pause even when this view takes an early return.
 	if is_instance_valid(weapon_effect): weapon_effect.set_time_running(delta > 0.0)
 	if not actor.health.alive():
+		set_weapon_enchant("")
 		_finish_weapon_pose()
 		_pose_visual(atan2(-actor.facing.x, -actor.facing.z), Vector3.ZERO)
 	visible = actor.health.alive() or actor_style.retain_corpse or (hit_feedback != null and hit_feedback.has_tail())
@@ -158,6 +178,9 @@ func refresh(delta: float = 0.0) -> void:
 		weapon_effect.set_active(phase == "active" and trail_enabled)
 		if weapon_effect.has_method("sample_current_pose"):
 			weapon_effect.sample_current_pose()
+	if is_instance_valid(weapon_enchant):
+		if weapon_enchant.has_method("set_phase"): weapon_enchant.set_phase(phase)
+		weapon_enchant.tick(delta)
 	blade_pivot.visible = not actor_style.embedded_weapon and (actor.team == 0 or actor.runner.busy())
 	_sync_element_trail(phase, delta)
 	if element_tint.is_valid() and visual.has_method("set_element_tint"):
@@ -171,6 +194,8 @@ func _sync_element_trail(phase: String, delta: float) -> void:
 	if actor.runner.busy() and phase in ["windup", "active", "recovery"]:
 		for effect in actor.runner.cast_context.get("effects", []):
 			if effect.type == "element": element = effect.params.element_id
+	# 剑上已经常驻这个元素的附魔时，不再叠加旧的出招拖尾
+	if element == _enchant_element and is_instance_valid(weapon_enchant): element = ""
 	if not element.is_empty() and not _element_trails.has(element) and style.element_blade_scenes.has(element):
 		var trail: CPUParticles3D = style.element_blade_scenes[element].instantiate()
 		blade.add_child(trail)

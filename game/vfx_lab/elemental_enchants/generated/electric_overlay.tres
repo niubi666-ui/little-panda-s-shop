@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/elemental_enchants/shaders/electric_overlay.gdshader" id="1_1mri5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2fnpo"]
+frequency = 0.025
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1kxdi"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_2fnpo")
+seamless = true
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_1mri5")
+shader_parameter/heat = null
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_1kxdi")
+shader_parameter/core_color = null
+shader_parameter/glow_color = null
+shader_parameter/emission = null
+shader_parameter/jump_rate = null
+shader_parameter/push = null

@@ -11,6 +11,9 @@ extends "res://presentation/combat/rigs/actor_clip_set.gd"
 @export var roll_attack_lower_blend_sec: float
 @export var roll_attack_upper_blend_sec: float
 @export var roll_attack_turn_sec: float
+@export var roll_attack_exit_blend_sec: float
+@export var roll_locomotion_fraction: float
+@export var roll_exit_blend_sec: float
 @export var upper_body_root: StringName
 
 func direction_index(direction: Vector3, facing: Vector3) -> int:

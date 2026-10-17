@@ -3,6 +3,7 @@ extends "res://presentation/combat/rigs/rigged_actor_visual.gd"
 const NodachiClips = preload("res://presentation/combat/rigs/nodachi_clip_set.gd")
 var nodachi: NodachiClips
 var _roll_active := false
+var _roll_locomotion := false
 var _roll_facing := Vector3.FORWARD
 var _roll_clip: StringName
 var _last_roll_age := -1.0
@@ -10,9 +11,6 @@ var _weapon_base: Node3D
 var _weapon_tip: Node3D
 var _roll_transition := false
 var _upper_bones: Dictionary = {}
-var _turn_from := 0.0
-var _turn_target := 0.0
-var _turn_left := 0.0
 
 func _ready() -> void:
 	super._ready()
@@ -32,6 +30,7 @@ func _ready() -> void:
 
 func validate_assets() -> bool:
 	if not super.validate_assets(): return false
+	if nodachi.roll_locomotion_fraction <= 0.0 or nodachi.roll_locomotion_fraction > 1.0 or nodachi.roll_exit_blend_sec <= 0.0: return false
 	for group in [nodachi.run_directions, nodachi.walk_directions, nodachi.roll_directions]:
 		if group.size() != 8: return false
 		for clip in group:
@@ -43,17 +42,30 @@ func validate_assets() -> bool:
 	return _weapon_base != null and _weapon_tip != null
 
 func refresh_actor(actor, delta: float) -> void:
-	if _roll_active and actor.dodge_left <= 0.0 and actor.is_roll_attack_cast() and actor.runner.busy():
-		_turn_from = atan2(-_roll_facing.x, -_roll_facing.z)
-		_turn_target = atan2(-actor.runner.direction.x, -actor.runner.direction.z)
-		_turn_left = nodachi.roll_attack_turn_sec
-	if actor.dodge_left <= 0.0:
+	if actor.dodge_left <= 0.0 and not actor.roll_attack_finishing_roll():
 		_roll_active = false
 		_last_roll_age = -1.0
 	super.refresh_actor(actor, delta)
 
+func _attack_clip(actor) -> StringName:
+	if actor.roll_attack_finishing_roll(): return _roll_clip
+	return super._attack_clip(actor)
+
+func _attack_sample_time(actor, clip_name: StringName, time: float) -> float:
+	if not actor.is_roll_attack_cast(): return time
+	if actor.roll_attack_finishing_roll():
+		return actor.roll_attack_roll_age() / actor.dodge.duration * _length(clip_name)
+	if actor.runner.phase() == "windup":
+		var progress: float = clampf((actor.runner.elapsed - actor.roll_attack_link_duration) / actor.dodge.attack.windup, 0.0, 1.0)
+		return clip_set.attack_cuts[clip_name].x * progress
+	return time
+
 func _transition_duration(previous: StringName, next: StringName, duration: float) -> float:
 	_roll_transition = previous in nodachi.roll_directions and next == nodachi.roll_attack_clip
+	if previous == nodachi.roll_attack_clip and (_locomotion(next) or next == clip_set.idle):
+		return nodachi.roll_attack_exit_blend_sec
+	if previous in nodachi.roll_directions and (_locomotion(next) or next == clip_set.idle):
+		return nodachi.roll_exit_blend_sec
 	return maxf(nodachi.roll_attack_lower_blend_sec, nodachi.roll_attack_upper_blend_sec) if _roll_transition else duration
 
 func _transition_weight(bone: int, elapsed: float, duration: float) -> float:
@@ -64,10 +76,17 @@ func _transition_weight(bone: int, elapsed: float, duration: float) -> float:
 func _dodge_clip(actor) -> StringName:
 	if not _roll_active or actor.dodge_age < _last_roll_age:
 		_roll_active = true
+		_roll_locomotion = false
 		_roll_facing = actor.facing
 		_roll_clip = nodachi.roll_directions[nodachi.direction_index(actor.dodge_direction, _roll_facing)]
 	_last_roll_age = actor.dodge_age
 	return _roll_clip
+
+func _dodge_locomotion(actor) -> bool:
+	# 落地后有移动输入就接步态；松键切待机，不重新播放剩余翻滚。
+	if actor.dodge_age >= actor.dodge.duration * nodachi.roll_locomotion_fraction and not actor.movement.is_zero_approx():
+		_roll_locomotion = true
+	return _roll_locomotion
 
 func _move_clip(actor) -> StringName:
 	var speed := Vector2(actor.velocity.x, actor.velocity.z).length()
@@ -91,17 +110,19 @@ func _recovery_weight(progress: float) -> float:
 	# 保留原始动画的缓入缓出；不再叠加旧版程序动作的 smoothstep。
 	return progress
 
-func _face(actor, delta: float) -> void:
+func _face(actor, _delta: float) -> void:
 	# 翻滚期间锁定起始身体朝向，鼠标移动不能把侧滚变成原地旋转。
 	var base: Vector3 = actor.runner.direction if actor.runner.busy() else actor.facing
-	var facing: Vector3 = _roll_facing if _roll_active else base
+	var facing: Vector3 = _roll_facing if _roll_active and _clip in nodachi.roll_directions else base
 	model.rotation.y = wrapf(atan2(-facing.x, -facing.z) - atan2(-base.x, -base.z), -PI, PI)
-	if _turn_left > 0.0 and actor.runner.busy() and actor.is_roll_attack_cast():
-		_turn_left = maxf(0.0, _turn_left - delta)
-		var weight := smoothstep(0.0, 1.0, 1.0 - _turn_left / nodachi.roll_attack_turn_sec)
-		model.rotation.y = wrapf(lerp_angle(_turn_from, _turn_target, weight) - _turn_target, -PI, PI)
-	else:
-		_turn_left = 0.0
+	if actor.runner.busy() and actor.is_roll_attack_cast() and not actor.roll_attack_finishing_roll():
+		var from := atan2(-_roll_facing.x, -_roll_facing.z)
+		var target := atan2(-base.x, -base.z)
+		var weight := smoothstep(0.0, 1.0, clampf((actor.runner.elapsed - actor.roll_attack_link_duration) / nodachi.roll_attack_turn_sec, 0.0, 1.0))
+		model.rotation.y = wrapf(lerp_angle(from, target, weight) - target, -PI, PI)
+
+func weapon_fx_surface() -> MeshInstance3D:
+	return _weapon_base.get_parent() as MeshInstance3D
 
 func weapon_fx_length() -> float:
 	return _weapon_anchor(_weapon_base).origin.distance_to(_weapon_anchor(_weapon_tip).origin)

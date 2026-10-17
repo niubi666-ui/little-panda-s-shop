@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/elemental_enchants/shaders/glint.gdshader" id="1_5t8rk"]
+[ext_resource type="Texture2D" path="res://vfx_lab/fire_katana/generated/textures/flare_star.png" id="2_veyju"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_5t8rk")
+shader_parameter/tex = ExtResource("2_veyju")
+shader_parameter/tint = Color(0.8, 0.88, 1, 1)
+shader_parameter/emission = 3.0
+shader_parameter/twinkle = null
+shader_parameter/twinkle_speed = null
+shader_parameter/billboard = null

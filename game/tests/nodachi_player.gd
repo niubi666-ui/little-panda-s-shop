@@ -79,7 +79,7 @@ func run() -> void:
 	for action in ["primary", "primary", "primary", "special", "skill"]:
 		await play_action(action)
 	check(committed == ["slash.1", "slash.2", "slash.3", "heavy_slash", "wave_cast"], "actual action queue covers combo, heavy and cast")
-	# Full roll with real actor stepping: motion ends before stand-up, invulnerability is independent.
+	# Full roll: fixed displacement gives way to held movement during stand-up.
 	player.position = Vector3(0,player.position.y,1.5)
 	player.movement = Vector3.FORWARD
 	player.charges = player.dodge.charges
@@ -92,7 +92,7 @@ func run() -> void:
 		view.refresh(1.0/60.0)
 		if player.dodge_left > 0.0 and player.dodge_age > player.dodge.movement_duration:
 			recovering = true
-			check(player.velocity.length() < 0.001, "roll recovery does not keep sliding")
+			check(is_equal_approx(player.velocity.length(),player.definition.speed), "roll stand-up immediately allows held movement")
 			check(not player.invulnerable(), "roll recovery does not extend invulnerability")
 	check(recovering, "roll reaches stand-up phase")
 	player.movement = Vector3.ZERO

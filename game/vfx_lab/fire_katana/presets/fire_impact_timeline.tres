@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_gq7cl")
 delays = {
+"Afterburn": 0.08,
 "CutCrescent": 0.0,
 "Embers": 0.05,
 "FireBurst": 0.03,

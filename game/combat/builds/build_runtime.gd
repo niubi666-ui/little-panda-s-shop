@@ -509,7 +509,15 @@ func _apply_direct_damage(context: Dictionary, target, amount: float, origin: St
 	var handle: int = target.handle
 	result.damage *= elements.incoming_scale(self, target)
 	var applied := Damage.apply(target, result.damage, context.team)
-	if applied > 0.0 and _context_live(context): elements.on_direct_hit(self, context, target, applied)
+	if applied > 0.0 and _context_live(context):
+		var element: Dictionary = elements.element_of(context.program)
+		if not element.is_empty():
+			var impact := _action_fact(context, "element_hit")
+			impact.element = element.element_id
+			impact.position = point
+			impact.target_handle = handle
+			action_presented.emit(impact)
+		elements.on_direct_hit(self, context, target, applied)
 	if applied > 0.0 and consumes and _context_live(context):
 		context.shatters = int(context.get("shatters", 0)) + 1
 		statuses.remove(target, shatter.status_id)

@@ -23,6 +23,8 @@ var _filter: Dictionary = {}
 var _filtered_active := false
 ## 一次过滤奖励结束（chosen：是否真的选了一张）
 signal offer_finished(chosen: bool)
+## 构筑生效后（选卡、预设、训练加卡）：表现层据此更新剑上的元素附魔等
+signal program_applied(program: Dictionary)
 var session := Session.new()
 var runtime := Runtime.new()
 var choice_panel: ChoicePanel
@@ -115,6 +117,7 @@ func _apply_program() -> void:
 	_player.set_action_program(program.actions, _combat_catalog)
 	_player.set_build_movement_multiplier(float(program.global.move_scale))
 	status_panel.update_state(session.snapshot().selections, program)
+	program_applied.emit(program)
 	if _test_presets_enabled:
 		status_panel.update_training_options(session.legal_operations().filter(func(op): return op.operation != "replace" and float(catalog.upgrade(op.upgrade_id).weight) > 0.0))
 

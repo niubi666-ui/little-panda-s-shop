@@ -27,8 +27,8 @@ func _fire_after(node: Node, delay: float) -> void:
 		await get_tree().create_timer(delay).timeout
 	if not is_instance_valid(node):
 		return
-	if node is GPUParticles3D:
+	if node.has_method("play"):
+		node.play()
+	elif node is GPUParticles3D:
 		node.restart()
 		node.emitting = true
-	elif node.has_method("play"):
-		node.play()

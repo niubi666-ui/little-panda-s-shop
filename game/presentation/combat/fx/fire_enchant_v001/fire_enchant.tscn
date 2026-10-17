@@ -1,0 +1,165 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/fx/fire_enchant_v001/fire_enchant.gd" id="1_b282g"]
+[ext_resource type="Shader" path="res://presentation/combat/fx/fire_enchant_v001/enchant_puff.gdshader" id="2_3uolo"]
+[ext_resource type="Texture2D" path="res://presentation/combat/fx/fire_enchant_v001/fire_puffs.png" id="3_yhbxn"]
+[ext_resource type="Shader" path="res://presentation/combat/fx/fire_enchant_v001/enchant_spark.gdshader" id="4_vsfug"]
+[ext_resource type="Texture2D" path="res://presentation/combat/fx/fire_enchant_v001/soft_dot.png" id="5_663le"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2v0v4"]
+render_priority = 1
+shader = ExtResource("2_3uolo")
+shader_parameter/tex = ExtResource("3_yhbxn")
+shader_parameter/atlas_h = null
+shader_parameter/atlas_v = null
+shader_parameter/emission_young = null
+shader_parameter/emission_old = null
+shader_parameter/vein_boost = null
+shader_parameter/opacity = null
+
+[sub_resource type="Gradient" id="Gradient_n6p7o"]
+offsets = PackedFloat32Array(0, 0.05, 0.2, 0.5, 0.78, 1)
+colors = PackedColorArray(1, 0.7, 0.3, 0, 1, 0.62, 0.2, 1, 1, 0.38, 0.04, 1, 0.8, 0.13, 0.01, 0.9, 0.14, 0.08, 0.06, 0.5, 0.06, 0.05, 0.05, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wtcpb"]
+gradient = SubResource("Gradient_n6p7o")
+
+[sub_resource type="Curve" id="Curve_ggo6o"]
+_data = [Vector2(0, 0.35), 0.0, 0.0, 0, 0, Vector2(0.25, 0.9), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hkg5k"]
+curve = SubResource("Curve_ggo6o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0mf1o"]
+lifetime_randomness = 0.35
+angle_max = 360.0
+inherit_velocity_ratio = 0.05
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, 2.8, 0)
+scale_min = 0.55
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_hkg5k")
+color_ramp = SubResource("GradientTexture1D_wtcpb")
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_82k0o"]
+size = Vector2(0.17, 0.17)
+
+[sub_resource type="Gradient" id="Gradient_cg7bf"]
+offsets = PackedFloat32Array(0, 0.05, 0.2, 0.5, 0.78, 1)
+colors = PackedColorArray(1, 0.7, 0.3, 0, 1, 0.62, 0.2, 1, 1, 0.38, 0.04, 1, 0.8, 0.13, 0.01, 0.9, 0.14, 0.08, 0.06, 0.5, 0.06, 0.05, 0.05, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dawhd"]
+gradient = SubResource("Gradient_cg7bf")
+
+[sub_resource type="Curve" id="Curve_t007d"]
+_data = [Vector2(0, 0.75), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6cmx8"]
+curve = SubResource("Curve_t007d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uocoe"]
+lifetime_randomness = 0.45
+angle_max = 360.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, 2.8, 0)
+damping_min = 2.0
+damping_max = 3.0
+scale_min = 0.55
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_6cmx8")
+color_ramp = SubResource("GradientTexture1D_dawhd")
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_jtrik"]
+size = Vector2(0.22, 0.22)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2fnnf"]
+render_priority = 2
+shader = ExtResource("4_vsfug")
+shader_parameter/tex = ExtResource("5_663le")
+shader_parameter/tint = null
+shader_parameter/emission = null
+
+[sub_resource type="Gradient" id="Gradient_vgm84"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0.9, 0.6, 1, 1, 0.45, 0.1, 1, 0.7, 0.1, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ho1ty"]
+gradient = SubResource("Gradient_vgm84")
+
+[sub_resource type="Curve" id="Curve_pf2hm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_eltfp"]
+curve = SubResource("Curve_pf2hm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oavhw"]
+lifetime_randomness = 0.4
+inherit_velocity_ratio = 0.25
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, -2, 0)
+damping_min = 1.5
+damping_max = 1.5
+scale_curve = SubResource("CurveTexture_eltfp")
+color_ramp = SubResource("GradientTexture1D_ho1ty")
+turbulence_enabled = true
+turbulence_noise_strength = 1.5
+turbulence_noise_scale = 3.0
+turbulence_influence_max = 0.2
+
+[sub_resource type="QuadMesh" id="QuadMesh_tr37e"]
+size = Vector2(0.012, 0.07)
+
+[node name="FireEnchant" type="Node3D" unique_id=1162055560 node_paths=PackedStringArray("flames", "arc_flames", "embers", "light")]
+script = ExtResource("1_b282g")
+flames = NodePath("Flames")
+arc_flames = NodePath("ArcFlames")
+embers = NodePath("Embers")
+light = NodePath("FireLight")
+
+[node name="Flames" type="GPUParticles3D" parent="." unique_id=1105008323]
+material_override = SubResource("ShaderMaterial_2v0v4")
+cast_shadow = 0
+emitting = false
+amount = 340
+lifetime = 0.55
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("ParticleProcessMaterial_0mf1o")
+draw_pass_1 = SubResource("QuadMesh_82k0o")
+
+[node name="ArcFlames" type="GPUParticles3D" parent="." unique_id=970776311]
+material_override = SubResource("ShaderMaterial_2v0v4")
+cast_shadow = 0
+emitting = false
+amount = 4000
+lifetime = 0.4
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("ParticleProcessMaterial_uocoe")
+draw_pass_1 = SubResource("QuadMesh_jtrik")
+
+[node name="Embers" type="GPUParticles3D" parent="." unique_id=1011357995]
+material_override = SubResource("ShaderMaterial_2fnnf")
+cast_shadow = 0
+emitting = false
+amount = 80
+lifetime = 0.8
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_oavhw")
+draw_pass_1 = SubResource("QuadMesh_tr37e")
+
+[node name="FireLight" type="OmniLight3D" parent="." unique_id=480609861]
+light_color = Color(1, 0.5, 0.2, 1)
+light_energy = 0.0
+omni_range = 2.2

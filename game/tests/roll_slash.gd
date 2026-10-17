@@ -64,6 +64,7 @@ func slash(f: Dictionary, delta: float = 1.0/60) -> Vector3:
 	f.p.step(delta)
 	check(f.p.is_roll_attack_cast() and f.p.runner.busy(), "roll click starts configured attack")
 	check(f.p.dodge_left == 0 and not f.p.invulnerable(), "roll and iframes stop on click")
+	check(f.p.position.distance_to(start) > .01, "first click frame already moves: no stationary windup")
 	return start
 func finish(f: Dictionary, dt: float = 1.0/60) -> void:
 	for i in 240:
@@ -86,6 +87,11 @@ func run() -> void:
 			# Turn aim away from the roll; committed slash uses the newly aimed direction.
 			f.p.facing = Vector3.RIGHT
 			var start := slash(f, dt)
+			var last: Vector3 = f.p.position
+			while f.p.runner.elapsed + dt < f.p.runner.ability.windup + f.p.dodge.attack_duration:
+				f.p.step(dt)
+				check(f.p.position.distance_to(last) > .0001, "continuous travel through roll landing and slash")
+				last = f.p.position
 			finish(f, dt)
 			var distance: float = f.p.position.distance_to(start)
 			distances.append(distance)
@@ -94,6 +100,8 @@ func run() -> void:
 			clean(f)
 	await hit_build_case()
 	await collision_case()
+	exit_mobility_cases()
+	normal_roll_mobility_cases()
 	interrupt_cases()
 	var report := {"checks":checks,"failures":failures,"distances_m":distances}
 	FileAccess.open("res://../builds/roll_slash_rules.json", FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
@@ -104,15 +112,18 @@ func hit_build_case() -> void:
 	var f := setup([{"upgrade_id":"fire_core","action_id":"primary","rank":2}, {"upgrade_id":"primary_reach","action_id":"primary","rank":1}])
 	start_roll(f)
 	var start: Vector3 = f.p.position
-	var near = actor("brute",1,start+Vector3(0,0,-1))
+	var near = actor("brute",1,start+Vector3(0,0,-3))
 	var far = actor("brute",1,start+Vector3(0,0,-5.7))
-	var side = actor("brute",1,start+Vector3(2.7,0,-1.5))
+	var side = actor("brute",1,start+Vector3(2.7,0,-3.5))
 	var hits: Dictionary = {}
 	var damages: Array = []
 	var elements: Array = []
 	f.melee.confirmed_hit.connect(func(_s,t,_c,_a,amount): hits[t.handle] = int(hits.get(t.handle,0))+1; damages.append(amount))
 	f.runtime.element_presented.connect(func(fact): elements.append(fact))
 	slash(f)
+	while f.p.runner.elapsed + 1.0/60 < f.p.runner.ability.windup:
+		f.p.step(1.0/60);f.melee.resolve(f.p,actors)
+	check(hits.is_empty(), "remaining roll and landing carry do not deal early invisible hits")
 	finish(f)
 	check(hits.size() == 3 and hits.values().all(func(n):return n == 1), "swept slash hits near/far/range-buffed targets once each")
 	var expected: float = combat.dodge().attack.damage * float(f.program.actions.primary.damage_scale)
@@ -138,6 +149,52 @@ func collision_case() -> void:
 	var distance: float = start.distance_to(f.p.position)
 	check(distance > 2.5 and distance < 2.7, "swept capsule stops at wall without sliding or penetration")
 	wall.free();clean(f)
+
+func normal_roll_mobility_cases() -> void:
+	for dir in 8:
+		var f := setup()
+		var direction := Vector3(sin(dir*TAU/8),0,-cos(dir*TAU/8))
+		f.p.movement=direction;f.p.request_dodge()
+		for i in 21: f.p.step(1.0/60)
+		check(is_equal_approx(f.p.position.length(),3.4), "normal roll retains original forced distance")
+		f.p.movement=direction.rotated(Vector3.UP,PI/2)
+		f.p.step(1.0/60)
+		check(f.p.velocity.is_equal_approx(f.p.movement*f.p.definition.speed), "roll tail immediately obeys new movement direction")
+		check(f.p.dodge_left>0 and not f.p.invulnerable(), "tail retains counter window without extra invulnerability")
+		var position: Vector3 = f.p.position
+		var age: float = f.p.dodge_age
+		f.p.step(0)
+		check(f.p.position==position and f.p.dodge_age==age,"pause freezes mobile roll tail")
+		f.p.movement=Vector3.ZERO;f.p.step(1.0/60)
+		check(f.p.position.is_equal_approx(position) and f.p.velocity.is_zero_approx(), "released direction stops tail movement")
+		f.p.movement=direction;f.p.set_build_movement_multiplier(1.5);f.p.set_control(.5,false)
+		f.p.step(1.0/60)
+		check(is_equal_approx(f.p.velocity.length(),f.p.definition.speed*.75),"tail movement respects build speed and slow")
+		f.p.set_control(1,false);f.p.movement=Vector3.ZERO
+		slash(f)
+		check(f.p.runner.ability.id=="roll_slash","moving during stand-up still allows approved roll slash")
+		clean(f)
+
+func exit_mobility_cases() -> void:
+	for age in [.05,.28,.62]:
+		var f := setup()
+		start_roll(f, age)
+		var start := slash(f)
+		# Hold movement throughout the attack: slash owns its distance only until its last hit frame.
+		f.p.movement = Vector3.RIGHT
+		while f.p.runner.busy(): f.p.step(1.0/60)
+		check(f.p.runner.active_this_step, "zero recovery keeps the final active interval")
+		check(is_equal_approx(start.distance_to(f.p.position),6.0), "held movement does not add distance during slash")
+		var victim = actor("brute",1,f.p.position+Vector3.FORWARD)
+		var hp: float = victim.health.current
+		f.melee.resolve(f.p,actors)
+		check(victim.health.current<hp, "last active frame still damages with zero recovery")
+		var end: Vector3 = f.p.position
+		f.p.step(1.0/60)
+		check(f.p.runner.cooldown_for("primary")>0, "mobility unlock is independent of primary cooldown")
+		check(f.p.position.x>end.x and is_equal_approx(f.p.velocity.x,f.p.definition.speed), "first post-slash frame moves at full speed")
+		check(not f.p.runner.active_this_step, "free movement does not prolong melee hits")
+		clean(f)
 
 func interrupt_cases() -> void:
 	var f := setup()

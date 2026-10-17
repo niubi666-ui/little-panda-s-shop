@@ -1,5 +1,8 @@
 extends Resource
 @export var enabled: bool
+## Confirmed direct elemental hits; visual only, including lethal and reaction hits.
+@export var element_impact_scenes: Dictionary[String, PackedScene] = {}
+@export var element_impact_height: float
 ## An explicit null entry disables that slot; absent entries use authored mesh fallback.
 @export var projectile_scenes: Dictionary[String, PackedScene] = {}
 ## Ordered presentation variants, selected once from the committed projectile fact.

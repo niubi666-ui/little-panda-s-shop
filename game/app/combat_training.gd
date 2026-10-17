@@ -15,6 +15,7 @@ const EffectPalette = preload("res://presentation/combat/effect_picker/palette.t
 const CameraShake = preload("res://presentation/combat/hit_camera_shake.gd")
 const CombatFeel = preload("res://presentation/combat/combat_feel.gd")
 const TrainingBuilds = preload("res://app/training_builds.gd")
+const WeaponEnchantRule = preload("res://presentation/builds/weapon_enchant_rule.gd")
 const TrainingTools = preload("res://app/training_tools.gd")
 const TrainingSkillVfx = preload("res://app/training_skill_vfx.gd")
 const SkillVfxStyle = preload("res://presentation/combat/skill_vfx_picker/style.tres")
@@ -226,6 +227,9 @@ func _ready() -> void:
 		return
 	resolver.set_damage_modifier(builds.runtime.melee_damage)
 	resolver.set_direct_damage_executor(builds.runtime.apply_melee_damage)
+	# 剑上的元素附魔跟着构筑里第一个元素走
+	builds.program_applied.connect(_sync_weapon_enchant)
+	_sync_weapon_enchant(builds.session.program())
 	hud.place_encounters_below(builds.status_panel)
 	resolver.confirmed_hit.connect(builds.runtime.on_melee_hit)
 	resolver.enemy_contact.connect(builds.runtime.on_melee_contact)
@@ -327,6 +331,9 @@ func _spawn(definition: Catalog.Actor, point: Vector3, team: int) -> Actor:
 	actors.append(actor)
 	views.append(view)
 	return actor
+func _sync_weapon_enchant(program: Dictionary) -> void:
+	if views.is_empty() or builds == null: return
+	views[0].set_weapon_enchant(WeaponEnchantRule.primary_element(program, builds.catalog))
 func _spawn_wave(ids: Array) -> void:
 	if builds != null: builds.clear_room()
 	enemy_runtime.remove_dead()

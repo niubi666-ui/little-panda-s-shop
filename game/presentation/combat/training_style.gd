@@ -43,3 +43,6 @@ extends Resource
 @export var combat_audio: Resource
 ## 带元素的动作出招时挂在剑上的拖尾粒子：元素 ID → 场景（presentation/builds/elements/blade_*.tscn）
 @export var element_blade_scenes: Dictionary
+## 构筑里第一个元素决定剑上常驻的附魔：元素 ID → 场景（presentation/combat/fx/fire_enchant_v001 等）。
+## 有附魔的元素出招时不再叠加 element_blade_scenes 里的旧拖尾
+@export var element_weapon_enchants: Dictionary

@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://presentation/combat/fx/elemental_enchants_v001/shaders/mist_puff.gdshader" id="1_dlee7"]
+[ext_resource type="Texture2D" path="res://presentation/combat/fx/elemental_enchants_v001/generated/mist_atlas.png" id="2_qvdfc"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_dlee7")
+shader_parameter/tex = ExtResource("2_qvdfc")
+shader_parameter/atlas_h = null
+shader_parameter/atlas_v = null
+shader_parameter/emission = 1.0
+shader_parameter/opacity = 0.4
+shader_parameter/additive = null

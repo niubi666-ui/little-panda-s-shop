@@ -131,13 +131,15 @@ RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304
 
 `nodachi_actor_visual.gd` 扩展通用表现适配器：移动相对瞄准方向选择八方向；翻滚锁定起始朝向与动作；换移动方向保留步态相位。`WeaponFX_Base/Tip` 提供实际刀身端点，刀光/元素从当前骨骼直接取变换，避免 BoneAttachment 节点更新晚一帧。其余角色仍走通用配置。
 
-攻击切点在 `nodachi_clips.tres`，规则时长在 `combat/prototype.json`（schema 7）；第三刀改为与下劈对应的 100 度扇形。翻滚 0.7 秒，前 0.35 秒移动、后半起身，距离约 3.4 米，无敌保留 0.2 秒。受击/倒地来自同包；蓄力暂用持刀格挡循环。
+冰/雷刀身附魔使用 `presentation/combat/fx/elemental_enchants_v001/`，原实验室资产保留。结霜/电纹以 `material_overlay` 挂在 Nodachi 的独立剑网格上，按刀刃世界坐标转换为局部纹理坐标，避免依赖演示太刀的 UV；每实例独立材质，切换时恢复原 overlay。常驻附魔继续使用最先选择的元素；命中按攻击自身元素选冰刺或落雷。运行 `tests/element_enchant_integration.gd` 可检查真实森林里的普攻、重击、剑气、翻滚冲斩、击杀、暂停与材质恢复，截图在 `builds/element_enchant_review/`。
 
-翻滚冲斩源为 `/Game/Nodachi/Animations/Sequence/02_Attack/17_Parry_Counter_Attack/AS_Parry_Counter_L_Seq`，归档 `fbx/roll_slash.fbx` 与 `roll_slash.json`，已合入 GLB 和集成 Blender。`nodachi_clips.tres` 的 `roll_attack_*` 配置过渡：下肢/骨盆 0.17 秒、spine_01 子树 0.13 秒、朝向 0.16 秒。先在前摇中接到源动画首姿势，挥砍采样源 0–0.266667 秒，原生刀骨跟随手臂。UE 的运行时混合节点不会随 FBX 导出，这些过渡由 Godot 采样器完成。
+攻击切点在 `nodachi_clips.tres`，规则时长在 `combat/prototype.json`（schema 8）；第三刀改为与下劈对应的 100 度扇形。普通翻滚完整动作/冲斩窗口 0.7 秒，前 0.35 秒强制移动约 3.4 米，此后起身不锁自主移动，无敌保留 0.2 秒。`nodachi_clips.tres` 的 `roll_locomotion_fraction = 0.83` 决定落地后可接走跑的姿势点，`roll_exit_blend_sec = 0.08` 控制过渡；移动权限不等待这段视觉混合，松键切待机不会重新倒回翻滚。受击/倒地来自同包；蓄力暂用持刀格挡循环。
+
+翻滚冲斩源为 `/Game/Nodachi/Animations/Sequence/02_Attack/17_Parry_Counter_Attack/AS_Parry_Counter_L_Seq`，归档 `fbx/roll_slash.fbx` 与 `roll_slash.json`，已合入 GLB 和集成 Blender。提前点击先按玩法时钟以 3 倍速度继续采样原方向翻滚，推进到约 83% 的落地姿势后才切冲斩，避免从倒立姿势硬混到举刀。`nodachi_clips.tres` 的 `roll_attack_*` 配置落地过渡：下肢/骨盆 0.06 秒、spine_01 子树 0.05 秒、朝向 0.06 秒；转向也从落地开始，并随施放时钟暂停。挥砍采样源 0–0.266667 秒，原生刀骨跟随手臂。挥砍结束即释放控制，通过 `roll_attack_exit_blend_sec = 0.08` 混入走跑/待机，不再播放锁移动的收招段。UE 的运行时混合节点不会随 FBX 导出，这些过渡由 Godot 采样器完成。
 
 旧 Quaternius 主角生成模型/贴图、映射、脚本、Blender 文件已删除；通用下载库保留但不再用于主角。替换前恢复点为 **b878540**。店铺小熊猫与敌人资源继续保留。
 
-检查入口：`tests/nodachi_player.gd`（图形/无头均可）、`tests/combat_rules.gd`；截图与报告在 `builds/nodachi_review/`；翻滚冲斩规则 `tests/roll_slash.gd`、图形 `tests/roll_slash_visual.gd`，截图 `builds/roll_slash_review/`。
+检查入口：`tests/nodachi_player.gd`（图形/无头均可）、`tests/combat_rules.gd`；截图与报告在 `builds/nodachi_review/`；翻滚冲斩规则 `tests/roll_slash.gd`、图形 `tests/roll_slash_visual.gd`，快速衔接和零收招截图 `builds/roll_slash_fast_review/`，前版连续衔接截图 `builds/roll_slash_flow_review/`，旧版截图 `builds/roll_slash_review/` 可对比。
 
 ### 新模型自带全套动作
 

@@ -66,6 +66,10 @@ func decode(data: Variant, schema: Dictionary, path: String) -> Catalog:
 		errors.append(path + ": dodge.attack_id is unknown")
 	else:
 		var attack: Dictionary = abilities[data.dodge.attack_id]
+		if attack.windup_sec <= 0.0:
+			errors.append(path + ": roll attack requires a positive landing-to-cut windup")
+		if data.dodge.attack_carry_speed_mps * data.dodge.attack_duration_sec > 3.0 * data.dodge.attack_distance_m * (1.0 - data.dodge.attack_carry_distance_ratio):
+			errors.append(path + ": roll attack carry speed exceeds monotone dash limit")
 		if data.dodge.attack_duration_sec > attack.active_sec or attack.lunge_speed_mps != 0.0 or attack.movement_speed_multiplier != 0.0:
 			errors.append(path + ": roll attack must cover dash with active time and disable additive movement/lunge")
 	if not errors.is_empty(): return null

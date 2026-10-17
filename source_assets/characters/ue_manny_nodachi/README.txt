@@ -5,7 +5,7 @@ UE Manny + Nodachi / 当前战斗主角
 运行时：game/assets/characters/ue_manny_nodachi/manny_nodachi.glb
 动作配置：game/presentation/combat/rigs/nodachi_clips.tres
 模型场景：game/presentation/combat/rigs/nodachi_visual.tscn
-玩法时长：game/data/combat/prototype.json（schema 7）
+玩法时长：game/data/combat/prototype.json（schema 8）
 集成 Blender：blender/manny_nodachi_game.blend
 
 34 段独立动画，原生 Manny 骨架，保留预览中的人形和太刀：
@@ -33,7 +33,8 @@ WeaponFX_Base/Tip 是刀刃实际端点，元素与刀光使用当前骨骼求�
 
 攻击保留原生姿势：前摇/挥砍使用配置切点，收招压缩为适合操作的时长，并允许续接。
 第三刀现为下劈，判定为前方 100 度扇形；伤害和攻击半径沿用现有配置。
-翻滚完整姿势用 0.7 秒，前 0.35 秒移动约 3.4 米，后半段起身。
+普通翻滚保留 0.7 秒动作/冲斩窗口，前 0.35 秒强制移动约 3.4 米，后半段起身立即允许自主移动。
+落地姿势约 83% 后，有方向输入时以 0.08 秒混合接走跑；松键停止，不回放已完成的翻滚。
 无敌仍为前 0.2 秒；鼠标移动不改变已开始翻滚的朝向/动作。
 走跑方向切换保留步态相位；普通跑步 6.2 米/秒对应原速。
 
@@ -48,7 +49,10 @@ game/tests/combat_rules.gd（包含扇形/直刺解析器独立测试）；离�
 实测：Nodachi 主角 191 项检查通过；combat_rules、combo_feel 通过；图形刀刃挂点与渲染节点误差为 0。
 图形场景退出仍出现项目已知的 7 个 Texture RID 警告，未出现脚本错误。
 
-翻滚冲斩规则：dodge.attack_distance_m = 6，attack_duration_sec = 0.24；前摇 0.18 秒、收招 0.5 秒。
+翻滚冲斩规则：dodge.attack_distance_m = 6，attack_duration_sec = 0.24，收招 0 秒，挥砍结束后立即恢复移动。
+连续衔接恢复点：Git ea46ff0。提前点击后，剩余翻滚按 3 倍继续到 83% 的落地姿势，再接 0.06 秒起刀；晚按直接起刀。
+前摇从点击当帧持续推进，最多消耗总距离的 40%；0.24 秒挥砍承接其末速度、完成余下距离后减速归零。
 上下半身与转向过渡在 nodachi_clips.tres；FBX 原动作保留，Godot 完成分骨骼混合。
 同 primary 构筑和冷却通道，每目标每次冲斩命中一次；没有额外无敌，碰撞/受击/控制可截断。
-专项验证：roll_slash 96 项、roll_slash_visual 505 项通过；30/60/120Hz 无障碍距离均为 6m。
+专项验证：roll_slash 472 项通过；roll_slash_visual 覆盖普通翻滚八方向移动解锁及冲斩八方向早/中/晚输入；30/60/120Hz 无障碍距离均为 6m，八方向早/中/晚点击保持翻滚相位，落地后接刀。
+Godot 快速衔接/零收招截图：builds/roll_slash_fast_review/；Blender 原始翻滚落地姿势检查：builds/roll_landing/。

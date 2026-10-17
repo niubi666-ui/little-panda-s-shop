@@ -104,6 +104,12 @@ func refresh_actor(actor, delta: float) -> void:
 		clip = _dodge_clip(actor)
 		time = clampf(actor.dodge_age / actor.dodge.duration, 0.0, 1.0) * _length(clip)
 		blend = clip_set.react_blend_sec
+		if _dodge_locomotion(actor):
+			var speed := Vector2(actor.velocity.x, actor.velocity.z).length()
+			clip = _move_clip(actor) if speed > clip_set.move_min_speed else clip_set.idle
+			looping = true
+			rate = _move_rate(speed, clip) if clip != clip_set.idle else 1.0
+			blend = clip_set.blend_sec
 	elif actor.runner.busy():
 		clip = _attack_clip(actor)
 		var cuts: Vector2 = clip_set.attack_cuts[clip] if clip_set.attack_cuts.has(clip) else Vector2.ZERO
@@ -125,6 +131,7 @@ func refresh_actor(actor, delta: float) -> void:
 					var progress := clampf((elapsed - ability.windup - ability.active) / maxf(ability.recovery, 0.001), 0.0, 1.0)
 					var settle := clampf((progress - shape.w) / maxf(1.0 - shape.w, 0.001), 0.0, 1.0)
 					time = lerpf(cuts.y, _length(clip), _recovery_weight(settle))
+		time = _attack_sample_time(actor, clip, time)
 		blend = clip_set.attack_blend_sec
 	elif actor.charging_skill and _has(clip_set.charge):
 		clip = clip_set.charge
@@ -158,6 +165,9 @@ func refresh_actor(actor, delta: float) -> void:
 		instance.set_shader_parameter("dissolve", fade)
 	# HitFeedback 会临时隐藏死亡模型；倒地到消散这一段由本适配器负责保留，之后收起。
 	visible = actor.health.alive() or feedback.keep_corpse or has_presentation_tail()
+
+func _attack_sample_time(_actor, _clip_name: StringName, time: float) -> float:
+	return time
 
 func _attack_clip(actor) -> StringName:
 	var id: String = actor.runner.ability.id
@@ -207,6 +217,9 @@ func _move_rate(speed: float, _selected_clip: StringName) -> float:
 
 func _dodge_clip(_actor) -> StringName:
 	return clip_set.dodge
+
+func _dodge_locomotion(_actor) -> bool:
+	return false
 
 func _switch_clock(_previous: StringName, _next: StringName) -> float:
 	return 0.0

@@ -1,0 +1,182 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/fx/elemental_enchants_v001/shared/scripts/vfx_sequence_player.gd" id="1_wdxp7"]
+[ext_resource type="Script" path="res://presentation/combat/fx/elemental_enchants_v001/shared/scripts/vfx_timeline.gd" id="2_oeo5n"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_enchants_v001/generated/thunder_flash.tres" id="3_qwttr"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_enchants_v001/generated/thunder_glow.tres" id="4_yh6nv"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_enchants_v001/generated/thunder_ring.tres" id="5_r485x"]
+[ext_resource type="Script" path="res://presentation/combat/fx/elemental_enchants_v001/scripts/bolt_strike.gd" id="6_w61in"]
+[ext_resource type="Script" path="res://presentation/combat/fx/elemental_enchants_v001/scripts/lightning_strands.gd" id="7_y6dal"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_enchants_v001/generated/bolt_glow.tres" id="8_5v66p"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_enchants_v001/generated/bolt_core.tres" id="9_oxja0"]
+[ext_resource type="Material" path="res://presentation/combat/fx/elemental_enchants_v001/generated/thunder_spark.tres" id="10_0dhvf"]
+[ext_resource type="Texture2D" path="res://presentation/combat/fx/elemental_enchants_v001/shared/generated/textures/scorch_albedo.png" id="11_w22n6"]
+[ext_resource type="Texture2D" path="res://presentation/combat/fx/elemental_enchants_v001/generated/scorch_emission_blue.png" id="12_61xeq"]
+[ext_resource type="Script" path="res://presentation/combat/fx/elemental_enchants_v001/shared/scripts/vfx_decal_fade.gd" id="13_76vk1"]
+[ext_resource type="Script" path="res://presentation/combat/fx/elemental_enchants_v001/shared/scripts/vfx_light_pulse.gd" id="14_b5apg"]
+
+[sub_resource type="Resource" id="Resource_c5taq"]
+script = ExtResource("2_oeo5n")
+delays = {
+"Flash": 0.0,
+"Glow": 0.0,
+"Light": 0.0,
+"Ring": 0.02,
+"Scorch": 0.0,
+"Sparks": 0.0,
+"Strike": 0.0
+}
+lifetime = 5.0
+
+[sub_resource type="Curve" id="Curve_xmolc"]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.15, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cdeae"]
+curve = SubResource("Curve_xmolc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c0t0j"]
+angle_max = 360.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_cdeae")
+
+[sub_resource type="QuadMesh" id="QuadMesh_fvqgt"]
+size = Vector2(0.9, 0.9)
+
+[sub_resource type="Gradient" id="Gradient_q4ehr"]
+offsets = PackedFloat32Array(0, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.6, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6xsm2"]
+gradient = SubResource("Gradient_q4ehr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wtch2"]
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_6xsm2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_e7ni4"]
+size = Vector2(1.2, 1.2)
+
+[sub_resource type="Curve" id="Curve_7k6wu"]
+_data = [Vector2(0, 0.15), 0.0, 0.0, 0, 0, Vector2(0.35, 0.85), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8ey5k"]
+curve = SubResource("Curve_7k6wu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kysqm"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_8ey5k")
+color_ramp = SubResource("GradientTexture1D_6xsm2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_jxiju"]
+size = Vector2(1.2, 1.2)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x4hh4"]
+lifetime_randomness = 0.5
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 9.0
+gravity = Vector3(0, -6, 0)
+damping_min = 1.0
+damping_max = 2.5
+color_ramp = SubResource("GradientTexture1D_6xsm2")
+collision_mode = 1
+collision_friction = 0.2
+collision_bounce = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_bq1n7"]
+size = Vector2(0.012, 0.18)
+
+[sub_resource type="Curve" id="Curve_7dawg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.15, 0.7), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="ThunderImpact" type="Node3D" unique_id=765271412]
+script = ExtResource("1_wdxp7")
+timeline = SubResource("Resource_c5taq")
+
+[node name="Flash" type="GPUParticles3D" parent="." unique_id=1090578705]
+material_override = ExtResource("3_qwttr")
+cast_shadow = 0
+emitting = false
+amount = 1
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_c0t0j")
+draw_pass_1 = SubResource("QuadMesh_fvqgt")
+
+[node name="Glow" type="GPUParticles3D" parent="." unique_id=1780083075]
+material_override = ExtResource("4_yh6nv")
+cast_shadow = 0
+emitting = false
+amount = 1
+lifetime = 0.18
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_wtch2")
+draw_pass_1 = SubResource("QuadMesh_e7ni4")
+
+[node name="Ring" type="GPUParticles3D" parent="." unique_id=1595679498]
+material_override = ExtResource("5_r485x")
+cast_shadow = 0
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_kysqm")
+draw_pass_1 = SubResource("QuadMesh_jxiju")
+
+[node name="Strike" type="Node3D" parent="." unique_id=836061018 node_paths=PackedStringArray("strands")]
+script = ExtResource("6_w61in")
+strands = NodePath("Strands")
+restrikes = PackedFloat32Array(0, 0.05, 0.11)
+
+[node name="Strands" type="Node3D" parent="Strike" unique_id=1236887322]
+script = ExtResource("7_y6dal")
+glow_material = ExtResource("8_5v66p")
+core_material = ExtResource("9_oxja0")
+
+[node name="Sparks" type="GPUParticles3D" parent="." unique_id=31947169]
+material_override = ExtResource("10_0dhvf")
+cast_shadow = 0
+emitting = false
+amount = 70
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_x4hh4")
+draw_pass_1 = SubResource("QuadMesh_bq1n7")
+
+[node name="Scorch" type="Decal" parent="." unique_id=308980603]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
+size = Vector3(0.45, 0.4, 0.3)
+texture_albedo = ExtResource("11_w22n6")
+texture_emission = ExtResource("12_61xeq")
+normal_fade = 0.3
+script = ExtResource("13_76vk1")
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=300251258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+light_color = Color(0.6, 0.7, 1, 1)
+light_energy = 0.0
+omni_range = 4.0
+script = ExtResource("14_b5apg")
+peak_energy = 9.0
+duration = 0.45
+curve = SubResource("Curve_7dawg")
+flicker = 0.6

@@ -100,6 +100,38 @@ func _add(parent: Node, child: Node, n: String) -> Node:
 	return child
 
 
+## 火团的寿命颜色：白黄 → 橙 → 红 → 黑烟 → 消失
+func _fire_ramp() -> GradientTexture1D:
+	return _grad_tex([[0.0, Color(1.0, 0.7, 0.3, 0.0)], [0.05, Color(1.0, 0.62, 0.2, 1.0)], [0.2, Color(1.0, 0.38, 0.04, 1.0)],
+		[0.5, Color(0.8, 0.13, 0.01, 0.9)], [0.78, Color(0.14, 0.08, 0.06, 0.5)], [1.0, Color(0.06, 0.05, 0.05, 0.0)]])
+
+
+## 火团粒子的通用参数（随机图集格、随机角度和自转、向上飘、由小变大）
+func _puff_opts(extra: Dictionary) -> Dictionary:
+	var o := {"color_ramp": _fire_ramp(), "anim_speed_min": 0.0, "anim_speed_max": 0.0, "anim_offset_min": 0.0, "anim_offset_max": 1.0,
+		"angle_min": 0.0, "angle_max": 360.0, "angular_velocity_min": -90.0, "angular_velocity_max": 90.0,
+		"gravity": Vector3(0, 2.8, 0), "lifetime_randomness": 0.35, "scale_min": 0.55, "scale_max": 1.2,
+		"scale_curve": _curve_tex([[0.0, 0.35], [0.25, 0.9], [1.0, 1.35]])}
+	o.merge(extra, true)
+	return o
+
+
+## 三片竖直面片绕 Y 轴每 60° 交叉，底边在 y=0（火从表面往上长）。
+func _cross_quads(w: float, h: float) -> ArrayMesh:
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for i in 3:
+		var a := PI / 3.0 * i
+		var r := Vector3(cos(a), 0.0, sin(a)) * w * 0.5
+		var p := [-r, r, r + Vector3(0, h, 0), -r + Vector3(0, h, 0)]
+		var uv := [Vector2(0, 1), Vector2(1, 1), Vector2(1, 0), Vector2(0, 0)]
+		for idx in [0, 1, 2, 0, 2, 3]:
+			st.set_uv(uv[idx])
+			st.add_vertex(p[idx])
+	var mesh := st.commit()
+	return mesh
+
+
 ## 一层粒子。opts 里的键直接设到 ParticleProcessMaterial 上。
 func _particles(n: String, amount: int, lifetime: float, quad: Vector2, mat: Material, opts: Dictionary, node_opts := {}) -> GPUParticles3D:
 	var p := GPUParticles3D.new()
@@ -160,7 +192,7 @@ func _build_materials() -> Dictionary:
 	m.ribbon_flame = _save(_shader_mat("fire_ribbon_mix.gdshader", {
 		"life": 0.3, "rise": 0.45, "noise_tex": _fire_noise, "noise_scale": Vector2(9.0, 3.0), "noise_drift": 1.4,
 		"band_center": 0.8, "band_width": 0.22, "dissolve_softness": 0.3,
-		"color_new": Color(1.0, 0.55, 0.12), "color_old": Color(0.75, 0.1, 0.01), "emission": 1.4, "opacity": 1.0}, 0), MAT + "ribbon_flame.tres")
+		"color_new": Color(1.0, 0.5, 0.1), "color_old": Color(0.75, 0.1, 0.01), "emission": 1.3, "opacity": 0.5}, 0), MAT + "ribbon_flame.tres")
 	m.ribbon_core = _save(_shader_mat("fire_ribbon_add.gdshader", {
 		"life": 0.13, "rise": 0.05, "noise_tex": _fire_noise, "noise_scale": Vector2(4.0, 6.0), "noise_drift": 1.0,
 		"band_center": 0.93, "band_width": 0.07, "dissolve_softness": 0.3,
@@ -184,6 +216,25 @@ func _build_materials() -> Dictionary:
 	m.fx_wisp = _save(flame.call(Color(1.0, 0.62, 0.18), Color(0.85, 0.16, 0.02), 1.3, 0.75, 0.0, 0.45), MAT + "fx_flame_wisp.tres")
 	m.fx_wisp.set_shader_parameter("noise_scale", 1.3)
 	ResourceSaver.save(m.fx_wisp, MAT + "fx_flame_wisp.tres")
+	# 序列帧火焰（4x4，按寿命播一遍）：刀身火、刀弧火、受击火团、余火都用它，每团火都在舔动变形
+	var flip := load(TEX + "flame_flipbook.png")
+	var flame_anim := func(hot: Color, cool: Color, emission: float, opacity: float, billboard: bool) -> ShaderMaterial:
+		return _shader_mat("vfx_flame.gdshader", {"shape_tex": flip, "noise_tex": _fire_noise, "atlas_h": 4, "atlas_v": 4,
+			"hot_color": hot, "cool_color": cool, "emission": emission, "opacity": opacity, "dissolve_start": 0.45,
+			"dissolve_softness": 0.35, "noise_scale": 0.9, "billboard": billboard}, 1)
+	m.fx_flame_anim = _save(flame_anim.call(Color(1.0, 0.62, 0.18), Color(0.85, 0.16, 0.02), 1.35, 0.95, true), MAT + "fx_flame_anim.tres")
+	m.fx_flame_anim_hot = _save(flame_anim.call(Color(1.0, 0.85, 0.5), Color(1.0, 0.38, 0.05), 1.8, 1.0, true), MAT + "fx_flame_anim_hot.tres")
+	m.fx_afterburn = _save(flame_anim.call(Color(1.0, 0.66, 0.22), Color(0.85, 0.16, 0.02), 1.3, 0.95, false), MAT + "fx_afterburn.tres")
+	# 火团（主力）：大量叠加 + 按寿命上色
+	m.fx_puff = _save(_shader_mat("vfx_fire_puff.gdshader", {"tex": load(TEX + "fire_puffs.png"), "atlas_h": 4, "atlas_v": 4}, 1), MAT + "fx_fire_puff.tres")
+	m.fx_puff_hot = _save(_shader_mat("vfx_fire_puff.gdshader", {"tex": load(TEX + "fire_puffs.png"), "atlas_h": 4, "atlas_v": 4,
+		"emission_young": 1.8, "emission_old": 1.1}, 1), MAT + "fx_fire_puff_hot.tres")
+	# 刀身附魔火层：挂在刀身材质的 next_pass 上
+	var overlay := _shader_mat("katana_fire_overlay.gdshader", {"noise_tex": _fire_noise}, 1)
+
+	m.blade.next_pass = overlay
+	m.blade.set_shader_parameter("heat_emission", 2.2)
+	ResourceSaver.save(m.blade, MAT + "katana_blade.tres")
 	m.fx_smoke = _save(flame.call(Color(0.13, 0.1, 0.08), Color(0.045, 0.04, 0.035), 1.0, 0.6, 0.3, 0.4), MAT + "fx_smoke.tres")
 	m.fx_smoke.render_priority = -1
 	ResourceSaver.save(m.fx_smoke, MAT + "fx_smoke.tres")
@@ -218,7 +269,7 @@ func _build_timeline() -> Resource:
 	var t: Resource = load(SCR + "vfx_timeline.gd").new()
 	t.delays = {
 		"Flash": 0.0, "Glow": 0.0, "CutCrescent": 0.0, "ImpactLight": 0.0, "Sparks": 0.0, "Scorch": 0.0,
-		"FireCore": 0.01, "Shockwave": 0.02, "FireBurst": 0.03, "Embers": 0.05, "Smoke": 0.07,
+		"FireCore": 0.01, "Shockwave": 0.02, "FireBurst": 0.03, "Embers": 0.05, "Smoke": 0.07, "Afterburn": 0.08,
 	}
 	t.lifetime = 7.0
 	return _save(t, PRE + "fire_impact_timeline.tres")
@@ -252,15 +303,21 @@ func _build_impact(m: Dictionary, timeline: Resource) -> void:
 		"collision_mode": ParticleProcessMaterial.COLLISION_RIGID, "collision_bounce": 0.35, "collision_friction": 0.2},
 		{"transform_align": GPUParticles3D.TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY, "explosiveness": 0.95, "collision_base_size": 0.01}))
 	# 火团：白热小核 + 向外翻滚的火焰
-	root.add_child(_particles("FireCore", 6, 0.25, Vector2(0.5, 0.5), m.fx_flame_hot, {
-		"initial_velocity_min": 0.2, "initial_velocity_max": 0.6, "spread": 180.0, "gravity": Vector3(0, 2.0, 0),
-		"scale_curve": _curve_tex([[0.0, 0.6], [0.3, 1.0], [1.0, 0.8]]), "angle_min": -15.0, "angle_max": 15.0,
-		"anim_offset_min": 0.0, "anim_offset_max": 1.0}))
-	root.add_child(_particles("FireBurst", 12, 0.5, Vector2(0.45, 0.45), m.fx_flame, {
-		"direction": Vector3(1.0, -0.2, 0.0), "spread": 75.0, "initial_velocity_min": 0.8, "initial_velocity_max": 2.6,
-		"damping_min": 3.0, "damping_max": 5.0, "gravity": Vector3(0, 2.2, 0), "lifetime_randomness": 0.4,
-		"scale_min": 0.6, "scale_max": 1.1, "scale_curve": _curve_tex([[0.0, 0.35], [0.25, 1.0], [1.0, 0.9]]),
-		"angle_min": -20.0, "angle_max": 20.0, "anim_offset_min": 0.0, "anim_offset_max": 1.0}, {"explosiveness": 0.85}))
+	root.add_child(_particles("FireCore", 14, 0.35, Vector2(0.4, 0.4), m.fx_puff_hot, _puff_opts({
+		"initial_velocity_min": 0.3, "initial_velocity_max": 0.9, "spread": 180.0, "gravity": Vector3(0, 2.0, 0)})))
+	# 爆开的火：几十个火团一起喷出去，叠成一大团
+	root.add_child(_particles("FireBurst", 60, 0.7, Vector2(0.42, 0.42), m.fx_puff, _puff_opts({
+		"direction": Vector3(1.0, -0.25, 0.0), "spread": 70.0, "initial_velocity_min": 0.8, "initial_velocity_max": 3.2,
+		"damping_min": 3.0, "damping_max": 5.0, "gravity": Vector3(0, 2.4, 0), "lifetime_randomness": 0.45}),
+		{"explosiveness": 0.9}))
+	# 余火：刀口处继续烧一会儿（消散阶段）
+	var afterburn := _particles("Afterburn", 90, 0.6, Vector2(0.24, 0.24), m.fx_puff, _puff_opts({
+		"emission_shape": ParticleProcessMaterial.EMISSION_SHAPE_BOX, "emission_box_extents": Vector3(0.12, 0.04, 0.04),
+		"gravity": Vector3(0, 2.2, 0)}),
+		{"one_shot": false, "explosiveness": 0.0, "position": Vector3(0, -0.06, 0)})
+	afterburn.set_script(load(SCR + "vfx_emit_for.gd"))
+	afterburn.set("duration", 1.6)
+	root.add_child(afterburn)
 	root.add_child(_particles("Smoke", 9, 1.4, Vector2(0.7, 0.7), m.fx_smoke, {
 		"direction": Vector3(0.5, -0.5, 0.0), "spread": 60.0, "initial_velocity_min": 0.3, "initial_velocity_max": 0.9,
 		"damping_min": 1.5, "damping_max": 1.5, "gravity": Vector3(0, 0.9, 0), "lifetime_randomness": 0.3,
@@ -474,36 +531,46 @@ func _build_demo(m: Dictionary, moves: Array[Resource], looks: Array[Resource]) 
 
 	var bfx := Node3D.new()
 	bfx.set_script(load(SCR + "fire_blade_fx.gd"))
-	bfx.position = Vector3(0, 0.39, -0.01)
 	_add(katana, bfx, "BladeFx")
+	# 冰/雷附魔挂这里：刀身中点，刀尖朝 -Z（和游戏里 ActorView.blade 的约定一样）
+	var mount := Node3D.new()
+	mount.position = Vector3(0, 0.39, -0.015)
+	mount.rotation_degrees = Vector3(90, 0, 0)
+	_add(katana, mount, "EnchantMount")
+	var blade_center := Vector3(0, 0.39, -0.01)
 	var blight := OmniLight3D.new()
 	blight.omni_range = 3.5
 	blight.light_color = Color(1.0, 0.5, 0.2)
 	blight.light_energy = 0.0
 	blight.shadow_enabled = false
+	blight.position = blade_center
 	_add(bfx, blight, "BladeLight")
 	var gather := _particles("Gather", 40, 0.35, Vector2(0.035, 0.035), m.fx_gather, {
 		"emission_shape": ParticleProcessMaterial.EMISSION_SHAPE_BOX, "emission_box_extents": Vector3(0.2, 0.42, 0.2),
 		"radial_accel_min": -9.0, "radial_accel_max": -7.0, "damping_min": 2.0, "damping_max": 2.0,
 		"scale_min": 0.6, "scale_max": 1.3,
 		"color_ramp": _grad_tex([[0.0, Color(1, 1, 1, 0)], [0.3, Color(1, 0.8, 0.5, 1)], [1.0, Color(1, 0.4, 0.1, 0)]])},
-		{"one_shot": false, "explosiveness": 0.0, "local_coords": true})
+		{"one_shot": false, "explosiveness": 0.0, "local_coords": true, "position": blade_center})
 	_add(bfx, gather, "Gather")
-	var flames := _particles("Flames", 50, 0.4, Vector2(0.16, 0.16), m.fx_flame, {
-		"emission_shape": ParticleProcessMaterial.EMISSION_SHAPE_BOX, "emission_box_extents": Vector3(0.004, 0.31, 0.012),
-		"gravity": Vector3(0, 2.5, 0), "lifetime_randomness": 0.4, "scale_min": 0.6, "scale_max": 1.2,
-		"scale_curve": _curve_tex([[0.0, 0.4], [0.3, 1.0], [1.0, 0.6]]), "angle_min": -15.0, "angle_max": 15.0,
-		"anim_offset_min": 0.0, "anim_offset_max": 1.0},
+	# 刀身火和火星从刀面上的点发射（点由 build_assets 按刀身截面采样，偏刃口）
+	var blade_points: Texture2D = load(ROOT + "generated/blade_points.res")
+	var points := {"emission_shape": ParticleProcessMaterial.EMISSION_SHAPE_POINTS,
+		"emission_point_texture": blade_points, "emission_point_count": blade_points.get_width()}
+	# 刀身持续燃烧：几百个火团从刀面冒出、向上飘、按寿命变色成烟。粒子在世界坐标里，挥刀时自然甩在后面成拖尾
+	var flame_opts := _puff_opts({"inherit_velocity_ratio": 0.05})
+	flame_opts.merge(points)
+	var flames := _particles("Flames", 340, 0.55, Vector2(0.17, 0.17), m.fx_puff, flame_opts,
 		{"one_shot": false, "explosiveness": 0.0})
 	_add(bfx, flames, "Flames")
-	var embers := _particles("Embers", 80, 0.8, Vector2(0.012, 0.07), m.fx_ember, {
-		"emission_shape": ParticleProcessMaterial.EMISSION_SHAPE_BOX, "emission_box_extents": Vector3(0.004, 0.33, 0.012),
+	var ember_opts := {
 		"initial_velocity_min": 0.5, "initial_velocity_max": 1.5, "spread": 180.0, "inherit_velocity_ratio": 0.25,
 		"gravity": Vector3(0, -2.0, 0), "damping_min": 1.5, "damping_max": 1.5, "lifetime_randomness": 0.4,
 		"turbulence_enabled": true, "turbulence_noise_strength": 1.5, "turbulence_noise_scale": 3.0,
 		"turbulence_influence_min": 0.1, "turbulence_influence_max": 0.2,
 		"scale_curve": _curve_tex([[0.0, 1.0], [1.0, 0.0]]),
-		"color_ramp": _grad_tex([[0.0, Color(1, 0.9, 0.6, 1)], [0.5, Color(1, 0.45, 0.1, 1)], [1.0, Color(0.7, 0.1, 0.0, 0)]])},
+		"color_ramp": _grad_tex([[0.0, Color(1, 0.9, 0.6, 1)], [0.5, Color(1, 0.45, 0.1, 1)], [1.0, Color(0.7, 0.1, 0.0, 0)]])}
+	ember_opts.merge(points)
+	var embers := _particles("Embers", 80, 0.8, Vector2(0.012, 0.07), m.fx_ember, ember_opts,
 		{"one_shot": false, "explosiveness": 0.0, "transform_align": GPUParticles3D.TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY})
 	_add(bfx, embers, "Embers")
 	bfx.set("blade_mesh", km)
@@ -511,10 +578,11 @@ func _build_demo(m: Dictionary, moves: Array[Resource], looks: Array[Resource]) 
 	bfx.set("gather", gather)
 	bfx.set("flames", flames)
 	bfx.set("embers", embers)
-	var arc_flames := _particles("ArcFlames", 400, 0.32, Vector2(0.15, 0.2), m.fx_wisp, {
-		"damping_min": 2.0, "damping_max": 3.0, "gravity": Vector3(0, 2.0, 0), "lifetime_randomness": 0.4,
-		"scale_min": 0.5, "scale_max": 1.4, "scale_curve": _curve_tex([[0.0, 0.5], [0.25, 1.0], [1.0, 0.7]]),
-		"angle_min": -15.0, "angle_max": 15.0, "anim_offset_min": 0.0, "anim_offset_max": 1.0},
+	# 挥砍时沿刀弧补发的火团（按补采样点发射，拖尾连续不断成簇）
+	# 挥砍时加量：同样从刀面发射，每帧在刀经过的位置留下一排火团，连起来就是火焰拖尾
+	var arc_opts := _puff_opts({"damping_min": 2.0, "damping_max": 3.0, "lifetime_randomness": 0.45, "inherit_velocity_ratio": 0.04})
+	arc_opts.merge(points)
+	var arc_flames := _particles("ArcFlames", 2200, 0.4, Vector2(0.26, 0.26), m.fx_puff, arc_opts,
 		{"one_shot": false, "explosiveness": 0.0})
 	_add(root, arc_flames, "ArcFlames")
 	bfx.set("arc_flames", arc_flames)
@@ -523,7 +591,8 @@ func _build_demo(m: Dictionary, moves: Array[Resource], looks: Array[Resource]) 
 	var trail := Node3D.new()
 	trail.set_script(load(SCR + "fire_ribbon_trail.gd"))
 	_add(root, trail, "FireTrail")
-	for pair in [["Smoke", m.ribbon_smoke], ["Flame", m.ribbon_flame], ["Core", m.ribbon_core]]:
+	# 只留淡淡的烟带；火的拖尾交给火团本身
+	for pair in [["Smoke", m.ribbon_smoke], ["Flame", m.ribbon_flame]]:
 		var mi := MeshInstance3D.new()
 		mi.material_override = pair[1]
 		_add(trail, mi, pair[0])
@@ -554,6 +623,14 @@ func _build_demo(m: Dictionary, moves: Array[Resource], looks: Array[Resource]) 
 	root.set("world_env", env)
 	root.set("sun", sun)
 	root.set("looks", looks)
+	const ENCH := "res://vfx_lab/elemental_enchants/"
+	root.set("element_enchants", {"ice": load(ENCH + "ice_enchant.tscn"), "thunder": load(ENCH + "thunder_enchant.tscn")})
+	root.set("element_impacts", {"ice": load(ENCH + "ice_impact.tscn"), "thunder": load(ENCH + "thunder_impact.tscn")})
+	root.set("blade_overlays", {"fire": m.blade.next_pass, "ice": load(ENCH + "generated/frost_overlay.tres"), "thunder": load(ENCH + "generated/electric_overlay.tres")})
+	root.set("enchant_mount", mount)
+	root.set("blade_fx", bfx)
+	root.set("fire_trail", trail)
+	root.set("katana_mesh", km)
 
 	_own(root, root)
 	for c in root.get_children():

@@ -20,3 +20,4 @@ shader_parameter/noise_speed = null
 shader_parameter/dissolve_softness = 0.4
 shader_parameter/dissolve_start = 0.3
 shader_parameter/cooling = null
+shader_parameter/billboard = null

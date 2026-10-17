@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/elemental_enchants/shaders/frost_overlay.gdshader" id="1_a1aeq"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_px2mi"]
+noise_type = 2
+frequency = 0.035
+cellular_return_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sxobf"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_px2mi")
+seamless = true
+invert = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s46l5"]
+frequency = 0.02
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e5aem"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_s46l5")
+seamless = true
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_a1aeq")
+shader_parameter/heat = null
+shader_parameter/cells_tex = SubResource("NoiseTexture2D_sxobf")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_e5aem")
+shader_parameter/frost_color = null
+shader_parameter/deep_color = null
+shader_parameter/emission = null
+shader_parameter/push = null

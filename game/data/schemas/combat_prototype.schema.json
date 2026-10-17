@@ -13,7 +13,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 7
+      "const": 8
     },
     "abilities": {
       "type": "array",
@@ -61,7 +61,7 @@
           },
           "recovery_sec": {
             "type": "number",
-            "minimum": 0.01,
+            "minimum": 0,
             "maximum": 10000
           },
           "cooldown_sec": {
@@ -270,7 +270,11 @@
         "movement_duration_sec",
         "attack_id",
         "attack_distance_m",
-        "attack_duration_sec"
+        "attack_duration_sec",
+        "attack_roll_exit_fraction",
+        "attack_roll_playback_speed",
+        "attack_carry_speed_mps",
+        "attack_carry_distance_ratio"
       ],
       "properties": {
         "charges": {
@@ -309,13 +313,33 @@
         },
         "attack_distance_m": {
           "type": "number",
-          "minimum": 0,
+          "minimum": 0.1,
           "maximum": 30
         },
         "attack_duration_sec": {
           "type": "number",
           "minimum": 0.01,
           "maximum": 3
+        },
+        "attack_roll_exit_fraction": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 1
+        },
+        "attack_roll_playback_speed": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "attack_carry_speed_mps": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 40
+        },
+        "attack_carry_distance_ratio": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 0.5
         }
       }
     },

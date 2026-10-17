@@ -15,14 +15,17 @@ uniform float noise_speed = 0.9;
 uniform float dissolve_softness = 0.25;
 uniform float dissolve_start = 0.1;
 uniform float cooling = 0.8;
+uniform bool billboard = true;   // 关掉时用粒子自身朝向（余火的十字交叉面片）
 
 void vertex() {
 	v_age = INSTANCE_CUSTOM.y;
 	v_seed = fract(float(INSTANCE_ID) * 0.61803 + 0.17);
 	v_quad_uv = UV;
 	UV = atlas_uv(UV, INSTANCE_CUSTOM.z);
-	MODELVIEW_MATRIX = billboard_modelview(VIEW_MATRIX, INV_VIEW_MATRIX, MODEL_MATRIX, INSTANCE_CUSTOM.x);
-	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+	if (billboard) {
+		MODELVIEW_MATRIX = billboard_modelview(VIEW_MATRIX, INV_VIEW_MATRIX, MODEL_MATRIX, INSTANCE_CUSTOM.x);
+		MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+	}
 }
 
 void fragment() {

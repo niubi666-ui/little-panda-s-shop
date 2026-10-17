@@ -13,6 +13,7 @@ const EncounterPlanner = preload("res://rogue/encounters/encounter_planner.gd")
 const Effects = preload("res://presentation/builds/build_effects_view.gd")
 const Mechanisms = preload("res://presentation/builds/mechanism_view.gd")
 const Style = preload("res://presentation/combat/training_style.tres")
+const WeaponEnchantRule = preload("res://presentation/builds/weapon_enchant_rule.gd")
 const Shake = preload("res://presentation/combat/hit_camera_shake.gd")
 signal cleared(entry_id: String, hp: float)
 signal defeated(entry_id: String)
@@ -62,6 +63,8 @@ func setup(ticket: Dictionary, hp: float, program: Dictionary, combat, enemy_cat
 	build_runtime.configure(builds, player, func(): return actors, _wall_hit)
 	if not build_runtime.set_program(program) or not player.set_action_program(program.actions, combat): return false
 	player.set_build_movement_multiplier(program.global.move_scale)
+	# 剑上的元素附魔跟着构筑里第一个元素走（views[0] 是主角）
+	views[0].set_weapon_enchant(WeaponEnchantRule.primary_element(program, builds))
 	player.runner.committed.connect(build_runtime.on_committed)
 	player.runner.cue_reached.connect(build_runtime.on_cue)
 	player.runner.finished.connect(build_runtime.on_finished)

@@ -26,9 +26,11 @@ const EnemyRuntime = preload("res://combat/enemies/enemy_runtime.gd")
 const EncounterPlanner = preload("res://rogue/encounters/encounter_planner.gd")
 const EnemyPresentation = preload("res://presentation/combat/enemies/enemy_presentation.gd")
 const CombatJuice = preload("res://presentation/combat/combat_juice.gd")
+const StrikeView = preload("res://presentation/combat/strike/strike_view.gd")
 const CombatAudio = preload("res://presentation/audio/combat_audio.gd")
 const ForestRun = preload("res://app/forest_run.gd")
 var juice: CombatJuice
+var strike_view: StrikeView
 var audio: CombatAudio
 signal enemy_loot_ready(spawn_id: String, enemy_id: String, drops: Array)
 var initial_encounter_plan: Dictionary = {}
@@ -201,6 +203,10 @@ func _ready() -> void:
 	juice = CombatJuice.new()
 	add_child(juice)
 	juice.configure(player, $UIRoot, shared_theme, self, Style.combat_juice)
+	# 白色月牙刀光、命中尖刺、重击爆团
+	strike_view = StrikeView.new()
+	add_child(strike_view)
+	strike_view.configure(Style.strike, player)
 	if not encounter_plan.is_empty():
 		hud.configure_encounters(encounter_depth, enemy_catalog.encounters.training_max_depth, Style.encounter_panel_position)
 		hud.encounter_requested.connect(_new_encounter)
@@ -570,6 +576,7 @@ func _physics_process(frame_delta: float) -> void:
 	for view in views: view.refresh(display_delta)
 	enemy_presentation.refresh(display_delta)
 	builds.refresh(display_delta)
+	if strike_view != null: strike_view.tick(display_delta)
 	_follow_camera(0.0 if paused or builds.is_choosing() else frame_delta)
 	_apply_camera_shake(display_delta)
 	if juice != null: juice.refresh(0.0 if paused or builds.is_choosing() else frame_delta)
@@ -662,6 +669,7 @@ func _on_confirmed_hit(source, target, _cast_id: int, ability_id: String, applie
 		audio.player_hit(ability_id, target)
 		_camera_shake.kick()
 		if enhanced_feel: feel.hit(ability_id, target.global_position - player.global_position, not target.health.alive())
+		if strike_view != null: strike_view.hit(ability_id, target, not target.health.alive())
 	elif target == player:
 		audio.player_hurt()
 	if target == player and source != player and enhanced_feel:

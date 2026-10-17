@@ -32,6 +32,7 @@ func decode(data: Variant, schema: Dictionary, path: String) -> Catalog:
 	for entry in data.abilities:
 		if abilities.has(entry.id): errors.append(path + ": duplicate ability " + entry.id)
 		abilities[entry.id] = entry
+		if entry.chain_cancel_sec > entry.recovery_sec: errors.append(path + ": " + entry.id + " chain_cancel_sec exceeds recovery_sec")
 		var cancel_phases: Dictionary = {}
 		for phase in entry.dodge_cancel_phases:
 			if cancel_phases.has(phase): errors.append(path + ": " + entry.id + " duplicate dodge cancel phase")

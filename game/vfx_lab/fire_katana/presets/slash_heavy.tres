@@ -1,0 +1,24 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/swing_move.gd" id="1_5u73p"]
+
+[resource]
+script = ExtResource("1_5u73p")
+display_name = "蓄力重劈"
+direction_deg = 0.0
+start_deg = -150.0
+end_deg = 80.0
+cock_deg = 22.0
+prepare_time = 0.5
+charge_time = 0.8
+swing_time = 0.34
+swing_power = 5.0
+recover_time = 0.6
+rest_time = 0.5
+heat_peak = 1.5
+intensity = 1.4
+lunge = 0.14
+tremble = 1.0
+hitstop = 0.11
+shake = 0.12
+impact_scale = 1.35

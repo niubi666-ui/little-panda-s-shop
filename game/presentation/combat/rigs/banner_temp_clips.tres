@@ -19,5 +19,6 @@ charge = &""
 attacks = {}
 attack_fallback = Array[StringName]([])
 attack_cuts = {}
+attack_shapes = {}
 attack_blend_sec = 0.04
 react_blend_sec = 0.03

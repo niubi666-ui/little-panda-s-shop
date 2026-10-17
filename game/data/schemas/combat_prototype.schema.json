@@ -41,6 +41,7 @@
           "hit_shape",
           "thrust_width_m",
           "buffer_sec",
+          "chain_cancel_sec",
           "dodge_cancel_phases"
         ],
         "properties": {
@@ -147,6 +148,11 @@
                 "recovery"
               ]
             }
+          },
+          "chain_cancel_sec": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10000
           }
         }
       }

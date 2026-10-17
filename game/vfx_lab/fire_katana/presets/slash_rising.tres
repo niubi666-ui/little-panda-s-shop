@@ -1,0 +1,15 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/swing_move.gd" id="1_h5j14"]
+
+[resource]
+script = ExtResource("1_h5j14")
+display_name = "上撩"
+direction_deg = 165.0
+start_deg = -105.0
+end_deg = 105.0
+cock_deg = 10.0
+prepare_time = 0.45
+charge_time = 0.2
+swing_time = 0.28
+hitstop = 0.05

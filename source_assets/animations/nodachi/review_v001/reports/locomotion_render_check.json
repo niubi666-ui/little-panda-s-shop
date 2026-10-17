@@ -1,0 +1,22 @@
+[
+  {
+    "scene": "02_Idle_and_Stance",
+    "frame": 41,
+    "path": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\previews\\locomotion_idle.png"
+  },
+  {
+    "scene": "04_Walk_Combat",
+    "frame": 138,
+    "path": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\previews\\locomotion_combat_walk.png"
+  },
+  {
+    "scene": "08_Run_Combat_and_Sprint",
+    "frame": 73,
+    "path": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\previews\\locomotion_combat_run.png"
+  },
+  {
+    "scene": "08_Run_Combat_and_Sprint",
+    "frame": 3306,
+    "path": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\previews\\locomotion_combat_sprint.png"
+  }
+]

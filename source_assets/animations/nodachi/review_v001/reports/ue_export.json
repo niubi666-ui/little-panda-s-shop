@@ -1,0 +1,120 @@
+{
+  "project": "D:/UE5 test/Test58/Test58.uproject",
+  "exports": [
+    {
+      "label": "00_Combat_Idle",
+      "asset": "/Game/Nodachi/Animations/Sequence/01_Idle/02_Idle_Combat/AS_Idle_Combat_Seq",
+      "class": "AnimSequence",
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "preview_skeletal_mesh": "AnimSequence: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'AnimSequence'",
+      "enable_root_motion": "False",
+      "sequence_length": "10.0",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\00_Combat_Idle.fbx",
+      "bytes": 5505536,
+      "task_errors": []
+    },
+    {
+      "label": "01_Combo_Attack_01_01",
+      "asset": "/Game/Nodachi/Animations/Sequence/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_01_Seq",
+      "class": "AnimSequence",
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "preview_skeletal_mesh": "AnimSequence: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'AnimSequence'",
+      "enable_root_motion": "False",
+      "sequence_length": "1.8333333730697632",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\01_Combo_Attack_01_01.fbx",
+      "bytes": 4616352,
+      "task_errors": []
+    },
+    {
+      "label": "02_Combo_Attack_01_02",
+      "asset": "/Game/Nodachi/Animations/Sequence/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_02_Seq",
+      "class": "AnimSequence",
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "preview_skeletal_mesh": "AnimSequence: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'AnimSequence'",
+      "enable_root_motion": "False",
+      "sequence_length": "1.5",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\02_Combo_Attack_01_02.fbx",
+      "bytes": 4391712,
+      "task_errors": []
+    },
+    {
+      "label": "03_Combo_Attack_01_03",
+      "asset": "/Game/Nodachi/Animations/Sequence/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_03_Seq",
+      "class": "AnimSequence",
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "preview_skeletal_mesh": "AnimSequence: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'AnimSequence'",
+      "enable_root_motion": "False",
+      "sequence_length": "1.5",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\03_Combo_Attack_01_03.fbx",
+      "bytes": 4391712,
+      "task_errors": []
+    },
+    {
+      "label": "04_Combo_Attack_01_04",
+      "asset": "/Game/Nodachi/Animations/Sequence/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_04_Seq",
+      "class": "AnimSequence",
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "preview_skeletal_mesh": "AnimSequence: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'AnimSequence'",
+      "enable_root_motion": "False",
+      "sequence_length": "1.75",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\04_Combo_Attack_01_04.fbx",
+      "bytes": 4560192,
+      "task_errors": []
+    },
+    {
+      "label": "05_Combo_Attack_01_Full",
+      "asset": "/Game/Nodachi/Animations/Sequence/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_All_Seq",
+      "class": "AnimSequence",
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "preview_skeletal_mesh": "AnimSequence: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'AnimSequence'",
+      "enable_root_motion": "False",
+      "sequence_length": "3.3333332538604736",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\05_Combo_Attack_01_Full.fbx",
+      "bytes": 5116176,
+      "task_errors": []
+    },
+    {
+      "label": "UE5_Manny_Reference",
+      "asset": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SKM_Manny_Simple",
+      "class": "SkeletalMesh",
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\UE5_Manny_Reference.fbx",
+      "bytes": 2716448,
+      "task_errors": []
+    },
+    {
+      "label": "Nodachi_Sword",
+      "asset": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/Nodachi_Sword",
+      "class": "StaticMesh",
+      "skeleton": "StaticMesh: Failed to find property 'skeleton' for attribute 'skeleton' on 'StaticMesh'",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\Nodachi_Sword.fbx",
+      "bytes": 599760,
+      "task_errors": []
+    }
+  ],
+  "errors": [],
+  "animation_api": [
+    "get_anim_pose_at_frame",
+    "get_play_length",
+    "get_skeleton",
+    "sequence_length",
+    "set_preview_skeletal_mesh"
+  ],
+  "skeleton_api": [
+    "copy_bones_from_skeleton",
+    "get_skeleton_additional_preview_meshes",
+    "get_skeleton_preview_mesh",
+    "set_skeleton_additional_preview_meshes",
+    "set_skeleton_preview_mesh"
+  ],
+  "skeleton_preview": "Skeleton: Failed to find property 'preview_skeletal_mesh' for attribute 'preview_skeletal_mesh' on 'Skeleton'",
+  "socket_error": "Skeleton: Property 'Sockets' for attribute 'sockets' on 'Skeleton' is protected and cannot be read"
+}

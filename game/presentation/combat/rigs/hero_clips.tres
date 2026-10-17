@@ -1,0 +1,40 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://presentation/combat/rigs/actor_clip_set.gd" id="script"]
+[resource]
+script = ExtResource("script")
+idle = &"idle"
+move = &"run"
+move_reference_speed = 4.0
+hit = &"hit"
+death = &"death"
+dodge = &"dodge"
+charge = &"charge"
+attacks = {
+"slash.1": &"attack_1",
+"slash.2": &"attack_2",
+"slash.3": &"attack_3",
+"heavy_slash": &"heavy",
+"wave_cast": &"cast"
+}
+attack_fallback = Array[StringName]([&"attack_1", &"attack_2"])
+attack_cuts = {
+&"attack_1": Vector2(0.2, 0.3),
+&"attack_2": Vector2(0.1667, 0.2667),
+&"attack_3": Vector2(0.3, 0.4),
+&"heavy": Vector2(0.4667, 0.6),
+&"cast": Vector2(0.2, 0.3)
+}
+attack_shapes = {
+&"attack_1": Vector4(1, 1, 1, 0),
+&"attack_2": Vector4(1, 1, 1, 0),
+&"attack_3": Vector4(1, 1, 1, 0),
+&"heavy": Vector4(1, 1, 1, 0),
+&"cast": Vector4(1, 1, 1, 0)
+}
+blend_sec = 0.12
+attack_blend_sec = 0.08
+move_min_speed = 0.15
+move_rate_min = 0.6
+move_rate_max = 1.8
+states = {}
+react_blend_sec = 0.03

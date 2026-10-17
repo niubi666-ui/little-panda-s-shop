@@ -1,0 +1,9 @@
+﻿direction,label_zh,action,source_seconds,review_start,review_end,variant,source_asset
+forward,前,roll_forward,1.1666666666666667,1,71,IP,/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_F_0_Seq
+forward_right,右前,roll_forward_right,1.1666666666666667,102,172,IP,/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_F_R_45_Seq
+right,右,roll_right,1.1666666666666667,203,273,IP,/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_R_90_Seq
+back_right,右后,roll_back_right,1.1666666666666667,304,374,IP,/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_B_R_45_Seq
+back,后,roll_back,1.1666666666666667,405,475,IP,/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_B_180_Seq
+back_left,左后,roll_back_left,1.1666666666666667,506,576,IP,/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_B_L_45_Seq
+left,左,roll_left,1.1666666666666667,607,677,IP,/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_L_90_Seq
+forward_left,左前,roll_forward_left,1.1666666666666667,708,778,IP,/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_F_L_45_Seq

@@ -11,6 +11,8 @@ def validate_combat(manifest):
     if data["player_id"] not in actors:
         raise ValueError("combat: unknown player_id")
     for ability in data["abilities"]:
+        if ability["chain_cancel_sec"] > ability["recovery_sec"]:
+            raise ValueError(f"combat: {ability['id']} chain_cancel_sec exceeds recovery_sec")
         if len(set(ability["dodge_cancel_phases"])) != len(ability["dodge_cancel_phases"]):
             raise ValueError(f"combat: {ability['id']} duplicate dodge cancel phase")
         if ability["hit_shape"] == "sector" and (ability["angle_deg"] <= 0 or ability["thrust_width_m"] != 0):

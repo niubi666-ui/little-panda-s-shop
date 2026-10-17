@@ -123,6 +123,16 @@ RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304
 2. **动作映射**（`*_clips.tres`，脚本 `rigs/actor_clip_set.gd`）：把“待机/移动/受击/死亡/闪避/各技能”对应到模型里的动作名。
 3. **表现配置**（`presentation/combat/*_presentation.tres`）：指向模型场景，并给出碰撞体。战斗逻辑只读碰撞体，不读模型。
 
+### 人形主角（Quaternius 通用骨骼）
+
+素材在 `source_assets/quaternius/`（UAL1/UAL2 动作库、通用人形角色，均 CC0）。`build_hero.py` 用后台 Blender 生成 `game/assets/combat_real/hero_katana.glb`：导入角色和两个动作库，把“出刀 + 收招”在 NLA 里合成一个动作，生成太刀挂到 `hand_r`，打印每个攻击动作的手速曲线供定切点（切点填在 `rigs/hero_clips.tres`）。同一套骨骼的新角色可以直接复用这些动作。
+
+待机和攻击动作由 `katana_moves.py` 设计：刀是一个控制器（握把中心 + 刀尖方向 + 刃口方向），双手 IK 握刀柄、双脚 IK 踩地，按关键姿势插值（挥砍段线性、走中间关键帧定的弧线），再烘焙成骨骼动画。改动作就改 `MOVES` 里的姿势和帧号；帧号（30 帧/秒）换算成秒后要同步到 `game/data/combat/prototype.json` 对应技能的前摇/判定/收招，并更新 `rigs/hero_clips.tres` 的切点。检查用 `game/tests/hero_moves_capture.gd`。
+
+```
+& 'E:lenderlender.exe' --background --factory-startup --python source_assets/quaternius/build_hero.py
+```
+
 ### 新模型自带全套动作
 
 1. 导入模型，复制一份现有的 `*_real_visual.tscn`，把 `Model` 换成新模型，调好缩放。
@@ -148,6 +158,8 @@ RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304
 - **缺动作不会报错**，会退回待机。可以先接模型，后补动作。
 - **攻击动作分三段**。`attack_cuts` 里每个动作有两个时间点（前摇结束、判定结束，单位是动画文件里的秒）。游戏把自己的前摇/判定/收招时长分别映射到这三段，所以调数值不用重做动画。
   `attacks`、`attack_fallback` 里出现的每个动作都必须配切点，缺了会在资源校验时报出动作名，不会悄悄用默认值。
+- **出刀节奏**（`attack_shapes`，每个有切点的动作都要写）：`Vector4(前摇缓出指数, 挥砍占判定段比例, 挥砍缓出指数, 收招停顿比例)`。例如 `Vector4(2.5, 0.35, 2.5, 0.3)`：很快拧到蓄力姿势并憋住，判定段头 35%（约 2 帧）就挥完，收招前 30% 停在挥到底的姿势。只改播放方式，不改判定。剑上的刀光由 `attack_motions/*.tres` 的 `active_completion_fraction` 控制，要和这里的挥砍比例一致。逐帧检查用 `tests/swing_capture.gd`（输出 `builds/visual_pass/swing_*.png`）。
+- **打击表现**（`presentation/combat/strike/`）：白色月牙刀光、命中尖刺、爆团。形状按技能写在 `strike_style.tres` 的 `arcs`（`strike_arc.gd`：半径、带宽、起止角度、高度、扫出/停留/消散时间），颜色和烟雾在其中的材质参数；按战斗时间走，顿帧时一起停住。
 - **`*_clips.tres` 的每个字段都要写**（不用的动作写空名 `&""`、空字典 `{}`）；脚本里没有默认值。
 - **敌人按 AI 状态选动作**：`states` 里写“状态名 → 动作名”。`windup`、`recovery` 按进度播放，其余循环。
 - **带贴图的模型**把 `keep_textures` 打开。`tint` 可以给整个模型染色：四种敌人共用一个豺狼身体，靠染色、体型和手里的道具区分。

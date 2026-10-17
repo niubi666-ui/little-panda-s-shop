@@ -1,0 +1,111 @@
+{
+  "exports": [
+    {
+      "direction": "forward",
+      "label_zh": "前",
+      "source_name": "AS_Roll_Combat_F_0_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_F_0_Seq",
+      "action": "roll_forward",
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\roll_8dir_v001\\fbx\\roll_forward.fbx",
+      "ok": true,
+      "bytes": 1599376,
+      "sequence_length": 1.1666666269302368,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "errors": []
+    },
+    {
+      "direction": "forward_right",
+      "label_zh": "右前",
+      "source_name": "AS_Roll_Combat_F_R_45_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_F_R_45_Seq",
+      "action": "roll_forward_right",
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\roll_8dir_v001\\fbx\\roll_forward_right.fbx",
+      "ok": true,
+      "bytes": 1599392,
+      "sequence_length": 1.1666666269302368,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "errors": []
+    },
+    {
+      "direction": "right",
+      "label_zh": "右",
+      "source_name": "AS_Roll_Combat_R_90_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_R_90_Seq",
+      "action": "roll_right",
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\roll_8dir_v001\\fbx\\roll_right.fbx",
+      "ok": true,
+      "bytes": 1599376,
+      "sequence_length": 1.1666666269302368,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "errors": []
+    },
+    {
+      "direction": "back_right",
+      "label_zh": "右后",
+      "source_name": "AS_Roll_Combat_B_R_45_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_B_R_45_Seq",
+      "action": "roll_back_right",
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\roll_8dir_v001\\fbx\\roll_back_right.fbx",
+      "ok": true,
+      "bytes": 1599376,
+      "sequence_length": 1.1666666269302368,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "errors": []
+    },
+    {
+      "direction": "back",
+      "label_zh": "后",
+      "source_name": "AS_Roll_Combat_B_180_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_B_180_Seq",
+      "action": "roll_back",
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\roll_8dir_v001\\fbx\\roll_back.fbx",
+      "ok": true,
+      "bytes": 1599360,
+      "sequence_length": 1.1666666269302368,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "errors": []
+    },
+    {
+      "direction": "back_left",
+      "label_zh": "左后",
+      "source_name": "AS_Roll_Combat_B_L_45_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_B_L_45_Seq",
+      "action": "roll_back_left",
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\roll_8dir_v001\\fbx\\roll_back_left.fbx",
+      "ok": true,
+      "bytes": 1599376,
+      "sequence_length": 1.1666666269302368,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "errors": []
+    },
+    {
+      "direction": "left",
+      "label_zh": "左",
+      "source_name": "AS_Roll_Combat_L_90_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_L_90_Seq",
+      "action": "roll_left",
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\roll_8dir_v001\\fbx\\roll_left.fbx",
+      "ok": true,
+      "bytes": 1599360,
+      "sequence_length": 1.1666666269302368,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "errors": []
+    },
+    {
+      "direction": "forward_left",
+      "label_zh": "左前",
+      "source_name": "AS_Roll_Combat_F_L_45_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/07_Roll/02_Roll_Combat/02_IP/AS_Roll_Combat_F_L_45_Seq",
+      "action": "roll_forward_left",
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\roll_8dir_v001\\fbx\\roll_forward_left.fbx",
+      "ok": true,
+      "bytes": 1599376,
+      "sequence_length": 1.1666666269302368,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "errors": []
+    }
+  ],
+  "errors": [],
+  "variant": "IP",
+  "source_group": "07_Roll/02_Roll_Combat/02_IP"
+}

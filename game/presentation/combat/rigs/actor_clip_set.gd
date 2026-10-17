@@ -25,6 +25,13 @@ extends Resource
 ## 动作名 → Vector2(前摇结束, 判定结束)，单位秒，指动画文件内部的时间。
 ## 游戏把自己的 前摇/判定/收招 时长分别映射到这三段，所以调数值不需要重做动画。
 @export var attack_cuts: Dictionary
+## 动作名 → Vector4(前摇缓出指数, 挥砍占判定段比例, 挥砍缓出指数, 收招停顿比例)：出刀“快—狠—停”的节奏。
+## - 前摇缓出指数 > 1：很快拧到蓄力姿势，然后在顶点“憋住”；1 为匀速。
+## - 挥砍占判定段比例：动画在判定段的前这一部分就挥完（0.35 ≈ 判定 0.1 秒里的头 2 帧），剩下时间停在挥到底的姿势。
+## - 挥砍缓出指数 > 1：起刀最快、到底减速，像甩出去；1 为匀速。
+## - 收招停顿比例：收招段开头保持挥到底的姿势这么久（占收招时长的比例），再收回。
+## 只改动画播放方式，不改判定时间。每个有切点的攻击动作都要写；匀速播放写 Vector4(1, 1, 1, 0)。
+@export var attack_shapes: Dictionary
 @export_group("敌人行为状态")
 ## AI 状态名 → 动作名。windup / recovery 按进度播放，其余循环播放。
 @export var states: Dictionary
@@ -41,4 +48,6 @@ func missing_cuts() -> Array[StringName]:
 	var clips: Array = attacks.values() + attack_fallback
 	for clip in clips:
 		if not attack_cuts.has(StringName(clip)) and not missing.has(StringName(clip)): missing.append(StringName(clip))
+	for clip in attack_cuts:
+		if not attack_shapes.has(StringName(clip)) and not missing.has(StringName(clip)): missing.append(StringName(clip))
 	return missing

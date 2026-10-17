@@ -1,0 +1,346 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/demo_director.gd" id="1_duh25"]
+[ext_resource type="PackedScene" path="res://vfx_lab/fire_katana/vfx/fire_impact.tscn" id="2_2rg55"]
+[ext_resource type="Resource" path="res://vfx_lab/fire_katana/presets/slash_diagonal.tres" id="3_0r3kt"]
+[ext_resource type="Resource" path="res://vfx_lab/fire_katana/presets/slash_horizontal.tres" id="4_frho7"]
+[ext_resource type="Resource" path="res://vfx_lab/fire_katana/presets/slash_rising.tres" id="5_xuci0"]
+[ext_resource type="Resource" path="res://vfx_lab/fire_katana/presets/slash_heavy.tres" id="6_im1yy"]
+[ext_resource type="Resource" path="res://vfx_lab/fire_katana/presets/look_night.tres" id="7_q02xq"]
+[ext_resource type="Resource" path="res://vfx_lab/fire_katana/presets/look_day.tres" id="8_16ncb"]
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/demo_camera.gd" id="9_fndkw"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/ground.tres" id="10_73ckh"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/stone.tres" id="11_i7iyc"]
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/target_post.gd" id="12_jj6wd"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/wood.tres" id="13_t02h0"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/katana_iron.tres" id="14_325e8"]
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/katana_rig.gd" id="15_twmpe"]
+[ext_resource type="ArrayMesh" path="res://vfx_lab/fire_katana/generated/katana_mesh.res" id="16_pych2"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/katana_blade.tres" id="17_ecadt"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/katana_gold.tres" id="18_2l5l7"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/katana_tsuka.tres" id="19_g4v50"]
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/fire_blade_fx.gd" id="20_wd8s0"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/fx_gather.tres" id="21_y38gi"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/fx_flame.tres" id="22_36i7s"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/fx_ember.tres" id="23_iv08b"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/fx_flame_wisp.tres" id="24_f4ebc"]
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/fire_ribbon_trail.gd" id="25_w7vj4"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/ribbon_smoke.tres" id="26_csqgp"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/ribbon_flame.tres" id="27_rhdxj"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/ribbon_core.tres" id="28_p5div"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f5tvb"]
+sky_top_color = Color(0.02, 0.03, 0.07, 1)
+sky_horizon_color = Color(0.08, 0.1, 0.16, 1)
+sky_energy_multiplier = 0.6
+ground_bottom_color = Color(0.02, 0.02, 0.03, 1)
+ground_horizon_color = Color(0.06, 0.07, 0.1, 1)
+
+[sub_resource type="Sky" id="Sky_w72qx"]
+sky_material = SubResource("ProceduralSkyMaterial_f5tvb")
+
+[sub_resource type="Environment" id="Environment_cr2ms"]
+background_mode = 2
+sky = SubResource("Sky_w72qx")
+ambient_light_source = 3
+ambient_light_energy = 0.8
+reflected_light_source = 2
+tonemap_mode = 4
+tonemap_exposure = 1.19
+tonemap_agx_contrast = 1.5
+ssao_enabled = true
+glow_enabled = true
+glow_levels/2 = 0.6
+glow_levels/3 = 1.0
+glow_levels/4 = 0.8
+glow_levels/5 = 0.6
+glow_intensity = 0.45
+glow_bloom = 0.03
+glow_blend_mode = 0
+fog_enabled = true
+fog_light_color = Color(0.1, 0.12, 0.18, 1)
+fog_density = 0.02
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jwqdq"]
+size = Vector2(40, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sotis"]
+size = Vector3(0.5, 0.18, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_538tn"]
+top_radius = 0.11
+bottom_radius = 0.115
+height = 1.75
+radial_segments = 32
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gbedx"]
+top_radius = 0.119
+bottom_radius = 0.121
+height = 0.05
+radial_segments = 32
+
+[sub_resource type="Gradient" id="Gradient_7oilh"]
+offsets = PackedFloat32Array(0, 0.3, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0.8, 0.5, 1, 1, 0.4, 0.1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lla2w"]
+gradient = SubResource("Gradient_7oilh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8bv55"]
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0.42, 0.2)
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -9.0
+radial_accel_max = -7.0
+damping_min = 2.0
+damping_max = 2.0
+scale_min = 0.6
+scale_max = 1.3
+color_ramp = SubResource("GradientTexture1D_lla2w")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ymgu2"]
+size = Vector2(0.035, 0.035)
+
+[sub_resource type="Curve" id="Curve_aafye"]
+_data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dpf5f"]
+curve = SubResource("Curve_aafye")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_syqp8"]
+lifetime_randomness = 0.4
+emission_shape = 3
+emission_box_extents = Vector3(0.004, 0.31, 0.012)
+angle_min = -15.0
+angle_max = 15.0
+gravity = Vector3(0, 2.5, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_dpf5f")
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_705r2"]
+size = Vector2(0.16, 0.16)
+
+[sub_resource type="Gradient" id="Gradient_5s6qw"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0.9, 0.6, 1, 1, 0.45, 0.1, 1, 0.7, 0.1, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_grc4u"]
+gradient = SubResource("Gradient_5s6qw")
+
+[sub_resource type="Curve" id="Curve_0f376"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2dgni"]
+curve = SubResource("Curve_0f376")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j8hhu"]
+lifetime_randomness = 0.4
+emission_shape = 3
+emission_box_extents = Vector3(0.004, 0.33, 0.012)
+inherit_velocity_ratio = 0.25
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, -2, 0)
+damping_min = 1.5
+damping_max = 1.5
+scale_curve = SubResource("CurveTexture_2dgni")
+color_ramp = SubResource("GradientTexture1D_grc4u")
+turbulence_enabled = true
+turbulence_noise_strength = 1.5
+turbulence_noise_scale = 3.0
+turbulence_influence_max = 0.2
+
+[sub_resource type="QuadMesh" id="QuadMesh_87bwg"]
+size = Vector2(0.012, 0.07)
+
+[sub_resource type="Curve" id="Curve_e32wv"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.7), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hybyr"]
+curve = SubResource("Curve_e32wv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cuvpr"]
+lifetime_randomness = 0.4
+angle_min = -15.0
+angle_max = 15.0
+gravity = Vector3(0, 2, 0)
+damping_min = 2.0
+damping_max = 3.0
+scale_min = 0.5
+scale_max = 1.4
+scale_curve = SubResource("CurveTexture_hybyr")
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_w50m4"]
+size = Vector2(0.15, 0.2)
+
+[node name="FireKatanaDemo" type="Node3D" unique_id=1240545806 node_paths=PackedStringArray("rig", "camera", "target_post", "label", "world_env", "sun")]
+script = ExtResource("1_duh25")
+rig = NodePath("KatanaRig")
+impact_scene = ExtResource("2_2rg55")
+moves = Array[Resource]([ExtResource("3_0r3kt"), ExtResource("4_frho7"), ExtResource("5_xuci0"), ExtResource("6_im1yy")])
+camera = NodePath("Camera")
+target_post = NodePath("TargetPost")
+label = NodePath("UI/Help")
+world_env = NodePath("WorldEnvironment")
+sun = NodePath("Sun")
+looks = Array[Resource]([ExtResource("7_q02xq"), ExtResource("8_16ncb")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=631225342]
+environment = SubResource("Environment_cr2ms")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=47880593]
+shadow_enabled = true
+directional_shadow_max_distance = 20.0
+
+[node name="Camera" type="Camera3D" parent="." unique_id=1912580330]
+current = true
+fov = 50.0
+script = ExtResource("9_fndkw")
+preset_names = PackedStringArray("展示视角", "游戏俯视角", "近景")
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=1394235347]
+material_override = ExtResource("10_73ckh")
+mesh = SubResource("PlaneMesh_jwqdq")
+
+[node name="FloorCollision" type="GPUParticlesCollisionBox3D" parent="." unique_id=1609630649]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(40, 1, 40)
+
+[node name="PostBase" type="MeshInstance3D" parent="." unique_id=2113289213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0)
+material_override = ExtResource("11_i7iyc")
+mesh = SubResource("BoxMesh_sotis")
+
+[node name="TargetPost" type="Node3D" parent="." unique_id=229913666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18, 0)
+script = ExtResource("12_jj6wd")
+
+[node name="Post" type="MeshInstance3D" parent="TargetPost" unique_id=1888045369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
+material_override = ExtResource("13_t02h0")
+mesh = SubResource("CylinderMesh_538tn")
+
+[node name="BandTop" type="MeshInstance3D" parent="TargetPost" unique_id=385276175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+material_override = ExtResource("14_325e8")
+mesh = SubResource("CylinderMesh_gbedx")
+
+[node name="BandLow" type="MeshInstance3D" parent="TargetPost" unique_id=1928473995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+material_override = ExtResource("14_325e8")
+mesh = SubResource("CylinderMesh_gbedx")
+
+[node name="ContactPoint" type="Marker3D" parent="TargetPost" unique_id=1347792365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07, 0)
+
+[node name="KatanaRig" type="Node3D" parent="." unique_id=808048850 node_paths=PackedStringArray("katana", "trail_base", "trail_tip", "trail", "blade_fx", "target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 1.25, 0.05)
+script = ExtResource("15_twmpe")
+katana = NodePath("Katana")
+trail_base = NodePath("Katana/TrailBase")
+trail_tip = NodePath("Katana/TrailTip")
+trail = NodePath("../FireTrail")
+blade_fx = NodePath("Katana/BladeFx")
+target = NodePath("../TargetPost/ContactPoint")
+
+[node name="Katana" type="Node3D" parent="KatanaRig" unique_id=2018373196]
+
+[node name="KatanaMesh" type="MeshInstance3D" parent="KatanaRig/Katana" unique_id=1033286143]
+mesh = ExtResource("16_pych2")
+surface_material_override/0 = ExtResource("17_ecadt")
+surface_material_override/1 = ExtResource("18_2l5l7")
+surface_material_override/2 = ExtResource("14_325e8")
+surface_material_override/3 = ExtResource("19_g4v50")
+
+[node name="TrailBase" type="Marker3D" parent="KatanaRig/Katana" unique_id=1629054213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+
+[node name="TrailTip" type="Marker3D" parent="KatanaRig/Katana" unique_id=1803054849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.746, -0.0395)
+
+[node name="BladeFx" type="Node3D" parent="KatanaRig/Katana" unique_id=1259943420 node_paths=PackedStringArray("blade_mesh", "light", "gather", "flames", "embers", "arc_flames")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39, -0.01)
+script = ExtResource("20_wd8s0")
+blade_mesh = NodePath("../KatanaMesh")
+light = NodePath("BladeLight")
+gather = NodePath("Gather")
+flames = NodePath("Flames")
+embers = NodePath("Embers")
+arc_flames = NodePath("../../../ArcFlames")
+
+[node name="BladeLight" type="OmniLight3D" parent="KatanaRig/Katana/BladeFx" unique_id=385396926]
+light_color = Color(1, 0.5, 0.2, 1)
+light_energy = 0.0
+omni_range = 3.5
+
+[node name="Gather" type="GPUParticles3D" parent="KatanaRig/Katana/BladeFx" unique_id=568902030]
+material_override = ExtResource("21_y38gi")
+cast_shadow = 0
+emitting = false
+amount = 40
+lifetime = 0.35
+fixed_fps = 0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8bv55")
+draw_pass_1 = SubResource("QuadMesh_ymgu2")
+
+[node name="Flames" type="GPUParticles3D" parent="KatanaRig/Katana/BladeFx" unique_id=391087410]
+material_override = ExtResource("22_36i7s")
+cast_shadow = 0
+emitting = false
+amount = 50
+lifetime = 0.4
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_syqp8")
+draw_pass_1 = SubResource("QuadMesh_705r2")
+
+[node name="Embers" type="GPUParticles3D" parent="KatanaRig/Katana/BladeFx" unique_id=2136191974]
+material_override = ExtResource("23_iv08b")
+cast_shadow = 0
+emitting = false
+amount = 80
+lifetime = 0.8
+fixed_fps = 0
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_j8hhu")
+draw_pass_1 = SubResource("QuadMesh_87bwg")
+
+[node name="ArcFlames" type="GPUParticles3D" parent="." unique_id=189624398]
+material_override = ExtResource("24_f4ebc")
+cast_shadow = 0
+emitting = false
+amount = 400
+lifetime = 0.32
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_cuvpr")
+draw_pass_1 = SubResource("QuadMesh_w50m4")
+
+[node name="FireTrail" type="Node3D" parent="." unique_id=1955844558]
+script = ExtResource("25_w7vj4")
+
+[node name="Smoke" type="MeshInstance3D" parent="FireTrail" unique_id=1572838394]
+material_override = ExtResource("26_csqgp")
+
+[node name="Flame" type="MeshInstance3D" parent="FireTrail" unique_id=754387714]
+material_override = ExtResource("27_rhdxj")
+
+[node name="Core" type="MeshInstance3D" parent="FireTrail" unique_id=1351884067]
+material_override = ExtResource("28_p5div")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=488570803]
+
+[node name="Help" type="Label" parent="UI" unique_id=1203719724]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 16.0
+offset_bottom = 12.0
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 5

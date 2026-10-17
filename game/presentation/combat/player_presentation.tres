@@ -1,7 +1,7 @@
 [gd_resource type="Resource" format=3 uid="uid://bwggdwu4xej5u"]
 
 [ext_resource type="Script" uid="uid://b5ee2a0jq5se6" path="res://presentation/combat/actor_presentation.gd" id="1"]
-[ext_resource type="PackedScene" path="res://presentation/combat/rigs/red_panda_real_visual.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://presentation/combat/rigs/hero_katana_visual.tscn" id="2"]
 
 [sub_resource type="CapsuleShape3D" id="body"]
 radius = 0.23

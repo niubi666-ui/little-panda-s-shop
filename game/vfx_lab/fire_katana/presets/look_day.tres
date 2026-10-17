@@ -1,0 +1,41 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/light_look.gd" id="1_doeiw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tmax5"]
+sky_top_color = Color(0.32, 0.5, 0.78, 1)
+sky_horizon_color = Color(0.72, 0.78, 0.82, 1)
+ground_bottom_color = Color(0.25, 0.24, 0.2, 1)
+ground_horizon_color = Color(0.55, 0.55, 0.5, 1)
+
+[sub_resource type="Sky" id="Sky_3nqei"]
+sky_material = SubResource("ProceduralSkyMaterial_tmax5")
+
+[sub_resource type="Environment" id="Environment_icvv7"]
+background_mode = 2
+sky = SubResource("Sky_3nqei")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 4
+tonemap_exposure = 1.19
+tonemap_agx_contrast = 1.5
+ssao_enabled = true
+glow_enabled = true
+glow_levels/2 = 0.6
+glow_levels/3 = 1.0
+glow_levels/4 = 0.8
+glow_levels/5 = 0.6
+glow_intensity = 0.45
+glow_bloom = 0.03
+glow_blend_mode = 0
+fog_enabled = true
+fog_light_color = Color(0.7, 0.75, 0.8, 1)
+fog_density = 0.006
+
+[resource]
+script = ExtResource("1_doeiw")
+display_name = "白天"
+environment = SubResource("Environment_icvv7")
+sun_color = Color(1, 0.95, 0.88, 1)
+sun_energy = 2.0
+sun_rotation_deg = Vector3(-50, -30, 0)

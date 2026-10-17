@@ -110,13 +110,21 @@ func refresh_actor(actor, delta: float) -> void:
 		var ability = actor.runner.ability
 		var elapsed: float = actor.runner.elapsed
 		if _has(clip):
+			var shape: Vector4 = clip_set.attack_shapes[clip] if clip_set.attack_shapes.has(clip) else Vector4(1, 1, 1, 0)
 			match actor.runner.phase():
 				"windup":
 					var progress := clampf(elapsed / maxf(ability.windup, 0.001), 0.0, 1.0)
-					time = lerpf(0.0, cuts.x, progress)
+					# 快速拧到蓄力姿势，在顶点憋住
+					time = lerpf(0.0, cuts.x, 1.0 - pow(1.0 - progress, shape.x))
 					glow = progress
-				"active": time = lerpf(cuts.x, cuts.y, clampf((elapsed - ability.windup) / maxf(ability.active, 0.001), 0.0, 1.0))
-				"recovery": time = lerpf(cuts.y, _length(clip), clampf((elapsed - ability.windup - ability.active) / maxf(ability.recovery, 0.001), 0.0, 1.0))
+				"active":
+					# 判定段的头一小段就挥完（甩出去），剩下时间停在挥到底的姿势
+					var strike := clampf((elapsed - ability.windup) / maxf(ability.active * shape.y, 0.001), 0.0, 1.0)
+					time = lerpf(cuts.x, cuts.y, 1.0 - pow(1.0 - strike, shape.z))
+				"recovery":
+					var progress := clampf((elapsed - ability.windup - ability.active) / maxf(ability.recovery, 0.001), 0.0, 1.0)
+					var settle := clampf((progress - shape.w) / maxf(1.0 - shape.w, 0.001), 0.0, 1.0)
+					time = lerpf(cuts.y, _length(clip), smoothstep(0.0, 1.0, settle))
 		blend = clip_set.attack_blend_sec
 	elif actor.charging_skill and _has(clip_set.charge):
 		clip = clip_set.charge

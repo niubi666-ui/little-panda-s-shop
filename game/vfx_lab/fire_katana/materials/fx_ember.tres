@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/fire_katana/shaders/vfx_additive.gdshader" id="1_ic8ua"]
+[ext_resource type="Texture2D" path="res://vfx_lab/fire_katana/generated/textures/soft_dot.png" id="2_wf1kh"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_ic8ua")
+shader_parameter/atlas_h = null
+shader_parameter/atlas_v = null
+shader_parameter/tex = ExtResource("2_wf1kh")
+shader_parameter/tint = Color(1, 0.6, 0.25, 1)
+shader_parameter/emission = 5.0
+shader_parameter/billboard = false

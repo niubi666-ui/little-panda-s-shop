@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/fire_katana/shaders/vfx_additive.gdshader" id="1_hfmrp"]
+[ext_resource type="Texture2D" path="res://vfx_lab/fire_katana/generated/textures/ring.png" id="2_xdgsj"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_hfmrp")
+shader_parameter/atlas_h = null
+shader_parameter/atlas_v = null
+shader_parameter/tex = ExtResource("2_xdgsj")
+shader_parameter/tint = Color(1, 0.5, 0.16, 1)
+shader_parameter/emission = 1.5
+shader_parameter/billboard = true

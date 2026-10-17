@@ -14,3 +14,6 @@ bar_hide_when_full = true
 bar_height = 2.05
 bar_delay_sec = 0.12
 bar_drain_ratio_per_sec = 0.85
+lurch_m = 0.22
+lurch_sec = 0.18
+lurch_peak_fraction = 0.15

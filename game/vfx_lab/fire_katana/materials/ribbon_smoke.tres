@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/fire_katana/shaders/fire_ribbon_mix.gdshader" id="1_1pynd"]
+[ext_resource type="Texture2D" path="res://vfx_lab/fire_katana/materials/noise_fire.tres" id="2_j51a5"]
+
+[resource]
+render_priority = -2
+shader = ExtResource("1_1pynd")
+shader_parameter/life = 0.6
+shader_parameter/fade_in = 0.06
+shader_parameter/rise = 1.0
+shader_parameter/noise_tex = ExtResource("2_j51a5")
+shader_parameter/noise_scale = Vector2(5, 2)
+shader_parameter/noise_drift = 0.8
+shader_parameter/band_center = 0.68
+shader_parameter/band_width = 0.36
+shader_parameter/dissolve_softness = 0.35
+shader_parameter/color_new = Color(0.08, 0.055, 0.045, 1)
+shader_parameter/color_old = Color(0.035, 0.032, 0.03, 1)
+shader_parameter/emission = 1.0
+shader_parameter/opacity = 0.42

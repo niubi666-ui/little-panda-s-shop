@@ -91,6 +91,10 @@ func phase() -> String:
 
 func busy() -> bool: return _running
 
+## 收招已过连段窗口：已按下的下一招可以打断剩下的收招
+func can_chain() -> bool:
+	return _running and elapsed >= ability.windup + ability.active + ability.chain_cancel
+
 
 func can_cancel_for_dodge() -> bool:
 	return not _running or ability.dodge_cancel_phases.has(phase())

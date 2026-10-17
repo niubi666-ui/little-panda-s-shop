@@ -45,6 +45,9 @@ class Ability extends RefCounted:
 		get: return _data.interruptible
 	var buffer_sec: float:
 		get: return _data.buffer_sec
+	## 收招开始多少秒后，已按下的下一招可以打断剩下的收招（等于收招时长即不能打断）
+	var chain_cancel: float:
+		get: return _data.chain_cancel_sec
 	var dodge_cancel_phases: Array:
 		get: return _data.dodge_cancel_phases
 

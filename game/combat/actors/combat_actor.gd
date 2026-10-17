@@ -221,8 +221,9 @@ func step(delta: float) -> void:
 	if not runner.busy():
 		combo_idle += delta
 		if combo_idle > definition.combo_reset: combo_index = 0
-	if not _queued_action.is_empty() and stagger_left <= 0.0 and not runner.busy() and runner.cooldown_for(_queued_action) <= 0.0:
+	if not _queued_action.is_empty() and stagger_left <= 0.0 and (not runner.busy() or runner.can_chain()) and runner.cooldown_for(_queued_action) <= 0.0:
 		var id := _queued_action
+		if runner.busy(): runner.cancel("chain")
 		var definitions := _abilities_for(id)
 		var index := combo_index % definitions.size() if id == "primary" else 0
 		var context: Dictionary = _action_program[id] if _action_program.has(id) else {}

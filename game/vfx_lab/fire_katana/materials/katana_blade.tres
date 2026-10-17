@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/fire_katana/shaders/katana_blade.gdshader" id="1_vpthh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vs5r1"]
+frequency = 0.03
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nypn4"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_vs5r1")
+seamless = true
+bump_strength = 4.0
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vpthh")
+shader_parameter/steel_color = null
+shader_parameter/hamon_color = null
+shader_parameter/steel_roughness = null
+shader_parameter/hamon_roughness = null
+shader_parameter/hamon_base = null
+shader_parameter/detail_noise = SubResource("NoiseTexture2D_nypn4")
+shader_parameter/heat = null
+shader_parameter/heat_dark = null
+shader_parameter/heat_mid = null
+shader_parameter/heat_hot = null
+shader_parameter/heat_emission = null
+shader_parameter/crawl_speed = null

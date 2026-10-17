@@ -249,21 +249,21 @@ def whoosh(rng, seconds, f_start, f_end, q=1.6, attack=0.03, shape=0.7, tone_amo
 
 
 def swing(rng, variant):
-    # 普攻：干脆的风声 + 一点剑刃的“铮”
-    settings = [(0.2, 450, 1900), (0.22, 550, 1700), (0.2, 420, 2100)][variant]
-    track = whoosh(rng, settings[0], settings[1], settings[2], q=1.4, attack=0.025, tone_amount=0.18)
-    return reverb(track, wet=0.08, size=0.8, tail=0.25)
+    # 普攻：刀从耳边划过的“咻”——几乎瞬间起音、从高往低扫（像东西掠过），尾巴很短；每段音高略不同
+    settings = [(0.15, 3200, 650), (0.15, 2800, 560), (0.16, 3600, 720)][variant]
+    track = whoosh(rng, settings[0], settings[1], settings[2], q=1.9, attack=0.006, shape=0.45, tone_amount=0.12)
+    return reverb(track, wet=0.05, size=0.7, tail=0.18)
 
 
 def thrust(rng):
     # 第三段刺击：短促上扬
-    track = whoosh(rng, 0.17, 700, 2600, q=2.2, attack=0.012, shape=0.5, tone_amount=0.25)
+    track = whoosh(rng, 0.15, 900, 3000, q=2.2, attack=0.005, shape=0.4, tone_amount=0.25)
     return reverb(track, wet=0.08, size=0.8, tail=0.25)
 
 
 def heavy_swing(rng):
-    # 重击：更长、更低沉的风声，起手带一点身体的力量感
-    track = whoosh(rng, 0.38, 220, 1100, q=1.1, attack=0.08, shape=0.8)
+    # 重击：低沉、厚重的“呼——”，起音快、从中频压到低频，尾巴稍长，起手带一点身体的力量感
+    track = whoosh(rng, 0.3, 1600, 200, q=1.3, attack=0.012, shape=0.5)
     grunt = apply(svf(noise(0.16, rng), 260, q=2.5), envelope(int(0.16 * RATE), 0.01, 0.08))
     track = mix(track, gain(grunt, 0.4))
     return reverb(track, wet=0.1, size=1.0, tail=0.35)

@@ -1,0 +1,56 @@
+{
+  "group": "05_Combo_Attack_05",
+  "exports": [
+    {
+      "name": "AS_Combo_Attack_05_01_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/02_Attack/05_Combo_Attack_05/AS_Combo_Attack_05_01_Seq",
+      "sequence_length": 2.4166667461395264,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\attack05\\AS_Combo_Attack_05_01_Seq.fbx",
+      "bytes": 4651952,
+      "errors": []
+    },
+    {
+      "name": "AS_Combo_Attack_05_02_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/02_Attack/05_Combo_Attack_05/AS_Combo_Attack_05_02_Seq",
+      "sequence_length": 2.75,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\attack05\\AS_Combo_Attack_05_02_Seq.fbx",
+      "bytes": 4826976,
+      "errors": []
+    },
+    {
+      "name": "AS_Combo_Attack_05_03_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/02_Attack/05_Combo_Attack_05/AS_Combo_Attack_05_03_Seq",
+      "sequence_length": 2.3333332538604736,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\attack05\\AS_Combo_Attack_05_03_Seq.fbx",
+      "bytes": 4606080,
+      "errors": []
+    },
+    {
+      "name": "AS_Combo_Attack_05_04_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/02_Attack/05_Combo_Attack_05/AS_Combo_Attack_05_04_Seq",
+      "sequence_length": 2.8333332538604736,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\attack05\\AS_Combo_Attack_05_04_Seq.fbx",
+      "bytes": 4869104,
+      "errors": []
+    },
+    {
+      "name": "AS_Combo_Attack_05_All_Seq",
+      "asset": "/Game/Nodachi/Animations/Sequence/02_Attack/05_Combo_Attack_05/AS_Combo_Attack_05_All_Seq",
+      "sequence_length": 5.0,
+      "skeleton": "/Game/Nodachi/Demo/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "ok": true,
+      "file": "E:\\ShopGame\\source_assets\\animations\\nodachi\\review_v001\\fbx\\attack05\\AS_Combo_Attack_05_All_Seq.fbx",
+      "bytes": 5094864,
+      "errors": []
+    }
+  ],
+  "errors": []
+}

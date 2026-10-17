@@ -5,19 +5,19 @@
 
 [sub_resource type="Resource" id="light"]
 script = ExtResource("hit")
-hitstop_sec = 0.045
+hitstop_sec = 0.06
 kick_m = 0.14
 jitter_m = 0.03
 
 [sub_resource type="Resource" id="finisher"]
 script = ExtResource("hit")
-hitstop_sec = 0.085
+hitstop_sec = 0.095
 kick_m = 0.32
 jitter_m = 0.06
 
 [sub_resource type="Resource" id="heavy"]
 script = ExtResource("hit")
-hitstop_sec = 0.11
+hitstop_sec = 0.13
 kick_m = 0.32
 jitter_m = 0.06
 

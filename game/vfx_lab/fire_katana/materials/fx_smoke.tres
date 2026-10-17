@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/fire_katana/shaders/vfx_flame.gdshader" id="1_x3t5f"]
+[ext_resource type="Texture2D" path="res://vfx_lab/fire_katana/materials/noise_fire.tres" id="2_h0tpe"]
+[ext_resource type="Texture2D" path="res://vfx_lab/fire_katana/generated/textures/flame_atlas.png" id="3_lvb1m"]
+
+[resource]
+render_priority = -1
+shader = ExtResource("1_x3t5f")
+shader_parameter/atlas_h = 2
+shader_parameter/atlas_v = 2
+shader_parameter/shape_tex = ExtResource("3_lvb1m")
+shader_parameter/noise_tex = ExtResource("2_h0tpe")
+shader_parameter/hot_color = Color(0.13, 0.1, 0.08, 1)
+shader_parameter/cool_color = Color(0.045, 0.04, 0.035, 1)
+shader_parameter/emission = 1.0
+shader_parameter/opacity = 0.6
+shader_parameter/noise_scale = null
+shader_parameter/noise_speed = null
+shader_parameter/dissolve_softness = 0.4
+shader_parameter/dissolve_start = 0.3
+shader_parameter/cooling = null

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/swing_move.gd" id="1_31t7r"]
+
+[resource]
+script = ExtResource("1_31t7r")
+direction_deg = 40.0
+prepare_time = 0.4
+charge_time = 0.24

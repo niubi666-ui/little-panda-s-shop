@@ -35,6 +35,8 @@ extends Resource
 @export var combat_feel: Resource
 ## 生命条、受伤闪红、击杀花瓣、闪避尘土（combat_juice_style.gd）
 @export var combat_juice: Resource
+## 白色月牙刀光、命中尖刺、重击爆团（strike/strike_style.gd）
+@export var strike: Resource
 ## 玩家攻击扇形预警的材质模板（fx/telegraph.gdshader）；每个角色复制一份
 @export var sector_material: ShaderMaterial
 ## 战斗音效（presentation/audio/combat_audio_style.gd）

@@ -1,0 +1,92 @@
+{
+  "animations": [
+    {
+      "head_position_change": 157.228240966797,
+      "head_rotation_change_rad": 2.87661933898926,
+      "loop": false,
+      "name": "roll_forward",
+      "seconds": 1.16666662693024,
+      "tracks": 156
+    },
+    {
+      "head_position_change": 157.927520751953,
+      "head_rotation_change_rad": 2.44587302207947,
+      "loop": false,
+      "name": "roll_forward_right",
+      "seconds": 1.16666662693024,
+      "tracks": 156
+    },
+    {
+      "head_position_change": 151.953063964844,
+      "head_rotation_change_rad": 2.47948408126831,
+      "loop": false,
+      "name": "roll_right",
+      "seconds": 1.16666662693024,
+      "tracks": 158
+    },
+    {
+      "head_position_change": 148.403518676758,
+      "head_rotation_change_rad": 2.03988361358643,
+      "loop": false,
+      "name": "roll_back_right",
+      "seconds": 1.16666662693024,
+      "tracks": 158
+    },
+    {
+      "head_position_change": 149.030578613281,
+      "head_rotation_change_rad": 1.74710977077484,
+      "loop": false,
+      "name": "roll_back",
+      "seconds": 1.16666662693024,
+      "tracks": 158
+    },
+    {
+      "head_position_change": 150.813140869141,
+      "head_rotation_change_rad": 1.91223418712616,
+      "loop": false,
+      "name": "roll_back_left",
+      "seconds": 1.16666662693024,
+      "tracks": 157
+    },
+    {
+      "head_position_change": 150.058166503906,
+      "head_rotation_change_rad": 2.31367230415344,
+      "loop": false,
+      "name": "roll_left",
+      "seconds": 1.16666662693024,
+      "tracks": 157
+    },
+    {
+      "head_position_change": 156.914535522461,
+      "head_rotation_change_rad": 2.94769215583801,
+      "loop": false,
+      "name": "roll_forward_left",
+      "seconds": 1.16666662693024,
+      "tracks": 156
+    }
+  ],
+  "bone_count": 89,
+  "godot_version": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "imported_animation_names": [
+    "roll_back",
+    "roll_back_left",
+    "roll_back_right",
+    "roll_forward",
+    "roll_forward_left",
+    "roll_forward_right",
+    "roll_left",
+    "roll_right"
+  ],
+  "ok": true,
+  "retargeted": false
+}

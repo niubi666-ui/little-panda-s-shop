@@ -15,6 +15,9 @@ attack_fallback = Array[StringName]([&"attack"])
 attack_cuts = {
 &"attack": Vector2(1.15, 1.3333)
 }
+attack_shapes = {
+&"attack": Vector4(1, 1, 1, 0)
+}
 blend_sec = 0.16
 attack_blend_sec = 0.1
 move_min_speed = 0.15

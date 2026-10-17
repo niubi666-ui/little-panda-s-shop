@@ -3,10 +3,10 @@
   "abilities": [
     {
       "id": "slash.1",
-      "windup_sec": 0.08,
+      "windup_sec": 0.2,
       "active_sec": 0.1,
-      "recovery_sec": 0.14,
-      "cooldown_sec": 0.3,
+      "recovery_sec": 0.3667,
+      "cooldown_sec": 0.42,
       "radius_m": 2.5,
       "angle_deg": 160,
       "damage": 16,
@@ -21,6 +21,7 @@
       "hit_shape": "sector",
       "thrust_width_m": 0.0,
       "buffer_sec": 0.35,
+      "chain_cancel_sec": 0.12,
       "dodge_cancel_phases": [
         "windup",
         "active",
@@ -29,10 +30,10 @@
     },
     {
       "id": "slash.2",
-      "windup_sec": 0.08,
+      "windup_sec": 0.1667,
       "active_sec": 0.1,
-      "recovery_sec": 0.15,
-      "cooldown_sec": 0.31,
+      "recovery_sec": 0.3667,
+      "cooldown_sec": 0.39,
       "radius_m": 2.5,
       "angle_deg": 160,
       "damage": 18,
@@ -47,6 +48,7 @@
       "hit_shape": "sector",
       "thrust_width_m": 0.0,
       "buffer_sec": 0.35,
+      "chain_cancel_sec": 0.12,
       "dodge_cancel_phases": [
         "windup",
         "active",
@@ -55,10 +57,10 @@
     },
     {
       "id": "slash.3",
-      "windup_sec": 0.16,
-      "active_sec": 0.12,
-      "recovery_sec": 0.26,
-      "cooldown_sec": 0.52,
+      "windup_sec": 0.3,
+      "active_sec": 0.1,
+      "recovery_sec": 0.5667,
+      "cooldown_sec": 0.7,
       "radius_m": 2.8,
       "angle_deg": 0,
       "damage": 30,
@@ -73,6 +75,7 @@
       "hit_shape": "thrust",
       "thrust_width_m": 1.8,
       "buffer_sec": 0.35,
+      "chain_cancel_sec": 0.3,
       "dodge_cancel_phases": [
         "windup",
         "active",
@@ -99,6 +102,7 @@
       "hit_shape": "sector",
       "thrust_width_m": 0.0,
       "buffer_sec": 0.3,
+      "chain_cancel_sec": 0.43333333333333335,
       "dodge_cancel_phases": []
     },
     {
@@ -121,13 +125,14 @@
       "hit_shape": "sector",
       "thrust_width_m": 0.0,
       "buffer_sec": 0.3,
+      "chain_cancel_sec": 0.9,
       "dodge_cancel_phases": []
     },
     {
       "id": "heavy_slash",
-      "windup_sec": 0.36,
-      "active_sec": 0.14,
-      "recovery_sec": 0.36,
+      "windup_sec": 0.4667,
+      "active_sec": 0.1333,
+      "recovery_sec": 0.4667,
       "cooldown_sec": 1.2,
       "radius_m": 2.8,
       "angle_deg": 115,
@@ -143,6 +148,7 @@
       "hit_shape": "sector",
       "thrust_width_m": 0.0,
       "buffer_sec": 0.45,
+      "chain_cancel_sec": 0.25,
       "dodge_cancel_phases": [
         "windup",
         "recovery"
@@ -168,6 +174,7 @@
       "hit_shape": "sector",
       "thrust_width_m": 0.0,
       "buffer_sec": 0.4,
+      "chain_cancel_sec": 0.22,
       "dodge_cancel_phases": [
         "windup",
         "recovery"

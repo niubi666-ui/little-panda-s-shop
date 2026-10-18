@@ -31,7 +31,7 @@ func step(delta: float, target, radius: float, query_origin: Callable, sweep: Ca
 			# No damage beyond a world-truncated endpoint or through lateral cover.
 			var along: float=(center-start).dot(area.direction)
 			if area.length>0.0 and along>=0.0 and along<=area.length and center.distance_to(closest)<=area.config.half_width_m+radius and sweep.call(closest,center,0.0)>=1.0:
-				applied=impact.call(area.source,target,area.config.damage,Vector3.ZERO,0.0,0.0)
+				applied=impact.call(area.source,target,area.config.damage_request,Vector3.ZERO,0.0,0.0)
 			pulsed.emit(area,applied,target.global_position)
 			if not target.health.alive():return
 		if area.age>=area.config.duration_sec:remove(area.id)

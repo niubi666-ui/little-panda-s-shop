@@ -1,0 +1,4269 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "content_version",
+    "stat_keys",
+    "stat_bounds",
+    "stat_modifier_rule",
+    "actors",
+    "damage_rules",
+    "growth_policies",
+    "modifier_policies",
+    "linear_profiles",
+    "bindings",
+    "derived_profiles",
+    "effect_profiles",
+    "upgrade_policy_definitions",
+    "upgrade_policies",
+    "timing_rules",
+    "encounter_rules",
+    "damageable_prop_profile",
+    "ui_requirements",
+    "enemy_telegraph_minimum_sec",
+    "raw_hit_adapter"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "content_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stat_keys": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "enum": [
+          "max_health",
+          "attack_power",
+          "spell_power",
+          "armor",
+          "magic_resistance",
+          "move_speed_mps",
+          "attack_speed_multiplier",
+          "cooldown_haste",
+          "crit_chance",
+          "crit_damage_multiplier"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "stat_bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_health",
+        "attack_power",
+        "spell_power",
+        "armor",
+        "magic_resistance",
+        "move_speed_mps",
+        "attack_speed_multiplier",
+        "cooldown_haste",
+        "crit_chance",
+        "crit_damage_multiplier"
+      ],
+      "properties": {
+        "max_health": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "max": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "attack_power": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "max": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "spell_power": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "max": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "armor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "max": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "magic_resistance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "max": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "move_speed_mps": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "max": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "attack_speed_multiplier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "max": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "cooldown_haste": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "max": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "crit_chance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "max": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "crit_damage_multiplier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "max": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        }
+      }
+    },
+    "stat_modifier_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "composition",
+        "percentage_point_stats",
+        "maximum_health_change",
+        "duplicate_modifier_key"
+      ],
+      "properties": {
+        "composition": {
+          "const": "base_plus_flat_then_additive_percent_then_independent_multipliers_then_clamp"
+        },
+        "percentage_point_stats": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "enum": [
+              "crit_chance",
+              "cooldown_haste"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "maximum_health_change": {
+          "const": "preserve_current_absolute_then_clamp"
+        },
+        "duplicate_modifier_key": {
+          "const": "replace_same_source_stat_operation"
+        }
+      }
+    },
+    "actors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "player",
+        "scout",
+        "brute",
+        "crossbow",
+        "charger",
+        "banner",
+        "elite_ranger"
+      ],
+      "properties": {
+        "player": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_health",
+            "attack_power",
+            "spell_power",
+            "armor",
+            "magic_resistance",
+            "move_speed_mps",
+            "attack_speed_multiplier",
+            "cooldown_haste",
+            "crit_chance",
+            "crit_damage_multiplier"
+          ],
+          "properties": {
+            "max_health": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "armor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "magic_resistance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "move_speed_mps": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_speed_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "cooldown_haste": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_chance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_damage_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "scout": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_health",
+            "attack_power",
+            "spell_power",
+            "armor",
+            "magic_resistance",
+            "move_speed_mps",
+            "attack_speed_multiplier",
+            "cooldown_haste",
+            "crit_chance",
+            "crit_damage_multiplier"
+          ],
+          "properties": {
+            "max_health": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "armor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "magic_resistance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "move_speed_mps": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_speed_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "cooldown_haste": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_chance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_damage_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "brute": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_health",
+            "attack_power",
+            "spell_power",
+            "armor",
+            "magic_resistance",
+            "move_speed_mps",
+            "attack_speed_multiplier",
+            "cooldown_haste",
+            "crit_chance",
+            "crit_damage_multiplier"
+          ],
+          "properties": {
+            "max_health": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "armor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "magic_resistance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "move_speed_mps": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_speed_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "cooldown_haste": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_chance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_damage_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "crossbow": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_health",
+            "attack_power",
+            "spell_power",
+            "armor",
+            "magic_resistance",
+            "move_speed_mps",
+            "attack_speed_multiplier",
+            "cooldown_haste",
+            "crit_chance",
+            "crit_damage_multiplier"
+          ],
+          "properties": {
+            "max_health": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "armor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "magic_resistance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "move_speed_mps": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_speed_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "cooldown_haste": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_chance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_damage_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "charger": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_health",
+            "attack_power",
+            "spell_power",
+            "armor",
+            "magic_resistance",
+            "move_speed_mps",
+            "attack_speed_multiplier",
+            "cooldown_haste",
+            "crit_chance",
+            "crit_damage_multiplier"
+          ],
+          "properties": {
+            "max_health": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "armor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "magic_resistance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "move_speed_mps": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_speed_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "cooldown_haste": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_chance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_damage_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "banner": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_health",
+            "attack_power",
+            "spell_power",
+            "armor",
+            "magic_resistance",
+            "move_speed_mps",
+            "attack_speed_multiplier",
+            "cooldown_haste",
+            "crit_chance",
+            "crit_damage_multiplier"
+          ],
+          "properties": {
+            "max_health": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "armor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "magic_resistance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "move_speed_mps": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_speed_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "cooldown_haste": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_chance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_damage_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "elite_ranger": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_health",
+            "attack_power",
+            "spell_power",
+            "armor",
+            "magic_resistance",
+            "move_speed_mps",
+            "attack_speed_multiplier",
+            "cooldown_haste",
+            "crit_chance",
+            "crit_damage_multiplier"
+          ],
+          "properties": {
+            "max_health": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "armor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "magic_resistance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "move_speed_mps": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_speed_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "cooldown_haste": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_chance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_damage_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        }
+      }
+    },
+    "damage_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resistance_constant",
+        "resistance_formula",
+        "negative_resistance_policy",
+        "physical",
+        "magical",
+        "true",
+        "critical_roll_scope",
+        "critical_rng_stream",
+        "precision",
+        "mixed_hit_commit",
+        "shielded_valid_hit_counts_for_on_hit",
+        "damage_modifier_stages",
+        "target_vulnerability_composition",
+        "poise_basis",
+        "control_uses_magic_resistance"
+      ],
+      "properties": {
+        "resistance_constant": {
+          "type": "number",
+          "minimum": 1e-06,
+          "maximum": 1000000000
+        },
+        "resistance_formula": {
+          "const": "k_over_k_plus_nonnegative_resistance"
+        },
+        "negative_resistance_policy": {
+          "const": "clamp_to_zero"
+        },
+        "physical": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "resistance_stat",
+            "generic_modifiers",
+            "shield_absorption",
+            "blocked_by_invulnerability"
+          ],
+          "properties": {
+            "resistance_stat": {
+              "const": "armor"
+            },
+            "generic_modifiers": {
+              "const": true
+            },
+            "shield_absorption": {
+              "const": true
+            },
+            "blocked_by_invulnerability": {
+              "const": true
+            }
+          }
+        },
+        "magical": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "resistance_stat",
+            "generic_modifiers",
+            "shield_absorption",
+            "blocked_by_invulnerability"
+          ],
+          "properties": {
+            "resistance_stat": {
+              "const": "magic_resistance"
+            },
+            "generic_modifiers": {
+              "const": true
+            },
+            "shield_absorption": {
+              "const": true
+            },
+            "blocked_by_invulnerability": {
+              "const": true
+            }
+          }
+        },
+        "true": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "resistance_stat",
+            "generic_modifiers",
+            "shield_absorption",
+            "blocked_by_invulnerability",
+            "crit_policy"
+          ],
+          "properties": {
+            "resistance_stat": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "generic_modifiers": {
+              "const": false
+            },
+            "shield_absorption": {
+              "const": true
+            },
+            "blocked_by_invulnerability": {
+              "const": true
+            },
+            "crit_policy": {
+              "const": "never"
+            }
+          }
+        },
+        "critical_roll_scope": {
+          "const": "one_per_committed_action_root"
+        },
+        "critical_rng_stream": {
+          "const": "combat_crit"
+        },
+        "precision": {
+          "const": "float_until_ui"
+        },
+        "mixed_hit_commit": {
+          "const": "resolve_components_then_one_shield_health_and_hit_commit"
+        },
+        "shielded_valid_hit_counts_for_on_hit": {
+          "const": true
+        },
+        "damage_modifier_stages": {
+          "type": "array",
+          "minItems": 9,
+          "maxItems": 9,
+          "items": {
+            "enum": [
+              "formula",
+              "source_bonus",
+              "conditional_direct_bonus",
+              "critical",
+              "target_vulnerability",
+              "target_reduction",
+              "resistance",
+              "shield",
+              "health"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "target_vulnerability_composition": {
+          "const": "element_and_reaction_additive_then_existing_break_multiplier_once"
+        },
+        "poise_basis": {
+          "const": "eligible_noncritical_damage_before_resistance_and_shield"
+        },
+        "control_uses_magic_resistance": {
+          "const": false
+        }
+      }
+    },
+    "growth_policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "elemental_growth",
+        "weapon_action",
+        "enemy"
+      ],
+      "properties": {
+        "elemental_growth": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "formula",
+            "bonus_attack_reference",
+            "positive_bonus_attack_power_ratio",
+            "spell_power_ratio"
+          ],
+          "properties": {
+            "formula": {
+              "const": "base_amount_times_one_plus_positive_bonus_attack_ratio_plus_spell_power_ratio"
+            },
+            "bonus_attack_reference": {
+              "const": "actor_definition_attack_power"
+            },
+            "positive_bonus_attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          }
+        },
+        "weapon_action": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "formula",
+            "read_policy"
+          ],
+          "properties": {
+            "formula": {
+              "const": "base_plus_total_attack_power_ratio_plus_total_spell_power_ratio"
+            },
+            "read_policy": {
+              "const": "action_commit_snapshot"
+            }
+          }
+        },
+        "enemy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "formula",
+            "read_policy"
+          ],
+          "properties": {
+            "formula": {
+              "const": "base_plus_total_attack_power_ratio_plus_total_spell_power_ratio"
+            },
+            "read_policy": {
+              "const": "action_commit_snapshot"
+            }
+          }
+        }
+      }
+    },
+    "modifier_policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "weapon_action",
+        "enemy",
+        "element_effect"
+      ],
+      "properties": {
+        "weapon_action": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_bonus_fields",
+            "source_bonus_composition",
+            "use_existing_conditional_filters",
+            "apply_spawn_damage_multiplier"
+          ],
+          "properties": {
+            "source_bonus_fields": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {
+                "enum": [
+                  "global_weapon_damage_bonus",
+                  "action_weapon_damage_bonus",
+                  "element_core_rank_damage_bonus"
+                ]
+              },
+              "uniqueItems": true
+            },
+            "source_bonus_composition": {
+              "const": "additive_then_existing_build_limits"
+            },
+            "use_existing_conditional_filters": {
+              "const": true
+            },
+            "apply_spawn_damage_multiplier": {
+              "const": true
+            }
+          }
+        },
+        "enemy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_bonus_fields",
+            "use_existing_conditional_filters",
+            "apply_spawn_damage_multiplier"
+          ],
+          "properties": {
+            "source_bonus_fields": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 0,
+              "items": {
+                "enum": []
+              },
+              "uniqueItems": true
+            },
+            "use_existing_conditional_filters": {
+              "const": false
+            },
+            "apply_spawn_damage_multiplier": {
+              "const": true
+            }
+          }
+        },
+        "element_effect": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_bonus_fields",
+            "use_existing_conditional_filters",
+            "apply_spawn_damage_multiplier",
+            "apply_weapon_action_damage_bonus",
+            "amount_modifiers_applied_once_in_recipe"
+          ],
+          "properties": {
+            "source_bonus_fields": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 0,
+              "items": {
+                "enum": []
+              },
+              "uniqueItems": true
+            },
+            "use_existing_conditional_filters": {
+              "const": false
+            },
+            "apply_spawn_damage_multiplier": {
+              "const": true
+            },
+            "apply_weapon_action_damage_bonus": {
+              "const": false
+            },
+            "amount_modifiers_applied_once_in_recipe": {
+              "const": true
+            }
+          }
+        }
+      }
+    },
+    "linear_profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ability.slash.1",
+        "ability.slash.2",
+        "ability.slash.3",
+        "ability.heavy_slash",
+        "ability.wave_cast",
+        "ability.roll_slash",
+        "ability.enemy.swipe",
+        "ability.enemy.slam",
+        "enemy.crossbow.shot",
+        "enemy.charger.charge",
+        "enemy.elite_ranger.fast",
+        "enemy.elite_ranger.volley",
+        "enemy.elite_ranger.rain",
+        "enemy.elite_ranger.charged",
+        "enemy.elite_ranger.charged_rift",
+        "debug.test_arrow"
+      ],
+      "properties": {
+        "ability.slash.1": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "root_roll"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            }
+          }
+        },
+        "ability.slash.2": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "root_roll"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            }
+          }
+        },
+        "ability.slash.3": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "root_roll"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            }
+          }
+        },
+        "ability.heavy_slash": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "root_roll"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            }
+          }
+        },
+        "ability.wave_cast": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "root_roll"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            }
+          }
+        },
+        "ability.roll_slash": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "root_roll"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            }
+          }
+        },
+        "ability.enemy.swipe": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "enemy"
+            }
+          }
+        },
+        "ability.enemy.slam": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "enemy"
+            }
+          }
+        },
+        "enemy.crossbow.shot": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "enemy"
+            }
+          }
+        },
+        "enemy.charger.charge": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "enemy"
+            }
+          }
+        },
+        "enemy.elite_ranger.fast": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "enemy"
+            }
+          }
+        },
+        "enemy.elite_ranger.volley": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "enemy"
+            }
+          }
+        },
+        "enemy.elite_ranger.rain": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "enemy"
+            }
+          }
+        },
+        "enemy.elite_ranger.charged": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "enemy"
+            }
+          }
+        },
+        "enemy.elite_ranger.charged_rift": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "enemy"
+            }
+          }
+        },
+        "debug.test_arrow": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "base",
+            "attack_power_ratio",
+            "spell_power_ratio",
+            "crit_policy",
+            "modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "base": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "attack_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "spell_power_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "crit_policy": {
+              "const": "root_roll"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            }
+          }
+        }
+      }
+    },
+    "bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "combat_ability",
+        "enemy_role_damage",
+        "test_attack",
+        "element_mastery"
+      ],
+      "properties": {
+        "combat_ability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "slash.1",
+            "slash.2",
+            "slash.3",
+            "heavy_slash",
+            "wave_cast",
+            "roll_slash",
+            "enemy.swipe",
+            "enemy.slam"
+          ],
+          "properties": {
+            "slash.1": {
+              "const": "ability.slash.1"
+            },
+            "slash.2": {
+              "const": "ability.slash.2"
+            },
+            "slash.3": {
+              "const": "ability.slash.3"
+            },
+            "heavy_slash": {
+              "const": "ability.heavy_slash"
+            },
+            "wave_cast": {
+              "const": "ability.wave_cast"
+            },
+            "roll_slash": {
+              "const": "ability.roll_slash"
+            },
+            "enemy.swipe": {
+              "const": "ability.enemy.swipe"
+            },
+            "enemy.slam": {
+              "const": "ability.enemy.slam"
+            }
+          }
+        },
+        "enemy_role_damage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "crossbow",
+            "charger",
+            "elite_ranger"
+          ],
+          "properties": {
+            "crossbow": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "damage"
+              ],
+              "properties": {
+                "damage": {
+                  "const": "enemy.crossbow.shot"
+                }
+              }
+            },
+            "charger": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "damage"
+              ],
+              "properties": {
+                "damage": {
+                  "const": "enemy.charger.charge"
+                }
+              }
+            },
+            "elite_ranger": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "fast_damage",
+                "volley_damage",
+                "rain_damage",
+                "charged_damage",
+                "charged_rift_damage"
+              ],
+              "properties": {
+                "fast_damage": {
+                  "const": "enemy.elite_ranger.fast"
+                },
+                "volley_damage": {
+                  "const": "enemy.elite_ranger.volley"
+                },
+                "rain_damage": {
+                  "const": "enemy.elite_ranger.rain"
+                },
+                "charged_damage": {
+                  "const": "enemy.elite_ranger.charged"
+                },
+                "charged_rift_damage": {
+                  "const": "enemy.elite_ranger.charged_rift"
+                }
+              }
+            }
+          }
+        },
+        "test_attack": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "test_arrow"
+          ],
+          "properties": {
+            "test_arrow": {
+              "const": "debug.test_arrow"
+            }
+          }
+        },
+        "element_mastery": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fire_mastery_burst",
+            "ice_mastery_burst",
+            "thunder_mastery_burst",
+            "earth_mastery_burst"
+          ],
+          "properties": {
+            "fire_mastery_burst": {
+              "const": "mastery.fire"
+            },
+            "ice_mastery_burst": {
+              "const": "mastery.ice"
+            },
+            "thunder_mastery_burst": {
+              "const": "mastery.thunder"
+            },
+            "earth_mastery_burst": {
+              "const": "mastery.earth"
+            }
+          }
+        }
+      }
+    },
+    "derived_profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wave",
+        "split",
+        "chain",
+        "impact_blast"
+      ],
+      "properties": {
+        "wave": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "basis",
+            "ratio_source",
+            "crit_policy",
+            "modifier_policy",
+            "origin",
+            "conditional_bonus_policy",
+            "element_attachment_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "inherit_parent"
+              ]
+            },
+            "basis": {
+              "const": "parent_weapon_formula_before_modifiers_crit_and_mitigation"
+            },
+            "ratio_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "field"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "upgrade_rank"
+                },
+                "id": {
+                  "const": "wave"
+                },
+                "field": {
+                  "const": "damage_ratio"
+                }
+              }
+            },
+            "crit_policy": {
+              "const": "inherit_root"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            },
+            "origin": {
+              "const": "direct_projectile"
+            },
+            "conditional_bonus_policy": {
+              "const": "reevaluate_only_when_existing_origin_rules_allow"
+            },
+            "element_attachment_policy": {
+              "const": "preserve_existing_origin_permissions"
+            }
+          }
+        },
+        "split": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "basis",
+            "ratio_source",
+            "crit_policy",
+            "modifier_policy",
+            "origin",
+            "conditional_bonus_policy",
+            "element_attachment_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "inherit_parent"
+              ]
+            },
+            "basis": {
+              "const": "parent_weapon_formula_before_modifiers_crit_and_mitigation"
+            },
+            "ratio_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "field"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "upgrade_rank"
+                },
+                "id": {
+                  "const": "split"
+                },
+                "field": {
+                  "const": "damage_ratio"
+                }
+              }
+            },
+            "crit_policy": {
+              "const": "inherit_root"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            },
+            "origin": {
+              "const": "split_projectile"
+            },
+            "conditional_bonus_policy": {
+              "const": "reevaluate_only_when_existing_origin_rules_allow"
+            },
+            "element_attachment_policy": {
+              "const": "preserve_existing_origin_permissions"
+            }
+          }
+        },
+        "chain": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "basis",
+            "ratio_source",
+            "crit_policy",
+            "modifier_policy",
+            "origin",
+            "conditional_bonus_policy",
+            "element_attachment_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "basis": {
+              "const": "parent_weapon_formula_before_modifiers_crit_and_mitigation"
+            },
+            "ratio_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "field"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "upgrade_rank"
+                },
+                "id": {
+                  "const": "chain"
+                },
+                "field": {
+                  "const": "damage_ratio"
+                }
+              }
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            },
+            "origin": {
+              "const": "chain"
+            },
+            "conditional_bonus_policy": {
+              "const": "reevaluate_only_when_existing_origin_rules_allow"
+            },
+            "element_attachment_policy": {
+              "const": "none_except_explicit_payload"
+            }
+          }
+        },
+        "impact_blast": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "basis",
+            "ratio_source",
+            "crit_policy",
+            "modifier_policy",
+            "origin",
+            "conditional_bonus_policy",
+            "element_attachment_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "basis": {
+              "const": "parent_weapon_formula_before_modifiers_crit_and_mitigation"
+            },
+            "ratio_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "field"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "upgrade_rank"
+                },
+                "id": {
+                  "const": "impact_blast"
+                },
+                "field": {
+                  "const": "damage_ratio"
+                }
+              }
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "weapon_action"
+            },
+            "origin": {
+              "const": "explosion"
+            },
+            "conditional_bonus_policy": {
+              "const": "reevaluate_only_when_existing_origin_rules_allow"
+            },
+            "element_attachment_policy": {
+              "const": "none_except_explicit_payload"
+            }
+          }
+        }
+      }
+    },
+    "effect_profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element.fire.tick",
+        "element.thunder.discharge",
+        "reaction.steam.direct",
+        "reaction.overload.direct",
+        "reaction.overload.area",
+        "reaction.lava.direct",
+        "reaction.lava.tick",
+        "reaction.superconduct.direct",
+        "reaction.superconduct.area",
+        "reaction.shatter.direct",
+        "reaction.shatter.area",
+        "reaction.magnet.direct",
+        "reaction.magnet.area",
+        "mastery.fire",
+        "mastery.ice",
+        "mastery.thunder",
+        "mastery.earth"
+      ],
+      "properties": {
+        "element.fire.tick": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "multiply_by"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "elements"
+                },
+                "id": {
+                  "const": "fire"
+                },
+                "base_field": {
+                  "const": "damage_per_tick_per_stack"
+                },
+                "multiply_by": {
+                  "const": "current_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_element_field_additions"
+            }
+          }
+        },
+        "element.thunder.discharge": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "multiply_by"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "elements"
+                },
+                "id": {
+                  "const": "thunder"
+                },
+                "base_field": {
+                  "const": "discharge_damage"
+                },
+                "multiply_by": {
+                  "const": "one"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_element_field_additions"
+            }
+          }
+        },
+        "reaction.steam.direct": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "per_stack_field",
+                "stack_input"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "steam"
+                },
+                "base_field": {
+                  "const": "damage"
+                },
+                "per_stack_field": {
+                  "const": "damage_per_stack"
+                },
+                "stack_input": {
+                  "const": "consumed_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "reaction.overload.direct": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "per_stack_field",
+                "stack_input"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "overload"
+                },
+                "base_field": {
+                  "const": "damage"
+                },
+                "per_stack_field": {
+                  "const": "damage_per_stack"
+                },
+                "stack_input": {
+                  "const": "consumed_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "reaction.overload.area": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "multiply_by"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "overload"
+                },
+                "base_field": {
+                  "const": "area_damage"
+                },
+                "multiply_by": {
+                  "const": "one"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "reaction.lava.direct": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "per_stack_field",
+                "stack_input"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "lava"
+                },
+                "base_field": {
+                  "const": "damage"
+                },
+                "per_stack_field": {
+                  "const": "damage_per_stack"
+                },
+                "stack_input": {
+                  "const": "consumed_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "reaction.lava.tick": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "multiply_by"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "lava"
+                },
+                "base_field": {
+                  "const": "zone_damage_per_tick"
+                },
+                "multiply_by": {
+                  "const": "one"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "reaction.superconduct.direct": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "per_stack_field",
+                "stack_input"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "superconduct"
+                },
+                "base_field": {
+                  "const": "damage"
+                },
+                "per_stack_field": {
+                  "const": "damage_per_stack"
+                },
+                "stack_input": {
+                  "const": "consumed_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "reaction.superconduct.area": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "multiply_by"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "superconduct"
+                },
+                "base_field": {
+                  "const": "area_damage"
+                },
+                "multiply_by": {
+                  "const": "one"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "reaction.shatter.direct": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "per_stack_field",
+                "stack_input"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "shatter"
+                },
+                "base_field": {
+                  "const": "damage"
+                },
+                "per_stack_field": {
+                  "const": "damage_per_stack"
+                },
+                "stack_input": {
+                  "const": "consumed_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "reaction.shatter.area": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "multiply_by"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "shatter"
+                },
+                "base_field": {
+                  "const": "area_damage"
+                },
+                "multiply_by": {
+                  "const": "one"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "reaction.magnet.direct": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "per_stack_field",
+                "stack_input"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "magnet"
+                },
+                "base_field": {
+                  "const": "damage"
+                },
+                "per_stack_field": {
+                  "const": "damage_per_stack"
+                },
+                "stack_input": {
+                  "const": "consumed_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "reaction.magnet.area": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "multiply_by"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "reactions"
+                },
+                "id": {
+                  "const": "magnet"
+                },
+                "base_field": {
+                  "const": "area_damage"
+                },
+                "multiply_by": {
+                  "const": "one"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_reaction_damage_bonus_once"
+            }
+          }
+        },
+        "mastery.fire": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "per_stack_field",
+                "stack_input"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "upgrade_rank"
+                },
+                "id": {
+                  "const": "fire_mastery_burst"
+                },
+                "base_field": {
+                  "const": "damage"
+                },
+                "per_stack_field": {
+                  "const": "damage_per_stack"
+                },
+                "stack_input": {
+                  "const": "trigger_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_selected_mastery_rank"
+            }
+          }
+        },
+        "mastery.ice": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "per_stack_field",
+                "stack_input"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "upgrade_rank"
+                },
+                "id": {
+                  "const": "ice_mastery_burst"
+                },
+                "base_field": {
+                  "const": "damage"
+                },
+                "per_stack_field": {
+                  "const": "damage_per_stack"
+                },
+                "stack_input": {
+                  "const": "trigger_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_selected_mastery_rank"
+            }
+          }
+        },
+        "mastery.thunder": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "per_stack_field",
+                "stack_input"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "upgrade_rank"
+                },
+                "id": {
+                  "const": "thunder_mastery_burst"
+                },
+                "base_field": {
+                  "const": "damage"
+                },
+                "per_stack_field": {
+                  "const": "damage_per_stack"
+                },
+                "stack_input": {
+                  "const": "trigger_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_selected_mastery_rank"
+            }
+          }
+        },
+        "mastery.earth": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "damage_type",
+            "amount_source",
+            "growth_policy",
+            "crit_policy",
+            "modifier_policy",
+            "read_policy",
+            "allows_element_retrigger",
+            "amount_modifier_policy"
+          ],
+          "properties": {
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical",
+                "true"
+              ]
+            },
+            "amount_source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "catalog",
+                "id",
+                "base_field",
+                "per_stack_field",
+                "stack_input"
+              ],
+              "properties": {
+                "catalog": {
+                  "const": "upgrade_rank"
+                },
+                "id": {
+                  "const": "earth_mastery_burst"
+                },
+                "base_field": {
+                  "const": "damage"
+                },
+                "per_stack_field": {
+                  "const": "damage_per_stack"
+                },
+                "stack_input": {
+                  "const": "trigger_stacks"
+                }
+              }
+            },
+            "growth_policy": {
+              "const": "elemental_growth"
+            },
+            "crit_policy": {
+              "const": "never"
+            },
+            "modifier_policy": {
+              "const": "element_effect"
+            },
+            "read_policy": {
+              "const": "live_global"
+            },
+            "allows_element_retrigger": {
+              "const": false
+            },
+            "amount_modifier_policy": {
+              "const": "live_selected_mastery_rank"
+            }
+          }
+        }
+      }
+    },
+    "upgrade_policy_definitions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "weapon_damage_modifier",
+        "movement_modifier",
+        "conditional_direct_modifier",
+        "consume_window_direct_modifier",
+        "charge_modifier",
+        "carrier_modifier",
+        "element_attachment",
+        "status_only",
+        "shield_only",
+        "parameter_only",
+        "element_parameter_modifier",
+        "reaction_parameter_modifier",
+        "derived_damage",
+        "element_mastery_damage"
+      ],
+      "properties": {
+        "weapon_damage_modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "target",
+            "creates_damage"
+          ],
+          "properties": {
+            "kind": {
+              "const": "modifier"
+            },
+            "target": {
+              "const": "weapon_action_damage_bonus"
+            },
+            "creates_damage": {
+              "const": false
+            }
+          }
+        },
+        "movement_modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "target",
+            "creates_damage"
+          ],
+          "properties": {
+            "kind": {
+              "const": "modifier"
+            },
+            "target": {
+              "const": "move_speed_multiplier_bonus"
+            },
+            "creates_damage": {
+              "const": false
+            }
+          }
+        },
+        "conditional_direct_modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "target",
+            "creates_damage",
+            "preserve_source_and_origin_filters"
+          ],
+          "properties": {
+            "kind": {
+              "const": "modifier"
+            },
+            "target": {
+              "const": "eligible_direct_hit_bonus"
+            },
+            "creates_damage": {
+              "const": false
+            },
+            "preserve_source_and_origin_filters": {
+              "const": true
+            }
+          }
+        },
+        "consume_window_direct_modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "target",
+            "creates_damage",
+            "preserve_consumption_priority"
+          ],
+          "properties": {
+            "kind": {
+              "const": "modifier"
+            },
+            "target": {
+              "const": "eligible_direct_hit_bonus"
+            },
+            "creates_damage": {
+              "const": false
+            },
+            "preserve_consumption_priority": {
+              "const": true
+            }
+          }
+        },
+        "charge_modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "target",
+            "creates_damage",
+            "retain_existing_charge_and_cooldown_ratios"
+          ],
+          "properties": {
+            "kind": {
+              "const": "modifier"
+            },
+            "target": {
+              "const": "weapon_formula_basis"
+            },
+            "creates_damage": {
+              "const": false
+            },
+            "retain_existing_charge_and_cooldown_ratios": {
+              "const": true
+            }
+          }
+        },
+        "carrier_modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "creates_damage",
+            "damage_type",
+            "crit_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "carrier"
+            },
+            "creates_damage": {
+              "const": false
+            },
+            "damage_type": {
+              "enum": [
+                "inherit_parent"
+              ]
+            },
+            "crit_policy": {
+              "const": "inherit_root_no_reroll"
+            }
+          }
+        },
+        "element_attachment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "creates_direct_damage",
+            "converts_weapon_damage",
+            "rank_damage_bonus_target"
+          ],
+          "properties": {
+            "kind": {
+              "const": "attachment"
+            },
+            "creates_direct_damage": {
+              "const": false
+            },
+            "converts_weapon_damage": {
+              "const": false
+            },
+            "rank_damage_bonus_target": {
+              "const": "weapon_action_damage_bonus"
+            }
+          }
+        },
+        "status_only": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "creates_damage"
+          ],
+          "properties": {
+            "kind": {
+              "const": "status"
+            },
+            "creates_damage": {
+              "const": false
+            }
+          }
+        },
+        "shield_only": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "creates_damage",
+            "scales_with_spell_power"
+          ],
+          "properties": {
+            "kind": {
+              "const": "shield"
+            },
+            "creates_damage": {
+              "const": false
+            },
+            "scales_with_spell_power": {
+              "const": false
+            }
+          }
+        },
+        "parameter_only": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "creates_damage"
+          ],
+          "properties": {
+            "kind": {
+              "const": "parameter"
+            },
+            "creates_damage": {
+              "const": false
+            }
+          }
+        },
+        "element_parameter_modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "creates_damage",
+            "read_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "element_modifier"
+            },
+            "creates_damage": {
+              "const": false
+            },
+            "read_policy": {
+              "const": "live_global"
+            }
+          }
+        },
+        "reaction_parameter_modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "creates_damage",
+            "read_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "reaction_modifier"
+            },
+            "creates_damage": {
+              "const": false
+            },
+            "read_policy": {
+              "const": "live_global"
+            }
+          }
+        },
+        "derived_damage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "profile_from"
+          ],
+          "properties": {
+            "kind": {
+              "const": "derived_damage"
+            },
+            "profile_from": {
+              "const": "derived_profiles"
+            }
+          }
+        },
+        "element_mastery_damage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "profile_from",
+            "read_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "element_mastery_damage"
+            },
+            "profile_from": {
+              "const": "effect_profiles"
+            },
+            "read_policy": {
+              "const": "live_global"
+            }
+          }
+        }
+      }
+    },
+    "upgrade_policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "power",
+        "action_power",
+        "agility",
+        "shatter_followup",
+        "opening_strike",
+        "shatter_heavy",
+        "charged_wave",
+        "pierce",
+        "returning_wave",
+        "fire_core",
+        "ice_core",
+        "thunder_core",
+        "earth_core",
+        "contact_slow",
+        "contact_freeze",
+        "frost_blast",
+        "frost_path",
+        "ice_coat",
+        "freeze_duration",
+        "primary_reach",
+        "special_reach",
+        "fire_kindling",
+        "fire_blaze",
+        "fire_linger",
+        "ice_deep",
+        "ice_lasting",
+        "ice_brittle",
+        "thunder_chain",
+        "thunder_surge",
+        "thunder_reach",
+        "earth_crush",
+        "earth_quake",
+        "earth_layers",
+        "fire_mastery_heat",
+        "ice_mastery_cold",
+        "thunder_mastery_storm",
+        "earth_mastery_weight",
+        "dual_steam",
+        "dual_overload",
+        "dual_lava",
+        "dual_superconduct",
+        "dual_shatter",
+        "dual_magnet",
+        "wave",
+        "chain",
+        "split",
+        "impact_blast",
+        "fire_mastery_burst",
+        "ice_mastery_burst",
+        "thunder_mastery_burst",
+        "earth_mastery_burst"
+      ],
+      "properties": {
+        "power": {
+          "const": "weapon_damage_modifier"
+        },
+        "action_power": {
+          "const": "weapon_damage_modifier"
+        },
+        "agility": {
+          "const": "movement_modifier"
+        },
+        "shatter_followup": {
+          "const": "conditional_direct_modifier"
+        },
+        "opening_strike": {
+          "const": "conditional_direct_modifier"
+        },
+        "shatter_heavy": {
+          "const": "consume_window_direct_modifier"
+        },
+        "charged_wave": {
+          "const": "charge_modifier"
+        },
+        "pierce": {
+          "const": "carrier_modifier"
+        },
+        "returning_wave": {
+          "const": "carrier_modifier"
+        },
+        "fire_core": {
+          "const": "element_attachment"
+        },
+        "ice_core": {
+          "const": "element_attachment"
+        },
+        "thunder_core": {
+          "const": "element_attachment"
+        },
+        "earth_core": {
+          "const": "element_attachment"
+        },
+        "contact_slow": {
+          "const": "status_only"
+        },
+        "contact_freeze": {
+          "const": "status_only"
+        },
+        "frost_blast": {
+          "const": "status_only"
+        },
+        "frost_path": {
+          "const": "status_only"
+        },
+        "ice_coat": {
+          "const": "shield_only"
+        },
+        "freeze_duration": {
+          "const": "parameter_only"
+        },
+        "primary_reach": {
+          "const": "parameter_only"
+        },
+        "special_reach": {
+          "const": "parameter_only"
+        },
+        "fire_kindling": {
+          "const": "element_parameter_modifier"
+        },
+        "fire_blaze": {
+          "const": "element_parameter_modifier"
+        },
+        "fire_linger": {
+          "const": "element_parameter_modifier"
+        },
+        "ice_deep": {
+          "const": "element_parameter_modifier"
+        },
+        "ice_lasting": {
+          "const": "element_parameter_modifier"
+        },
+        "ice_brittle": {
+          "const": "element_parameter_modifier"
+        },
+        "thunder_chain": {
+          "const": "element_parameter_modifier"
+        },
+        "thunder_surge": {
+          "const": "element_parameter_modifier"
+        },
+        "thunder_reach": {
+          "const": "element_parameter_modifier"
+        },
+        "earth_crush": {
+          "const": "element_parameter_modifier"
+        },
+        "earth_quake": {
+          "const": "element_parameter_modifier"
+        },
+        "earth_layers": {
+          "const": "element_parameter_modifier"
+        },
+        "fire_mastery_heat": {
+          "const": "element_parameter_modifier"
+        },
+        "ice_mastery_cold": {
+          "const": "element_parameter_modifier"
+        },
+        "thunder_mastery_storm": {
+          "const": "element_parameter_modifier"
+        },
+        "earth_mastery_weight": {
+          "const": "element_parameter_modifier"
+        },
+        "dual_steam": {
+          "const": "reaction_parameter_modifier"
+        },
+        "dual_overload": {
+          "const": "reaction_parameter_modifier"
+        },
+        "dual_lava": {
+          "const": "reaction_parameter_modifier"
+        },
+        "dual_superconduct": {
+          "const": "reaction_parameter_modifier"
+        },
+        "dual_shatter": {
+          "const": "reaction_parameter_modifier"
+        },
+        "dual_magnet": {
+          "const": "reaction_parameter_modifier"
+        },
+        "wave": {
+          "const": "derived_damage"
+        },
+        "chain": {
+          "const": "derived_damage"
+        },
+        "split": {
+          "const": "derived_damage"
+        },
+        "impact_blast": {
+          "const": "derived_damage"
+        },
+        "fire_mastery_burst": {
+          "const": "element_mastery_damage"
+        },
+        "ice_mastery_burst": {
+          "const": "element_mastery_damage"
+        },
+        "thunder_mastery_burst": {
+          "const": "element_mastery_damage"
+        },
+        "earth_mastery_burst": {
+          "const": "element_mastery_damage"
+        }
+      }
+    },
+    "timing_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attack_speed_applies_to",
+        "attack_speed_excludes",
+        "haste_formula",
+        "haste_applies_to",
+        "haste_excludes",
+        "player_primary_rearm",
+        "attack_speed_and_haste_do_not_stack_on_same_timer",
+        "time_scale_read_policy",
+        "enemy_telegraph_minima_source"
+      ],
+      "properties": {
+        "attack_speed_applies_to": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "enum": [
+              "player_weapon_windup",
+              "player_weapon_active",
+              "player_weapon_recovery",
+              "player_combo_cancel_windows",
+              "enemy_declared_attack_timeline"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "attack_speed_excludes": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "enum": [
+              "movement",
+              "dodge",
+              "projectile_speed",
+              "status_tick",
+              "charge_hold",
+              "skill_cooldown",
+              "enemy_declared_minimum_telegraph"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "haste_formula": {
+          "const": "base_cooldown_divided_by_one_plus_cooldown_haste"
+        },
+        "haste_applies_to": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "enum": [
+              "player_heavy_slash_cooldown",
+              "player_wave_cast_cooldown",
+              "player_dodge_recharge",
+              "enemy_declared_skill_cooldown"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "haste_excludes": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "enum": [
+              "primary_combo_rearm",
+              "status_duration",
+              "element_tick",
+              "reaction_tick",
+              "item_internal_cooldown"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "player_primary_rearm": {
+          "const": "divide_by_attack_speed_only"
+        },
+        "attack_speed_and_haste_do_not_stack_on_same_timer": {
+          "const": true
+        },
+        "time_scale_read_policy": {
+          "const": "snapshot_at_action_or_cooldown_start"
+        },
+        "enemy_telegraph_minima_source": {
+          "const": "enemy_telegraph_minimum_sec"
+        }
+      }
+    },
+    "encounter_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "health",
+        "damage",
+        "resistances",
+        "source",
+        "remove_legacy_ability_and_role_damage_scaling"
+      ],
+      "properties": {
+        "health": {
+          "const": "multiply_max_health_once"
+        },
+        "damage": {
+          "const": "spawn_damage_multiplier_once_at_formula_output"
+        },
+        "resistances": {
+          "const": "no_depth_scaling"
+        },
+        "source": {
+          "const": "existing_encounters_json"
+        },
+        "remove_legacy_ability_and_role_damage_scaling": {
+          "const": true
+        }
+      }
+    },
+    "damageable_prop_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "armor",
+        "magic_resistance",
+        "supports_elements",
+        "supports_critical",
+        "health_source"
+      ],
+      "properties": {
+        "armor": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        "magic_resistance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        "supports_elements": {
+          "const": false
+        },
+        "supports_critical": {
+          "const": true
+        },
+        "health_source": {
+          "const": "existing_room_prop_definition"
+        }
+      }
+    },
+    "ui_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_action",
+        "requested_key",
+        "toggle",
+        "escape_closes_topmost_only",
+        "pause_combat",
+        "display_final_stats",
+        "runtime_fields",
+        "derived_fields",
+        "skill_preview",
+        "locales"
+      ],
+      "properties": {
+        "input_action": {
+          "const": "ui_character_stats"
+        },
+        "requested_key": {
+          "const": "C"
+        },
+        "toggle": {
+          "const": true
+        },
+        "escape_closes_topmost_only": {
+          "const": true
+        },
+        "pause_combat": {
+          "const": true
+        },
+        "display_final_stats": {
+          "type": "array",
+          "minItems": 10,
+          "maxItems": 10,
+          "items": {
+            "enum": [
+              "max_health",
+              "attack_power",
+              "spell_power",
+              "armor",
+              "magic_resistance",
+              "move_speed_mps",
+              "attack_speed_multiplier",
+              "cooldown_haste",
+              "crit_chance",
+              "crit_damage_multiplier"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "runtime_fields": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "enum": [
+              "current_health",
+              "current_shield"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "derived_fields": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "enum": [
+              "physical_damage_reduction",
+              "magical_damage_reduction",
+              "global_weapon_damage_bonus"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "skill_preview": {
+          "const": "noncritical_pre_target_defense_components"
+        },
+        "locales": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "enum": [
+              "zh_CN",
+              "en"
+            ]
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "enemy_telegraph_minimum_sec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ability.enemy.swipe",
+        "ability.enemy.slam",
+        "enemy.crossbow.shot",
+        "enemy.charger.charge",
+        "enemy.elite_ranger.fast",
+        "enemy.elite_ranger.volley",
+        "enemy.elite_ranger.rain",
+        "enemy.elite_ranger.charged"
+      ],
+      "properties": {
+        "ability.enemy.swipe": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        "ability.enemy.slam": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        "enemy.crossbow.shot": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        "enemy.charger.charge": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        "enemy.elite_ranger.fast": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        "enemy.elite_ranger.volley": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        "enemy.elite_ranger.rain": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        "enemy.elite_ranger.charged": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000
+        }
+      }
+    },
+    "raw_hit_adapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "damage_type",
+        "origin",
+        "crit_policy"
+      ],
+      "properties": {
+        "damage_type": {
+          "enum": [
+            "physical",
+            "magical",
+            "true"
+          ]
+        },
+        "origin": {
+          "const": "explicit_raw_physical"
+        },
+        "crit_policy": {
+          "const": "never"
+        }
+      }
+    }
+  }
+}

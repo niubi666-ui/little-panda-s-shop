@@ -26,7 +26,7 @@ func run() -> void:
 	for defect in ["missing", "unknown", "reference", "duplicate", "fractional", "iframe", "knockback", "movement", "shape", "sector_width", "thrust_width", "thrust_angle", "old_version"]:
 		var invalid: Dictionary = data.duplicate(true)
 		match defect:
-			"missing": invalid.abilities[0].erase("damage")
+			"missing": invalid.abilities[0].erase("damage_profile_id")
 			"unknown": invalid.abilities[0].damge = 10
 			"reference": invalid.actors[0].attack_ids = ["unknown"]
 			"duplicate": invalid.abilities.append(invalid.abilities[0])
@@ -79,10 +79,10 @@ func run() -> void:
 	var resolver := Resolver.new()
 	resolver.confirmed_hit.connect(func(source, target, cast_id, ability_id, damage):
 		confirmed_hits += 1
-		check(source == player and target == enemy and cast_id == player.runner.cast_id and ability_id == slash.id and damage == slash.damage, "confirmed hit contains committed result"))
+		check(source == player and target == enemy and cast_id == player.runner.cast_id and ability_id == slash.id and is_equal_approx(damage,slash.damage/1.1), "confirmed hit contains armor-resolved result"))
 	resolver.resolve(player, [player, enemy, enemy])
 	resolver.resolve(player, [enemy])
-	check(enemy.health.current == enemy.health.maximum - slash.damage, "same swing duplicate targets only once")
+	check(is_equal_approx(enemy.health.current,enemy.health.maximum - slash.damage/1.1), "same swing duplicate targets only once")
 	check(confirmed_hits == 1, "same swing emits one confirmed hit")
 	player.runner.cancel()
 	player.runner.cooldown = 0
@@ -168,7 +168,7 @@ func check_player_attack_sectors(catalog) -> void:
 		resolver.resolve(source, targets)
 		for index in targets.size():
 			var target: Actor = targets[index]
-			var expected_damage := ability.damage if index < 2 else 0.0
+			var expected_damage := ability.damage / 1.2 if index < 2 else 0.0
 			var label: String = ["inside left hits once", "inside right hits once", "outside left misses", "outside right misses", "outside radius misses"][index]
 			check(is_equal_approx(target.health.current, target.health.maximum - expected_damage), ability_id + " " + label)
 		for target in targets: target.free()
@@ -205,7 +205,7 @@ func check_thrust_shape(catalog) -> void:
 	resolver.resolve(source, targets + targets)
 	resolver.resolve(source, targets)
 	for index in targets.size():
-		var expected: float = ability.damage if index < 4 else 0.0
+		var expected: float = ability.damage / 1.2 if index < 4 else 0.0
 		check(is_equal_approx(targets[index].health.maximum - targets[index].health.current, expected), "rotated thrust boundary and dedup sample " + str(index))
 	for target in targets: target.free()
 	source.free()
@@ -214,6 +214,7 @@ func make_actor(catalog, id: String, faction: int, handle: int) -> Actor:
 	var abilities: Array[Catalog.Ability] = []
 	for ability_id in catalog.actor(id).attacks: abilities.append(catalog.ability(ability_id))
 	actor.configure(catalog.actor(id), abilities, catalog.dodge() if faction == 0 else null, handle, faction)
+	actor.attributes.set_modifier("geometry_fixture", "crit_chance", "flat", -actor.attributes.value("crit_chance"))
 	root.add_child(actor)
 	return actor
 

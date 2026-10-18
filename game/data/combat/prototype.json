@@ -1,5 +1,5 @@
 {
-  "schema_version": 8,
+  "schema_version": 9,
   "abilities": [
     {
       "id": "slash.1",
@@ -9,7 +9,6 @@
       "cooldown_sec": 0.42,
       "radius_m": 2.5,
       "angle_deg": 160,
-      "damage": 16,
       "interruptible": true,
       "commit_policy": "start",
       "aim_policy": "lock_at_start",
@@ -26,7 +25,8 @@
         "windup",
         "active",
         "recovery"
-      ]
+      ],
+      "damage_profile_id": "ability.slash.1"
     },
     {
       "id": "slash.2",
@@ -36,7 +36,6 @@
       "cooldown_sec": 0.39,
       "radius_m": 2.5,
       "angle_deg": 160,
-      "damage": 18,
       "interruptible": true,
       "commit_policy": "start",
       "aim_policy": "lock_at_start",
@@ -53,7 +52,8 @@
         "windup",
         "active",
         "recovery"
-      ]
+      ],
+      "damage_profile_id": "ability.slash.2"
     },
     {
       "id": "slash.3",
@@ -63,7 +63,6 @@
       "cooldown_sec": 0.7,
       "radius_m": 2.8,
       "angle_deg": 100,
-      "damage": 30,
       "interruptible": true,
       "commit_policy": "start",
       "aim_policy": "lock_at_start",
@@ -80,7 +79,8 @@
         "windup",
         "active",
         "recovery"
-      ]
+      ],
+      "damage_profile_id": "ability.slash.3"
     },
     {
       "id": "enemy.swipe",
@@ -90,7 +90,6 @@
       "cooldown_sec": 1.1,
       "radius_m": 2.475,
       "angle_deg": 85,
-      "damage": 12,
       "interruptible": true,
       "commit_policy": "start",
       "aim_policy": "lock_at_start",
@@ -103,7 +102,8 @@
       "thrust_width_m": 0.0,
       "buffer_sec": 0.3,
       "chain_cancel_sec": 0.43333333333333335,
-      "dodge_cancel_phases": []
+      "dodge_cancel_phases": [],
+      "damage_profile_id": "ability.enemy.swipe"
     },
     {
       "id": "enemy.slam",
@@ -113,7 +113,6 @@
       "cooldown_sec": 2.5,
       "radius_m": 2.25,
       "angle_deg": 115,
-      "damage": 22,
       "interruptible": false,
       "commit_policy": "start",
       "aim_policy": "lock_at_start",
@@ -126,7 +125,8 @@
       "thrust_width_m": 0.0,
       "buffer_sec": 0.3,
       "chain_cancel_sec": 0.9,
-      "dodge_cancel_phases": []
+      "dodge_cancel_phases": [],
+      "damage_profile_id": "ability.enemy.slam"
     },
     {
       "id": "heavy_slash",
@@ -136,7 +136,6 @@
       "cooldown_sec": 1.2,
       "radius_m": 2.8,
       "angle_deg": 115,
-      "damage": 42,
       "interruptible": true,
       "commit_policy": "start",
       "aim_policy": "lock_at_start",
@@ -152,7 +151,8 @@
       "dodge_cancel_phases": [
         "windup",
         "recovery"
-      ]
+      ],
+      "damage_profile_id": "ability.heavy_slash"
     },
     {
       "id": "wave_cast",
@@ -162,7 +162,6 @@
       "cooldown_sec": 1.0,
       "radius_m": 2.5,
       "angle_deg": 160,
-      "damage": 24,
       "interruptible": true,
       "commit_policy": "start",
       "aim_policy": "lock_at_start",
@@ -178,7 +177,8 @@
       "dodge_cancel_phases": [
         "windup",
         "recovery"
-      ]
+      ],
+      "damage_profile_id": "ability.wave_cast"
     },
     {
       "id": "roll_slash",
@@ -188,7 +188,6 @@
       "cooldown_sec": 0.3,
       "radius_m": 2.5,
       "angle_deg": 160,
-      "damage": 16,
       "interruptible": true,
       "commit_policy": "start",
       "aim_policy": "lock_at_start",
@@ -203,15 +202,14 @@
       "chain_cancel_sec": 0.0,
       "dodge_cancel_phases": [
         "recovery"
-      ]
+      ],
+      "damage_profile_id": "ability.roll_slash"
     }
   ],
   "actors": [
     {
       "id": "player",
       "name_key": "combat.player",
-      "health": 100,
-      "move_speed_mps": 6.2,
       "stagger_sec": 0.16,
       "poise": 0,
       "poise_recover_sec": 0,
@@ -225,13 +223,12 @@
       ],
       "decision_interval_sec": 0.1,
       "aggro_range_m": 30,
-      "combo_reset_sec": 0.75
+      "combo_reset_sec": 0.75,
+      "attribute_profile_id": "player"
     },
     {
       "id": "scout",
       "name_key": "combat.scout",
-      "health": 120,
-      "move_speed_mps": 3.15,
       "stagger_sec": 0.28,
       "poise": 0,
       "poise_recover_sec": 0,
@@ -243,13 +240,12 @@
       ],
       "decision_interval_sec": 0.12,
       "aggro_range_m": 30,
-      "combo_reset_sec": 1
+      "combo_reset_sec": 1,
+      "attribute_profile_id": "scout"
     },
     {
       "id": "brute",
       "name_key": "combat.brute",
-      "health": 200,
-      "move_speed_mps": 1.3,
       "stagger_sec": 0.1,
       "poise": 45,
       "poise_recover_sec": 2.5,
@@ -261,13 +257,12 @@
       ],
       "decision_interval_sec": 0.18,
       "aggro_range_m": 30,
-      "combo_reset_sec": 1
+      "combo_reset_sec": 1,
+      "attribute_profile_id": "brute"
     },
     {
       "id": "crossbow",
       "name_key": "combat.crossbow",
-      "health": 90,
-      "move_speed_mps": 2.4,
       "stagger_sec": 0.3,
       "poise": 0,
       "poise_recover_sec": 0,
@@ -277,13 +272,12 @@
       "attack_ids": [],
       "decision_interval_sec": 0.1,
       "aggro_range_m": 30,
-      "combo_reset_sec": 1
+      "combo_reset_sec": 1,
+      "attribute_profile_id": "crossbow"
     },
     {
       "id": "charger",
       "name_key": "combat.charger",
-      "health": 150,
-      "move_speed_mps": 1.5,
       "stagger_sec": 0.22,
       "poise": 0,
       "poise_recover_sec": 0,
@@ -293,13 +287,12 @@
       "attack_ids": [],
       "decision_interval_sec": 0.1,
       "aggro_range_m": 30,
-      "combo_reset_sec": 1
+      "combo_reset_sec": 1,
+      "attribute_profile_id": "charger"
     },
     {
       "id": "banner",
       "name_key": "combat.banner",
-      "health": 100,
-      "move_speed_mps": 1.5,
       "stagger_sec": 0.35,
       "poise": 0,
       "poise_recover_sec": 0,
@@ -309,13 +302,12 @@
       "attack_ids": [],
       "decision_interval_sec": 0.1,
       "aggro_range_m": 30,
-      "combo_reset_sec": 1
+      "combo_reset_sec": 1,
+      "attribute_profile_id": "banner"
     },
     {
       "id": "elite_ranger",
       "name_key": "combat.elite_ranger",
-      "health": 500,
-      "move_speed_mps": 3.3,
       "stagger_sec": 0.22,
       "poise": 0,
       "poise_recover_sec": 0,
@@ -325,7 +317,8 @@
       "attack_ids": [],
       "decision_interval_sec": 0.1,
       "aggro_range_m": 30,
-      "combo_reset_sec": 1
+      "combo_reset_sec": 1,
+      "attribute_profile_id": "elite_ranger"
     }
   ],
   "player_id": "player",

@@ -1690,6 +1690,120 @@ msgstr "View workbench"
 msgid "shop.station.workbench.name"
 msgstr "Workbench"
 
+msgid "stats.action.primary"
+msgstr "LMB · Total damage bonus"
+
+msgid "stats.action.skill"
+msgstr "RMB · Total damage bonus"
+
+msgid "stats.action.special"
+msgstr "R · Total damage bonus"
+
+msgid "stats.armor"
+msgstr "Armor"
+
+msgid "stats.attack_power"
+msgstr "Attack power"
+
+msgid "stats.attack_speed_multiplier"
+msgstr "Attack speed multiplier"
+
+msgid "stats.base_preview"
+msgstr "Shop · Base attributes preview (without run builds or buffs)"
+
+msgid "stats.binding.primary"
+msgstr "LMB"
+
+msgid "stats.binding.skill"
+msgstr "RMB"
+
+msgid "stats.binding.special"
+msgstr "R"
+
+msgid "stats.close"
+msgstr "Close (C / Esc)"
+
+msgid "stats.conditional"
+msgstr "{action} · Freeze follow-up +{bonus}% (conditional)"
+
+msgid "stats.cooldown_haste"
+msgstr "Cooldown haste"
+
+msgid "stats.crit_chance"
+msgstr "Critical chance"
+
+msgid "stats.crit_damage_multiplier"
+msgstr "Critical damage multiplier"
+
+msgid "stats.element"
+msgstr "{action} · {element} element on hit"
+
+msgid "stats.footer"
+msgstr "C / Esc close · L language. Combat is paused while viewing. Attribute changes do not heal."
+
+msgid "stats.live"
+msgstr "Current character · Final attributes"
+
+msgid "stats.magic_resistance"
+msgstr "Magic resistance"
+
+msgid "stats.magical_reduction"
+msgstr "Magical reduction"
+
+msgid "stats.max_health"
+msgstr "Max health"
+
+msgid "stats.move_speed_mps"
+msgstr "Move speed (m/s)"
+
+msgid "stats.physical_reduction"
+msgstr "Physical reduction"
+
+msgid "stats.preview_note"
+msgstr "Preview includes passive weapon bonuses.\nCharge, conditional bonuses and elemental damage are separate.\nElemental attachments do not convert weapon damage."
+
+msgid "stats.skill.charged_wave"
+msgstr "RMB · Full charge"
+
+msgid "stats.skill.heavy_slash"
+msgstr "R · Heavy slash"
+
+msgid "stats.skill.slash_1"
+msgstr "LMB · First slash"
+
+msgid "stats.skill.slash_2"
+msgstr "LMB · Second slash"
+
+msgid "stats.skill.slash_3"
+msgstr "LMB · Third slash"
+
+msgid "stats.skill.wave_cast"
+msgstr "RMB · Sword wave"
+
+msgid "stats.skill_preview"
+msgstr "Skill damage · Noncritical / Before defense"
+
+msgid "stats.spell_power"
+msgstr "Spell power"
+
+msgid "stats.title"
+msgstr "Character attributes"
+
+msgid "stats.type.magical"
+msgstr "Magical"
+
+msgid "stats.type.physical"
+msgstr "Physical"
+
+msgid "stats.type.true"
+msgstr "True"
+
+msgid "stats.vitals"
+msgstr "Health {hp} / {max}    Shield {shield}"
+
+msgid "stats.weapon_bonus"
+msgstr "Global weapon damage bonus +{bonus}%"
+
 msgid "training.menu.build"
 msgstr "Build & presets"
 

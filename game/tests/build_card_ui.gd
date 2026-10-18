@@ -38,9 +38,17 @@ func sample(ids: Array, max_rank: bool = false) -> Dictionary:
 			"replaced": {}, "rarity_id": Art.card(id).default_rarity})
 	return {"id": "visual_review", "candidates": candidates, "resolved": false}
 
-func show_sample(ids: Array, max_rank: bool = false) -> void:
+func show_sample(ids: Array, max_rank: bool = false, wait: bool = false) -> void:
 	panel.show_offer(sample(ids, max_rank), [])
 	for i in 2: await process_frame
+	if wait: await settle()
+
+## 等弹出动画放完（卡牌落定、防误触锁解除）
+func settle() -> void:
+	for i in 240:
+		if panel.accepting() and panel.buttons.values().all(func(card): return card.appear >= 1.0): break
+		await process_frame
+	for i in 3: await process_frame
 
 func run() -> void:
 	DirAccess.make_dir_recursive_absolute(OUT)
@@ -76,14 +84,14 @@ func run() -> void:
 						var width := label.get_theme_font("font").get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, label.get_theme_font_size("font_size")).x
 						check(width <= label.size.x, "unclipped text " + entry.id + "/" + key + "/" + locale)
 				check(card.get_node("RulesScroll").get_rect().end.y <= card.get_node("ChooseSurface").position.y, "rules never overlap choose")
-		await show_sample(["primary_reach", "frost_path", "opening_strike"])
+		await show_sample(["primary_reach", "frost_path", "opening_strike"], false, true)
 		await shot("cards_" + locale)
 		# Detailed rules and restrictions remain available on hover.
 		var full: String = panel.buttons["opening_strike"].tooltip_text
 		check(full.length() > 40, "long rules retained " + locale)
 	TranslationServer.set_locale("zh_CN")
 	for count in [1, 2, 3]:
-		await show_sample(["primary_reach", "frost_path", "opening_strike"].slice(0, count))
+		await show_sample(["primary_reach", "frost_path", "opening_strike"].slice(0, count), false, true)
 		for card in panel.buttons.values():
 			var rect: Rect2 = card.get_global_rect()
 			check(rect.position.x >= 0 and rect.end.x <= root.size.x, "card inside width " + str(count))
@@ -93,6 +101,7 @@ func run() -> void:
 	var future := sample(["primary_reach", "frost_path", "opening_strike"])
 	future.candidates[2].rarity_id = "legendary"
 	panel.show_offer(future, [])
+	await settle()
 	await shot("legendary_skin_preview")
 	# Real sampler and transaction, not synthetic preview offers.
 	session = Session.new()
@@ -109,9 +118,16 @@ func run() -> void:
 		chosen = result.ok
 		if chosen: panel.dismiss()
 	)
+	var early: Array = panel.buttons.values()
+	early[0].pressed.emit()
+	check(not chosen and panel.is_open(), "choice ignored while cards are still dealing in (anti-misclick)")
+	await settle()
 	await shot("awakening")
 	var ordered: Array = panel.buttons.values()
 	check(ordered.size() == 3, "awakening keeps three candidates")
+	var tip = ordered[0]._make_custom_tooltip(ordered[0].tooltip_text)
+	check(tip is Control and tip.get_child(0).text == ordered[0].tooltip_text, "styled tooltip carries the full rules")
+	tip.free()
 	ordered[0].grab_focus()
 	var tab := InputEventKey.new()
 	tab.keycode = KEY_TAB
@@ -129,7 +145,30 @@ func run() -> void:
 	for i in 3: await process_frame
 	check(chosen, "keyboard activates a real reward")
 	check(session.snapshot().selections.size() == 1, "one selection exactly")
-	check(not panel.visible, "successful choice dismisses UI")
+	check(not panel.is_open(), "successful choice dismisses UI")
+	for i in 120:
+		if not panel.visible: break
+		await process_frame
+	check(not panel.visible, "pick animation finishes and hides the panel")
+	# Number keys pick directly once the cards have landed.
+	session.open_offer("normal_room", {})
+	panel.show_offer(session.snapshot().offer, session.snapshot().selections)
+	await settle()
+	chosen = false
+	var two := InputEventKey.new()
+	two.physical_keycode = KEY_2
+	two.pressed = true
+	Input.parse_input_event(two)
+	for i in 3: await process_frame
+	check(chosen and session.snapshot().selections.size() == 2, "number key 2 chooses the second card")
+	# A new offer arriving during the pick animation waits for it, and counts as still choosing.
+	session.open_offer("normal_room", {})
+	panel.show_offer(session.snapshot().offer, session.snapshot().selections)
+	check(panel.is_open() and panel.visible, "queued offer keeps the modal open")
+	for i in 120:
+		if not panel._closing: break
+		await process_frame
+	check(panel.visible and panel.buttons.size() > 0 and not panel._closing, "queued offer presented after pick animation")
 	var report := {"checks": checks, "failures": failures, "cards": Art.cards.size()}
 	FileAccess.open(OUT + "validation.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("BUILD_CARD_UI checks=", checks, " failures=", failures.size(), " details=", failures.slice(0, 12))

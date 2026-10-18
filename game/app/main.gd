@@ -3,6 +3,7 @@ extends Node
 ## No inventory, economy or persistent layout writes in this slice.
 
 const TrainingStyle = preload("res://presentation/combat/training_style.tres")
+const CombatCatalog = preload("res://content/combat/combat_catalog.gd")
 const Loader = preload("res://content/shop_preview/shop_preview_loader.gd")
 const Controller = preload("res://presentation/shop_preview/shop_preview_controller.gd")
 const PlayerScene = preload("res://presentation/red_panda_preview.tscn")
@@ -20,6 +21,7 @@ var _run_button: Button
 var controller: Controller
 var _transition: Node
 var pause_menu
+var character_sheet
 
 
 func _ready() -> void:
@@ -108,6 +110,18 @@ func _ready() -> void:
 		decorating.mode_changed.connect(func(active): _training_button.visible = not active)
 	else:
 		push_error("[bootstrap] Decoration prototype unavailable; shop remains usable")
+	var combat_catalog = preload("res://content/combat/combat_loader.gd").new().load_catalog()
+	assert(combat_catalog != null)
+	var preview_actor := preload("res://combat/actors/combat_actor.gd").new()
+	var preview_abilities: Array[CombatCatalog.Ability] = []
+	for id in combat_catalog.player().attacks: preview_abilities.append(combat_catalog.ability(id))
+	preview_actor.configure(combat_catalog.player(), preview_abilities, combat_catalog.dodge(), 0, 0)
+	add_child(preview_actor)
+	character_sheet = preload("res://app/character_sheet.gd").new()
+	add_child(character_sheet)
+	character_sheet.configure(preview_actor, combat_catalog, func():return {},
+		func():return not is_instance_valid(_transition) and not get_tree().paused and not controller.is_interaction_open() and not controller._external_ui_open and not foliage_ui.is_modal_open(),
+		func(open):controller.set_external_ui_open(open), style.theme, true)
 
 
 func _unhandled_input(event: InputEvent) -> void:

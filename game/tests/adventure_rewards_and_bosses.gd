@@ -64,11 +64,16 @@ func run() -> void:
 		var wave: Dictionary = plan.waves[0]
 		check(is_equal_approx(boss.health.maximum, combat.actor(area.boss_actor_id).health * float(wave.health_multiplier)), "boss health applies once")
 		for field in enemies.profile(area.boss_actor_id).config:
-			if field == "damage" or field.ends_with("_damage"):
-				check(is_equal_approx(brain.config[field], enemies.profile(area.boss_actor_id).config[field] * float(wave.damage_multiplier)), "boss attack scaled: " + field)
-		check(boss.health.maximum > previous_hp and brain.config.charged_damage > previous_damage, "each area boss is stronger")
+			if field.ends_with("damage_profile_id"):
+				var profile_id: String = brain.config[field]
+				var formula = preload("res://combat/effects/damage_formula.gd")
+				var amount: float = formula.preview(boss,profile_id).amount
+				var base: float = formula.linear(combat.attributes.profile(profile_id),combat.attributes.actor(area.boss_actor_id))
+				check(is_equal_approx(amount,base*float(wave.damage_multiplier)), "boss damage depth once: " + field)
+		var charged: float=preload("res://combat/effects/damage_formula.gd").preview(boss,brain.config.charged_damage_profile_id).amount
+		check(boss.health.maximum > previous_hp and charged > previous_damage, "each area boss is stronger")
 		previous_hp = boss.health.maximum
-		previous_damage = brain.config.charged_damage
+		previous_damage = charged
 		for i in 60: await physics_frame
 		check(arena.hud.encounter_label.text.contains(tr(plan.waves[0].name_key)), "boss HUD updates without missing keys")
 		await _clear_room(arena)

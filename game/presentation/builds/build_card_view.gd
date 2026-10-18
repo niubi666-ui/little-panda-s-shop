@@ -7,7 +7,20 @@ var rarity_id := ""
 var art_path := ""
 var _frame: TextureRect
 var _choose: Panel
+var _glow: Panel
+var _hotkey: Label
 var _rarity: Dictionary
+## 动画状态：面板只写这几个值，卡自己按 CardSkin 的参数算出位置、缩放、亮度。
+var home := Vector2.ZERO       # 落定后的位置（画布坐标）
+var side := 0.0                # -1 左、0 中、1 右：飞入时朝外倾斜
+var appear := 0.0              # 0 未出现 → 1 落定（线性，曲线在这里套）
+var picked := 0.0              # 被选中后的动画 0 → 1
+var discarded := 0.0           # 没被选中的退场 0 → 1
+var dimmed := false            # 另一张卡处于选中状态
+var _focus := 0.0
+var _dim := 0.0
+var _press := 0.0
+var _clock := 0.0
 
 func configure(id: String, art: Dictionary, rarity: String, rarity_skin: Dictionary) -> void:
 	art_id = id
@@ -19,10 +32,25 @@ func configure(id: String, art: Dictionary, rarity: String, rarity_skin: Diction
 	size = CardSkin.card_size
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	focus_mode = Control.FOCUS_ALL
+	pivot_offset = CardSkin.card_size * Vector2(0.5, 0.55)
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	for state in ["normal", "hover", "pressed", "disabled"]:
 		add_theme_stylebox_override(state, StyleBoxEmpty.new())
 	# Focus brightens the illustrated frame and its choice surface, preserving the cutout silhouette.
 	add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	# 光晕：只画阴影的方框（阴影本身就是一圈柔和的模糊边），叠加混合
+	_glow = Panel.new()
+	_glow.name = "FocusGlow"
+	var halo := StyleBoxFlat.new()
+	halo.draw_center = false
+	halo.shadow_color = Color.WHITE
+	halo.shadow_size = int(CardSkin.glow_size)
+	halo.set_corner_radius_all(int(CardSkin.glow_size * 0.5))
+	_glow.add_theme_stylebox_override("panel", halo)
+	var additive := CanvasItemMaterial.new()
+	additive.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+	_glow.material = additive
+	_add_rect(_glow, CardSkin.glow_rect)
 	var surface := ColorRect.new()
 	surface.name = "TextBacking"
 	surface.color = CardSkin.body_color
@@ -93,12 +121,77 @@ func configure(id: String, art: Dictionary, rarity: String, rarity_skin: Diction
 	_choose.add_theme_stylebox_override("panel", button_style)
 	_add_rect(_choose, CardSkin.choose_rect)
 	labels["choose"] = _label("ChooseText", CardSkin.choose_rect, CardSkin.choose_font_size, CardSkin.gold_color, true)
-	mouse_entered.connect(_update_emphasis)
-	mouse_exited.connect(_update_emphasis)
-	focus_entered.connect(_update_emphasis)
-	focus_exited.connect(_update_emphasis)
-	button_down.connect(_update_emphasis)
-	button_up.connect(_update_emphasis)
+	_hotkey = _label("HotkeyText", CardSkin.hotkey_rect, CardSkin.hotkey_font_size, CardSkin.gold_color)
+	_hotkey.clip_text = false
+	var keycap := StyleBoxFlat.new()
+	keycap.bg_color = Color(CardSkin.body_color, 0.85)
+	keycap.border_color = Color(CardSkin.gold_color, 0.55)
+	keycap.set_border_width_all(1)
+	keycap.set_corner_radius_all(6)
+	_hotkey.add_theme_stylebox_override("normal", keycap)
+	# 鼠标移上去就把焦点给这张卡：鼠标和键盘/手柄共用同一个“当前选中”
+	mouse_entered.connect(func(): if focus_mode != Control.FOCUS_NONE: grab_focus())
+	button_down.connect(func(): _press = 1.0)
+	_animate(0.0)
+
+func set_hotkey(text: String) -> void:
+	_hotkey.text = text
+	_hotkey.visible = not text.is_empty()
+
+func active() -> bool:
+	return has_focus() and picked <= 0.0 and discarded <= 0.0
+
+func _process(delta: float) -> void:
+	_animate(delta)
+
+func _animate(delta: float) -> void:
+	_clock += delta
+	var blend := 1.0 - exp(-delta * CardSkin.hover_speed)
+	_focus = lerpf(_focus, 1.0 if active() else 0.0, blend)
+	_dim = lerpf(_dim, 1.0 if dimmed and not active() else 0.0, blend)
+	_press = lerpf(_press, 0.0, blend)
+	var land := ease_out_back(clampf(appear, 0.0, 1.0))
+	var punch := 1.0 - pow(1.0 - clampf(picked / 0.25, 0.0, 1.0), 3.0)
+	var leave := smoothstep(0.3, 1.0, picked)
+	var sink := discarded * discarded
+	var lift := CardSkin.hover_lift * _focus
+	position = home + Vector2(0.0, CardSkin.deal_rise * (1.0 - land) - lift - CardSkin.pick_rise * leave * leave + CardSkin.discard_drop * sink)
+	var grow := lerpf(CardSkin.deal_scale, 1.0, land) * (1.0 + CardSkin.hover_scale * _focus - CardSkin.dim_scale * _dim - CardSkin.press_squash * _press)
+	scale = Vector2.ONE * grow * (1.0 + CardSkin.pick_punch * punch) * (1.0 - 0.08 * sink)
+	rotation = deg_to_rad(CardSkin.deal_tilt_deg * side * (1.0 - land))
+	var flash := lerpf(CardSkin.pick_flash, 1.0, smoothstep(0.0, 0.45, picked)) if picked > 0.0 else 1.0
+	var shade := (1.0 - CardSkin.dim_darken * _dim) * flash
+	modulate = Color(shade, shade, shade, clampf(appear * 2.5, 0.0, 1.0) * (1.0 - leave) * (1.0 - sink))
+	var brightness := lerpf(1.0, CardSkin.hover_brightness, _focus)
+	_frame.modulate = Color(brightness, brightness, brightness)
+	_choose.modulate = Color(brightness, brightness, brightness)
+	var pulse := 1.0 + CardSkin.glow_pulse * _focus * sin(_clock * CardSkin.glow_pulse_speed)
+	var glow := lerpf(CardSkin.glow_idle, CardSkin.glow_focus, maxf(_focus, punch * (1.0 - leave))) * pulse
+	_glow.modulate = Color(_rarity.color, clampf(glow, 0.0, 1.0))
+
+## 先慢后快再略过头回弹（落定那一下有“啪”的感觉）
+static func ease_out_back(t: float) -> float:
+	var c := 1.4
+	var u := t - 1.0
+	return 1.0 + (c + 1.0) * u * u * u + c * u * u
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	var box := PanelContainer.new()
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(CardSkin.body_color, 0.96)
+	style.border_color = Color(_rarity.color, 0.7)
+	style.set_border_width_all(1)
+	style.set_corner_radius_all(6)
+	style.set_content_margin_all(12)
+	box.add_theme_stylebox_override("panel", style)
+	var text := Label.new()
+	text.text = for_text
+	text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	text.custom_minimum_size.x = CardSkin.tooltip_width
+	text.add_theme_font_size_override("font_size", CardSkin.description_font_size)
+	text.add_theme_color_override("font_color", CardSkin.text_color)
+	box.add_child(text)
+	return box
 
 func set_copy(copy: Dictionary) -> void:
 	for key in copy:
@@ -110,7 +203,7 @@ func set_copy(copy: Dictionary) -> void:
 	_fit_line(labels["rarity"], CardSkin.rarity_font_size, CardSkin.small_label_min_font_size)
 	_fit_line(labels["binding"], CardSkin.binding_font_size, CardSkin.small_label_min_font_size)
 	_fit_line(labels["next"], CardSkin.operation_font_size, CardSkin.small_label_min_font_size)
-	tooltip_text = copy["name"] + "\n" + copy["binding"] + "\n" + copy["next"] + "\n" + copy["details"]
+	tooltip_text = copy["name"] + "  ·  " + copy["binding"] + "\n" + copy["next"] + "\n\n" + copy["details"]
 
 func _fit_line(label: Label, preferred: int, smallest: int) -> void:
 	var font := label.get_theme_font("font")
@@ -137,10 +230,4 @@ func _add_rect(control: Control, rect: Rect2) -> void:
 	add_child(control)
 	control.position = rect.position
 	control.size = rect.size
-
-func _update_emphasis() -> void:
-	var active := is_hovered() or has_focus()
-	var brightness: float = CardSkin.hover_brightness if active else 1.0
-	_frame.modulate = Color(brightness, brightness, brightness)
-	_choose.modulate = Color(brightness, brightness, brightness)
 

@@ -4,6 +4,10 @@ from build_shop_preview_content import ROOT, DATA, read_json, validate
 def validate_enemies(manifest):
     def load(key):return read_json(ROOT/'game'/manifest[key].removeprefix('res://'))
     roles,enc,loot=load('enemy_roles_file'),load('encounters_file'),load('enemy_loot_file')
+    attributes=load('combat_attributes_file')
+    def amount(profile, actor):
+        formula=attributes['linear_profiles'][profile]; stats=attributes['actors'][actor]
+        return formula['base'] + stats['attack_power']*formula['attack_power_ratio'] + stats['spell_power']*formula['spell_power_ratio']
     rs=read_json(DATA/'schemas/enemy_roles.schema.json')
     for data,schema in [(roles,rs),(enc,read_json(DATA/'schemas/encounters.schema.json')),(loot,read_json(DATA/'schemas/enemy_loot.schema.json'))]:validate(data,schema,'enemies')
     actors={a['id']:a for a in load('combat_prototype_file')['actors']}
@@ -18,9 +22,9 @@ def validate_enemies(manifest):
         if p['actor_id'] not in actors or p['actor_id']==load('combat_prototype_file')['player_id'] or p['loot_table_id'] not in tables:raise ValueError('invalid enemy references')
         if (p['role']=='melee')!=bool(actors[p['actor_id']]['attack_ids']):raise ValueError('role/attack mismatch')
         c=p['config']
-        if any(v<=0 for v in c.values() if not isinstance(v, bool)):raise ValueError('enemy behavior parameters must be positive')
-        if p['role']=='ranged' and not(c['safe_min_m']<c['safe_max_m']<=c['fire_range_m'] and c['windup_sec']+c['recovery_sec']<c['shot_interval_sec'] and c['minimum_windup_sec']<=c['windup_sec']):raise ValueError('ranged ordering')
-        if p['role']=='charger' and not(c['minimum_range_m']<c['trigger_range_m'] and c['minimum_windup_sec']<=c['windup_sec'] and c['cooldown_sec']>=c['windup_sec']+c['charge_distance_m']/c['charge_speed_mps']+c['recovery_sec']):raise ValueError('charge ordering')
+        if any(v<=0 for v in c.values() if not isinstance(v, (bool, str))):raise ValueError('enemy behavior parameters must be positive')
+        if p['role']=='ranged' and not(c['safe_min_m']<c['safe_max_m']<=c['fire_range_m'] and c['windup_sec']+c['recovery_sec']<c['shot_interval_sec'] and attributes['enemy_telegraph_minimum_sec'][c['damage_profile_id']]<=c['windup_sec']):raise ValueError('ranged ordering')
+        if p['role']=='charger' and not(c['minimum_range_m']<c['trigger_range_m'] and attributes['enemy_telegraph_minimum_sec'][c['damage_profile_id']]<=c['windup_sec'] and c['cooldown_sec']>=c['windup_sec']+c['charge_distance_m']/c['charge_speed_mps']+c['recovery_sec']):raise ValueError('charge ordering')
         if p['role']=='support' and c['retreat_range_m']>=c['safe_max_m']:raise ValueError('support distances')
         if p['role']=='ranger':
             if c['charged_range_m']>c['fire_range_m'] or c['charged_rift_interval_sec']>=c['charged_rift_duration_sec'] or c['charged_range_m']/c['charged_speed_mps']>=c['charged_rift_interval_sec']:raise ValueError('ranger charged range/rift timing')
@@ -35,7 +39,7 @@ def validate_enemies(manifest):
             rain_length=c['rain_sequence_count']*c['rain_windup_sec']+(c['rain_sequence_count']-1)*c['rain_gap_sec']
             burst_length=c['burst_fast_count']*(c['fast_windup_sec']+c['burst_gap_sec'])+c['charged_windup_sec']
             if c['rain_cooldown_sec']<rain_length+c['rain_recovery_sec'] or c['burst_cooldown_sec']<burst_length+c['burst_recovery_sec'] or c['combo_cooldown_sec']<rain_length+c['rain_gap_sec']+c['charged_windup_sec']+c['combo_recovery_sec']:raise ValueError('ranger sequence cooldown')
-            if c['charged_speed_mps']<=c['fast_speed_mps'] or c['charged_damage']<=c['fast_damage'] or c['charged_recovery_sec']<=c['fast_recovery_sec'] or c['burst_recovery_sec']<c['charged_recovery_sec'] or c['combo_recovery_sec']<c['charged_recovery_sec']:raise ValueError('ranger charged contrast/recovery')
+            if c['charged_speed_mps']<=c['fast_speed_mps'] or amount(c['charged_damage_profile_id'],p['actor_id'])<=amount(c['fast_damage_profile_id'],p['actor_id']) or c['charged_recovery_sec']<=c['fast_recovery_sec'] or c['burst_recovery_sec']<c['charged_recovery_sec'] or c['combo_recovery_sec']<c['charged_recovery_sec']:raise ValueError('ranger charged contrast/recovery')
     seen=set();costs=[]
     for team in enc['combinations']:
         ids=team['enemy_ids']

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+[ext_resource type="Script" path="res://presentation/attributes/character_sheet_style.gd" id="style"]
+[sub_resource type="StyleBoxFlat" id="surface"]
+bg_color = Color(0.025, 0.07, 0.052, 0.99)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.68, 0.55, 0.28, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_left = 18
+corner_radius_bottom_right = 18
+[resource]
+script = ExtResource("style")
+margin = Vector2(70, 40)
+padding = 26
+gap = 6
+title_size = 29
+body_size = 19
+muted_size = 16
+overlay = Color(0.008, 0.016, 0.012, 0.78)
+gold = Color(1, 0.84, 0.51, 1)
+muted = Color(0.68, 0.74, 0.66, 1)
+surface = SubResource("surface")

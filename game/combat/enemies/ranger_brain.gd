@@ -33,6 +33,7 @@ var rain_admission: Callable
 var rain_busy: Callable
 var charged_admission: Callable
 var _combo_since_single := false
+var rift_request: Dictionary = {}
 
 func configure_queries(queries: Dictionary) -> void:
 	roll_path = queries.roll_path
@@ -95,12 +96,15 @@ func tick(delta: float) -> void:
 			locked_distance = offset().length()
 		time_left -= delta
 		if time_left <= 0.0:
-			if attack_id == "rain": rain_requested.emit(actor, target_point, config)
+			if attack_id == "rain":
+				var rain := config.duplicate(true)
+				rain.damage_request = attack_request
+				rain_requested.emit(actor, target_point, rain)
 			else:
-				var shot := {"damage":config[attack_id + "_damage"], "projectile_speed_mps":config[attack_id + "_speed_mps"], "projectile_radius_m":config.arrow_radius_m, "projectile_lifetime_sec":config.arrow_lifetime_sec, "ranger_arrow":true, "charged":attack_id == "charged", "volley_id":str(actor.handle) + ":" + str(cast_id), "aim_distance_m":locked_distance, "spawn_height_m":config.arrow_height_m, "spawn_forward_m":config.arrow_spawn_forward_m}
+				var shot := {"damage_profile_id":config[attack_id + "_damage_profile_id"], "damage_request":attack_request, "projectile_speed_mps":config[attack_id + "_speed_mps"], "projectile_radius_m":config.arrow_radius_m, "projectile_lifetime_sec":config.arrow_lifetime_sec, "ranger_arrow":true, "charged":attack_id == "charged", "volley_id":str(actor.handle) + ":" + str(cast_id), "aim_distance_m":locked_distance, "spawn_height_m":config.arrow_height_m, "spawn_forward_m":config.arrow_spawn_forward_m}
 				if attack_id == "charged":
 					shot.projectile_lifetime_sec = config.charged_range_m / config.charged_speed_mps
-					shot.rift = {"range_m":config.charged_range_m,"half_width_m":config.charged_rift_half_width_m,"duration_sec":config.charged_rift_duration_sec,"interval_sec":config.charged_rift_interval_sec,"damage":config.charged_rift_damage,"max_areas":config.charged_rift_max_areas,"charge_sec":config.charged_windup_sec}
+					shot.rift = {"range_m":config.charged_range_m,"half_width_m":config.charged_rift_half_width_m,"duration_sec":config.charged_rift_duration_sec,"interval_sec":config.charged_rift_interval_sec,"damage_request":rift_request,"max_areas":config.charged_rift_max_areas,"charge_sec":windup_duration}
 				var count := int(config.volley_count) if attack_id == "volley" else 1
 				for index in count:
 					var angle := deg_to_rad(config.volley_angle_deg) * (float(index) / (count - 1) - 0.5) if count > 1 else 0.0
@@ -108,7 +112,7 @@ func tick(delta: float) -> void:
 			if pending_steps.is_empty(): _finish_action()
 			else:
 				state = "sequence_gap"
-				time_left = config.rain_gap_sec if attack_id == "rain" else config.burst_gap_sec
+				time_left = (config.rain_gap_sec if attack_id == "rain" else config.burst_gap_sec) / attack_tempo
 				recovery_duration = time_left
 		return
 	var distance := offset().length()
@@ -185,7 +189,7 @@ func _try_roll(delta: float) -> bool:
 	if best_distance > 0.0:
 		roll_ready = false
 		_attack_since_roll = false
-		roll_cooldown = config.roll_cooldown_sec
+		roll_cooldown = actor.skill_cooldown(config.roll_cooldown_sec)
 		roll_duration = config.roll_duration_sec
 		roll_left = roll_duration
 		roll_distance = best_distance
@@ -217,7 +221,7 @@ func _start(id: String) -> void:
 		for i in int(config.burst_fast_count): pending_steps.append("fast")
 		pending_steps.append("charged")
 	else: pending_steps.append(id)
-	cooldowns[id] = config[id + "_cooldown_sec"]
+	cooldowns[id] = actor.skill_cooldown(config[id + "_cooldown_sec"])
 	repeat_count = repeat_count + 1 if last_attack == id else 1
 	last_attack = id
 	_combo_since_single = id == "combo"
@@ -232,7 +236,7 @@ func _begin_step(id: String) -> void:
 		return
 	attack_id = id
 	# Sequences own their internal cadence; independent reuse still pays the move cooldown.
-	cooldowns[id] = maxf(cooldowns[id], config[id + "_cooldown_sec"])
+	cooldowns[id] = maxf(cooldowns[id], actor.skill_cooldown(config[id + "_cooldown_sec"]))
 	cast_id += 1
 	state = "windup"
 	# Every sub-shot has its own visible windup and fixed final lock window.
@@ -240,13 +244,15 @@ func _begin_step(id: String) -> void:
 	locked_direction = actor.facing
 	locked_distance = offset().length()
 	target_point = target.global_position
-	time_left = config[id + "_windup_sec"]
+	commit_attack(config[id + "_damage_profile_id"])
+	if id == "charged": rift_request = actor.make_damage_request(config.charged_rift_damage_profile_id, attack_serial, id)
+	time_left = actor.attack_windup(config[id + "_damage_profile_id"], config[id + "_windup_sec"])
 	windup_duration = time_left
 	action_started.emit(id, cast_id)
 
 func _finish_action() -> void:
 	state = "recovery"
-	time_left = config[action_id + "_recovery_sec"]
+	time_left = config[action_id + "_recovery_sec"] / attack_tempo
 	recovery_duration = time_left
 
 func cancel() -> void:

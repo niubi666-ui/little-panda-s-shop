@@ -92,11 +92,14 @@ func on_committed(cast_id: int, ability_id: String) -> void:
 		"damage": _player.runner.ability.damage * float(plan.damage_scale),
 		"budget": int(_limits.root_effect_budget), "spawned": 0, "cue_seen": false,
 		"impact_counts": {}, "chain_triggers": {}, "control_attempts": {},
+		"damage_request": _player.runner.damage_snapshot.duplicate(true),
 	}
+	_roots[_next_root].damage_request.source_scale *= float(plan.damage_scale)
 	_cast_roots[cast_id] = _next_root
 	var charge := Frost.params(plan, "charge_projectile")
 	if _player.runner.cast_charged and not charge.is_empty():
 		_roots[_next_root].charged = true
+		_roots[_next_root].base_damage *= float(charge.damage_ratio)
 		_roots[_next_root].damage *= float(charge.damage_ratio)
 		_roots[_next_root].radius_scale = charge.radius_ratio
 		_player.runner.cooldown *= float(charge.cooldown_ratio)
@@ -112,11 +115,11 @@ func on_cue(cast_id: int, ability_id: String) -> void:
 	action_presented.emit(_action_fact(context, "cue"))
 	if not _context_live(context): return
 	if context.program.executor == "projectile":
-		_enqueue(context, Factory.initial(_catalog.projectile(context.program.projectile_id), _player.global_position, direction, context.damage))
+		_enqueue(context, Factory.initial(_catalog.projectile(context.program.projectile_id), _player.global_position, direction, context.base_damage))
 	for effect in context.program.effects:
 		if effect.type != "projectile": continue
 		var params: Dictionary = effect.params
-		_enqueue(context, Factory.initial(_catalog.projectile(params.projectile_id), _player.global_position, direction, float(context.damage) * float(params.damage_ratio)))
+		_enqueue(context, Factory.initial(_catalog.projectile(params.projectile_id), _player.global_position, direction, float(context.base_damage) * float(params.damage_ratio)))
 
 func fire_attack(attack_id: String, direction: Vector3) -> bool:
 	if not _source_alive() or not _player.runner.actions_allowed or not _attack_ids.has(attack_id) or _cooldowns.has(attack_id) or direction.is_zero_approx(): return false
@@ -124,13 +127,16 @@ func fire_attack(attack_id: String, direction: Vector3) -> bool:
 	if not _program.actions.has(attack.action_id): return false
 	var plan: Dictionary = _program.actions[attack.action_id]
 	_next_root += 1
+	var basis: float = Damage.Formula.linear(_player.attribute_catalog.profile(attack.damage_profile_id), _player.attributes.final)
 	var context := {"id": _next_root, "cast_id": -_next_root, "ability_id": attack_id,
 		"room_generation": _room_generation, "source_handle": _player.handle, "team": _player.team,
 		"action_id": attack.action_id, "revision": _program.revision, "form_id": plan.form_id,
-		"program": plan, "base_damage": attack.damage, "damage": float(attack.damage) * float(plan.damage_scale),
+		"program": plan, "base_damage": basis, "damage": basis * float(plan.damage_scale),
 		"budget": int(_limits.root_effect_budget), "spawned": 0, "cue_seen": true, "impact_counts": {}, "chain_triggers": {}, "control_attempts": {}}
 	_roots[_next_root] = context
-	if not _enqueue(context, Factory.initial(_catalog.projectile(attack.projectile_id), _player.global_position, Sweep.planar_direction(direction), context.damage)):
+	context.damage_request = Damage.request(_player, attack.damage_profile_id, basis, context.id, attack.action_id, _player.roll_critical(attack.damage_profile_id))
+	context.damage_request.source_scale *= float(plan.damage_scale)
+	if not _enqueue(context, Factory.initial(_catalog.projectile(attack.projectile_id), _player.global_position, Sweep.planar_direction(direction), context.base_damage)):
 		_roots.erase(_next_root)
 		return false
 	_cooldowns[attack_id] = float(attack.cooldown_sec)
@@ -140,13 +146,13 @@ func melee_damage(source, base_damage: float) -> float:
 	if source != _player: return base_damage
 	var context := _context_for_cast(source.runner.cast_id)
 	if context.is_empty(): return base_damage
-	return base_damage * float(context.program.damage_scale)
+	return base_damage
 
 func on_melee_hit(source, target, cast_id: int, ability_id: String, applied_damage: float) -> void:
-	if source != _player or applied_damage <= 0.0 or not is_instance_valid(target): return
+	if source != _player or not is_instance_valid(target): return
 	var context := _context_for_cast(cast_id)
 	if context.is_empty() or context.ability_id != ability_id: return
-	_schedule_chains(context, target, minf(applied_damage, context.damage), "direct_melee")
+	_schedule_chains(context, target, context.base_damage, "direct_melee")
 
 func tick(delta: float) -> void:
 	if delta <= 0.0: return
@@ -297,20 +303,20 @@ func _advance_projectiles(delta: float) -> void:
 			projectile.excluded[victim] = true
 			projectile.remaining_hits -= 1
 			var origin: String = "direct_projectile" if int(projectile.generation) == 0 and context.program.executor == "projectile" else "split_projectile"
-			var applied: float = _apply_direct_damage(context, target, float(projectile.damage), origin)
+			var hit := _apply_direct_damage(context, target, float(projectile.damage), origin)
 			if not _context_live(context): return
 			var presentation := _projectile_fact(projectile, context, "contact")
 			presentation.target_handle = victim
 			presentation.position = point
 			projectile_presented.emit(presentation)
 			if not _context_live(context): return
-			_contact(context, {"origin": "direct_projectile" if int(projectile.generation) == 0 else "split_projectile", "parent_id": "projectile:%s" % id, "target_handle": victim, "position": point, "damage": projectile.damage})
+			if hit.valid_hit: _contact(context, {"origin": "direct_projectile" if int(projectile.generation) == 0 else "split_projectile", "parent_id": "projectile:%s" % id, "target_handle": victim, "position": point, "damage": projectile.damage})
 			if not _context_live(context): return
-			if applied > 0.0:
-				damage_applied.emit(_player, target, applied, "secondary_projectile")
+			if hit.valid_hit:
+				damage_applied.emit(_player, target, hit.health_loss, "secondary_projectile")
 				if not _context_live(context): return
-				if is_instance_valid(target): _schedule_chains(context, target, minf(applied, projectile.damage), "secondary_projectile")
-			_schedule_splits(context, projectile, victim)
+				if is_instance_valid(target): _schedule_chains(context, target, projectile.damage, "secondary_projectile")
+				_schedule_splits(context, projectile, victim)
 			if int(projectile.remaining_hits) <= 0:
 				frost.sample_path(context, projectile, start, projectile.position)
 				if not _begin_return(projectile): _terminate_projectile(id, "contact_limit")
@@ -405,10 +411,10 @@ func _chain_step(context: Dictionary, request: Dictionary) -> void:
 	var target = candidates[0].target
 	var position: Vector3 = target.global_position
 	request.visited[target.handle] = true
-	var applied: float = Damage.apply(target, float(request.damage), context.team)
+	var hit := Damage.submit(target, _damage_request(context, request.damage, "chain", "chain"))
 	if context.room_generation != _room_generation: return
-	if applied > 0.0:
-		damage_applied.emit(_player, target, applied, "chain")
+	if hit.valid_hit:
+		damage_applied.emit(_player, target, hit.health_loss, "chain")
 		if context.room_generation != _room_generation: return
 		chain_emitted.emit(PackedVector3Array([request.position, position]))
 	if int(request.remaining) > 1:
@@ -461,9 +467,9 @@ func _area_step(context: Dictionary, request: Dictionary) -> void:
 	area_presented.emit(presentation)
 	for hit in plan.damage:
 		if not _context_live(context): return
-		var applied := Damage.apply(hit.target, hit.damage, context.team)
+		var result := Damage.submit(hit.target, _damage_request(context, hit.damage, "explosion", "impact_blast"))
 		if not _context_live(context): return
-		if applied > 0.0: damage_applied.emit(_player, hit.target, applied, "explosion")
+		if result.valid_hit: damage_applied.emit(_player, hit.target, result.health_loss, "explosion")
 	# One composite request costs one budget unit. Each finite payload has its own cap.
 	for hit in plan.statuses:
 		if not _context_live(context): return
@@ -486,14 +492,14 @@ func _apply_status(context: Dictionary, target, status_id: String, duration: flo
 	var applied: bool = statuses.apply(target, status_id, duration, source, context.control_attempts)
 	if applied and definition.kind == "freeze" and _context_live(context): frost.froze(context, _player)
 
-# MeleeResolver passes ordinary scaled damage. Contact/derived effects keep that base.
-func apply_melee_damage(source, target, amount: float) -> float:
-	if source != _player: return Damage.apply(target, amount, source.team)
+# MeleeResolver passes the unmodified formula basis; the request applies bonuses once.
+func apply_melee_damage(source, target, amount: float) -> Dictionary:
+	if source != _player: return Damage.submit(target, source.runner.damage_snapshot)
 	var context := _context_for_cast(source.runner.cast_id)
-	if context.is_empty(): return Damage.apply(target, amount, source.team)
+	if context.is_empty(): return Damage.submit(target, source.runner.damage_snapshot)
 	return _apply_direct_damage(context, target, amount, "direct_melee")
 
-func _apply_direct_damage(context: Dictionary, target, amount: float, origin: String) -> float:
+func _apply_direct_damage(context: Dictionary, target, amount: float, origin: String) -> Dictionary:
 	var result := Conditional.evaluate(context, target, amount, origin, statuses, _catalog, get_instance_id())
 	var shatter := Frost.params(context.program, "consume_freeze")
 	var consumes := false
@@ -507,9 +513,10 @@ func _apply_direct_damage(context: Dictionary, target, amount: float, origin: St
 		if consumes: result.damage += amount * float(shatter.bonus)
 	var point: Vector3 = target.global_position
 	var handle: int = target.handle
-	result.damage *= elements.incoming_scale(self, target)
-	var applied := Damage.apply(target, result.damage, context.team)
-	if applied > 0.0 and _context_live(context):
+	var request := _damage_request(context, amount, origin)
+	request.conditional_bonus = result.damage / amount - 1.0 if amount > 0.0 else 0.0
+	var hit := Damage.submit(target, request)
+	if hit.valid_hit and _context_live(context):
 		var element: Dictionary = elements.element_of(context.program)
 		if not element.is_empty():
 			var impact := _action_fact(context, "element_hit")
@@ -517,11 +524,11 @@ func _apply_direct_damage(context: Dictionary, target, amount: float, origin: St
 			impact.position = point
 			impact.target_handle = handle
 			action_presented.emit(impact)
-		elements.on_direct_hit(self, context, target, applied)
-	if applied > 0.0 and consumes and _context_live(context):
+		elements.on_direct_hit(self, context, target, hit.poise_basis)
+	if hit.valid_hit and consumes and _context_live(context):
 		context.shatters = int(context.get("shatters", 0)) + 1
 		statuses.remove(target, shatter.status_id)
-	if applied > 0.0 and result.bonus > 0.0 and _context_live(context):
+	if hit.valid_hit and result.bonus > 0.0 and _context_live(context):
 		var fact := _action_fact(context, "conditional_damage")
 		fact.position = point
 		fact.target_handle = handle
@@ -529,12 +536,43 @@ func _apply_direct_damage(context: Dictionary, target, amount: float, origin: St
 		fact.bonus = result.bonus
 		fact.base_damage = amount
 		fact.damage = result.damage
-		fact.applied_damage = applied
+		fact.applied_damage = hit.health_loss
 		fact.effect_ids = result.effect_ids
 		fact.room_generation = context.room_generation
 		Resolver.freeze(fact)
 		_pending_conditionals.append(fact)
-	return applied
+	return hit
+
+func _damage_request(context: Dictionary, basis: float, origin: String, derived_id: String = "") -> Dictionary:
+	var request: Dictionary = context.damage_request.duplicate(true)
+	request.components[0].basis = basis
+	request.root_id = context.id
+	request.runtime = weakref(self)
+	request.runtime_id = get_instance_id()
+	request.room_generation = context.room_generation
+	request.origin = origin
+	request.event_id = _next_event
+	if not derived_id.is_empty():
+		var profile: Dictionary = _player.attribute_catalog.profile(derived_id)
+		if profile.damage_type != "inherit_parent": request.components[0].type = profile.damage_type
+		if profile.crit_policy == "never": request.critical = false
+		request.profile_id = derived_id
+	return request
+
+func apply_element_damage(context: Dictionary, target, profile_id: String, amount: float) -> Dictionary:
+	var owner = context.damage_request.source.get_ref()
+	if owner == null or not owner.health.alive() or context.room_generation != _room_generation: return {"valid_hit": false}
+	var profile: Dictionary = owner.attribute_catalog.profile(profile_id)
+	var growth := Damage.Formula.elemental_growth(owner.attribute_catalog, owner.attributes.final, owner.attributes.base)
+	var request := Damage.request(owner, profile_id, amount * growth, context.id, context.action_id)
+	_next_event += 1
+	request.runtime = weakref(self)
+	request.runtime_id = get_instance_id()
+	request.room_generation = context.room_generation
+	request.event_id = _next_event
+	request.origin = profile_id
+	request.allows_on_hit = profile.allows_element_retrigger
+	return Damage.submit(target, request)
 
 func _flush_conditional_facts() -> void:
 	# Publish after this step's committed contact/status work; never feed presentation

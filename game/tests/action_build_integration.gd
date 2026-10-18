@@ -12,6 +12,12 @@ func check(ok: bool, message: String) -> void:
 func frames() -> void:
 	await process_frame
 	await process_frame
+## 三选一弹出后有防误触锁、选中后有退场动画：等到卡牌落定可选（或面板已关）
+func choice_ready() -> void:
+	var panel = arena.builds.choice_panel if arena != null else null
+	for i in 240:
+		if panel == null or (not panel._closing and (not panel.is_open() or panel.accepting())): return
+		await process_frame
 func click_at(point: Vector2, button_index: int = MOUSE_BUTTON_LEFT) -> void:
 	var event := InputEventMouseButton.new()
 	event.position = point
@@ -23,8 +29,10 @@ func click_at(point: Vector2, button_index: int = MOUSE_BUTTON_LEFT) -> void:
 	root.push_input(event, true)
 	await process_frame
 func click(control: Control) -> void:
+	await choice_ready()
 	# Footer remains reachable even when the description scroll consumes its own clicks.
-	await click_at(control.get_global_rect().get_center() + Vector2(0, control.size.y * 0.4))
+	var rect := control.get_global_rect()
+	await click_at(rect.get_center() + Vector2(0, rect.size.y * 0.4))
 func key(code: Key) -> void:
 	var event := InputEventKey.new()
 	event.physical_keycode = code
@@ -191,6 +199,7 @@ func check_replacement_ui(menu: MenuButton) -> void:
 	for attempt in 100:
 		arena.builds.request_test_offer()
 		await frames()
+		await choice_ready()
 		var selected := ""
 		for id in arena.builds.choice_panel._bindings:
 			var binding: Dictionary = arena.builds.choice_panel._bindings[id]

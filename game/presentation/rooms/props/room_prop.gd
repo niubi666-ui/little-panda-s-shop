@@ -2,6 +2,9 @@ extends StaticBody3D
 ## Adapter to melee's existing damage target protocol; not an enemy or Build proc target.
 const Health = preload("res://combat/actors/health_runtime.gd")
 const BreakEffect = preload("res://presentation/rooms/props/break_effect.tscn")
+const Damage = preload("res://combat/effects/damage_executor.gd")
+signal damage_received(result: Dictionary)
+var attribute_catalog
 var entry: Dictionary
 var definition: Dictionary
 var health
@@ -11,12 +14,14 @@ var _commit_destroy: Callable
 var _visual: Node3D
 var searched := false
 var bounds: Vector3
-func configure(placement: Dictionary, prop_definition: Dictionary, visual: Resource, target_handle: int, commit_destroy: Callable) -> void:
+func configure(placement: Dictionary, prop_definition: Dictionary, visual: Resource, target_handle: int, commit_destroy: Callable, attributes) -> void:
 	entry = placement
 	definition = prop_definition
 	bounds = visual.bounds
 	handle = target_handle
 	_commit_destroy = commit_destroy
+	attribute_catalog = attributes
+	assert(attribute_catalog != null)
 	if definition.kind == "destructible": health = Health.new(definition.health)
 	collision_layer = 1
 	collision_mask = 0
@@ -32,7 +37,13 @@ func configure(placement: Dictionary, prop_definition: Dictionary, visual: Resou
 	add_child(_visual)
 func receive_hit(amount: float) -> float:
 	if health == null or not health.alive() or amount <= 0.0: return 0.0
-	if amount >= health.current and not _commit_destroy.call(entry.id): return 0.0
+	return Damage.raw_physical(self, amount, attribute_catalog, 0).health_loss
+func invulnerable() -> bool: return false
+func supports_elements() -> bool: return attribute_catalog.data.damageable_prop_profile.supports_elements
+func defenses() -> Dictionary: return attribute_catalog.data.damageable_prop_profile
+func damage_modifiers() -> Dictionary: return {"vulnerability": 1.0, "break_multiplier": 1.0, "reduction": 1.0}
+func commit_damage(amount: float, _poise: float) -> Dictionary:
+	if amount >= health.current and not _commit_destroy.call(entry.id): return {"shield_loss": 0.0, "health_loss": 0.0}
 	var applied: float = health.apply(amount, false)
 	if not health.alive():
 		collision_layer = 0
@@ -42,7 +53,7 @@ func receive_hit(amount: float) -> float:
 		fragments.position.y = bounds.y / 2.0
 		fragments.finished.connect(fragments.queue_free)
 		fragments.emitting = true
-	return applied
+	return {"shield_loss": 0.0, "health_loss": applied}
 func apply_knockback(_direction: Vector3, _speed: float, _duration: float) -> void: pass
 func mark_searched() -> void:
 	searched = true

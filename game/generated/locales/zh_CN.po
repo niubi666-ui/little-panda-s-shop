@@ -1690,6 +1690,120 @@ msgstr "查看工作台"
 msgid "shop.station.workbench.name"
 msgstr "工作台"
 
+msgid "stats.action.primary"
+msgstr "左键 · 最终伤害加成"
+
+msgid "stats.action.skill"
+msgstr "右键 · 最终伤害加成"
+
+msgid "stats.action.special"
+msgstr "R · 最终伤害加成"
+
+msgid "stats.armor"
+msgstr "护甲"
+
+msgid "stats.attack_power"
+msgstr "攻击力"
+
+msgid "stats.attack_speed_multiplier"
+msgstr "攻击速度倍率"
+
+msgid "stats.base_preview"
+msgstr "店铺 · 基础属性预览（不含本局构筑与临时增益）"
+
+msgid "stats.binding.primary"
+msgstr "左键"
+
+msgid "stats.binding.skill"
+msgstr "右键"
+
+msgid "stats.binding.special"
+msgstr "R"
+
+msgid "stats.close"
+msgstr "关闭（C / Esc）"
+
+msgid "stats.conditional"
+msgstr "{action} · 冻结窗口追击 +{bonus}%（不计入上方）"
+
+msgid "stats.cooldown_haste"
+msgstr "冷却恢复"
+
+msgid "stats.crit_chance"
+msgstr "暴击率"
+
+msgid "stats.crit_damage_multiplier"
+msgstr "暴击伤害倍率"
+
+msgid "stats.element"
+msgstr "{action} · 附着{element}元素"
+
+msgid "stats.footer"
+msgstr "C / Esc 关闭 · L 切换语言。查看期间战斗暂停。属性变化不会恢复生命。"
+
+msgid "stats.live"
+msgstr "当前角色 · 实时最终属性"
+
+msgid "stats.magic_resistance"
+msgstr "魔法抗性"
+
+msgid "stats.magical_reduction"
+msgstr "魔法减伤"
+
+msgid "stats.max_health"
+msgstr "最大生命"
+
+msgid "stats.move_speed_mps"
+msgstr "移动速度（米/秒）"
+
+msgid "stats.physical_reduction"
+msgstr "物理减伤"
+
+msgid "stats.preview_note"
+msgstr "预览已包含常驻武器加成。\n蓄力、冻结追击等条件增伤与元素持续伤害另算。\n元素附魔不改变武器的伤害类型。"
+
+msgid "stats.skill.charged_wave"
+msgstr "右键 · 蓄满剑气"
+
+msgid "stats.skill.heavy_slash"
+msgstr "R · 重击"
+
+msgid "stats.skill.slash_1"
+msgstr "左键 · 第一段"
+
+msgid "stats.skill.slash_2"
+msgstr "左键 · 第二段"
+
+msgid "stats.skill.slash_3"
+msgstr "左键 · 第三段"
+
+msgid "stats.skill.wave_cast"
+msgstr "右键 · 剑气"
+
+msgid "stats.skill_preview"
+msgstr "技能伤害 · 未暴击 / 目标减伤前"
+
+msgid "stats.spell_power"
+msgstr "法术强度"
+
+msgid "stats.title"
+msgstr "角色属性"
+
+msgid "stats.type.magical"
+msgstr "魔法"
+
+msgid "stats.type.physical"
+msgstr "物理"
+
+msgid "stats.type.true"
+msgstr "真实"
+
+msgid "stats.vitals"
+msgstr "生命 {hp} / {max}    护盾 {shield}"
+
+msgid "stats.weapon_bonus"
+msgstr "全局武器伤害加成 +{bonus}%"
+
 msgid "training.menu.build"
 msgstr "构筑与测试预设"
 

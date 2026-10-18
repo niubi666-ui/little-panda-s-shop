@@ -75,7 +75,7 @@ func configure(room_node: Node3D, player_node, ui: Node, theme: Theme, placement
 		var entry: Dictionary = plan.placements[index]
 		var prop := Prop.new()
 		prop.name = entry.id
-		prop.configure(entry, catalog.prop(entry.prop_id), visuals.visual(entry.prop_id), -(index + 1), _destroy)
+		prop.configure(entry, catalog.prop(entry.prop_id), visuals.visual(entry.prop_id), -(index + 1), _destroy, player.attribute_catalog)
 		container.add_child(prop)
 		props.append(prop)
 		if entry.kind == "destructible": destructibles.append(prop)

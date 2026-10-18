@@ -57,12 +57,12 @@ func setup(ticket: Dictionary, hp: float, program: Dictionary, combat, enemy_cat
 	_spawns = geometry.enemy_spawns()
 	if not EncounterPlanner.new().validate_plan(_plan.encounter_plan, _spawns.size(), enemy_catalog): return false
 	player = _spawn(combat.player(), geometry.player_spawn(), 0)
-	if hp <= 0.0 or hp > player.health.maximum: return false
-	player.health.current = hp
+	if hp <= 0.0: return false
 	player.killed.connect(func(_actor): _finish(false))
 	build_runtime.configure(builds, player, func(): return actors, _wall_hit)
 	if not build_runtime.set_program(program) or not player.set_action_program(program.actions, combat): return false
 	player.set_build_movement_multiplier(program.global.move_scale)
+	player.health.current = minf(hp, player.health.maximum)
 	# 剑上的元素附魔跟着构筑里第一个元素走（views[0] 是主角）
 	views[0].set_weapon_enchant(WeaponEnchantRule.primary_element(program, builds))
 	player.runner.committed.connect(build_runtime.on_committed)

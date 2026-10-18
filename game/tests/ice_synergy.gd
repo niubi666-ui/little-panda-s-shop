@@ -18,7 +18,8 @@ func _begin(f: Dictionary, action: String) -> Dictionary:
 	return f.runtime._context_for_cast(f.player.runner.cast_id)
 
 func _hit(f: Dictionary, action: String, target) -> float:
-	return f.runtime._apply_direct_damage(_begin(f, action), target, 10.0, "direct_projectile" if action == "skill" else "direct_melee")
+	# These source/window assertions compare the noncritical pre-resistance impact.
+	return f.runtime._apply_direct_damage(_begin(f, action), target, 10.0, "direct_projectile" if action == "skill" else "direct_melee").poise_basis
 
 func _tough(id: String = "scout", point: Vector3 = Vector3.FORWARD):
 	var target = actor(id, 1, point)
@@ -167,17 +168,17 @@ func _real_projectiles() -> void:
 	for i in 3:
 		f.player.request_skill(); _advance(f, 1.02)
 	check(f.runtime.statuses.snapshot(target).has("test_freeze") and f.runtime.statuses.snapshot(rear).has("test_freeze"), "three actual pierced waves create windows")
-	f.player.request_skill(); _advance(f, 0.4)
+	f.player.request_skill(); _advance(f, 0.65)
 	check(f.runtime.diagnostics().conditional_hits == 2, "fourth actual wave gains followup on both targets")
 	clean(f)
 	# Charged/returning versions share the same program and trail. Same-root return gains no followup.
 	f = setup(_cards() + [select("charged_wave", "skill"), select("returning_wave", "skill")])
 	var projectile_facts: Array = []
 	f.runtime.projectile_presented.connect(func(fact): projectile_facts.append(fact))
-	target = _tough("scout", Vector3.FORWARD * 2.0)
+	target = _tough("scout", Vector3.FORWARD * 6.0)
 	for i in 2: _hit(f, "skill", target)
 	f.player.runner.cancel(); f.player.runner._cooldowns.clear()
-	f.player.press_skill(); f.player.step(1.2); f.player.release_skill(); _advance(f, 0.15)
+	f.player.press_skill(); f.player.step(1.2); f.player.release_skill(); _advance(f, 0.7)
 	check(f.player.runner.cast_charged and f.runtime.statuses.snapshot(target).has("test_freeze"), "charged ice opens window")
 	check(projectile_facts.any(func(p): return p.charged and p.radius > builds.projectile("sword_wave").radius_m), "charged collision uses large radius")
 	_advance(f, 0.5)

@@ -2,6 +2,7 @@ extends RefCounted
 ## Owns local auras and swept projectiles. No JSON access, scene paths, or inventory.
 const Damage = preload("res://combat/effects/damage_executor.gd")
 const Melee = preload("res://combat/ai/melee_brain.gd")
+const Role = preload("res://combat/enemies/role_brain.gd")
 const Crossbow = preload("res://combat/enemies/crossbow_brain.gd")
 const Charger = preload("res://combat/enemies/charger_brain.gd")
 const Banner = preload("res://combat/enemies/banner_brain.gd")
@@ -27,6 +28,7 @@ var origin: Callable
 var sweep_world: Callable
 var _next_projectile := 0
 var _control_hooks: Dictionary = {}
+var _room_generation := 0
 var rains: Array = []
 var _volley_hits: Dictionary = {}
 var _next_rain := 0
@@ -36,6 +38,7 @@ func configure(player, radius: float, query_origin: Callable, sweep: Callable) -
 	origin = query_origin
 	sweep_world = sweep
 func add(actor, profile: Dictionary, route: Callable, sight: Callable, safe_motion: Callable, ranger_queries: Dictionary = {}):
+	actor.damage_scope = _stamp
 	var brain
 	match profile.role:
 		"melee":
@@ -65,6 +68,7 @@ func add(actor, profile: Dictionary, route: Callable, sight: Callable, safe_moti
 			brain.shot_requested.connect(_shoot)
 			brain.rain_requested.connect(_rain)
 		_: assert(false, "Unimplemented validated role")
+	if brain is Role: brain.damage_scope = _stamp
 	var brain_ref: WeakRef = weakref(brain)
 	var hook := func():
 		var current = brain_ref.get_ref()
@@ -83,17 +87,18 @@ func _engaged_melee_others(asker) -> int:
 func update_auras() -> void:
 	for recipient in brains:
 		var actor = recipient.actor
-		actor.enemy_move_multiplier = 1.0
-		actor.enemy_attack_multiplier = 1.0
 		actor.aura_active = false
-		if not actor.health.alive(): continue
+		var move_bonus := 0.0
+		var attack_bonus := 0.0
 		for emitter in brains:
-			if emitter == recipient or not emitter.actor.health.alive() or emitter.actor.control_locked or profiles[emitter.actor.handle].role != "support": continue
+			if not actor.health.alive() or emitter == recipient or not emitter.actor.health.alive() or emitter.actor.control_locked or profiles[emitter.actor.handle].role != "support": continue
 			var settings: Dictionary = profiles[emitter.actor.handle].config
 			if actor.global_position.distance_to(emitter.actor.global_position) <= settings.aura_radius_m:
-				actor.enemy_move_multiplier = maxf(actor.enemy_move_multiplier, 1.0 + settings.move_speed_bonus)
-				actor.enemy_attack_multiplier = maxf(actor.enemy_attack_multiplier, 1.0 + settings.attack_speed_bonus)
+				move_bonus = maxf(move_bonus, settings.move_speed_bonus)
+				attack_bonus = maxf(attack_bonus, settings.attack_speed_bonus)
 				actor.aura_active = true
+		actor.attributes.set_modifier("enemy_runtime:banner_aura", "move_speed_mps", "percent", move_bonus)
+		actor.attributes.set_modifier("enemy_runtime:banner_aura", "attack_speed_multiplier", "percent", attack_bonus)
 func before_motion(delta: float) -> void:
 	_target_before_motion=origin.call(target)
 	_has_motion_sample=true
@@ -127,7 +132,7 @@ func after_motion(delta: float) -> void:
 			if hit:p.contact=true
 		var volley: String = p.config.get("volley_id", "")
 		if hit and (volley.is_empty() or not _volley_hits.has(volley)):
-			var applied := _impact(p.source, target, p.config.damage, p.direction, 0.0, 0.0)
+			var applied := _impact(p.source, target, p.damage_request, p.direction, 0.0, 0.0)
 			if applied > 0.0 and not volley.is_empty(): _volley_hits[volley] = true
 		p.finished=(hit and not charged) or fraction<1.0 or p.life<=step_time
 		if p.finished:
@@ -156,14 +161,15 @@ func after_motion(delta: float) -> void:
 			var offset: Vector3 = target.global_position - rain.center
 			offset.y = 0.0
 			if offset.length() <= rain.config.rain_radius_m + target_radius:
-				_impact(rain.source, target, rain.config.rain_damage, Vector3.ZERO, 0.0, 0.0)
+				_impact(rain.source, target, rain.damage_request, Vector3.ZERO, 0.0, 0.0)
 			rain_pulsed.emit(rain.id,rain.center,rain.source.handle,rain.pulses,rain.remaining==0)
 			if not target.health.alive(): return
 		if rain.remaining == 0: rains.remove_at(i)
 
 func _rain(source, center: Vector3, settings: Dictionary) -> void:
 	_next_rain += 1
-	rains.append({"id":_next_rain,"source":source,"center":center,"launch":source.global_position + Vector3.UP * settings.arrow_height_m,"config":settings,"time_left":settings.rain_delay_sec - settings.rain_windup_sec,"remaining":int(settings.rain_pulses),"pulses":0})
+	var request: Dictionary = settings.damage_request if settings.has("damage_request") else source.make_damage_request(settings.rain_damage_profile_id, _next_rain, "rain")
+	rains.append({"id":_next_rain,"source":source,"center":center,"launch":source.global_position + Vector3.UP * settings.arrow_height_m,"config":settings,"damage_request":_stamp(request),"time_left":settings.rain_delay_sec - settings.rain_windup_sec,"remaining":int(settings.rain_pulses),"pulses":0})
 	rain_started.emit(rains.back())
 
 func _can_start_rain(source, center: Vector3, settings: Dictionary, ground: Callable, escape: Callable) -> bool:
@@ -194,22 +200,27 @@ func _shoot(source, direction: Vector3, settings: Dictionary) -> void:
 		if sweep_world.call(position, position + offset, settings.projectile_radius_m) < 1.0: return
 		position += offset
 	projectiles.append({"id":_next_projectile,"source":source,"position":position,"start_position":position,"visual_launch_offset":launch_offset,"direction":direction,"config":settings,"life":settings.projectile_lifetime_sec,"contact":false,"finished":false})
+	var request: Dictionary = settings.damage_request if settings.has("damage_request") else source.make_damage_request(settings.damage_profile_id, _next_projectile, "shot")
+	projectiles.back().damage_request = _stamp(request)
+	if settings.has("rift"): settings.rift.damage_request = _stamp(settings.rift.damage_request)
 	if settings.has("rift"):charged_rifts.add(projectiles.back())
 	projectile_spawned.emit(projectiles.back())
-func _impact(source, victim, damage: float, direction: Vector3, speed: float, duration: float) -> float:
+func _impact(source, victim, damage: Dictionary, direction: Vector3, speed: float, duration: float) -> float:
 	if not victim.health.alive(): return 0.0
-	var applied: float = Damage.apply(victim, damage, source.team)
-	if applied > 0.0:
+	var result := Damage.submit(victim, damage)
+	if result.valid_hit:
 		victim.apply_knockback(direction, speed, duration)
-		confirmed_hit.emit(source, victim, applied)
-	return applied
+		confirmed_hit.emit(source, victim, result.health_loss)
+	return result.health_loss + result.shield_loss
 func clear() -> void:
+	_room_generation += 1
 	for brain in brains:
 		var hook: Callable = _control_hooks[brain.actor.handle]
+		brain.actor.damage_scope = Callable()
+		if brain is Role: brain.damage_scope = Callable()
 		if brain.actor.control_interrupted.is_connected(hook): brain.actor.control_interrupted.disconnect(hook)
 		brain.actor.forced_velocity = Vector3.ZERO
-		brain.actor.enemy_move_multiplier = 1.0
-		brain.actor.enemy_attack_multiplier = 1.0
+		brain.actor.attributes.remove_source("enemy_runtime:banner_aura")
 		brain.actor.aura_active = false
 	brains.clear()
 	profiles.clear()
@@ -221,10 +232,21 @@ func clear() -> void:
 	_volley_hits.clear()
 	attacks_cleared.emit()
 
+func _stamp(request: Dictionary) -> Dictionary:
+	var result := request.duplicate(true)
+	result.runtime = weakref(self)
+	result.runtime_id = get_instance_id()
+	result.room_generation = _room_generation
+	return result
+
 func remove_actor(actor) -> void:
 	for index in range(brains.size() - 1, -1, -1):
 		if brains[index].actor != actor: continue
 		brains[index].cancel()
+		actor.damage_scope = Callable()
+		if brains[index] is Role: brains[index].damage_scope = Callable()
+		actor.attributes.remove_source("enemy_runtime:banner_aura")
+		actor.aura_active = false
 		var hook: Callable = _control_hooks[actor.handle]
 		if actor.control_interrupted.is_connected(hook): actor.control_interrupted.disconnect(hook)
 		_control_hooks.erase(actor.handle)
@@ -239,6 +261,10 @@ func remove_dead() -> void:
 	for index in range(brains.size() - 1, -1, -1):
 		var actor = brains[index].actor
 		if actor.health.alive(): continue
+		actor.damage_scope = Callable()
+		if brains[index] is Role: brains[index].damage_scope = Callable()
+		actor.attributes.remove_source("enemy_runtime:banner_aura")
+		actor.aura_active = false
 		var hook: Callable = _control_hooks[actor.handle]
 		if actor.control_interrupted.is_connected(hook): actor.control_interrupted.disconnect(hook)
 		_control_hooks.erase(actor.handle)

@@ -38,10 +38,10 @@ func incoming_scale(runtime, target) -> float:
 		bonus += param(runtime, id, "damage_taken_per_stack") * int(state.elements[id].stacks)
 	return 1.0 + bonus
 
-## 直接命中且造成了伤害之后调用
+## 执行器确认有效命中之后调用；护盾吸收仍有效，无敌拒绝不进入这里。
 func on_direct_hit(runtime, context: Dictionary, target, applied: float) -> void:
 	var catalog = runtime._catalog
-	if not catalog.has_elements() or not is_instance_valid(target) or not target.health.alive(): return
+	if not catalog.has_elements() or not is_instance_valid(target) or not target.health.alive() or not target.supports_elements(): return
 	var hit := element_of(context.program)
 	var hit_id: String = hit.get("element_id", "")
 	var state := _state(target)
@@ -105,6 +105,7 @@ func _apply(runtime, context: Dictionary, target, state: Dictionary, id: String,
 			state.elements.erase(id)
 			return
 	current.remaining = duration
+	current.source = context.duplicate(true)
 	state.elements[id] = current
 	if not str(element.slow_status_id).is_empty():
 		runtime._apply_status(context, target, element.slow_status_id, duration)
@@ -112,20 +113,22 @@ func _apply(runtime, context: Dictionary, target, state: Dictionary, id: String,
 		# 叠满：冻结（Boss 按自身响应改为减速窗口），冰寒清零重新累积
 		state.elements.erase(id)
 		runtime._apply_status(context, target, element.freeze_status_id, float(runtime._catalog.status(element.freeze_status_id).duration_sec))
+	_sync_incoming(runtime, target)
 	runtime.element_presented.emit({"event": "applied", "element": id, "handle": target.handle, "position": target.global_position, "stacks": int(current.stacks)})
 
 func _discharge(runtime, context: Dictionary, target, id: String) -> void:
+	var source: Dictionary = _states[target.handle].elements[id].source
 	_states[target.handle].elements.erase(id)
 	var origin: Vector3 = target.global_position
 	var points := PackedVector3Array([origin])
 	var damage := param(runtime, id, "discharge_damage")
-	_damage(runtime, target, damage)
+	_damage(runtime, source, target, "element.thunder.discharge", damage)
 	for other in _nearest(runtime, origin, param(runtime, id, "discharge_radius_m"), int(round(param(runtime, id, "discharge_max_targets"))), target):
 		points.append(other.global_position)
 		points.append(origin)
-		_damage(runtime, other, damage)
+		_damage(runtime, source, other, "element.thunder.discharge", damage)
 	runtime.element_presented.emit({"event": "discharge", "element": id, "handle": target.handle, "position": origin, "points": points})
-	_mastery(runtime, context, target, id, "discharge", 1)
+	_mastery(runtime, source, target, id, "discharge", 1)
 
 ## 同元素专精（两个按键带同一元素才可能拿到）：叠满 / 放电时对周围爆发，并把元素扩散给被波及的敌人
 ## 返回 true 表示专精要求消耗目标身上的这个元素
@@ -140,7 +143,7 @@ func _mastery(runtime, context: Dictionary, target, id: String, trigger: String,
 		victims.append_array(_nearest(runtime, center, float(params.radius_m), int(params.max_targets), target))
 		var points := PackedVector3Array()
 		for victim in victims:
-			_damage(runtime, victim, damage)
+			_damage(runtime, context, victim, "mastery." + id, damage)
 			if victim != target: points.append(victim.global_position)
 			if int(params.spread_stacks) > 0 and is_instance_valid(victim) and victim.health.alive() and victim != target:
 				_apply(runtime, context, victim, _state(victim), id, int(params.spread_stacks), true)
@@ -157,11 +160,11 @@ func _react(runtime, context: Dictionary, target, reaction: Dictionary, stacks: 
 	var boost: Dictionary = runtime._program.get("global", {}).get("reaction_boosts", {}).get(reaction.id, {"damage_bonus": 0.0, "radius_bonus_m": 0.0})
 	var damage_scale := 1.0 + float(boost.damage_bonus)
 	var radius := float(reaction.radius_m) + (float(boost.radius_bonus_m) if float(reaction.radius_m) > 0.0 else 0.0)
-	_damage(runtime, target, (float(reaction.damage) + float(reaction.damage_per_stack) * stacks) * damage_scale)
+	_damage(runtime, context, target, "reaction." + reaction.id + ".direct", (float(reaction.damage) + float(reaction.damage_per_stack) * stacks) * damage_scale)
 	if radius > 0.0:
 		for other in _nearest(runtime, center, radius, int(reaction.max_targets), target):
 			affected.append(other)
-			if float(reaction.area_damage) > 0.0: _damage(runtime, other, float(reaction.area_damage) * damage_scale)
+			if float(reaction.area_damage) > 0.0: _damage(runtime, context, other, "reaction." + reaction.id + ".area", float(reaction.area_damage) * damage_scale)
 	for victim in affected:
 		if not is_instance_valid(victim) or not victim.health.alive(): continue
 		if float(reaction.knockback_mps) != 0.0 and victim != target:
@@ -175,6 +178,7 @@ func _react(runtime, context: Dictionary, target, reaction: Dictionary, stacks: 
 			var state := _state(victim)
 			state.vulnerable = maxf(float(state.vulnerable), float(reaction.vulnerability))
 			state.vulnerable_left = maxf(float(state.vulnerable_left), float(reaction.vulnerability_sec))
+			_sync_incoming(runtime, victim)
 		if not str(reaction.slow_status_id).is_empty():
 			runtime._apply_status(context, victim, reaction.slow_status_id, float(runtime._catalog.status(reaction.slow_status_id).duration_sec))
 	var zone_id := -1
@@ -183,15 +187,19 @@ func _react(runtime, context: Dictionary, target, reaction: Dictionary, stacks: 
 		zone_id = _next_zone
 		_zones.append({"id": zone_id, "reaction_id": reaction.id, "position": center, "radius": float(reaction.zone_radius_m) + float(boost.radius_bonus_m),
 			"remaining": float(reaction.zone_sec), "tick": float(reaction.zone_tick_sec), "tick_left": float(reaction.zone_tick_sec),
-			"damage": float(reaction.zone_damage_per_tick) * damage_scale})
+			"source": context.duplicate(true)})
 	runtime.element_presented.emit({"event": "reaction", "reaction_id": reaction.id, "name_key": reaction.name_key,
 		"elements": [hit_id, other_id], "handle": handle, "position": center, "radius": radius,
 		"pull": float(reaction.knockback_mps) < 0.0, "zone_id": zone_id, "zone_radius": float(reaction.zone_radius_m) + float(boost.radius_bonus_m), "zone_sec": float(reaction.zone_sec),
 		"boosted": float(boost.damage_bonus) > 0.0 or float(boost.radius_bonus_m) > 0.0})
 
-func _damage(runtime, target, amount: float) -> void:
+func _sync_incoming(runtime, target) -> void:
+	target.set_incoming_modifier("elements:" + str(get_instance_id()), incoming_scale(runtime, target) - 1.0)
+
+func _damage(runtime, source: Dictionary, target, profile_id: String, amount: float) -> void:
 	if amount <= 0.0 or not is_instance_valid(target) or not target.health.alive(): return
-	Damage.apply(target, amount * incoming_scale(runtime, target), runtime._player.team)
+	_sync_incoming(runtime, target)
+	runtime.apply_element_damage(source, target, profile_id, amount)
 
 ## 中心附近最近的若干个敌人（不含 exclude），距离相同按 handle 排序，结果稳定
 func _nearest(runtime, center: Vector3, radius: float, limit: int, exclude) -> Array:
@@ -223,9 +231,10 @@ func tick(delta: float, runtime) -> void:
 				current.tick_left = float(current.tick_left) - delta
 				while float(current.tick_left) <= 0.0 and target.health.alive():
 					current.tick_left = float(current.tick_left) + float(element.tick_sec)
-					_damage(runtime, target, param(runtime, id, "damage_per_tick_per_stack") * int(current.stacks))
+					_damage(runtime, current.source, target, "element." + id + ".tick", param(runtime, id, "damage_per_tick_per_stack") * int(current.stacks))
 			current.remaining = float(current.remaining) - delta
 			if float(current.remaining) <= 0.0: state.elements.erase(id)
+		_sync_incoming(runtime, target)
 	for index in range(_zones.size() - 1, -1, -1):
 		var zone: Dictionary = _zones[index]
 		zone.remaining = float(zone.remaining) - delta
@@ -233,7 +242,10 @@ func tick(delta: float, runtime) -> void:
 		if float(zone.tick_left) <= 0.0:
 			zone.tick_left = float(zone.tick_left) + float(zone.tick)
 			for victim in _nearest(runtime, zone.position, float(zone.radius), 64, null):
-				_damage(runtime, victim, float(zone.damage))
+				var reaction: Dictionary = catalog.reaction(zone.reaction_id)
+				var boost: Dictionary = runtime._program["global"].reaction_boosts.get(zone.reaction_id, {})
+				var scale := 1.0 + float(boost.damage_bonus) if not boost.is_empty() else 1.0
+				_damage(runtime, zone.source, victim, "reaction." + zone.reaction_id + ".tick", float(reaction.zone_damage_per_tick) * scale)
 		if float(zone.remaining) <= 0.0:
 			_zones.remove_at(index)
 			runtime.element_presented.emit({"event": "zone_ended", "zone_id": zone.id})
@@ -258,5 +270,8 @@ func snapshot() -> Array:
 	return result
 
 func clear() -> void:
+	for state in _states.values():
+		var target = state.target.get_ref()
+		if target != null: target.remove_incoming_modifier("elements:" + str(get_instance_id()))
 	_states.clear()
 	_zones.clear()

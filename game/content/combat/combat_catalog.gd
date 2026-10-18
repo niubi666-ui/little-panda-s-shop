@@ -1,14 +1,11 @@
 extends RefCounted
+const AttributeLoader = preload("res://content/combat/attribute_loader.gd")
 ## Values are decoded once; immutable properties expose no mutable JSON collections.
 class Ability extends RefCounted:
 	var _data: Dictionary
 	func with_windup(seconds: float) -> Ability:
 		var data := _data.duplicate(true)
 		data.windup_sec = seconds
-		return Ability.new(data)
-	func scaled_damage(multiplier: float) -> Ability:
-		var data := _data.duplicate(true)
-		data.damage *= multiplier
 		return Ability.new(data)
 	func _init(data: Dictionary) -> void:
 		_data = data.duplicate(true)
@@ -34,6 +31,17 @@ class Ability extends RefCounted:
 		get: return deg_to_rad(_data.angle_deg)
 	var damage: float:
 		get: return _data.damage
+	var damage_profile_id: String:
+		get: return _data.damage_profile_id
+	func runtime_copy(amount: float, tempo: float, reuse: float, minimum_windup: float) -> Ability:
+		var data := _data.duplicate(true)
+		data.damage = amount
+		data.windup_sec = maxf(minimum_windup, windup / tempo)
+		data.active_sec /= tempo
+		data.recovery_sec /= tempo
+		data.chain_cancel_sec /= tempo
+		data.cooldown_sec = reuse
+		return Ability.new(data)
 	var movement_multiplier: float:
 		get: return _data.movement_speed_multiplier
 	var knockback_speed: float:
@@ -57,7 +65,9 @@ class Ability extends RefCounted:
 
 class Actor extends RefCounted:
 	var _data: Dictionary
-	func _init(data: Dictionary) -> void:
+	var attribute_catalog
+	func _init(data: Dictionary, attributes) -> void:
+		attribute_catalog = attributes
 		_data = data.duplicate(true)
 		_data.attack_ids.make_read_only()
 		_data.make_read_only()
@@ -66,9 +76,11 @@ class Actor extends RefCounted:
 	var name_key: String:
 		get: return _data.name_key
 	var health: float:
-		get: return _data.health
+		get: return attribute_catalog.actor(_data.attribute_profile_id).max_health
 	var speed: float:
-		get: return _data.move_speed_mps
+		get: return attribute_catalog.actor(_data.attribute_profile_id).move_speed_mps
+	var attribute_profile_id: String:
+		get: return _data.attribute_profile_id
 	var stagger: float:
 		get: return _data.stagger_sec
 	## 霸体值：受到的伤害累计到这个数就破防；0 表示没有霸体（每次受击都会硬直）
@@ -132,11 +144,20 @@ var _player_id: String
 var _player_hurt_radius: float
 var _delay: float
 var _dodge: Dodge
-func _init(data: Dictionary) -> void:
+var attributes
+func _init(data: Dictionary, attribute_definitions = null) -> void:
+	attributes = attribute_definitions if attribute_definitions != null else AttributeLoader.new().load_catalog()
+	assert(attributes != null, "Combat attributes must be validated before use")
 	for entry in data.abilities:
-		_abilities[entry.id] = Ability.new(entry)
+		var nominal_actor: String = data.player_id
+		for owner in data.actors:
+			if owner.attack_ids.has(entry.id): nominal_actor = owner.attribute_profile_id
+		var decoded: Dictionary = entry.duplicate(true)
+		# Compatibility readout for tools; actual casts are recomputed from live stats.
+		decoded.damage = attributes.linear(attributes.profile(entry.damage_profile_id), attributes.actor(nominal_actor))
+		_abilities[entry.id] = Ability.new(decoded)
 	for entry in data.actors:
-		_actors[entry.id] = Actor.new(entry)
+		_actors[entry.id] = Actor.new(entry, attributes)
 	_abilities.make_read_only()
 	_actors.make_read_only()
 	_waves = data.waves.duplicate(true)

@@ -76,6 +76,11 @@ func element_order() -> Array: return _elements.order
 func reaction_between(a: String, b: String) -> Dictionary:
 	var key := a + "+" + b if a < b else b + "+" + a
 	return _elements.pairs.get(key, {})
+func reaction(id: String) -> Dictionary:
+	for entry in _elements.pairs.values():
+		if entry.id == id: return entry
+	assert(false, "Unknown reaction " + id)
+	return {}
 func element_zone_limit() -> int: return int(_elements.max_zones)
 
 func entries() -> Array[Dictionary]:

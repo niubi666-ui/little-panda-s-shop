@@ -3,11 +3,22 @@ const Catalog = preload("res://content/combat/combat_catalog.gd")
 const Runner = preload("res://combat/abilities/ability_runner.gd")
 const Health = preload("res://combat/actors/health_runtime.gd")
 const Motor = preload("res://combat/actors/character_motor.gd")
+const AttributeSet = preload("res://combat/actors/attribute_set.gd")
+const Formula = preload("res://combat/effects/damage_formula.gd")
+const Damage = preload("res://combat/effects/damage_executor.gd")
 enum BodyLayer { WORLD = 1, PLAYER = 2, ENEMY = 4 }
 signal killed(actor)
 signal control_interrupted
 ## 霸体被打破的一刻（表现层用来出声音和提示）
 signal poise_broken(actor)
+signal damage_received(result: Dictionary)
+var attributes: AttributeSet
+var attribute_catalog
+var spawn_damage_multiplier := 1.0
+var _critical_rng := RandomNumberGenerator.new()
+var damage_scope: Callable
+var _incoming_modifiers: Dictionary = {}
+var _dodge_recharge_snapshot := 0.0
 var control_locked := false
 var control_move_scale := 1.0
 var control_action_scale := 1.0
@@ -50,7 +61,6 @@ var roll_attack_start_age := 0.0
 var roll_attack_link_duration := 0.0
 var _roll_attack_carry_speed := 0.0
 var melee_sweep_from := Vector3.ZERO
-var _build_move_scale := 1.0
 var _damage_immunity := false
 var protection_amount := 0.0
 var protection_left := 0.0
@@ -98,14 +108,19 @@ func tick_protection(delta: float) -> void:
 	protection_left = maxf(0.0, protection_left - delta)
 	if protection_left <= 0.0: clear_protection()
 var hit_reaction_immune := false
-var enemy_move_multiplier := 1.0
-var enemy_attack_multiplier := 1.0
+# Compatibility readouts; banner modifiers now live in the same attribute set.
+var enemy_move_multiplier: float:
+	get: return attributes.value("move_speed_mps") / definition.speed if definition.speed > 0.0 else 1.0
+	set(value): attributes.set_modifier("legacy:move", "move_speed_mps", "multiply", value)
+var enemy_attack_multiplier: float:
+	get: return attributes.value("attack_speed_multiplier")
+	set(value): attributes.set_modifier("legacy:attack", "attack_speed_multiplier", "multiply", value)
 var aura_active := false
 var _cast_tempo := 1.0
 var forced_velocity := Vector3.ZERO
 func set_build_movement_multiplier(value: float) -> void:
 	assert(is_finite(value) and value > 0.0)
-	_build_move_scale = value
+	attributes.set_modifier("build:movement", "move_speed_mps", "multiply", value)
 func clear_intents() -> void:
 	charging_skill = false
 	charge_elapsed = 0.0
@@ -172,6 +187,12 @@ func configure(actor_def: Catalog.Actor, ability_defs: Array[Catalog.Ability], d
 	collision_layer = BodyLayer.PLAYER if team == 0 else BodyLayer.ENEMY
 	collision_mask = BodyLayer.WORLD | (BodyLayer.ENEMY if team == 0 else BodyLayer.PLAYER)
 	health = Health.new(definition.health)
+	attribute_catalog = definition.attribute_catalog
+	attributes = AttributeSet.new(attribute_catalog, definition.attribute_profile_id)
+	attributes.changed.connect(_attributes_changed)
+	set_critical_seed(str(actor_handle))
+	runner.prepare_definition = _prepare_ability
+	if dodge != null: _dodge_recharge_snapshot = skill_cooldown(dodge.recharge)
 	motor = Motor.new(self)
 	if dodge != null: charges = dodge.charges
 	runner.cue_reached.connect(_on_cue_reached)
@@ -231,7 +252,6 @@ func _start_buffered_action() -> void:
 	var index := combo_index % definitions.size() if id == "primary" else 0
 	var context: Dictionary = _action_program[id] if _action_program.has(id) else {}
 	if runner.start(definitions[index], facing, context, _charged_intent):
-		_cast_tempo = enemy_attack_multiplier
 		combo_index = (index + 1) % definitions.size() if id == "primary" else 0
 		combo_idle = 0.0
 		_clear_attack_intent()
@@ -265,10 +285,11 @@ func _roll_attack_distance_at(elapsed: float) -> float:
 	var windup := runner.ability.windup
 	var carry := _roll_attack_carry_speed * windup
 	if elapsed <= windup: return _roll_attack_carry_speed * maxf(0.0, elapsed)
-	var t := clampf((elapsed - windup) / dodge.attack_duration, 0.0, 1.0)
+	var motion_duration := dodge.attack_duration / _cast_tempo
+	var t := clampf((elapsed - windup) / motion_duration, 0.0, 1.0)
 	var remaining := dodge.attack_distance - carry
 	# Hermite: keep the carry velocity at the join, accelerate into the cut, settle to zero.
-	var tangent := _roll_attack_carry_speed * dodge.attack_duration
+	var tangent := _roll_attack_carry_speed * motion_duration
 	return carry + remaining * (3.0*t*t - 2.0*t*t*t) + tangent * (t*t*t - 2.0*t*t + t)
 
 func _start_roll_attack() -> void:
@@ -287,7 +308,6 @@ func _start_roll_attack() -> void:
 		dodge_left = 0.0
 		dodge_age = 0.0
 		motor.clear_impulse()
-		_cast_tempo = enemy_attack_multiplier
 		combo_index = 0
 		combo_idle = 0.0
 		_clear_attack_intent()
@@ -311,12 +331,15 @@ func step(delta: float) -> void:
 		recharge_left -= delta
 		while recharge_left <= 0.0 and charges < dodge.charges:
 			charges += 1
-			recharge_left += dodge.recharge
+			_dodge_recharge_snapshot = skill_cooldown(dodge.recharge)
+			recharge_left += _dodge_recharge_snapshot
 	if _dodge_requested and dodge != null and charges > 0 and dodge_left <= 0.0 and stagger_left <= 0.0 and runner.can_cancel_for_dodge():
 		charging_skill = false
 		runner.cancel("dodge")
 		_clear_attack_intent()
-		if charges == dodge.charges: recharge_left = dodge.recharge
+		if charges == dodge.charges:
+			_dodge_recharge_snapshot = skill_cooldown(dodge.recharge)
+			recharge_left = _dodge_recharge_snapshot
 		charges -= 1
 		dodge_left = dodge.duration
 		dodge_age = 0.0
@@ -329,7 +352,7 @@ func step(delta: float) -> void:
 		var moving_delta := clampf(dodge.movement_duration - dodge_age, 0.0, delta)
 		var travel := dodge_direction * dodge.speed * moving_delta
 		if stagger_left <= 0.0:
-			var free_velocity := forced_velocity if not forced_velocity.is_zero_approx() else movement * definition.speed * _build_move_scale * enemy_move_multiplier
+			var free_velocity := forced_velocity if not forced_velocity.is_zero_approx() else movement * attributes.value("move_speed_mps")
 			travel += free_velocity * (delta - moving_delta)
 		dodge_left = maxf(0.0, dodge_left - delta)
 		dodge_age += delta
@@ -344,7 +367,7 @@ func step(delta: float) -> void:
 	_start_buffered_action()
 	if not health.alive(): return
 	var before := runner.elapsed
-	runner.tick(delta * _cast_tempo * control_action_scale)
+	runner.tick(delta * control_action_scale)
 	_resume_buffered_skill()
 	_age_attack_intent(delta)
 	if is_roll_attack_cast() and (runner.busy() or runner.active_this_step):
@@ -357,20 +380,32 @@ func step(delta: float) -> void:
 	if not forced_velocity.is_zero_approx() and stagger_left <= 0.0:
 		motor.step(forced_velocity.normalized(), forced_velocity.length(), delta, false)
 	else:
-		motor.step(movement if stagger_left <= 0.0 else Vector3.ZERO, definition.speed * move_multiplier * _build_move_scale * enemy_move_multiplier, delta)
+		motor.step(movement if stagger_left <= 0.0 else Vector3.ZERO, attributes.value("move_speed_mps") * move_multiplier, delta)
 ## 带霸体且未破防：受击不硬直、不被击退，伤害累计到霸体值时破防
 func armored() -> bool:
 	return definition.poise > 0.0 and break_left <= 0.0
 func receive_hit(amount: float) -> float:
-	if not health.alive() or invulnerable() or amount <= 0.0: return 0.0
-	if break_left > 0.0: amount *= definition.break_damage_scale
+	return Damage.raw_physical(self, amount, attribute_catalog, 1 - team).health_loss
+func defenses() -> Dictionary: return attributes.final
+func supports_elements() -> bool: return true
+func set_incoming_modifier(source: String, vulnerability_bonus: float, reduction: float = 0.0) -> void:
+	_incoming_modifiers[source] = {"vulnerability": vulnerability_bonus, "reduction": reduction}
+func remove_incoming_modifier(source: String) -> void: _incoming_modifiers.erase(source)
+func damage_modifiers() -> Dictionary:
+	var vulnerable := 1.0
+	var reduction := 1.0
+	for entry in _incoming_modifiers.values():
+		vulnerable += entry.vulnerability
+		reduction *= 1.0 - entry.reduction
+	return {"vulnerability": maxf(0.0, vulnerable), "reduction": maxf(0.0, reduction), "break_multiplier": definition.break_damage_scale if break_left > 0.0 else 1.0}
+func commit_damage(amount: float, poise_basis: float) -> Dictionary:
 	var absorbed := minf(protection_amount, amount)
 	protection_amount -= absorbed
 	amount -= absorbed
 	var applied := health.apply(amount, invulnerable())
-	if applied > 0.0 and health.alive() and not hit_reaction_immune:
+	if (applied > 0.0 or absorbed > 0.0) and health.alive() and not hit_reaction_immune:
 		if armored():
-			poise_taken += applied
+			poise_taken += poise_basis
 			poise_idle = 0.0
 			if poise_taken >= definition.poise: _break_poise()
 		else:
@@ -379,7 +414,43 @@ func receive_hit(amount: float) -> float:
 				stagger_left = maxf(stagger_left, definition.stagger)
 				runner.cancel("hit")
 				_clear_attack_intent()
-	return applied
+	return {"shield_loss": absorbed, "health_loss": applied}
+
+func _attributes_changed() -> void:
+	health.maximum = attributes.value("max_health")
+	health.current = minf(health.current, health.maximum)
+func set_spawn_scaling(health_multiplier: float, damage_multiplier: float) -> void:
+	attributes.set_modifier("encounter", "max_health", "multiply", health_multiplier)
+	spawn_damage_multiplier = damage_multiplier
+	# This is an explicit initial spawn fill, never called when rebuilding buffs/UI.
+	health.current = health.maximum
+func set_critical_seed(seed_text: String) -> void:
+	_critical_rng.seed = (seed_text + ":" + definition.id + ":" + str(handle) + ":" + str(attribute_catalog.data.damage_rules.critical_rng_stream)).sha256_text().substr(0, 15).hex_to_int()
+func roll_critical(profile_id: String) -> bool:
+	var profile: Dictionary = attribute_catalog.profile(profile_id)
+	return profile.crit_policy == "root_roll" and profile.damage_type != "true" and _critical_rng.randf() < attributes.value("crit_chance")
+func skill_cooldown(base_seconds: float) -> float:
+	return base_seconds / (1.0 + attributes.value("cooldown_haste"))
+func make_damage_request(profile_id: String, root_id: int, action_id: String) -> Dictionary:
+	var basis := Formula.linear(attribute_catalog.profile(profile_id), attributes.final)
+	return Damage.request(self, profile_id, basis, root_id, action_id, roll_critical(profile_id))
+func attack_windup(profile_id: String, base_seconds: float) -> float:
+	assert(attribute_catalog.data.enemy_telegraph_minimum_sec.has(profile_id), "Missing enemy attack timing policy: " + profile_id)
+	return maxf(attribute_catalog.data.enemy_telegraph_minimum_sec[profile_id], base_seconds / attributes.value("attack_speed_multiplier"))
+func _prepare_ability(ability: Catalog.Ability, action: String) -> Catalog.Ability:
+	var profile: Dictionary = attribute_catalog.profile(ability.damage_profile_id)
+	var basis := Formula.linear(profile, attributes.final)
+	runner.damage_snapshot = Damage.request(self, ability.damage_profile_id, basis, runner.cast_id + 1, action, roll_critical(ability.damage_profile_id))
+	if damage_scope.is_valid(): runner.damage_snapshot = damage_scope.call(runner.damage_snapshot)
+	_cast_tempo = attributes.value("attack_speed_multiplier")
+	var minimum := 0.0
+	if profile.modifier_policy == "enemy": minimum = attribute_catalog.data.enemy_telegraph_minimum_sec[ability.damage_profile_id]
+	var reuse := ability.cooldown / _cast_tempo if action == "primary" else skill_cooldown(ability.cooldown)
+	if profile.modifier_policy == "enemy": reuse = skill_cooldown(ability.cooldown)
+	var prepared := ability.runtime_copy(basis, _cast_tempo, reuse, minimum)
+	if dodge != null and ability.id == dodge.attack.id:
+		prepared = prepared.with_windup(roll_attack_link_duration + (ability.windup - roll_attack_link_duration) / _cast_tempo)
+	return prepared
 ## 额外的破防值（例如土元素）：只对未破防的霸体生效
 func add_poise_damage(amount: float) -> void:
 	if not health.alive() or not armored() or amount <= 0.0: return

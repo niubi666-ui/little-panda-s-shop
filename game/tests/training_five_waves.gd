@@ -1,5 +1,6 @@
 extends SceneTree
 const Planner = preload("res://rogue/encounters/encounter_planner.gd")
+const Formula = preload("res://combat/effects/damage_formula.gd")
 var failures: Array[String] = []
 func _initialize() -> void: run.call_deferred()
 func check(ok: bool, label: String) -> void:
@@ -33,11 +34,12 @@ func run() -> void:
 		for actor in alive:
 			check(is_equal_approx(actor.health.maximum,combat.actor(actor.definition.id).health*rule.health_multiplier), "scaled runtime HP")
 			for ability in actor.attacks:
-				check(is_equal_approx(ability.damage,combat.ability(ability.id).damage*rule.damage_multiplier), "scaled melee damage")
+				check(is_equal_approx(Formula.preview(actor,ability.damage_profile_id).amount,combat.ability(ability.id).damage*rule.damage_multiplier), "melee damage depth once")
 		if i == 4:
 			check(alive.size() == 1 and alive[0].definition.id == "elite_ranger", "fifth wave actually spawns boss")
 			var brain = arena.brains.filter(func(b): return b.actor == alive[0])[0]
-			check(is_equal_approx(brain.config.charged_damage,enemies.profile("elite_ranger").config.charged_damage*rule.damage_multiplier), "boss ranged damage scaled")
+			var profile: Dictionary = combat.attributes.profile(brain.config.charged_damage_profile_id)
+			check(is_equal_approx(Formula.preview(alive[0],brain.config.charged_damage_profile_id).amount,Formula.linear(profile,combat.attributes.actor("elite_ranger"))*rule.damage_multiplier), "boss ranged damage scaled once")
 		for actor in alive: actor.health.apply(actor.health.maximum,false)
 		if i < 4:
 			check(arena.state != "victory", "early wave does not finish training")

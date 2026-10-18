@@ -1,0 +1,952 @@
+{
+  "schema_version": 1,
+  "content_version": "combat-attributes.v1",
+  "stat_keys": [
+    "max_health",
+    "attack_power",
+    "spell_power",
+    "armor",
+    "magic_resistance",
+    "move_speed_mps",
+    "attack_speed_multiplier",
+    "cooldown_haste",
+    "crit_chance",
+    "crit_damage_multiplier"
+  ],
+  "stat_bounds": {
+    "max_health": {
+      "min": 1,
+      "max": null
+    },
+    "attack_power": {
+      "min": 0,
+      "max": null
+    },
+    "spell_power": {
+      "min": 0,
+      "max": null
+    },
+    "armor": {
+      "min": 0,
+      "max": null
+    },
+    "magic_resistance": {
+      "min": 0,
+      "max": null
+    },
+    "move_speed_mps": {
+      "min": 0,
+      "max": null
+    },
+    "attack_speed_multiplier": {
+      "min": 0.5,
+      "max": 2.5
+    },
+    "cooldown_haste": {
+      "min": 0,
+      "max": 3
+    },
+    "crit_chance": {
+      "min": 0,
+      "max": 1
+    },
+    "crit_damage_multiplier": {
+      "min": 1,
+      "max": 3
+    }
+  },
+  "stat_modifier_rule": {
+    "composition": "base_plus_flat_then_additive_percent_then_independent_multipliers_then_clamp",
+    "percentage_point_stats": [
+      "crit_chance",
+      "cooldown_haste"
+    ],
+    "maximum_health_change": "preserve_current_absolute_then_clamp",
+    "duplicate_modifier_key": "replace_same_source_stat_operation"
+  },
+  "actors": {
+    "player": {
+      "max_health": 100,
+      "attack_power": 20,
+      "spell_power": 0,
+      "armor": 10,
+      "magic_resistance": 10,
+      "move_speed_mps": 6.2,
+      "attack_speed_multiplier": 1,
+      "cooldown_haste": 0,
+      "crit_chance": 0.05,
+      "crit_damage_multiplier": 1.5
+    },
+    "scout": {
+      "max_health": 110,
+      "attack_power": 12,
+      "spell_power": 0,
+      "armor": 10,
+      "magic_resistance": 0,
+      "move_speed_mps": 3.15,
+      "attack_speed_multiplier": 1,
+      "cooldown_haste": 0,
+      "crit_chance": 0,
+      "crit_damage_multiplier": 1.5
+    },
+    "brute": {
+      "max_health": 170,
+      "attack_power": 22,
+      "spell_power": 0,
+      "armor": 20,
+      "magic_resistance": 5,
+      "move_speed_mps": 1.3,
+      "attack_speed_multiplier": 1,
+      "cooldown_haste": 0,
+      "crit_chance": 0,
+      "crit_damage_multiplier": 1.5
+    },
+    "crossbow": {
+      "max_health": 90,
+      "attack_power": 10,
+      "spell_power": 0,
+      "armor": 0,
+      "magic_resistance": 5,
+      "move_speed_mps": 2.4,
+      "attack_speed_multiplier": 1,
+      "cooldown_haste": 0,
+      "crit_chance": 0,
+      "crit_damage_multiplier": 1.5
+    },
+    "charger": {
+      "max_health": 135,
+      "attack_power": 18,
+      "spell_power": 0,
+      "armor": 10,
+      "magic_resistance": 5,
+      "move_speed_mps": 1.5,
+      "attack_speed_multiplier": 1,
+      "cooldown_haste": 0,
+      "crit_chance": 0,
+      "crit_damage_multiplier": 1.5
+    },
+    "banner": {
+      "max_health": 100,
+      "attack_power": 0,
+      "spell_power": 0,
+      "armor": 0,
+      "magic_resistance": 15,
+      "move_speed_mps": 1.5,
+      "attack_speed_multiplier": 1,
+      "cooldown_haste": 0,
+      "crit_chance": 0,
+      "crit_damage_multiplier": 1.5
+    },
+    "elite_ranger": {
+      "max_health": 450,
+      "attack_power": 20,
+      "spell_power": 20,
+      "armor": 10,
+      "magic_resistance": 10,
+      "move_speed_mps": 3.3,
+      "attack_speed_multiplier": 1,
+      "cooldown_haste": 0,
+      "crit_chance": 0,
+      "crit_damage_multiplier": 1.5
+    }
+  },
+  "damage_rules": {
+    "resistance_constant": 100,
+    "resistance_formula": "k_over_k_plus_nonnegative_resistance",
+    "negative_resistance_policy": "clamp_to_zero",
+    "physical": {
+      "resistance_stat": "armor",
+      "generic_modifiers": true,
+      "shield_absorption": true,
+      "blocked_by_invulnerability": true
+    },
+    "magical": {
+      "resistance_stat": "magic_resistance",
+      "generic_modifiers": true,
+      "shield_absorption": true,
+      "blocked_by_invulnerability": true
+    },
+    "true": {
+      "resistance_stat": null,
+      "generic_modifiers": false,
+      "shield_absorption": true,
+      "blocked_by_invulnerability": true,
+      "crit_policy": "never"
+    },
+    "critical_roll_scope": "one_per_committed_action_root",
+    "critical_rng_stream": "combat_crit",
+    "precision": "float_until_ui",
+    "mixed_hit_commit": "resolve_components_then_one_shield_health_and_hit_commit",
+    "shielded_valid_hit_counts_for_on_hit": true,
+    "damage_modifier_stages": [
+      "formula",
+      "source_bonus",
+      "conditional_direct_bonus",
+      "critical",
+      "target_vulnerability",
+      "target_reduction",
+      "resistance",
+      "shield",
+      "health"
+    ],
+    "target_vulnerability_composition": "element_and_reaction_additive_then_existing_break_multiplier_once",
+    "poise_basis": "eligible_noncritical_damage_before_resistance_and_shield",
+    "control_uses_magic_resistance": false
+  },
+  "growth_policies": {
+    "elemental_growth": {
+      "formula": "base_amount_times_one_plus_positive_bonus_attack_ratio_plus_spell_power_ratio",
+      "bonus_attack_reference": "actor_definition_attack_power",
+      "positive_bonus_attack_power_ratio": 0.01,
+      "spell_power_ratio": 0.02
+    },
+    "weapon_action": {
+      "formula": "base_plus_total_attack_power_ratio_plus_total_spell_power_ratio",
+      "read_policy": "action_commit_snapshot"
+    },
+    "enemy": {
+      "formula": "base_plus_total_attack_power_ratio_plus_total_spell_power_ratio",
+      "read_policy": "action_commit_snapshot"
+    }
+  },
+  "modifier_policies": {
+    "weapon_action": {
+      "source_bonus_fields": [
+        "global_weapon_damage_bonus",
+        "action_weapon_damage_bonus",
+        "element_core_rank_damage_bonus"
+      ],
+      "source_bonus_composition": "additive_then_existing_build_limits",
+      "use_existing_conditional_filters": true,
+      "apply_spawn_damage_multiplier": true
+    },
+    "enemy": {
+      "source_bonus_fields": [],
+      "use_existing_conditional_filters": false,
+      "apply_spawn_damage_multiplier": true
+    },
+    "element_effect": {
+      "source_bonus_fields": [],
+      "use_existing_conditional_filters": false,
+      "apply_spawn_damage_multiplier": true,
+      "apply_weapon_action_damage_bonus": false,
+      "amount_modifiers_applied_once_in_recipe": true
+    }
+  },
+  "linear_profiles": {
+    "ability.slash.1": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 0.8,
+      "spell_power_ratio": 0,
+      "crit_policy": "root_roll",
+      "modifier_policy": "weapon_action"
+    },
+    "ability.slash.2": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 0.9,
+      "spell_power_ratio": 0,
+      "crit_policy": "root_roll",
+      "modifier_policy": "weapon_action"
+    },
+    "ability.slash.3": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 1.5,
+      "spell_power_ratio": 0,
+      "crit_policy": "root_roll",
+      "modifier_policy": "weapon_action"
+    },
+    "ability.heavy_slash": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 2.1,
+      "spell_power_ratio": 0,
+      "crit_policy": "root_roll",
+      "modifier_policy": "weapon_action"
+    },
+    "ability.wave_cast": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 1.2,
+      "spell_power_ratio": 0,
+      "crit_policy": "root_roll",
+      "modifier_policy": "weapon_action"
+    },
+    "ability.roll_slash": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 0.8,
+      "spell_power_ratio": 0,
+      "crit_policy": "root_roll",
+      "modifier_policy": "weapon_action"
+    },
+    "ability.enemy.swipe": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 1,
+      "spell_power_ratio": 0,
+      "crit_policy": "never",
+      "modifier_policy": "enemy"
+    },
+    "ability.enemy.slam": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 1,
+      "spell_power_ratio": 0,
+      "crit_policy": "never",
+      "modifier_policy": "enemy"
+    },
+    "enemy.crossbow.shot": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 1,
+      "spell_power_ratio": 0,
+      "crit_policy": "never",
+      "modifier_policy": "enemy"
+    },
+    "enemy.charger.charge": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 1,
+      "spell_power_ratio": 0,
+      "crit_policy": "never",
+      "modifier_policy": "enemy"
+    },
+    "enemy.elite_ranger.fast": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 0.6,
+      "spell_power_ratio": 0,
+      "crit_policy": "never",
+      "modifier_policy": "enemy"
+    },
+    "enemy.elite_ranger.volley": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 0.8,
+      "spell_power_ratio": 0,
+      "crit_policy": "never",
+      "modifier_policy": "enemy"
+    },
+    "enemy.elite_ranger.rain": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 0.4,
+      "spell_power_ratio": 0,
+      "crit_policy": "never",
+      "modifier_policy": "enemy"
+    },
+    "enemy.elite_ranger.charged": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 2.5,
+      "spell_power_ratio": 0,
+      "crit_policy": "never",
+      "modifier_policy": "enemy"
+    },
+    "enemy.elite_ranger.charged_rift": {
+      "damage_type": "magical",
+      "base": 0,
+      "attack_power_ratio": 0,
+      "spell_power_ratio": 0.4,
+      "crit_policy": "never",
+      "modifier_policy": "enemy"
+    },
+    "debug.test_arrow": {
+      "damage_type": "physical",
+      "base": 0,
+      "attack_power_ratio": 0.6,
+      "spell_power_ratio": 0,
+      "crit_policy": "root_roll",
+      "modifier_policy": "weapon_action"
+    }
+  },
+  "bindings": {
+    "combat_ability": {
+      "slash.1": "ability.slash.1",
+      "slash.2": "ability.slash.2",
+      "slash.3": "ability.slash.3",
+      "heavy_slash": "ability.heavy_slash",
+      "wave_cast": "ability.wave_cast",
+      "roll_slash": "ability.roll_slash",
+      "enemy.swipe": "ability.enemy.swipe",
+      "enemy.slam": "ability.enemy.slam"
+    },
+    "enemy_role_damage": {
+      "crossbow": {
+        "damage": "enemy.crossbow.shot"
+      },
+      "charger": {
+        "damage": "enemy.charger.charge"
+      },
+      "elite_ranger": {
+        "fast_damage": "enemy.elite_ranger.fast",
+        "volley_damage": "enemy.elite_ranger.volley",
+        "rain_damage": "enemy.elite_ranger.rain",
+        "charged_damage": "enemy.elite_ranger.charged",
+        "charged_rift_damage": "enemy.elite_ranger.charged_rift"
+      }
+    },
+    "test_attack": {
+      "test_arrow": "debug.test_arrow"
+    },
+    "element_mastery": {
+      "fire_mastery_burst": "mastery.fire",
+      "ice_mastery_burst": "mastery.ice",
+      "thunder_mastery_burst": "mastery.thunder",
+      "earth_mastery_burst": "mastery.earth"
+    }
+  },
+  "derived_profiles": {
+    "wave": {
+      "damage_type": "inherit_parent",
+      "basis": "parent_weapon_formula_before_modifiers_crit_and_mitigation",
+      "ratio_source": {
+        "catalog": "upgrade_rank",
+        "id": "wave",
+        "field": "damage_ratio"
+      },
+      "crit_policy": "inherit_root",
+      "modifier_policy": "weapon_action",
+      "origin": "direct_projectile",
+      "conditional_bonus_policy": "reevaluate_only_when_existing_origin_rules_allow",
+      "element_attachment_policy": "preserve_existing_origin_permissions"
+    },
+    "split": {
+      "damage_type": "inherit_parent",
+      "basis": "parent_weapon_formula_before_modifiers_crit_and_mitigation",
+      "ratio_source": {
+        "catalog": "upgrade_rank",
+        "id": "split",
+        "field": "damage_ratio"
+      },
+      "crit_policy": "inherit_root",
+      "modifier_policy": "weapon_action",
+      "origin": "split_projectile",
+      "conditional_bonus_policy": "reevaluate_only_when_existing_origin_rules_allow",
+      "element_attachment_policy": "preserve_existing_origin_permissions"
+    },
+    "chain": {
+      "damage_type": "magical",
+      "basis": "parent_weapon_formula_before_modifiers_crit_and_mitigation",
+      "ratio_source": {
+        "catalog": "upgrade_rank",
+        "id": "chain",
+        "field": "damage_ratio"
+      },
+      "crit_policy": "never",
+      "modifier_policy": "weapon_action",
+      "origin": "chain",
+      "conditional_bonus_policy": "reevaluate_only_when_existing_origin_rules_allow",
+      "element_attachment_policy": "none_except_explicit_payload"
+    },
+    "impact_blast": {
+      "damage_type": "magical",
+      "basis": "parent_weapon_formula_before_modifiers_crit_and_mitigation",
+      "ratio_source": {
+        "catalog": "upgrade_rank",
+        "id": "impact_blast",
+        "field": "damage_ratio"
+      },
+      "crit_policy": "never",
+      "modifier_policy": "weapon_action",
+      "origin": "explosion",
+      "conditional_bonus_policy": "reevaluate_only_when_existing_origin_rules_allow",
+      "element_attachment_policy": "none_except_explicit_payload"
+    }
+  },
+  "effect_profiles": {
+    "element.fire.tick": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "elements",
+        "id": "fire",
+        "base_field": "damage_per_tick_per_stack",
+        "multiply_by": "current_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_element_field_additions"
+    },
+    "element.thunder.discharge": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "elements",
+        "id": "thunder",
+        "base_field": "discharge_damage",
+        "multiply_by": "one"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_element_field_additions"
+    },
+    "reaction.steam.direct": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "steam",
+        "base_field": "damage",
+        "per_stack_field": "damage_per_stack",
+        "stack_input": "consumed_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "reaction.overload.direct": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "overload",
+        "base_field": "damage",
+        "per_stack_field": "damage_per_stack",
+        "stack_input": "consumed_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "reaction.overload.area": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "overload",
+        "base_field": "area_damage",
+        "multiply_by": "one"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "reaction.lava.direct": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "lava",
+        "base_field": "damage",
+        "per_stack_field": "damage_per_stack",
+        "stack_input": "consumed_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "reaction.lava.tick": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "lava",
+        "base_field": "zone_damage_per_tick",
+        "multiply_by": "one"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "reaction.superconduct.direct": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "superconduct",
+        "base_field": "damage",
+        "per_stack_field": "damage_per_stack",
+        "stack_input": "consumed_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "reaction.superconduct.area": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "superconduct",
+        "base_field": "area_damage",
+        "multiply_by": "one"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "reaction.shatter.direct": {
+      "damage_type": "physical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "shatter",
+        "base_field": "damage",
+        "per_stack_field": "damage_per_stack",
+        "stack_input": "consumed_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "reaction.shatter.area": {
+      "damage_type": "physical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "shatter",
+        "base_field": "area_damage",
+        "multiply_by": "one"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "reaction.magnet.direct": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "magnet",
+        "base_field": "damage",
+        "per_stack_field": "damage_per_stack",
+        "stack_input": "consumed_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "reaction.magnet.area": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "reactions",
+        "id": "magnet",
+        "base_field": "area_damage",
+        "multiply_by": "one"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_reaction_damage_bonus_once"
+    },
+    "mastery.fire": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "upgrade_rank",
+        "id": "fire_mastery_burst",
+        "base_field": "damage",
+        "per_stack_field": "damage_per_stack",
+        "stack_input": "trigger_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_selected_mastery_rank"
+    },
+    "mastery.ice": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "upgrade_rank",
+        "id": "ice_mastery_burst",
+        "base_field": "damage",
+        "per_stack_field": "damage_per_stack",
+        "stack_input": "trigger_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_selected_mastery_rank"
+    },
+    "mastery.thunder": {
+      "damage_type": "magical",
+      "amount_source": {
+        "catalog": "upgrade_rank",
+        "id": "thunder_mastery_burst",
+        "base_field": "damage",
+        "per_stack_field": "damage_per_stack",
+        "stack_input": "trigger_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_selected_mastery_rank"
+    },
+    "mastery.earth": {
+      "damage_type": "physical",
+      "amount_source": {
+        "catalog": "upgrade_rank",
+        "id": "earth_mastery_burst",
+        "base_field": "damage",
+        "per_stack_field": "damage_per_stack",
+        "stack_input": "trigger_stacks"
+      },
+      "growth_policy": "elemental_growth",
+      "crit_policy": "never",
+      "modifier_policy": "element_effect",
+      "read_policy": "live_global",
+      "allows_element_retrigger": false,
+      "amount_modifier_policy": "live_selected_mastery_rank"
+    }
+  },
+  "upgrade_policy_definitions": {
+    "weapon_damage_modifier": {
+      "kind": "modifier",
+      "target": "weapon_action_damage_bonus",
+      "creates_damage": false
+    },
+    "movement_modifier": {
+      "kind": "modifier",
+      "target": "move_speed_multiplier_bonus",
+      "creates_damage": false
+    },
+    "conditional_direct_modifier": {
+      "kind": "modifier",
+      "target": "eligible_direct_hit_bonus",
+      "creates_damage": false,
+      "preserve_source_and_origin_filters": true
+    },
+    "consume_window_direct_modifier": {
+      "kind": "modifier",
+      "target": "eligible_direct_hit_bonus",
+      "creates_damage": false,
+      "preserve_consumption_priority": true
+    },
+    "charge_modifier": {
+      "kind": "modifier",
+      "target": "weapon_formula_basis",
+      "creates_damage": false,
+      "retain_existing_charge_and_cooldown_ratios": true
+    },
+    "carrier_modifier": {
+      "kind": "carrier",
+      "creates_damage": false,
+      "damage_type": "inherit_parent",
+      "crit_policy": "inherit_root_no_reroll"
+    },
+    "element_attachment": {
+      "kind": "attachment",
+      "creates_direct_damage": false,
+      "converts_weapon_damage": false,
+      "rank_damage_bonus_target": "weapon_action_damage_bonus"
+    },
+    "status_only": {
+      "kind": "status",
+      "creates_damage": false
+    },
+    "shield_only": {
+      "kind": "shield",
+      "creates_damage": false,
+      "scales_with_spell_power": false
+    },
+    "parameter_only": {
+      "kind": "parameter",
+      "creates_damage": false
+    },
+    "element_parameter_modifier": {
+      "kind": "element_modifier",
+      "creates_damage": false,
+      "read_policy": "live_global"
+    },
+    "reaction_parameter_modifier": {
+      "kind": "reaction_modifier",
+      "creates_damage": false,
+      "read_policy": "live_global"
+    },
+    "derived_damage": {
+      "kind": "derived_damage",
+      "profile_from": "derived_profiles"
+    },
+    "element_mastery_damage": {
+      "kind": "element_mastery_damage",
+      "profile_from": "effect_profiles",
+      "read_policy": "live_global"
+    }
+  },
+  "upgrade_policies": {
+    "power": "weapon_damage_modifier",
+    "action_power": "weapon_damage_modifier",
+    "agility": "movement_modifier",
+    "shatter_followup": "conditional_direct_modifier",
+    "opening_strike": "conditional_direct_modifier",
+    "shatter_heavy": "consume_window_direct_modifier",
+    "charged_wave": "charge_modifier",
+    "pierce": "carrier_modifier",
+    "returning_wave": "carrier_modifier",
+    "fire_core": "element_attachment",
+    "ice_core": "element_attachment",
+    "thunder_core": "element_attachment",
+    "earth_core": "element_attachment",
+    "contact_slow": "status_only",
+    "contact_freeze": "status_only",
+    "frost_blast": "status_only",
+    "frost_path": "status_only",
+    "ice_coat": "shield_only",
+    "freeze_duration": "parameter_only",
+    "primary_reach": "parameter_only",
+    "special_reach": "parameter_only",
+    "fire_kindling": "element_parameter_modifier",
+    "fire_blaze": "element_parameter_modifier",
+    "fire_linger": "element_parameter_modifier",
+    "ice_deep": "element_parameter_modifier",
+    "ice_lasting": "element_parameter_modifier",
+    "ice_brittle": "element_parameter_modifier",
+    "thunder_chain": "element_parameter_modifier",
+    "thunder_surge": "element_parameter_modifier",
+    "thunder_reach": "element_parameter_modifier",
+    "earth_crush": "element_parameter_modifier",
+    "earth_quake": "element_parameter_modifier",
+    "earth_layers": "element_parameter_modifier",
+    "fire_mastery_heat": "element_parameter_modifier",
+    "ice_mastery_cold": "element_parameter_modifier",
+    "thunder_mastery_storm": "element_parameter_modifier",
+    "earth_mastery_weight": "element_parameter_modifier",
+    "dual_steam": "reaction_parameter_modifier",
+    "dual_overload": "reaction_parameter_modifier",
+    "dual_lava": "reaction_parameter_modifier",
+    "dual_superconduct": "reaction_parameter_modifier",
+    "dual_shatter": "reaction_parameter_modifier",
+    "dual_magnet": "reaction_parameter_modifier",
+    "wave": "derived_damage",
+    "chain": "derived_damage",
+    "split": "derived_damage",
+    "impact_blast": "derived_damage",
+    "fire_mastery_burst": "element_mastery_damage",
+    "ice_mastery_burst": "element_mastery_damage",
+    "thunder_mastery_burst": "element_mastery_damage",
+    "earth_mastery_burst": "element_mastery_damage"
+  },
+  "timing_rules": {
+    "attack_speed_applies_to": [
+      "player_weapon_windup",
+      "player_weapon_active",
+      "player_weapon_recovery",
+      "player_combo_cancel_windows",
+      "enemy_declared_attack_timeline"
+    ],
+    "attack_speed_excludes": [
+      "movement",
+      "dodge",
+      "projectile_speed",
+      "status_tick",
+      "charge_hold",
+      "skill_cooldown",
+      "enemy_declared_minimum_telegraph"
+    ],
+    "haste_formula": "base_cooldown_divided_by_one_plus_cooldown_haste",
+    "haste_applies_to": [
+      "player_heavy_slash_cooldown",
+      "player_wave_cast_cooldown",
+      "player_dodge_recharge",
+      "enemy_declared_skill_cooldown"
+    ],
+    "haste_excludes": [
+      "primary_combo_rearm",
+      "status_duration",
+      "element_tick",
+      "reaction_tick",
+      "item_internal_cooldown"
+    ],
+    "player_primary_rearm": "divide_by_attack_speed_only",
+    "attack_speed_and_haste_do_not_stack_on_same_timer": true,
+    "time_scale_read_policy": "snapshot_at_action_or_cooldown_start",
+    "enemy_telegraph_minima_source": "enemy_telegraph_minimum_sec"
+  },
+  "encounter_rules": {
+    "health": "multiply_max_health_once",
+    "damage": "spawn_damage_multiplier_once_at_formula_output",
+    "resistances": "no_depth_scaling",
+    "source": "existing_encounters_json",
+    "remove_legacy_ability_and_role_damage_scaling": true
+  },
+  "damageable_prop_profile": {
+    "armor": 0,
+    "magic_resistance": 0,
+    "supports_elements": false,
+    "supports_critical": true,
+    "health_source": "existing_room_prop_definition"
+  },
+  "ui_requirements": {
+    "input_action": "ui_character_stats",
+    "requested_key": "C",
+    "toggle": true,
+    "escape_closes_topmost_only": true,
+    "pause_combat": true,
+    "display_final_stats": [
+      "max_health",
+      "attack_power",
+      "spell_power",
+      "armor",
+      "magic_resistance",
+      "move_speed_mps",
+      "attack_speed_multiplier",
+      "cooldown_haste",
+      "crit_chance",
+      "crit_damage_multiplier"
+    ],
+    "runtime_fields": [
+      "current_health",
+      "current_shield"
+    ],
+    "derived_fields": [
+      "physical_damage_reduction",
+      "magical_damage_reduction",
+      "global_weapon_damage_bonus"
+    ],
+    "skill_preview": "noncritical_pre_target_defense_components",
+    "locales": [
+      "zh_CN",
+      "en"
+    ]
+  },
+  "enemy_telegraph_minimum_sec": {
+    "ability.enemy.swipe": 0.4,
+    "ability.enemy.slam": 0.9,
+    "enemy.crossbow.shot": 0.35,
+    "enemy.charger.charge": 0.6,
+    "enemy.elite_ranger.fast": 0.55,
+    "enemy.elite_ranger.volley": 0.85,
+    "enemy.elite_ranger.rain": 0.75,
+    "enemy.elite_ranger.charged": 2.4
+  },
+  "raw_hit_adapter": {
+    "damage_type": "physical",
+    "origin": "explicit_raw_physical",
+    "crit_policy": "never"
+  }
+}

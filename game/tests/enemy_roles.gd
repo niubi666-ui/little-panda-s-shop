@@ -123,7 +123,8 @@ func run() -> void:
 	check(is_equal_approx(brute.enemy_attack_multiplier,1.3) and is_equal_approx(brute.enemy_move_multiplier,1.3), "banner bonuses do not stack")
 	brute.request_attack()
 	brute.step(0.01)
-	check(is_equal_approx(brute.runner.elapsed,0.013), "heavy windup runs faster in aura")
+	check(is_equal_approx(brute.runner.ability.windup,brute.attack_windup("ability.enemy.slam",combat.ability("enemy.slam").windup)), "aura scales authoritative heavy windup with warning floor")
+	check(is_equal_approx(brute.runner.elapsed,0.01), "aura does not also multiply runner clock")
 	flag.receive_hit(flag.health.maximum)
 	flag2.position.x = 30
 	r.update_auras()

@@ -13,7 +13,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 8
+      "const": 9
     },
     "abilities": {
       "type": "array",
@@ -29,7 +29,6 @@
           "cooldown_sec",
           "radius_m",
           "angle_deg",
-          "damage",
           "interruptible",
           "commit_policy",
           "aim_policy",
@@ -42,7 +41,8 @@
           "thrust_width_m",
           "buffer_sec",
           "chain_cancel_sec",
-          "dodge_cancel_phases"
+          "dodge_cancel_phases",
+          "damage_profile_id"
         ],
         "properties": {
           "id": {
@@ -78,11 +78,6 @@
             "type": "number",
             "minimum": 0,
             "maximum": 360
-          },
-          "damage": {
-            "type": "number",
-            "minimum": 0.01,
-            "maximum": 10000
           },
           "interruptible": {
             "type": "boolean"
@@ -153,6 +148,26 @@
             "type": "number",
             "minimum": 0,
             "maximum": 10000
+          },
+          "damage_profile_id": {
+            "enum": [
+              "ability.slash.1",
+              "ability.slash.2",
+              "ability.slash.3",
+              "ability.heavy_slash",
+              "ability.wave_cast",
+              "ability.roll_slash",
+              "ability.enemy.swipe",
+              "ability.enemy.slam",
+              "enemy.crossbow.shot",
+              "enemy.charger.charge",
+              "enemy.elite_ranger.fast",
+              "enemy.elite_ranger.volley",
+              "enemy.elite_ranger.rain",
+              "enemy.elite_ranger.charged",
+              "enemy.elite_ranger.charged_rift",
+              "debug.test_arrow"
+            ]
           }
         }
       }
@@ -166,8 +181,6 @@
         "required": [
           "id",
           "name_key",
-          "health",
-          "move_speed_mps",
           "stagger_sec",
           "poise",
           "poise_recover_sec",
@@ -177,7 +190,8 @@
           "attack_ids",
           "decision_interval_sec",
           "aggro_range_m",
-          "combo_reset_sec"
+          "combo_reset_sec",
+          "attribute_profile_id"
         ],
         "properties": {
           "id": {
@@ -187,16 +201,6 @@
           "name_key": {
             "type": "string",
             "minLength": 1
-          },
-          "health": {
-            "type": "number",
-            "minimum": 1,
-            "maximum": 10000
-          },
-          "move_speed_mps": {
-            "type": "number",
-            "minimum": 0.1,
-            "maximum": 20
           },
           "stagger_sec": {
             "type": "number",
@@ -250,6 +254,17 @@
             "type": "number",
             "minimum": 0.01,
             "maximum": 5
+          },
+          "attribute_profile_id": {
+            "enum": [
+              "player",
+              "scout",
+              "brute",
+              "crossbow",
+              "charger",
+              "banner",
+              "elite_ranger"
+            ]
           }
         }
       }

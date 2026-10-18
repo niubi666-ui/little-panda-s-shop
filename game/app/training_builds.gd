@@ -155,7 +155,7 @@ func apply_test_preset(id: String) -> Dictionary:
 	return result
 
 func is_choosing() -> bool:
-	return choice_panel != null and choice_panel.visible
+	return choice_panel != null and choice_panel.is_open()
 
 func request_test_offer() -> void:
 	if _stopped or is_choosing(): return
@@ -258,7 +258,7 @@ func finish_rewards() -> void:
 	# Encounter completion ends automatic offers, not the actor's combat runtime.
 	_rewards_finished = true
 	_pending = 0
-	if is_instance_valid(choice_panel): choice_panel.dismiss()
+	if is_instance_valid(choice_panel) and choice_panel.is_inside_tree(): choice_panel.dismiss()
 
 func finish() -> void:
 	if _stopped: return

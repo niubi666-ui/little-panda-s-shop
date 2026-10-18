@@ -15,6 +15,15 @@ func check(value: Variant, schema: Dictionary, path: String) -> void:
 	if schema.has("const") and value != schema.const:
 		errors.append(path + ": unsupported constant")
 	if not schema.has("type"): return
+	if schema.type is Array:
+		if schema.type != ["number", "null"]:
+			errors.append(path + ": unsupported schema type union")
+			return
+		if value == null and schema.type.has("null"): return
+		var concrete := schema.duplicate()
+		concrete.type = "number"
+		check(value, concrete, path)
+		return
 	match schema.type:
 		"object":
 			if not value is Dictionary:
@@ -30,6 +39,12 @@ func check(value: Variant, schema: Dictionary, path: String) -> void:
 				errors.append(path + ": expected array")
 				return
 			if value.size() < schema.minItems: errors.append(path + ": too few entries")
+			if schema.has("maxItems") and value.size() > schema.maxItems: errors.append(path + ": too many entries")
+			if schema.get("uniqueItems", false):
+				var seen: Array = []
+				for item in value:
+					if seen.has(item): errors.append(path + ": duplicate entry")
+					seen.append(item)
 			for i in value.size(): check(value[i], schema.items, path + "[%s]" % i)
 		"number", "integer":
 			if not (value is float or value is int) or not is_finite(float(value)):

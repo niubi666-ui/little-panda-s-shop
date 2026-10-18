@@ -3,7 +3,7 @@ extends RefCounted
 
 const Catalog = preload("res://content/builds/build_catalog.gd")
 const ElementsLoader = preload("res://content/builds/elements_loader.gd")
-const SCHEMA_VERSION := 7
+const SCHEMA_VERSION := 8
 const MAX_ENTRIES := 512
 const MAX_RANKS := 64
 const MAX_STRING_LENGTH := 128
@@ -53,6 +53,16 @@ func load_catalog(manifest_path: String = "res://data/manifest.json") -> Catalog
 		return null
 	var catalog := decode(data)
 	if catalog == null: return null
+	var attribute_loader := preload("res://content/combat/attribute_loader.gd").new()
+	var attributes = attribute_loader.load_catalog()
+	if attributes == null:
+		errors.append_array(attribute_loader.errors)
+		return null
+	for attack in data.test_attacks:
+		if not attributes.data.linear_profiles.has(attack.damage_profile_id): errors.append("unknown test attack damage profile: " + attack.damage_profile_id)
+	for upgrade in data.upgrades:
+		if not attributes.data.upgrade_policies.has(upgrade.id): errors.append("missing attribute policy: " + upgrade.id)
+	if not errors.is_empty(): return null
 	if not manifest.has("combat_prototype_file"):
 		errors.append("action forms require combat manifest")
 		return null
@@ -469,13 +479,13 @@ func _validate_projectiles(data: Dictionary) -> void:
 		return
 	var ids: Dictionary = {}
 	for attack in data.test_attacks:
-		if not _object(attack, ["id", "projectile_id", "damage", "cooldown_sec", "action_id"], "test_attack"): continue
+		if not _object(attack, ["id", "projectile_id", "damage_profile_id", "cooldown_sec", "action_id"], "test_attack"): continue
 		if not _string(attack.id, "test_attack.id"): continue
 		_string(attack.projectile_id, "test_attack.projectile_id")
 		if ids.has(attack.id): errors.append("duplicate test attack")
 		ids[attack.id] = true
 		if not definitions.has(attack.projectile_id): errors.append("unknown test attack projectile")
-		_number(attack.damage, 0, 10000, "test_attack.damage", true)
+		_string(attack.damage_profile_id, "test_attack.damage_profile_id")
 		_number(attack.cooldown_sec, 0, 30, "test_attack.cooldown_sec", true)
 
 func _validate_statuses(data: Dictionary) -> void:

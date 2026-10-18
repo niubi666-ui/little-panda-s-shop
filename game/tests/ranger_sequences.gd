@@ -47,7 +47,7 @@ func run() -> void:
 		brain.tick(brain.config.charged_lock_sec)
 		check(shots.back().direction.is_equal_approx(locked), "charged final lock does not track sideways player at " + str(distance))
 		check(shots.back().settings.projectile_speed_mps==brain.config.charged_speed_mps, "charged speed fixed independent of distance")
-	check(brain.config.charged_damage>brain.config.fast_damage and brain.recovery_duration>brain.config.fast_recovery_sec, "charged damage and punishable recovery exceed normal")
+	check(expected_damage("charged")>expected_damage("fast") and brain.recovery_duration>brain.config.fast_recovery_sec, "charged damage and punishable recovery exceed normal")
 	brain.roll_ready=true;brain.roll_cooldown=0;player.position=Vector3(0,0,-1)
 	advance(.3)
 	check(brain.state=="recovery", "close pressure cannot cancel charged recovery into roll")
@@ -57,7 +57,7 @@ func run() -> void:
 	reset();player.set_damage_immunity(false)
 	brain._start("charged");brain.tick(brain.windup_duration)
 	runtime.after_motion(.2)
-	check(is_equal_approx(player.health.maximum-player.health.current,brain.config.charged_damage), "charged continuous sweep crosses player without tunneling")
+	check(is_equal_approx(player.health.maximum-player.health.current,expected_damage("charged")), "charged continuous sweep crosses player without tunneling")
 	reset();player.set_damage_immunity(false)
 	brain._start("charged");brain.tick(brain.windup_duration)
 	runtime.sweep_world=func(_a,_b,_r):return .1

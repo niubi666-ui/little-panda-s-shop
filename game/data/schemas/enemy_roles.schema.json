@@ -8,7 +8,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 1
+      "const": 2
     },
     "content_version": {
       "type": "string",
@@ -111,12 +111,11 @@
         "shot_interval_sec",
         "windup_sec",
         "recovery_sec",
-        "damage",
         "projectile_speed_mps",
         "projectile_radius_m",
         "projectile_lifetime_sec",
         "retreat_speed_multiplier",
-        "minimum_windup_sec"
+        "damage_profile_id"
       ],
       "properties": {
         "safe_min_m": {
@@ -149,11 +148,6 @@
           "minimum": 0,
           "maximum": 100
         },
-        "damage": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
-        },
         "projectile_speed_mps": {
           "type": "number",
           "minimum": 0,
@@ -174,10 +168,25 @@
           "minimum": 0,
           "maximum": 100
         },
-        "minimum_windup_sec": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
+        "damage_profile_id": {
+          "enum": [
+            "ability.slash.1",
+            "ability.slash.2",
+            "ability.slash.3",
+            "ability.heavy_slash",
+            "ability.wave_cast",
+            "ability.roll_slash",
+            "ability.enemy.swipe",
+            "ability.enemy.slam",
+            "enemy.crossbow.shot",
+            "enemy.charger.charge",
+            "enemy.elite_ranger.fast",
+            "enemy.elite_ranger.volley",
+            "enemy.elite_ranger.rain",
+            "enemy.elite_ranger.charged",
+            "enemy.elite_ranger.charged_rift",
+            "debug.test_arrow"
+          ]
         }
       }
     },
@@ -191,12 +200,11 @@
         "charge_speed_mps",
         "charge_distance_m",
         "hit_radius_m",
-        "damage",
         "knockback_speed_mps",
         "knockback_duration_sec",
         "recovery_sec",
         "cooldown_sec",
-        "minimum_windup_sec"
+        "damage_profile_id"
       ],
       "properties": {
         "trigger_range_m": {
@@ -229,11 +237,6 @@
           "minimum": 0,
           "maximum": 100
         },
-        "damage": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
-        },
         "knockback_speed_mps": {
           "type": "number",
           "minimum": 0,
@@ -254,10 +257,25 @@
           "minimum": 0,
           "maximum": 100
         },
-        "minimum_windup_sec": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
+        "damage_profile_id": {
+          "enum": [
+            "ability.slash.1",
+            "ability.slash.2",
+            "ability.slash.3",
+            "ability.heavy_slash",
+            "ability.wave_cast",
+            "ability.roll_slash",
+            "ability.enemy.swipe",
+            "ability.enemy.slam",
+            "enemy.crossbow.shot",
+            "enemy.charger.charge",
+            "enemy.elite_ranger.fast",
+            "enemy.elite_ranger.volley",
+            "enemy.elite_ranger.rain",
+            "enemy.elite_ranger.charged",
+            "enemy.elite_ranger.charged_rift",
+            "debug.test_arrow"
+          ]
         }
       }
     },
@@ -336,17 +354,14 @@
         "fast_windup_sec",
         "fast_recovery_sec",
         "fast_cooldown_sec",
-        "fast_damage",
         "fast_weight",
         "volley_windup_sec",
         "volley_recovery_sec",
         "volley_cooldown_sec",
-        "volley_damage",
         "volley_weight",
         "rain_windup_sec",
         "rain_recovery_sec",
         "rain_cooldown_sec",
-        "rain_damage",
         "rain_weight",
         "fast_lock_sec",
         "volley_lock_sec",
@@ -360,7 +375,6 @@
         "charged_windup_sec",
         "charged_recovery_sec",
         "charged_cooldown_sec",
-        "charged_damage",
         "charged_weight",
         "charged_speed_mps",
         "charged_lock_sec",
@@ -383,8 +397,12 @@
         "charged_rift_half_width_m",
         "charged_rift_duration_sec",
         "charged_rift_interval_sec",
-        "charged_rift_damage",
-        "charged_rift_max_areas"
+        "charged_rift_max_areas",
+        "fast_damage_profile_id",
+        "volley_damage_profile_id",
+        "rain_damage_profile_id",
+        "charged_damage_profile_id",
+        "charged_rift_damage_profile_id"
       ],
       "properties": {
         "safe_min_m": {
@@ -522,11 +540,6 @@
           "minimum": 0.001,
           "maximum": 100
         },
-        "fast_damage": {
-          "type": "number",
-          "minimum": 0.001,
-          "maximum": 100
-        },
         "fast_weight": {
           "type": "number",
           "minimum": 0.001,
@@ -547,11 +560,6 @@
           "minimum": 0.001,
           "maximum": 100
         },
-        "volley_damage": {
-          "type": "number",
-          "minimum": 0.001,
-          "maximum": 100
-        },
         "volley_weight": {
           "type": "number",
           "minimum": 0.001,
@@ -568,11 +576,6 @@
           "maximum": 100
         },
         "rain_cooldown_sec": {
-          "type": "number",
-          "minimum": 0.001,
-          "maximum": 100
-        },
-        "rain_damage": {
           "type": "number",
           "minimum": 0.001,
           "maximum": 100
@@ -638,11 +641,6 @@
         "charged_cooldown_sec": {
           "type": "number",
           "minimum": 0.001,
-          "maximum": 100
-        },
-        "charged_damage": {
-          "type": "integer",
-          "minimum": 1,
           "maximum": 100
         },
         "charged_weight": {
@@ -755,15 +753,110 @@
           "minimum": 0.001,
           "maximum": 100
         },
-        "charged_rift_damage": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 100
-        },
         "charged_rift_max_areas": {
           "type": "integer",
           "minimum": 1,
           "maximum": 8
+        },
+        "fast_damage_profile_id": {
+          "enum": [
+            "ability.slash.1",
+            "ability.slash.2",
+            "ability.slash.3",
+            "ability.heavy_slash",
+            "ability.wave_cast",
+            "ability.roll_slash",
+            "ability.enemy.swipe",
+            "ability.enemy.slam",
+            "enemy.crossbow.shot",
+            "enemy.charger.charge",
+            "enemy.elite_ranger.fast",
+            "enemy.elite_ranger.volley",
+            "enemy.elite_ranger.rain",
+            "enemy.elite_ranger.charged",
+            "enemy.elite_ranger.charged_rift",
+            "debug.test_arrow"
+          ]
+        },
+        "volley_damage_profile_id": {
+          "enum": [
+            "ability.slash.1",
+            "ability.slash.2",
+            "ability.slash.3",
+            "ability.heavy_slash",
+            "ability.wave_cast",
+            "ability.roll_slash",
+            "ability.enemy.swipe",
+            "ability.enemy.slam",
+            "enemy.crossbow.shot",
+            "enemy.charger.charge",
+            "enemy.elite_ranger.fast",
+            "enemy.elite_ranger.volley",
+            "enemy.elite_ranger.rain",
+            "enemy.elite_ranger.charged",
+            "enemy.elite_ranger.charged_rift",
+            "debug.test_arrow"
+          ]
+        },
+        "rain_damage_profile_id": {
+          "enum": [
+            "ability.slash.1",
+            "ability.slash.2",
+            "ability.slash.3",
+            "ability.heavy_slash",
+            "ability.wave_cast",
+            "ability.roll_slash",
+            "ability.enemy.swipe",
+            "ability.enemy.slam",
+            "enemy.crossbow.shot",
+            "enemy.charger.charge",
+            "enemy.elite_ranger.fast",
+            "enemy.elite_ranger.volley",
+            "enemy.elite_ranger.rain",
+            "enemy.elite_ranger.charged",
+            "enemy.elite_ranger.charged_rift",
+            "debug.test_arrow"
+          ]
+        },
+        "charged_damage_profile_id": {
+          "enum": [
+            "ability.slash.1",
+            "ability.slash.2",
+            "ability.slash.3",
+            "ability.heavy_slash",
+            "ability.wave_cast",
+            "ability.roll_slash",
+            "ability.enemy.swipe",
+            "ability.enemy.slam",
+            "enemy.crossbow.shot",
+            "enemy.charger.charge",
+            "enemy.elite_ranger.fast",
+            "enemy.elite_ranger.volley",
+            "enemy.elite_ranger.rain",
+            "enemy.elite_ranger.charged",
+            "enemy.elite_ranger.charged_rift",
+            "debug.test_arrow"
+          ]
+        },
+        "charged_rift_damage_profile_id": {
+          "enum": [
+            "ability.slash.1",
+            "ability.slash.2",
+            "ability.slash.3",
+            "ability.heavy_slash",
+            "ability.wave_cast",
+            "ability.roll_slash",
+            "ability.enemy.swipe",
+            "ability.enemy.slam",
+            "enemy.crossbow.shot",
+            "enemy.charger.charge",
+            "enemy.elite_ranger.fast",
+            "enemy.elite_ranger.volley",
+            "enemy.elite_ranger.rain",
+            "enemy.elite_ranger.charged",
+            "enemy.elite_ranger.charged_rift",
+            "debug.test_arrow"
+          ]
         }
       }
     }

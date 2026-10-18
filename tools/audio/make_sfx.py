@@ -409,6 +409,22 @@ def ui_choose(rng):
     return reverb(track, wet=0.25, size=1.1, tail=0.7)
 
 
+def ui_card_deal(rng):
+    # 卡牌飞入：一下很轻的纸张掠过声
+    n = int(0.16 * RATE)
+    air = svf(pink(0.16, rng), sweep(n, 1800, 4200, 0.6), q=1.4)
+    track = apply(air, envelope(n, 0.02, 0.06, curve=3.5))
+    return reverb(gain(track, 0.6), wet=0.08, size=0.7, tail=0.15)
+
+
+def ui_card_focus(rng):
+    # 换选一张卡：短促的木质轻敲 + 一点高音，提示“这张被选中了”
+    knock = apply(tone(0.05, 1250, 900), envelope(int(0.05 * RATE), 0.001, 0.012))
+    shine = fm_bell(0.18, 2350, ratio=2.0, index=0.6, decay=0.06)
+    track = mix(gain(knock, 0.5), gain(shine, 0.35))
+    return reverb(track, wet=0.12, size=0.8, tail=0.25)
+
+
 def armor_hit(rng):
     # 打在霸体上：短促的金属“铛”，告诉玩家这一下没打断它
     clank = partials(0.35, [620, 1450, 2330, 3410], [0.09, 0.07, 0.05, 0.035], [0.6, 0.5, 0.35, 0.2], rng, detune=0.02)
@@ -540,6 +556,8 @@ def build_all(only=None):
         "lava": lava,
         "superconduct": superconduct,
         "magnet": magnet,
+        "ui_card_deal": ui_card_deal,
+        "ui_card_focus": ui_card_focus,
     }
     for index, (name, job) in enumerate(jobs.items()):
         if only and only not in name:

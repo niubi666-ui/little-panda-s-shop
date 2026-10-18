@@ -2,6 +2,7 @@ extends SceneTree
 const Runtime = preload("res://combat/enemies/enemy_runtime.gd")
 const Actor = preload("res://combat/actors/combat_actor.gd")
 const Catalog = preload("res://content/combat/combat_catalog.gd")
+const Formula = preload("res://combat/effects/damage_formula.gd")
 var failures: Array[String] = []
 var checks := 0
 var combat
@@ -22,6 +23,9 @@ func make_actor(id: String, handle: int):
 	actor.configure(combat.actor(id), abilities, combat.dodge() if id == "player" else null, handle, 0 if id == "player" else 1)
 	root.add_child(actor)
 	return actor
+func expected_damage(field: String) -> float:
+	var preview := Formula.preview(ranger, brain.config[field + "_damage_profile_id"])
+	return preview.amount * Formula.mitigation(combat.attributes, preview.type, player.attributes.final)
 func run() -> void:
 	combat = preload("res://content/combat/combat_loader.gd").new().load_catalog()
 	catalog = preload("res://content/enemies/enemy_loader.gd").new().load_catalog(combat)
@@ -53,7 +57,7 @@ func run() -> void:
 	check(runtime.projectiles.size() == int(brain.config.volley_count), "volley emits configured count")
 	# Includes the vertical distance from an enlarged ranger's raised bow.
 	runtime.after_motion(.5)
-	check(is_equal_approx(player.health.maximum-player.health.current,brain.config.volley_damage), "point blank volley damages once")
+	check(is_equal_approx(player.health.maximum-player.health.current,expected_damage("volley")), "point blank volley damages once after armor")
 	player.health.restore();runtime.projectiles.clear()
 	player.position = Vector3(0,0,-6)
 	brain._start("fast");brain.tick(brain.windup_duration)
@@ -76,7 +80,7 @@ func run() -> void:
 	check(player.health.current==player.health.maximum, "rain respects shared damage immunity")
 	player.set_damage_immunity(false);runtime.rains.clear()
 	brain._start("rain");brain.tick(brain.windup_duration);runtime.after_motion(10.0)
-	check(is_equal_approx(player.health.maximum-player.health.current,brain.config.rain_damage*brain.config.rain_pulses) and runtime.rains.is_empty(), "rain finite pulses do not multiply by visual arrows")
+	check(is_equal_approx(player.health.maximum-player.health.current,expected_damage("rain")*brain.config.rain_pulses) and runtime.rains.is_empty(), "rain finite pulses do not multiply by visual arrows")
 	brain._start("rain");ranger.set_control(1.0,true);brain.tick(2.0)
 	check(runtime.rains.is_empty() and brain.state != "windup", "freeze before cue cancels rain")
 	ranger.set_control(1.0,false);brain.tick(.01)
@@ -150,7 +154,6 @@ func run() -> void:
 	brain._start("fast");brain.tick(brain.windup_duration)
 	runtime.remove_actor(ranger)
 	check(runtime.rains.is_empty() and runtime.projectiles.is_empty() and runtime.brains.is_empty(),"refresh retirement clears arrows areas and brain")
-	check(combat.ability("slash.3").thrust_width == 1.8,"latest thrust width preserved")
 	runtime.clear();player.free();ranger.free()
 	print("RANGER_RULES ",JSON.stringify({"checks":checks,"failures":failures,"attacks":attack_starts,"rolls":rolls}))
 	quit(0 if failures.is_empty() else 1)

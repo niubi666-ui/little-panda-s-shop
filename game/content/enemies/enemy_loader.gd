@@ -52,12 +52,15 @@ func load_catalog(combat) -> Catalog:
 		if (p.role == "melee") != (not combat.actor(p.actor_id).attacks.is_empty()): errors.append("actor/role attack mismatch " + p.actor_id)
 		for key in c:
 			if c[key] is bool: continue
+			if c[key] is String:
+				if not combat.attributes.has_profile(c[key]): errors.append(p.actor_id + "." + key + ": missing damage profile")
+				continue
 			if c[key] <= 0.0: errors.append(p.actor_id + "." + key + " must be positive")
 		match p.role:
 			"ranged":
-				if not (c.safe_min_m < c.safe_max_m and c.safe_max_m <= c.fire_range_m and c.windup_sec + c.recovery_sec < c.shot_interval_sec and c.minimum_windup_sec <= c.windup_sec): errors.append("ranged distance/timing order")
+				if not (c.safe_min_m < c.safe_max_m and c.safe_max_m <= c.fire_range_m and c.windup_sec + c.recovery_sec < c.shot_interval_sec and combat.attributes.data.enemy_telegraph_minimum_sec[c.damage_profile_id] <= c.windup_sec): errors.append("ranged distance/timing order")
 			"charger":
-				if c.minimum_range_m >= c.trigger_range_m or c.minimum_windup_sec > c.windup_sec or c.cooldown_sec < c.windup_sec + c.charge_distance_m / c.charge_speed_mps + c.recovery_sec: errors.append("charge distance/timing order")
+				if c.minimum_range_m >= c.trigger_range_m or combat.attributes.data.enemy_telegraph_minimum_sec[c.damage_profile_id] > c.windup_sec or c.cooldown_sec < c.windup_sec + c.charge_distance_m / c.charge_speed_mps + c.recovery_sec: errors.append("charge distance/timing order")
 			"support":
 				if c.retreat_range_m >= c.safe_max_m: errors.append("support distances")
 			"ranger":
@@ -73,7 +76,7 @@ func load_catalog(combat) -> Catalog:
 				var rain_length: float = c.rain_sequence_count * c.rain_windup_sec + (c.rain_sequence_count - 1) * c.rain_gap_sec
 				var burst_length: float = c.burst_fast_count * (c.fast_windup_sec + c.burst_gap_sec) + c.charged_windup_sec
 				if c.rain_cooldown_sec < rain_length + c.rain_recovery_sec or c.burst_cooldown_sec < burst_length + c.burst_recovery_sec or c.combo_cooldown_sec < rain_length + c.rain_gap_sec + c.charged_windup_sec + c.combo_recovery_sec: errors.append("ranger sequence cooldown")
-				if c.charged_speed_mps <= c.fast_speed_mps or c.charged_damage <= c.fast_damage or c.charged_recovery_sec <= c.fast_recovery_sec or c.burst_recovery_sec < c.charged_recovery_sec or c.combo_recovery_sec < c.charged_recovery_sec: errors.append("ranger charged contrast/recovery")
+				if c.charged_speed_mps <= c.fast_speed_mps or combat.attributes.linear(combat.attributes.profile(c.charged_damage_profile_id), combat.attributes.actor(p.actor_id)) <= combat.attributes.linear(combat.attributes.profile(c.fast_damage_profile_id), combat.attributes.actor(p.actor_id)) or c.charged_recovery_sec <= c.fast_recovery_sec or c.burst_recovery_sec < c.charged_recovery_sec or c.combo_recovery_sec < c.charged_recovery_sec: errors.append("ranger charged contrast/recovery")
 	var combination_ids: Dictionary = {}
 	for combination in enc.combinations:
 		if combination_ids.has(combination.id): errors.append("duplicate encounter " + combination.id)

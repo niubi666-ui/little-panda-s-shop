@@ -110,6 +110,8 @@ def main() -> int:
         validate(manifest, read_json(DATA / "schemas" / "shop_preview_manifest.schema.json"), "manifest")
         config_path = ROOT / "game" / manifest["shop_preview_file"].removeprefix("res://")
         validate(read_json(config_path), read_json(DATA / "schemas" / "shop_preview.schema.json"), str(config_path))
+        from validate_attributes import validate_attributes
+        validate_attributes(manifest)
         from validate_combat import validate_combat
         validate_combat(manifest)
         from validate_enemies import validate_enemies

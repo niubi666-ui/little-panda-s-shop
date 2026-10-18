@@ -43,7 +43,7 @@ func run() -> void:
 		container.add_child(preset.decoration.instantiate())
 		for entry in Planner.members_for(preset, "review", Vector3.ZERO, 0.0, catalog):
 			var prop := Prop.new()
-			prop.configure(entry, catalog.prop(entry.prop_id), Visuals.visual(entry.prop_id), -1, func(_id): return false)
+			prop.configure(entry, catalog.prop(entry.prop_id), Visuals.visual(entry.prop_id), -1, func(_id): return false, preload("res://content/combat/attribute_loader.gd").new().load_catalog())
 			container.add_child(prop)
 		camera.size = 6.0
 		camera.position = Vector3(0,0.5,0) + offset

@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "content_version": "enemy-roles.9-melee-spacing",
+  "schema_version": 2,
+  "content_version": "enemy-roles.10-attributes",
   "profiles": [
     {
       "actor_id": "scout",
@@ -42,12 +42,11 @@
         "shot_interval_sec": 1.5,
         "windup_sec": 0.45,
         "recovery_sec": 0.15,
-        "damage": 10,
         "projectile_speed_mps": 9,
         "projectile_radius_m": 0.16,
         "projectile_lifetime_sec": 2,
         "retreat_speed_multiplier": 1.3,
-        "minimum_windup_sec": 0.35
+        "damage_profile_id": "enemy.crossbow.shot"
       }
     },
     {
@@ -62,12 +61,11 @@
         "charge_speed_mps": 15,
         "charge_distance_m": 10,
         "hit_radius_m": 0.55,
-        "damage": 18,
         "knockback_speed_mps": 8,
         "knockback_duration_sec": 0.25,
         "recovery_sec": 1,
         "cooldown_sec": 3.6,
-        "minimum_windup_sec": 0.6
+        "damage_profile_id": "enemy.charger.charge"
       }
     },
     {
@@ -117,17 +115,14 @@
         "fast_windup_sec": 0.55,
         "fast_recovery_sec": 0.55,
         "fast_cooldown_sec": 1.4,
-        "fast_damage": 12,
         "fast_weight": 3,
         "volley_windup_sec": 0.85,
         "volley_recovery_sec": 0.85,
         "volley_cooldown_sec": 5,
-        "volley_damage": 16,
         "volley_weight": 2,
         "rain_windup_sec": 0.75,
         "rain_recovery_sec": 1.25,
         "rain_cooldown_sec": 9,
-        "rain_damage": 8,
         "rain_weight": 2,
         "fast_lock_sec": 0.22,
         "volley_lock_sec": 0.3,
@@ -141,7 +136,6 @@
         "charged_windup_sec": 2.4,
         "charged_recovery_sec": 1.65,
         "charged_cooldown_sec": 5.5,
-        "charged_damage": 50,
         "charged_weight": 2,
         "charged_speed_mps": 160.0,
         "charged_lock_sec": 0.025,
@@ -164,8 +158,12 @@
         "charged_rift_half_width_m": 1.15,
         "charged_rift_duration_sec": 6.0,
         "charged_rift_interval_sec": 0.5,
-        "charged_rift_damage": 8,
-        "charged_rift_max_areas": 8
+        "charged_rift_max_areas": 8,
+        "fast_damage_profile_id": "enemy.elite_ranger.fast",
+        "volley_damage_profile_id": "enemy.elite_ranger.volley",
+        "rain_damage_profile_id": "enemy.elite_ranger.rain",
+        "charged_damage_profile_id": "enemy.elite_ranger.charged",
+        "charged_rift_damage_profile_id": "enemy.elite_ranger.charged_rift"
       }
     }
   ]

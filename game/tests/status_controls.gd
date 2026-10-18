@@ -57,7 +57,7 @@ func check_status_lifecycle() -> void:
 	check(not statuses.apply(a,freeze.id,freeze.duration_sec,source), "thaw immunity remains after last active status is removed")
 	statuses.tick(builds.control_group(freeze.control_group).thaw_immunity_sec)
 	check(statuses.apply(a,freeze.id,freeze.duration_sec,source), "freeze can apply again after thaw immunity expires")
-	a.receive_hit(a.health.maximum)
+	a.health.apply(a.health.current, false) # Explicit fixture death, independent of armor.
 	check(statuses.snapshot(a).is_empty() and not a.runner.actions_allowed, "death clears instances and cannot reenable actions")
 	statuses.tick(10.0)
 	check(not a.health.alive() and not a.runner.busy(), "expiry cannot resurrect actions")

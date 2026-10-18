@@ -17,7 +17,8 @@
     "run_route_file",
     "build_reward_groups_file",
     "build_elements_file",
-    "forest_run_file"
+    "forest_run_file",
+    "combat_attributes_file"
   ],
   "properties": {
     "run_route_file": {
@@ -75,6 +76,9 @@
     "forest_run_file": {
       "type": "string",
       "pattern": "^res://data/run/[a-z0-9_]+\\.json$"
+    },
+    "combat_attributes_file": {
+      "const": "res://data/combat/attributes.json"
     }
   }
 }

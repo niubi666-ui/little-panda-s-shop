@@ -13,6 +13,15 @@ var cooldown := 0.0
 var route: Callable
 var clear_path: Callable
 var safe_motion: Callable
+var attack_serial := 0
+var attack_request: Dictionary = {}
+var attack_tempo := 1.0
+var damage_scope: Callable
+func commit_attack(profile_id: String) -> void:
+	attack_serial += 1
+	attack_request = actor.make_damage_request(profile_id, attack_serial, profile_id)
+	if damage_scope.is_valid(): attack_request = damage_scope.call(attack_request)
+	attack_tempo = actor.attributes.value("attack_speed_multiplier")
 func configure(owner_actor, target_actor, settings: Dictionary, navigation: Callable, sight: Callable, motion: Callable) -> void:
 	actor = owner_actor
 	target = target_actor

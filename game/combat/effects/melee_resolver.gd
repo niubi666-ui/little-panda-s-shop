@@ -32,12 +32,12 @@ func resolve(source, targets: Array) -> void:
 			var point: Vector3 = target.global_position
 			var victim: int = target.handle
 			var cast: int = source.runner.cast_id
-			var applied: float = _direct_executor.call(source, target, amount) if _direct_executor.is_valid() else Damage.apply(target, amount, source.team)
-			enemy_contact.emit(source, cast, ability.id, victim, point, amount)
-			if applied > 0.0:
+			var hit: Dictionary = _direct_executor.call(source, target, amount) if _direct_executor.is_valid() else Damage.submit(target, source.runner.damage_snapshot)
+			if hit.valid_hit:
+				enemy_contact.emit(source, cast, ability.id, victim, point, amount)
 				var direction: Vector3 = offset.normalized() if not offset.is_zero_approx() else source.runner.direction
 				target.apply_knockback(direction, ability.knockback_speed, ability.knockback_duration)
-				confirmed_hit.emit(source, target, source.runner.cast_id, ability.id, applied)
+				confirmed_hit.emit(source, target, source.runner.cast_id, ability.id, hit.health_loss)
 
 func _contact_contains(source, ability, target_position: Vector3, offset: Vector3) -> bool:
 	var reach: float = source.reach_scale()

@@ -82,6 +82,7 @@ var _leaving := false
 var _transition: Node
 var shared_theme: Theme
 var pause_menu
+var character_sheet
 var selected_effect_id: StringName
 var _camera_shake := CameraShake.new()
 var feel := CombatFeel.new()
@@ -240,6 +241,8 @@ func _ready() -> void:
 	builds.runtime.conditional_damage_applied.connect(func(fact): audio.play(&"shatter", fact.position))
 	builds.runtime.element_presented.connect(audio.element_fact)
 	builds.choice_panel.choice_requested.connect(func(_offer, _choice): audio.play(&"ui_choose", player.global_position))
+	builds.choice_panel.card_dealt.connect(func(_index): audio.play(&"ui_card_deal", player.global_position))
+	builds.choice_panel.card_focused.connect(func(_index): audio.play(&"ui_card_focus", player.global_position))
 	encounter.wave_completed.connect(builds.reward_wave)
 	if run_mode:
 		forest_run = ForestRun.new()
@@ -288,7 +291,28 @@ func _ready() -> void:
 		# 默认收起训练面板，画面只留战斗；顶部“界面显示”菜单可以逐个打开。
 		for id in ["build", "fx", "depth", "room"]: training_tools.set_menu_visible(id, false)
 	if run_mode: training_tools.panel.hide()
+	character_sheet = preload("res://app/character_sheet.gd").new()
+	add_child(character_sheet)
+	character_sheet.configure(player, catalog, func():return builds.session.program(),
+		func():return not _leaving and not is_instance_valid(_transition) and not get_tree().paused and not builds.is_choosing() and not _gameplay_ui_blocked() and (not run_mode or forest_run._phase == "fighting"),
+		_character_sheet_toggled, shared_theme)
 	print("[combat] training ready; waves=", _waves.size(), " encounter=", encounter_plan.get("seed", "fixture"))
+func _character_sheet_toggled(open: bool) -> void:
+	player.clear_intents()
+	training_tools.panel.set_blocked(open or builds.is_choosing())
+	skill_vfx.set_time_running(not open and not paused and not builds.is_choosing())
+	if open:
+		for view in views: view.refresh(0.0)
+		enemy_presentation.refresh(0.0)
+		builds.refresh(0.0)
+		if strike_view != null: strike_view.tick(0.0)
+		if juice != null: juice.refresh(0.0)
+		audio.refresh(0.0, brains)
+	if not open:
+		hud.refresh_text()
+		builds.refresh_text()
+		training_tools.refresh_text()
+		skill_vfx.refresh_text()
 func _select_weapon_effect(effect_id: StringName) -> void:
 	if _leaving or (builds != null and builds.is_choosing()) or effect_id == selected_effect_id: return
 	for option in EffectPalette.options:
@@ -309,6 +333,7 @@ func _spawn(definition: Catalog.Actor, point: Vector3, team: int) -> Actor:
 	var abilities: Array[Catalog.Ability] = []
 	for id in definition.attacks: abilities.append(catalog.ability(id))
 	actor.configure(definition, abilities, catalog.dodge() if team == 0 else null, _next_handle, team)
+	actor.set_critical_seed(str(encounter_plan.get("seed", "training")))
 	if training_tools != null: training_tools.prepare_actor(actor)
 	actor.name = "Actor_%s" % _next_handle
 	actor.position = point
@@ -351,10 +376,7 @@ func _spawn_wave(ids: Array) -> void:
 		var actor := _spawn(catalog.actor(ids[index]), _enemy_spawns[index], 1)
 		var wave: Dictionary = encounter_plan.waves[encounter.wave_index] if not encounter_plan.is_empty() else {}
 		if encounter_plan.get("training_progression", false) or encounter_plan.has("run_boss"):
-			actor.health.maximum *= float(wave.health_multiplier)
-			actor.health.current = actor.health.maximum
-			for ability_index in actor.attacks.size():
-				actor.attacks[ability_index] = actor.attacks[ability_index].scaled_damage(float(wave.damage_multiplier))
+			actor.set_spawn_scaling(float(wave.health_multiplier), float(wave.damage_multiplier))
 		encounter.register_enemy(actor.handle)
 		var drops: Array = encounter_plan.waves[encounter.wave_index].drops[index].duplicate(true) if not encounter_plan.is_empty() else []
 		var spawn_id := "%s:%s:%s:%s" % [encounter_plan.get("seed", "fixture"), encounter_depth, encounter.wave_index, index]
@@ -362,10 +384,6 @@ func _spawn_wave(ids: Array) -> void:
 			enemy_loot_ready.emit(spawn_id, dead.definition.id, drops.duplicate(true))
 			encounter.enemy_killed(dead.handle))
 		var profile: Dictionary = enemy_catalog.profile(actor.definition.id).duplicate(true)
-		if encounter_plan.get("training_progression", false) or encounter_plan.has("run_boss"):
-			for field in profile.config:
-				if field == "damage" or field.ends_with("_damage"):
-					profile.config[field] *= float(wave.damage_multiplier)
 		_register_enemy_brain(actor, profile)
 	state = "fighting"
 func _register_enemy_brain(actor, profile: Dictionary = {}) -> void:
@@ -385,7 +403,7 @@ func _ranger_rain_escape(hazards: Array, settings: Dictionary) -> bool:
 	# A rejected cast is skipped, never repositioned on top of a wall or the player.
 	if room_props == null: return false
 	var radius: float = Style.actor_presentations.player.body_shape.radius
-	var reach: float = player.definition.speed * (settings.rain_delay_sec - settings.rain_escape_margin_sec)
+	var reach: float = player.attributes.value("move_speed_mps") * (settings.rain_delay_sec - settings.rain_escape_margin_sec)
 	var space := get_world_3d().direct_space_state
 	for i in int(settings.rain_escape_directions):
 		var direction := Vector3.FORWARD.rotated(Vector3.UP, TAU * float(i) / settings.rain_escape_directions)

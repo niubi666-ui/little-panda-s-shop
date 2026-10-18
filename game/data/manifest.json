@@ -12,5 +12,6 @@
   "run_route_file": "res://data/run/route.json",
   "build_reward_groups_file": "res://data/builds/reward_groups.json",
   "build_elements_file": "res://data/builds/elements.json",
-  "forest_run_file": "res://data/run/forest_run.json"
+  "forest_run_file": "res://data/run/forest_run.json",
+  "combat_attributes_file": "res://data/combat/attributes.json"
 }

@@ -14,6 +14,8 @@ var _running := false
 var _hit_targets: Dictionary = {}
 var _cooldowns: Dictionary = {}
 var _cast_context: Dictionary = {}
+var prepare_definition: Callable
+var damage_snapshot: Dictionary = {}
 var cast_context: Dictionary:
 	get: return _cast_context
 var action_id: String:
@@ -41,7 +43,7 @@ func start(definition: Catalog.Ability, facing: Vector3, context: Dictionary = {
 	var next_action: String = str(context.action_id) if not context.is_empty() else "primary"
 	# Only the actor's roll-cancel transition replaces a remaining primary cooldown.
 	if not actions_allowed or _running or (not replace_cooldown and cooldown_for(next_action) > 0.0): return false
-	ability = definition
+	ability = prepare_definition.call(definition, next_action) if prepare_definition.is_valid() else definition
 	cast_charged = charged
 	cast_id += 1
 	elapsed = 0.0

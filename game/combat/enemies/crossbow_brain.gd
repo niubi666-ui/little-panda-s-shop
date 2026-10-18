@@ -5,9 +5,11 @@ func tick(delta: float) -> void:
 	if state == "windup":
 		time_left -= delta
 		if time_left <= 0.0:
-			shot_requested.emit(actor, locked_direction, config)
+			var shot := config.duplicate(true)
+			shot.damage_request = attack_request
+			shot_requested.emit(actor, locked_direction, shot)
 			state = "recovery"
-			time_left = config.recovery_sec
+			time_left = config.recovery_sec / attack_tempo
 			recovery_duration = time_left
 		return
 	if state == "recovery":
@@ -28,9 +30,10 @@ func tick(delta: float) -> void:
 		approach()
 	else: state = "aiming"
 	if distance <= config.fire_range_m and visible_target() and cooldown <= 0.0:
+		commit_attack(config.damage_profile_id)
 		actor.movement = Vector3.ZERO
 		locked_direction = actor.facing
 		state = "windup"
-		time_left = maxf(config.minimum_windup_sec, config.windup_sec / actor.enemy_attack_multiplier)
+		time_left = actor.attack_windup(config.damage_profile_id, config.windup_sec)
 		windup_duration = time_left
-		cooldown = config.shot_interval_sec / actor.enemy_attack_multiplier
+		cooldown = actor.skill_cooldown(config.shot_interval_sec)

@@ -1,4 +1,6 @@
 extends "res://tests/ranger_rules.gd"
+func lost(amount: float) -> bool:
+	return is_equal_approx(player.health.maximum-player.health.current,amount)
 func setup() -> void:
 	runtime.projectiles.clear();runtime.charged_rifts.clear();runtime.rains.clear()
 	player.health.restore();player.set_damage_immunity(false)
@@ -15,33 +17,35 @@ func run() -> void:
 	player=make_actor("player",1);ranger=make_actor("elite_ranger",2)
 	runtime=Runtime.new();runtime.configure(player,.4,func(a):return a.position+Vector3.UP,func(_a,_b,_r):return 1.0)
 	brain=runtime.add(ranger,catalog.profile("elite_ranger"),Callable(),func(_a,_b):return true,func(_a,_b):return true,{"roll_path":func(_a,_b):return true,"ground":func(_p):return true,"rain_escape":func(_a,_b):return true,"seed":1})
-	check(brain.config.charged_damage==50 and brain.config.charged_rift_damage==8 and brain.config.charged_rift_interval_sec==.5,"requested 50 / 8 / half-second config")
+	check(Formula.preview(ranger,brain.config.charged_damage_profile_id).amount==50 and Formula.preview(ranger,brain.config.charged_rift_damage_profile_id).amount==8 and brain.config.charged_rift_interval_sec==.5,"original raw 50 / 8 / half-second config")
+	var arrow:=expected_damage("charged")
+	var rift:=expected_damage("charged_rift")
 	setup();shoot()
 	check(runtime.charged_rifts.items.size()==1,"release commits one area")
 	var p: Dictionary=runtime.projectiles[0]
 	check(is_equal_approx(p.life*p.config.projectile_speed_mps,brain.config.charged_range_m),"fixed range independent of shared arrow lifetime")
 	runtime.after_motion(.1)
-	check(player.health.current==player.health.maximum-50,"ultrafast arrow hits once")
+	check(lost(arrow),"ultrafast arrow hits once")
 	check(p.contact and runtime.projectiles.is_empty(),"contact recorded and arrow completes full range")
 	check(is_equal_approx(runtime.charged_rifts.items[0].length,brain.config.charged_range_m),"arrow pierces player to lay complete path")
 	runtime.after_motion(.399)
-	check(player.health.current==player.health.maximum-50,"no immediate or early residual damage")
+	check(lost(arrow),"no immediate or early residual damage")
 	runtime.after_motion(.001)
-	check(player.health.current==player.health.maximum-58,"first tick at half second is eight")
+	check(lost(arrow+rift),"first magical tick at half second")
 	player.position.x=4;runtime.after_motion(.5)
-	check(player.health.current==player.health.maximum-58,"outside path avoids pulse")
+	check(lost(arrow+rift),"outside path avoids pulse")
 	player.position.x=0;runtime.after_motion(.5)
-	check(player.health.current==player.health.maximum-66,"reentry uses existing clock")
+	check(lost(arrow+2.0*rift),"reentry uses existing clock")
 	var age: float=runtime.charged_rifts.items[0].age
 	runtime.after_motion(0.0)
 	check(runtime.charged_rifts.items[0].age==age,"zero delta freezes hazard")
 	setup();player.set_damage_immunity(true);shoot();runtime.after_motion(.1)
 	check(player.health.current==player.health.maximum,"dodge immunity rejects direct damage")
 	player.set_damage_immunity(false);runtime.after_motion(.4)
-	check(player.health.current==player.health.maximum-8,"passing arrow never re-hits after immunity; residual still active")
+	check(lost(rift),"passing arrow never re-hits after immunity; residual still active")
 	setup();shoot();player.position.x=1.0
 	runtime.before_motion(.1);player.position.x=-1.0;runtime.after_motion(.1)
-	check(player.health.current==player.health.maximum-50,"relative sweep catches a target crossing between off-axis endpoints")
+	check(lost(arrow),"relative sweep catches a target crossing between off-axis endpoints")
 	setup();shoot();runtime.sweep_world=func(a,b,_r):return .2 if a.distance_to(b)>1.0 else 1.0
 	runtime.after_motion(.1)
 	check(player.health.current==player.health.maximum and runtime.charged_rifts.items[0].length<brain.config.charged_range_m,"world stops fast arrow and residual path")
@@ -50,11 +54,11 @@ func run() -> void:
 	setup();shoot();runtime.after_motion(.1);player.position.x=1.0
 	runtime.sweep_world=func(_a,_b,_r):return .5
 	runtime.after_motion(.4)
-	check(player.health.current==player.health.maximum-50,"residual cannot reach through lateral world cover")
+	check(lost(arrow),"residual cannot reach through lateral world cover")
 	setup();brain._start("charged");ranger.set_control(1.0,true);brain.tick(3.0)
 	check(runtime.charged_rifts.items.is_empty(),"freeze before release cancels area")
 	setup();shoot();ranger.set_control(1.0,true);runtime.after_motion(.5)
-	check(player.health.current==player.health.maximum-58,"freeze after release preserves committed arrow and area")
+	check(lost(arrow+rift),"freeze after release preserves committed arrow and area")
 	setup();player.set_damage_immunity(true);shoot()
 	var count:=0
 	while not runtime.charged_rifts.items.is_empty() and count<700:

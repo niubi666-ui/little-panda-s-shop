@@ -27,9 +27,16 @@ func _read(path: String) -> Variant:
 func decode(data: Variant, schema: Dictionary, path: String) -> Catalog:
 	_check(data, schema, path)
 	if not errors.is_empty(): return null
+	var attribute_loader := preload("res://content/combat/attribute_loader.gd").new()
+	var attributes = attribute_loader.load_catalog()
+	if attributes == null:
+		errors.append_array(attribute_loader.errors)
+		return null
 	var abilities: Dictionary = {}
 	var actors: Dictionary = {}
 	for entry in data.abilities:
+		if not attributes.data.linear_profiles.has(entry.damage_profile_id): errors.append(path + ": missing linear damage profile " + entry.damage_profile_id)
+		elif attributes.profile(entry.damage_profile_id).modifier_policy == "enemy" and not attributes.data.enemy_telegraph_minimum_sec.has(entry.damage_profile_id): errors.append(path + ": missing enemy telegraph policy " + entry.damage_profile_id)
 		if abilities.has(entry.id): errors.append(path + ": duplicate ability " + entry.id)
 		abilities[entry.id] = entry
 		if entry.chain_cancel_sec > entry.recovery_sec: errors.append(path + ": " + entry.id + " chain_cancel_sec exceeds recovery_sec")
@@ -46,6 +53,7 @@ func decode(data: Variant, schema: Dictionary, path: String) -> Catalog:
 		if (entry.lunge_speed_mps == 0.0) != (entry.lunge_duration_sec == 0.0):
 			errors.append(path + ": " + entry.id + " lunge speed/duration must both be zero or positive")
 	for entry in data.actors:
+		if not attributes.data.actors.has(entry.attribute_profile_id): errors.append(path + ": missing attribute profile " + entry.attribute_profile_id)
 		if actors.has(entry.id): errors.append(path + ": duplicate actor " + entry.id)
 		actors[entry.id] = entry
 		for id in entry.attack_ids:
@@ -73,7 +81,7 @@ func decode(data: Variant, schema: Dictionary, path: String) -> Catalog:
 		if data.dodge.attack_duration_sec > attack.active_sec or attack.lunge_speed_mps != 0.0 or attack.movement_speed_multiplier != 0.0:
 			errors.append(path + ": roll attack must cover dash with active time and disable additive movement/lunge")
 	if not errors.is_empty(): return null
-	return Catalog.new(data)
+	return Catalog.new(data, attributes)
 ## Deliberately implements only the schema keywords used by this slice; build-time
 ## validation uses full Draft202012 with strict duplicate-key JSON parsing.
 func _check(value: Variant, schema: Dictionary, path: String) -> void:

@@ -17,7 +17,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 7
+      "const": 8
     },
     "offer": {
       "type": "object",
@@ -1341,9 +1341,9 @@
         "required": [
           "id",
           "projectile_id",
-          "damage",
           "cooldown_sec",
-          "action_id"
+          "action_id",
+          "damage_profile_id"
         ],
         "properties": {
           "id": {
@@ -1358,11 +1358,6 @@
             "maxLength": 128,
             "pattern": "^\\S(?:.*\\S)?$"
           },
-          "damage": {
-            "type": "number",
-            "exclusiveMinimum": 0,
-            "maximum": 10000
-          },
           "cooldown_sec": {
             "type": "number",
             "exclusiveMinimum": 0,
@@ -1373,6 +1368,26 @@
             "minLength": 1,
             "maxLength": 128,
             "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "damage_profile_id": {
+            "enum": [
+              "ability.slash.1",
+              "ability.slash.2",
+              "ability.slash.3",
+              "ability.heavy_slash",
+              "ability.wave_cast",
+              "ability.roll_slash",
+              "ability.enemy.swipe",
+              "ability.enemy.slam",
+              "enemy.crossbow.shot",
+              "enemy.charger.charge",
+              "enemy.elite_ranger.fast",
+              "enemy.elite_ranger.volley",
+              "enemy.elite_ranger.rain",
+              "enemy.elite_ranger.charged",
+              "enemy.elite_ranger.charged_rift",
+              "debug.test_arrow"
+            ]
           }
         }
       }

@@ -31,7 +31,7 @@ func _clear_room(arena) -> void:
 		await physics_frame
 		if arena.state == "victory": return
 		for actor in arena.actors:
-			if actor != arena.player and actor.health.alive(): actor.receive_hit(actor.health.current + 1.0)
+			if actor != arena.player and actor.health.alive(): actor.health.apply(actor.health.current, false)
 
 func _offer(arena) -> Dictionary:
 	return arena.builds.session.snapshot().offer
@@ -39,7 +39,10 @@ func _offer(arena) -> Dictionary:
 func _choose(arena, index: int) -> void:
 	var offer := _offer(arena)
 	arena.builds._choose(offer.id, offer.candidates[index].choice_id)
-	for i in 6: await physics_frame
+	# Wait for the current card dismissal before opening another shop reward.
+	for i in 120:
+		await physics_frame
+		if not arena.builds.choice_panel._closing: break
 
 func _elements(arena) -> Dictionary:
 	return arena.builds.session._sampler.action_elements(arena.builds.session.snapshot())
@@ -131,7 +134,7 @@ func run() -> void:
 		check(run_ctl._phase == "exits", "%s returns to the exits (phase %s)" % [room, run_ctl._phase])
 	# 6. 倒下：结算 + 再来一局
 	arena.player.set_damage_immunity(false)
-	arena.player.receive_hit(arena.player.health.current + 1.0)
+	arena.player.health.apply(arena.player.health.current, false)
 	for i in 10: await physics_frame
 	var result := _panel_buttons(arena, "RunResult_")
 	check(result.size() == 2, "defeat shows the run result")

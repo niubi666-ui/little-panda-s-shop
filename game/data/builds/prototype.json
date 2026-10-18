@@ -1,5 +1,5 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "offer": {
     "count": 3,
     "pool_ids": [
@@ -1769,9 +1769,9 @@
     {
       "id": "test_arrow",
       "projectile_id": "test_arrow",
-      "damage": 12.0,
       "cooldown_sec": 0.6,
-      "action_id": "debug_arrow"
+      "action_id": "debug_arrow",
+      "damage_profile_id": "debug.test_arrow"
     }
   ],
   "statuses": [

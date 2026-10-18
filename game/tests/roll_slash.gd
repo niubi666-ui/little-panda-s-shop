@@ -129,6 +129,8 @@ func hit_build_case() -> void:
 	finish(f)
 	check(hits.size() == 3 and hits.values().all(func(n):return n == 1), "swept slash hits near/far/range-buffed targets once each")
 	var expected: float = combat.dodge().attack.damage * float(f.program.actions.primary.damage_scale)
+	expected *= 100.0 / (100.0 + near.attributes.value("armor"))
+	if f.p.runner.damage_snapshot.critical: expected *= f.p.attributes.value("crit_damage_multiplier")
 	check(damages.size() == 3 and damages.all(func(d):return is_equal_approx(d,expected)), "same primary damage multiplier")
 	check(elements.filter(func(e):return e.event == "applied" and e.element == "fire").size() == 3, "primary elemental effect applies to every direct target")
 	check(f.p.reach_scale() == f.program.actions.primary.reach_scale, "primary range bonus retained")

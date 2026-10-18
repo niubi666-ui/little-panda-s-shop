@@ -21,3 +21,4 @@ temporal_antialiasing = false
 render_height_limit = 830
 render_min_scale = 0.5
 render_scaling_mode = 2
+render_sharpness = 2.0

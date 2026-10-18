@@ -24,3 +24,6 @@ extends Resource
 ## 降分辨率渲染时的放大方式（Viewport.Scaling3DMode）。FSR 为 FSR 1（只在降分辨率时启用）；
 ## FSR2 自带时域抗锯齿，选它时始终启用，并关闭本房间的 MSAA（TAA 也应在上面关掉）。
 @export var render_scaling_mode: Viewport.Scaling3DMode
+## FSR 放大时的锐化（Viewport.fsr_sharpness）：0 最锐，2 最柔。锐化会把细草、碎叶这类细节放大成闪烁的“花屏”，
+## 植被多的房间应调高
+@export var render_sharpness: float

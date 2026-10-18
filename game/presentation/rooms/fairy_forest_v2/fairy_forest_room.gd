@@ -70,6 +70,11 @@ extends "res://rogue/rooms/authored_room.gd"
 @export var wall_thickness_m: float
 @export var wall_height_m: float
 
+@export_group("疏密")
+## 按资产保留多少比例的摆放（0..1，没列出的全保留）。挑哪些保留由位置决定，每次进场一样。
+## 草太密时远看是一片细碎的高频纹理，角色跑动时会“花”，疏一点、让地面露出来更安静。
+@export var density_keep: Dictionary
+
 @export_group("树影")
 ## 用哪个资产的树冠来投影
 @export var shade_asset: String
@@ -195,8 +200,10 @@ func _build_instances() -> void:
 	source.free()
 	var placed: Dictionary = {}
 	for entry in data.instances:
+		var xform := _transform(entry.m)
+		if not _kept(entry.asset, xform.origin): continue
 		if not placed.has(entry.asset): placed[entry.asset] = []
-		placed[entry.asset].append(_transform(entry.m))
+		placed[entry.asset].append(xform)
 	var holder_node := Node3D.new()
 	holder_node.name = "Dressing"
 	add_child(holder_node)
@@ -226,6 +233,11 @@ func _build_instances() -> void:
 				node.multimesh = multimesh
 				node.cast_shadow = shadow
 				holder_node.add_child(node)
+
+func _kept(asset: String, at: Vector3) -> bool:
+	if not density_keep.has(asset): return true
+	var roll := fposmod(sin(at.x * 12.9898 + at.z * 78.233) * 43758.5453, 1.0)
+	return roll < float(density_keep[asset])
 
 # ---------------- 树影 ----------------
 func _build_canopy_shade() -> void:

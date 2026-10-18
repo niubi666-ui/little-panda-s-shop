@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/elemental_enchants/shaders/glint.gdshader" id="1_1ssdj"]
+[ext_resource type="Texture2D" path="res://vfx_lab/fire_katana/generated/textures/soft_dot.png" id="2_hkudr"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_1ssdj")
+shader_parameter/tex = ExtResource("2_hkudr")
+shader_parameter/tint = Color(1, 0.7, 0.35, 1)
+shader_parameter/emission = 0.8
+shader_parameter/twinkle = null
+shader_parameter/twinkle_speed = null
+shader_parameter/billboard = null

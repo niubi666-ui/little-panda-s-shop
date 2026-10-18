@@ -31,6 +31,9 @@ uniform float macro_contrast = 0.36;      // 大尺度明暗变化的幅度，�
 uniform float wet_band = 0.18;            // 水面以上多高的岸边是湿的（米）
 uniform float caustics = 0.9;             // 水下焦散亮纹的强度
 uniform float caustic_scale = 0.35;
+uniform float normal_strength = 1.0;      // 法线贴图强度：细碎的凹凸在远处会闪，调低更“安静”
+// 贴图取样提前降级几级：地面细碎的颗粒在运动中会闪，取模糊一点的贴图更稳
+uniform float texture_lod_bias = 0.0;
 
 varying vec3 world_pos;
 
@@ -69,17 +72,17 @@ void fragment() {
 	float patches = smoothstep(0.62, 0.8, vnoise(p * 0.16 + 9.0) * 0.6 + vnoise(p * 0.55 + 3.0) * 0.4) * litter_patches;
 	float litter = clamp(max(path, patches) * (1.0 - bed), 0.0, 1.0);
 
-	vec3 albedo = texture(moss_albedo, p / moss_scale).rgb * moss_tint;
+	vec3 albedo = texture(moss_albedo, p / moss_scale, texture_lod_bias).rgb * moss_tint;
 	albedo *= 1.0 - macro_contrast * 0.5 + macro_contrast * vnoise(p * 0.09 + 20.0);
-	vec3 normal = texture(moss_normal, p / moss_scale).rgb;
-	float rough = texture(moss_roughness, p / moss_scale).r;
+	vec3 normal = texture(moss_normal, p / moss_scale, texture_lod_bias).rgb;
+	float rough = texture(moss_roughness, p / moss_scale, texture_lod_bias).r;
 
-	albedo = mix(albedo, texture(litter_albedo, p / litter_scale).rgb * litter_tint, litter);
-	normal = mix(normal, texture(litter_normal, p / litter_scale).rgb, litter);
-	rough = mix(rough, texture(litter_roughness, p / litter_scale).r, litter);
+	albedo = mix(albedo, texture(litter_albedo, p / litter_scale, texture_lod_bias).rgb * litter_tint, litter);
+	normal = mix(normal, texture(litter_normal, p / litter_scale, texture_lod_bias).rgb, litter);
+	rough = mix(rough, texture(litter_roughness, p / litter_scale, texture_lod_bias).r, litter);
 
-	albedo = mix(albedo, texture(pebbles_albedo, p / pebbles_scale).rgb * wet_tint, bed);
-	normal = mix(normal, texture(pebbles_normal, p / pebbles_scale).rgb, bed);
+	albedo = mix(albedo, texture(pebbles_albedo, p / pebbles_scale, texture_lod_bias).rgb * wet_tint, bed);
+	normal = mix(normal, texture(pebbles_normal, p / pebbles_scale, texture_lod_bias).rgb, bed);
 	rough = mix(rough, 0.25, bed);
 
 	// 水线附近的岸是湿的：更暗、更亮滑
@@ -97,6 +100,7 @@ void fragment() {
 	float grey = dot(albedo, vec3(0.299, 0.587, 0.114));
 	ALBEDO = mix(vec3(grey), albedo, saturation);
 	NORMAL_MAP = normal;
+	NORMAL_MAP_DEPTH = normal_strength;
 	ROUGHNESS = rough;
 	SPECULAR = 0.35;
 }

@@ -103,7 +103,7 @@ collision_mode = 1
 collision_friction = 0.4
 collision_bounce = 0.3
 
-[node name="IceEnchant" type="Node3D" unique_id=2106608979 node_paths=PackedStringArray("mist", "glints", "trail_mist", "shards", "light", "fill_reference")]
+[node name="IceEnchant" type="Node3D" unique_id=1299982663 node_paths=PackedStringArray("mist", "glints", "trail_mist", "shards", "light", "fill_reference")]
 script = ExtResource("1_lp850")
 mist = NodePath("Mist")
 glints = NodePath("Glints")
@@ -113,7 +113,7 @@ light = NodePath("IceLight")
 fill_overlap = 0.9
 fill_reference = NodePath("TrailMist")
 
-[node name="Mist" type="GPUParticles3D" parent="." unique_id=1945168805]
+[node name="Mist" type="GPUParticles3D" parent="." unique_id=389943115]
 material_override = ExtResource("2_vndtd")
 cast_shadow = 0
 emitting = false
@@ -123,7 +123,7 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_v24c1")
 draw_pass_1 = SubResource("QuadMesh_syr57")
 
-[node name="Glints" type="GPUParticles3D" parent="." unique_id=1688195855]
+[node name="Glints" type="GPUParticles3D" parent="." unique_id=973805893]
 material_override = ExtResource("3_5xfkn")
 cast_shadow = 0
 emitting = false
@@ -134,7 +134,7 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_i8mns")
 draw_pass_1 = SubResource("QuadMesh_sh6dj")
 
-[node name="TrailMist" type="GPUParticles3D" parent="." unique_id=427345350]
+[node name="TrailMist" type="GPUParticles3D" parent="." unique_id=494505628]
 material_override = ExtResource("2_vndtd")
 cast_shadow = 0
 emitting = false
@@ -145,7 +145,7 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_ntkon")
 draw_pass_1 = SubResource("QuadMesh_ywsei")
 
-[node name="Shards" type="GPUParticles3D" parent="." unique_id=393436083]
+[node name="Shards" type="GPUParticles3D" parent="." unique_id=329703612]
 material_override = ExtResource("4_4hpna")
 emitting = false
 amount = 300
@@ -156,7 +156,7 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_i3cuh")
 draw_pass_1 = ExtResource("5_ll07c")
 
-[node name="IceLight" type="OmniLight3D" parent="." unique_id=1571965515]
+[node name="IceLight" type="OmniLight3D" parent="." unique_id=1326673001]
 light_color = Color(0.6, 0.8, 1, 1)
 light_energy = 0.0
 omni_range = 2.0

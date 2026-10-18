@@ -1,6 +1,6 @@
 extends Node3D
 ## 火焰太刀演示：循环播放几招挥砍，命中木桩时生成火焰受击特效、顿帧、震镜头。
-## 按键：E 切换元素（火/冰/雷），空格 暂停/继续，1-4 只放某一招，0 循环全部，S 慢放，L 白天/夜晚，C 切换机位。
+## 按键：E 切换元素（火/冰/雷/土），空格 暂停/继续，1-4 只放某一招，0 循环全部，S 慢放，L 白天/夜晚，C 切换机位。
 
 @export var rig: Node3D
 @export var impact_scene: PackedScene
@@ -13,8 +13,8 @@ extends Node3D
 @export var looks: Array[Resource] = []
 @export var slow_scale := 0.3
 ## 元素切换（E 键）：fire 用本场景原有的火焰层；其它元素挂 enchant_mount 下的附魔场景
-@export var element_ids: PackedStringArray = ["fire", "ice", "thunder"]
-@export var element_names: PackedStringArray = ["火", "冰", "雷"]
+@export var element_ids: PackedStringArray = ["fire", "ice", "thunder", "earth"]
+@export var element_names: PackedStringArray = ["火", "冰", "雷", "土"]
 @export var element_enchants: Dictionary = {}     ## 元素 → 附魔场景（enchant_base.gd 约定）
 @export var element_impacts: Dictionary = {}      ## 元素 → 受击场景；没有就用 impact_scene
 @export var blade_overlays: Dictionary = {}       ## 元素 → 刀身覆盖层材质（刀身材质的 next_pass）

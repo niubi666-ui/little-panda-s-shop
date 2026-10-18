@@ -53,7 +53,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 |---|---|
 | 战斗表现总表（各角色表现、剑姿态、镜头、刀光、以下各项的引用） | `combat/training_style.tres` |
 | 角色模型、碰撞体、朝向 | `combat/*_presentation.tres` → `combat/rigs/*_visual.tscn` |
-| 动作名映射、攻击动作切点、过渡 | `combat/rigs/*_clips.tres`；主角为 `nodachi_clips.tres`，另含八方向列表、步行速度和刀刃端点路径 |
+| 动作名映射、攻击动作切点、过渡 | `combat/rigs/*_clips.tres`；主角为 `nodachi_clips.tres`，另含八方向列表、步行速度、刀刃端点路径、蓄力下肢切换 `charge_move_blend_sec` |
 | 转身、受击闪白/抖动、尸体消散、前摇泛光 | `combat/rigs/rig_feedback_*.tres` |
 | 顿帧、镜头冲击、镜头跟随 | `combat/feel/combat_feel_style.tres` |
 | 受伤闪红、击杀/闪避粒子、底部生命条 | `combat/juice/`（`combat_juice_style.tres`、`vitals_hud_style.tres`、粒子 `.tscn`） |
@@ -132,7 +132,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 
 | 改了什么 | 跑什么 |
 |---|---|
-| 战斗基础、连段、反馈 | `combat_rules`、`roll_slash`（6 米/连续推进/碰撞/元素/增伤/范围/取消）、`roll_slash_visual`（八方向 × 三种翻滚时机、原翻滚相位延续、落地后分骨骼混合）；主角 `nodachi_player`（图形/无头）、`combo_feel`（已适配 Nodachi 的真实刀刃和下劈第三刀） |
+| 战斗基础、连段、反馈 | `combat_rules`、`roll_slash`（6 米/连续推进/碰撞/元素/增伤/范围/取消）、`roll_slash_visual`（八方向 × 三种翻滚时机、原翻滚相位延续、落地后分骨骼混合）；主角 `nodachi_player`（图形/无头）、`charge_locomotion`（蓄力八方向走跑、上身保持、暂停/冻结/停止/释放/死亡）、`combo_feel`（已适配 Nodachi 的真实刀刃和下劈第三刀） |
 | 敌人、遭遇 | `enemy_roles`、`charger_obstacles`；图形 `enemy_training` |
 | 游侠 | `ranger_rules`、`ranger_sequences`、`charged_ranger` |
 | 构筑 | `bound_build_policy`、`bound_build_session`、`mechanism_content`、`dual_actions`、`frost_first_batch`；冰协同 `ice_synergy`、`ice_synergy_rewards`、`freeze_followup`、`boss_frost_builds` |

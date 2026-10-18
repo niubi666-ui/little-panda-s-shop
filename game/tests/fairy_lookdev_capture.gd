@@ -3,7 +3,8 @@ extends SceneTree
 ## （视图名一致），隐藏界面、冻结战斗，只拍场景本身，用来和 Cycles 渲染图逐张对比。
 ## 图形模式运行（不能加 --headless）：
 ##   godot --path game --script res://tests/fairy_lookdev_capture.gd -- [视图,视图] [actors] [fps] [tag=名字] [env.属性=值 ...]
-## 写 fps 则最后在 1080p 下测帧率（打印 FPS 一行）。room=res://…/presentation.tres 换用别的房间（例如第一版，做前后对比）。
+## 写 fps 则最后在 1080p 下测帧率（打印 FPS 一行）。写 pan 则镜头平移约 1.7 秒，每帧存到
+## builds/lookdev/<名字>/NNN.png 后退出（看运动中草地是否闪烁）；配合 --fixed-fps 60 保证每帧时间步一样。room=res://…/presentation.tres 换用别的房间（例如第一版，做前后对比）。
 ## 视图缺省为全部；写 actors 则保留角色（拍战斗画面用）。输出到 builds/lookdev/<视图>_<名字>.png（名字缺省 godot）。
 const OUT := "E:/ShopGame/builds/lookdev/"
 # 镜头位置与注视点（Godot 坐标），与 render_game_views.py 的 VIEWS 相同
@@ -16,6 +17,7 @@ const VIEWS := {
 	"top": [Vector3(0.0, 46.0, 0.5), Vector3(0.0, 0.0, 0.0)],
 }
 const SIZE := Vector2i(1280, 800)
+const PAN_SPEED_MPS := 5.0      # 平移速度：接近角色奔跑速度
 
 func _initialize() -> void:
 	call_deferred("run")
@@ -27,12 +29,14 @@ func run() -> void:
 	var names: Array = VIEWS.keys()
 	var keep_actors := false
 	var measure := false
+	var pan := false
 	var overrides: Array[String] = []
 	var tag := "godot"
 	var room_path := ""
 	for arg in args:
 		if arg == "actors": keep_actors = true
 		elif arg == "fps": measure = true
+		elif arg == "pan": pan = true
 		elif arg.begins_with("tag="): tag = arg.substr(4)
 		elif arg.begins_with("room="): room_path = arg.substr(5)
 		elif arg.contains("="): overrides.append(arg)
@@ -84,6 +88,32 @@ func run() -> void:
 			"sun": sun.set(property, value)
 			"cam": camera.set(property, value)
 			"vp": root.set(property, value)
+	if pan:
+		# 镜头沿游戏镜头的方向平移（相当于角色奔跑时镜头跟随），配合 --write-movie 录下每一帧，
+		# 用来看草地在运动中闪不闪。先停 1 秒让体积雾和时域抗锯齿稳定。
+		var start: Array = VIEWS["game"]
+		var offset: Vector3 = start[0] - start[1]
+		var from := Vector3(-4.0, 0.7, 2.0)
+		var to := Vector3(4.0, 0.7, -1.0)
+		camera.position = from + offset
+		camera.look_at(from)
+		await create_timer(1.0).timeout
+		var folder := OUT + tag + "/"
+		DirAccess.make_dir_recursive_absolute(folder)
+		var travel := 0.0
+		var duration := from.distance_to(to) / PAN_SPEED_MPS
+		var index := 0
+		while travel < duration:
+			travel += 1.0 / 60.0
+			var at := from.lerp(to, travel / duration)
+			camera.position = at + offset
+			camera.look_at(at)
+			await RenderingServer.frame_post_draw
+			root.get_texture().get_image().save_png(folder + "%03d.png" % index)
+			index += 1
+		print("PAN done")
+		quit(0)
+		return
 	for name in names:
 		var view: Array = VIEWS[name]
 		camera.position = view[0]

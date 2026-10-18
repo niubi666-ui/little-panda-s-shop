@@ -77,7 +77,7 @@ color_ramp = SubResource("GradientTexture1D_6xsm2")
 [sub_resource type="QuadMesh" id="QuadMesh_kett0"]
 size = Vector2(0.007, 0.04)
 
-[node name="ThunderEnchant" type="Node3D" unique_id=1064044770 node_paths=PackedStringArray("strands", "aura", "trail_aura", "sparks", "light", "fill_reference")]
+[node name="ThunderEnchant" type="Node3D" unique_id=1428680170 node_paths=PackedStringArray("strands", "aura", "trail_aura", "sparks", "light", "fill_reference")]
 script = ExtResource("1_65e5s")
 strands = NodePath("Strands")
 aura = NodePath("Aura")
@@ -86,12 +86,12 @@ sparks = NodePath("Sparks")
 light = NodePath("ThunderLight")
 fill_reference = NodePath("TrailAura")
 
-[node name="Strands" type="Node3D" parent="." unique_id=1071678557]
+[node name="Strands" type="Node3D" parent="." unique_id=122955534]
 script = ExtResource("2_ktvow")
 glow_material = ExtResource("3_tuk43")
 core_material = ExtResource("4_uiy58")
 
-[node name="Aura" type="GPUParticles3D" parent="." unique_id=1368178645]
+[node name="Aura" type="GPUParticles3D" parent="." unique_id=309428192]
 material_override = ExtResource("5_e7tde")
 cast_shadow = 0
 emitting = false
@@ -102,7 +102,7 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_208tu")
 draw_pass_1 = SubResource("QuadMesh_wkgbw")
 
-[node name="TrailAura" type="GPUParticles3D" parent="." unique_id=1128307906]
+[node name="TrailAura" type="GPUParticles3D" parent="." unique_id=369303758]
 material_override = ExtResource("5_e7tde")
 cast_shadow = 0
 emitting = false
@@ -113,7 +113,7 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_d6kv2")
 draw_pass_1 = SubResource("QuadMesh_bd7v3")
 
-[node name="Sparks" type="GPUParticles3D" parent="." unique_id=620328368]
+[node name="Sparks" type="GPUParticles3D" parent="." unique_id=603571207]
 material_override = ExtResource("6_som00")
 cast_shadow = 0
 emitting = false
@@ -125,7 +125,7 @@ transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_jyn6d")
 draw_pass_1 = SubResource("QuadMesh_kett0")
 
-[node name="ThunderLight" type="OmniLight3D" parent="." unique_id=1893872330]
+[node name="ThunderLight" type="OmniLight3D" parent="." unique_id=1316575480]
 light_color = Color(0.55, 0.65, 1, 1)
 light_energy = 0.0
 omni_range = 2.5

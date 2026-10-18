@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/elemental_enchants/shaders/mist_puff.gdshader" id="1_gt22e"]
+[ext_resource type="Texture2D" path="res://vfx_lab/fire_katana/generated/textures/soft_dot.png" id="2_86xh8"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_gt22e")
+shader_parameter/tex = ExtResource("2_86xh8")
+shader_parameter/atlas_h = 1
+shader_parameter/atlas_v = 1
+shader_parameter/emission = 1.0
+shader_parameter/opacity = 1.0
+shader_parameter/additive = null

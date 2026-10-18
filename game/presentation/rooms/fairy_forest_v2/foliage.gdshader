@@ -16,6 +16,9 @@ uniform float roughness = 0.65;
 uniform float specular = 0.5;              // 0.5 = 4% 正面反射率，与 Blender 的 Specular IOR Level 0.5 相同
 uniform float alpha_cut = 0.4;
 uniform float mip_alpha_scale = 0.25;      // 每降一级贴图，不透明度补多少（远处镂空不至于越来越稀）
+// 贴图取样提前降级几级：细草叶在屏幕上比像素还细时会闪烁成“花屏”，提前取模糊一点的贴图，
+// 草丛读成柔和的一簇而不是一堆跳动的细线。0 为不处理
+uniform float texture_lod_bias = 0.0;
 // 镂空取样最多降到第几级贴图。细草叶的贴图降级后会糊成一片，再补不透明度就成了一块块“叶片”；
 // 限制级数让草叶保持细长（远处的闪烁由 TAA 抹平）。99 = 不限制
 uniform float alpha_lod_max = 99.0;
@@ -109,7 +112,7 @@ void vertex() {
 }
 
 void fragment() {
-	vec4 texel = texture(albedo_tex, UV);
+	vec4 texel = texture(albedo_tex, UV, texture_lod_bias);
 	vec3 base = texel.rgb * tint;
 	base *= 1.0 + (plant_seed - 0.5) * 2.0 * variation;
 	base = mix(base, base * vec3(1.1, 1.03, 0.75), plant_seed * yellowing);
@@ -123,6 +126,7 @@ void fragment() {
 
 	vec2 texel_uv = UV * vec2(textureSize(albedo_tex, 0));
 	float lod = 0.5 * log2(max(max(dot(dFdx(texel_uv), dFdx(texel_uv)), dot(dFdy(texel_uv), dFdy(texel_uv))), 1e-6));
+	lod += texture_lod_bias;
 	float coverage = lod > alpha_lod_max ? textureLod(albedo_tex, UV, alpha_lod_max).a : texel.a;
 	ALPHA = coverage * (1.0 + clamp(lod, 0.0, alpha_lod_max) * mip_alpha_scale);
 	ALPHA_SCISSOR_THRESHOLD = alpha_cut;

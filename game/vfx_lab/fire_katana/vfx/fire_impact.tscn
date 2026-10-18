@@ -281,11 +281,11 @@ size = Vector2(0.012, 0.05)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.15, 0.7), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="FireImpact" type="Node3D" unique_id=78770054]
+[node name="FireImpact" type="Node3D" unique_id=288287557]
 script = ExtResource("1_coxoy")
 timeline = ExtResource("2_6bt14")
 
-[node name="Flash" type="GPUParticles3D" parent="." unique_id=279304173]
+[node name="Flash" type="GPUParticles3D" parent="." unique_id=192740549]
 material_override = ExtResource("3_oxebj")
 cast_shadow = 0
 emitting = false
@@ -298,7 +298,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ecwrp")
 draw_pass_1 = SubResource("QuadMesh_w05b1")
 
-[node name="Glow" type="GPUParticles3D" parent="." unique_id=1566820010]
+[node name="Glow" type="GPUParticles3D" parent="." unique_id=312861417]
 material_override = ExtResource("4_vw6ad")
 cast_shadow = 0
 emitting = false
@@ -311,7 +311,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbri0")
 draw_pass_1 = SubResource("QuadMesh_jnmja")
 
-[node name="CutCrescent" type="GPUParticles3D" parent="." unique_id=616262143]
+[node name="CutCrescent" type="GPUParticles3D" parent="." unique_id=273405597]
 material_override = ExtResource("5_2uh2t")
 cast_shadow = 0
 emitting = false
@@ -324,7 +324,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_sgg7q")
 draw_pass_1 = SubResource("QuadMesh_7rx0u")
 
-[node name="Shockwave" type="GPUParticles3D" parent="." unique_id=1953829456]
+[node name="Shockwave" type="GPUParticles3D" parent="." unique_id=1167330020]
 material_override = ExtResource("6_r5o54")
 cast_shadow = 0
 emitting = false
@@ -337,7 +337,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_hh26m")
 draw_pass_1 = SubResource("QuadMesh_ynhnq")
 
-[node name="Sparks" type="GPUParticles3D" parent="." unique_id=859924259]
+[node name="Sparks" type="GPUParticles3D" parent="." unique_id=984318338]
 material_override = ExtResource("7_nnq8n")
 cast_shadow = 0
 emitting = false
@@ -350,7 +350,7 @@ transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_kr51b")
 draw_pass_1 = SubResource("QuadMesh_8vcsq")
 
-[node name="FireCore" type="GPUParticles3D" parent="." unique_id=502908118]
+[node name="FireCore" type="GPUParticles3D" parent="." unique_id=947817896]
 material_override = ExtResource("8_wlivm")
 cast_shadow = 0
 emitting = false
@@ -362,7 +362,7 @@ fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_il0qi")
 draw_pass_1 = SubResource("QuadMesh_6u12e")
 
-[node name="FireBurst" type="GPUParticles3D" parent="." unique_id=1618872775]
+[node name="FireBurst" type="GPUParticles3D" parent="." unique_id=164041959]
 material_override = ExtResource("9_dcukg")
 cast_shadow = 0
 emitting = false
@@ -374,7 +374,7 @@ fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_s1w2p")
 draw_pass_1 = SubResource("QuadMesh_vnnuu")
 
-[node name="Afterburn" type="GPUParticles3D" parent="." unique_id=1215144342]
+[node name="Afterburn" type="GPUParticles3D" parent="." unique_id=1043262176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
 material_override = ExtResource("9_dcukg")
 cast_shadow = 0
@@ -387,7 +387,7 @@ draw_pass_1 = SubResource("QuadMesh_tmdwp")
 script = ExtResource("10_b07y2")
 duration = 1.6
 
-[node name="Smoke" type="GPUParticles3D" parent="." unique_id=216063921]
+[node name="Smoke" type="GPUParticles3D" parent="." unique_id=2067555446]
 material_override = ExtResource("11_2cnoy")
 cast_shadow = 0
 emitting = false
@@ -399,7 +399,7 @@ fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_2etq6")
 draw_pass_1 = SubResource("QuadMesh_qwuy4")
 
-[node name="Embers" type="GPUParticles3D" parent="." unique_id=932156772]
+[node name="Embers" type="GPUParticles3D" parent="." unique_id=1355742470]
 material_override = ExtResource("12_umr1k")
 cast_shadow = 0
 emitting = false
@@ -412,7 +412,7 @@ transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_gnyft")
 draw_pass_1 = SubResource("QuadMesh_rhj3b")
 
-[node name="ImpactLight" type="OmniLight3D" parent="." unique_id=1893235498]
+[node name="ImpactLight" type="OmniLight3D" parent="." unique_id=1431674410]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 light_color = Color(1, 0.55, 0.25, 1)
 omni_range = 4.0
@@ -420,7 +420,7 @@ script = ExtResource("13_ako02")
 peak_energy = 7.0
 curve = SubResource("Curve_8806a")
 
-[node name="Scorch" type="Decal" parent="." unique_id=206708500]
+[node name="Scorch" type="Decal" parent="." unique_id=1089312900]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
 size = Vector3(0.45, 0.4, 0.22)
 texture_albedo = ExtResource("14_foh8r")

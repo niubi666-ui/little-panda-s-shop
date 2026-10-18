@@ -156,11 +156,11 @@ collision_bounce = 0.3
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.15, 0.7), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="IceImpact" type="Node3D" unique_id=201860543]
+[node name="IceImpact" type="Node3D" unique_id=69299806]
 script = ExtResource("1_poftc")
 timeline = SubResource("Resource_jo0m2")
 
-[node name="Flash" type="GPUParticles3D" parent="." unique_id=2133909362]
+[node name="Flash" type="GPUParticles3D" parent="." unique_id=756778007]
 material_override = ExtResource("3_oe4gl")
 cast_shadow = 0
 emitting = false
@@ -174,7 +174,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_p0ej5")
 draw_pass_1 = SubResource("QuadMesh_eeu3r")
 
-[node name="Glow" type="GPUParticles3D" parent="." unique_id=1902008637]
+[node name="Glow" type="GPUParticles3D" parent="." unique_id=1243144603]
 material_override = ExtResource("4_wwmwo")
 cast_shadow = 0
 emitting = false
@@ -188,12 +188,12 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_4asgp")
 draw_pass_1 = SubResource("QuadMesh_hks13")
 
-[node name="Crystals" type="Node3D" parent="." unique_id=603883802]
+[node name="Crystals" type="Node3D" parent="." unique_id=1510433627]
 script = ExtResource("5_f3gsg")
 spike_mesh = ExtResource("6_kl2t7")
 spike_material = ExtResource("7_8x2wk")
 
-[node name="Frost" type="Decal" parent="." unique_id=1959512104]
+[node name="Frost" type="Decal" parent="." unique_id=1892943853]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
 size = Vector3(0.5, 0.4, 0.5)
 texture_albedo = ExtResource("8_cimkf")
@@ -204,7 +204,7 @@ glow_peak = 1.5
 glow_time = 1.2
 hold_time = 2.5
 
-[node name="MistBurst" type="GPUParticles3D" parent="." unique_id=1239958463]
+[node name="MistBurst" type="GPUParticles3D" parent="." unique_id=1471029631]
 material_override = ExtResource("11_6o6hw")
 cast_shadow = 0
 emitting = false
@@ -217,7 +217,7 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_0hvth")
 draw_pass_1 = SubResource("QuadMesh_1ancr")
 
-[node name="ShatterMist" type="GPUParticles3D" parent="." unique_id=547669853]
+[node name="ShatterMist" type="GPUParticles3D" parent="." unique_id=2063488992]
 material_override = ExtResource("11_6o6hw")
 cast_shadow = 0
 emitting = false
@@ -229,7 +229,7 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_j4lig")
 draw_pass_1 = SubResource("QuadMesh_nyvky")
 
-[node name="Glitter" type="GPUParticles3D" parent="." unique_id=822124388]
+[node name="Glitter" type="GPUParticles3D" parent="." unique_id=1797566801]
 material_override = ExtResource("12_xp6rn")
 cast_shadow = 0
 emitting = false
@@ -242,7 +242,7 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_64y3c")
 draw_pass_1 = SubResource("QuadMesh_555sg")
 
-[node name="Shatter" type="GPUParticles3D" parent="." unique_id=399205073]
+[node name="Shatter" type="GPUParticles3D" parent="." unique_id=2072588459]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 material_override = ExtResource("7_8x2wk")
 emitting = false
@@ -256,7 +256,7 @@ visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
 process_material = SubResource("ParticleProcessMaterial_odut4")
 draw_pass_1 = ExtResource("13_ycayu")
 
-[node name="Light" type="OmniLight3D" parent="." unique_id=1229722846]
+[node name="Light" type="OmniLight3D" parent="." unique_id=635467065]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 light_color = Color(0.6, 0.8, 1, 1)
 light_energy = 0.0

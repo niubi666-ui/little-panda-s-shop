@@ -51,6 +51,7 @@ var _previous_taa := false
 var _previous_scaling_mode := Viewport.SCALING_3D_MODE_BILINEAR
 var _previous_scaling_scale := 1.0
 var _previous_msaa := Viewport.MSAA_DISABLED
+var _previous_sharpness := 0.2
 @export var build_choices_enabled := true
 ## 进入时是否展开训练面板（构筑/刀光/深度/房间）。关闭后仍可从顶部“界面显示”菜单打开。
 @export var training_panels_visible: bool
@@ -103,6 +104,7 @@ func _ready() -> void:
 		_previous_scaling_mode = get_viewport().scaling_3d_mode
 		_previous_scaling_scale = get_viewport().scaling_3d_scale
 		_previous_msaa = get_viewport().msaa_3d
+		_previous_sharpness = get_viewport().fsr_sharpness
 		if room_presentation.render_height_limit > 0 or room_presentation.render_scaling_mode == Viewport.SCALING_3D_MODE_FSR2:
 			get_window().size_changed.connect(_apply_render_scale)
 			_apply_render_scale()
@@ -644,6 +646,7 @@ func _apply_render_scale() -> void:
 		mode = Viewport.SCALING_3D_MODE_BILINEAR
 	viewport.scaling_3d_mode = mode
 	viewport.scaling_3d_scale = scale
+	viewport.fsr_sharpness = room_presentation.render_sharpness
 func _perspective() -> bool:
 	return room_presentation != null and room_presentation.camera_fov > 0.0
 func _current_zoom() -> float:
@@ -762,6 +765,7 @@ func _shutdown() -> void:
 		get_viewport().scaling_3d_mode = _previous_scaling_mode
 		get_viewport().scaling_3d_scale = _previous_scaling_scale
 		get_viewport().msaa_3d = _previous_msaa
+		get_viewport().fsr_sharpness = _previous_sharpness
 	if is_instance_valid(builds): builds.finish()
 	if is_instance_valid(skill_vfx): skill_vfx.clear()
 	_camera_shake.clear()

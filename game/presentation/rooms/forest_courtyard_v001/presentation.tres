@@ -21,3 +21,4 @@ camera_fov = 0.0
 render_height_limit = 0
 render_min_scale = 0.5
 render_scaling_mode = 1
+render_sharpness = 0.2

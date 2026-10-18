@@ -1,0 +1,37 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/elemental_enchants/shaders/earth_overlay.gdshader" id="1_a5ca8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eglih"]
+noise_type = 2
+frequency = 0.04
+cellular_return_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8qso1"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_eglih")
+seamless = true
+invert = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d0hc1"]
+frequency = 0.03
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_th3r6"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_d0hc1")
+seamless = true
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_a5ca8")
+shader_parameter/heat = null
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_th3r6")
+shader_parameter/cells_tex = SubResource("NoiseTexture2D_8qso1")
+shader_parameter/rock_dark = null
+shader_parameter/rock_light = null
+shader_parameter/crack_color = null
+shader_parameter/crack_emission = null
+shader_parameter/push = null

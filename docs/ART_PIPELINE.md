@@ -92,6 +92,22 @@ southeast (5.2, 0, 4.0) 0,π；interior (0, 0, -5.0) 0,π。道具模型还是�
   重新导出前最好把 `game/assets/fairy_forest_v2/` 里 `library_` 开头的旧贴图删掉，否则改名的贴图会留下垃圾文件。
 - 这个 Godot 版本读不了只含 WebP 贴图的 glTF，导出脚本因此用 PNG/JPEG。
 
+### 草地“花屏”（2026-10-17）
+
+角色跑动时草地像花屏，原因和处理：
+
+1. **放大锐化**：FSR2 默认会锐化，把草叶、碎叶这类比像素还细的细节放大成闪烁的颗粒。
+   房间配置新增 `render_sharpness`（`presentation.tres`，0 最锐、2 最柔），森林设为 2.0。这一项效果最大。
+2. **草太密**：成千上万的细草丛叠在一起，远看是一层高频碎纹。`room.tscn` 新增 `density_keep`（按资产保留比例），
+   `grass_a`（尖叶小草卡片）保留 12%，`grass_b`（细长草丛）保留 40%，地面苔藓露出来，画面更安静。
+3. **叶片抖动**：`foliage_material.tres` 的 `flutter` 从 0.012 降到 0.004（大幅的整体随风摆动保留）。
+
+另外加了两个默认不启用的调节项：`foliage.gdshader` 的 `texture_lod_bias`、`terrain.gdshader` 的 `texture_lod_bias` 和 `normal_strength`。
+试过，对闪烁基本没用（草卡片降级后会变成一团团叶片形状），保持 0 / 1。
+
+量化：`game/tests/fairy_lookdev_capture.gd` 的 `pan` 模式让镜头按奔跑速度平移，每帧存图；
+用扣除镜头位移后的帧间残差衡量闪烁，修改前 0.034、修改后 0.021，画面细碎度从 0.145 降到 0.084。
+
 ### 性能
 
 RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304×1440）约 70 帧。
@@ -134,6 +150,8 @@ RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304
 冰/雷刀身附魔使用 `presentation/combat/fx/elemental_enchants_v001/`，原实验室资产保留。结霜/电纹以 `material_overlay` 挂在 Nodachi 的独立剑网格上，按刀刃世界坐标转换为局部纹理坐标，避免依赖演示太刀的 UV；每实例独立材质，切换时恢复原 overlay。常驻附魔继续使用最先选择的元素；命中按攻击自身元素选冰刺或落雷。运行 `tests/element_enchant_integration.gd` 可检查真实森林里的普攻、重击、剑气、翻滚冲斩、击杀、暂停与材质恢复，截图在 `builds/element_enchant_review/`。
 
 攻击切点在 `nodachi_clips.tres`，规则时长在 `combat/prototype.json`（schema 8）；第三刀改为与下劈对应的 100 度扇形。普通翻滚完整动作/冲斩窗口 0.7 秒，前 0.35 秒强制移动约 3.4 米，此后起身不锁自主移动，无敌保留 0.2 秒。`nodachi_clips.tres` 的 `roll_locomotion_fraction = 0.83` 决定落地后可接走跑的姿势点，`roll_exit_blend_sec = 0.08` 控制过渡；移动权限不等待这段视觉混合，松键切待机不会重新倒回翻滚。受击/倒地来自同包；蓄力暂用持刀格挡循环。
+
+蓄力移动由 `nodachi_actor_visual.gd` 分层采样：`spine_01` 子树使用现有持刀格挡循环，骨盆和双腿使用相对瞄准方向的八方向走跑。按实际速度同步步频，换方向保留步态相位；停止时回到站立蓄力，释放时从最终混合姿势接原剑气挥刀。`nodachi_clips.tres` 的 `charge_move_blend_sec = 0.12` 控制下肢切换，共用战斗时钟，暂停和冻结时不推进。没有新增原生动画；剑气挥刀候选仍待用户选择。
 
 翻滚冲斩源为 `/Game/Nodachi/Animations/Sequence/02_Attack/17_Parry_Counter_Attack/AS_Parry_Counter_L_Seq`，归档 `fbx/roll_slash.fbx` 与 `roll_slash.json`，已合入 GLB 和集成 Blender。提前点击先按玩法时钟以 3 倍速度继续采样原方向翻滚，推进到约 83% 的落地姿势后才切冲斩，避免从倒立姿势硬混到举刀。`nodachi_clips.tres` 的 `roll_attack_*` 配置落地过渡：下肢/骨盆 0.06 秒、spine_01 子树 0.05 秒、朝向 0.06 秒；转向也从落地开始，并随施放时钟暂停。挥砍采样源 0–0.266667 秒，原生刀骨跟随手臂。挥砍结束即释放控制，通过 `roll_attack_exit_blend_sec = 0.08` 混入走跑/待机，不再播放锁移动的收招段。UE 的运行时混合节点不会随 FBX 导出，这些过渡由 Godot 采样器完成。
 

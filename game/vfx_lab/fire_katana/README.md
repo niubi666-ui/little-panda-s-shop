@@ -56,6 +56,7 @@ Godot --path game --resolution 1280x720 --write-movie <目录>/f.png --fixed-fps
 演示里按 **E** 在火 / 冰 / 雷之间切换（录屏参数 `element=ice` / `element=thunder`）。资源在 `vfx_lab/elemental_enchants/`：
 - **冰**（`ice_enchant.tscn`）：刀身结霜覆盖层（从刃口长出、夹着闪烁冰晶）、往下沉的寒气、冰晶闪光；挥刀留下寒雾，并甩出会落地弹跳的立体冰碴。受击（`ice_impact.tscn`）：命中点冒出一簇冰刺，停半秒后碎成冰碴落地，配霜花贴花、寒雾、冰屑闪光。
 - **雷**（`thunder_enchant.tscn`）：刀身电纹（位置跳变的细亮线）、刀身上不停跳的小电弧、偶尔窜到空中；挥刀沿扇面留下分叉闪电残影和电火花。受击（`thunder_impact.tscn`）：落雷从上方劈下（再闪两次、每次换路径），电弧在命中点周围爬、窜到地面，配电火花、蓝色焦痕、强闪光。
+- **土**（`earth_enchant.tscn`）：刀身从刀背一侧结出岩壳、岩缝透金光（覆盖层），小碎石悬浮绕刀、细沙往下漏、带尘土；挥刀留下尘土拖尾并甩出会落地弹跳的碎石。受击（`earth_impact.tscn`）：横向挥砍时一排岩刺沿挥砍方向依次从地里顶出，竖劈时围着目标冒一圈（`spike_eruption.gd`），停一会儿再缩回地下；地上留一片发金光的裂纹、碎石四溅、扬起一圈尘土。
 - 附魔脚本都继承 `enchant_base.gd`，和游戏里 `fire_enchant.gd` 同一套约定（挂在 ActorView.blade 下、`configure_blade` + `tick`），以后接入只需在 `training_style.tres` 的 `element_weapon_enchants` 里加一行；刀身覆盖层（霜/电纹）接入时要挂到游戏剑模型的材质上（游戏剑的 UV 和演示太刀不同，需要另调遮罩）。
 - 重新生成：`build_enchants.gd -- textures` → `--import` → `build_enchants.gd -- scenes` → 再跑一次本目录的 `build_scenes.gd`。
 

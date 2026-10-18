@@ -194,7 +194,7 @@ func _sample(clip: StringName, time: float, looping: bool, rate: float, blend: f
 	if looping:
 		_clock += delta * rate
 		time = fmod(_clock, _length(clip))
-	animation.seek(time, true)
+	_sample_pose(clip, time, delta)
 	if _blend_left > 0.0 and skeleton != null:
 		_blend_left = maxf(0.0, _blend_left - delta)
 		for bone in skeleton.get_bone_count():
@@ -202,6 +202,9 @@ func _sample(clip: StringName, time: float, looping: bool, rate: float, blend: f
 			skeleton.set_bone_pose_position(bone, _from_position[bone].lerp(skeleton.get_bone_pose_position(bone), weight))
 			skeleton.set_bone_pose_rotation(bone, _from_rotation[bone].slerp(skeleton.get_bone_pose_rotation(bone), weight))
 			skeleton.set_bone_pose_scale(bone, _from_scale[bone].lerp(skeleton.get_bone_pose_scale(bone), weight))
+
+func _sample_pose(_clip_name: StringName, time: float, _delta: float) -> void:
+	animation.seek(time, true)
 
 func _transition_duration(_previous: StringName, _next: StringName, duration: float) -> float:
 	return duration

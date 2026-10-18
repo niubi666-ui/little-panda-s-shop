@@ -11,6 +11,10 @@ var _weapon_base: Node3D
 var _weapon_tip: Node3D
 var _roll_transition := false
 var _upper_bones: Dictionary = {}
+var _charge_gait: StringName = &""
+var _charge_gait_phase := 0.0
+var _charge_lower_left := 0.0
+var _charge_lower_from: Dictionary = {}
 
 func _ready() -> void:
 	super._ready()
@@ -31,6 +35,7 @@ func _ready() -> void:
 func validate_assets() -> bool:
 	if not super.validate_assets(): return false
 	if nodachi.roll_locomotion_fraction <= 0.0 or nodachi.roll_locomotion_fraction > 1.0 or nodachi.roll_exit_blend_sec <= 0.0: return false
+	if nodachi.charge_move_blend_sec <= 0.0: return false
 	for group in [nodachi.run_directions, nodachi.walk_directions, nodachi.roll_directions]:
 		if group.size() != 8: return false
 		for clip in group:
@@ -102,9 +107,60 @@ func _move_rate(speed: float, selected_clip: StringName) -> float:
 
 func _switch_clock(previous: StringName, next: StringName) -> float:
 	# 换侧跑方向时保持步态相位，不反复从第一步开始。
+	if next == clip_set.charge and previous != clip_set.charge:
+		_charge_gait_phase = fmod(_clock, _length(previous)) / _length(previous) if _locomotion(previous) else 0.0
+		_charge_gait = &""
+		_charge_lower_from.clear()
+		_charge_lower_left = 0.0
+	if previous == clip_set.charge and _locomotion(next):
+		return _charge_gait_phase * _length(next)
 	if _locomotion(previous) and _locomotion(next):
 		return fmod(_clock, _length(previous)) / _length(previous) * _length(next)
 	return 0.0
+
+func _sample_pose(clip_name: StringName, time: float, delta: float) -> void:
+	if clip_name != clip_set.charge:
+		_charge_gait = &""
+		_charge_lower_from.clear()
+		_charge_lower_left = 0.0
+		super._sample_pose(clip_name, time, delta)
+		return
+	# 只混合已下载的动作：spine_01 子树维持蓄力，骨盆/双腿采用八方向步态。
+	# 两层共用玩法时钟；切方向保留步态相位，释放时由通用采样器混入挥刀。
+	var speed := Vector2(_bound_actor.velocity.x, _bound_actor.velocity.z).length()
+	var gait: StringName = _move_clip(_bound_actor) if speed > clip_set.move_min_speed else &""
+	if gait != _charge_gait:
+		_charge_lower_from = _lower_pose()
+		_charge_lower_left = nodachi.charge_move_blend_sec
+		_charge_gait = gait
+	var lower: Dictionary = {}
+	if not gait.is_empty():
+		_charge_gait_phase = fmod(_charge_gait_phase + delta * _move_rate(speed, gait) / _length(gait), 1.0)
+		animation.play(gait)
+		animation.seek(_charge_gait_phase * _length(gait), true)
+		lower = _lower_pose()
+	animation.play(clip_name)
+	animation.seek(time, true)
+	if lower.is_empty(): lower = _lower_pose()
+	_charge_lower_left = maxf(0.0, _charge_lower_left - delta)
+	var weight := smoothstep(0.0, 1.0, 1.0 - _charge_lower_left / nodachi.charge_move_blend_sec)
+	for bone in lower:
+		var pose: Dictionary = lower[bone]
+		if _charge_lower_left > 0.0:
+			var from: Dictionary = _charge_lower_from[bone]
+			pose = {"position": from.position.lerp(pose.position, weight),
+				"rotation": from.rotation.slerp(pose.rotation, weight), "scale": from.scale.lerp(pose.scale, weight)}
+		skeleton.set_bone_pose_position(bone, pose.position)
+		skeleton.set_bone_pose_rotation(bone, pose.rotation)
+		skeleton.set_bone_pose_scale(bone, pose.scale)
+
+func _lower_pose() -> Dictionary:
+	var pose: Dictionary = {}
+	for bone in skeleton.get_bone_count():
+		if _upper_bones.has(bone): continue
+		pose[bone] = {"position": skeleton.get_bone_pose_position(bone),
+			"rotation": skeleton.get_bone_pose_rotation(bone), "scale": skeleton.get_bone_pose_scale(bone)}
+	return pose
 
 func _recovery_weight(progress: float) -> float:
 	# 保留原始动画的缓入缓出；不再叠加旧版程序动作的 smoothstep。

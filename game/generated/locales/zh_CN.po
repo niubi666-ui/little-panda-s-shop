@@ -40,6 +40,291 @@ msgstr "为一个还没有元素的按键注入元素，决定这一局的打法
 msgid "build.awakening.title"
 msgstr "元素觉醒"
 
+msgid "build.card.body.action_power"
+msgstr "强化绑定动作的攻击伤害。\n与全局增伤共同生效。"
+
+msgid "build.card.body.agility"
+msgstr "提升普通移动速度。\n不改变闪避速度。"
+
+msgid "build.card.body.chain"
+msgstr "命中后跳向附近敌人。\n每跳保留 {falloff_percent}% 伤害。"
+
+msgid "build.card.body.charged_wave"
+msgstr "按住右键 {threshold_sec} 秒后松开。\n蓄满释放宽阔月牙，冷却 ×{cooldown_ratio}。"
+
+msgid "build.card.body.contact_freeze"
+msgstr "直接接触的敌人被冻住。\n解冻后获得短暂抗冻。"
+
+msgid "build.card.body.contact_slow"
+msgstr "命中施加减速，持续 {duration_sec} 秒。\n重复命中保留较长剩余时间。"
+
+msgid "build.card.body.dual_lava"
+msgstr "需要同时拥有火与土。\n强化熔岩，范围 +{radius_bonus_m} 米。"
+
+msgid "build.card.body.dual_magnet"
+msgstr "需要同时拥有雷与土。\n强化磁暴，吸附范围 +{radius_bonus_m} 米。"
+
+msgid "build.card.body.dual_overload"
+msgstr "需要同时拥有火与雷。\n强化过载，范围 +{radius_bonus_m} 米。"
+
+msgid "build.card.body.dual_shatter"
+msgstr "先建立冻结窗口，再以土命中。\n强化碎冰，范围 +{radius_bonus_m} 米。"
+
+msgid "build.card.body.dual_steam"
+msgstr "需要同时拥有火与冰。\n强化两种元素交汇的蒸腾反应。"
+
+msgid "build.card.body.dual_superconduct"
+msgstr "需要同时拥有冰与雷。\n强化超导，范围 +{radius_bonus_m} 米。"
+
+msgid "build.card.body.earth_core"
+msgstr "命中附加 {stacks_per_hit} 层碎甲。\n提高承受伤害，更快打破霸体。"
+
+msgid "build.card.body.earth_crush"
+msgstr "每层碎甲提供额外易伤。\n趁护甲破裂继续输出。"
+
+msgid "build.card.body.earth_layers"
+msgstr "提高碎甲的最大叠层。\n让易伤效果进一步累积。"
+
+msgid "build.card.body.earth_mastery_burst"
+msgstr "需要两个按键带土。\n碎甲叠满时地裂，并向周围传播碎甲。"
+
+msgid "build.card.body.earth_mastery_weight"
+msgstr "需要两个按键带土。\n进一步强化碎甲带来的易伤。"
+
+msgid "build.card.body.earth_quake"
+msgstr "土元素命中造成额外破防。\n更快击破重装敌人的霸体。"
+
+msgid "build.card.body.fire_blaze"
+msgstr "提高灼烧可叠加的层数。\n连续命中积累更猛烈的火势。"
+
+msgid "build.card.body.fire_core"
+msgstr "命中附加 {stacks_per_hit} 层灼烧。\n持续造成火焰伤害。"
+
+msgid "build.card.body.fire_kindling"
+msgstr "提高每层灼烧的持续伤害。\n让留下的余烬继续灼痛敌人。"
+
+msgid "build.card.body.fire_linger"
+msgstr "延长灼烧的持续时间。\n离开近战范围后仍能造成伤害。"
+
+msgid "build.card.body.fire_mastery_burst"
+msgstr "需要两个按键带火。\n灼烧叠满时引爆，并向周围传播。"
+
+msgid "build.card.body.fire_mastery_heat"
+msgstr "需要两个按键带火。\n进一步强化每层灼烧伤害。"
+
+msgid "build.card.body.freeze_duration"
+msgstr "延长这个动作施加的冻结。\n需要同一动作具备冻结能力。"
+
+msgid "build.card.body.frost_blast"
+msgstr "兼容爆炸对范围内敌人施加冻结。\n需要命中爆炸。"
+
+msgid "build.card.body.frost_path"
+msgstr "需要剑气具备冻结能力。\n沿途留下减速霜径，不冻结敌人。"
+
+msgid "build.card.body.ice_brittle"
+msgstr "冰寒每层提供额外易伤。\n趁寒意尚在持续进攻。"
+
+msgid "build.card.body.ice_coat"
+msgstr "剑气成功建立冻结窗口时获得护盾。\n持续 {duration_sec} 秒，触发间隔 {trigger_cooldown_sec} 秒。"
+
+msgid "build.card.body.ice_core"
+msgstr "命中附加 {stacks_per_hit} 层冰寒。\n满层冻结；Boss 改为强减速。"
+
+msgid "build.card.body.ice_deep"
+msgstr "更少的冰寒层数即可冻结。\n更快建立控制窗口。"
+
+msgid "build.card.body.ice_lasting"
+msgstr "延长冰寒状态的持续时间。\n减速与叠层更容易衔接。"
+
+msgid "build.card.body.ice_mastery_burst"
+msgstr "需要两个按键带冰。\n冻住敌人时迸出冰片并传播冰寒。"
+
+msgid "build.card.body.ice_mastery_cold"
+msgstr "需要两个按键带冰。\n进一步强化冰寒带来的易伤。"
+
+msgid "build.card.body.impact_blast"
+msgstr "接敌触发衰减范围爆炸。\n直击目标不重复承受爆炸。"
+
+msgid "build.card.body.opening_strike"
+msgstr "普攻追击另一动作建立的冻结窗口。\n强化直击，不消耗冻结。"
+
+msgid "build.card.body.pierce"
+msgstr "直线剑气连续穿过敌人。\n与同动作的分裂互斥。"
+
+msgid "build.card.body.power"
+msgstr "强化普攻、重击与剑气。\n派生伤害不会重复放大。"
+
+msgid "build.card.body.primary_reach"
+msgstr "扩大左键普攻的打击范围。\n便于保持距离并追击敌人。"
+
+msgid "build.card.body.returning_wave"
+msgstr "剑气到达射程或命中后折返。\n回程可再次命中，墙体仍会阻挡。"
+
+msgid "build.card.body.shatter_followup"
+msgstr "追击较早一次剑气建立的冻结窗口。\n同一发剑气不能触发自身追击。"
+
+msgid "build.card.body.shatter_heavy"
+msgstr "重击消费已有的冻结窗口。\n强化这次打击，随后进入抗冻。"
+
+msgid "build.card.body.special_reach"
+msgstr "扩大 R 键重击的打击范围。\n宽阔横扫覆盖更多敌人。"
+
+msgid "build.card.body.split"
+msgstr "投射物接敌后分裂。\n子体造成 {damage_percent}% 伤害。"
+
+msgid "build.card.body.thunder_chain"
+msgstr "感电放电波及更多敌人。\n适合应对密集的敌群。"
+
+msgid "build.card.body.thunder_core"
+msgstr "命中附加感电。\n再次命中时，电弧伤及附近敌人。"
+
+msgid "build.card.body.thunder_mastery_burst"
+msgstr "需要两个按键带雷。\n放电扩散伤害，并为周围敌人感电。"
+
+msgid "build.card.body.thunder_mastery_storm"
+msgstr "需要两个按键带雷。\n进一步强化感电放电伤害。"
+
+msgid "build.card.body.thunder_reach"
+msgstr "扩大感电放电的传导距离。\n连接站得更远的敌人。"
+
+msgid "build.card.body.thunder_surge"
+msgstr "提高感电放电的伤害。\n下一次命中引出更强电弧。"
+
+msgid "build.card.body.wave"
+msgstr "普攻挥空也会发出剑气。\n命中目标或墙体后消失。"
+
+msgid "build.card.choose"
+msgstr "选择此祝福"
+
+msgid "build.card.headline.blast"
+msgstr "爆炸半径 {radius_m} 米"
+
+msgid "build.card.headline.burn_tick"
+msgstr "每层灼烧伤害 +{add}"
+
+msgid "build.card.headline.chain"
+msgstr "放电目标 +{add}"
+
+msgid "build.card.headline.chain_legacy"
+msgstr "连锁 {jumps} 个目标"
+
+msgid "build.card.headline.charge"
+msgstr "蓄满伤害 {damage_percent}%"
+
+msgid "build.card.headline.chill_needed"
+msgstr "冻结层数 {add}"
+
+msgid "build.card.headline.conditional"
+msgstr "条件增伤 +{bonus_percent}%"
+
+msgid "build.card.headline.damage"
+msgstr "攻击伤害 +{bonus_percent}%"
+
+msgid "build.card.headline.discharge"
+msgstr "放电伤害 +{add}"
+
+msgid "build.card.headline.duration_add"
+msgstr "状态时长 +{add} 秒"
+
+msgid "build.card.headline.duration_bonus"
+msgstr "冻结时长 +{bonus_percent}%"
+
+msgid "build.card.headline.earth"
+msgstr "碎甲 · 易伤破防"
+
+msgid "build.card.headline.fire"
+msgstr "灼烧 · 持续伤害"
+
+msgid "build.card.headline.freeze"
+msgstr "冻结 {duration_sec} 秒"
+
+msgid "build.card.headline.ice"
+msgstr "冰寒 · 叠满冻结"
+
+msgid "build.card.headline.mastery"
+msgstr "专精爆发 · 范围 {radius_m} 米"
+
+msgid "build.card.headline.move"
+msgstr "移动速度 +{bonus_percent}%"
+
+msgid "build.card.headline.path"
+msgstr "霜径持续 {lifetime_sec} 秒"
+
+msgid "build.card.headline.pierce"
+msgstr "贯穿 {max_hits} 个目标"
+
+msgid "build.card.headline.primary_reach"
+msgstr "攻击范围 +{bonus_percent}%"
+
+msgid "build.card.headline.reach"
+msgstr "放电距离 +{add} 米"
+
+msgid "build.card.headline.reaction"
+msgstr "反应伤害 +{damage_bonus_percent}%"
+
+msgid "build.card.headline.return"
+msgstr "剑气折返 · 再次命中"
+
+msgid "build.card.headline.shield"
+msgstr "获得 {shield_amount} 点护盾"
+
+msgid "build.card.headline.slow"
+msgstr "减速 {slow_percent}%"
+
+msgid "build.card.headline.special_reach"
+msgstr "重击范围 +{bonus_percent}%"
+
+msgid "build.card.headline.split"
+msgstr "分裂 {count} 枚剑气"
+
+msgid "build.card.headline.stack_cap"
+msgstr "叠层上限 +{add}"
+
+msgid "build.card.headline.stagger"
+msgstr "额外破防 +{add_percent}%"
+
+msgid "build.card.headline.thunder"
+msgstr "感电 · 命中放电"
+
+msgid "build.card.headline.vulnerable"
+msgstr "每层易伤 +{add_percent}%"
+
+msgid "build.card.headline.wave"
+msgstr "剑气伤害 {damage_percent}%"
+
+msgid "build.card.name.agility"
+msgstr "轻盈步伐"
+
+msgid "build.card.name.chain"
+msgstr "回响连锁"
+
+msgid "build.card.name.contact_freeze"
+msgstr "接触冻结"
+
+msgid "build.card.name.contact_slow"
+msgstr "接触减速"
+
+msgid "build.card.name.freeze_duration"
+msgstr "冻结延长"
+
+msgid "build.card.name.impact_blast"
+msgstr "命中爆炸"
+
+msgid "build.card.name.power"
+msgstr "锋刃强化"
+
+msgid "build.card.name.split"
+msgstr "投射物分裂"
+
+msgid "build.card.name.wave"
+msgstr "挥刀剑气"
+
+msgid "build.card.subtitle"
+msgstr "选择一项祝福，强化本次冒险"
+
+msgid "build.card.title"
+msgstr "选择你的成长"
+
 msgid "build.choose"
 msgstr "选择此升级"
 
@@ -342,6 +627,9 @@ msgstr "基础三动作（零构筑）"
 
 msgid "build.preset.charged_burst"
 msgstr "蓄霜爆发"
+
+msgid "build.preset.elem_earth_mastery"
+msgstr "土专精：土普攻＋土剑气＋土爆"
 
 msgid "build.preset.elem_fire_build"
 msgstr "火流派：火普攻＋火重击＋余烬＋烈焰"

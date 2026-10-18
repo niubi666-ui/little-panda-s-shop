@@ -1,0 +1,503 @@
+{
+  "version": "v005",
+  "mode": "built-in image_gen",
+  "reference": "../v004/concepts/01_build_selection_screen.png",
+  "cards": [
+    {
+      "id": "power",
+      "category": "martial",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Three elegant steel katana blades fanned over an ancient mossy stone altar, all three cutting edges glowing with restrained warm gold, sparks and drifting oak leaves. Emphasize strengthened sword damage.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-48cf40b0-382f-40a8-9412-f0455852e50a.png",
+      "project_file": "illustrations/martial/power.png",
+      "sha256": "387108b06da62384e87315f252e87818e9a4f588e2835ed743008aa41898d860"
+    },
+    {
+      "id": "agility",
+      "category": "martial",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Close view of a scout's leather boots making a swift graceful step over forest paving, pale green wind ribbons and leaves trailing behind. Dynamic movement, no weapon.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-1c84e445-05df-4cfd-9db1-615e6f26cf6f.png",
+      "project_file": "illustrations/martial/agility.png",
+      "sha256": "b6818fa383f1cacdf19bd18ea71ae49a8ccbcc35455791473c09ac3c7946ac74"
+    },
+    {
+      "id": "wave",
+      "category": "training_legacy",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A single silver katana releasing a clearly separated pale jade crescent projectile along a forest courtyard, diagonal energetic motion.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-4ae2730d-75c5-4b7a-bcc1-f957acb6dc40.png",
+      "project_file": "illustrations/training_legacy/wave.png",
+      "sha256": "92cd0120ace69b2ee479309725376c8114ced2c168f76a74ec32958934279b65"
+    },
+    {
+      "id": "chain",
+      "category": "training_legacy",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Three old training stone effigies among forest ruins connected one after another by luminous gold arcs, one clear starting impact and successive smaller echoes.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-4fccea0a-9edc-466d-af76-f7605fd015d7.png",
+      "project_file": "illustrations/training_legacy/chain.png",
+      "sha256": "c1a9f71a5bf5def599a9b28d110b3877069893342fe838428e3e55cf1bb628a9"
+    },
+    {
+      "id": "split",
+      "category": "martial",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: One luminous jade sword-energy crescent striking a mossy training obelisk and splitting into two smaller separate crescents diverging left and right, visually unambiguous.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-77cb2032-5bf5-4c13-b7e1-60daab45d1c4.png",
+      "project_file": "illustrations/martial/split.png",
+      "sha256": "32e0fc090d247313d7f8f0e1677597fdc06e4cd4ce0bb7f221a257d11f7e55b1"
+    },
+    {
+      "id": "impact_blast",
+      "category": "martial",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: The tip of a steel katana touching an old training shield at the center of a circular amber shockwave, sparks and stone dust radiating outward on courtyard paving.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-da75e028-6e00-4872-a35b-c8daccd7e9e5.png",
+      "project_file": "illustrations/martial/impact_blast.png",
+      "sha256": "0f6e0c01b22e56e7fdb3cad75064c3c96175fe01017589b0aa386788ba31b5c7"
+    },
+    {
+      "id": "contact_slow",
+      "category": "training_legacy",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A leather boot caught in cool mist with delicate pale blue frost filaments wrapping the ankle on mossy paving, slowed movement, light frost and NOT a fully frozen body.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-fd149743-66d3-4a9d-a6a2-8e8909d6982d.png",
+      "project_file": "illustrations/training_legacy/contact_slow.png",
+      "sha256": "e3f81df97ae56fba59a05063da6e199dd29314a5d660bf88eff0cd542a96c6df"
+    },
+    {
+      "id": "contact_freeze",
+      "category": "training_legacy",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: An ancient stone forest sentinel fully encased in clear faceted blue ice, suspended frost particles, beautiful luminous frozen silhouette.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-494f5cd3-a270-4744-970a-4c178943f470.png",
+      "project_file": "illustrations/training_legacy/contact_freeze.png",
+      "sha256": "111b0a301713c8e099020ace622eeb89e1f4e5735928db97dea511cfe0e093ef"
+    },
+    {
+      "id": "freeze_duration",
+      "category": "training_legacy",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: An elegant ancient silver hourglass filled with ice crystals, cold mist and a long frost trail over a mossy altar, time held in winter.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-d72d18fd-be38-4790-ba0a-6d63b15d147e.png",
+      "project_file": "illustrations/training_legacy/freeze_duration.png",
+      "sha256": "8ee39189616f81995b093ebb6bc52e8a6397fa882bb442f59804258a31cdaaf9"
+    },
+    {
+      "id": "pierce",
+      "category": "martial",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: One straight radiant pale jade sword-energy blade passing through a row of three weathered circular wooden training targets on a forest path, continuous clear forward trajectory.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-41110ca7-2cb6-463c-9ff3-d01f81b9b052.png",
+      "project_file": "illustrations/martial/pierce.png",
+      "sha256": "6f70b78a685a13f6c9ce7664eadcfee34b60f1a98bfd07bc88c7e5c25995bff6"
+    },
+    {
+      "id": "frost_blast",
+      "category": "training_legacy",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: An icy magical sphere bursting into a circular wave of pale blue frost and many outward crystals between mossy ruins, crystalline explosion not fire.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-fb334f18-429d-4a98-a21c-6ff328695e76.png",
+      "project_file": "illustrations/training_legacy/frost_blast.png",
+      "sha256": "1d11e1226e0c2c4fc024a0e67dd027e1dc776cc29b8180880f552885f92b4b9c"
+    },
+    {
+      "id": "action_power",
+      "category": "martial",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A single beautifully forged steel katana in close-up, blade point catching a strong narrow golden beam, warm sparks and a soft forest altar background, concentrated strength.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-07d8efe2-76ca-4ff9-9e8a-15bb74dfe34c.png",
+      "project_file": "illustrations/martial/action_power.png",
+      "sha256": "9a39ac69c327ce44ffe16b641dcb0f71f750fdaf005fe9fa834a2a5021c0eeb1"
+    },
+    {
+      "id": "shatter_followup",
+      "category": "ice",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A cool blue sword-energy crescent striking an already ice-encased wooden practice dummy, a bright second impact on the frozen shell, sparkling ice and motion.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-3f01bc18-f35c-4662-a076-4593a6d889a4.png",
+      "project_file": "illustrations/ice/shatter_followup.png",
+      "sha256": "64ef0ab74bcab33cc9c4643f19f2570273b801381a07b1ac34bbf521f8b52433"
+    },
+    {
+      "id": "opening_strike",
+      "category": "ice",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A long steel katana slicing diagonally across the exposed seam of an already frozen stone sentinel, blue crystalline chips, bright precise impact in forest ruins. No blood.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-544e5e98-f8a3-4e23-bc30-d9b902116d16.png",
+      "project_file": "illustrations/ice/opening_strike.png",
+      "sha256": "f1fafd8fff14aef5d26397abce3e905b5932a867e265b8374a57a96350aab082"
+    },
+    {
+      "id": "returning_wave",
+      "category": "martial",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Two successive luminous ivory sword-energy crescents tracing a clear flowing U-shaped return path around a mossy courtyard column, delicate motion trail with returning sweep.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-9d6ca95c-c29e-4d57-82c3-c7096180b7c3.png",
+      "project_file": "illustrations/martial/returning_wave.png",
+      "sha256": "19dc7f83c433688eb898030e5c03d009448a2a60d28e6c0502d71ceaca4253b9"
+    },
+    {
+      "id": "charged_wave",
+      "category": "martial",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A steel katana held low gathering concentrated pale blue energy into one immense wide icy crescent, glowing condensation and taut energy spirals, mossy ruins.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-207dbfd1-f918-4b12-abd1-dcbbf5b68ac8.png",
+      "project_file": "illustrations/martial/charged_wave.png",
+      "sha256": "cfe55ffee98c8d978d2b07b3cfd9ab22fd709c210bb08d023911a3c910e8b304"
+    },
+    {
+      "id": "shatter_heavy",
+      "category": "training_legacy",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A heavy katana descending onto a frozen stone training statue, breaking its icy shell into large falling fragments, low strong camera perspective, no gore.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-65f184bd-ebf7-4bb8-9e04-a6d5150a698c.png",
+      "project_file": "illustrations/training_legacy/shatter_heavy.png",
+      "sha256": "53738a4a8011e8fda1df2c9633a71c48a6f667977eae6cb42c6631f10e35bf7a"
+    },
+    {
+      "id": "frost_path",
+      "category": "ice",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: An inviting mossy stone path through ancient forest ruins crossed by a sinuous trail of luminous blue frost and short crystals, the frosty trail is the main subject.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-3d859e99-db90-433c-8933-6e29436ecb26.png",
+      "project_file": "illustrations/ice/frost_path.png",
+      "sha256": "bf9bfc85abec853c516603a803a5d62292fccca4631485aefea66e8d034142c8"
+    },
+    {
+      "id": "ice_coat",
+      "category": "ice",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: An anonymous armored forest knight torso and shoulders protected by a thin luminous translucent crystalline ice mantle, delicate frost growing on armor, protective cool glow.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-f6a7c824-e14e-4648-8a15-597918d01c3a.png",
+      "project_file": "illustrations/ice/ice_coat.png",
+      "sha256": "74f9a61434a71c7ba17ad07c0f02d565b935ab6af05af1b6d740cd255e45cc57"
+    },
+    {
+      "id": "fire_core",
+      "category": "fire",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A single black-and-gold katana diagonally suspended, its steel blade wreathed in rich orange fire and scattered embers, forest shrine blurred behind.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-ce52eec6-54c7-428b-9412-47e59b7bf6d9.png",
+      "project_file": "illustrations/fire/fire_core.png",
+      "sha256": "846815854de9f58dec7f08a5b09b00c511483ff64213c9a931afd424d470ce46"
+    },
+    {
+      "id": "ice_core",
+      "category": "ice",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A single elegant silver katana diagonally suspended, its edge coated in clear blue ice crystals and soft cold mist, forest shrine blurred behind.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-90931a25-6771-44d4-abd3-0b2972b9f27e.png",
+      "project_file": "illustrations/ice/ice_core.png",
+      "sha256": "2e122fa44343694ed8c6d0fc3690462e9fabbe51e4b3926f190ff3c4ec8b08eb"
+    },
+    {
+      "id": "thunder_core",
+      "category": "thunder",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A single steel katana diagonally suspended with branching electric blue-white lightning wrapping its blade, golden tiny sparks, dark forest shrine behind.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-b99367da-0ebe-41b1-8da6-0e70ab65a1b3.png",
+      "project_file": "illustrations/thunder/thunder_core.png",
+      "sha256": "e15fdf70a783dc5950feeae17767ddbccec88a39d7ce4a463f7a86c1ed1ea0d8"
+    },
+    {
+      "id": "earth_core",
+      "category": "earth",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A single steel katana diagonally suspended with small rough slate rocks floating tightly around its edge and glowing amber fissures, earth dust, forest shrine behind.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-c503701e-d85b-493c-9e8e-25f971cf39fd.png",
+      "project_file": "illustrations/earth/earth_core.png",
+      "sha256": "1b47f8da15ebc17adac6268160d6bf83fc750b8ffdb73d20a1b7fb38db9a908e"
+    },
+    {
+      "id": "fire_kindling",
+      "category": "fire",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Close view of a beautiful glowing bed of red-orange embers held in an ancient shallow stone brazier, curling small golden flames, woodland ruins behind.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-543a18d2-3ab7-4808-a7ea-734b70f1438e.png",
+      "project_file": "illustrations/fire/fire_kindling.png",
+      "sha256": "c6d8f9d7cfbe70ff59390f3d1c57fa450d9dbd1650cf62ce28efec4253eb9e89"
+    },
+    {
+      "id": "fire_blaze",
+      "category": "fire",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Multiple twisting layers of orange and gold flame rising from a rune-carved stone brazier into a powerful tall blaze, embers floating against emerald forest.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-786acf69-c29e-46e8-9a6f-f0dd1c034443.png",
+      "project_file": "illustrations/fire/fire_blaze.png",
+      "sha256": "d8b49641636a760fa4b84080906eba683d0bb5f0b900b1d48e84dc6b718410d6"
+    },
+    {
+      "id": "fire_linger",
+      "category": "fire",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A single enduring flame on a charred oak branch over mossy stones, deep orange glowing coals and a long winding ember trail, tranquil persistent heat.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-7dfb8de6-cd65-40ca-a9f2-9fc9c9951f26.png",
+      "project_file": "illustrations/fire/fire_linger.png",
+      "sha256": "297bd131770e0c9c3c67fc4ea403667bbba2d57128beee30399d62c4337ee44a"
+    },
+    {
+      "id": "ice_deep",
+      "category": "ice",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: An ancient carved oak leaf medallion being rapidly overtaken by dense deep blue ice and sharp translucent crystal veins, small snow particles, forest altar.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-dc0a9382-379e-4dc1-a9bd-aee7b26ef319.png",
+      "project_file": "illustrations/ice/ice_deep.png",
+      "sha256": "8b34101f1574581f7a8efd28c88f0090c941b28b6d2b7e11e28188b59586f099"
+    },
+    {
+      "id": "ice_lasting",
+      "category": "ice",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A stone forest sundial sealed under thick enduring clear frost, tall slender ice crystals and drifting white mist, cool luminous blue center.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-1776741b-0741-489e-bf72-56220327feeb.png",
+      "project_file": "illustrations/ice/ice_lasting.png",
+      "sha256": "b03348d89cddc3f9282324c01c15bfa316dec537205a92b7fe1338e0a2a1c670"
+    },
+    {
+      "id": "ice_brittle",
+      "category": "ice",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Close view of a steel training shield with brittle blue crystalline frost spreading in fine cracks, bright pale light showing through a fractured ice shell.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-4387e63d-7854-40c3-9edb-7fca0f0fab10.png",
+      "project_file": "illustrations/ice/ice_brittle.png",
+      "sha256": "db2f7b4dbd1fa1a7d456c407aca1e9ffcb5756d223c61bc38b2f8e47526baa58"
+    },
+    {
+      "id": "thunder_chain",
+      "category": "thunder",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Several weathered forest obelisks connected by a branching electric blue lightning chain, each consecutive connection visibly distinct, emerald woods and dramatic light.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-b0e7487b-b359-4a16-bec6-7a2b95d728f9.png",
+      "project_file": "illustrations/thunder/thunder_chain.png",
+      "sha256": "ebc9134906e6f86f5e3820a8c28c950b93f90251e0f1a4d91efcf71113c569cf"
+    },
+    {
+      "id": "thunder_surge",
+      "category": "thunder",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A concentrated bright blue-white lightning surge gathered around an ancient bronze lightning rod on a woodland altar, powerful branching arcs, intimate close view.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-5d3e0ad3-90f5-480b-ad43-d6b1c6d8cd79.png",
+      "project_file": "illustrations/thunder/thunder_surge.png",
+      "sha256": "95578c296cf511ea95a2892bcd4001d435c1450cebb41b4fcd3e4e33dca1ea33"
+    },
+    {
+      "id": "thunder_reach",
+      "category": "thunder",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A long dramatic fork of blue lightning spanning far across a forest ravine between two distant ruined pillars, a very clear extended distance composition.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-5fab4df9-d5eb-483a-a4b1-be0e0d25a90f.png",
+      "project_file": "illustrations/thunder/thunder_reach.png",
+      "sha256": "7a050de31c6594b8e2d6189eea2e0bf0f5f6e4a86732331251cc8321f337189b"
+    },
+    {
+      "id": "earth_crush",
+      "category": "earth",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A mossy stone shield struck and crumbling outward with amber light in the broken seams, chunks of slate and ochre dust, forest courtyard.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-4489aa4a-6865-471b-b49a-9b3fa2d8dd28.png",
+      "project_file": "illustrations/earth/earth_crush.png",
+      "sha256": "0134246ea53dc8727e3309b4e6587954a25487d58cdb40499c98a7d78dfeba97"
+    },
+    {
+      "id": "earth_quake",
+      "category": "earth",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A mighty downward strike splitting forest paving into concentric rings of lifted rocks, amber shockwave expanding through stone, forceful ground-level view.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-2620ec98-6dfb-49c7-98ca-cf9f4dda2c94.png",
+      "project_file": "illustrations/earth/earth_quake.png",
+      "sha256": "fdc2dbe61059291968b2b4536c32a16a2399d795324ac049edc87e73ddc84c52"
+    },
+    {
+      "id": "earth_layers",
+      "category": "earth",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A compact stack of layered rough slate armor plates surrounding an amber heart-stone, clearly overlapping sedimentary layers, mossy forest altar.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-e0798270-fe75-40ff-895d-ca25074a4fa7.png",
+      "project_file": "illustrations/earth/earth_layers.png",
+      "sha256": "c1f086188ad125b88a601d70e6c929d292b457577970803a6b2ca0e7c92c922a"
+    },
+    {
+      "id": "dual_steam",
+      "category": "reactions",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Orange flame colliding with translucent blue ice in a forest courtyard, brilliant billowing white steam at the contact, warm and cold clearly meet without obscuring center.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-f48f7d93-8690-430c-a984-aed3dd5175ff.png",
+      "project_file": "illustrations/reactions/dual_steam.png",
+      "sha256": "d4fd2b11eb322443da9febcb5aae2c46b97c4404f2cf24dc5d2ccd2a141a0831"
+    },
+    {
+      "id": "dual_overload",
+      "category": "reactions",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Branching blue lightning piercing a compact orange fireball over a mossy altar and bursting into a fiery electrical ring, vivid two-element energy.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-80375c34-b5bd-42b5-84f0-8c1c47d60d92.png",
+      "project_file": "illustrations/reactions/dual_overload.png",
+      "sha256": "f78fa18ae70c16d4edaf5903e16c16289453806e0855a60d88bb3951edb8c886"
+    },
+    {
+      "id": "dual_lava",
+      "category": "reactions",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Bright orange molten lava welling between broken dark slate stones in a forest courtyard, glowing fissures and small embers, readable lava flow.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-be3ba45a-cd03-47d1-9e35-8f11ce92c5ed.png",
+      "project_file": "illustrations/reactions/dual_lava.png",
+      "sha256": "d9976b3546864ead9b78ae962a3b095701ed76abbf6f05947e30c4de45ee3146"
+    },
+    {
+      "id": "dual_superconduct",
+      "category": "reactions",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Blue-white lightning flowing through a network of translucent icy crystals on mossy ancient stones, chilly electrical corona and pale cyan glow.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-8ad86b55-c733-4f7a-b7c3-f6477f1c9a97.png",
+      "project_file": "illustrations/reactions/dual_superconduct.png",
+      "sha256": "d4ce584e59e6130ced317b1146ee24a722e40a20d41226ef237f24993c6ce7d5"
+    },
+    {
+      "id": "dual_shatter",
+      "category": "reactions",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A heavy jagged amber-lit rock smashing a large blue ice shell into shards, solid stone and clear ice separately readable in a dramatic close impact.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-2db6ccf6-7d65-43eb-a5af-04019c956ca1.png",
+      "project_file": "illustrations/reactions/dual_shatter.png",
+      "sha256": "3f2befa095f9100308e67b687b8dd937644823949ac0f09854fbb09a66852b7f"
+    },
+    {
+      "id": "dual_magnet",
+      "category": "reactions",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Small jagged iron-rich rocks drawn inward toward a bright electric blue magnetic core above a stone altar, circular pull trajectories and fine lightning arcs.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-89c3bcd2-4bb1-4320-9ace-3d44e8d15d53.png",
+      "project_file": "illustrations/reactions/dual_magnet.png",
+      "sha256": "1a5a782eabe512647be4f04f2523586c2cf5b5d8bab154efd4481f2d24df2424"
+    },
+    {
+      "id": "fire_mastery_burst",
+      "category": "fire",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: An intense central flame bursting into a controlled circular bloom of orange-gold fire, several smaller burning embers igniting around it, ancient forest shrine.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-ac3ebbd5-123f-47ac-8cca-0a35a04cef6e.png",
+      "project_file": "illustrations/fire/fire_mastery_burst.png",
+      "sha256": "4d041e5b1f71d09705eebbaf424bb0d44fbc656cbee749457f74167ad35fec4f"
+    },
+    {
+      "id": "fire_mastery_heat",
+      "category": "fire",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Two elegant intertwined flame ribbons rising in harmony around a warm radiant ember above a mossy altar, coherent twin fire resonance.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-aca4d2af-7ef2-49d2-a210-3dff9a5f5015.png",
+      "project_file": "illustrations/fire/fire_mastery_heat.png",
+      "sha256": "ee49e3c30a9fc3c8048c415c3083e8a8b50ff2a95bec94d2a249ce590e8ac474"
+    },
+    {
+      "id": "ice_mastery_burst",
+      "category": "ice",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A large clear blue crystal explosively blooming into outward ice spikes in a frosted forest courtyard, many smaller crystals forming nearby, majestic freezing burst.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-7e185be2-8197-4b34-b552-20f9d9c8b1f9.png",
+      "project_file": "illustrations/ice/ice_mastery_burst.png",
+      "sha256": "4ac214ce679115ee0b10a33b75a4b3ee7498ee4895e3de73ddbe2f6bf6f4e527"
+    },
+    {
+      "id": "ice_mastery_cold",
+      "category": "ice",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Two intertwined icy ribbons surrounding a luminous crystalline snowflake heart above an old altar, layers of very cold blue frost resonating.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-45d33123-3448-479e-81e0-d7e2b1cd1503.png",
+      "project_file": "illustrations/ice/ice_mastery_cold.png",
+      "sha256": "e1274aa9106a9c9e778d20c2ff818df4247d305c8ee026c8d9d9383ca7db6c0f"
+    },
+    {
+      "id": "thunder_mastery_burst",
+      "category": "thunder",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A brilliant blue lightning core discharging into a branching web connecting several mossy stone targets, dramatic chain reaction, dark emerald background.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-324c0e76-7baf-48d1-aa7d-e2780b8e511a.png",
+      "project_file": "illustrations/thunder/thunder_mastery_burst.png",
+      "sha256": "9ff9d74c7eec513b11bec7b44c79eb9c614203aae65d858d32030ac9a92c6b25"
+    },
+    {
+      "id": "thunder_mastery_storm",
+      "category": "thunder",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Twin spiraling bands of blue lightning forming a compact electrical storm above an ancient bronze altar, a bright focused center and deep blue arcs.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-8701187e-7b70-49ee-8d0d-0a2ac598d52b.png",
+      "project_file": "illustrations/thunder/thunder_mastery_storm.png",
+      "sha256": "036c8eda8847100c19a38df1fe7aa5b0084dc6732252fd7d6f6f56a7b3014353"
+    },
+    {
+      "id": "earth_mastery_burst",
+      "category": "earth",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A jagged crack racing through ancient forest paving and erupting into several tall amber-lit rocky shards, powerful ground rupture spreading outward.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-8dfeadf1-1ed9-44f7-a885-e26e11cbb9b6.png",
+      "project_file": "illustrations/earth/earth_mastery_burst.png",
+      "sha256": "93f59beb8efcc3f6b8e040575d635ee6fc0c45a42250901a4c4081966d23c2d8"
+    },
+    {
+      "id": "earth_mastery_weight",
+      "category": "earth",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: Two massive weathered stone slabs orbiting a dense amber rune-stone with a subtle golden gravity ring, moss and dust, the sense of mountain weight.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-e4ff8ed9-fc41-4862-b311-59f3f7765f06.png",
+      "project_file": "illustrations/earth/earth_mastery_weight.png",
+      "sha256": "168b2c00d74fa87f197b0886d326a22c27d1f0472cf536082b34a2570c9fa054"
+    },
+    {
+      "id": "primary_reach",
+      "category": "martial",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A long elegant katana sweeping diagonally through an ancient sunlit forest court, an unusually long ivory-gold arc continuing beyond its tip, airborne oak leaves.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-bc93ac36-efd3-492f-988b-adc93bebb1da.png",
+      "project_file": "illustrations/martial/primary_reach.png",
+      "sha256": "a64c06e164db1527d0a2021b85b49f5aebffdeee0ce26229872a604f174acf79"
+    },
+    {
+      "id": "special_reach",
+      "category": "martial",
+      "prompt": "Use case: stylized-concept. Asset type: finished standalone ability-card illustration for a realistic woodland fantasy action game. Create ONE beautiful landscape 4:3 illustration, edge-to-edge artwork, no UI, no border, no panel, no text, no numbers, no logo. Use the provided image ONLY as an art-direction reference for the card illustrations: cinematic painterly 3D realism, intricate natural materials, mossy ancient forest sanctuary, deep emerald shadow and warm golden sunlight, luminous magical effect, clear large focal silhouette, tasteful detailed foliage. NOT a flat icon or diagram. Keep the subject fully visible in the central 80%, enough environment at edges for cropping. The image fills the entire canvas; no transparent background. Subject: A steel katana sweeping in an immense broad horizontal circular arc across forest paving, sweeping golden wind and fallen leaves, strong wide-area melee motion.",
+      "status": "generated",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-7034d9fe-37dc-4226-a838-a0dd958d6a4b.png",
+      "project_file": "illustrations/martial/special_reach.png",
+      "sha256": "9eb0033e8cab6398bc70bdd321f59be6684a0e567695e4f6045c6a8b9667ff6c"
+    }
+  ],
+  "components": [
+    {
+      "id": "common",
+      "category": "frames",
+      "prompt": "Use case: background-extraction / ui-mockup. Asset type: a single production-ready game UI card BORDER on genuine transparent alpha. Reference is style only; redraw ONE isolated frame, not the sheet. Portrait 2:3 canvas. Thin rectangular outer silhouette with clipped chamfered corners, sculpted metallic oak-leaf corner accents. Broad EMPTY TRANSPARENT interior from inside all four rails; no artwork, no body panel, no botanical branches in the interior, no divider across middle, no bottom button. A compact EMPTY horizontal header plaque centered over the upper rail occupies only the top 9% of frame; leave the plaque solid colored but no text. Transparent space outside frame too. Preserve the refined forest fantasy realistic metal/enamel craftsmanship of reference. Frame should occupy 94% width, 91% height with space above for crest. NO WORDS NO LETTERS NO SYMBOL TEXT NO LABELS. Rarity COMMON: ivory-white SILVER metal single frame rail, dark graphite blank plaque, very restrained oak-leaf corners, no gem, no crown.",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-dce236ae-8f40-4dcb-8214-b2212ef36c7e.png",
+      "project_file": "frames/common.png"
+    },
+    {
+      "id": "rare",
+      "category": "frames",
+      "prompt": "Use case: background-extraction / ui-mockup. Asset type: a single production-ready game UI card BORDER on genuine transparent alpha. Reference is style only; redraw ONE isolated frame, not the sheet. Portrait 2:3 canvas. Thin rectangular outer silhouette with clipped chamfered corners, sculpted metallic oak-leaf corner accents. Broad EMPTY TRANSPARENT interior from inside all four rails; no artwork, no body panel, no botanical branches in the interior, no divider across middle, no bottom button. A compact EMPTY horizontal header plaque centered over the upper rail occupies only the top 9% of frame; leave the plaque solid colored but no text. Transparent space outside frame too. Preserve the refined forest fantasy realistic metal/enamel craftsmanship of reference. Frame should occupy 94% width, 91% height with space above for crest. NO WORDS NO LETTERS NO SYMBOL TEXT NO LABELS. Rarity RARE: thick vivid deep SAPPHIRE BLUE enamel rail flanked by polished silver outlines, sapphire-blue blank header plaque, exactly ONE large blue diamond gem above plaque, silver oak-leaf corners.",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-2dc9246f-2567-459f-bc86-5e3a6ed25fe0.png",
+      "project_file": "frames/rare.png"
+    },
+    {
+      "id": "epic",
+      "category": "frames",
+      "prompt": "Use case: background-extraction / ui-mockup. Asset type: a single production-ready game UI card BORDER on genuine transparent alpha. Reference is style only; redraw ONE isolated frame, not the sheet. Portrait 2:3 canvas. Thin rectangular outer silhouette with clipped chamfered corners, sculpted metallic oak-leaf corner accents. Broad EMPTY TRANSPARENT interior from inside all four rails; no artwork, no body panel, no botanical branches in the interior, no divider across middle, no bottom button. A compact EMPTY horizontal header plaque centered over the upper rail occupies only the top 9% of frame; leave the plaque solid colored but no text. Transparent space outside frame too. Preserve the refined forest fantasy realistic metal/enamel craftsmanship of reference. Frame should occupy 94% width, 91% height with space above for crest. NO WORDS NO LETTERS NO SYMBOL TEXT NO LABELS. Rarity EPIC: double AMETHYST PURPLE enamel rails edged by aged gold, deep purple blank plaque; three luminous purple gems with central gem larger, small raised ornate crest, gold oak-leaf corners.",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-dfaf9a11-918a-4072-9c67-3ed107ac7695.png",
+      "project_file": "frames/epic.png"
+    },
+    {
+      "id": "legendary",
+      "category": "frames",
+      "prompt": "Use case: background-extraction / ui-mockup. Asset type: a single production-ready game UI card BORDER on genuine transparent alpha. Reference is style only; redraw ONE isolated frame, not the sheet. Portrait 2:3 canvas. Thin rectangular outer silhouette with clipped chamfered corners, sculpted metallic oak-leaf corner accents. Broad EMPTY TRANSPARENT interior from inside all four rails; no artwork, no body panel, no botanical branches in the interior, no divider across middle, no bottom button. A compact EMPTY horizontal header plaque centered over the upper rail occupies only the top 9% of frame; leave the plaque solid colored but no text. Transparent space outside frame too. Preserve the refined forest fantasy realistic metal/enamel craftsmanship of reference. Frame should occupy 94% width, 91% height with space above for crest. NO WORDS NO LETTERS NO SYMBOL TEXT NO LABELS. Rarity LEGENDARY: rich ORANGE-GOLD sculpted double frame, amber-orange inset rails with restrained luminous rim, dark amber blank plaque, one big amber crystal flanked by small orange gems and an elegant broad GOLDEN OAK-LEAF CROWN above plaque.",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-94ce5227-8ec4-495d-aa5f-6f5822a9070d.png",
+      "project_file": "frames/legendary.png"
+    },
+    {
+      "id": "botanical_body",
+      "category": "ornaments",
+      "prompt": "Use case: ui-mockup. One isolated game UI ornament on REAL transparent background. Square 1:1 canvas. Use reference only to match its fine engraved oak/fern botanical ornaments in the lower text area. Two separate mirrored slender sprays of aged bronze fern and oak leaves along far left and far right of canvas, sweeping inward gently ONLY at bottom. Lower bottom center has a tiny circular bronze seal with three oak leaves, connected to side sprays by two hairline gold horizontal strokes. Center 70% is completely empty transparent space for future dynamic text. Muted antique bronze, elegant realistic fine metal etching, restrained detail, no bright glow. NO card border, no panel background, no button, no text, no numerals. All ornament pixels belong to a separate transparent overlay.",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-c6e8f233-0ce4-4039-b0b1-fd19edb92f8f.png",
+      "project_file": "ornaments/botanical_body.png"
+    }
+  ]
+}

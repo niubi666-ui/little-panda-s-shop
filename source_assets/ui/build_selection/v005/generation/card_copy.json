@@ -1,0 +1,389 @@
+{
+  "cards": [
+    {
+      "id": "power",
+      "category": "martial",
+      "headline": "damage"
+    },
+    {
+      "id": "agility",
+      "category": "martial",
+      "headline": "move"
+    },
+    {
+      "id": "wave",
+      "category": "training_legacy",
+      "headline": "wave"
+    },
+    {
+      "id": "chain",
+      "category": "training_legacy",
+      "headline": "chain_legacy"
+    },
+    {
+      "id": "split",
+      "category": "martial",
+      "headline": "split"
+    },
+    {
+      "id": "impact_blast",
+      "category": "martial",
+      "headline": "blast"
+    },
+    {
+      "id": "contact_slow",
+      "category": "training_legacy",
+      "headline": "slow"
+    },
+    {
+      "id": "contact_freeze",
+      "category": "training_legacy",
+      "headline": "freeze"
+    },
+    {
+      "id": "freeze_duration",
+      "category": "training_legacy",
+      "headline": "duration_bonus"
+    },
+    {
+      "id": "pierce",
+      "category": "martial",
+      "headline": "pierce"
+    },
+    {
+      "id": "frost_blast",
+      "category": "training_legacy",
+      "headline": "freeze"
+    },
+    {
+      "id": "action_power",
+      "category": "martial",
+      "headline": "damage"
+    },
+    {
+      "id": "shatter_followup",
+      "category": "ice",
+      "headline": "conditional"
+    },
+    {
+      "id": "opening_strike",
+      "category": "ice",
+      "headline": "conditional"
+    },
+    {
+      "id": "returning_wave",
+      "category": "martial",
+      "headline": "return"
+    },
+    {
+      "id": "charged_wave",
+      "category": "martial",
+      "headline": "charge"
+    },
+    {
+      "id": "shatter_heavy",
+      "category": "training_legacy",
+      "headline": "conditional"
+    },
+    {
+      "id": "frost_path",
+      "category": "ice",
+      "headline": "path"
+    },
+    {
+      "id": "ice_coat",
+      "category": "ice",
+      "headline": "shield"
+    },
+    {
+      "id": "fire_core",
+      "category": "fire",
+      "headline": "fire"
+    },
+    {
+      "id": "ice_core",
+      "category": "ice",
+      "headline": "ice"
+    },
+    {
+      "id": "thunder_core",
+      "category": "thunder",
+      "headline": "thunder"
+    },
+    {
+      "id": "earth_core",
+      "category": "earth",
+      "headline": "earth"
+    },
+    {
+      "id": "fire_kindling",
+      "category": "fire",
+      "headline": "burn_tick"
+    },
+    {
+      "id": "fire_blaze",
+      "category": "fire",
+      "headline": "stack_cap"
+    },
+    {
+      "id": "fire_linger",
+      "category": "fire",
+      "headline": "duration_add"
+    },
+    {
+      "id": "ice_deep",
+      "category": "ice",
+      "headline": "chill_needed"
+    },
+    {
+      "id": "ice_lasting",
+      "category": "ice",
+      "headline": "duration_add"
+    },
+    {
+      "id": "ice_brittle",
+      "category": "ice",
+      "headline": "vulnerable"
+    },
+    {
+      "id": "thunder_chain",
+      "category": "thunder",
+      "headline": "chain"
+    },
+    {
+      "id": "thunder_surge",
+      "category": "thunder",
+      "headline": "discharge"
+    },
+    {
+      "id": "thunder_reach",
+      "category": "thunder",
+      "headline": "reach"
+    },
+    {
+      "id": "earth_crush",
+      "category": "earth",
+      "headline": "vulnerable"
+    },
+    {
+      "id": "earth_quake",
+      "category": "earth",
+      "headline": "stagger"
+    },
+    {
+      "id": "earth_layers",
+      "category": "earth",
+      "headline": "stack_cap"
+    },
+    {
+      "id": "dual_steam",
+      "category": "reactions",
+      "headline": "reaction"
+    },
+    {
+      "id": "dual_overload",
+      "category": "reactions",
+      "headline": "reaction"
+    },
+    {
+      "id": "dual_lava",
+      "category": "reactions",
+      "headline": "reaction"
+    },
+    {
+      "id": "dual_superconduct",
+      "category": "reactions",
+      "headline": "reaction"
+    },
+    {
+      "id": "dual_shatter",
+      "category": "reactions",
+      "headline": "reaction"
+    },
+    {
+      "id": "dual_magnet",
+      "category": "reactions",
+      "headline": "reaction"
+    },
+    {
+      "id": "fire_mastery_burst",
+      "category": "fire",
+      "headline": "mastery"
+    },
+    {
+      "id": "fire_mastery_heat",
+      "category": "fire",
+      "headline": "burn_tick"
+    },
+    {
+      "id": "ice_mastery_burst",
+      "category": "ice",
+      "headline": "mastery"
+    },
+    {
+      "id": "ice_mastery_cold",
+      "category": "ice",
+      "headline": "vulnerable"
+    },
+    {
+      "id": "thunder_mastery_burst",
+      "category": "thunder",
+      "headline": "mastery"
+    },
+    {
+      "id": "thunder_mastery_storm",
+      "category": "thunder",
+      "headline": "discharge"
+    },
+    {
+      "id": "earth_mastery_burst",
+      "category": "earth",
+      "headline": "mastery"
+    },
+    {
+      "id": "earth_mastery_weight",
+      "category": "earth",
+      "headline": "vulnerable"
+    },
+    {
+      "id": "primary_reach",
+      "category": "martial",
+      "headline": "primary_reach"
+    },
+    {
+      "id": "special_reach",
+      "category": "martial",
+      "headline": "special_reach"
+    }
+  ],
+  "summaries": {
+    "damage": [
+      "攻击伤害 +{bonus_percent}%",
+      "Attack damage +{bonus_percent}%"
+    ],
+    "move": [
+      "移动速度 +{bonus_percent}%",
+      "Move speed +{bonus_percent}%"
+    ],
+    "wave": [
+      "剑气伤害 {damage_percent}%",
+      "Wave damage {damage_percent}%"
+    ],
+    "chain_legacy": [
+      "连锁 {jumps} 个目标",
+      "Chain to {jumps} targets"
+    ],
+    "split": [
+      "分裂 {count} 枚剑气",
+      "Split into {count} waves"
+    ],
+    "blast": [
+      "爆炸半径 {radius_m} 米",
+      "Blast radius {radius_m} m"
+    ],
+    "slow": [
+      "减速 {slow_percent}%",
+      "Slow {slow_percent}%"
+    ],
+    "freeze": [
+      "冻结 {duration_sec} 秒",
+      "Freeze for {duration_sec} s"
+    ],
+    "duration_bonus": [
+      "冻结时长 +{bonus_percent}%",
+      "Freeze duration +{bonus_percent}%"
+    ],
+    "pierce": [
+      "贯穿 {max_hits} 个目标",
+      "Pierce {max_hits} targets"
+    ],
+    "conditional": [
+      "条件增伤 +{bonus_percent}%",
+      "Conditional damage +{bonus_percent}%"
+    ],
+    "return": [
+      "剑气折返 · 再次命中",
+      "Returning wave · Hit again"
+    ],
+    "charge": [
+      "蓄满伤害 {damage_percent}%",
+      "Charged damage {damage_percent}%"
+    ],
+    "path": [
+      "霜径持续 {lifetime_sec} 秒",
+      "Frost trail {lifetime_sec} s"
+    ],
+    "shield": [
+      "获得 {shield_amount} 点护盾",
+      "Gain {shield_amount} shield"
+    ],
+    "fire": [
+      "灼烧 · 持续伤害",
+      "Burn · Damage over time"
+    ],
+    "ice": [
+      "冰寒 · 叠满冻结",
+      "Chill · Freeze at full stacks"
+    ],
+    "thunder": [
+      "感电 · 命中放电",
+      "Shock · Discharge on hit"
+    ],
+    "earth": [
+      "碎甲 · 易伤破防",
+      "Fracture · Break defenses"
+    ],
+    "burn_tick": [
+      "每层灼烧伤害 +{add}",
+      "Burn damage / stack +{add}"
+    ],
+    "stack_cap": [
+      "叠层上限 +{add}",
+      "Maximum stacks +{add}"
+    ],
+    "duration_add": [
+      "状态时长 +{add} 秒",
+      "Status duration +{add} s"
+    ],
+    "chill_needed": [
+      "冻结层数 {add}",
+      "Freeze threshold {add}"
+    ],
+    "vulnerable": [
+      "每层易伤 +{add_percent}%",
+      "Vulnerability / stack +{add_percent}%"
+    ],
+    "chain": [
+      "放电目标 +{add}",
+      "Discharge targets +{add}"
+    ],
+    "discharge": [
+      "放电伤害 +{add}",
+      "Discharge damage +{add}"
+    ],
+    "reach": [
+      "放电距离 +{add} 米",
+      "Discharge reach +{add} m"
+    ],
+    "stagger": [
+      "额外破防 +{add_percent}%",
+      "Extra guard damage +{add_percent}%"
+    ],
+    "reaction": [
+      "反应伤害 +{damage_bonus_percent}%",
+      "Reaction damage +{damage_bonus_percent}%"
+    ],
+    "mastery": [
+      "专精爆发 · 范围 {radius_m} 米",
+      "Mastery burst · {radius_m} m"
+    ],
+    "primary_reach": [
+      "攻击范围 +{bonus_percent}%",
+      "Attack range +{bonus_percent}%"
+    ],
+    "special_reach": [
+      "重击范围 +{bonus_percent}%",
+      "Heavy range +{bonus_percent}%"
+    ]
+  }
+}

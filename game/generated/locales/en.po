@@ -40,6 +40,291 @@ msgstr "Infuse an action that has no element yet; it shapes this run"
 msgid "build.awakening.title"
 msgstr "Elemental Awakening"
 
+msgid "build.card.body.action_power"
+msgstr "Strengthens the bound action.\nCombines with global damage bonuses."
+
+msgid "build.card.body.agility"
+msgstr "Move faster between attacks.\nDodge speed is unchanged."
+
+msgid "build.card.body.chain"
+msgstr "Hits jump to nearby foes.\nEach jump retains {falloff_percent}% damage."
+
+msgid "build.card.body.charged_wave"
+msgstr "Hold RMB for {threshold_sec} s, then release.\nA charged wide crescent has ×{cooldown_ratio} cooldown."
+
+msgid "build.card.body.contact_freeze"
+msgstr "Directly contacted foes freeze.\nThawing grants brief freeze resistance."
+
+msgid "build.card.body.contact_slow"
+msgstr "Hits slow for {duration_sec} s.\nReapplying retains the longer time."
+
+msgid "build.card.body.dual_lava"
+msgstr "Requires both fire and earth.\nLava also gains {radius_bonus_m} m radius."
+
+msgid "build.card.body.dual_magnet"
+msgstr "Requires both lightning and earth.\nMagnet pull gains {radius_bonus_m} m radius."
+
+msgid "build.card.body.dual_overload"
+msgstr "Requires both fire and lightning.\nOverload also gains {radius_bonus_m} m radius."
+
+msgid "build.card.body.dual_shatter"
+msgstr "Freeze first, then strike with earth.\nShatter also gains {radius_bonus_m} m radius."
+
+msgid "build.card.body.dual_steam"
+msgstr "Requires both fire and ice.\nStrengthens their steam reaction."
+
+msgid "build.card.body.dual_superconduct"
+msgstr "Requires both ice and lightning.\nSuperconduct gains {radius_bonus_m} m radius."
+
+msgid "build.card.body.earth_core"
+msgstr "Hits apply {stacks_per_hit} fracture stack(s).\nFoes take more damage and lose guard faster."
+
+msgid "build.card.body.earth_crush"
+msgstr "Every fracture stack adds vulnerability.\nExploit broken defenses."
+
+msgid "build.card.body.earth_layers"
+msgstr "Raises the fracture stack limit.\nBuild additional vulnerability."
+
+msgid "build.card.body.earth_mastery_burst"
+msgstr "Requires earth on two actions.\nFull fracture stacks rupture and spread fracture."
+
+msgid "build.card.body.earth_mastery_weight"
+msgstr "Requires earth on two actions.\nFurther strengthens fracture vulnerability."
+
+msgid "build.card.body.earth_quake"
+msgstr "Earth hits deal extra guard damage.\nBreak armored foes' guard sooner."
+
+msgid "build.card.body.fire_blaze"
+msgstr "Raises the burn stack limit.\nRepeated hits build a stronger blaze."
+
+msgid "build.card.body.fire_core"
+msgstr "Hits apply {stacks_per_hit} burn stack(s).\nBurn deals damage over time."
+
+msgid "build.card.body.fire_kindling"
+msgstr "Each burn stack deals more damage over time.\nEmbers keep hurting foes."
+
+msgid "build.card.body.fire_linger"
+msgstr "Burn remains active longer.\nDamage continues after you move away."
+
+msgid "build.card.body.fire_mastery_burst"
+msgstr "Requires fire on two actions.\nFull burn stacks explode and spread burn."
+
+msgid "build.card.body.fire_mastery_heat"
+msgstr "Requires fire on two actions.\nFurther strengthens damage per burn stack."
+
+msgid "build.card.body.freeze_duration"
+msgstr "Extends this action's freezes.\nThis action must already be able to freeze."
+
+msgid "build.card.body.frost_blast"
+msgstr "Compatible blasts freeze nearby foes.\nRequires Impact Blast."
+
+msgid "build.card.body.frost_path"
+msgstr "Requires a wave capable of freezing.\nLeaves a slowing trail; the trail never freezes."
+
+msgid "build.card.body.ice_brittle"
+msgstr "Every chill stack adds vulnerability.\nPress the attack while chill lasts."
+
+msgid "build.card.body.ice_coat"
+msgstr "Gain a shield when a wave creates a frost window.\nLasts {duration_sec} s; triggers every {trigger_cooldown_sec} s."
+
+msgid "build.card.body.ice_core"
+msgstr "Hits apply {stacks_per_hit} chill stack(s).\nFull stacks freeze, or strongly slow bosses."
+
+msgid "build.card.body.ice_deep"
+msgstr "Fewer chill stacks are needed to freeze.\nCreate frost windows sooner."
+
+msgid "build.card.body.ice_lasting"
+msgstr "Chill lasts longer.\nKeep the slow and build stacks more easily."
+
+msgid "build.card.body.ice_mastery_burst"
+msgstr "Requires ice on two actions.\nFreezing bursts into shards and spreads chill."
+
+msgid "build.card.body.ice_mastery_cold"
+msgstr "Requires ice on two actions.\nFurther strengthens chill vulnerability."
+
+msgid "build.card.body.impact_blast"
+msgstr "Contact creates a falling-off area blast.\nThe direct target is not hit twice."
+
+msgid "build.card.body.opening_strike"
+msgstr "Primary punishes a frost window from another action.\nBoosts direct hits without consuming freeze."
+
+msgid "build.card.body.pierce"
+msgstr "Linear waves pass through several foes.\nExclusive with Split on the same action."
+
+msgid "build.card.body.power"
+msgstr "Strengthens primary, heavy and wave attacks.\nDerived hits are not amplified twice."
+
+msgid "build.card.body.primary_reach"
+msgstr "Extends the reach of primary attacks.\nKeep your distance while striking."
+
+msgid "build.card.body.returning_wave"
+msgstr "Waves return after reaching range or hitting.\nThe return can hit again; walls still block it."
+
+msgid "build.card.body.shatter_followup"
+msgstr "Punish a frost window from an earlier wave.\nA wave cannot enable its own follow-up."
+
+msgid "build.card.body.shatter_heavy"
+msgstr "Heavy attacks consume a prior frost window.\nThe stronger hit is followed by freeze resistance."
+
+msgid "build.card.body.special_reach"
+msgstr "Extends the reach of heavy attacks.\nA wider sweep covers more enemies."
+
+msgid "build.card.body.split"
+msgstr "Projectiles split on enemy contact.\nChildren deal {damage_percent}% damage."
+
+msgid "build.card.body.thunder_chain"
+msgstr "Discharge can reach more foes.\nUseful against clustered enemies."
+
+msgid "build.card.body.thunder_core"
+msgstr "Hits apply shock.\nThe next hit discharges into nearby foes."
+
+msgid "build.card.body.thunder_mastery_burst"
+msgstr "Requires lightning on two actions.\nDischarge spreads damage and shock."
+
+msgid "build.card.body.thunder_mastery_storm"
+msgstr "Requires lightning on two actions.\nFurther strengthens discharge damage."
+
+msgid "build.card.body.thunder_reach"
+msgstr "Discharge arcs travel farther.\nConnect enemies spread farther apart."
+
+msgid "build.card.body.thunder_surge"
+msgstr "Increases shock discharge damage.\nThe next hit triggers stronger arcs."
+
+msgid "build.card.body.wave"
+msgstr "Primary attacks launch a wave even on a miss.\nIt ends on contact with a target or wall."
+
+msgid "build.card.choose"
+msgstr "Choose blessing"
+
+msgid "build.card.headline.blast"
+msgstr "Blast radius {radius_m} m"
+
+msgid "build.card.headline.burn_tick"
+msgstr "Burn damage / stack +{add}"
+
+msgid "build.card.headline.chain"
+msgstr "Discharge targets +{add}"
+
+msgid "build.card.headline.chain_legacy"
+msgstr "Chain to {jumps} targets"
+
+msgid "build.card.headline.charge"
+msgstr "Charged damage {damage_percent}%"
+
+msgid "build.card.headline.chill_needed"
+msgstr "Freeze threshold {add}"
+
+msgid "build.card.headline.conditional"
+msgstr "Conditional damage +{bonus_percent}%"
+
+msgid "build.card.headline.damage"
+msgstr "Attack damage +{bonus_percent}%"
+
+msgid "build.card.headline.discharge"
+msgstr "Discharge damage +{add}"
+
+msgid "build.card.headline.duration_add"
+msgstr "Status duration +{add} s"
+
+msgid "build.card.headline.duration_bonus"
+msgstr "Freeze duration +{bonus_percent}%"
+
+msgid "build.card.headline.earth"
+msgstr "Fracture · Break defenses"
+
+msgid "build.card.headline.fire"
+msgstr "Burn · Damage over time"
+
+msgid "build.card.headline.freeze"
+msgstr "Freeze for {duration_sec} s"
+
+msgid "build.card.headline.ice"
+msgstr "Chill · Freeze at full stacks"
+
+msgid "build.card.headline.mastery"
+msgstr "Mastery burst · {radius_m} m"
+
+msgid "build.card.headline.move"
+msgstr "Move speed +{bonus_percent}%"
+
+msgid "build.card.headline.path"
+msgstr "Frost trail {lifetime_sec} s"
+
+msgid "build.card.headline.pierce"
+msgstr "Pierce {max_hits} targets"
+
+msgid "build.card.headline.primary_reach"
+msgstr "Attack range +{bonus_percent}%"
+
+msgid "build.card.headline.reach"
+msgstr "Discharge reach +{add} m"
+
+msgid "build.card.headline.reaction"
+msgstr "Reaction damage +{damage_bonus_percent}%"
+
+msgid "build.card.headline.return"
+msgstr "Returning wave · Hit again"
+
+msgid "build.card.headline.shield"
+msgstr "Gain {shield_amount} shield"
+
+msgid "build.card.headline.slow"
+msgstr "Slow {slow_percent}%"
+
+msgid "build.card.headline.special_reach"
+msgstr "Heavy range +{bonus_percent}%"
+
+msgid "build.card.headline.split"
+msgstr "Split into {count} waves"
+
+msgid "build.card.headline.stack_cap"
+msgstr "Maximum stacks +{add}"
+
+msgid "build.card.headline.stagger"
+msgstr "Extra guard damage +{add_percent}%"
+
+msgid "build.card.headline.thunder"
+msgstr "Shock · Discharge on hit"
+
+msgid "build.card.headline.vulnerable"
+msgstr "Vulnerability / stack +{add_percent}%"
+
+msgid "build.card.headline.wave"
+msgstr "Wave damage {damage_percent}%"
+
+msgid "build.card.name.agility"
+msgstr "Fleet foot"
+
+msgid "build.card.name.chain"
+msgstr "Echo chain"
+
+msgid "build.card.name.contact_freeze"
+msgstr "Contact freeze"
+
+msgid "build.card.name.contact_slow"
+msgstr "Contact slow"
+
+msgid "build.card.name.freeze_duration"
+msgstr "Longer freeze"
+
+msgid "build.card.name.impact_blast"
+msgstr "Impact blast"
+
+msgid "build.card.name.power"
+msgstr "Sharpened blade"
+
+msgid "build.card.name.split"
+msgstr "Projectile split"
+
+msgid "build.card.name.wave"
+msgstr "Sword wave"
+
+msgid "build.card.subtitle"
+msgstr "Choose one blessing to shape this journey."
+
+msgid "build.card.title"
+msgstr "Choose your growth"
+
 msgid "build.choose"
 msgstr "Choose upgrade"
 
@@ -342,6 +627,9 @@ msgstr "Three base actions (no upgrades)"
 
 msgid "build.preset.charged_burst"
 msgstr "Charged burst"
+
+msgid "build.preset.elem_earth_mastery"
+msgstr "Earth mastery: Earth primary + Earth wave + Earth Burst"
 
 msgid "build.preset.elem_fire_build"
 msgstr "Fire build: fire attack + fire heavy + Embers + Blaze"

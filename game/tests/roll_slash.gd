@@ -7,6 +7,7 @@ const Catalog = preload("res://content/combat/combat_catalog.gd")
 const BuildResolver = preload("res://combat/builds/build_resolver.gd")
 const Runtime = preload("res://combat/builds/build_runtime.gd")
 const Melee = preload("res://combat/effects/melee_resolver.gd")
+const InputAdapter = preload("res://presentation/combat/combat_input.gd")
 var combat
 var builds
 var resolver := BuildResolver.new()
@@ -101,6 +102,7 @@ func run() -> void:
 	await hit_build_case()
 	await collision_case()
 	exit_mobility_cases()
+	primary_followup_cases()
 	normal_roll_mobility_cases()
 	interrupt_cases()
 	var report := {"checks":checks,"failures":failures,"distances_m":distances}
@@ -191,10 +193,48 @@ func exit_mobility_cases() -> void:
 		check(victim.health.current<hp, "last active frame still damages with zero recovery")
 		var end: Vector3 = f.p.position
 		f.p.step(1.0/60)
-		check(f.p.runner.cooldown_for("primary")>0, "mobility unlock is independent of primary cooldown")
+		check(is_zero_approx(f.p.runner.cooldown_for("primary")), "slash completion leaves no extra primary cooldown")
 		check(f.p.position.x>end.x and is_equal_approx(f.p.velocity.x,f.p.definition.speed), "first post-slash frame moves at full speed")
 		check(not f.p.runner.active_this_step, "free movement does not prolong melee hits")
 		clean(f)
+
+func primary_followup_cases() -> void:
+	var camera := Camera3D.new(); root.add_child(camera)
+	for dt in [1.0/30, 1.0/60, 1.0/120]:
+		for age in [.05, .28, .62]:
+			for timing in ["early", "active", "after"]:
+				var f := setup()
+				var input := InputAdapter.new(f.p, camera)
+				start_roll(f, age)
+				slash(f, dt)
+				var roll_cast: int = f.p.runner.cast_id
+				if timing == "active":
+					while f.p.runner.phase() == "windup": f.p.step(dt)
+				elif timing == "after": finish(f, dt)
+				var click := InputEventMouseButton.new()
+				click.button_index = MOUSE_BUTTON_LEFT; click.pressed = true; input.event(click)
+				click = InputEventMouseButton.new()
+				click.button_index = MOUSE_BUTTON_LEFT; click.pressed = false; input.event(click)
+				finish(f, dt)
+				var label := " %s age %.2f dt %.4f" % [timing, age, dt]
+				check(f.p.runner.cast_id == roll_cast and f.p.runner.active_this_step, "followup preserves the complete dash and final hit" + label)
+				# A target only entering on the final swept frame must still receive the dash hit.
+				var victim = actor("brute", 1, f.p.position + Vector3.FORWARD)
+				var hp: float = victim.health.current
+				f.melee.resolve(f.p, actors)
+				check(victim.health.current < hp, "queued primary does not discard the last dash hit" + label)
+				check(is_zero_approx(f.p.runner.cooldown_for("primary")), "dash leaves no cooldown gap" + label)
+				check(f.p.buffered_action_id == "primary", "one followup click survives through the dash" + label)
+				f.p.step(dt); f.melee.resolve(f.p, actors)
+				check(f.p.runner.cast_id == roll_cast + 1 and f.p.runner.ability.id == "slash.1", "first post-dash step begins normal combo" + label)
+				check(f.p.combo_index == 1 and not f.p.is_roll_attack_cast(), "followup is first combo hit, not another dash" + label)
+				var post_dash_hp: float = victim.health.current
+				f.p.step(combat.ability("slash.1").windup); f.melee.resolve(f.p, actors)
+				check(victim.health.current < post_dash_hp, "followup deals its own hit at the normal cue" + label)
+				finish(f, dt)
+				check(f.p.runner.cast_id == roll_cast + 1, "single followup click cannot auto-repeat" + label)
+				clean(f)
+	camera.free()
 
 func interrupt_cases() -> void:
 	var f := setup()

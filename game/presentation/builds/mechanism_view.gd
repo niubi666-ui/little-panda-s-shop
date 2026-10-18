@@ -3,6 +3,7 @@ extends Node3D
 var _style: Resource
 var _areas: Array[Dictionary] = []
 var _statuses: Dictionary = {}
+var _tails: Array[Node] = []
 func configure(style: Resource) -> void:
 	assert(style.area_lifetime > 0.0 and style.area_mesh != null and style.freeze_mesh != null and style.slow_mesh != null)
 	_style = style
@@ -45,6 +46,7 @@ func sync(snapshots: Array, delta: float) -> void:
 	if not _style.enabled:
 		clear()
 		return
+	_tick_tails(delta)
 	for i in range(_areas.size() - 1, -1, -1):
 		if _areas[i].node.has_method("set_time_running"): _areas[i].node.set_time_running(delta > 0.0)
 		if _areas[i].node.has_method("sync_effect"): _areas[i].node.sync_effect(_areas[i].fact.duplicate(true), delta)
@@ -105,6 +107,12 @@ func clear() -> void:
 	for value in _statuses.values(): _dispose(value.node)
 	_areas.clear()
 	_statuses.clear()
+	# 清场（换房间、关闭特效）时收尾动画不再播，直接释放
+	for node in _tails:
+		if is_instance_valid(node):
+			remove_child(node)
+			node.queue_free()
+	_tails.clear()
 func _mesh(mesh: Mesh, material: Material) -> MeshInstance3D:
 	var node := MeshInstance3D.new()
 	node.mesh = mesh
@@ -115,5 +123,20 @@ func _mesh(mesh: Mesh, material: Material) -> MeshInstance3D:
 func _dispose(node: Node) -> void:
 	if not is_instance_valid(node): return
 	if node.has_method("finish"): node.finish("removed")
+	# 有收尾动画的状态场景（如冰冻碎裂）：状态已经结束，继续跟战斗时钟播完再释放
+	if node.has_method("has_tail") and node.has_tail() and not _tails.has(node):
+		var label := node.get_node_or_null("StatusText")
+		if label != null: label.hide()
+		_tails.append(node)
+		return
 	remove_child(node)
 	node.queue_free()
+func _tick_tails(delta: float) -> void:
+	for i in range(_tails.size() - 1, -1, -1):
+		var node: Node = _tails[i]
+		if is_instance_valid(node): node.tail_tick(delta)
+		if not is_instance_valid(node) or not node.has_tail():
+			_tails.remove_at(i)
+			if is_instance_valid(node):
+				remove_child(node)
+				node.queue_free()

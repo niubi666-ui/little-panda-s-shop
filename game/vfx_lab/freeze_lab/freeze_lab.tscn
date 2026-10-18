@@ -1,0 +1,84 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://vfx_lab/freeze_lab/scripts/freeze_lab_director.gd" id="1_3mwvg"]
+[ext_resource type="PackedScene" path="res://vfx_lab/freeze_lab/freeze_fx.tscn" id="2_mq8gm"]
+[ext_resource type="Resource" path="res://vfx_lab/fire_katana/presets/look_night.tres" id="3_b47ry"]
+[ext_resource type="Resource" path="res://vfx_lab/fire_katana/presets/look_day.tres" id="4_pfjjh"]
+[ext_resource type="Script" path="res://vfx_lab/fire_katana/scripts/demo_camera.gd" id="5_qrd05"]
+[ext_resource type="Material" path="res://vfx_lab/fire_katana/materials/ground.tres" id="6_1jxhy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tmax5"]
+sky_top_color = Color(0.32, 0.5, 0.78, 1)
+sky_horizon_color = Color(0.72, 0.78, 0.82, 1)
+ground_bottom_color = Color(0.25, 0.24, 0.2, 1)
+ground_horizon_color = Color(0.55, 0.55, 0.5, 1)
+
+[sub_resource type="Sky" id="Sky_3nqei"]
+sky_material = SubResource("ProceduralSkyMaterial_tmax5")
+
+[sub_resource type="Environment" id="Environment_icvv7"]
+background_mode = 2
+sky = SubResource("Sky_3nqei")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 4
+tonemap_exposure = 1.19
+tonemap_agx_contrast = 1.5
+ssao_enabled = true
+glow_enabled = true
+glow_levels/2 = 0.6
+glow_levels/3 = 1.0
+glow_levels/4 = 0.8
+glow_levels/5 = 0.6
+glow_intensity = 0.45
+glow_bloom = 0.03
+glow_blend_mode = 0
+fog_enabled = true
+fog_light_color = Color(0.7, 0.75, 0.8, 1)
+fog_density = 0.006
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ler6x"]
+size = Vector2(40, 40)
+
+[node name="FreezeLab" type="Node3D" unique_id=725411993 node_paths=PackedStringArray("camera", "label", "world_env", "sun")]
+script = ExtResource("1_3mwvg")
+enemy_ids = PackedStringArray("brute", "charger", "scout", "crossbow", "banner", "elite_ranger")
+freeze_scene = ExtResource("2_mq8gm")
+camera = NodePath("Camera")
+label = NodePath("UI/Help")
+world_env = NodePath("WorldEnvironment")
+sun = NodePath("Sun")
+looks = Array[Resource]([ExtResource("3_b47ry"), ExtResource("4_pfjjh")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1378904147]
+environment = SubResource("Environment_icvv7")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=997957528]
+shadow_enabled = true
+
+[node name="Camera" type="Camera3D" parent="." unique_id=1183743884]
+current = true
+fov = 45.0
+script = ExtResource("5_qrd05")
+focus = Vector3(0, 0.75, 0)
+presets = Array[Vector3]([Vector3(0, 14, 8.5), Vector3(-30, 52, 12), Vector3(-25, 8, 3.2)])
+preset_names = PackedStringArray("全排", "游戏俯视角", "近景")
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=735075657]
+material_override = ExtResource("6_1jxhy")
+mesh = SubResource("PlaneMesh_ler6x")
+
+[node name="FloorCollision" type="GPUParticlesCollisionBox3D" parent="." unique_id=1601839922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(40, 1, 40)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1505999486]
+
+[node name="Help" type="Label" parent="UI" unique_id=1161178081]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 16.0
+offset_bottom = 12.0
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 5

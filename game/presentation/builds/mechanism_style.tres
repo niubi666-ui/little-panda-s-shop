@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=10 format=3]
+[gd_resource type="Resource" load_steps=11 format=3]
 [ext_resource type="Script" path="res://presentation/builds/mechanism_style.gd" id="script"]
 [ext_resource type="FontFile" path="res://assets/fonts/NotoSerifSC-VF.ttf" id="conditional_font"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/freeze_encase_v001/freeze_encase.tscn" id="freeze_encase"]
 [sub_resource type="TorusMesh" id="area"]
 inner_radius = 0.965
 outer_radius = 1.0
@@ -64,6 +65,9 @@ slow_offset = Vector3(0,0.08,0)
 freeze_mesh = SubResource("freeze")
 freeze_material = SubResource("freeze_mat")
 freeze_offset = Vector3(0,1.0,0)
+status_scenes = {
+"freeze": ExtResource("freeze_encase")
+}
 
 conditional_font = ExtResource("conditional_font")
 conditional_font_size = 48

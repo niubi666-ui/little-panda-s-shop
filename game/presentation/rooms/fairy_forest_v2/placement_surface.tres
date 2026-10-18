@@ -9,5 +9,5 @@ yaw_options = PackedFloat32Array(0.0)
 [resource]
 script = ExtResource("script")
 template_id = "fairy_forest.v2"
-bounds = Rect2(-9.0, -7.5, 18.0, 15.0)
+bounds = Rect2(-11.0, -7.5, 22.0, 21.0)
 composition_anchors = Array[Resource]([SubResource("parked")])

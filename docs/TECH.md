@@ -77,7 +77,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 ```
 
 - 右键由 `press_skill()` / `release_skill()` 区分点按、持续蓄力和冷却中待开始蓄力。`request_action()` 返回输入是否接受；共用单个动作缓存，后按左键明确取消待发/蓄力技能（即使普攻暂不可用），其它同帧优先级沿用原规则。`wave_cast.buffer_sec` 现为 0.5 秒，复用现有 schema 8 的必填字段、Loader 与 Catalog，无新增配置字段。翻滚内技能缓存暂停老化，冷却须在“剩余翻滚时间 + buffer_sec”内就绪；跨翻滚结束帧只扣结束后的窗口时间。就绪的持有输入可在翻滚中蓄力；冷却等待不算蓄力，提前松键转为普通剑气。冷却归零/翻滚结束当帧尝试接招，若上一招本帧仍有末次判定则结算后下一帧接上；投射物仍由原 `cue` 发射。缓存只消费一次，清输入、受控、死亡、切房和重建构筑会取消。
-- `CharacterMotor` 是唯一写移动的地方（自主移动、击退、出招前冲、闪避）。普通翻滚前 `movement_duration_sec` 是固定方向位移，后续起身阶段按当前输入、移速构筑、减速及强制移动执行；跨越分段的一帧按两段时间份额合成速度，松键不继续漂移。翻滚时钟与冲斩输入窗口仍保留到 `duration_sec`。翻滚冲斩由 `CombatActor` 记录当前翻滚年龄、锁定瞄准方向并提交独立的 `roll_slash` 定义副本：本次前摇为剩余翻滚时间 + 配置起刀时间，原始 Ability 不变，沿用完整 primary plan；`BuildRuntime.on_committed` 仅接受 Dodge 配置且确已提交的变体。前次左键冷却被本次冷却替换，翻滚消耗不退还。点击当帧起前摇位移，按配置封顶其距离份额；挥砍位移用 Hermite 曲线承接前摇末速度，末速归零，总位移仍为配置距离。按时间段积分，经 `Motor.travel` 连续碰撞，撞障碍即停；`MeleeResolver` 沿实际位移路径补充判定，仍由每次施放的目标集合去重。`roll_slash.recovery_sec/chain_cancel_sec` 均为 0；最后一个判定时间段仍结算命中，下一物理帧立即恢复自主移动，不受剩余左键冷却影响。
+- `CharacterMotor` 是唯一写移动的地方（自主移动、击退、出招前冲、闪避）。普通翻滚前 `movement_duration_sec` 是固定方向位移，后续起身阶段按当前输入、移速构筑、减速及强制移动执行；跨越分段的一帧按两段时间份额合成速度，松键不继续漂移。翻滚时钟与冲斩输入窗口仍保留到 `duration_sec`。翻滚冲斩由 `CombatActor` 记录当前翻滚年龄、锁定瞄准方向并提交独立的 `roll_slash` 定义副本：本次前摇为剩余翻滚时间 + 配置起刀时间，原始 Ability 不变，沿用完整 primary plan；`BuildRuntime.on_committed` 仅接受 Dodge 配置且确已提交的变体。前次左键冷却被本次冷却替换，翻滚消耗不退还。点击当帧起前摇位移，按配置封顶其距离份额；挥砍位移用 Hermite 曲线承接前摇末速度，末速归零，总位移仍为配置距离。按时间段积分，经 `Motor.travel` 连续碰撞，撞障碍即停；`MeleeResolver` 沿实际位移路径补充判定，仍由每次施放的目标集合去重。`roll_slash.recovery_sec/chain_cancel_sec` 均为 0，`cooldown_sec` 为 0.3、不会超出最短的起刀与判定时长。冲斩期间后按左键的缓存暂停老化，保留到末次扫掠结算，下一物理帧从 `slash.1` 接起；一次点击只接一刀，无输入则恢复移动。伤害判定仍完成整次冲斩，不提前截掉末段。
 - 构筑：`BuildResolver` 把选卡编译成每个动作的执行计划（program）；`BuildRuntime` 按计划执行投射物、爆炸、状态、条件增伤；`TrainingBuildSession` 负责三选一、预设和提交；`BuildOfferSampler` 按品质与权重抽候选。
 - 接续构筑设计见 [构筑成长](BUILD_PROGRESSION.md)。`projectile_capabilities.gd` 已把新冰核心接到四张基础冰协同；其它旧卡和后期机制仍按范围逐步适配，不代表完整成长设计已实现。
 - 状态：`StatusRuntime`（冰冻/减速/寒印/抗冻、同根去重、控制组）。
@@ -94,7 +94,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 - 攻击范围卡：`effect_type: "reach_scale"`（动作卡，`bonus`），编译到动作计划的 `reach_scale`，`MeleeResolver` 乘到近战半径上；`impact_blast` 现在是支援层，不再和元素抢核心槽。
 - 定义：`builds/elements.json`，由 `content/builds/elements_loader.gd` 校验，经 `BuildLoader.load_catalog` 挂到 BuildCatalog（`element()`、`reaction_between()`）。
 - 执行：`combat/builds/element_effects.gd`，由 `BuildRuntime._apply_direct_damage` 在每次直接命中后调用；命中前乘 `incoming_scale`（碎甲、超导易伤）。元素造成的伤害不再触发元素，也不走 `damage_applied`（不会触发顿帧和命中音效）。
-- 冰寒叠满时调用现有冻结状态（`test_freeze`），所以 Boss 仍按自身响应改为减速窗口。
+- 冰寒默认叠满 3 层时调用现有冻结状态（`test_freeze`）；基础持续时间为 2.2 秒，配置在 `builds/prototype.json` 的 `statuses[].duration_sec`。Boss 按自身响应改为同一时长的减速窗口。
 - 能力摘要新增 `freeze_window_ids`：汇总真实状态/范围负载的冻结及元素叠层可产生的冻结，供条件追击、霜径、冰衣等查询；`status_ids` 仍只表示直接状态负载，不把叠层伪装成即时冻结，也不误开放尚未适配的旧 `freeze_duration`。冻结成功与来源仍由 `StatusRuntime` 判断，候选与提交共用 Resolver。
 - `conditional_damage.provider_scope` 同时限制候选与实际命中的来源：`same_action` 要求较早独立的同动作施放，`other_formal_action` 要求另一正式动作。来源还须匹配 runtime、房间代数、玩家和阵营；分裂/爆炸不能获得追击增伤。同一投射物回程沿用原 root，不会自触发。
 - `frost_effects.gd` 复用路径与护盾执行器：路径仅主投射物铺设，受根预算、`max_targets`（现有字段，同时约束路径段总数与每段每步目标数）、时限限制；只施加普通减速。冰衣只在 `_apply_status` 实际成功建立冻结窗口时触发，受盾量/时限/冷却约束。暂停不推进，切房和死亡清理。
@@ -135,7 +135,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 
 | 改了什么 | 跑什么 |
 |---|---|
-| 战斗基础、连段、反馈 | `combat_rules`、`roll_slash`（6 米/连续推进/碰撞/元素/增伤/范围/取消）、`roll_slash_visual`（八方向 × 三种翻滚时机、原翻滚相位延续、落地后分骨骼混合）；主角 `nodachi_player`（图形/无头）、`charge_locomotion`（蓄力八方向走跑、上身保持、暂停/冻结/停止/释放/死亡）、`combo_feel`（已适配 Nodachi 的真实刀刃和下劈第三刀） |
+| 战斗基础、连段、反馈 | `combat_rules`、`roll_slash`（6 米/连续推进/碰撞/元素/增伤/范围/取消，以及 30/60/120 帧步长的冲斩接普攻和末帧命中）、`roll_slash_visual`（八方向 × 三种翻滚时机、原翻滚相位延续、落地后分骨骼混合、冲斩直混普攻；加 `-- --capture` 才保存截图）；主角 `nodachi_player`（图形/无头）、`charge_locomotion`（蓄力八方向走跑、上身保持、暂停/冻结/停止/释放/死亡）、`combo_feel`（已适配 Nodachi 的真实刀刃和下劈第三刀） |
 | 敌人、遭遇 | `enemy_roles`、`charger_obstacles`；图形 `enemy_training` |
 | 游侠 | `ranger_rules`、`ranger_sequences`、`charged_ranger` |
 | 构筑 | `bound_build_policy`、`bound_build_session`、`mechanism_content`、`dual_actions`、`frost_first_batch`；冰协同 `ice_synergy`、`ice_synergy_rewards`、`freeze_followup`、`boss_frost_builds` |

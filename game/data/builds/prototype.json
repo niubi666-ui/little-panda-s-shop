@@ -1788,7 +1788,7 @@
     {
       "id": "test_freeze",
       "kind": "freeze",
-      "duration_sec": 1.2,
+      "duration_sec": 2.2,
       "max_duration_sec": 3.0,
       "move_scale": 0.0,
       "refresh": "reject_active",

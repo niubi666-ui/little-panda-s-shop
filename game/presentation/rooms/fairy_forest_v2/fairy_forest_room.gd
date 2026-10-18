@@ -70,6 +70,14 @@ extends "res://rogue/rooms/authored_room.gd"
 @export var wall_thickness_m: float
 @export var wall_height_m: float
 
+@export_group("活动范围")
+## 角色能走的矩形（x 为左右、y 为前后，即世界 z）。四周空气墙围着它。size 为 0 时用导出数据里的 play_half。
+@export var walk_area: Rect2
+## 溪水面抬高多少米：地面碰撞是平的，抬高后角色走进溪里看起来是站在水面上，而不是悬在水上方
+@export var water_raise_m: float
+## 跟着水面一起抬高的资产（浮在水上的东西，例如睡莲）
+@export var floating_assets: PackedStringArray
+
 @export_group("疏密")
 ## 按资产保留多少比例的摆放（0..1，没列出的全保留）。挑哪些保留由位置决定，每次进场一样。
 ## 草太密时远看是一片细碎的高频纹理，角色跑动时会“花”，疏一点、让地面露出来更安静。
@@ -134,12 +142,13 @@ func _build_terrain() -> void:
 	# 小径、溪床的形状参数来自导出数据，不是画面调节项
 	ground_material.set_shader_parameter("stream_half", data.stream_half)
 	ground_material.set_shader_parameter("bridge_x", data.bridge_x)
-	ground_material.set_shader_parameter("water_level", data.water_z)
+	ground_material.set_shader_parameter("water_level", data.water_z + water_raise_m)
 	water_material.set_shader_parameter("sun_direction", to_sun)
 	for mesh in scene.find_children("*", "MeshInstance3D", true, false):
 		mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		if String(mesh.name).begins_with("Brook"):
 			mesh.material_override = water_material
+			mesh.position.y += water_raise_m
 		else:
 			_ground = mesh
 			mesh.material_override = ground_material
@@ -214,6 +223,7 @@ func _build_instances() -> void:
 	for entry in data.instances:
 		var xform := _transform(entry.m)
 		if not _kept(entry.asset, xform.origin): continue
+		if floating_assets.has(entry.asset): xform.origin.y += water_raise_m
 		if not placed.has(entry.asset): placed[entry.asset] = []
 		placed[entry.asset].append(xform)
 	var holder_node := Node3D.new()
@@ -310,10 +320,12 @@ func _build_collision() -> void:
 	_add_box(body, Vector3(floor_size_m, floor_thickness_m, floor_size_m), Vector3(0, floor_top_y - floor_thickness_m / 2.0, 0))
 	var thickness := wall_thickness_m
 	var height := wall_height_m
-	_add_box(body, Vector3(thickness, height, play_half.y * 2.0 + thickness * 2.0), Vector3(play_half.x + thickness / 2.0, height / 2.0, 0))
-	_add_box(body, Vector3(thickness, height, play_half.y * 2.0 + thickness * 2.0), Vector3(-play_half.x - thickness / 2.0, height / 2.0, 0))
-	_add_box(body, Vector3(play_half.x * 2.0, height, thickness), Vector3(0, height / 2.0, play_half.y + thickness / 2.0))
-	_add_box(body, Vector3(play_half.x * 2.0, height, thickness), Vector3(0, height / 2.0, -play_half.y - thickness / 2.0))
+	var area := walk_area if walk_area.size.x > 0.0 else Rect2(-play_half, play_half * 2.0)
+	var centre := area.get_center()
+	_add_box(body, Vector3(thickness, height, area.size.y + thickness * 2.0), Vector3(area.end.x + thickness / 2.0, height / 2.0, centre.y))
+	_add_box(body, Vector3(thickness, height, area.size.y + thickness * 2.0), Vector3(area.position.x - thickness / 2.0, height / 2.0, centre.y))
+	_add_box(body, Vector3(area.size.x, height, thickness), Vector3(centre.x, height / 2.0, area.end.y + thickness / 2.0))
+	_add_box(body, Vector3(area.size.x, height, thickness), Vector3(centre.x, height / 2.0, area.position.y - thickness / 2.0))
 
 func _add_box(body: StaticBody3D, size: Vector3, at: Vector3) -> void:
 	var shape := CollisionShape3D.new()

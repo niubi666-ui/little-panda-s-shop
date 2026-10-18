@@ -1,0 +1,40 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://vfx_lab/freeze_lab/shaders/ice_shell.gdshader" id="1_pn1g0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tw85x"]
+noise_type = 2
+frequency = 0.04
+cellular_return_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1vf6i"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_tw85x")
+seamless = true
+invert = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4tcjf"]
+frequency = 0.02
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d5jxc"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_4tcjf")
+seamless = true
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_pn1g0")
+shader_parameter/progress = null
+shader_parameter/shatter = null
+shader_parameter/ground_y = null
+shader_parameter/body_height = null
+shader_parameter/thickness = null
+shader_parameter/cells_tex = SubResource("NoiseTexture2D_1vf6i")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_d5jxc")
+shader_parameter/ice_color = null
+shader_parameter/rim_color = null
+shader_parameter/body_alpha = null
+shader_parameter/rim_alpha = null

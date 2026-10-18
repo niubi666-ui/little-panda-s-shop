@@ -1,0 +1,40 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://presentation/combat/fx/freeze_encase_v001/ice_shell.gdshader" id="1_d831l"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4evc5"]
+noise_type = 2
+frequency = 0.04
+cellular_return_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w74ix"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_4evc5")
+seamless = true
+invert = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_onqtn"]
+frequency = 0.02
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nlto1"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_onqtn")
+seamless = true
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_d831l")
+shader_parameter/progress = null
+shader_parameter/shatter = null
+shader_parameter/ground_y = null
+shader_parameter/body_height = null
+shader_parameter/thickness = null
+shader_parameter/cells_tex = SubResource("NoiseTexture2D_w74ix")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_nlto1")
+shader_parameter/ice_color = null
+shader_parameter/rim_color = null
+shader_parameter/body_alpha = null
+shader_parameter/rim_alpha = null

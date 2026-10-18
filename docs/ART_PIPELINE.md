@@ -117,6 +117,14 @@ southeast (5.2, 0, 4.0) 0,π；interior (0, 0, -5.0) 0,π。道具模型还是�
   出生和落地时淡入淡出，不会突然冒出或消失。想多一点调 `petals_per_tree`（现 150）和 `DriftingPetals` 的 `amount`（现 200）。
 - 开销很小：现在的数量下与关掉花瓣相比帧率几乎没有差别。
 
+### 活动范围与溪水（2026-10-18）
+
+- 木桥去掉了（`room.tscn` 的 `density_keep` 里 `"bridge": 0.0`；Blender 导出物没动，改回 1 就恢复）。
+- 可活动范围扩大到 `walk_area = Rect2(-11.5, -8, 23, 22)`：左右各宽 2 米，往南一直到溪水中间（z≈14）。四周空气墙按它摆。
+  敌人寻路和刷怪用的 `placement_surface.tres` 范围、镜头跟随范围 `camera_follow_bounds` 同步放大。
+- 地面碰撞是平的，所以角色进溪是“走在水面上”。为了不显得悬空，溪水面抬高 `water_raise_m = 0.25` 米，
+  睡莲（`floating_assets`）一起抬高，水面正好在角色脚下。
+
 ### 性能
 
 RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304×1440）约 70 帧。
@@ -162,7 +170,7 @@ RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304
 
 蓄力移动由 `nodachi_actor_visual.gd` 分层采样：`spine_01` 子树使用现有持刀格挡循环，骨盆和双腿使用相对瞄准方向的八方向走跑。按实际速度同步步频，换方向保留步态相位；停止时回到站立蓄力，释放时从最终混合姿势接原剑气挥刀。`nodachi_clips.tres` 的 `charge_move_blend_sec = 0.12` 控制下肢切换，共用战斗时钟，暂停和冻结时不推进。用户确认保留现用剑气动作 `cast`（原动作 `Nodachi_04_Combo_Attack_01_04`），不采用候选 Wave/Ultimate 动作；候选临时预览已清理，正式 34 段动作库及其导出源保留。
 
-翻滚冲斩源为 `/Game/Nodachi/Animations/Sequence/02_Attack/17_Parry_Counter_Attack/AS_Parry_Counter_L_Seq`，归档 `fbx/roll_slash.fbx` 与 `roll_slash.json`，已合入 GLB 和集成 Blender。提前点击先按玩法时钟以 3 倍速度继续采样原方向翻滚，推进到约 83% 的落地姿势后才切冲斩，避免从倒立姿势硬混到举刀。`nodachi_clips.tres` 的 `roll_attack_*` 配置落地过渡：下肢/骨盆 0.06 秒、spine_01 子树 0.05 秒、朝向 0.06 秒；转向也从落地开始，并随施放时钟暂停。挥砍采样源 0–0.266667 秒，原生刀骨跟随手臂。挥砍结束即释放控制，通过 `roll_attack_exit_blend_sec = 0.08` 混入走跑/待机，不再播放锁移动的收招段。UE 的运行时混合节点不会随 FBX 导出，这些过渡由 Godot 采样器完成。
+翻滚冲斩源为 `/Game/Nodachi/Animations/Sequence/02_Attack/17_Parry_Counter_Attack/AS_Parry_Counter_L_Seq`，归档 `fbx/roll_slash.fbx` 与 `roll_slash.json`，已合入 GLB 和集成 Blender。提前点击先按玩法时钟以 3 倍速度继续采样原方向翻滚，推进到约 83% 的落地姿势后才切冲斩，避免从倒立姿势硬混到举刀。`nodachi_clips.tres` 的 `roll_attack_*` 配置落地过渡：下肢/骨盆 0.06 秒、spine_01 子树 0.05 秒、朝向 0.06 秒；转向也从落地开始，并随施放时钟暂停。挥砍采样源 0–0.266667 秒，原生刀骨跟随手臂。零收招动作的末次判定帧保持挥砍终点；已排队的普攻下一帧通过现有 `attack_blend_sec = 0.06` 直接混入，不闪回待机/走跑。没有接招时，通过 `roll_attack_exit_blend_sec = 0.08` 混入走跑/待机，不再播放锁移动的收招段。UE 的运行时混合节点不会随 FBX 导出，这些过渡由 Godot 采样器完成。
 
 旧 Quaternius 主角生成模型/贴图、映射、脚本、Blender 文件已删除；通用下载库保留但不再用于主角。替换前恢复点为 **b878540**。店铺小熊猫与敌人资源继续保留。
 

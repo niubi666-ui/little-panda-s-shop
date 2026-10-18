@@ -110,14 +110,16 @@ func refresh_actor(actor, delta: float) -> void:
 			looping = true
 			rate = _move_rate(speed, clip) if clip != clip_set.idle else 1.0
 			blend = clip_set.blend_sec
-	elif actor.runner.busy():
+	elif actor.runner.busy() or actor.runner.active_this_step:
 		clip = _attack_clip(actor)
 		var cuts: Vector2 = clip_set.attack_cuts[clip] if clip_set.attack_cuts.has(clip) else Vector2.ZERO
 		var ability = actor.runner.ability
 		var elapsed: float = actor.runner.elapsed
 		if _has(clip):
 			var shape: Vector4 = clip_set.attack_shapes[clip] if clip_set.attack_shapes.has(clip) else Vector4(1, 1, 1, 0)
-			match actor.runner.phase():
+			# 零收招动作结束的本帧仍在结算末次命中，显示挥砍终点，下一帧直接混入下一招。
+			var phase: String = actor.runner.phase() if actor.runner.busy() else "active"
+			match phase:
 				"windup":
 					var progress := clampf(elapsed / maxf(ability.windup, 0.001), 0.0, 1.0)
 					# 快速拧到蓄力姿势，在顶点憋住

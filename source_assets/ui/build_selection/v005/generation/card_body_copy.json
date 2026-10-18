@@ -1,0 +1,206 @@
+{
+  "power": [
+    "强化普攻、重击与剑气。\n派生伤害不会重复放大。",
+    "Strengthens primary, heavy and wave attacks.\nDerived hits are not amplified twice."
+  ],
+  "agility": [
+    "提升普通移动速度。\n不改变闪避速度。",
+    "Move faster between attacks.\nDodge speed is unchanged."
+  ],
+  "wave": [
+    "普攻挥空也会发出剑气。\n命中目标或墙体后消失。",
+    "Primary attacks launch a wave even on a miss.\nIt ends on contact with a target or wall."
+  ],
+  "chain": [
+    "命中后跳向附近敌人。\n每跳保留 {falloff_percent}% 伤害。",
+    "Hits jump to nearby foes.\nEach jump retains {falloff_percent}% damage."
+  ],
+  "split": [
+    "投射物接敌后分裂。\n子体造成 {damage_percent}% 伤害。",
+    "Projectiles split on enemy contact.\nChildren deal {damage_percent}% damage."
+  ],
+  "impact_blast": [
+    "接敌触发衰减范围爆炸。\n直击目标不重复承受爆炸。",
+    "Contact creates a falling-off area blast.\nThe direct target is not hit twice."
+  ],
+  "contact_slow": [
+    "命中施加减速，持续 {duration_sec} 秒。\n重复命中保留较长剩余时间。",
+    "Hits slow for {duration_sec} s.\nReapplying retains the longer time."
+  ],
+  "contact_freeze": [
+    "直接接触的敌人被冻住。\n解冻后获得短暂抗冻。",
+    "Directly contacted foes freeze.\nThawing grants brief freeze resistance."
+  ],
+  "freeze_duration": [
+    "延长这个动作施加的冻结。\n需要同一动作具备冻结能力。",
+    "Extends this action's freezes.\nThis action must already be able to freeze."
+  ],
+  "pierce": [
+    "直线剑气连续穿过敌人。\n与同动作的分裂互斥。",
+    "Linear waves pass through several foes.\nExclusive with Split on the same action."
+  ],
+  "frost_blast": [
+    "兼容爆炸对范围内敌人施加冻结。\n需要命中爆炸。",
+    "Compatible blasts freeze nearby foes.\nRequires Impact Blast."
+  ],
+  "action_power": [
+    "强化绑定动作的攻击伤害。\n与全局增伤共同生效。",
+    "Strengthens the bound action.\nCombines with global damage bonuses."
+  ],
+  "shatter_followup": [
+    "追击较早一次剑气建立的冻结窗口。\n同一发剑气不能触发自身追击。",
+    "Punish a frost window from an earlier wave.\nA wave cannot enable its own follow-up."
+  ],
+  "opening_strike": [
+    "普攻追击另一动作建立的冻结窗口。\n强化直击，不消耗冻结。",
+    "Primary punishes a frost window from another action.\nBoosts direct hits without consuming freeze."
+  ],
+  "returning_wave": [
+    "剑气到达射程或命中后折返。\n回程可再次命中，墙体仍会阻挡。",
+    "Waves return after reaching range or hitting.\nThe return can hit again; walls still block it."
+  ],
+  "charged_wave": [
+    "按住右键 {threshold_sec} 秒后松开。\n蓄满释放宽阔月牙，冷却 ×{cooldown_ratio}。",
+    "Hold RMB for {threshold_sec} s, then release.\nA charged wide crescent has ×{cooldown_ratio} cooldown."
+  ],
+  "shatter_heavy": [
+    "重击消费已有的冻结窗口。\n强化这次打击，随后进入抗冻。",
+    "Heavy attacks consume a prior frost window.\nThe stronger hit is followed by freeze resistance."
+  ],
+  "frost_path": [
+    "需要剑气具备冻结能力。\n沿途留下减速霜径，不冻结敌人。",
+    "Requires a wave capable of freezing.\nLeaves a slowing trail; the trail never freezes."
+  ],
+  "ice_coat": [
+    "剑气成功建立冻结窗口时获得护盾。\n持续 {duration_sec} 秒，触发间隔 {trigger_cooldown_sec} 秒。",
+    "Gain a shield when a wave creates a frost window.\nLasts {duration_sec} s; triggers every {trigger_cooldown_sec} s."
+  ],
+  "fire_core": [
+    "命中附加 {stacks_per_hit} 层灼烧。\n持续造成火焰伤害。",
+    "Hits apply {stacks_per_hit} burn stack(s).\nBurn deals damage over time."
+  ],
+  "ice_core": [
+    "命中附加 {stacks_per_hit} 层冰寒。\n满层冻结；Boss 改为强减速。",
+    "Hits apply {stacks_per_hit} chill stack(s).\nFull stacks freeze, or strongly slow bosses."
+  ],
+  "thunder_core": [
+    "命中附加感电。\n再次命中时，电弧伤及附近敌人。",
+    "Hits apply shock.\nThe next hit discharges into nearby foes."
+  ],
+  "earth_core": [
+    "命中附加 {stacks_per_hit} 层碎甲。\n提高承受伤害，更快打破霸体。",
+    "Hits apply {stacks_per_hit} fracture stack(s).\nFoes take more damage and lose guard faster."
+  ],
+  "fire_kindling": [
+    "提高每层灼烧的持续伤害。\n让留下的余烬继续灼痛敌人。",
+    "Each burn stack deals more damage over time.\nEmbers keep hurting foes."
+  ],
+  "fire_blaze": [
+    "提高灼烧可叠加的层数。\n连续命中积累更猛烈的火势。",
+    "Raises the burn stack limit.\nRepeated hits build a stronger blaze."
+  ],
+  "fire_linger": [
+    "延长灼烧的持续时间。\n离开近战范围后仍能造成伤害。",
+    "Burn remains active longer.\nDamage continues after you move away."
+  ],
+  "ice_deep": [
+    "更少的冰寒层数即可冻结。\n更快建立控制窗口。",
+    "Fewer chill stacks are needed to freeze.\nCreate frost windows sooner."
+  ],
+  "ice_lasting": [
+    "延长冰寒状态的持续时间。\n减速与叠层更容易衔接。",
+    "Chill lasts longer.\nKeep the slow and build stacks more easily."
+  ],
+  "ice_brittle": [
+    "冰寒每层提供额外易伤。\n趁寒意尚在持续进攻。",
+    "Every chill stack adds vulnerability.\nPress the attack while chill lasts."
+  ],
+  "thunder_chain": [
+    "感电放电波及更多敌人。\n适合应对密集的敌群。",
+    "Discharge can reach more foes.\nUseful against clustered enemies."
+  ],
+  "thunder_surge": [
+    "提高感电放电的伤害。\n下一次命中引出更强电弧。",
+    "Increases shock discharge damage.\nThe next hit triggers stronger arcs."
+  ],
+  "thunder_reach": [
+    "扩大感电放电的传导距离。\n连接站得更远的敌人。",
+    "Discharge arcs travel farther.\nConnect enemies spread farther apart."
+  ],
+  "earth_crush": [
+    "每层碎甲提供额外易伤。\n趁护甲破裂继续输出。",
+    "Every fracture stack adds vulnerability.\nExploit broken defenses."
+  ],
+  "earth_quake": [
+    "土元素命中造成额外破防。\n更快击破重装敌人的霸体。",
+    "Earth hits deal extra guard damage.\nBreak armored foes' guard sooner."
+  ],
+  "earth_layers": [
+    "提高碎甲的最大叠层。\n让易伤效果进一步累积。",
+    "Raises the fracture stack limit.\nBuild additional vulnerability."
+  ],
+  "dual_steam": [
+    "需要同时拥有火与冰。\n强化两种元素交汇的蒸腾反应。",
+    "Requires both fire and ice.\nStrengthens their steam reaction."
+  ],
+  "dual_overload": [
+    "需要同时拥有火与雷。\n强化过载，范围 +{radius_bonus_m} 米。",
+    "Requires both fire and lightning.\nOverload also gains {radius_bonus_m} m radius."
+  ],
+  "dual_lava": [
+    "需要同时拥有火与土。\n强化熔岩，范围 +{radius_bonus_m} 米。",
+    "Requires both fire and earth.\nLava also gains {radius_bonus_m} m radius."
+  ],
+  "dual_superconduct": [
+    "需要同时拥有冰与雷。\n强化超导，范围 +{radius_bonus_m} 米。",
+    "Requires both ice and lightning.\nSuperconduct gains {radius_bonus_m} m radius."
+  ],
+  "dual_shatter": [
+    "先建立冻结窗口，再以土命中。\n强化碎冰，范围 +{radius_bonus_m} 米。",
+    "Freeze first, then strike with earth.\nShatter also gains {radius_bonus_m} m radius."
+  ],
+  "dual_magnet": [
+    "需要同时拥有雷与土。\n强化磁暴，吸附范围 +{radius_bonus_m} 米。",
+    "Requires both lightning and earth.\nMagnet pull gains {radius_bonus_m} m radius."
+  ],
+  "fire_mastery_burst": [
+    "需要两个按键带火。\n灼烧叠满时引爆，并向周围传播。",
+    "Requires fire on two actions.\nFull burn stacks explode and spread burn."
+  ],
+  "fire_mastery_heat": [
+    "需要两个按键带火。\n进一步强化每层灼烧伤害。",
+    "Requires fire on two actions.\nFurther strengthens damage per burn stack."
+  ],
+  "ice_mastery_burst": [
+    "需要两个按键带冰。\n冻住敌人时迸出冰片并传播冰寒。",
+    "Requires ice on two actions.\nFreezing bursts into shards and spreads chill."
+  ],
+  "ice_mastery_cold": [
+    "需要两个按键带冰。\n进一步强化冰寒带来的易伤。",
+    "Requires ice on two actions.\nFurther strengthens chill vulnerability."
+  ],
+  "thunder_mastery_burst": [
+    "需要两个按键带雷。\n放电扩散伤害，并为周围敌人感电。",
+    "Requires lightning on two actions.\nDischarge spreads damage and shock."
+  ],
+  "thunder_mastery_storm": [
+    "需要两个按键带雷。\n进一步强化感电放电伤害。",
+    "Requires lightning on two actions.\nFurther strengthens discharge damage."
+  ],
+  "earth_mastery_burst": [
+    "需要两个按键带土。\n碎甲叠满时地裂，并向周围传播碎甲。",
+    "Requires earth on two actions.\nFull fracture stacks rupture and spread fracture."
+  ],
+  "earth_mastery_weight": [
+    "需要两个按键带土。\n进一步强化碎甲带来的易伤。",
+    "Requires earth on two actions.\nFurther strengthens fracture vulnerability."
+  ],
+  "primary_reach": [
+    "扩大左键普攻的打击范围。\n便于保持距离并追击敌人。",
+    "Extends the reach of primary attacks.\nKeep your distance while striking."
+  ],
+  "special_reach": [
+    "扩大 R 键重击的打击范围。\n宽阔横扫覆盖更多敌人。",
+    "Extends the reach of heavy attacks.\nA wider sweep covers more enemies."
+  ]
+}

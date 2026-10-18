@@ -122,6 +122,8 @@ func _age_attack_intent(delta: float) -> void:
 	if _queued_action.is_empty(): return
 	# 翻滚中按下的技能保留到翻滚结束，之后才消耗通常的预输入窗口。
 	if _queued_action == "skill" and dodge_left > 0.0: return
+	# 冲斩途中点下的下一刀保留到完整挥砍结束；末次扫掠结算后再接普攻。
+	if _queued_action == "primary" and is_roll_attack_cast() and (runner.busy() or runner.active_this_step): return
 	_buffer_left = maxf(0.0, _buffer_left - delta)
 	if _buffer_left <= 0.0:
 		# 若这一帧刚完成上一招的末次判定，留到下帧接招，避免清掉有效输入或吞掉旧判定。

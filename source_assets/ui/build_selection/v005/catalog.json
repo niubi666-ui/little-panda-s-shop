@@ -1,0 +1,515 @@
+{
+  "cards": [
+    {
+      "id": "power",
+      "name_key": "build.card.name.power",
+      "description_key": "build.test.power.description",
+      "rarity": "common",
+      "category": "martial",
+      "enabled_in_pool": true,
+      "image": "illustrations/martial/power.png",
+      "ranks": 3
+    },
+    {
+      "id": "agility",
+      "name_key": "build.card.name.agility",
+      "description_key": "build.test.agility.description",
+      "rarity": "common",
+      "category": "martial",
+      "enabled_in_pool": true,
+      "image": "illustrations/martial/agility.png",
+      "ranks": 3
+    },
+    {
+      "id": "wave",
+      "name_key": "build.card.name.wave",
+      "description_key": "build.test.wave.description",
+      "rarity": "common",
+      "category": "training_legacy",
+      "enabled_in_pool": false,
+      "image": "illustrations/training_legacy/wave.png",
+      "ranks": 3
+    },
+    {
+      "id": "chain",
+      "name_key": "build.card.name.chain",
+      "description_key": "build.test.chain.description",
+      "rarity": "common",
+      "category": "training_legacy",
+      "enabled_in_pool": false,
+      "image": "illustrations/training_legacy/chain.png",
+      "ranks": 3
+    },
+    {
+      "id": "split",
+      "name_key": "build.card.name.split",
+      "description_key": "build.test.split.description",
+      "rarity": "rare",
+      "category": "martial",
+      "enabled_in_pool": true,
+      "image": "illustrations/martial/split.png",
+      "ranks": 2
+    },
+    {
+      "id": "impact_blast",
+      "name_key": "build.card.name.impact_blast",
+      "description_key": "build.test.blast.description",
+      "rarity": "rare",
+      "category": "martial",
+      "enabled_in_pool": true,
+      "image": "illustrations/martial/impact_blast.png",
+      "ranks": 1
+    },
+    {
+      "id": "contact_slow",
+      "name_key": "build.card.name.contact_slow",
+      "description_key": "build.test.contact_slow.description",
+      "rarity": "common",
+      "category": "training_legacy",
+      "enabled_in_pool": false,
+      "image": "illustrations/training_legacy/contact_slow.png",
+      "ranks": 1
+    },
+    {
+      "id": "contact_freeze",
+      "name_key": "build.card.name.contact_freeze",
+      "description_key": "build.test.contact_freeze.description",
+      "rarity": "rare",
+      "category": "training_legacy",
+      "enabled_in_pool": false,
+      "image": "illustrations/training_legacy/contact_freeze.png",
+      "ranks": 1
+    },
+    {
+      "id": "freeze_duration",
+      "name_key": "build.card.name.freeze_duration",
+      "description_key": "build.test.freeze_duration.description",
+      "rarity": "rare",
+      "category": "training_legacy",
+      "enabled_in_pool": false,
+      "image": "illustrations/training_legacy/freeze_duration.png",
+      "ranks": 1
+    },
+    {
+      "id": "pierce",
+      "name_key": "build.pierce.name",
+      "description_key": "build.pierce.description",
+      "rarity": "rare",
+      "category": "martial",
+      "enabled_in_pool": true,
+      "image": "illustrations/martial/pierce.png",
+      "ranks": 1
+    },
+    {
+      "id": "frost_blast",
+      "name_key": "build.frost_blast.name",
+      "description_key": "build.frost_blast.description",
+      "rarity": "epic",
+      "category": "training_legacy",
+      "enabled_in_pool": false,
+      "image": "illustrations/training_legacy/frost_blast.png",
+      "ranks": 1
+    },
+    {
+      "id": "action_power",
+      "name_key": "build.action_power.name",
+      "description_key": "build.action_power.description",
+      "rarity": "common",
+      "category": "martial",
+      "enabled_in_pool": true,
+      "image": "illustrations/martial/action_power.png",
+      "ranks": 3
+    },
+    {
+      "id": "shatter_followup",
+      "name_key": "build.shatter_followup.name",
+      "description_key": "build.shatter_followup.description",
+      "rarity": "rare",
+      "category": "ice",
+      "enabled_in_pool": true,
+      "image": "illustrations/ice/shatter_followup.png",
+      "ranks": 1
+    },
+    {
+      "id": "opening_strike",
+      "name_key": "build.opening_strike.name",
+      "description_key": "build.opening_strike.description",
+      "rarity": "epic",
+      "category": "ice",
+      "enabled_in_pool": true,
+      "image": "illustrations/ice/opening_strike.png",
+      "ranks": 1
+    },
+    {
+      "id": "returning_wave",
+      "name_key": "build.frost.returning_wave.name",
+      "description_key": "build.frost.returning_wave.description",
+      "rarity": "epic",
+      "category": "martial",
+      "enabled_in_pool": true,
+      "image": "illustrations/martial/returning_wave.png",
+      "ranks": 1
+    },
+    {
+      "id": "charged_wave",
+      "name_key": "build.frost.charged_wave.name",
+      "description_key": "build.frost.charged_wave.description",
+      "rarity": "epic",
+      "category": "martial",
+      "enabled_in_pool": true,
+      "image": "illustrations/martial/charged_wave.png",
+      "ranks": 1
+    },
+    {
+      "id": "shatter_heavy",
+      "name_key": "build.frost.shatter_heavy.name",
+      "description_key": "build.frost.shatter_heavy.description",
+      "rarity": "epic",
+      "category": "training_legacy",
+      "enabled_in_pool": false,
+      "image": "illustrations/training_legacy/shatter_heavy.png",
+      "ranks": 1
+    },
+    {
+      "id": "frost_path",
+      "name_key": "build.frost.frost_path.name",
+      "description_key": "build.frost.frost_path.description",
+      "rarity": "rare",
+      "category": "ice",
+      "enabled_in_pool": true,
+      "image": "illustrations/ice/frost_path.png",
+      "ranks": 1
+    },
+    {
+      "id": "ice_coat",
+      "name_key": "build.frost.ice_coat.name",
+      "description_key": "build.frost.ice_coat.description",
+      "rarity": "rare",
+      "category": "ice",
+      "enabled_in_pool": true,
+      "image": "illustrations/ice/ice_coat.png",
+      "ranks": 1
+    },
+    {
+      "id": "fire_core",
+      "name_key": "build.element.fire.name",
+      "description_key": "build.element.fire.description",
+      "rarity": "common",
+      "category": "fire",
+      "enabled_in_pool": true,
+      "image": "illustrations/fire/fire_core.png",
+      "ranks": 2
+    },
+    {
+      "id": "ice_core",
+      "name_key": "build.element.ice.name",
+      "description_key": "build.element.ice.description",
+      "rarity": "common",
+      "category": "ice",
+      "enabled_in_pool": true,
+      "image": "illustrations/ice/ice_core.png",
+      "ranks": 2
+    },
+    {
+      "id": "thunder_core",
+      "name_key": "build.element.thunder.name",
+      "description_key": "build.element.thunder.description",
+      "rarity": "common",
+      "category": "thunder",
+      "enabled_in_pool": true,
+      "image": "illustrations/thunder/thunder_core.png",
+      "ranks": 2
+    },
+    {
+      "id": "earth_core",
+      "name_key": "build.element.earth.name",
+      "description_key": "build.element.earth.description",
+      "rarity": "common",
+      "category": "earth",
+      "enabled_in_pool": true,
+      "image": "illustrations/earth/earth_core.png",
+      "ranks": 2
+    },
+    {
+      "id": "fire_kindling",
+      "name_key": "build.element_boost.fire_kindling.name",
+      "description_key": "build.element_boost.fire_kindling.description",
+      "rarity": "rare",
+      "category": "fire",
+      "enabled_in_pool": true,
+      "image": "illustrations/fire/fire_kindling.png",
+      "ranks": 2
+    },
+    {
+      "id": "fire_blaze",
+      "name_key": "build.element_boost.fire_blaze.name",
+      "description_key": "build.element_boost.fire_blaze.description",
+      "rarity": "rare",
+      "category": "fire",
+      "enabled_in_pool": true,
+      "image": "illustrations/fire/fire_blaze.png",
+      "ranks": 2
+    },
+    {
+      "id": "fire_linger",
+      "name_key": "build.element_boost.fire_linger.name",
+      "description_key": "build.element_boost.fire_linger.description",
+      "rarity": "rare",
+      "category": "fire",
+      "enabled_in_pool": true,
+      "image": "illustrations/fire/fire_linger.png",
+      "ranks": 2
+    },
+    {
+      "id": "ice_deep",
+      "name_key": "build.element_boost.ice_deep.name",
+      "description_key": "build.element_boost.ice_deep.description",
+      "rarity": "rare",
+      "category": "ice",
+      "enabled_in_pool": true,
+      "image": "illustrations/ice/ice_deep.png",
+      "ranks": 1
+    },
+    {
+      "id": "ice_lasting",
+      "name_key": "build.element_boost.ice_lasting.name",
+      "description_key": "build.element_boost.ice_lasting.description",
+      "rarity": "rare",
+      "category": "ice",
+      "enabled_in_pool": true,
+      "image": "illustrations/ice/ice_lasting.png",
+      "ranks": 2
+    },
+    {
+      "id": "ice_brittle",
+      "name_key": "build.element_boost.ice_brittle.name",
+      "description_key": "build.element_boost.ice_brittle.description",
+      "rarity": "rare",
+      "category": "ice",
+      "enabled_in_pool": true,
+      "image": "illustrations/ice/ice_brittle.png",
+      "ranks": 2
+    },
+    {
+      "id": "thunder_chain",
+      "name_key": "build.element_boost.thunder_chain.name",
+      "description_key": "build.element_boost.thunder_chain.description",
+      "rarity": "rare",
+      "category": "thunder",
+      "enabled_in_pool": true,
+      "image": "illustrations/thunder/thunder_chain.png",
+      "ranks": 2
+    },
+    {
+      "id": "thunder_surge",
+      "name_key": "build.element_boost.thunder_surge.name",
+      "description_key": "build.element_boost.thunder_surge.description",
+      "rarity": "rare",
+      "category": "thunder",
+      "enabled_in_pool": true,
+      "image": "illustrations/thunder/thunder_surge.png",
+      "ranks": 2
+    },
+    {
+      "id": "thunder_reach",
+      "name_key": "build.element_boost.thunder_reach.name",
+      "description_key": "build.element_boost.thunder_reach.description",
+      "rarity": "rare",
+      "category": "thunder",
+      "enabled_in_pool": true,
+      "image": "illustrations/thunder/thunder_reach.png",
+      "ranks": 2
+    },
+    {
+      "id": "earth_crush",
+      "name_key": "build.element_boost.earth_crush.name",
+      "description_key": "build.element_boost.earth_crush.description",
+      "rarity": "rare",
+      "category": "earth",
+      "enabled_in_pool": true,
+      "image": "illustrations/earth/earth_crush.png",
+      "ranks": 2
+    },
+    {
+      "id": "earth_quake",
+      "name_key": "build.element_boost.earth_quake.name",
+      "description_key": "build.element_boost.earth_quake.description",
+      "rarity": "rare",
+      "category": "earth",
+      "enabled_in_pool": true,
+      "image": "illustrations/earth/earth_quake.png",
+      "ranks": 2
+    },
+    {
+      "id": "earth_layers",
+      "name_key": "build.element_boost.earth_layers.name",
+      "description_key": "build.element_boost.earth_layers.description",
+      "rarity": "rare",
+      "category": "earth",
+      "enabled_in_pool": true,
+      "image": "illustrations/earth/earth_layers.png",
+      "ranks": 2
+    },
+    {
+      "id": "dual_steam",
+      "name_key": "build.element_boost.dual_steam.name",
+      "description_key": "build.element_boost.dual_steam.description",
+      "rarity": "epic",
+      "category": "reactions",
+      "enabled_in_pool": true,
+      "image": "illustrations/reactions/dual_steam.png",
+      "ranks": 1
+    },
+    {
+      "id": "dual_overload",
+      "name_key": "build.element_boost.dual_overload.name",
+      "description_key": "build.element_boost.dual_overload.description",
+      "rarity": "epic",
+      "category": "reactions",
+      "enabled_in_pool": true,
+      "image": "illustrations/reactions/dual_overload.png",
+      "ranks": 1
+    },
+    {
+      "id": "dual_lava",
+      "name_key": "build.element_boost.dual_lava.name",
+      "description_key": "build.element_boost.dual_lava.description",
+      "rarity": "epic",
+      "category": "reactions",
+      "enabled_in_pool": true,
+      "image": "illustrations/reactions/dual_lava.png",
+      "ranks": 1
+    },
+    {
+      "id": "dual_superconduct",
+      "name_key": "build.element_boost.dual_superconduct.name",
+      "description_key": "build.element_boost.dual_superconduct.description",
+      "rarity": "epic",
+      "category": "reactions",
+      "enabled_in_pool": true,
+      "image": "illustrations/reactions/dual_superconduct.png",
+      "ranks": 1
+    },
+    {
+      "id": "dual_shatter",
+      "name_key": "build.element_boost.dual_shatter.name",
+      "description_key": "build.element_boost.dual_shatter.description",
+      "rarity": "epic",
+      "category": "reactions",
+      "enabled_in_pool": true,
+      "image": "illustrations/reactions/dual_shatter.png",
+      "ranks": 1
+    },
+    {
+      "id": "dual_magnet",
+      "name_key": "build.element_boost.dual_magnet.name",
+      "description_key": "build.element_boost.dual_magnet.description",
+      "rarity": "epic",
+      "category": "reactions",
+      "enabled_in_pool": true,
+      "image": "illustrations/reactions/dual_magnet.png",
+      "ranks": 1
+    },
+    {
+      "id": "fire_mastery_burst",
+      "name_key": "build.mastery.fire_burst.name",
+      "description_key": "build.mastery.fire_burst.description",
+      "rarity": "epic",
+      "category": "fire",
+      "enabled_in_pool": true,
+      "image": "illustrations/fire/fire_mastery_burst.png",
+      "ranks": 2
+    },
+    {
+      "id": "fire_mastery_heat",
+      "name_key": "build.mastery.fire_heat.name",
+      "description_key": "build.mastery.fire_heat.description",
+      "rarity": "rare",
+      "category": "fire",
+      "enabled_in_pool": true,
+      "image": "illustrations/fire/fire_mastery_heat.png",
+      "ranks": 2
+    },
+    {
+      "id": "ice_mastery_burst",
+      "name_key": "build.mastery.ice_burst.name",
+      "description_key": "build.mastery.ice_burst.description",
+      "rarity": "epic",
+      "category": "ice",
+      "enabled_in_pool": true,
+      "image": "illustrations/ice/ice_mastery_burst.png",
+      "ranks": 2
+    },
+    {
+      "id": "ice_mastery_cold",
+      "name_key": "build.mastery.ice_cold.name",
+      "description_key": "build.mastery.ice_cold.description",
+      "rarity": "rare",
+      "category": "ice",
+      "enabled_in_pool": true,
+      "image": "illustrations/ice/ice_mastery_cold.png",
+      "ranks": 2
+    },
+    {
+      "id": "thunder_mastery_burst",
+      "name_key": "build.mastery.thunder_burst.name",
+      "description_key": "build.mastery.thunder_burst.description",
+      "rarity": "epic",
+      "category": "thunder",
+      "enabled_in_pool": true,
+      "image": "illustrations/thunder/thunder_mastery_burst.png",
+      "ranks": 2
+    },
+    {
+      "id": "thunder_mastery_storm",
+      "name_key": "build.mastery.thunder_storm.name",
+      "description_key": "build.mastery.thunder_storm.description",
+      "rarity": "rare",
+      "category": "thunder",
+      "enabled_in_pool": true,
+      "image": "illustrations/thunder/thunder_mastery_storm.png",
+      "ranks": 2
+    },
+    {
+      "id": "earth_mastery_burst",
+      "name_key": "build.mastery.earth_burst.name",
+      "description_key": "build.mastery.earth_burst.description",
+      "rarity": "epic",
+      "category": "earth",
+      "enabled_in_pool": true,
+      "image": "illustrations/earth/earth_mastery_burst.png",
+      "ranks": 2
+    },
+    {
+      "id": "earth_mastery_weight",
+      "name_key": "build.mastery.earth_weight.name",
+      "description_key": "build.mastery.earth_weight.description",
+      "rarity": "rare",
+      "category": "earth",
+      "enabled_in_pool": true,
+      "image": "illustrations/earth/earth_mastery_weight.png",
+      "ranks": 2
+    },
+    {
+      "id": "primary_reach",
+      "name_key": "build.reach.primary.name",
+      "description_key": "build.reach.primary.description",
+      "rarity": "common",
+      "category": "martial",
+      "enabled_in_pool": true,
+      "image": "illustrations/martial/primary_reach.png",
+      "ranks": 2
+    },
+    {
+      "id": "special_reach",
+      "name_key": "build.reach.special.name",
+      "description_key": "build.reach.special.description",
+      "rarity": "common",
+      "category": "martial",
+      "enabled_in_pool": true,
+      "image": "illustrations/martial/special_reach.png",
+      "ranks": 2
+    }
+  ],
+  "count": 51
+}

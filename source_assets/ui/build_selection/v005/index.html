@@ -1,0 +1,98 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>林庭秘契 · 全卡牌原画与独立组件</title>
+<style>
+*{box-sizing:border-box}body{margin:0;color:#e7e7d3;background:#091612;font:16px/1.75 system-ui}
+main{max-width:1500px;padding:32px;margin:auto}h1,h2{font-family:serif;font-weight:500}h1{font-size:34px}
+p{color:#afc3b1}a{color:#e5c17c}nav{position:sticky;top:0;background:#0c201aee;padding:12px;z-index:2;display:flex;gap:20px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.item{background:#10231b;border:1px solid #324333;border-radius:10px;overflow:hidden}
+.item img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}.meta{padding:12px 18px}.meta h3{margin:0;font-weight:500}
+code{font-size:12px;color:#9aa99e}.tag{font-size:12px;padding:2px 8px;border:1px solid #566d57;border-radius:20px;margin-left:8px}
+.common{color:#dbe5d5}.rare{color:#75c7ff}.epic{color:#ce9cff}.legendary{color:#fbb55b}
+section{padding-top:24px;scroll-margin-top:60px}.full{width:100%;border-radius:10px}.layers{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.layers figure{margin:0}.checker{background:repeating-conic-gradient(#20382b 0 25%,#122319 0 50%) 50%/24px 24px}
+.layers img{display:block;width:100%;height:300px;object-fit:contain}.layers figcaption{text-align:center}
+details{border:1px solid #38533d;padding:12px;border-radius:8px;margin:20px 0}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.layers{grid-template-columns:repeat(3,1fr)}main{padding:16px}}
+</style><main><h1>林庭秘契 · 全卡牌原画</h1><p>51 张独立原画 · 4 档透明边框 · 1 张独立植物装饰 · 游戏动态文字</p>
+<p>原画按能力分类，品质由选卡数据决定。升级复用原画，卡名、等级、收益与完整规则实时读取配置。</p>
+<nav><a href="#runtime">游戏实装</a><a href="#layers">独立组件</a>
+<a href="#martial">武技与通用强化</a>
+<a href="#fire">火元素</a>
+<a href="#ice">冰元素与冰协同</a>
+<a href="#thunder">雷元素</a>
+<a href="#earth">土元素</a>
+<a href="#reactions">双元素反应</a>
+<a href="#training_legacy">训练与旧版卡</a>
+</nav><section id="runtime"><h2>Godot 实际界面</h2><img class="full" src="previews/cards_zh_CN_final.png" alt="中文三选一实际截图"><details><summary>英文与游戏实景</summary><img class="full" src="previews/cards_en_final.png"><img class="full" src="previews/in_game_awakening_final.png"><img class="full" src="previews/in_game_reward_final.png"></details><p><a href="previews/validation.json">界面验证报告</a> · <a href="README.txt">替换与归档说明</a> · <a href="generation/prompts_and_sources.json">生成提示词、来源与文件校验</a></p></section>
+<section id="layers"><h2>组件分层</h2><p>下方 PNG 均为透明图层。边框不包含卡名、效果文案或原画；植物装饰可单独隐藏或替换。</p><div class="layers">
+<figure><a href="frames/common.png"><img class="checker" src="frames/common.png"></a><figcaption class="common">普通边框</figcaption></figure>
+<figure><a href="frames/rare.png"><img class="checker" src="frames/rare.png"></a><figcaption class="rare">稀有边框</figcaption></figure>
+<figure><a href="frames/epic.png"><img class="checker" src="frames/epic.png"></a><figcaption class="epic">史诗边框</figcaption></figure>
+<figure><a href="frames/legendary.png"><img class="checker" src="frames/legendary.png"></a><figcaption class="legendary">传说边框</figcaption></figure>
+<figure><a href="ornaments/botanical_body.png"><img class="checker" src="ornaments/botanical_body.png"></a><figcaption>正文植物装饰</figcaption></figure></div></section>
+<section id="martial"><h2>武技与通用强化 · 10 张</h2><div class="grid">
+<article class="item"><a href="illustrations/martial/power.png"><img loading="lazy" src="illustrations/martial/power.png" alt="锋刃强化"></a><div class="meta"><h3>锋刃强化<span class="tag common">普通</span></h3><code>power</code></div></article>
+<article class="item"><a href="illustrations/martial/agility.png"><img loading="lazy" src="illustrations/martial/agility.png" alt="轻盈步伐"></a><div class="meta"><h3>轻盈步伐<span class="tag common">普通</span></h3><code>agility</code></div></article>
+<article class="item"><a href="illustrations/martial/split.png"><img loading="lazy" src="illustrations/martial/split.png" alt="投射物分裂"></a><div class="meta"><h3>投射物分裂<span class="tag rare">稀有</span></h3><code>split</code></div></article>
+<article class="item"><a href="illustrations/martial/impact_blast.png"><img loading="lazy" src="illustrations/martial/impact_blast.png" alt="命中爆炸"></a><div class="meta"><h3>命中爆炸<span class="tag rare">稀有</span></h3><code>impact_blast</code></div></article>
+<article class="item"><a href="illustrations/martial/pierce.png"><img loading="lazy" src="illustrations/martial/pierce.png" alt="穿透"></a><div class="meta"><h3>穿透<span class="tag rare">稀有</span></h3><code>pierce</code></div></article>
+<article class="item"><a href="illustrations/martial/action_power.png"><img loading="lazy" src="illustrations/martial/action_power.png" alt="专注锋刃"></a><div class="meta"><h3>专注锋刃<span class="tag common">普通</span></h3><code>action_power</code></div></article>
+<article class="item"><a href="illustrations/martial/returning_wave.png"><img loading="lazy" src="illustrations/martial/returning_wave.png" alt="回锋"></a><div class="meta"><h3>回锋<span class="tag epic">史诗</span></h3><code>returning_wave</code></div></article>
+<article class="item"><a href="illustrations/martial/charged_wave.png"><img loading="lazy" src="illustrations/martial/charged_wave.png" alt="蓄霜"></a><div class="meta"><h3>蓄霜<span class="tag epic">史诗</span></h3><code>charged_wave</code></div></article>
+<article class="item"><a href="illustrations/martial/primary_reach.png"><img loading="lazy" src="illustrations/martial/primary_reach.png" alt="长刃"></a><div class="meta"><h3>长刃<span class="tag common">普通</span></h3><code>primary_reach</code></div></article>
+<article class="item"><a href="illustrations/martial/special_reach.png"><img loading="lazy" src="illustrations/martial/special_reach.png" alt="横扫千军"></a><div class="meta"><h3>横扫千军<span class="tag common">普通</span></h3><code>special_reach</code></div></article>
+</div></section>
+<section id="fire"><h2>火元素 · 6 张</h2><div class="grid">
+<article class="item"><a href="illustrations/fire/fire_core.png"><img loading="lazy" src="illustrations/fire/fire_core.png" alt="火焰附魔"></a><div class="meta"><h3>火焰附魔<span class="tag common">普通</span></h3><code>fire_core</code></div></article>
+<article class="item"><a href="illustrations/fire/fire_kindling.png"><img loading="lazy" src="illustrations/fire/fire_kindling.png" alt="余烬"></a><div class="meta"><h3>余烬<span class="tag rare">稀有</span></h3><code>fire_kindling</code></div></article>
+<article class="item"><a href="illustrations/fire/fire_blaze.png"><img loading="lazy" src="illustrations/fire/fire_blaze.png" alt="烈焰"></a><div class="meta"><h3>烈焰<span class="tag rare">稀有</span></h3><code>fire_blaze</code></div></article>
+<article class="item"><a href="illustrations/fire/fire_linger.png"><img loading="lazy" src="illustrations/fire/fire_linger.png" alt="久燃"></a><div class="meta"><h3>久燃<span class="tag rare">稀有</span></h3><code>fire_linger</code></div></article>
+<article class="item"><a href="illustrations/fire/fire_mastery_burst.png"><img loading="lazy" src="illustrations/fire/fire_mastery_burst.png" alt="焚爆（火专精）"></a><div class="meta"><h3>焚爆（火专精）<span class="tag epic">史诗</span></h3><code>fire_mastery_burst</code></div></article>
+<article class="item"><a href="illustrations/fire/fire_mastery_heat.png"><img loading="lazy" src="illustrations/fire/fire_mastery_heat.png" alt="烈焰共鸣（火专精）"></a><div class="meta"><h3>烈焰共鸣（火专精）<span class="tag rare">稀有</span></h3><code>fire_mastery_heat</code></div></article>
+</div></section>
+<section id="ice"><h2>冰元素与冰协同 · 10 张</h2><div class="grid">
+<article class="item"><a href="illustrations/ice/shatter_followup.png"><img loading="lazy" src="illustrations/ice/shatter_followup.png" alt="碎冰追击"></a><div class="meta"><h3>碎冰追击<span class="tag rare">稀有</span></h3><code>shatter_followup</code></div></article>
+<article class="item"><a href="illustrations/ice/opening_strike.png"><img loading="lazy" src="illustrations/ice/opening_strike.png" alt="乘隙斩"></a><div class="meta"><h3>乘隙斩<span class="tag epic">史诗</span></h3><code>opening_strike</code></div></article>
+<article class="item"><a href="illustrations/ice/frost_path.png"><img loading="lazy" src="illustrations/ice/frost_path.png" alt="霜径"></a><div class="meta"><h3>霜径<span class="tag rare">稀有</span></h3><code>frost_path</code></div></article>
+<article class="item"><a href="illustrations/ice/ice_coat.png"><img loading="lazy" src="illustrations/ice/ice_coat.png" alt="冰衣"></a><div class="meta"><h3>冰衣<span class="tag rare">稀有</span></h3><code>ice_coat</code></div></article>
+<article class="item"><a href="illustrations/ice/ice_core.png"><img loading="lazy" src="illustrations/ice/ice_core.png" alt="寒冰附魔"></a><div class="meta"><h3>寒冰附魔<span class="tag common">普通</span></h3><code>ice_core</code></div></article>
+<article class="item"><a href="illustrations/ice/ice_deep.png"><img loading="lazy" src="illustrations/ice/ice_deep.png" alt="深寒"></a><div class="meta"><h3>深寒<span class="tag rare">稀有</span></h3><code>ice_deep</code></div></article>
+<article class="item"><a href="illustrations/ice/ice_lasting.png"><img loading="lazy" src="illustrations/ice/ice_lasting.png" alt="霜重"></a><div class="meta"><h3>霜重<span class="tag rare">稀有</span></h3><code>ice_lasting</code></div></article>
+<article class="item"><a href="illustrations/ice/ice_brittle.png"><img loading="lazy" src="illustrations/ice/ice_brittle.png" alt="脆冰"></a><div class="meta"><h3>脆冰<span class="tag rare">稀有</span></h3><code>ice_brittle</code></div></article>
+<article class="item"><a href="illustrations/ice/ice_mastery_burst.png"><img loading="lazy" src="illustrations/ice/ice_mastery_burst.png" alt="冰爆（冰专精）"></a><div class="meta"><h3>冰爆（冰专精）<span class="tag epic">史诗</span></h3><code>ice_mastery_burst</code></div></article>
+<article class="item"><a href="illustrations/ice/ice_mastery_cold.png"><img loading="lazy" src="illustrations/ice/ice_mastery_cold.png" alt="极寒共鸣（冰专精）"></a><div class="meta"><h3>极寒共鸣（冰专精）<span class="tag rare">稀有</span></h3><code>ice_mastery_cold</code></div></article>
+</div></section>
+<section id="thunder"><h2>雷元素 · 6 张</h2><div class="grid">
+<article class="item"><a href="illustrations/thunder/thunder_core.png"><img loading="lazy" src="illustrations/thunder/thunder_core.png" alt="雷霆附魔"></a><div class="meta"><h3>雷霆附魔<span class="tag common">普通</span></h3><code>thunder_core</code></div></article>
+<article class="item"><a href="illustrations/thunder/thunder_chain.png"><img loading="lazy" src="illustrations/thunder/thunder_chain.png" alt="连环雷"></a><div class="meta"><h3>连环雷<span class="tag rare">稀有</span></h3><code>thunder_chain</code></div></article>
+<article class="item"><a href="illustrations/thunder/thunder_surge.png"><img loading="lazy" src="illustrations/thunder/thunder_surge.png" alt="雷涌"></a><div class="meta"><h3>雷涌<span class="tag rare">稀有</span></h3><code>thunder_surge</code></div></article>
+<article class="item"><a href="illustrations/thunder/thunder_reach.png"><img loading="lazy" src="illustrations/thunder/thunder_reach.png" alt="远雷"></a><div class="meta"><h3>远雷<span class="tag rare">稀有</span></h3><code>thunder_reach</code></div></article>
+<article class="item"><a href="illustrations/thunder/thunder_mastery_burst.png"><img loading="lazy" src="illustrations/thunder/thunder_mastery_burst.png" alt="雷涌（雷专精）"></a><div class="meta"><h3>雷涌（雷专精）<span class="tag epic">史诗</span></h3><code>thunder_mastery_burst</code></div></article>
+<article class="item"><a href="illustrations/thunder/thunder_mastery_storm.png"><img loading="lazy" src="illustrations/thunder/thunder_mastery_storm.png" alt="雷暴共鸣（雷专精）"></a><div class="meta"><h3>雷暴共鸣（雷专精）<span class="tag rare">稀有</span></h3><code>thunder_mastery_storm</code></div></article>
+</div></section>
+<section id="earth"><h2>土元素 · 6 张</h2><div class="grid">
+<article class="item"><a href="illustrations/earth/earth_core.png"><img loading="lazy" src="illustrations/earth/earth_core.png" alt="岩土附魔"></a><div class="meta"><h3>岩土附魔<span class="tag common">普通</span></h3><code>earth_core</code></div></article>
+<article class="item"><a href="illustrations/earth/earth_crush.png"><img loading="lazy" src="illustrations/earth/earth_crush.png" alt="崩岩"></a><div class="meta"><h3>崩岩<span class="tag rare">稀有</span></h3><code>earth_crush</code></div></article>
+<article class="item"><a href="illustrations/earth/earth_quake.png"><img loading="lazy" src="illustrations/earth/earth_quake.png" alt="震地"></a><div class="meta"><h3>震地<span class="tag rare">稀有</span></h3><code>earth_quake</code></div></article>
+<article class="item"><a href="illustrations/earth/earth_layers.png"><img loading="lazy" src="illustrations/earth/earth_layers.png" alt="层岩"></a><div class="meta"><h3>层岩<span class="tag rare">稀有</span></h3><code>earth_layers</code></div></article>
+<article class="item"><a href="illustrations/earth/earth_mastery_burst.png"><img loading="lazy" src="illustrations/earth/earth_mastery_burst.png" alt="地裂（土专精）"></a><div class="meta"><h3>地裂（土专精）<span class="tag epic">史诗</span></h3><code>earth_mastery_burst</code></div></article>
+<article class="item"><a href="illustrations/earth/earth_mastery_weight.png"><img loading="lazy" src="illustrations/earth/earth_mastery_weight.png" alt="山岳共鸣（土专精）"></a><div class="meta"><h3>山岳共鸣（土专精）<span class="tag rare">稀有</span></h3><code>earth_mastery_weight</code></div></article>
+</div></section>
+<section id="reactions"><h2>双元素反应 · 6 张</h2><div class="grid">
+<article class="item"><a href="illustrations/reactions/dual_steam.png"><img loading="lazy" src="illustrations/reactions/dual_steam.png" alt="沸腾"></a><div class="meta"><h3>沸腾<span class="tag epic">史诗</span></h3><code>dual_steam</code></div></article>
+<article class="item"><a href="illustrations/reactions/dual_overload.png"><img loading="lazy" src="illustrations/reactions/dual_overload.png" alt="雷火"></a><div class="meta"><h3>雷火<span class="tag epic">史诗</span></h3><code>dual_overload</code></div></article>
+<article class="item"><a href="illustrations/reactions/dual_lava.png"><img loading="lazy" src="illustrations/reactions/dual_lava.png" alt="地火"></a><div class="meta"><h3>地火<span class="tag epic">史诗</span></h3><code>dual_lava</code></div></article>
+<article class="item"><a href="illustrations/reactions/dual_superconduct.png"><img loading="lazy" src="illustrations/reactions/dual_superconduct.png" alt="冰雷"></a><div class="meta"><h3>冰雷<span class="tag epic">史诗</span></h3><code>dual_superconduct</code></div></article>
+<article class="item"><a href="illustrations/reactions/dual_shatter.png"><img loading="lazy" src="illustrations/reactions/dual_shatter.png" alt="冰岩"></a><div class="meta"><h3>冰岩<span class="tag epic">史诗</span></h3><code>dual_shatter</code></div></article>
+<article class="item"><a href="illustrations/reactions/dual_magnet.png"><img loading="lazy" src="illustrations/reactions/dual_magnet.png" alt="磁岩"></a><div class="meta"><h3>磁岩<span class="tag epic">史诗</span></h3><code>dual_magnet</code></div></article>
+</div></section>
+<section id="training_legacy"><h2>训练与旧版卡 · 7 张</h2><div class="grid">
+<article class="item"><a href="illustrations/training_legacy/wave.png"><img loading="lazy" src="illustrations/training_legacy/wave.png" alt="挥刀剑气"></a><div class="meta"><h3>挥刀剑气<span class="tag common">普通</span><span class="tag">训练／未入普通卡池</span></h3><code>wave</code></div></article>
+<article class="item"><a href="illustrations/training_legacy/chain.png"><img loading="lazy" src="illustrations/training_legacy/chain.png" alt="回响连锁"></a><div class="meta"><h3>回响连锁<span class="tag common">普通</span><span class="tag">训练／未入普通卡池</span></h3><code>chain</code></div></article>
+<article class="item"><a href="illustrations/training_legacy/contact_slow.png"><img loading="lazy" src="illustrations/training_legacy/contact_slow.png" alt="接触减速"></a><div class="meta"><h3>接触减速<span class="tag common">普通</span><span class="tag">训练／未入普通卡池</span></h3><code>contact_slow</code></div></article>
+<article class="item"><a href="illustrations/training_legacy/contact_freeze.png"><img loading="lazy" src="illustrations/training_legacy/contact_freeze.png" alt="接触冻结"></a><div class="meta"><h3>接触冻结<span class="tag rare">稀有</span><span class="tag">训练／未入普通卡池</span></h3><code>contact_freeze</code></div></article>
+<article class="item"><a href="illustrations/training_legacy/freeze_duration.png"><img loading="lazy" src="illustrations/training_legacy/freeze_duration.png" alt="冻结延长"></a><div class="meta"><h3>冻结延长<span class="tag rare">稀有</span><span class="tag">训练／未入普通卡池</span></h3><code>freeze_duration</code></div></article>
+<article class="item"><a href="illustrations/training_legacy/frost_blast.png"><img loading="lazy" src="illustrations/training_legacy/frost_blast.png" alt="寒霜爆破"></a><div class="meta"><h3>寒霜爆破<span class="tag epic">史诗</span><span class="tag">训练／未入普通卡池</span></h3><code>frost_blast</code></div></article>
+<article class="item"><a href="illustrations/training_legacy/shatter_heavy.png"><img loading="lazy" src="illustrations/training_legacy/shatter_heavy.png" alt="破冰重击"></a><div class="meta"><h3>破冰重击<span class="tag epic">史诗</span><span class="tag">训练／未入普通卡池</span></h3><code>shatter_heavy</code></div></article>
+</div></section>
+<p>内置 image_gen 生成。原始大图保存在本目录；运行时按卡牌 ID 加载 game/assets/ui/build_cards/v001。原画内没有 UI 文字。</p></main></html>

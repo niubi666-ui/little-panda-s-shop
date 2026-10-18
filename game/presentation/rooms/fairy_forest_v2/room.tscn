@@ -219,7 +219,11 @@ crown_occlusion = 0.75
 solo_instance_limit = 40
 solo_min_triangles = 2500
 no_shadow = PackedStringArray("lily", "butterfly", "daisies", "toadstool", "flowers_white", "flowers_violet", "flowers_pink", "flowers_gold", "flowers_blue", "flowers_red", "fern_a", "fern_b")
+walk_area = Rect2(-11.5, -8, 23, 22)
+water_raise_m = 0.25
+floating_assets = PackedStringArray("lily")
 density_keep = {
+"bridge": 0.0,
 "grass_a": 0.12,
 "grass_b": 0.4
 }

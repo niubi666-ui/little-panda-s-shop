@@ -1,0 +1,62 @@
+[gd_resource type="Resource" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://presentation/builds/build_card_skin.gd" id="script"]
+[ext_resource type="Texture2D" path="res://assets/ui/build_cards/v001/ornaments/botanical_body.png" id="ornament"]
+[ext_resource type="Texture2D" path="res://assets/ui/foliage/frame_normal.svg" id="button"]
+
+[sub_resource type="Gradient" id="fade_gradient"]
+offsets = PackedFloat32Array(0, 0.4, 1)
+colors = PackedColorArray(0.018, 0.055, 0.039, 0, 0.018, 0.055, 0.039, 0.6, 0.018, 0.055, 0.039, 1)
+
+[sub_resource type="GradientTexture2D" id="fade"]
+gradient = SubResource("fade_gradient")
+width = 32
+height = 128
+fill_from = Vector2(0, 0)
+fill_to = Vector2(0, 1)
+
+[resource]
+script = ExtResource("script")
+canvas_size = Vector2(1210, 760)
+card_size = Vector2(380, 650)
+cards_top = 82.0
+card_gap = 22.0
+outer_margin = 20.0
+heading_rect = Rect2(0, 0, 1210, 48)
+subtitle_rect = Rect2(0, 51, 1210, 25)
+error_rect = Rect2(40, 733, 1130, 25)
+title_rect = Rect2(48, 302, 284, 42)
+binding_rect = Rect2(65, 349, 250, 26)
+operation_rect = Rect2(48, 381, 284, 24)
+headline_rect = Rect2(45, 410, 290, 38)
+description_rect = Rect2(55, 458, 270, 104)
+choose_rect = Rect2(40, 590, 300, 34)
+ornament_rect = Rect2(25, 303, 330, 288)
+surface_inset = 25.0
+surface_bottom = 619.0
+art_bottom = 320.0
+fade_rect = Rect2(25, 260, 330, 60)
+body_color = Color(0.018, 0.055, 0.039, 1)
+overlay_color = Color(0.005, 0.015, 0.012, 0.77)
+overlay_z_index = 100
+text_color = Color(0.94, 0.92, 0.83, 1)
+muted_color = Color(0.68, 0.73, 0.63, 1)
+gold_color = Color(0.96, 0.83, 0.55, 1)
+ornament_opacity = 0.38
+title_font_size = 29
+title_min_font_size = 14
+binding_font_size = 14
+operation_font_size = 13
+headline_font_size = 25
+headline_min_font_size = 18
+description_font_size = 15
+choose_font_size = 19
+rarity_font_size = 20
+small_label_min_font_size = 12
+heading_font_size = 36
+subtitle_font_size = 17
+fade_texture = SubResource("fade")
+ornament_texture = ExtResource("ornament")
+button_texture = ExtResource("button")
+button_texture_margin = 22.0
+hover_brightness = 1.12

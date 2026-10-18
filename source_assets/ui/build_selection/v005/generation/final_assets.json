@@ -1,0 +1,348 @@
+{
+  "method": "built-in image_gen",
+  "cards": [
+    {
+      "id": "power",
+      "category": "martial",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-48cf40b0-382f-40a8-9412-f0455852e50a.png",
+      "project_file": "illustrations/martial/power.png"
+    },
+    {
+      "id": "agility",
+      "category": "martial",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-1c84e445-05df-4cfd-9db1-615e6f26cf6f.png",
+      "project_file": "illustrations/martial/agility.png"
+    },
+    {
+      "id": "wave",
+      "category": "training_legacy",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-4ae2730d-75c5-4b7a-bcc1-f957acb6dc40.png",
+      "project_file": "illustrations/training_legacy/wave.png"
+    },
+    {
+      "id": "chain",
+      "category": "training_legacy",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-4fccea0a-9edc-466d-af76-f7605fd015d7.png",
+      "project_file": "illustrations/training_legacy/chain.png"
+    },
+    {
+      "id": "split",
+      "category": "martial",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-77cb2032-5bf5-4c13-b7e1-60daab45d1c4.png",
+      "project_file": "illustrations/martial/split.png"
+    },
+    {
+      "id": "impact_blast",
+      "category": "martial",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-da75e028-6e00-4872-a35b-c8daccd7e9e5.png",
+      "project_file": "illustrations/martial/impact_blast.png"
+    },
+    {
+      "id": "contact_slow",
+      "category": "training_legacy",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-fd149743-66d3-4a9d-a6a2-8e8909d6982d.png",
+      "project_file": "illustrations/training_legacy/contact_slow.png"
+    },
+    {
+      "id": "contact_freeze",
+      "category": "training_legacy",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-494f5cd3-a270-4744-970a-4c178943f470.png",
+      "project_file": "illustrations/training_legacy/contact_freeze.png"
+    },
+    {
+      "id": "freeze_duration",
+      "category": "training_legacy",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-d72d18fd-be38-4790-ba0a-6d63b15d147e.png",
+      "project_file": "illustrations/training_legacy/freeze_duration.png"
+    },
+    {
+      "id": "pierce",
+      "category": "martial",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-41110ca7-2cb6-463c-9ff3-d01f81b9b052.png",
+      "project_file": "illustrations/martial/pierce.png"
+    },
+    {
+      "id": "frost_blast",
+      "category": "training_legacy",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-fb334f18-429d-4a98-a21c-6ff328695e76.png",
+      "project_file": "illustrations/training_legacy/frost_blast.png"
+    },
+    {
+      "id": "action_power",
+      "category": "martial",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-07d8efe2-76ca-4ff9-9e8a-15bb74dfe34c.png",
+      "project_file": "illustrations/martial/action_power.png"
+    },
+    {
+      "id": "shatter_followup",
+      "category": "ice",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-3f01bc18-f35c-4662-a076-4593a6d889a4.png",
+      "project_file": "illustrations/ice/shatter_followup.png"
+    },
+    {
+      "id": "opening_strike",
+      "category": "ice",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-544e5e98-f8a3-4e23-bc30-d9b902116d16.png",
+      "project_file": "illustrations/ice/opening_strike.png"
+    },
+    {
+      "id": "returning_wave",
+      "category": "martial",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-9d6ca95c-c29e-4d57-82c3-c7096180b7c3.png",
+      "project_file": "illustrations/martial/returning_wave.png"
+    },
+    {
+      "id": "charged_wave",
+      "category": "martial",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-207dbfd1-f918-4b12-abd1-dcbbf5b68ac8.png",
+      "project_file": "illustrations/martial/charged_wave.png"
+    },
+    {
+      "id": "shatter_heavy",
+      "category": "training_legacy",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-65f184bd-ebf7-4bb8-9e04-a6d5150a698c.png",
+      "project_file": "illustrations/training_legacy/shatter_heavy.png"
+    },
+    {
+      "id": "frost_path",
+      "category": "ice",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-3d859e99-db90-433c-8933-6e29436ecb26.png",
+      "project_file": "illustrations/ice/frost_path.png"
+    },
+    {
+      "id": "ice_coat",
+      "category": "ice",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-f6a7c824-e14e-4648-8a15-597918d01c3a.png",
+      "project_file": "illustrations/ice/ice_coat.png"
+    },
+    {
+      "id": "fire_core",
+      "category": "fire",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-ce52eec6-54c7-428b-9412-47e59b7bf6d9.png",
+      "project_file": "illustrations/fire/fire_core.png"
+    },
+    {
+      "id": "ice_core",
+      "category": "ice",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-90931a25-6771-44d4-abd3-0b2972b9f27e.png",
+      "project_file": "illustrations/ice/ice_core.png"
+    },
+    {
+      "id": "thunder_core",
+      "category": "thunder",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-b99367da-0ebe-41b1-8da6-0e70ab65a1b3.png",
+      "project_file": "illustrations/thunder/thunder_core.png"
+    },
+    {
+      "id": "earth_core",
+      "category": "earth",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-c503701e-d85b-493c-9e8e-25f971cf39fd.png",
+      "project_file": "illustrations/earth/earth_core.png"
+    },
+    {
+      "id": "fire_kindling",
+      "category": "fire",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-543a18d2-3ab7-4808-a7ea-734b70f1438e.png",
+      "project_file": "illustrations/fire/fire_kindling.png"
+    },
+    {
+      "id": "fire_blaze",
+      "category": "fire",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-786acf69-c29e-46e8-9a6f-f0dd1c034443.png",
+      "project_file": "illustrations/fire/fire_blaze.png"
+    },
+    {
+      "id": "fire_linger",
+      "category": "fire",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-7dfb8de6-cd65-40ca-a9f2-9fc9c9951f26.png",
+      "project_file": "illustrations/fire/fire_linger.png"
+    },
+    {
+      "id": "ice_deep",
+      "category": "ice",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-dc0a9382-379e-4dc1-a9bd-aee7b26ef319.png",
+      "project_file": "illustrations/ice/ice_deep.png"
+    },
+    {
+      "id": "ice_lasting",
+      "category": "ice",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-1776741b-0741-489e-bf72-56220327feeb.png",
+      "project_file": "illustrations/ice/ice_lasting.png"
+    },
+    {
+      "id": "ice_brittle",
+      "category": "ice",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-4387e63d-7854-40c3-9edb-7fca0f0fab10.png",
+      "project_file": "illustrations/ice/ice_brittle.png"
+    },
+    {
+      "id": "thunder_chain",
+      "category": "thunder",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-b0e7487b-b359-4a16-bec6-7a2b95d728f9.png",
+      "project_file": "illustrations/thunder/thunder_chain.png"
+    },
+    {
+      "id": "thunder_surge",
+      "category": "thunder",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-5d3e0ad3-90f5-480b-ad43-d6b1c6d8cd79.png",
+      "project_file": "illustrations/thunder/thunder_surge.png"
+    },
+    {
+      "id": "thunder_reach",
+      "category": "thunder",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-5fab4df9-d5eb-483a-a4b1-be0e0d25a90f.png",
+      "project_file": "illustrations/thunder/thunder_reach.png"
+    },
+    {
+      "id": "earth_crush",
+      "category": "earth",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-4489aa4a-6865-471b-b49a-9b3fa2d8dd28.png",
+      "project_file": "illustrations/earth/earth_crush.png"
+    },
+    {
+      "id": "earth_quake",
+      "category": "earth",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-2620ec98-6dfb-49c7-98ca-cf9f4dda2c94.png",
+      "project_file": "illustrations/earth/earth_quake.png"
+    },
+    {
+      "id": "earth_layers",
+      "category": "earth",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-e0798270-fe75-40ff-895d-ca25074a4fa7.png",
+      "project_file": "illustrations/earth/earth_layers.png"
+    },
+    {
+      "id": "dual_steam",
+      "category": "reactions",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-f48f7d93-8690-430c-a984-aed3dd5175ff.png",
+      "project_file": "illustrations/reactions/dual_steam.png"
+    },
+    {
+      "id": "dual_overload",
+      "category": "reactions",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-80375c34-b5bd-42b5-84f0-8c1c47d60d92.png",
+      "project_file": "illustrations/reactions/dual_overload.png"
+    },
+    {
+      "id": "dual_lava",
+      "category": "reactions",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-be3ba45a-cd03-47d1-9e35-8f11ce92c5ed.png",
+      "project_file": "illustrations/reactions/dual_lava.png"
+    },
+    {
+      "id": "dual_superconduct",
+      "category": "reactions",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-8ad86b55-c733-4f7a-b7c3-f6477f1c9a97.png",
+      "project_file": "illustrations/reactions/dual_superconduct.png"
+    },
+    {
+      "id": "dual_shatter",
+      "category": "reactions",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-2db6ccf6-7d65-43eb-a5af-04019c956ca1.png",
+      "project_file": "illustrations/reactions/dual_shatter.png"
+    },
+    {
+      "id": "dual_magnet",
+      "category": "reactions",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-89c3bcd2-4bb1-4320-9ace-3d44e8d15d53.png",
+      "project_file": "illustrations/reactions/dual_magnet.png"
+    },
+    {
+      "id": "fire_mastery_burst",
+      "category": "fire",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-ac3ebbd5-123f-47ac-8cca-0a35a04cef6e.png",
+      "project_file": "illustrations/fire/fire_mastery_burst.png"
+    },
+    {
+      "id": "fire_mastery_heat",
+      "category": "fire",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-aca4d2af-7ef2-49d2-a210-3dff9a5f5015.png",
+      "project_file": "illustrations/fire/fire_mastery_heat.png"
+    },
+    {
+      "id": "ice_mastery_burst",
+      "category": "ice",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-7e185be2-8197-4b34-b552-20f9d9c8b1f9.png",
+      "project_file": "illustrations/ice/ice_mastery_burst.png"
+    },
+    {
+      "id": "ice_mastery_cold",
+      "category": "ice",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-45d33123-3448-479e-81e0-d7e2b1cd1503.png",
+      "project_file": "illustrations/ice/ice_mastery_cold.png"
+    },
+    {
+      "id": "thunder_mastery_burst",
+      "category": "thunder",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-324c0e76-7baf-48d1-aa7d-e2780b8e511a.png",
+      "project_file": "illustrations/thunder/thunder_mastery_burst.png"
+    },
+    {
+      "id": "thunder_mastery_storm",
+      "category": "thunder",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-8701187e-7b70-49ee-8d0d-0a2ac598d52b.png",
+      "project_file": "illustrations/thunder/thunder_mastery_storm.png"
+    },
+    {
+      "id": "earth_mastery_burst",
+      "category": "earth",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-8dfeadf1-1ed9-44f7-a885-e26e11cbb9b6.png",
+      "project_file": "illustrations/earth/earth_mastery_burst.png"
+    },
+    {
+      "id": "earth_mastery_weight",
+      "category": "earth",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-e4ff8ed9-fc41-4862-b311-59f3f7765f06.png",
+      "project_file": "illustrations/earth/earth_mastery_weight.png"
+    },
+    {
+      "id": "primary_reach",
+      "category": "martial",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-bc93ac36-efd3-492f-988b-adc93bebb1da.png",
+      "project_file": "illustrations/martial/primary_reach.png"
+    },
+    {
+      "id": "special_reach",
+      "category": "martial",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-7034d9fe-37dc-4226-a838-a0dd958d6a4b.png",
+      "project_file": "illustrations/martial/special_reach.png"
+    }
+  ],
+  "components": [
+    {
+      "id": "common",
+      "category": "frames",
+      "prompt": "Use case: background-extraction / ui-mockup. Asset type: a single production-ready game UI card BORDER on genuine transparent alpha. Reference is style only; redraw ONE isolated frame, not the sheet. Portrait 2:3 canvas. Thin rectangular outer silhouette with clipped chamfered corners, sculpted metallic oak-leaf corner accents. Broad EMPTY TRANSPARENT interior from inside all four rails; no artwork, no body panel, no botanical branches in the interior, no divider across middle, no bottom button. A compact EMPTY horizontal header plaque centered over the upper rail occupies only the top 9% of frame; leave the plaque solid colored but no text. Transparent space outside frame too. Preserve the refined forest fantasy realistic metal/enamel craftsmanship of reference. Frame should occupy 94% width, 91% height with space above for crest. NO WORDS NO LETTERS NO SYMBOL TEXT NO LABELS. Rarity COMMON: ivory-white SILVER metal single frame rail, dark graphite blank plaque, very restrained oak-leaf corners, no gem, no crown.",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-dce236ae-8f40-4dcb-8214-b2212ef36c7e.png",
+      "project_file": "frames/common.png"
+    },
+    {
+      "id": "rare",
+      "category": "frames",
+      "prompt": "Use case: background-extraction / ui-mockup. Asset type: a single production-ready game UI card BORDER on genuine transparent alpha. Reference is style only; redraw ONE isolated frame, not the sheet. Portrait 2:3 canvas. Thin rectangular outer silhouette with clipped chamfered corners, sculpted metallic oak-leaf corner accents. Broad EMPTY TRANSPARENT interior from inside all four rails; no artwork, no body panel, no botanical branches in the interior, no divider across middle, no bottom button. A compact EMPTY horizontal header plaque centered over the upper rail occupies only the top 9% of frame; leave the plaque solid colored but no text. Transparent space outside frame too. Preserve the refined forest fantasy realistic metal/enamel craftsmanship of reference. Frame should occupy 94% width, 91% height with space above for crest. NO WORDS NO LETTERS NO SYMBOL TEXT NO LABELS. Rarity RARE: thick vivid deep SAPPHIRE BLUE enamel rail flanked by polished silver outlines, sapphire-blue blank header plaque, exactly ONE large blue diamond gem above plaque, silver oak-leaf corners.",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-2dc9246f-2567-459f-bc86-5e3a6ed25fe0.png",
+      "project_file": "frames/rare.png"
+    },
+    {
+      "id": "epic",
+      "category": "frames",
+      "prompt": "Use case: background-extraction / ui-mockup. Asset type: a single production-ready game UI card BORDER on genuine transparent alpha. Reference is style only; redraw ONE isolated frame, not the sheet. Portrait 2:3 canvas. Thin rectangular outer silhouette with clipped chamfered corners, sculpted metallic oak-leaf corner accents. Broad EMPTY TRANSPARENT interior from inside all four rails; no artwork, no body panel, no botanical branches in the interior, no divider across middle, no bottom button. A compact EMPTY horizontal header plaque centered over the upper rail occupies only the top 9% of frame; leave the plaque solid colored but no text. Transparent space outside frame too. Preserve the refined forest fantasy realistic metal/enamel craftsmanship of reference. Frame should occupy 94% width, 91% height with space above for crest. NO WORDS NO LETTERS NO SYMBOL TEXT NO LABELS. Rarity EPIC: double AMETHYST PURPLE enamel rails edged by aged gold, deep purple blank plaque; three luminous purple gems with central gem larger, small raised ornate crest, gold oak-leaf corners.",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-dfaf9a11-918a-4072-9c67-3ed107ac7695.png",
+      "project_file": "frames/epic.png"
+    },
+    {
+      "id": "legendary",
+      "category": "frames",
+      "prompt": "Use case: background-extraction / ui-mockup. Asset type: a single production-ready game UI card BORDER on genuine transparent alpha. Reference is style only; redraw ONE isolated frame, not the sheet. Portrait 2:3 canvas. Thin rectangular outer silhouette with clipped chamfered corners, sculpted metallic oak-leaf corner accents. Broad EMPTY TRANSPARENT interior from inside all four rails; no artwork, no body panel, no botanical branches in the interior, no divider across middle, no bottom button. A compact EMPTY horizontal header plaque centered over the upper rail occupies only the top 9% of frame; leave the plaque solid colored but no text. Transparent space outside frame too. Preserve the refined forest fantasy realistic metal/enamel craftsmanship of reference. Frame should occupy 94% width, 91% height with space above for crest. NO WORDS NO LETTERS NO SYMBOL TEXT NO LABELS. Rarity LEGENDARY: rich ORANGE-GOLD sculpted double frame, amber-orange inset rails with restrained luminous rim, dark amber blank plaque, one big amber crystal flanked by small orange gems and an elegant broad GOLDEN OAK-LEAF CROWN above plaque.",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-94ce5227-8ec4-495d-aa5f-6f5822a9070d.png",
+      "project_file": "frames/legendary.png"
+    },
+    {
+      "id": "botanical_body",
+      "category": "ornaments",
+      "prompt": "Use case: ui-mockup. One isolated game UI ornament on REAL transparent background. Square 1:1 canvas. Use reference only to match its fine engraved oak/fern botanical ornaments in the lower text area. Two separate mirrored slender sprays of aged bronze fern and oak leaves along far left and far right of canvas, sweeping inward gently ONLY at bottom. Lower bottom center has a tiny circular bronze seal with three oak leaves, connected to side sprays by two hairline gold horizontal strokes. Center 70% is completely empty transparent space for future dynamic text. Muted antique bronze, elegant realistic fine metal etching, restrained detail, no bright glow. NO card border, no panel background, no button, no text, no numerals. All ornament pixels belong to a separate transparent overlay.",
+      "source": "C:\\Users\\陈旭辉\\.codex\\generated_images\\01a0dbbb-e5a8-7b32-a068-ebcadcf5d960\\exec-c6e8f233-0ce4-4039-b0b1-fd19edb92f8f.png",
+      "project_file": "ornaments/botanical_body.png"
+    }
+  ]
+}

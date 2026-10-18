@@ -21,8 +21,8 @@ func check(ok: bool, label: String) -> void:
 	checks += 1
 	if not ok: failures.append(label);push_error(label)
 func run() -> void:
-	capture_enabled = DisplayServer.get_name() != "headless"
-	DirAccess.make_dir_recursive_absolute(OUT)
+	capture_enabled = OS.get_cmdline_user_args().has("--capture") and DisplayServer.get_name() != "headless"
+	if capture_enabled: DirAccess.make_dir_recursive_absolute(OUT)
 	var catalog = Loader.new().load_catalog()
 	p = Actor.new()
 	var attacks: Array[Catalog.Ability] = []
@@ -109,8 +109,35 @@ func run() -> void:
 			check(continued_frames>0 if age<.5 else continued_frames==0,"early click completes roll; late click goes straight to slash")
 			check(not p.runner.busy(),"counter recovers to locomotion")
 			p.dodge_age=0
+	await primary_followup_poses(input)
 	print("ROLL_SLASH_VISUAL ",JSON.stringify({"checks":checks,"failures":failures}))
 	quit(0 if failures.is_empty() else 1)
+
+func primary_followup_poses(input) -> void:
+	for age in [.05, .28, .62]:
+		p.cancel(); p.runner.tick(5); p.position=Vector3.ZERO; p.dodge_left=0; p.dodge_age=0
+		p.charges=p.dodge.charges; p.facing=Vector3.FORWARD; p.movement=Vector3.ZERO
+		view.refresh(.3)
+		p.request_dodge()
+		while p.dodge_age < age:
+			await physics_frame; p.step(DT); view.refresh(DT)
+		left_click(input)
+		p.step(DT); view.refresh(DT)
+		left_click(input)
+		while p.runner.busy():
+			await physics_frame; p.step(DT); view.refresh(DT)
+		check(p.runner.active_this_step and view.visual._clip==&"roll_slash", "final dash hit retains slash pose without flashing idle or run")
+		check(is_equal_approx(view.visual.animation.current_animation_position,view.visual.clip_set.attack_cuts[&"roll_slash"].y), "final dash pose reaches the authored cut endpoint")
+		p.step(DT); view.refresh(DT)
+		check(p.runner.ability.id=="slash.1" and view.visual._clip==&"attack_1", "next frame directly blends dash into first normal attack")
+		check(view.visual._blend_total==view.visual.clip_set.attack_blend_sec, "followup uses the existing short attack blend")
+		p.cancel(); p.runner.tick(5)
+
+func left_click(input) -> void:
+	for pressed in [true, false]:
+		var event := InputEventMouseButton.new(); event.button_index=MOUSE_BUTTON_LEFT; event.pressed=pressed
+		input.event(event)
+
 func capture(label: String) -> void:
 	camera.position=p.position+Vector3(4,3,-6)
 	camera.look_at(p.position+Vector3.UP*.8)

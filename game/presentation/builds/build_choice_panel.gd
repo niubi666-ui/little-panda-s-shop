@@ -1,56 +1,58 @@
 extends Control
-## The application owns offers and commits. This view only requests a choice.
+## Offers remain owned by the application. This modal only presents and chooses.
 signal choice_requested(offer_id: String, choice_id: String)
 
 const Style = preload("res://presentation/builds/build_ui_style.tres")
+const CardSkin = preload("res://presentation/builds/build_card_skin.tres")
+const Art = preload("res://presentation/builds/build_card_art_library.tres")
+const CardView = preload("res://presentation/builds/build_card_view.gd")
 var buttons: Dictionary = {}
 var _catalog
 var _offer: Dictionary = {}
 var _selections: Array = []
 var _bindings: Dictionary = {}
-var _body: VBoxContainer
+var _body: Control
 var _title: Label
 var _heading: Array = ["build.title", "build.subtitle"]
 var _subtitle: Label
 var _cards: HBoxContainer
 var _error: Label
 var _error_key := ""
-var _card_text: Dictionary = {}
-
 
 func configure(catalog, shared_theme: Theme) -> void:
 	assert(catalog != null and shared_theme != null)
 	_catalog = catalog
+	for entry in catalog.entries():
+		assert(Art.cards.has(entry.id), "Card art catalog is incomplete: " + entry.id)
 	theme = shared_theme
 	name = "BuildChoicePanel"
+	z_index = CardSkin.overlay_z_index
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var shade := ColorRect.new()
-	shade.color = Style.overlay_color
-	shade.mouse_filter = Control.MOUSE_FILTER_STOP
+	shade.color = CardSkin.overlay_color
+	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(shade)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_body = VBoxContainer.new()
+	_body = Control.new()
+	_body.name = "CardCanvas"
 	_body.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_body.add_theme_constant_override("separation", Style.gap)
+	_body.size = CardSkin.canvas_size
 	add_child(_body)
-	_title = _label(_body, &"Title", Style.gold_color)
-	_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_subtitle = _label(_body, &"Muted", Style.muted_color)
-	_subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_title = _canvas_label("Heading", CardSkin.heading_rect, CardSkin.heading_font_size, CardSkin.gold_color)
+	_title.theme_type_variation = &"Title"
+	_subtitle = _canvas_label("Subtitle", CardSkin.subtitle_rect, CardSkin.subtitle_font_size, CardSkin.muted_color)
 	_cards = HBoxContainer.new()
+	_cards.name = "Cards"
 	_cards.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_cards.add_theme_constant_override("separation", Style.gap)
+	_cards.add_theme_constant_override("separation", int(CardSkin.card_gap))
 	_body.add_child(_cards)
-	_error = _label(_body, &"Muted", Style.error_color)
-	_error.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_error = _canvas_label("Error", CardSkin.error_rect, CardSkin.subtitle_font_size, Style.error_color)
 	resized.connect(_layout)
-	_body.minimum_size_changed.connect(_layout.call_deferred)
 	dismiss()
 	refresh_text()
 
-
-## heading：[标题键, 副标题键]（元素觉醒用不同的标题）
+## heading: title/subtitle keys; awakening has a distinct heading.
 func show_offer(offer: Dictionary, selections: Array, heading: Array = ["build.title", "build.subtitle"]) -> void:
 	assert(_catalog != null and heading.size() == 2)
 	_heading = heading.duplicate()
@@ -64,7 +66,6 @@ func show_offer(offer: Dictionary, selections: Array, heading: Array = ["build.t
 		_cards.remove_child(child)
 		child.queue_free()
 	buttons.clear()
-	_card_text.clear()
 	for candidate in _offer["candidates"]:
 		_bindings[candidate.choice_id] = candidate
 		_add_card(String(candidate.choice_id))
@@ -75,44 +76,47 @@ func show_offer(offer: Dictionary, selections: Array, heading: Array = ["build.t
 	if not buttons.is_empty():
 		buttons.values()[0].grab_focus.call_deferred()
 
-
 func dismiss() -> void:
 	hide()
 	_offer.clear()
 	_error_key = ""
 
-
 func set_error(key: String) -> void:
 	_error_key = key
 	refresh_text()
 
-
 func refresh_text() -> void:
 	if _title == null:
 		return
-	_title.text = tr(_heading[0])
-	_subtitle.text = tr(_heading[1])
+	_title.text = tr("build.card.title") if _heading[0] == "build.title" else tr(_heading[0])
+	_subtitle.text = tr("build.card.subtitle") if _heading[1] == "build.subtitle" else tr(_heading[1])
 	_error.text = tr(_error_key) if not _error_key.is_empty() else ""
 	_error.visible = not _error_key.is_empty()
-	for id in _card_text:
+	for id in buttons:
 		var binding: Dictionary = _bindings[id]
 		var entry: Dictionary = _catalog.upgrade(binding.upgrade_id)
+		var art: Dictionary = Art.card(entry.id)
 		var params := _description_params(entry, int(binding.rank), binding.action_id)
-		var labels: Dictionary = _card_text[id]
-		labels["name"].text = tr(entry["name_key"])
-		if binding.has("rarity_id"): labels["name"].text += " · " + tr("build.rarity." + binding.rarity_id)
-		labels["rank"].text = _action_label(binding.action_id) + " · " + tr("build.layer." + entry.layer) + "\n" + tr("build.rank").format(params)
-		labels["description"].text = tr(entry["description_key"]).format(params)
-		labels["next"].text = tr("build.operation." + binding.operation).format(params)
+		var rarity: String = binding.rarity_id if binding.has("rarity_id") else art.default_rarity
+		var description := tr(entry["description_key"]).format(params)
+		var operation := tr("build.operation." + binding.operation).format(params)
+		operation += " · " + tr("build.rank").format(params)
 		if not binding.replaced.is_empty():
-			var old: Dictionary = _catalog.upgrade(binding.replaced.upgrade_id)
-			var old_params := _description_params(old, int(binding.replaced.rank), binding.action_id)
-			labels["next"].text = tr("build.replaces").format({"name": tr(old.name_key), "rank": int(binding.replaced.rank)})
-			labels["description"].text += "\n\n" + tr("build.removed_effect").format({"effect": tr(old.description_key).format(old_params)})
-		labels["choose"].text = tr("build.choose")
-		buttons[id].tooltip_text = labels["rank"].text + "\n" + labels["next"].text + "\n" + labels["description"].text
+			var previous: Dictionary = _catalog.upgrade(binding.replaced.upgrade_id)
+			var old_params := _description_params(previous, int(binding.replaced.rank), binding.action_id)
+			operation = tr("build.replaces").format({"name": tr(previous.name_key), "rank": int(binding.replaced.rank)})
+			description += "\n\n" + tr("build.removed_effect").format({"effect": tr(previous.description_key).format(old_params)})
+		buttons[id].set_copy({
+			"rarity": tr("build.rarity." + rarity),
+			"name": tr(art.title_key),
+			"binding": _action_label(binding.action_id),
+			"next": operation,
+			"headline": tr(art.headline_key).format(params),
+			"description": tr(art.body_key).format(params),
+			"details": description,
+			"choose": tr("build.card.choose"),
+		})
 	_layout.call_deferred()
-
 
 func _description_params(entry: Dictionary, rank: int, action_id: String) -> Dictionary:
 	var params: Dictionary = entry.ranks[rank - 1].duplicate(true)
@@ -148,7 +152,9 @@ func _action_label(action_id: String) -> String:
 	if events.is_empty(): return label
 	var event: InputEvent = events[0]
 	var key := event.as_text()
-	if event is InputEventMouseButton:
+	if event is InputEventKey:
+		key = OS.get_keycode_string(event.physical_keycode if event.physical_keycode != 0 else event.keycode)
+	elif event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT: key = tr("build.input.left_mouse")
 		elif event.button_index == MOUSE_BUTTON_RIGHT: key = tr("build.input.right_mouse")
 	return tr("build.action_binding").format({"action": label, "key": key})
@@ -164,53 +170,15 @@ func _display_decimal(value: float) -> String:
 
 
 func _add_card(id: String) -> void:
-	var button := Button.new()
-	button.name = "Upgrade_" + id
-	button.mouse_filter = Control.MOUSE_FILTER_STOP
-	button.focus_mode = Control.FOCUS_ALL
-	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.add_theme_stylebox_override("normal", Style.card_normal)
-	button.add_theme_stylebox_override("hover", Style.card_hover)
-	button.add_theme_stylebox_override("pressed", Style.card_pressed)
-	button.add_theme_stylebox_override("focus", Style.card_focus)
-	button.pressed.connect(_request_choice.bind(id))
+	var binding: Dictionary = _bindings[id]
+	var art: Dictionary = Art.card(binding.upgrade_id)
+	var rarity: String = binding.rarity_id if binding.has("rarity_id") else art.default_rarity
+	var button := CardView.new()
 	_cards.add_child(button)
+	button.configure(binding.upgrade_id, art, rarity, Art.skin(rarity))
+	button.name = "Upgrade_" + id
+	button.pressed.connect(_request_choice.bind(id))
 	buttons[id] = button
-	var margin := MarginContainer.new()
-	margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	button.add_child(margin)
-	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	for edge in ["margin_left", "margin_top", "margin_right", "margin_bottom"]:
-		margin.add_theme_constant_override(edge, Style.card_padding)
-	var stack := VBoxContainer.new()
-	stack.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	stack.add_theme_constant_override("separation", Style.gap)
-	margin.add_child(stack)
-	var rank_label := _label(stack, &"Muted", Style.muted_color)
-	var title_label := _label(stack, &"PaperHeading", Style.gold_color)
-	title_label.custom_minimum_size.y = Style.title_min_height
-	var paper := PanelContainer.new()
-	paper.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	paper.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	paper.add_theme_stylebox_override("panel", Style.paper)
-	stack.add_child(paper)
-	var scroll := ScrollContainer.new()
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.mouse_filter = Control.MOUSE_FILTER_PASS
-	paper.add_child(scroll)
-	var paper_stack := VBoxContainer.new()
-	paper_stack.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	paper_stack.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	paper_stack.add_theme_constant_override("separation", Style.gap)
-	scroll.add_child(paper_stack)
-	var next_label := _label(paper_stack, &"Muted", Style.paper_text_color)
-	var description := _label(paper_stack, &"PaperLabel", Style.paper_text_color)
-	description.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	var choose_label := _label(stack, &"PaperHeading", Style.gold_color)
-	choose_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	choose_label.custom_minimum_size.y = Style.action_min_height
-	_card_text[id] = {"name": title_label, "rank": rank_label, "next": next_label, "description": description, "choose": choose_label}
-
 
 func _request_choice(id: String) -> void:
 	if visible and _offer.has("id") and buttons.has(id):
@@ -232,30 +200,29 @@ func _confine_card_focus() -> void:
 		button.focus_neighbor_bottom = NodePath(".")
 
 
-func _label(parent: Node, variation: StringName, color: Color) -> Label:
+func _canvas_label(node_name: String, rect: Rect2, font_size: int, color: Color) -> Label:
 	var label := Label.new()
+	label.name = node_name
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	label.theme_type_variation = variation
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", color)
-	parent.add_child(label)
+	_body.add_child(label)
+	label.position = rect.position
+	label.size = rect.size
 	return label
 
-
 func _layout() -> void:
-	if _body == null or size.x <= 0.0:
+	if _body == null or size.x <= 0.0 or size.y <= 0.0:
 		return
-	var width: float = minf(Style.content_width, maxf(0.0, size.x - Style.outer_margin * 2.0))
-	_body.custom_minimum_size.x = width
-	_body.size.x = width
-	if not buttons.is_empty():
-		var card_width: float = maxf(0.0, (width - Style.gap * (buttons.size() - 1)) / buttons.size())
-		var card_height: float = minf(Style.card_height, maxf(0.0, size.y - Style.vertical_reserved))
-		for button in buttons.values():
-			button.custom_minimum_size = Vector2(card_width, card_height)
-	_body.reset_size()
-	_body.position = (size - _body.size) / 2.0
-
+	var available: Vector2 = size - Vector2.ONE * CardSkin.outer_margin * 2.0
+	var factor := minf(available.x / CardSkin.canvas_size.x, available.y / CardSkin.canvas_size.y)
+	_body.scale = Vector2.ONE * maxf(factor, 0.01)
+	_body.position = (size - CardSkin.canvas_size * factor) / 2.0
+	var width: float = CardSkin.card_size.x * buttons.size() + CardSkin.card_gap * maxi(0, buttons.size() - 1)
+	_cards.position = Vector2((CardSkin.canvas_size.x - width) / 2.0, CardSkin.cards_top)
+	_cards.size = Vector2(width, CardSkin.card_size.y)
 
 func _input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"):

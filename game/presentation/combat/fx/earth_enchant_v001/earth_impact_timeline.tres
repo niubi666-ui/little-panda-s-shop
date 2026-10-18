@@ -1,0 +1,15 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/fx/elemental_enchants_v001/shared/scripts/vfx_timeline.gd" id="1_s734m"]
+
+[resource]
+script = ExtResource("1_s734m")
+delays = {
+"Debris": 0.0,
+"DustBurst": 0.02,
+"Eruption": 0.05,
+"Flash": 0.0,
+"Flecks": 0.0,
+"Light": 0.0
+}
+lifetime = 5.0

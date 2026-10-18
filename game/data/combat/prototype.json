@@ -173,7 +173,7 @@
       "lunge_duration_sec": 0.0,
       "hit_shape": "sector",
       "thrust_width_m": 0.0,
-      "buffer_sec": 0.4,
+      "buffer_sec": 0.5,
       "chain_cancel_sec": 0.22,
       "dodge_cancel_phases": [
         "windup",

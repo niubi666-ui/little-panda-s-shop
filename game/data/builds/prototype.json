@@ -2281,6 +2281,27 @@
       ]
     },
     {
+      "id": "elem_earth_mastery",
+      "name_key": "build.preset.elem_earth_mastery",
+      "selections": [
+        {
+          "upgrade_id": "earth_core",
+          "action_id": "primary",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "earth_core",
+          "action_id": "skill",
+          "rank": 1
+        },
+        {
+          "upgrade_id": "earth_mastery_burst",
+          "action_id": "global",
+          "rank": 1
+        }
+      ]
+    },
+    {
       "id": "elem_fire_mastery",
       "name_key": "build.preset.elem_fire_mastery",
       "selections": [

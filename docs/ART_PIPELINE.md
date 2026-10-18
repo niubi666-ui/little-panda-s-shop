@@ -108,6 +108,15 @@ southeast (5.2, 0, 4.0) 0,π；interior (0, 0, -5.0) 0,π。道具模型还是�
 量化：`game/tests/fairy_lookdev_capture.gd` 的 `pan` 模式让镜头按奔跑速度平移，每帧存图；
 用扣除镜头位移后的帧间残差衡量闪烁，修改前 0.034、修改后 0.021，画面细碎度从 0.145 降到 0.084。
 
+### 樱花飘落（2026-10-17）
+
+- 每棵花树（`petal_tree_asset`）树冠下一个粒子发射器（`fairy_forest_room.gd` 的 `_build_petals`），数量 `petals_per_tree`；
+  空地上方另有一层稀疏的漂浮花瓣（`room.tscn` 的 `DriftingPetals`）。花瓣顺着风向斜飘、慢慢翻转、逆光透粉。
+- 运动参数在 `room.tscn` 的 `petal_process` / `drift_process`（下落速度、风、乱流），外观在 `petal.gdshader` + `petal_material`。
+- 不挡战斗：花瓣只有 11×14 厘米，从游戏镜头看是零星的粉色小片；离镜头 7 米内的花瓣淡出（`near_fade_m`），
+  出生和落地时淡入淡出，不会突然冒出或消失。想多一点调 `petals_per_tree`（现 150）和 `DriftingPetals` 的 `amount`（现 200）。
+- 开销很小：现在的数量下与关掉花瓣相比帧率几乎没有差别。
+
 ### 性能
 
 RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304×1440）约 70 帧。
@@ -151,7 +160,7 @@ RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304
 
 攻击切点在 `nodachi_clips.tres`，规则时长在 `combat/prototype.json`（schema 8）；第三刀改为与下劈对应的 100 度扇形。普通翻滚完整动作/冲斩窗口 0.7 秒，前 0.35 秒强制移动约 3.4 米，此后起身不锁自主移动，无敌保留 0.2 秒。`nodachi_clips.tres` 的 `roll_locomotion_fraction = 0.83` 决定落地后可接走跑的姿势点，`roll_exit_blend_sec = 0.08` 控制过渡；移动权限不等待这段视觉混合，松键切待机不会重新倒回翻滚。受击/倒地来自同包；蓄力暂用持刀格挡循环。
 
-蓄力移动由 `nodachi_actor_visual.gd` 分层采样：`spine_01` 子树使用现有持刀格挡循环，骨盆和双腿使用相对瞄准方向的八方向走跑。按实际速度同步步频，换方向保留步态相位；停止时回到站立蓄力，释放时从最终混合姿势接原剑气挥刀。`nodachi_clips.tres` 的 `charge_move_blend_sec = 0.12` 控制下肢切换，共用战斗时钟，暂停和冻结时不推进。没有新增原生动画；剑气挥刀候选仍待用户选择。
+蓄力移动由 `nodachi_actor_visual.gd` 分层采样：`spine_01` 子树使用现有持刀格挡循环，骨盆和双腿使用相对瞄准方向的八方向走跑。按实际速度同步步频，换方向保留步态相位；停止时回到站立蓄力，释放时从最终混合姿势接原剑气挥刀。`nodachi_clips.tres` 的 `charge_move_blend_sec = 0.12` 控制下肢切换，共用战斗时钟，暂停和冻结时不推进。用户确认保留现用剑气动作 `cast`（原动作 `Nodachi_04_Combo_Attack_01_04`），不采用候选 Wave/Ultimate 动作；候选临时预览已清理，正式 34 段动作库及其导出源保留。
 
 翻滚冲斩源为 `/Game/Nodachi/Animations/Sequence/02_Attack/17_Parry_Counter_Attack/AS_Parry_Counter_L_Seq`，归档 `fbx/roll_slash.fbx` 与 `roll_slash.json`，已合入 GLB 和集成 Blender。提前点击先按玩法时钟以 3 倍速度继续采样原方向翻滚，推进到约 83% 的落地姿势后才切冲斩，避免从倒立姿势硬混到举刀。`nodachi_clips.tres` 的 `roll_attack_*` 配置落地过渡：下肢/骨盆 0.06 秒、spine_01 子树 0.05 秒、朝向 0.06 秒；转向也从落地开始，并随施放时钟暂停。挥砍采样源 0–0.266667 秒，原生刀骨跟随手臂。挥砍结束即释放控制，通过 `roll_attack_exit_blend_sec = 0.08` 混入走跑/待机，不再播放锁移动的收招段。UE 的运行时混合节点不会随 FBX 导出，这些过渡由 Godot 采样器完成。
 

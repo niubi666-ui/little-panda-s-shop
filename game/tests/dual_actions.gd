@@ -174,10 +174,7 @@ func check_cancellation() -> void:
 		actor.step(0.01)
 		actor.request_dodge()
 		actor.step(0.01)
-		if wave:
-			check(_cues == 1 and actor.runner.busy() and _finished.is_empty(), "instant wave has already released and keeps active-phase dodge policy")
-		else:
-			check(_cues == 0 and not actor.runner.busy() and _finished == ["dodge"], "windup dodge cancels before cue")
+		check(_cues == 0 and not actor.runner.busy() and _finished == ["dodge"], "native wave/heavy windup dodge cancels before cue")
 		check(actor.runner.cooldown_for("skill" if wave else "special") > 0, "committed cooldown never refunded")
 		actor.free()
 		actor = _actor()

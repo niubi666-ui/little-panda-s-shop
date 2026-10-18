@@ -32,14 +32,25 @@ func run() -> void:
 	cast(f,"special")
 	check(victim.health.current<victim.health.maximum and not victim.control_locked and f.runtime.projectiles().is_empty(),"heavy remains useful melee damage without primary/Q effects")
 	clean(f)
-	# Reversed event orders resolve identically, with only one shared Runner.
-	for order in [["primary","special","skill"],["skill","primary","special"],["special","skill","primary"],["primary","skill","special"],["special","primary","skill"],["skill","special","primary"]]:
+	# Later left input cancels pending right input; other same-frame priorities remain stable.
+	var input_cases := [
+		{"order":["primary","special","skill"], "winner":"skill"},
+		{"order":["skill","primary","special"], "winner":"special"},
+		{"order":["special","skill","primary"], "winner":"primary"},
+		{"order":["primary","skill","special"], "winner":"skill"},
+		{"order":["special","primary","skill"], "winner":"skill"},
+		{"order":["skill","special","primary"], "winner":"primary"},
+	]
+	for test_case in input_cases:
 		f=setup([])
-		for id in order:f.player.request_action(id,100)
+		for id in test_case.order:f.player.request_action(id,100)
 		f.player.step(.001)
 		f.runtime.tick(.001)
-		check(f.player.runner.action_id=="skill" and f.player.runner.cast_id==1 and f.runtime.projectiles().size()==1,"same-frame priority independent of OS order")
-		check(f.player.runner.cooldown_for("special")==0.0 and f.player.runner.cooldown_for("primary")==0.0,"Q does not spend other action cooldowns")
+		check(f.player.runner.action_id==test_case.winner and f.player.runner.cast_id==1,"one winning action respects later-left cancellation: "+str(test_case.order))
+		for id in ["primary","special","skill"]:
+			if id != test_case.winner: check(f.player.runner.cooldown_for(id)==0.0,"cancelled input does not spend cooldown: "+id)
+		f.player.step(f.player.runner.ability.windup); f.runtime.tick(.001)
+		check(f.runtime.projectiles().size()==(1 if test_case.winner=="skill" else 0),"only accepted skill emits at its authored swing cue")
 		clean(f)
 	f=setup([])
 	f.player.request_action("skill",101);f.player.request_dodge();f.player.step(.001)
@@ -54,6 +65,8 @@ func run() -> void:
 	check(f.player.buffered_action_id.is_empty(),"modal/pause gate blocks Q")
 	blocked.value=false
 	input.event(key);f.player.step(.001);f.runtime.tick(.001)
+	check(f.player.runner.action_id=="skill" and f.runtime.projectiles().is_empty(),"right mouse begins native wave windup")
+	f.player.step(f.player.runner.ability.windup); f.runtime.tick(.001)
 	check(f.runtime.projectiles().size()==1,"right mouse fires without unlock")
 	var field:=LineEdit.new();root.add_child(field);field.grab_focus();await process_frame
 	input.event(key)
@@ -61,7 +74,8 @@ func run() -> void:
 	field.free()
 	for locale in ["zh_CN","en"]:
 		TranslationServer.add_translation(load("res://generated/locales/%s.po" % locale));TranslationServer.set_locale(locale)
-		check(not CooldownText.format_for(f.player).contains("combat.") and CooldownText.format_for(f.player).contains("1.0"),"localized Q countdown uses actual timer")
+		var seconds := "%.1f" % (ceilf(f.player.runner.cooldown_for("skill") * 10.0) / 10.0)
+		check(not CooldownText.format_for(f.player).contains("combat.") and CooldownText.format_for(f.player).contains(seconds),"localized skill countdown uses actual timer")
 	var remaining:float=f.player.runner.cooldown_for("skill")
 	f.player.step(0.0)
 	check(f.player.runner.cooldown_for("skill")==remaining,"zero-time pause does not advance Q cooldown")

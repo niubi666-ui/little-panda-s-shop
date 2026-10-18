@@ -29,9 +29,9 @@
 [ext_resource type="PackedScene" path="res://presentation/builds/elements/blade_earth.tscn" id="blade_earth"]
 [ext_resource type="Resource" path="res://presentation/combat/strike/strike_style.tres" id="strike"]
 [ext_resource type="PackedScene" path="res://presentation/combat/fx/fire_enchant_v001/fire_enchant.tscn" id="enchant_fire"]
-
 [ext_resource type="PackedScene" path="res://presentation/combat/fx/elemental_enchants_v001/ice_enchant.tscn" id="enchant_ice"]
 [ext_resource type="PackedScene" path="res://presentation/combat/fx/elemental_enchants_v001/thunder_enchant.tscn" id="enchant_thunder"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/earth_enchant_v001/earth_enchant.tscn" id="enchant_earth"]
 
 [resource]
 script = ExtResource("1")
@@ -99,5 +99,6 @@ element_blade_scenes = {
 element_weapon_enchants = {
 "fire": ExtResource("enchant_fire"),
 "ice": ExtResource("enchant_ice"),
-"thunder": ExtResource("enchant_thunder")
+"thunder": ExtResource("enchant_thunder"),
+"earth": ExtResource("enchant_earth")
 }

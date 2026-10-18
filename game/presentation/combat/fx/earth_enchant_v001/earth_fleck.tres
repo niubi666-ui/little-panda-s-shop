@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://presentation/combat/fx/elemental_enchants_v001/shaders/glint.gdshader" id="1_6wksx"]
+[ext_resource type="Texture2D" path="res://presentation/combat/fx/elemental_enchants_v001/shared/generated/textures/flare_star.png" id="2_jpomw"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_6wksx")
+shader_parameter/effect_time = null
+shader_parameter/tex = ExtResource("2_jpomw")
+shader_parameter/tint = Color(1, 0.75, 0.35, 1)
+shader_parameter/emission = 2.5
+shader_parameter/twinkle = 0.8
+shader_parameter/twinkle_speed = null
+shader_parameter/billboard = null

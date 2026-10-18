@@ -1,0 +1,202 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://presentation/combat/fx/earth_enchant_v001/earth_enchant.gd" id="1_uiis2"]
+[ext_resource type="Material" path="res://presentation/combat/fx/earth_enchant_v001/earth_overlay.tres" id="2_hf60l"]
+[ext_resource type="Material" path="res://presentation/combat/fx/earth_enchant_v001/earth_dust.tres" id="3_syt1o"]
+[ext_resource type="Material" path="res://presentation/combat/fx/earth_enchant_v001/earth_sand.tres" id="4_3365h"]
+[ext_resource type="Material" path="res://presentation/combat/fx/earth_enchant_v001/earth_rock.tres" id="5_54bhw"]
+[ext_resource type="ArrayMesh" path="res://presentation/combat/fx/earth_enchant_v001/rock_chunk_mesh.res" id="6_nn60n"]
+
+[sub_resource type="Gradient" id="Gradient_r1vva"]
+offsets = PackedFloat32Array(0, 0.15, 0.6, 1)
+colors = PackedColorArray(0.42, 0.33, 0.22, 0, 0.4, 0.31, 0.21, 0.55, 0.34, 0.28, 0.2, 0.32, 0.3, 0.26, 0.2, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bm8oy"]
+gradient = SubResource("Gradient_r1vva")
+
+[sub_resource type="Curve" id="Curve_58eo8"]
+_data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dlsp7"]
+curve = SubResource("Curve_58eo8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kwqtc"]
+lifetime_randomness = 0.35
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 0.03
+initial_velocity_max = 0.12
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, -0.2, 0)
+damping_min = 0.6
+damping_max = 1.0
+scale_min = 0.6
+scale_max = 1.1
+scale_curve = SubResource("CurveTexture_dlsp7")
+color_ramp = SubResource("GradientTexture1D_bm8oy")
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_gykns"]
+size = Vector2(0.16, 0.16)
+
+[sub_resource type="Gradient" id="Gradient_ntwuf"]
+offsets = PackedFloat32Array(0, 0.1, 1)
+colors = PackedColorArray(0.7, 0.58, 0.4, 0, 0.68, 0.56, 0.38, 0.9, 0.6, 0.5, 0.35, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6p1jx"]
+gradient = SubResource("Gradient_ntwuf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c34jj"]
+lifetime_randomness = 0.4
+spread = 180.0
+initial_velocity_max = 0.15
+gravity = Vector3(0, -3.5, 0)
+scale_min = 0.6
+scale_max = 1.4
+color_ramp = SubResource("GradientTexture1D_6p1jx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_r1jax"]
+size = Vector2(0.012, 0.012)
+
+[sub_resource type="Curve" id="Curve_e3pt2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_s5haf"]
+curve = SubResource("Curve_e3pt2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8pdgv"]
+lifetime_randomness = 0.3
+particle_flag_rotate_y = true
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 0.02
+initial_velocity_max = 0.08
+gravity = Vector3(0, 0, 0)
+scale_min = 0.012
+scale_max = 0.028
+scale_curve = SubResource("CurveTexture_s5haf")
+turbulence_enabled = true
+turbulence_noise_strength = 0.6
+turbulence_noise_scale = 2.0
+turbulence_influence_min = 0.05
+turbulence_influence_max = 0.12
+
+[sub_resource type="Curve" id="Curve_u8c45"]
+_data = [Vector2(0, 0.7), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ao5j"]
+curve = SubResource("Curve_u8c45")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5bn8h"]
+lifetime_randomness = 0.4
+angle_max = 360.0
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, -0.35, 0)
+damping_min = 1.0
+damping_max = 1.5
+scale_min = 0.7
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_5ao5j")
+color_ramp = SubResource("GradientTexture1D_bm8oy")
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ng1on"]
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="Curve" id="Curve_ytqbk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ickut"]
+curve = SubResource("Curve_ytqbk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0q5qb"]
+lifetime_randomness = 0.3
+damping_min = 0.1
+damping_max = 0.3
+scale_min = 0.025
+scale_max = 0.06
+scale_curve = SubResource("CurveTexture_ickut")
+collision_mode = 1
+collision_friction = 0.6
+collision_bounce = 0.25
+
+[node name="EarthEnchant" type="Node3D" unique_id=1038206800 node_paths=PackedStringArray("dust", "sand", "pebbles", "trail_dust", "chips", "light", "fill_reference")]
+script = ExtResource("1_uiis2")
+dust = NodePath("Dust")
+sand = NodePath("Sand")
+pebbles = NodePath("Pebbles")
+trail_dust = NodePath("TrailDust")
+chips = NodePath("Chips")
+light = NodePath("EarthLight")
+fill_overlap = 0.85
+fill_reference = NodePath("TrailDust")
+overlay_material = ExtResource("2_hf60l")
+idle_power = 0.6
+windup_power = 0.9
+active_power = 1.25
+
+[node name="Dust" type="GPUParticles3D" parent="." unique_id=1491690144]
+material_override = ExtResource("3_syt1o")
+cast_shadow = 0
+emitting = false
+amount = 60
+lifetime = 0.9
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("ParticleProcessMaterial_kwqtc")
+draw_pass_1 = SubResource("QuadMesh_gykns")
+
+[node name="Sand" type="GPUParticles3D" parent="." unique_id=875456483]
+material_override = ExtResource("4_3365h")
+cast_shadow = 0
+emitting = false
+amount = 120
+lifetime = 0.9
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("ParticleProcessMaterial_c34jj")
+draw_pass_1 = SubResource("QuadMesh_r1jax")
+
+[node name="Pebbles" type="GPUParticles3D" parent="." unique_id=467697156]
+material_override = ExtResource("5_54bhw")
+emitting = false
+amount = 14
+lifetime = 2.2
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8pdgv")
+draw_pass_1 = ExtResource("6_nn60n")
+
+[node name="TrailDust" type="GPUParticles3D" parent="." unique_id=1381715093]
+material_override = ExtResource("3_syt1o")
+cast_shadow = 0
+emitting = false
+amount = 1400
+lifetime = 0.75
+fixed_fps = 0
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("ParticleProcessMaterial_5bn8h")
+draw_pass_1 = SubResource("QuadMesh_ng1on")
+
+[node name="Chips" type="GPUParticles3D" parent="." unique_id=271409359]
+material_override = ExtResource("5_54bhw")
+emitting = false
+amount = 200
+lifetime = 1.6
+fixed_fps = 0
+collision_base_size = 0.02
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("ParticleProcessMaterial_0q5qb")
+draw_pass_1 = ExtResource("6_nn60n")
+
+[node name="EarthLight" type="OmniLight3D" parent="." unique_id=2070117939]
+light_color = Color(1, 0.72, 0.4, 1)
+light_energy = 0.0
+omni_range = 1.8

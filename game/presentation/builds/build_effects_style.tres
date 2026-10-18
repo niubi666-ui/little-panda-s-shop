@@ -9,6 +9,7 @@
 
 [ext_resource type="PackedScene" path="res://presentation/combat/fx/elemental_enchants_v001/ice_impact.tscn" id="impact_ice"]
 [ext_resource type="PackedScene" path="res://presentation/combat/fx/elemental_enchants_v001/thunder_impact.tscn" id="impact_thunder"]
+[ext_resource type="PackedScene" path="res://presentation/combat/fx/earth_enchant_v001/earth_impact.tscn" id="impact_earth"]
 
 [sub_resource type="SphereMesh" id="projectile_mesh"]
 radius = 0.5
@@ -37,7 +38,7 @@ size = Vector3(0.4, 0.4, 1.5)
 
 [resource]
 script = ExtResource("style")
-element_impact_scenes = {"ice": ExtResource("impact_ice"), "thunder": ExtResource("impact_thunder")}
+element_impact_scenes = {"ice": ExtResource("impact_ice"), "thunder": ExtResource("impact_thunder"), "earth": ExtResource("impact_earth")}
 element_impact_height = 0.75
 enabled = true
 projectile_scenes = Dictionary[String, PackedScene]({"sword_wave": ExtResource("normal_wave")})

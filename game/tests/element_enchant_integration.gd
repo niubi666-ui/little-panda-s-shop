@@ -48,7 +48,7 @@ func run() -> void:
 	root.scaling_3d_scale = 1.0
 	root.use_taa = false
 	check(not is_instance_valid(view.weapon_enchant), "initial plain weapon")
-	for pair in [["elem_ice_mastery", "ice"], ["elem_superconduct", "thunder"]]:
+	for pair in [["elem_earth_mastery", "earth"], ["elem_ice_mastery", "ice"], ["elem_superconduct", "thunder"]]:
 		check(arena.builds.apply_test_preset(pair[0]).ok, "apply " + pair[0])
 		var element: String = pair[1]
 		check(is_instance_valid(view.weapon_enchant) and view._enchant_element == element, "weapon element " + element)
@@ -73,6 +73,10 @@ func run() -> void:
 			step()
 			await process_frame
 		await shot(element + "_hit")
+		for i in 16:
+			step()
+			await process_frame
+		await shot(element + "_hit_late")
 		var fx = impacts[-1].node if not impacts.is_empty() else null
 		var age: float = view.weapon_enchant._t
 		var impact_age: float = fx._age if fx != null else 0.0

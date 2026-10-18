@@ -75,6 +75,17 @@ extends "res://rogue/rooms/authored_room.gd"
 ## 草太密时远看是一片细碎的高频纹理，角色跑动时会“花”，疏一点、让地面露出来更安静。
 @export var density_keep: Dictionary
 
+@export_group("落花")
+## 每棵花树树冠下飘落的樱花瓣。粒子的运动（下落速度、风、翻飞）在 petal_process 里，
+## 花瓣外观在 petal_mesh 的材质（petal.gdshader）里；这里只管放在哪、放多少。
+@export var petal_tree_asset: String
+@export var petal_process: ParticleProcessMaterial
+@export var petal_mesh: Mesh
+@export var petals_per_tree: int
+@export var petal_lifetime: float
+## 花瓣从树冠哪个高度落下（米，按树的缩放）
+@export var petal_crown_height_m: float
+
 @export_group("树影")
 ## 用哪个资产的树冠来投影
 @export var shade_asset: String
@@ -102,6 +113,7 @@ func _ready() -> void:
 	_build_collision()
 	_build_lights()
 	$LightShafts.build(to_sun)
+	_build_petals()
 
 # ---------------- 坐标换算：Blender（Z 向上）→ Godot（Y 向上） ----------------
 static func _convert(v: Vector3) -> Vector3:
@@ -238,6 +250,31 @@ func _kept(asset: String, at: Vector3) -> bool:
 	if not density_keep.has(asset): return true
 	var roll := fposmod(sin(at.x * 12.9898 + at.z * 78.233) * 43758.5453, 1.0)
 	return roll < float(density_keep[asset])
+
+# ---------------- 落花 ----------------
+func _build_petals() -> void:
+	if petals_per_tree <= 0 or petal_process == null or petal_mesh == null: return
+	var holder := Node3D.new()
+	holder.name = "FallingPetals"
+	add_child(holder)
+	var index := 0
+	for entry in data.instances:
+		if entry.asset != petal_tree_asset: continue
+		var xform := _transform(entry.m)
+		var tree_scale: float = xform.basis.get_scale().y
+		var emitter := GPUParticles3D.new()
+		emitter.name = "Petals%d" % index
+		emitter.amount = petals_per_tree
+		emitter.lifetime = petal_lifetime
+		emitter.preprocess = petal_lifetime
+		emitter.randomness = 1.0
+		emitter.process_material = petal_process
+		emitter.draw_pass_1 = petal_mesh
+		emitter.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		emitter.visibility_aabb = AABB(Vector3(-12, -12, -12), Vector3(24, 16, 24))
+		holder.add_child(emitter)
+		emitter.global_position = xform.origin + Vector3.UP * petal_crown_height_m * tree_scale
+		index += 1
 
 # ---------------- 树影 ----------------
 func _build_canopy_shade() -> void:

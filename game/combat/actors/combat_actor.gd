@@ -57,24 +57,36 @@ var protection_left := 0.0
 var charging_skill := false
 var charge_elapsed := 0.0
 var _charged_intent := false
+var _charge_queued := false
 func charge_parameters() -> Dictionary:
 	if not _action_program.has("skill"): return {}
 	for effect in _action_program.skill.effects:
 		if effect.type == "charge_projectile": return effect.params
 	return {}
 func press_skill() -> void:
-	var p := charge_parameters()
-	if p.is_empty(): request_action("skill"); return
-	if control_locked or not health.alive() or runner.busy() or runner.cooldown_for("skill") > 0.0 or dodge_left > 0.0: return
-	charging_skill = true
-	charge_elapsed = 0.0
+	if charging_skill or _charge_queued: return
+	if not request_action("skill"): return
+	if charge_parameters().is_empty(): return
+	_charge_queued = true
+	_try_begin_charge()
 func release_skill() -> void:
+	# 已松键的预输入变为一次普通施放，不在冷却结束后误入持续蓄力。
+	if _charge_queued:
+		_charge_queued = false
+		return
 	if not charging_skill: return
 	var p := charge_parameters()
+	var charged := not p.is_empty() and charge_elapsed >= float(p.threshold_sec)
 	charging_skill = false
 	if p.is_empty(): return
-	request_action("skill")
-	_charged_intent = _queued_action == "skill" and charge_elapsed >= float(p.threshold_sec)
+	if request_action("skill"): _charged_intent = charged
+func _try_begin_charge() -> void:
+	if not _charge_queued or not _can_start_queued_action(): return
+	if runner.busy(): runner.cancel("chain")
+	# 可以在翻滚中积累蓄力；翻滚姿势仍优先，冷却等待时间不计入蓄力。
+	charging_skill = true
+	charge_elapsed = 0.0
+	_clear_attack_intent()
 func grant_protection(amount: float, duration: float) -> void:
 	if not health.alive(): return
 	protection_amount = amount
@@ -102,13 +114,19 @@ func clear_intents() -> void:
 func _clear_attack_intent() -> void:
 	_roll_attack_queued = false
 	_charged_intent = false
+	_charge_queued = false
 	_queued_action = ""
 	_queued_frame = -1
 	_buffer_left = 0.0
 func _age_attack_intent(delta: float) -> void:
 	if _queued_action.is_empty(): return
+	# 翻滚中按下的技能保留到翻滚结束，之后才消耗通常的预输入窗口。
+	if _queued_action == "skill" and dodge_left > 0.0: return
 	_buffer_left = maxf(0.0, _buffer_left - delta)
-	if _buffer_left <= 0.0: _clear_attack_intent()
+	if _buffer_left <= 0.0:
+		# 若这一帧刚完成上一招的末次判定，留到下帧接招，避免清掉有效输入或吞掉旧判定。
+		if _queued_action == "skill" and runner.active_this_step and _can_start_queued_action(): return
+		_clear_attack_intent()
 func set_action_program(actions: Dictionary, catalog: Catalog) -> bool:
 	# Plans are already evaluated by combat/builds; reject malformed wiring before mutation.
 	if not actions.has_all(["primary", "special", "skill"]): return false
@@ -166,23 +184,60 @@ func request_skill() -> void:
 	request_action("skill")
 func request_special() -> void:
 	request_action("special")
-func request_action(id: String, input_frame: int = -1) -> void:
-	if control_locked or health == null or not health.alive(): return
+func request_action(id: String, input_frame: int = -1) -> bool:
+	if control_locked or health == null or not health.alive(): return false
 	var definitions := _abilities_for(id)
-	if definitions.is_empty(): return
+	if definitions.is_empty(): return false
+	# 左键是明确的取消意图，即便这次普攻本身还在冷却也不留下待发剑气。
+	var cancel_skill := id == "primary" and (_queued_action == "skill" or charging_skill)
+	if cancel_skill:
+		charging_skill = false
+		charge_elapsed = 0.0
+		_clear_attack_intent()
 	var index := combo_index % definitions.size() if id == "primary" else 0
 	var roll_attack := id == "primary" and dodge != null and dodge_left > 0.0
 	var buffer_sec: float = dodge.attack.buffer_sec if roll_attack else definitions[index].buffer_sec
-	if not roll_attack and runner.cooldown_for(id) > buffer_sec: return
+	var wait_sec := buffer_sec + (dodge_left if id == "skill" else 0.0)
+	var cooldown := runner.cooldown_for(id)
+	if not roll_attack and cooldown > wait_sec and not is_equal_approx(cooldown, wait_sec): return false
 	var frame := Engine.get_process_frames() if input_frame < 0 else input_frame
-	# Same rendered frame has a stable priority even if OS event order is reversed.
+	# 左键后按时可明确取消待发剑气；其余动作仍保留原来的同帧优先级。
 	var priorities := {"primary": 0, "special": 1, "skill": 2}
-	if frame == _queued_frame and priorities.get(_queued_action, -1) > priorities.get(id, -1): return
+	if not cancel_skill and frame == _queued_frame and priorities.get(_queued_action, -1) > priorities.get(id, -1): return false
+	charging_skill = false
+	charge_elapsed = 0.0
+	_charge_queued = false
 	_queued_action = id
 	_roll_attack_queued = roll_attack
 	_charged_intent = false
 	_queued_frame = frame
 	_buffer_left = buffer_sec
+	return true
+
+func _can_start_queued_action() -> bool:
+	return not _queued_action.is_empty() and health.alive() and not control_locked and stagger_left <= 0.0 and (not runner.busy() or runner.can_chain()) and runner.cooldown_for(_queued_action) <= 0.0
+
+func _start_buffered_action() -> void:
+	if not _can_start_queued_action(): return
+	if _charge_queued:
+		_try_begin_charge()
+		return
+	if dodge_left > 0.0: return
+	var id := _queued_action
+	if runner.busy(): runner.cancel("chain")
+	var definitions := _abilities_for(id)
+	var index := combo_index % definitions.size() if id == "primary" else 0
+	var context: Dictionary = _action_program[id] if _action_program.has(id) else {}
+	if runner.start(definitions[index], facing, context, _charged_intent):
+		_cast_tempo = enemy_attack_multiplier
+		combo_index = (index + 1) % definitions.size() if id == "primary" else 0
+		combo_idle = 0.0
+		_clear_attack_intent()
+
+func _resume_buffered_skill() -> void:
+	# 冷却归零/翻滚结束的本帧即可接技能，不让计时到期先清掉输入。
+	if _queued_action == "skill" and not runner.active_this_step:
+		_start_buffered_action()
 func _abilities_for(id: String) -> Array[Catalog.Ability]:
 	if _action_abilities.has(id): return _action_abilities[id]
 	if id == "primary": return attacks
@@ -267,6 +322,7 @@ func step(delta: float) -> void:
 	_dodge_requested = false
 	_start_roll_attack()
 	if dodge_left > 0.0:
+		var buffer_delta := maxf(0.0, delta - dodge_left) if _queued_action == "skill" else delta
 		# 强制翻滚位移结束即交还移动；起身姿势和冲斩窗口继续，不再锁方向键。
 		var moving_delta := clampf(dodge.movement_duration - dodge_age, 0.0, delta)
 		var travel := dodge_direction * dodge.speed * moving_delta
@@ -277,25 +333,17 @@ func step(delta: float) -> void:
 		dodge_age += delta
 		motor.step(travel.normalized(), travel.length() / delta, delta, forced_velocity.is_zero_approx())
 		runner.tick(delta)
-		_age_attack_intent(delta)
+		_resume_buffered_skill()
+		_age_attack_intent(buffer_delta)
 		return
 	if not runner.busy():
 		combo_idle += delta
 		if combo_idle > definition.combo_reset: combo_index = 0
-	if not _queued_action.is_empty() and stagger_left <= 0.0 and (not runner.busy() or runner.can_chain()) and runner.cooldown_for(_queued_action) <= 0.0:
-		var id := _queued_action
-		if runner.busy(): runner.cancel("chain")
-		var definitions := _abilities_for(id)
-		var index := combo_index % definitions.size() if id == "primary" else 0
-		var context: Dictionary = _action_program[id] if _action_program.has(id) else {}
-		if runner.start(definitions[index], facing, context, _charged_intent):
-			_cast_tempo = enemy_attack_multiplier
-			combo_index = (index + 1) % definitions.size() if id == "primary" else 0
-			combo_idle = 0.0
-			_clear_attack_intent()
+	_start_buffered_action()
 	if not health.alive(): return
 	var before := runner.elapsed
 	runner.tick(delta * _cast_tempo * control_action_scale)
+	_resume_buffered_skill()
 	_age_attack_intent(delta)
 	if is_roll_attack_cast() and (runner.busy() or runner.active_this_step):
 		# Integrate distance over the actual timeline interval, including partial boundary frames.

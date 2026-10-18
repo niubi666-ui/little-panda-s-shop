@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://presentation/combat/fx/earth_enchant_v001/earth_puff.gdshader" id="1_l8q1h"]
+[ext_resource type="Texture2D" path="res://presentation/combat/fx/fire_enchant_v001/soft_dot.png" id="2_d7a8r"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_l8q1h")
+shader_parameter/tex = ExtResource("2_d7a8r")
+shader_parameter/atlas_h = 1
+shader_parameter/atlas_v = 1
+shader_parameter/emission = 1.0
+shader_parameter/opacity = 1.0
+shader_parameter/additive = null

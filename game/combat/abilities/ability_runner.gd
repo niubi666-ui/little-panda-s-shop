@@ -32,7 +32,9 @@ var cooldown: float:
 
 
 func cooldown_for(id: String) -> float:
-	return float(_cooldowns.get(id, 0.0))
+	var remaining := float(_cooldowns.get(id, 0.0))
+	# 分帧相减的浮点尾差视为归零，让预输入和 start() 使用一致的就绪判断。
+	return 0.0 if is_zero_approx(remaining) else remaining
 
 
 func start(definition: Catalog.Ability, facing: Vector3, context: Dictionary = {}, charged: bool = false, replace_cooldown: bool = false) -> bool:

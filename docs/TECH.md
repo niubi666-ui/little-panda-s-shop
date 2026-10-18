@@ -76,6 +76,7 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
   → 已提交的事实信号 → 表现层（ActorView、CombatJuice、CombatFeel、CombatAudio、特效视图）
 ```
 
+- 右键由 `press_skill()` / `release_skill()` 区分点按、持续蓄力和冷却中待开始蓄力。`request_action()` 返回输入是否接受；共用单个动作缓存，后按左键明确取消待发/蓄力技能（即使普攻暂不可用），其它同帧优先级沿用原规则。`wave_cast.buffer_sec` 现为 0.5 秒，复用现有 schema 8 的必填字段、Loader 与 Catalog，无新增配置字段。翻滚内技能缓存暂停老化，冷却须在“剩余翻滚时间 + buffer_sec”内就绪；跨翻滚结束帧只扣结束后的窗口时间。就绪的持有输入可在翻滚中蓄力；冷却等待不算蓄力，提前松键转为普通剑气。冷却归零/翻滚结束当帧尝试接招，若上一招本帧仍有末次判定则结算后下一帧接上；投射物仍由原 `cue` 发射。缓存只消费一次，清输入、受控、死亡、切房和重建构筑会取消。
 - `CharacterMotor` 是唯一写移动的地方（自主移动、击退、出招前冲、闪避）。普通翻滚前 `movement_duration_sec` 是固定方向位移，后续起身阶段按当前输入、移速构筑、减速及强制移动执行；跨越分段的一帧按两段时间份额合成速度，松键不继续漂移。翻滚时钟与冲斩输入窗口仍保留到 `duration_sec`。翻滚冲斩由 `CombatActor` 记录当前翻滚年龄、锁定瞄准方向并提交独立的 `roll_slash` 定义副本：本次前摇为剩余翻滚时间 + 配置起刀时间，原始 Ability 不变，沿用完整 primary plan；`BuildRuntime.on_committed` 仅接受 Dodge 配置且确已提交的变体。前次左键冷却被本次冷却替换，翻滚消耗不退还。点击当帧起前摇位移，按配置封顶其距离份额；挥砍位移用 Hermite 曲线承接前摇末速度，末速归零，总位移仍为配置距离。按时间段积分，经 `Motor.travel` 连续碰撞，撞障碍即停；`MeleeResolver` 沿实际位移路径补充判定，仍由每次施放的目标集合去重。`roll_slash.recovery_sec/chain_cancel_sec` 均为 0；最后一个判定时间段仍结算命中，下一物理帧立即恢复自主移动，不受剩余左键冷却影响。
 - 构筑：`BuildResolver` 把选卡编译成每个动作的执行计划（program）；`BuildRuntime` 按计划执行投射物、爆炸、状态、条件增伤；`TrainingBuildSession` 负责三选一、预设和提交；`BuildOfferSampler` 按品质与权重抽候选。
 - 接续构筑设计见 [构筑成长](BUILD_PROGRESSION.md)。`projectile_capabilities.gd` 已把新冰核心接到四张基础冰协同；其它旧卡和后期机制仍按范围逐步适配，不代表完整成长设计已实现。
@@ -129,6 +130,8 @@ data/manifest.json → content/*_loader.gd（严格 JSON → schema → 引用 �
 - 无头规则测试：`godot --headless --path game --script res://tests/<名字>.gd`
 - 图形/截图测试：去掉 `--headless`，加 `--resolution 1280x800`
 - 看输出里的 `failures`、`SCRIPT ERROR`、`ERROR`，不要只看退出码。
+- `charge_locomotion` 还覆盖真实角色移动中按住技能至蓄满、松开移动键，以及保留正式 34 段动作库。默认不保存截图；需要查看时在命令末尾加 `-- --capture`，图形模式输出到 `builds/charge_locomotion_check/`，可随时删除。
+- `skill_input_buffer` 通过真实输入适配器、角色与投射物 cue 检查 30/60/120 Hz 翻滚点按、持续蓄力、冷却边界与重叠、左键/UI/受控/死亡/切房/构筑取消、仅触发一次及上一招末次判定；不生成预览文件。`dual_actions`、`three_actions` 覆盖动作仲裁和原生挥刀时序。
 
 | 改了什么 | 跑什么 |
 |---|---|

@@ -6,10 +6,18 @@ var out: String
 var visual
 var reference
 var camera: Camera3D
+var capture_enabled := false
+var checks := 0
+
+func check(ok: bool, message: String) -> void:
+	checks += 1
+	super.check(ok, message)
 
 func run() -> void:
-	out = ProjectSettings.globalize_path("res://../builds/charge_motion_review/")
-	DirAccess.make_dir_recursive_absolute(out)
+	capture_enabled = OS.get_cmdline_user_args().has("--capture")
+	if capture_enabled and DisplayServer.get_name() != "headless":
+		out = ProjectSettings.globalize_path("res://../builds/charge_locomotion_check/")
+		DirAccess.make_dir_recursive_absolute(out)
 	builds = BuildLoader.new().load_catalog()
 	combat = CombatLoader.new().load_catalog()
 	resolver.configure(builds)
@@ -19,7 +27,9 @@ func run() -> void:
 	reference = Visual.instantiate(); root.add_child(reference); reference.hide()
 	await process_frame
 	check(visual.validate_assets(), "native assets and charge blend config valid")
+	check(visual.animation.get_animation_list().size() == 34 and visual.clip_set.attacks["wave_cast"] == &"cast", "only approved native clips and original sword-wave release remain")
 	_setup_review()
+	await check_moving_charge(f)
 	p.facing = Vector3.FORWARD
 	p.charging_skill = true
 	var leg: int = visual.skeleton.find_bone("calf_l")
@@ -70,9 +80,40 @@ func run() -> void:
 	p.health.apply(p.health.current, false)
 	visual.refresh_actor(p, .2)
 	check(visual._clip == &"death" and visual._charge_gait.is_empty(), "death overrides charge layers")
-	print("CHARGE_LOCOMOTION ", JSON.stringify({"failures": failures}))
+	print("CHARGE_LOCOMOTION ", JSON.stringify({"checks": checks, "failures": failures}))
 	reference.free(); clean(f)
 	quit(0 if failures.is_empty() else 1)
+
+func check_moving_charge(f: Dictionary) -> void:
+	var p = f.player
+	var leg: int = visual.skeleton.find_bone("calf_l")
+	p.facing = Vector3.FORWARD
+	p.movement = Vector3.RIGHT
+	var start: Vector3 = p.global_position
+	p.press_skill()
+	check(p.charging_skill, "actual skill input starts charge")
+	var moving_pose := Quaternion.IDENTITY
+	var steps := int(ceil(float(p.charge_parameters().threshold_sec) / DT)) + 20
+	for i in steps:
+		await physics_frame
+		p.step(DT)
+		f.runtime.tick(DT)
+		visual.refresh_actor(p, DT)
+		if i == steps - 12: moving_pose = visual.skeleton.get_bone_pose_rotation(leg)
+	check(p.global_position.distance_to(start) > p.definition.speed * DT, "real motor moves while skill is held")
+	check(p.charging_skill and is_equal_approx(p.charge_elapsed, float(p.charge_parameters().max_charge_sec)), "full charge keeps holding while moving")
+	check(visual._clip == visual.clip_set.charge and visual._charge_gait == visual.nodachi.run_directions[2], "real charge movement selects side-running legs")
+	check(moving_pose.angle_to(visual.skeleton.get_bone_pose_rotation(leg)) > 0.03, "real movement advances lower-body pose after full charge")
+	check(f.runtime.projectiles().is_empty(), "moving or reaching full charge cannot release the wave early")
+	p.movement = Vector3.ZERO
+	for i in 20:
+		await physics_frame
+		p.step(DT)
+		visual.refresh_actor(p, DT)
+	check(p.velocity.is_zero_approx() and visual._charge_gait.is_empty(), "real movement release returns legs to stationary charge")
+	p.cancel()
+	p.position = start
+	visual.refresh_actor(p, DT)
 
 func _setup_review() -> void:
 	if DisplayServer.get_name() == "headless": return
@@ -88,6 +129,6 @@ func _setup_review() -> void:
 	camera.position = Vector3(4, 2.5, -6); camera.look_at(Vector3.UP)
 
 func capture(label: String) -> void:
-	if DisplayServer.get_name() == "headless": return
+	if not capture_enabled or DisplayServer.get_name() == "headless": return
 	for i in 3: await RenderingServer.frame_post_draw
 	root.get_texture().get_image().save_png(out + label + ".png")

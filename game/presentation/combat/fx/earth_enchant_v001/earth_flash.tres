@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://presentation/combat/fx/elemental_enchants_v001/shaders/glint.gdshader" id="1_k8vmv"]
+[ext_resource type="Texture2D" path="res://presentation/combat/fx/fire_enchant_v001/soft_dot.png" id="2_8wu2f"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_k8vmv")
+shader_parameter/effect_time = null
+shader_parameter/tex = ExtResource("2_8wu2f")
+shader_parameter/tint = Color(1, 0.7, 0.35, 1)
+shader_parameter/emission = 0.8
+shader_parameter/twinkle = null
+shader_parameter/twinkle_speed = null
+shader_parameter/billboard = null

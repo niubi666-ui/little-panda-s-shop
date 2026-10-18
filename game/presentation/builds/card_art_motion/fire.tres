@@ -1,0 +1,39 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+[ext_resource type="Script" path="res://presentation/builds/card_art_motion/profile.gd" id="script"]
+[ext_resource type="Shader" path="res://presentation/builds/card_art_motion/local_art.gdshader" id="shader"]
+[ext_resource type="Texture2D" path="res://assets/ui/build_cards/v001/motion/fire_mask.svg" id="mask"]
+[resource]
+script = ExtResource("script")
+shader = ExtResource("shader")
+mask = ExtResource("mask")
+kind = "fire"
+enabled = true
+instance_seed_stride = 104729
+phase_span = 19.0
+intensity = 1.0
+hover_gain = 0.15
+particle_core = Color(1, 0.94, 0.74, 1)
+particle_glow_scale = 3.5
+particle_glow_opacity = 0.22
+seed = 1973
+flow_period_sec = 1.7
+flow_px = 6.5
+flow_direction = Vector2(1, 0.4)
+flow_speed_px = 18.0
+flow_emission = 0.3
+glow_variation = 0.20
+noise_scale = Vector2(45, 65)
+noise_speed = 4.8
+tint = Color(1, 0.42, 0.06, 1)
+mist_opacity = 0.0
+mist_speed_px = 0.0
+particle_count = 22
+emission_path = PackedVector2Array(0.29,0.31, 0.40,0.42, 0.53,0.46, 0.61,0.51, 0.72,0.59, 0.83,0.68, 0.91,0.72)
+particle_life = Vector2(1.0, 1.8)
+particle_drift = Vector2(11, -33)
+particle_drift_spread = Vector2(0.7, 1.3)
+particle_sway = Vector2(4, 1.5)
+particle_sway_hz = 1.3
+particle_tail_sec = 0.12
+particle_radius = Vector2(0.7, 1.45)
+particle_opacity = 0.9

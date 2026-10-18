@@ -1,0 +1,217 @@
+{
+	"blocks": [
+		{
+			"metrics": {
+				"cached_process_monitor_ms": {
+					"mean": 7.10559517045457,
+					"p95": 19.774,
+					"samples": 7040,
+					"zero_or_unavailable": 0
+				},
+				"gpu_ms": {
+					"mean": 0.257379260877232,
+					"p95": 0.28999999165535,
+					"samples": 7040,
+					"zero_or_unavailable": 0
+				},
+				"render_cpu_ms": {
+					"mean": 0.148573295510347,
+					"p95": 0.244000001430511,
+					"samples": 7040,
+					"zero_or_unavailable": 0
+				},
+				"wall_frame_interval_ms": {
+					"mean": 1.13638238636363,
+					"p95": 3.128,
+					"samples": 7040,
+					"zero_or_unavailable": 0
+				}
+			},
+			"mode": "static"
+		},
+		{
+			"metrics": {
+				"cached_process_monitor_ms": {
+					"mean": 5.60631704095097,
+					"p95": 11.015,
+					"samples": 4542,
+					"zero_or_unavailable": 0
+				},
+				"gpu_ms": {
+					"mean": 0.339405769401056,
+					"p95": 0.352999985218048,
+					"samples": 4542,
+					"zero_or_unavailable": 0
+				},
+				"render_cpu_ms": {
+					"mean": 0.184890576910337,
+					"p95": 0.293999993085861,
+					"samples": 4542,
+					"zero_or_unavailable": 0
+				},
+				"wall_frame_interval_ms": {
+					"mean": 1.76157837956847,
+					"p95": 3.445,
+					"samples": 4542,
+					"zero_or_unavailable": 0
+				}
+			},
+			"mode": "dynamic"
+		},
+		{
+			"metrics": {
+				"cached_process_monitor_ms": {
+					"mean": 4.07631064171786,
+					"p95": 5.213,
+					"samples": 8711,
+					"zero_or_unavailable": 0
+				},
+				"gpu_ms": {
+					"mean": 0.241727470104586,
+					"p95": 0.284999996423721,
+					"samples": 8711,
+					"zero_or_unavailable": 0
+				},
+				"render_cpu_ms": {
+					"mean": 0.107299965724184,
+					"p95": 0.162999998450279,
+					"samples": 8711,
+					"zero_or_unavailable": 0
+				},
+				"wall_frame_interval_ms": {
+					"mean": 0.918529675123406,
+					"p95": 2.857,
+					"samples": 8711,
+					"zero_or_unavailable": 0
+				}
+			},
+			"mode": "static"
+		},
+		{
+			"metrics": {
+				"cached_process_monitor_ms": {
+					"mean": 3.99074810576755,
+					"p95": 6.992,
+					"samples": 6467,
+					"zero_or_unavailable": 0
+				},
+				"gpu_ms": {
+					"mean": 0.329571519271104,
+					"p95": 0.349000006914139,
+					"samples": 6467,
+					"zero_or_unavailable": 0
+				},
+				"render_cpu_ms": {
+					"mean": 0.127308334848123,
+					"p95": 0.194999994277954,
+					"samples": 6467,
+					"zero_or_unavailable": 0
+				},
+				"wall_frame_interval_ms": {
+					"mean": 1.23706973867326,
+					"p95": 2.845,
+					"samples": 6467,
+					"zero_or_unavailable": 0
+				}
+			},
+			"mode": "dynamic"
+		}
+	],
+	"cards": [
+		"fire_core",
+		"ice_core",
+		"thunder_core"
+	],
+	"combined": {
+		"dynamic": {
+			"cached_process_monitor_ms": {
+				"mean": 4.65728585702599,
+				"p95": 11.015,
+				"samples": 11009,
+				"zero_or_unavailable": 0
+			},
+			"gpu_ms": {
+				"mean": 0.333628850917052,
+				"p95": 0.351000010967255,
+				"samples": 11009,
+				"zero_or_unavailable": 0
+			},
+			"render_cpu_ms": {
+				"mean": 0.151065128693755,
+				"p95": 0.259999993920326,
+				"samples": 11009,
+				"zero_or_unavailable": 0
+			},
+			"wall_frame_interval_ms": {
+				"mean": 1.45346707239532,
+				"p95": 3.211,
+				"samples": 11009,
+				"zero_or_unavailable": 0
+			}
+		},
+		"static": {
+			"cached_process_monitor_ms": {
+				"mean": 5.43026677671319,
+				"p95": 19.774,
+				"samples": 15751,
+				"zero_or_unavailable": 0
+			},
+			"gpu_ms": {
+				"mean": 0.248723127970082,
+				"p95": 0.287999987602234,
+				"samples": 15751,
+				"zero_or_unavailable": 0
+			},
+			"render_cpu_ms": {
+				"mean": 0.125747317745932,
+				"p95": 0.218999993443489,
+				"samples": 15751,
+				"zero_or_unavailable": 0
+			},
+			"wall_frame_interval_ms": {
+				"mean": 1.0159001968129,
+				"p95": 2.936,
+				"samples": 15751,
+				"zero_or_unavailable": 0
+			}
+		}
+	},
+	"cpu": "Intel(R) Core(TM) i7-14650HX",
+	"display_server": "Windows",
+	"engine": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+	"gpu_vendor": "NVIDIA",
+	"intensity": 1.0,
+	"max_fps": 0,
+	"measurement_notes": [
+		"RenderingServer viewport CPU plus global setup, in milliseconds; excludes script process/physics work.",
+		"GPU uses RenderingServer viewport timestamps; zero/unavailable samples are counted separately.",
+		"Wall frame interval includes waiting, scheduling and the benchmark itself; it is not pure CPU execution time.",
+		"Process monitor is an engine cached sample, not an independent per-frame CPU measurement.",
+		"No 3D gameplay loaded, input disabled, no mouse focus changes, no recording or image readback during samples.",
+		"Same process alternates static/dynamic twice. System background load and GPU power states remain uncontrolled.",
+		"This is a three-card UI cost comparison, not a gameplay frame rate claim or minimum specification."
+	],
+	"mode_sequence": [
+		"static",
+		"dynamic",
+		"static",
+		"dynamic"
+	],
+	"os": "Windows",
+	"rendering_driver": "vulkan",
+	"rendering_method": "forward_plus",
+	"sample_sec_per_block": 8.0,
+	"scene": "res://ui_lab/card_art_motion/card_art_motion_lab.tscn",
+	"utc_started": "2026-10-18T08:29:47",
+	"viewport_resolution": [
+		1280.0,
+		800.0
+	],
+	"vsync_mode": 0,
+	"warmup_sec_per_block": 3.0,
+	"window_resolution": [
+		1280,
+		800
+	]
+}

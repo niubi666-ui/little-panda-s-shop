@@ -258,6 +258,7 @@ func _ready() -> void:
 	pause_menu = preload("res://app/pause_menu.gd").new()
 	add_child(pause_menu)
 	pause_menu.configure(shared_theme)
+	pause_menu.card_animation_changed.connect(builds.choice_panel.set_art_motion_enabled)
 	pause_menu.open_requested.connect(_open_pause_menu)
 	pause_menu.closed.connect(func():
 		hud.refresh_text()

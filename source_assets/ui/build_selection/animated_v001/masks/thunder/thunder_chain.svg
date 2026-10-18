@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+<title>thunder_chain / thunder</title>
+<rect width="1000" height="1000" fill="black"/>
+<defs><radialGradient id="soft"><stop offset="0" stop-color="#d80000"/><stop offset="0.55" stop-color="#840000"/><stop offset="1" stop-color="#000000"/></radialGradient></defs>
+<polyline points="210.00,200.00 300.00,240.00 380.00,310.00 460.00,360.00 530.00,380.00 620.00,440.00 710.00,480.00 800.00,540.00 890.00,570.00" fill="none" stroke="#200000" stroke-width="37.80" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="210.00,200.00 300.00,240.00 380.00,310.00 460.00,360.00 530.00,380.00 620.00,440.00 710.00,480.00 800.00,540.00 890.00,570.00" fill="none" stroke="#740000" stroke-width="27.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="210.00,200.00 300.00,240.00 380.00,310.00 460.00,360.00 530.00,380.00 620.00,440.00 710.00,480.00 800.00,540.00 890.00,570.00" fill="none" stroke="#c80000" stroke-width="15.66" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="210.00" cy="200.00" rx="35.00" ry="55.00" fill="url(#soft)"/>
+<ellipse cx="530.00" cy="380.00" rx="26.00" ry="43.00" fill="url(#soft)"/>
+<ellipse cx="720.00" cy="480.00" rx="22.00" ry="31.00" fill="url(#soft)"/>
+<ellipse cx="890.00" cy="570.00" rx="18.00" ry="28.00" fill="url(#soft)"/>
+</svg>

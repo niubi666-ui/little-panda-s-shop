@@ -1,5 +1,5 @@
 extends SceneTree
-## 画面对照截图：与 Blender 的 source_assets/lookdev_forest_v1/render_game_views.py 使用同样的机位
+## 画面对照截图：与 Blender 的 source_assets/environments/forest/tools/render_game_views.py 使用同样的机位
 ## （视图名一致），隐藏界面、冻结战斗，只拍场景本身，用来和 Cycles 渲染图逐张对比。
 ## 图形模式运行（不能加 --headless）：
 ##   godot --path game --script res://tests/fairy_lookdev_capture.gd -- [视图,视图] [actors] [fps] [tag=名字] [env.属性=值 ...]
@@ -15,6 +15,11 @@ const VIEWS := {
 	"bridge": [Vector3(0.5, 12.1, 22.6), Vector3(0.5, 0.7, 5.0)],
 	"hero": [Vector3(3.5, 5.2, 21.5), Vector3(0.0, 0.8, 4.0)],
 	"top": [Vector3(0.0, 46.0, 0.5), Vector3(0.0, 0.0, 0.0)],
+	# 樱花溪谷：玩家在出生点（z=2.5）、走到北边瀑布附近（x=-3, z=-6）时的镜头
+	"play": [Vector3(0.0, 12.1, 18.6), Vector3(0.0, 0.7, 1.0)],
+	"north": [Vector3(-3.0, 12.1, 10.1), Vector3(-3.0, 0.7, -7.5)],
+	# 神木圣坛：拉远看全景（Boss 场）
+	"overview": [Vector3(0.0, 17.5, 21.0), Vector3(0.0, 0.7, -3.0)],
 }
 const SIZE := Vector2i(1280, 800)
 const PAN_SPEED_MPS := 5.0      # 平移速度：接近角色奔跑速度

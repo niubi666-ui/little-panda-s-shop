@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://rogue/rooms/placement_surface.gd" id="script"]
+[ext_resource type="Script" path="res://rogue/rooms/composition_anchor.gd" id="anchor"]
+[sub_resource type="Resource" id="parked"]
+script = ExtResource("anchor")
+id = "parked_outside"
+position = Vector3(0.0, 0.0, -40.0)
+yaw_options = PackedFloat32Array(0.0)
+[resource]
+script = ExtResource("script")
+template_id = "forest.sakura_glade"
+bounds = Rect2(-11.0, -7.5, 22.0, 21.0)
+composition_anchors = Array[Resource]([SubResource("parked")])

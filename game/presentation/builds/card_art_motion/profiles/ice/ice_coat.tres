@@ -1,0 +1,70 @@
+[gd_resource type="Resource" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://presentation/builds/card_art_motion/profile.gd" id="script"]
+
+[ext_resource type="Shader" path="res://presentation/builds/card_art_motion/local_art.gdshader" id="shader"]
+
+[ext_resource type="Texture2D" path="res://assets/ui/build_cards/v001/motion/ice/ice_coat.svg" id="mask_0"]
+
+[sub_resource type="FastNoiseLite" id="noise_0"]
+seed = 2053
+noise_type = 1
+frequency = 0.055
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="vapor_0"]
+width = 128
+height = 128
+seamless = true
+noise = SubResource("noise_0")
+
+[resource]
+script = ExtResource("script")
+shader = ExtResource("shader")
+mask = ExtResource("mask_0")
+kind = "ice"
+enabled = true
+instance_seed_stride = 104729
+phase_span = 19.0
+intensity = 1.0
+hover_gain = 0.15
+particle_core = Color(0.88, 0.97, 1, 1)
+particle_glow_scale = 3.0
+particle_glow_opacity = 0.12
+seed = 1472289918
+flow_period_sec = 5.5
+flow_px = 0.0
+flow_direction = Vector2(0, 0)
+flow_speed_px = 0.0
+flow_emission = 0.0
+glow_variation = 0.34
+noise_scale = Vector2(58, -36)
+noise_speed = 1.8
+tint = Color(0.45, 0.84, 1, 1)
+mist_opacity = 0.95
+mist_speed_px = 6.0
+mist_noise = SubResource("vapor_0")
+mist_puff_count = 10
+mist_emission_path = PackedVector2Array(0.16, 0.58, 0.25, 0.42, 0.35, 0.31, 0.45, 0.34, 0.5, 0.23, 0.54, 0.12, 0.6, 0.08)
+mist_lifetime = 2.8
+mist_velocity = Vector2(-11, -16)
+mist_radius_start = Vector2(17, 10)
+mist_radius_end = Vector2(40, 29)
+mist_sway_px = 10.0
+mist_sway_hz = 1.4
+mist_color = Color(0.68, 0.88, 1, 1)
+mist_max_alpha = 0.64
+particle_count = 0
+sparkle_points = PackedVector2Array(0.18, 0.29, 0.3, 0.18, 0.37, 0.21, 0.46, 0.34, 0.53, 0.06, 0.64, 0.04, 0.73, 0.4, 0.8, 0.85, 0.31, 0.7)
+sparkle_count = 3
+sparkle_duration = 0.60
+sparkle_period = 2.8
+sparkle_stagger = 0.22
+sparkle_size = 4.8
+sparkle_width = 1.0
+stream_paths = Array[PackedVector2Array]([PackedVector2Array(0.15, 0.65, 0.22, 0.48, 0.32, 0.35, 0.42, 0.32, 0.48, 0.4), PackedVector2Array(0.69, 0.4, 0.73, 0.51, 0.76, 0.66, 0.79, 0.81, 0.84, 0.91)])
+stream_count = 3
+stream_period = 2.8
+stream_tail_fraction = 0.1
+stream_width = 1
+stream_opacity = 0.5

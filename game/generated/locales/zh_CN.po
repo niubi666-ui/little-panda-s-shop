@@ -1519,6 +1519,12 @@ msgstr "待接入音频分组"
 msgid "settings.cancel"
 msgstr "取消"
 
+msgid "settings.card_animation"
+msgstr "播放卡牌动画"
+
+msgid "settings.card_animation_hint"
+msgstr "关闭后保留静态原画。此偏好会在下次启动时保留。"
+
 msgid "settings.chinese"
 msgstr "简体中文"
 
@@ -1581,6 +1587,9 @@ msgstr "待实现"
 
 msgid "settings.percent"
 msgstr "{value}%"
+
+msgid "settings.preference_note"
+msgstr "卡牌动画自动保存 · 其它设置仅本次生效"
 
 msgid "settings.quality"
 msgstr "画质预设"

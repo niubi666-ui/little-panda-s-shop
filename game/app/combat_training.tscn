@@ -1,6 +1,6 @@
 [gd_scene format=3]
 [ext_resource type="Script" path="res://app/combat_training.gd" id="1"]
-[ext_resource type="Resource" path="res://presentation/rooms/fairy_forest_v2/presentation.tres" id="room"]
+[ext_resource type="Resource" path="res://presentation/rooms/forest/sakura_glade/presentation.tres" id="room"]
 [ext_resource type="PackedScene" path="res://app/map_preview.tscn" id="map_preview"]
 
 [node name="CombatTraining" type="Node3D"]

@@ -1,0 +1,210 @@
+{
+	"cards": [
+		{
+			"changed_pixel_fraction": 0.0609809986743261,
+			"id": "power"
+		},
+		{
+			"changed_pixel_fraction": 0.052364118426867,
+			"id": "agility"
+		},
+		{
+			"changed_pixel_fraction": 0.0718073353954927,
+			"id": "wave"
+		},
+		{
+			"changed_pixel_fraction": 0.036676977463544,
+			"id": "chain"
+		},
+		{
+			"changed_pixel_fraction": 0.050543221539915,
+			"id": "split"
+		},
+		{
+			"changed_pixel_fraction": 0.0630609352857818,
+			"id": "impact_blast"
+		},
+		{
+			"changed_pixel_fraction": 0.117764030048608,
+			"id": "contact_slow"
+		},
+		{
+			"changed_pixel_fraction": 0.163202645252716,
+			"id": "contact_freeze"
+		},
+		{
+			"changed_pixel_fraction": 0.0642418516769013,
+			"id": "freeze_duration"
+		},
+		{
+			"changed_pixel_fraction": 0.0422768068020784,
+			"id": "pierce"
+		},
+		{
+			"changed_pixel_fraction": 0.171581146970049,
+			"id": "frost_blast"
+		},
+		{
+			"changed_pixel_fraction": 0.0448519664162616,
+			"id": "action_power"
+		},
+		{
+			"changed_pixel_fraction": 0.140529050543222,
+			"id": "shatter_followup"
+		},
+		{
+			"changed_pixel_fraction": 0.112607383329464,
+			"id": "opening_strike"
+		},
+		{
+			"changed_pixel_fraction": 0.0619921058741583,
+			"id": "returning_wave"
+		},
+		{
+			"changed_pixel_fraction": 0.14302298583701,
+			"id": "charged_wave"
+		},
+		{
+			"changed_pixel_fraction": 0.13187833758997,
+			"id": "shatter_heavy"
+		},
+		{
+			"changed_pixel_fraction": 0.139348134152102,
+			"id": "frost_path"
+		},
+		{
+			"changed_pixel_fraction": 0.111478507321682,
+			"id": "ice_coat"
+		},
+		{
+			"changed_pixel_fraction": 0.105832965090588,
+			"id": "fire_core"
+		},
+		{
+			"changed_pixel_fraction": 0.11842686699072,
+			"id": "ice_core"
+		},
+		{
+			"changed_pixel_fraction": 0.016570923552806,
+			"id": "thunder_core"
+		},
+		{
+			"changed_pixel_fraction": 0.0501546619531595,
+			"id": "earth_core"
+		},
+		{
+			"changed_pixel_fraction": 0.0847897968823807,
+			"id": "fire_kindling"
+		},
+		{
+			"changed_pixel_fraction": 0.157534246575342,
+			"id": "fire_blaze"
+		},
+		{
+			"changed_pixel_fraction": 0.0925838450637695,
+			"id": "fire_linger"
+		},
+		{
+			"changed_pixel_fraction": 0.126830420406235,
+			"id": "ice_deep"
+		},
+		{
+			"changed_pixel_fraction": 0.158951346244686,
+			"id": "ice_lasting"
+		},
+		{
+			"changed_pixel_fraction": 0.122342938119981,
+			"id": "ice_brittle"
+		},
+		{
+			"changed_pixel_fraction": 0.0205479452054795,
+			"id": "thunder_chain"
+		},
+		{
+			"changed_pixel_fraction": 0.0566839867737364,
+			"id": "thunder_surge"
+		},
+		{
+			"changed_pixel_fraction": 0.0285781766650921,
+			"id": "thunder_reach"
+		},
+		{
+			"changed_pixel_fraction": 0.0358998582900331,
+			"id": "earth_crush"
+		},
+		{
+			"changed_pixel_fraction": 0.0543221539914974,
+			"id": "earth_quake"
+		},
+		{
+			"changed_pixel_fraction": 0.0479452054794521,
+			"id": "earth_layers"
+		},
+		{
+			"changed_pixel_fraction": 0.226840027861621,
+			"id": "dual_steam"
+		},
+		{
+			"changed_pixel_fraction": 0.163919201300209,
+			"id": "dual_overload"
+		},
+		{
+			"changed_pixel_fraction": 0.11585790573485,
+			"id": "dual_lava"
+		},
+		{
+			"changed_pixel_fraction": 0.161829579753889,
+			"id": "dual_superconduct"
+		},
+		{
+			"changed_pixel_fraction": 0.13536104016717,
+			"id": "dual_shatter"
+		},
+		{
+			"changed_pixel_fraction": 0.0564197817506385,
+			"id": "dual_magnet"
+		},
+		{
+			"changed_pixel_fraction": 0.220106802879034,
+			"id": "fire_mastery_burst"
+		},
+		{
+			"changed_pixel_fraction": 0.150684931506849,
+			"id": "fire_mastery_heat"
+		},
+		{
+			"changed_pixel_fraction": 0.143951706524263,
+			"id": "ice_mastery_burst"
+		},
+		{
+			"changed_pixel_fraction": 0.169107227208314,
+			"id": "ice_mastery_cold"
+		},
+		{
+			"changed_pixel_fraction": 0.0527048990016253,
+			"id": "thunder_mastery_burst"
+		},
+		{
+			"changed_pixel_fraction": 0.0507794048181389,
+			"id": "thunder_mastery_storm"
+		},
+		{
+			"changed_pixel_fraction": 0.0550267007197585,
+			"id": "earth_mastery_burst"
+		},
+		{
+			"changed_pixel_fraction": 0.0441662730278696,
+			"id": "earth_mastery_weight"
+		},
+		{
+			"changed_pixel_fraction": 0.0636323464427751,
+			"id": "primary_reach"
+		},
+		{
+			"changed_pixel_fraction": 0.0790985417587274,
+			"id": "special_reach"
+		}
+	],
+	"checks": 526,
+	"failures": []
+}

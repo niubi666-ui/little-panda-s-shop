@@ -1519,6 +1519,12 @@ msgstr "Audio bus pending"
 msgid "settings.cancel"
 msgstr "Cancel"
 
+msgid "settings.card_animation"
+msgstr "Play Card Animation"
+
+msgid "settings.card_animation_hint"
+msgstr "Off keeps the static illustration. This preference is saved for the next launch."
+
 msgid "settings.chinese"
 msgstr "简体中文"
 
@@ -1581,6 +1587,9 @@ msgstr "Coming soon"
 
 msgid "settings.percent"
 msgstr "{value}%"
+
+msgid "settings.preference_note"
+msgstr "Card animation saved · Other settings apply this session"
 
 msgid "settings.quality"
 msgstr "Quality Preset"

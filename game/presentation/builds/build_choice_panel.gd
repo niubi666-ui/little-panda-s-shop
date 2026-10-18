@@ -9,6 +9,8 @@ const Style = preload("res://presentation/builds/build_ui_style.tres")
 const CardSkin = preload("res://presentation/builds/build_card_skin.tres")
 const Art = preload("res://presentation/builds/build_card_art_library.tres")
 const CardView = preload("res://presentation/builds/build_card_view.gd")
+const CardAnimationPreference = preload("res://presentation/settings/card_animation_preference.gd")
+const PreferencesDefaults = preload("res://presentation/settings/player_preferences.tres")
 var buttons: Dictionary = {}
 var _catalog
 var _offer: Dictionary = {}
@@ -30,9 +32,12 @@ var _accept_at_msec := 0
 var _requested_id := ""
 var _focused_id := ""
 var _queued: Array = []   # 关闭动画还没放完时到来的下一组 [offer, selections, heading]
+var _art_motion_enabled: bool = PreferencesDefaults.card_animation_enabled
 
-func configure(catalog, shared_theme: Theme) -> void:
+func configure(catalog, shared_theme: Theme, card_animation_preference = null) -> void:
 	assert(catalog != null and shared_theme != null)
+	var preference = card_animation_preference if card_animation_preference != null else CardAnimationPreference.new()
+	set_art_motion_enabled(preference.is_enabled())
 	_catalog = catalog
 	for entry in catalog.entries():
 		assert(Art.cards.has(entry.id), "Card art catalog is incomplete: " + entry.id)
@@ -69,6 +74,11 @@ func configure(catalog, shared_theme: Theme) -> void:
 	resized.connect(_layout)
 	_finish_close()
 	refresh_text()
+
+## Explicit presentation preference; never changes offers or hides illustration art.
+func set_art_motion_enabled(enabled: bool) -> void:
+	_art_motion_enabled = enabled
+	for card in buttons.values(): card.set_art_motion_enabled(enabled)
 
 ## heading: title/subtitle keys; awakening has a distinct heading.
 func show_offer(offer: Dictionary, selections: Array, heading: Array = ["build.title", "build.subtitle"]) -> void:
@@ -143,6 +153,12 @@ func dismiss() -> void:
 
 func _finish_close() -> void:
 	_closing = false
+	# Hidden CPUParticles2D may stop simulating before its finished signal.
+	# End the old selection burst before hiding or replacing this offer.
+	for child in _body.get_children():
+		if child is CPUParticles2D:
+			child.emitting = false
+			child.queue_free()
 	if not _queued.is_empty():
 		var next: Array = _queued
 		_queued = []
@@ -314,6 +330,7 @@ func _add_card(id: String) -> void:
 	var rarity: String = binding.rarity_id if binding.has("rarity_id") else art.default_rarity
 	var button := CardView.new()
 	_cards.add_child(button)
+	button.set_art_motion_enabled(_art_motion_enabled)
 	button.configure(binding.upgrade_id, art, rarity, Art.skin(rarity))
 	button.name = "Upgrade_" + id
 	button.pressed.connect(_request_choice.bind(id))

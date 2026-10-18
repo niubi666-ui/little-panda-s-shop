@@ -1,0 +1,89 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://ui_lab/card_art_motion/lab_settings.gd" id="script"]
+
+[sub_resource type="Gradient" id="forest"]
+offsets = PackedFloat32Array(0, 0.45, 1)
+colors = PackedColorArray(0.16, 0.22, 0.14, 1, 0.055, 0.12, 0.085, 1, 0.015, 0.035, 0.028, 1)
+
+[sub_resource type="GradientTexture2D" id="background"]
+gradient = SubResource("forest")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.35)
+fill_to = Vector2(1, 1)
+
+[resource]
+script = ExtResource("script")
+default_locale = "zh_CN"
+locales = PackedStringArray("zh_CN", "en")
+translations = {
+"zh_CN": {
+"heading": "卡牌原画动画 · 全部 51 张",
+"subtitle": "原画保持静止，魔法在局部流动",
+"dynamic": "动态 [D]", "pause": "暂停 [P]", "intensity": "强度",
+"language": "English [L]", "reopen": "重新展示 [F]", "quit": "关闭样板",
+"mixed": "火 / 冰 / 雷", "fire": "三张火", "ice": "三张冰", "thunder": "三张雷",
+"help": "PgUp / PgDn 翻页 · 悬停 / 方向键切卡 · 1 / 2 / 3 选择 · F 重开",
+"gallery_page": "{page}/{total} · {category}",
+"cat_fire": "火焰", "cat_ice": "寒冰", "cat_thunder": "雷电", "cat_earth": "大地",
+"cat_reactions": "元素反应", "cat_martial": "武技", "cat_legacy": "训练遗留卡",
+"cat_ice_thunder": "寒冰 / 雷电", "cat_thunder_earth": "雷电 / 大地",
+"cat_earth_reactions": "大地 / 元素反应", "cat_reactions_martial": "元素反应 / 武技",
+"cat_martial_legacy": "武技 / 训练遗留卡",
+"selected": "已展示选中退场：{name}（仅样板，不领取奖励）",
+"paused": "原画动画已暂停", "static": "静态原画", "active": "原画动画播放中"
+},
+"en": {
+"heading": "Living Card Art · All 51 Illustrations",
+"subtitle": "Still artwork, local magic in motion",
+"dynamic": "Motion [D]", "pause": "Pause [P]", "intensity": "Intensity",
+"language": "中文 [L]", "reopen": "Reopen [F]", "quit": "Close lab",
+"mixed": "Fire / Ice / Thunder", "fire": "Three Fire", "ice": "Three Ice", "thunder": "Three Thunder",
+"help": "PgUp / PgDn pages · Hover / arrows focus · 1 / 2 / 3 choose · F reopen",
+"gallery_page": "{page}/{total} · {category}",
+"cat_fire": "Fire", "cat_ice": "Ice", "cat_thunder": "Thunder", "cat_earth": "Earth",
+"cat_reactions": "Reactions", "cat_martial": "Martial", "cat_legacy": "Legacy Training",
+"cat_ice_thunder": "Ice / Thunder", "cat_thunder_earth": "Thunder / Earth",
+"cat_earth_reactions": "Earth / Reactions", "cat_reactions_martial": "Reactions / Martial",
+"cat_martial_legacy": "Martial / Legacy",
+"selected": "Selection exit shown: {name} (preview only; no reward granted)",
+"paused": "Illustration motion paused", "static": "Static artwork", "active": "Illustration motion playing"
+}}
+groups = Array[Dictionary]([{"label": "mixed", "ids": ["fire_core", "ice_core", "thunder_core"]}, {"label": "fire", "ids": ["fire_core", "fire_core", "fire_core"]}, {"label": "ice", "ids": ["ice_core", "ice_core", "ice_core"]}, {"label": "thunder", "ids": ["thunder_core", "thunder_core", "thunder_core"]}])
+catalog_groups = Array[Dictionary]([
+{"label": "cat_fire", "ids": ["fire_core", "fire_kindling", "fire_blaze"]},
+{"label": "cat_fire", "ids": ["fire_linger", "fire_mastery_burst", "fire_mastery_heat"]},
+{"label": "cat_ice", "ids": ["ice_core", "ice_deep", "ice_lasting"]},
+{"label": "cat_ice", "ids": ["ice_brittle", "shatter_followup", "opening_strike"]},
+{"label": "cat_ice", "ids": ["frost_path", "ice_coat", "ice_mastery_burst"]},
+{"label": "cat_ice_thunder", "ids": ["ice_mastery_cold", "thunder_core", "thunder_chain"]},
+{"label": "cat_thunder", "ids": ["thunder_surge", "thunder_reach", "thunder_mastery_burst"]},
+{"label": "cat_thunder_earth", "ids": ["thunder_mastery_storm", "earth_core", "earth_crush"]},
+{"label": "cat_earth", "ids": ["earth_quake", "earth_layers", "earth_mastery_burst"]},
+{"label": "cat_earth_reactions", "ids": ["earth_mastery_weight", "dual_steam", "dual_overload"]},
+{"label": "cat_reactions", "ids": ["dual_lava", "dual_superconduct", "dual_shatter"]},
+{"label": "cat_reactions_martial", "ids": ["dual_magnet", "power", "agility"]},
+{"label": "cat_martial", "ids": ["split", "impact_blast", "pierce"]},
+{"label": "cat_martial", "ids": ["action_power", "returning_wave", "charged_wave"]},
+{"label": "cat_martial_legacy", "ids": ["primary_reach", "special_reach", "wave"]},
+{"label": "cat_legacy", "ids": ["chain", "contact_slow", "contact_freeze"]},
+{"label": "cat_legacy", "ids": ["freeze_duration", "frost_blast", "shatter_heavy"]}
+])
+actions = PackedStringArray("primary", "special", "skill")
+starting_motion_enabled = true
+starting_intensity = 1.0
+max_intensity = 1.5
+intensity_step = 0.05
+toolbar_margin = Vector2(22, 16)
+toolbar_gap = 12
+control_height = 34.0
+font_size = 16
+slider_width = 125.0
+status_height = 58.0
+status_color = Color(0.9, 0.86, 0.68, 1)
+background = SubResource("background")
+demo_duration = 14.0
+demo_events = Array[Dictionary]([{"at": 2.0, "action": "focus", "index": 0}, {"at": 4.0, "action": "focus", "index": 1}, {"at": 6.0, "action": "focus", "index": 2}, {"at": 8.0, "action": "static"}, {"at": 10.0, "action": "dynamic"}, {"at": 12.0, "action": "focus", "index": 0}, {"at": 13.0, "action": "choose", "index": 0}])
+catalog_demo_page_sec = 3.0

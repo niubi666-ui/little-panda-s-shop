@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+<title>dual_steam / ice</title>
+<rect width="1000" height="1000" fill="black"/>
+<defs><radialGradient id="soft"><stop offset="0" stop-color="#d80000"/><stop offset="0.55" stop-color="#840000"/><stop offset="1" stop-color="#000000"/></radialGradient></defs>
+<polyline points="570.00,540.00 640.00,460.00 720.00,350.00 800.00,230.00 870.00,140.00" fill="none" stroke="#200000" stroke-width="77.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="570.00,540.00 640.00,460.00 720.00,350.00 800.00,230.00 870.00,140.00" fill="none" stroke="#740000" stroke-width="55.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="570.00,540.00 640.00,460.00 720.00,350.00 800.00,230.00 870.00,140.00" fill="none" stroke="#c80000" stroke-width="31.90" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="600.00,570.00 710.00,550.00 820.00,480.00 940.00,400.00" fill="none" stroke="#200000" stroke-width="77.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="600.00,570.00 710.00,550.00 820.00,480.00 940.00,400.00" fill="none" stroke="#740000" stroke-width="55.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="600.00,570.00 710.00,550.00 820.00,480.00 940.00,400.00" fill="none" stroke="#c80000" stroke-width="31.90" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="640.00,690.00 730.00,750.00 820.00,780.00 880.00,680.00" fill="none" stroke="#200000" stroke-width="77.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="640.00,690.00 730.00,750.00 820.00,780.00 880.00,680.00" fill="none" stroke="#740000" stroke-width="55.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="640.00,690.00 730.00,750.00 820.00,780.00 880.00,680.00" fill="none" stroke="#c80000" stroke-width="31.90" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

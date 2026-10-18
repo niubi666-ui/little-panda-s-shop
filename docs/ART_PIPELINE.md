@@ -12,8 +12,8 @@
 
 | 部分 | 内容 | 入口 |
 |---|---|---|
-| 场地 | 童话森林空地（第二版）：花树环绕、草甸花丛、斑驳树影、光柱薄雾、溪水木桥、遗迹石柱 | `game/presentation/rooms/fairy_forest_v2/` |
-| 镜头 | 透视，俯角约 33°，滚轮缩放改变的是镜头距离 | `fairy_forest_v2/presentation.tres` |
+| 场地 | 樱花林空地（原“童话森林第二版”）：花树环绕、草甸花丛、斑驳树影、光柱薄雾、溪水、遗迹石柱 | `game/presentation/rooms/forest/sakura_glade/` |
+| 镜头 | 透视，俯角约 33°，滚轮缩放改变的是镜头距离 | `forest/sakura_glade/presentation.tres` |
 | 战斗主角 | UE Manny + Nodachi 太刀，34 段原生动作 | `game/presentation/combat/rigs/nodachi_visual.tscn` |
 | 敌人 | 弩手、重装、冲锋兵、旗手：豺狼身体 + 各自的动作与道具；斥候和精灵游侠沿用原模型 | `game/presentation/combat/rigs/*_real_visual.tscn` |
 | 角色着色 | 标准 PBR，保留贴图，外加受击闪白、前摇泛光、尸体消散、淡轮廓光 | `game/presentation/shared/pbr/` |
@@ -24,9 +24,19 @@
 
 ## 场地：从 Blender 到 Godot
 
-当前训练场是**第二版童话森林**（`game/presentation/rooms/fairy_forest_v2/`，导出物 `game/assets/fairy_forest_v2/`，
-Blender 文件 `fairy_arena_game_v2.blend`，脚本 `build_game_arena_v2.py`；后者依赖 `build_game_arena.py`，不能删）。第一版已于 2026-10-14 删除。
+当前训练场是**樱花林空地**（原“第二版童话森林”，2026-10-18 整理改名）。第一版已于 2026-10-14 删除；
 2026-10-16 试过第三版（舞台灯光、晨光、低角度逆光三种光影），用户都不满意，已删除，恢复第二版。
+
+**森林系列按“素材库 + 场景”存放**（2026-10-18 整理，整理前后游戏画面逐像素对比无差别）：
+
+| | Blender 源文件 | 游戏里 |
+|---|---|---|
+| 森林素材库（所有森林场景共用） | `source_assets/environments/forest/kit/forest_kit.blend` | `game/assets/environments/forest/kit/`：每个素材一个 `assets/<名字>.gltf`，贴图共用 `textures/`；场景只加载自己用到的素材，读过的留在缓存里，同一局换房间不重读 |
+| 樱花林空地 | `source_assets/environments/forest/rooms/sakura_glade/sakura_glade.blend`（素材全部链接自素材库） | 导出物 `game/assets/environments/forest/rooms/sakura_glade/`；配置 `game/presentation/rooms/forest/sakura_glade/` |
+| 森林场景共用的代码和着色器 | — | `game/presentation/rooms/forest/shared/`（`forest_room.gd`、植被/地面/水/花瓣/光束着色器） |
+
+导出、渲染脚本在 `source_assets/environments/forest/tools/`，怎么做新场景见 `source_assets/environments/forest/README.md`。
+最早的样板间和减面过程在 `source_assets/environments/forest/lookdev/`（原 `source_assets/lookdev_forest_v1/`），只作来源记录。
 
 **场上道具（木箱、矮墙、宝箱）暂时不摆**：`placement_surface.tres` 只留了一个放在场外（z = −40）的摆放点。要恢复，把摆放点换回这五个
 （房间坐标，朝向是弧度）：west (-6.6, 0, -1.3) π/2,3π/2；east (6.6, 0, -0.9) π/2,3π/2；southwest (-5.2, 0, 4.0) 0,π；
@@ -36,7 +46,7 @@ southeast (5.2, 0, 4.0) 0,π；interior (0, 0, -5.0) 0,π。道具模型还是�
 
 做法是“同一个场地、同一个机位，Cycles 和 Godot 各拍一张，逐张对比”，而不是凭感觉调：
 
-1. `render_game_views.py` 用 Cycles 渲染 `fairy_arena_game_v2.blend`，机位和游戏镜头完全相同
+1. `tools/render_game_views.py` 用 Cycles 渲染场景文件（当时是 `fairy_arena_game_v2.blend`，现在是 `sakura_glade.blend`），机位和游戏镜头完全相同
    （`game` 默认镜头、`far` 拉远、`ruin` 遗迹、`bridge` 小桥、`hero` 低机位美图、`top` 正上方）。输出 `builds/lookdev/<机位>_cycles.png`。
 2. `game/tests/fairy_lookdev_capture.gd` 在 Godot 里用同样的机位拍 `builds/lookdev/<机位>_godot.png`（隐藏界面、角色，冻结战斗）。
 3. 两边对比亮度分布、颜色和局部区域，再改 Godot 的参数。最终五个机位的平均颜色和亮度分布差别都在几个百分点以内。
@@ -63,7 +73,7 @@ southeast (5.2, 0, 4.0) 0,π；interior (0, 0, -5.0) 0,π。道具模型还是�
 
 ### 要调的东西在哪
 
-脚本 `fairy_forest_room.gd` 里不带画面参数的默认值，都在下面这些文件里：
+脚本 `forest_room.gd` 里不带画面参数的默认值，都在下面这些文件里（`room.tscn`、地面和水的材质在场景文件夹 `forest/sakura_glade/`，植被和光束材质在 `forest/shared/`，所有森林场景共用）：
 
 | 想调什么 | 改哪里 |
 |---|---|
@@ -75,21 +85,26 @@ southeast (5.2, 0, 4.0) 0,π；interior (0, 0, -5.0) 0,π。道具模型还是�
 | 画面四角压暗、光尘 | `room.tscn` 的 `Vignette/Shade`、`Motes` |
 | 渲染分辨率与抗锯齿 | `presentation.tres` 的 `render_height_limit`、`render_scaling_mode` |
 
-地面小径和溪床是着色器按公式画的（`terrain.gdshader`），公式与 `build_game_arena.py` 里的 `path_x` / `stream_y` 相同，**改了一边要同步另一边**。
+地面小径和溪床是着色器按公式画的（`terrain.gdshader`），公式与 `lookdev/build_game_arena.py` 里的 `path_x` / `stream_y` 相同，**改了一边要同步另一边**。
+新场景如果地形不同，需要给地面着色器加新的画法，或改用贴图画小径和溪床。
 
-### 重新导出第二版
+### 重新导出
+
+在 `source_assets/environments/forest/` 下运行：
 
 ```powershell
-& 'E:\blender\blender.exe' --background source_assets/lookdev_forest_v1/fairy_forest_opt.blend --python source_assets/lookdev_forest_v1/build_game_arena_v2.py -- E:\ShopGame\game\assets\fairy_forest_v2
-& 'E:\blender\blender.exe' --background source_assets/lookdev_forest_v1/fairy_arena_game_v2.blend --python source_assets/lookdev_forest_v1/render_game_views.py -- E:\ShopGame\builds\lookdev
+& 'E:\blender\blender.exe' --background kit/forest_kit.blend --python tools/forest_export.py -- kit E:\ShopGame\game\assets\environments\forest\kit
+& 'E:\blender\blender.exe' --background rooms/sakura_glade/sakura_glade.blend --python tools/forest_export.py -- room E:\ShopGame\game\assets\environments\forest\rooms\sakura_glade
+& 'E:\blender\blender.exe' --background rooms/sakura_glade/sakura_glade.blend --python tools/render_game_views.py -- E:\ShopGame\builds\lookdev
 ```
 
-第一条重建场地并导出（约 6 分钟），第二条重新渲染对照图（约 5 分钟）。
+第一条导出素材库（改了素材时），第二条导出场景摆放和地面（改了摆放时），第三条重新渲染对照图。
 
 注意：
 
-- 改了 `library.glb` 后要重新导入：`godot --headless --path game --import`。如果导入失败过一次，Godot 会记住失败、不再重试，这时先删掉 `library.glb.import` 再导入。
-  重新导出前最好把 `game/assets/fairy_forest_v2/` 里 `library_` 开头的旧贴图删掉，否则改名的贴图会留下垃圾文件。
+- 重新导出后要重新导入：`godot --headless --path game --import`。如果导入失败过一次，Godot 会记住失败、不再重试，这时先删掉对应的 `.import` 再导入。
+- 素材库贴图是单独的图片文件，导入设置必须开 mipmap（`mipmaps/generate=true`），否则树叶、草的镂空和投影会变样、远处闪烁。新导出的贴图第一次导入后检查一下。
+  重新导出素材库前最好把 `game/assets/environments/forest/kit/` 里 `library_` 开头的旧贴图删掉，否则改名的贴图会留下垃圾文件。
 - 这个 Godot 版本读不了只含 WebP 贴图的 glTF，导出脚本因此用 PNG/JPEG。
 
 ### 草地“花屏”（2026-10-17）
@@ -110,7 +125,7 @@ southeast (5.2, 0, 4.0) 0,π；interior (0, 0, -5.0) 0,π。道具模型还是�
 
 ### 樱花飘落（2026-10-17）
 
-- 每棵花树（`petal_tree_asset`）树冠下一个粒子发射器（`fairy_forest_room.gd` 的 `_build_petals`），数量 `petals_per_tree`；
+- 每棵花树（`petal_tree_asset`）树冠下一个粒子发射器（`forest_room.gd` 的 `_build_petals`），数量 `petals_per_tree`；
   空地上方另有一层稀疏的漂浮花瓣（`room.tscn` 的 `DriftingPetals`）。花瓣顺着风向斜飘、慢慢翻转、逆光透粉。
 - 运动参数在 `room.tscn` 的 `petal_process` / `drift_process`（下落速度、风、乱流），外观在 `petal.gdshader` + `petal_material`。
 - 不挡战斗：花瓣只有 11×14 厘米，从游戏镜头看是零星的粉色小片；离镜头 7 米内的花瓣淡出（`near_fade_m`），
@@ -168,6 +183,17 @@ RTX 4060 笔记本，战斗中的实际画面：1080p 约 71 帧；全屏（2304
 截图：`godot --path game --fixed-fps 60 --script res://tests/build_choice_capture.gd -- [tag=名字] [frames] [still=截图路径]`。
 会拍下刚弹出、悬停、选中三张图，加 `frames` 则逐帧录下弹出和选中动画。必须加 `--fixed-fps 60`，否则存图太慢，动画会被跳过。
 `still=` 用一张截图当背景，不进训练场。
+
+### 卡牌原画局部动画（全部 51 张）
+
+全部 51 张接入原 `BuildCardView`，包含 7 张双层组合，共 58 个表现层及遮罩。沿用认可的火焰流火、带尾迹火星、寒冰冷雾与冰晶、持续分叉雷电，按各原画局部构图配置；原三核心基准资源保留。实际觉醒与奖励继续使用原有抽取，不因动画增加或删除卡。
+
+- **制作源**：统一放在 `source_assets/ui/build_selection/animated_v001/`。新卡的路径、局部区域和参数编辑于 `authoring/elemental.json`、`authoring/other.json`；运行同目录 `scripts/build_catalog.py` 导出分类 Profile 和 SVG，并更新字符串路径索引。不要直接修改生成文件；原三核心仍由 `game/presentation/builds/card_art_motion/{fire,ice,thunder}.tres` 调整。
+- **运行文件**：新配置按分类放在 `game/presentation/builds/card_art_motion/profiles/`，遮罩按同类目录放在 `game/assets/ui/build_cards/v001/motion/`，源副本在 `animated_v001/masks/`。全部遮罩为 512×384，UV 仍按原图归一化坐标定义；红通道管局部流动/光，绿色参与局部底层覆盖，黑区保持底图。冷雾按发射路径和程序噪声生成。导出不会覆盖原 PNG。
+- **加载与开关**：索引仅保存路径，展示时加载当前卡所需资源；关闭动画即释放局部效果，保留原图。玩家在 Esc → 画面设置 →「播放卡牌动画」切换，默认开启，偏好跨启动保存在 `user://player_preferences.cfg`。每卡材质、时钟独立，纹理可共享；不创建卡内 3D，不把预览视频放入游戏播放。
+- **图层边界**：原图、局部材质/微粒、底部渐隐、装饰、品质边框和文字各自独立；效果层沿用原图 COVER 裁剪，微粒限制在原画矩形内。可见且启用时才推进局部时钟，暂停同步冻结。
+- **预览**：双击根目录 `启动卡牌微动画样板.cmd`，保留火冰雷基准组和三张同元素模式；追加 17 页完整画廊，选择器或 PgUp/PgDn 翻页，D 静态/动态、P 冻结、L 双语，并可调强度。样板开关不修改玩家偏好。`--demo` 沿用 14 秒三卡演示；`--catalog-demo` 按 `lab_settings.tres` 每页 3 秒播放全卡，51 秒结束。全卡视频预览入口为 `previews/card_catalog_v001.mp4`，录制状态与命令见 `source_assets/ui/build_selection/animated_v001/README.md`。
+- **验证**：`tests/card_art_catalog.gd` 全卡实渲染 526 项通过，检查全部 51 张可见像素运动、释放与重新加载；`tests/card_animation_settings.gd` 图形 63 项通过（偏好、真实开关接线和暂停），`tests/card_art_motion.gd` 图形 393 项通过（图层与奖励输入回归）。全卡视频已完成录制与解码检查。全卡观感待试玩；这些 UI 检查不代表旧战斗退出 Texture RID 警告已经解决。
 
 ## 怎么替换一个角色
 

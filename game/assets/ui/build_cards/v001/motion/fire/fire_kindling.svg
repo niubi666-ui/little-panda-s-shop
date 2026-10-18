@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+<title>fire_kindling / fire</title>
+<rect width="1000" height="1000" fill="black"/>
+<defs><radialGradient id="soft"><stop offset="0" stop-color="#d80000"/><stop offset="0.55" stop-color="#840000"/><stop offset="1" stop-color="#000000"/></radialGradient></defs>
+<polyline points="230.00,490.00 250.00,440.00 270.00,410.00" fill="none" stroke="#200000" stroke-width="36.40" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="230.00,490.00 250.00,440.00 270.00,410.00" fill="none" stroke="#740000" stroke-width="26.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="230.00,490.00 250.00,440.00 270.00,410.00" fill="none" stroke="#c80000" stroke-width="15.08" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="310.00,480.00 350.00,400.00 380.00,350.00 380.00,420.00 410.00,440.00" fill="none" stroke="#200000" stroke-width="56.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="310.00,480.00 350.00,400.00 380.00,350.00 380.00,420.00 410.00,440.00" fill="none" stroke="#740000" stroke-width="40.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="310.00,480.00 350.00,400.00 380.00,350.00 380.00,420.00 410.00,440.00" fill="none" stroke="#c80000" stroke-width="23.20" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="400.00,440.00 450.00,370.00 470.00,270.00 440.00,200.00" fill="none" stroke="#200000" stroke-width="81.20" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="400.00,440.00 450.00,370.00 470.00,270.00 440.00,200.00" fill="none" stroke="#740000" stroke-width="58.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="400.00,440.00 450.00,370.00 470.00,270.00 440.00,200.00" fill="none" stroke="#c80000" stroke-width="33.64" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="490.00,420.00 520.00,340.00 530.00,290.00 500.00,300.00" fill="none" stroke="#200000" stroke-width="77.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="490.00,420.00 520.00,340.00 530.00,290.00 500.00,300.00" fill="none" stroke="#740000" stroke-width="55.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="490.00,420.00 520.00,340.00 530.00,290.00 500.00,300.00" fill="none" stroke="#c80000" stroke-width="31.90" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="560.00,460.00 590.00,390.00 590.00,350.00" fill="none" stroke="#200000" stroke-width="58.80" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="560.00,460.00 590.00,390.00 590.00,350.00" fill="none" stroke="#740000" stroke-width="42.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="560.00,460.00 590.00,390.00 590.00,350.00" fill="none" stroke="#c80000" stroke-width="24.36" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="640.00,500.00 660.00,450.00 650.00,380.00" fill="none" stroke="#200000" stroke-width="42.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="640.00,500.00 660.00,450.00 650.00,380.00" fill="none" stroke="#740000" stroke-width="30.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="640.00,500.00 660.00,450.00 650.00,380.00" fill="none" stroke="#c80000" stroke-width="17.40" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="680.00,520.00 710.00,510.00 750.00,530.00" fill="none" stroke="#200000" stroke-width="35.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="680.00,520.00 710.00,510.00 750.00,530.00" fill="none" stroke="#740000" stroke-width="25.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="680.00,520.00 710.00,510.00 750.00,530.00" fill="none" stroke="#c80000" stroke-width="14.50" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="480.00" cy="380.00" rx="55.00" ry="100.00" fill="url(#soft)"/>
+<ellipse cx="370.00" cy="430.00" rx="25.00" ry="45.00" fill="url(#soft)"/>
+<ellipse cx="610.00" cy="450.00" rx="25.00" ry="45.00" fill="url(#soft)"/>
+</svg>

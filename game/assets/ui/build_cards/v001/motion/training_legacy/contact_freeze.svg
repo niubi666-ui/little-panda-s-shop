@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+<title>contact_freeze / ice</title>
+<rect width="1000" height="1000" fill="black"/>
+<defs><radialGradient id="soft"><stop offset="0" stop-color="#d80000"/><stop offset="0.55" stop-color="#840000"/><stop offset="1" stop-color="#000000"/></radialGradient></defs>
+<polyline points="80.00,610.00 240.00,580.00 420.00,530.00 620.00,480.00 750.00,440.00" fill="none" stroke="#200000" stroke-width="70.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="80.00,610.00 240.00,580.00 420.00,530.00 620.00,480.00 750.00,440.00" fill="none" stroke="#740000" stroke-width="50.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="80.00,610.00 240.00,580.00 420.00,530.00 620.00,480.00 750.00,440.00" fill="none" stroke="#c80000" stroke-width="29.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="500.00,140.00 560.00,90.00 600.00,170.00 650.00,250.00 700.00,300.00 770.00,350.00 810.00,420.00" fill="none" stroke="#200000" stroke-width="70.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="500.00,140.00 560.00,90.00 600.00,170.00 650.00,250.00 700.00,300.00 770.00,350.00 810.00,420.00" fill="none" stroke="#740000" stroke-width="50.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="500.00,140.00 560.00,90.00 600.00,170.00 650.00,250.00 700.00,300.00 770.00,350.00 810.00,420.00" fill="none" stroke="#c80000" stroke-width="29.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="240.00,760.00 390.00,810.00 550.00,830.00 690.00,840.00 810.00,790.00 880.00,730.00" fill="none" stroke="#200000" stroke-width="70.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="240.00,760.00 390.00,810.00 550.00,830.00 690.00,840.00 810.00,790.00 880.00,730.00" fill="none" stroke="#740000" stroke-width="50.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="240.00,760.00 390.00,810.00 550.00,830.00 690.00,840.00 810.00,790.00 880.00,730.00" fill="none" stroke="#c80000" stroke-width="29.00" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

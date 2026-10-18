@@ -121,7 +121,7 @@ func _build() -> void:
 				note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				_placeholder("settings.save_pending", Rect2(370, 410, 270, 66))
 				_placeholder("settings.load_pending", Rect2(695, 410, 300, 66))
-	var note := _label(canvas, "settings.session_note", Rect2(335, 538, 690, 30), true)
+	var note := _label(canvas, "settings.preference_note", Rect2(335, 538, 690, 30), true)
 	note.add_theme_font_size_override("font_size", theme.get_font_size("font_size", "Muted"))
 	_button(canvas, "settings.resume", Rect2(48, 603, 245, 70), func(): close_requested.emit(), "button_primary")
 	_button(canvas, "settings.save", Rect2(307, 603, 245, 70), show_page.bind("saves"), "button_secondary")
@@ -208,6 +208,9 @@ func _graphics() -> void:
 		selected = limits.size() - 1
 	_option(_row("settings.fps", 3), options, selected, func(index): actions.set_fps_limit(limits[index]))
 	_placeholder("settings.pending", _row("settings.quality", 4))
+	var animation := _option(_row("settings.card_animation", 5), ["settings.off", "settings.on"], int(actions.card_animation_enabled()), func(value): actions.set_card_animation_enabled(value == 1))
+	animation.name = "CardAnimationToggle"
+	animation.tooltip_text = tr("settings.card_animation_hint")
 
 func _controls() -> void:
 	var bindings := {"settings.move":"move_forward", "settings.attack":"combat_attack", "settings.dodge":"combat_dodge", "settings.interact":"interact"}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+<title>dual_magnet / earth</title>
+<rect width="1000" height="1000" fill="black"/>
+<defs><radialGradient id="soft"><stop offset="0" stop-color="#d80000"/><stop offset="0.55" stop-color="#840000"/><stop offset="1" stop-color="#000000"/></radialGradient></defs>
+<polyline points="260.00,370.00 310.00,410.00 340.00,450.00 320.00,490.00" fill="none" stroke="#200000" stroke-width="35.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="260.00,370.00 310.00,410.00 340.00,450.00 320.00,490.00" fill="none" stroke="#740000" stroke-width="25.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="260.00,370.00 310.00,410.00 340.00,450.00 320.00,490.00" fill="none" stroke="#c80000" stroke-width="14.50" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="300.00,250.00 350.00,280.00 380.00,290.00" fill="none" stroke="#200000" stroke-width="35.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="300.00,250.00 350.00,280.00 380.00,290.00" fill="none" stroke="#740000" stroke-width="25.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="300.00,250.00 350.00,280.00 380.00,290.00" fill="none" stroke="#c80000" stroke-width="14.50" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="600.00,520.00 630.00,560.00 660.00,540.00 690.00,520.00" fill="none" stroke="#200000" stroke-width="35.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="600.00,520.00 630.00,560.00 660.00,540.00 690.00,520.00" fill="none" stroke="#740000" stroke-width="25.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="600.00,520.00 630.00,560.00 660.00,540.00 690.00,520.00" fill="none" stroke="#c80000" stroke-width="14.50" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

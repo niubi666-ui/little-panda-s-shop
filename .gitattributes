@@ -18,6 +18,8 @@
 # Binary source art and runtime assets are transferred through Git LFS.
 *.blend filter=lfs diff=lfs merge=lfs -text
 *.glb filter=lfs diff=lfs merge=lfs -text
+# External mesh buffers for the modular forest glTF assets.
+game/assets/environments/forest/kit/assets/*.bin filter=lfs diff=lfs merge=lfs -text
 *.fbx filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://ui_lab/card_art_motion/benchmark_settings.gd" id="script"]
+[resource]
+script = ExtResource("script")
+warmup_sec = 3.0
+sample_sec = 8.0
+mode_sequence = PackedStringArray("static", "dynamic", "static", "dynamic")
+max_fps = 0
+intensity = 1.0
+output_path = "res://../builds/card_art_motion_benchmark.json"

@@ -4,16 +4,19 @@ const SettingsPanel = preload("res://presentation/settings/settings_panel.gd")
 const Actions = preload("res://app/settings_actions.gd")
 signal closed
 signal open_requested
+signal card_animation_changed(enabled: bool)
 var panel
 var _previous_pause := false
 var _opened := false
 
-func configure(shared_theme: Theme) -> void:
+func configure(shared_theme: Theme, card_animation_preference = null) -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 90
 	panel = SettingsPanel.new()
 	add_child(panel)
-	panel.configure(shared_theme, Actions.new())
+	var actions := Actions.new(card_animation_preference)
+	actions.card_animation_changed.connect(card_animation_changed.emit)
+	panel.configure(shared_theme, actions)
 	panel.close_requested.connect(close)
 	panel.quit_requested.connect(func(): get_tree().quit())
 	panel.hide()

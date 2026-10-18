@@ -40,12 +40,20 @@ Desktop.ini
 /source_assets/characters/elf_archer/blender/jingling_assembled_v001_before_bowstring.blend
 /source_assets/vfx/trail_fxs_v2/reports/live_before_study.blend
 
+# Rebuildable Blender simulation caches; retain the scene and simulation settings.
+/source_assets/**/blendcache_*/
+/source_assets/**/*.bphys
+
 # Reproducible preview movies/frames; keep curated stills, concepts and reports.
 /source_assets/**/*.avi
 /source_assets/**/*.mp4
 /source_assets/**/*.mov
 /source_assets/**/*.webm
 /source_assets/**/blender_previews/movie_frames/
+/game/vfx_lab/**/*.mp4
+/game/vfx_lab/**/*.avi
+/game/vfx_lab/**/*.mov
+/game/vfx_lab/**/*.webm
 
 # Redundant delivery/export copies; authoritative originals/runtime models are kept.
 /little_pandas/

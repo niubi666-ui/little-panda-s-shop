@@ -1,0 +1,47 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://presentation/builds/card_art_motion/profile.gd" id="script"]
+
+[ext_resource type="Shader" path="res://presentation/builds/card_art_motion/local_art.gdshader" id="shader"]
+
+[ext_resource type="Texture2D" path="res://assets/ui/build_cards/v001/motion/thunder/thunder_surge.svg" id="mask_0"]
+
+[resource]
+script = ExtResource("script")
+shader = ExtResource("shader")
+mask = ExtResource("mask_0")
+kind = "thunder"
+enabled = true
+instance_seed_stride = 104729
+phase_span = 19.0
+intensity = 1.0
+hover_gain = 0.15
+particle_core = Color(0.90, 0.97, 1, 1)
+particle_glow_scale = 3.0
+particle_glow_opacity = 0.12
+seed = 1001822602
+flow_period_sec = 2.6
+flow_px = 0.0
+flow_direction = Vector2(0, 0)
+flow_speed_px = 0.0
+flow_emission = 0.0
+glow_variation = 0.18
+noise_scale = Vector2(73, -43)
+noise_speed = 3.0
+tint = Color(0.43, 0.72, 1, 1)
+mist_opacity = 0.0
+mist_speed_px = 0.0
+particle_count = 0
+arc_paths = Array[PackedVector2Array]([PackedVector2Array(0.54, 0.72, 0.52, 0.65, 0.47, 0.6, 0.45, 0.54, 0.39, 0.49, 0.36, 0.43, 0.3, 0.42, 0.27, 0.35, 0.21, 0.32, 0.16, 0.29, 0.11, 0.27), PackedVector2Array(0.55, 0.71, 0.59, 0.65, 0.64, 0.63, 0.65, 0.58, 0.7, 0.59, 0.73, 0.54, 0.79, 0.51), PackedVector2Array(0.6, 0.53, 0.61, 0.46, 0.59, 0.42, 0.62, 0.36, 0.6, 0.31, 0.63, 0.26, 0.68, 0.22), PackedVector2Array(0.68, 0.22, 0.65, 0.17, 0.68, 0.13, 0.66, 0.09, 0.67, 0.04, 0.65, 0.01), PackedVector2Array(0.65, 0.37, 0.7, 0.35, 0.73, 0.31, 0.76, 0.33, 0.8, 0.3, 0.84, 0.31), PackedVector2Array(0.57, 0.73, 0.62, 0.77, 0.68, 0.77, 0.71, 0.83, 0.76, 0.82, 0.8, 0.86, 0.84, 0.85, 0.89, 0.91)])
+arc_branches = Array[PackedVector2Array]([PackedVector2Array(0.39, 0.49, 0.38, 0.54, 0.35, 0.55), PackedVector2Array(0.27, 0.35, 0.29, 0.31, 0.27, 0.28), PackedVector2Array(0.65, 0.58, 0.66, 0.54, 0.7, 0.51), PackedVector2Array(0.61, 0.46, 0.56, 0.46, 0.54, 0.42), PackedVector2Array(0.63, 0.26, 0.61, 0.22, 0.58, 0.23), PackedVector2Array(0.68, 0.13, 0.72, 0.12, 0.73, 0.08), PackedVector2Array(0.76, 0.33, 0.77, 0.36, 0.81, 0.38), PackedVector2Array(0.71, 0.83, 0.69, 0.88, 0.72, 0.9)])
+branch_parents = PackedInt32Array(0, 0, 1, 2, 2, 3, 4, 5)
+arc_interval = Vector2(0.18, 0.26)
+arc_duration = Vector2(0.30, 0.42)
+arc_widths = Vector3(8.0, 3.2, 1.2)
+arc_opacities = Vector3(0.20, 0.68, 1.0)
+arc_jitter_px = 2.7
+arc_flutter_hz = 18.0
+arc_reveal_sec = 0.07
+arc_schedule_count = 19
+stream_paths = Array[PackedVector2Array]([])
+stream_count = 0

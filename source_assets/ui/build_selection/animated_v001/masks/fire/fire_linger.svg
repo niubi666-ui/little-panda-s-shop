@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+<title>fire_linger / fire</title>
+<rect width="1000" height="1000" fill="black"/>
+<defs><radialGradient id="soft"><stop offset="0" stop-color="#d80000"/><stop offset="0.55" stop-color="#840000"/><stop offset="1" stop-color="#000000"/></radialGradient></defs>
+<polyline points="150.00,250.00 200.00,310.00 220.00,270.00 200.00,200.00 220.00,150.00 190.00,110.00 150.00,90.00" fill="none" stroke="#200000" stroke-width="63.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="150.00,250.00 200.00,310.00 220.00,270.00 200.00,200.00 220.00,150.00 190.00,110.00 150.00,90.00" fill="none" stroke="#740000" stroke-width="45.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="150.00,250.00 200.00,310.00 220.00,270.00 200.00,200.00 220.00,150.00 190.00,110.00 150.00,90.00" fill="none" stroke="#c80000" stroke-width="26.10" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="250.00,330.00 270.00,300.00 310.00,300.00 360.00,290.00 370.00,320.00 340.00,360.00 370.00,450.00 410.00,520.00" fill="none" stroke="#200000" stroke-width="51.80" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="250.00,330.00 270.00,300.00 310.00,300.00 360.00,290.00 370.00,320.00 340.00,360.00 370.00,450.00 410.00,520.00" fill="none" stroke="#740000" stroke-width="37.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="250.00,330.00 270.00,300.00 310.00,300.00 360.00,290.00 370.00,320.00 340.00,360.00 370.00,450.00 410.00,520.00" fill="none" stroke="#c80000" stroke-width="21.46" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="310.00,350.00 370.00,380.00 440.00,400.00 490.00,420.00" fill="none" stroke="#200000" stroke-width="35.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="310.00,350.00 370.00,380.00 440.00,400.00 490.00,420.00" fill="none" stroke="#740000" stroke-width="25.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="310.00,350.00 370.00,380.00 440.00,400.00 490.00,420.00" fill="none" stroke="#c80000" stroke-width="14.50" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="400.00,530.00 450.00,550.00 500.00,540.00 560.00,490.00 620.00,470.00 680.00,480.00 730.00,520.00 740.00,580.00 720.00,610.00" fill="none" stroke="#200000" stroke-width="49.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="400.00,530.00 450.00,550.00 500.00,540.00 560.00,490.00 620.00,470.00 680.00,480.00 730.00,520.00 740.00,580.00 720.00,610.00" fill="none" stroke="#740000" stroke-width="35.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="400.00,530.00 450.00,550.00 500.00,540.00 560.00,490.00 620.00,470.00 680.00,480.00 730.00,520.00 740.00,580.00 720.00,610.00" fill="none" stroke="#c80000" stroke-width="20.30" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="760.00,650.00 800.00,710.00 870.00,750.00" fill="none" stroke="#200000" stroke-width="37.80" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="760.00,650.00 800.00,710.00 870.00,750.00" fill="none" stroke="#740000" stroke-width="27.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="760.00,650.00 800.00,710.00 870.00,750.00" fill="none" stroke="#c80000" stroke-width="15.66" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

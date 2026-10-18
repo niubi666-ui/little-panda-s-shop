@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" format=3]
+[ext_resource type="Shader" path="res://presentation/rooms/forest/shared/terrain.gdshader" id="shader"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest/rooms/sakura_glade/terrain/moss_albedo.jpg" id="moss_a"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest/rooms/sakura_glade/terrain/moss_normal.jpg" id="moss_n"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest/rooms/sakura_glade/terrain/moss_roughness.jpg" id="moss_r"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest/rooms/sakura_glade/terrain/litter_albedo.jpg" id="litter_a"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest/rooms/sakura_glade/terrain/litter_normal.jpg" id="litter_n"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest/rooms/sakura_glade/terrain/litter_roughness.jpg" id="litter_r"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest/rooms/sakura_glade/terrain/pebbles_albedo.jpg" id="pebbles_a"]
+[ext_resource type="Texture2D" path="res://assets/environments/forest/rooms/sakura_glade/terrain/pebbles_normal.jpg" id="pebbles_n"]
+
+[sub_resource type="FastNoiseLite" id="caustic_noise"]
+noise_type = 3
+frequency = 0.02
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="caustic_tex"]
+width = 256
+height = 256
+seamless = true
+noise = SubResource("caustic_noise")
+
+[resource]
+shader = ExtResource("shader")
+shader_parameter/moss_albedo = ExtResource("moss_a")
+shader_parameter/moss_normal = ExtResource("moss_n")
+shader_parameter/moss_roughness = ExtResource("moss_r")
+shader_parameter/litter_albedo = ExtResource("litter_a")
+shader_parameter/litter_normal = ExtResource("litter_n")
+shader_parameter/litter_roughness = ExtResource("litter_r")
+shader_parameter/pebbles_albedo = ExtResource("pebbles_a")
+shader_parameter/pebbles_normal = ExtResource("pebbles_n")
+shader_parameter/caustic_noise = SubResource("caustic_tex")
+shader_parameter/moss_scale = 3.0
+shader_parameter/litter_scale = 2.5
+shader_parameter/pebbles_scale = 1.8
+shader_parameter/moss_tint = Color(0.86, 0.9, 0.78, 1)
+shader_parameter/litter_tint = Color(1.3, 1.24, 1.15, 1)
+shader_parameter/wet_tint = Color(0.52, 0.56, 0.5, 1)
+shader_parameter/saturation = 1.0
+shader_parameter/litter_patches = 0.75
+shader_parameter/macro_contrast = 0.5
+shader_parameter/wet_band = 0.18
+shader_parameter/caustics = 1.4
+shader_parameter/caustic_scale = 0.35

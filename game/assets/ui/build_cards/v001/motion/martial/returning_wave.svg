@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+<title>returning_wave / energy</title>
+<rect width="1000" height="1000" fill="black"/>
+<defs><radialGradient id="soft"><stop offset="0" stop-color="#d80000"/><stop offset="0.55" stop-color="#840000"/><stop offset="1" stop-color="#000000"/></radialGradient></defs>
+<polyline points="360.00,320.00 480.00,400.00 640.00,480.00 800.00,520.00 880.00,510.00 890.00,490.00 850.00,460.00 770.00,440.00" fill="none" stroke="#200000" stroke-width="56.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="360.00,320.00 480.00,400.00 640.00,480.00 800.00,520.00 880.00,510.00 890.00,490.00 850.00,460.00 770.00,440.00" fill="none" stroke="#740000" stroke-width="40.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="360.00,320.00 480.00,400.00 640.00,480.00 800.00,520.00 880.00,510.00 890.00,490.00 850.00,460.00 770.00,440.00" fill="none" stroke="#c80000" stroke-width="23.20" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="890.00,700.00 960.00,720.00 960.00,750.00 890.00,770.00 750.00,760.00 590.00,710.00 420.00,630.00 280.00,530.00 160.00,420.00 100.00,340.00 85.00,280.00" fill="none" stroke="#200000" stroke-width="56.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="890.00,700.00 960.00,720.00 960.00,750.00 890.00,770.00 750.00,760.00 590.00,710.00 420.00,630.00 280.00,530.00 160.00,420.00 100.00,340.00 85.00,280.00" fill="none" stroke="#740000" stroke-width="40.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="890.00,700.00 960.00,720.00 960.00,750.00 890.00,770.00 750.00,760.00 590.00,710.00 420.00,630.00 280.00,530.00 160.00,420.00 100.00,340.00 85.00,280.00" fill="none" stroke="#c80000" stroke-width="23.20" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="340.00,170.00 240.00,150.00 170.00,150.00 150.00,180.00 190.00,250.00 280.00,320.00 420.00,390.00 600.00,450.00" fill="none" stroke="#200000" stroke-width="56.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="340.00,170.00 240.00,150.00 170.00,150.00 150.00,180.00 190.00,250.00 280.00,320.00 420.00,390.00 600.00,450.00" fill="none" stroke="#740000" stroke-width="40.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="340.00,170.00 240.00,150.00 170.00,150.00 150.00,180.00 190.00,250.00 280.00,320.00 420.00,390.00 600.00,450.00" fill="none" stroke="#c80000" stroke-width="23.20" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

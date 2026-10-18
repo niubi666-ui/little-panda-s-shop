@@ -1,6 +1,6 @@
 extends SceneTree
 ## 光照单位校准：一块灰卡分别只受太阳光、只受天光照亮，和 Blender Cycles 的同名渲染对比
-## （source_assets/lookdev_forest_v1 的对照流程用）。图形模式运行，输出 builds/lookdev/calib/*_godot.png。
+## （source_assets/environments/forest 的对照流程用）。图形模式运行，输出 builds/lookdev/calib/*_godot.png。
 const OUT := "E:/ShopGame/builds/lookdev/calib/"
 
 func _initialize() -> void: call_deferred("run")

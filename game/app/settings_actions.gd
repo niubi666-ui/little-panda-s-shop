@@ -1,5 +1,18 @@
 extends RefCounted
 ## Settings only. No inventory, run state, or game-save writes.
+signal card_animation_changed(enabled: bool)
+const CardAnimationPreference = preload("res://presentation/settings/card_animation_preference.gd")
+var _card_animation: CardAnimationPreference
+
+func _init(preference: CardAnimationPreference = null) -> void:
+	_card_animation = preference if preference != null else CardAnimationPreference.new()
+	_card_animation.changed.connect(card_animation_changed.emit)
+
+func card_animation_enabled() -> bool:
+	return _card_animation.is_enabled()
+
+func set_card_animation_enabled(enabled: bool) -> Error:
+	return _card_animation.set_enabled(enabled)
 
 func master_volume() -> float:
 	return AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Master"))

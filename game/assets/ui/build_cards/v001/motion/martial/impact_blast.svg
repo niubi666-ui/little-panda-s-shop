@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+<title>impact_blast / energy</title>
+<rect width="1000" height="1000" fill="black"/>
+<defs><radialGradient id="soft"><stop offset="0" stop-color="#d80000"/><stop offset="0.55" stop-color="#840000"/><stop offset="1" stop-color="#000000"/></radialGradient></defs>
+<polyline points="580.00,510.00 460.00,550.00 360.00,600.00 330.00,550.00 330.00,440.00 390.00,280.00 500.00,160.00 620.00,100.00 710.00,100.00 780.00,170.00" fill="none" stroke="#200000" stroke-width="56.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="580.00,510.00 460.00,550.00 360.00,600.00 330.00,550.00 330.00,440.00 390.00,280.00 500.00,160.00 620.00,100.00 710.00,100.00 780.00,170.00" fill="none" stroke="#740000" stroke-width="40.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="580.00,510.00 460.00,550.00 360.00,600.00 330.00,550.00 330.00,440.00 390.00,280.00 500.00,160.00 620.00,100.00 710.00,100.00 780.00,170.00" fill="none" stroke="#c80000" stroke-width="23.20" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="330.00,540.00 340.00,630.00 390.00,730.00 480.00,790.00 630.00,810.00 770.00,770.00 890.00,700.00 960.00,640.00" fill="none" stroke="#200000" stroke-width="56.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="330.00,540.00 340.00,630.00 390.00,730.00 480.00,790.00 630.00,810.00 770.00,770.00 890.00,700.00 960.00,640.00" fill="none" stroke="#740000" stroke-width="40.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="330.00,540.00 340.00,630.00 390.00,730.00 480.00,790.00 630.00,810.00 770.00,770.00 890.00,700.00 960.00,640.00" fill="none" stroke="#c80000" stroke-width="23.20" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="590.00,500.00 480.00,420.00 350.00,360.00 230.00,320.00" fill="none" stroke="#200000" stroke-width="56.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="590.00,500.00 480.00,420.00 350.00,360.00 230.00,320.00" fill="none" stroke="#740000" stroke-width="40.00" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="590.00,500.00 480.00,420.00 350.00,360.00 230.00,320.00" fill="none" stroke="#c80000" stroke-width="23.20" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

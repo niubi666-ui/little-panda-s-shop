@@ -1,6 +1,12 @@
 extends Button
 ## Runtime assembly: art / text backing / ornament / frame / live labels.
 const CardSkin = preload("res://presentation/builds/build_card_skin.tres")
+const MotionLibrary = preload("res://presentation/builds/card_art_motion/library.tres")
+const ArtMotion = preload("res://presentation/builds/card_art_motion/art_motion.gd")
+var art_motion: ArtMotion
+var _motion_requested := false
+var _motion_intensity_override: Variant = null
+var _motion_paused := false
 var labels: Dictionary = {}
 var art_id := ""
 var rarity_id := ""
@@ -132,6 +138,7 @@ func configure(id: String, art: Dictionary, rarity: String, rarity_skin: Diction
 	# 鼠标移上去就把焦点给这张卡：鼠标和键盘/手柄共用同一个“当前选中”
 	mouse_entered.connect(func(): if focus_mode != Control.FOCUS_NONE: grab_focus())
 	button_down.connect(func(): _press = 1.0)
+	_sync_art_motion()
 	_animate(0.0)
 
 func set_hotkey(text: String) -> void:
@@ -142,7 +149,41 @@ func active() -> bool:
 	return has_focus() and picked <= 0.0 and discarded <= 0.0
 
 func _process(delta: float) -> void:
+	if not is_visible_in_tree(): return
 	_animate(delta)
+	if art_motion != null: art_motion.advance(delta, _focus)
+
+func set_art_motion_enabled(value: bool) -> void:
+	_motion_requested = value
+	_sync_art_motion()
+
+func _sync_art_motion() -> void:
+	if not _motion_requested:
+		if art_motion != null:
+			art_motion.set_enabled(false)
+			remove_child(art_motion)
+			art_motion.queue_free()
+			art_motion = null
+		return
+	var illustration := get_node_or_null("Illustration") as TextureRect
+	if illustration == null or art_motion != null: return
+	var motion_profile = MotionLibrary.profile_for(art_id)
+	if motion_profile == null: return
+	art_motion = ArtMotion.new()
+	art_motion.name = "ArtMotion"
+	_add_rect(art_motion, Rect2(illustration.position, illustration.size))
+	move_child(art_motion, illustration.get_index()+1)
+	art_motion.configure(motion_profile, illustration.texture)
+	if _motion_intensity_override != null: art_motion.set_intensity(_motion_intensity_override)
+	art_motion.set_paused(_motion_paused)
+
+func set_art_motion_intensity(value: float) -> void:
+	_motion_intensity_override = value
+	if art_motion != null: art_motion.set_intensity(value)
+
+func set_art_motion_paused(value: bool) -> void:
+	_motion_paused = value
+	if art_motion != null: art_motion.set_paused(value)
 
 func _animate(delta: float) -> void:
 	_clock += delta
